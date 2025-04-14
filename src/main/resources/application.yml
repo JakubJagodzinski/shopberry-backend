@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: internet_shop
+  datasource:
+    url: jdbc:sqlserver://localhost:1433;databaseName=internet_shop
+    username: username
+    password: password
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+    database: sql_server
+    database-platform: org.hibernate.dialect.SQLServerDialect
