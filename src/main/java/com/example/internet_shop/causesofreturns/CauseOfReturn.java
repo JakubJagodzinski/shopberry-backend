@@ -1,9 +1,15 @@
 package com.example.internet_shop.causesofreturns;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "causes_of_returns")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class CauseOfReturn {
 
     @Id

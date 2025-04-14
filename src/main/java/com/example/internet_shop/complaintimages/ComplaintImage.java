@@ -5,14 +5,14 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Table(name = "complaint_images")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
 public class ComplaintImage {
 
     @Id
@@ -21,8 +21,10 @@ public class ComplaintImage {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "complaint_id", referencedColumnName = "complaint_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Complaint complaint;
 
-    private Byte[] image;
+    @Lob
+    private byte[] image;
 
 }

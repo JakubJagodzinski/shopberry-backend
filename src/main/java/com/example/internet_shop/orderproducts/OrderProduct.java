@@ -7,7 +7,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -16,21 +15,20 @@ import org.hibernate.annotations.OnDeleteAction;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
 public class OrderProduct {
 
     @EmbeddedId
-    private OrderProductId orderProductId;
+    private OrderProductId id;
 
     @ManyToOne
     @MapsId("orderId")
-    @JoinColumn(name = "order_id", foreignKey = @ForeignKey(name = "fk_order"))
+    @JoinColumn(name = "order_id", foreignKey = @ForeignKey(name = "fk_order_product_order"))
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Order order;
 
     @ManyToOne
     @MapsId("productId")
-    @JoinColumn(name = "product_id", foreignKey = @ForeignKey(name = "fk_product"))
+    @JoinColumn(name = "product_id", foreignKey = @ForeignKey(name = "fk_order_product_product"))
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Product product;
 

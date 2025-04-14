@@ -4,14 +4,12 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 @Entity
 @Table(name = "shipment_types")
 @Data
-@AllArgsConstructor
-@RequiredArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class ShipmentType {
 
     @Id

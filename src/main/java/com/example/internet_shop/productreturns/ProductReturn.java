@@ -7,16 +7,14 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
-@Table(name = "order_returns")
+@Table(name = "product_returns")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
 public class ProductReturn {
 
     @Id
@@ -25,14 +23,12 @@ public class ProductReturn {
     private Long productReturnId;
 
     @ManyToOne
-    @MapsId("orderId")
-    @JoinColumn(name = "order_id", foreignKey = @ForeignKey(name = "fk_order"))
+    @JoinColumn(name = "order_id", referencedColumnName = "order_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Order order;
 
     @ManyToOne
-    @MapsId("productId")
-    @JoinColumn(name = "product_id", referencedColumnName = "product_id")
+    @JoinColumn(name = "product_id", referencedColumnName = "product_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Product product;
 

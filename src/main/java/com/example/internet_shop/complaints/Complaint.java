@@ -6,14 +6,12 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 @Entity
 @Table(name = "complaints")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
 public class Complaint {
 
     @Id
@@ -37,9 +35,6 @@ public class Complaint {
 
     @Column(name = "last_name", length = 40)
     private String lastName;
-
-    @Column(name = "company_name", length = 100)
-    private String companyName;
 
     @Column(length = 15)
     private String nip;

@@ -5,19 +5,17 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 @Entity
 @Table(name = "products")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JoinColumn(name = "product_id")
+    @Column(name = "product_id")
     private Long productId;
 
     @Column(name = "product_name", nullable = false, unique = true, length = 100)
@@ -42,6 +40,7 @@ public class Product {
     @Column(name = "is_in_stock", nullable = false)
     private Boolean isInStock;
 
-    private Byte[] image;
+    @Lob
+    private byte[] image;
 
 }

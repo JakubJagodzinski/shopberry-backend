@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDateTime;
 
@@ -13,7 +12,6 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
 public class Customer {
 
     @Id
@@ -26,9 +24,6 @@ public class Customer {
 
     @Column(nullable = false, length = 100)
     private String password;
-
-    @Column(name = "is_company", nullable = false)
-    private Boolean isCompany = false;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt = LocalDateTime.now();

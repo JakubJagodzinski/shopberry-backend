@@ -1,19 +1,17 @@
-package com.example.internet_shop.individualcustomeraddresses;
+package com.example.internet_shop.customeraddresses;
 
 import com.example.internet_shop.customers.Customer;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 @Entity
 @Table(name = "individual_customer_addresses")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
-public class IndividualCustomerAddress {
+public class CustomerAddress {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

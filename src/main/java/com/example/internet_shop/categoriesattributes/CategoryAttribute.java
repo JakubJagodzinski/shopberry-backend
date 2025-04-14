@@ -6,7 +6,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -15,7 +14,6 @@ import org.hibernate.annotations.OnDeleteAction;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
 public class CategoryAttribute {
 
     @EmbeddedId
@@ -23,13 +21,13 @@ public class CategoryAttribute {
 
     @ManyToOne
     @MapsId("categoryId")
-    @JoinColumn(name = "category_id", foreignKey = @ForeignKey(name = "fk_category"))
+    @JoinColumn(name = "category_id", foreignKey = @ForeignKey(name = "fk_category_attribute_category"))
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Category category;
 
     @ManyToOne
     @MapsId("attributeId")
-    @JoinColumn(name = "attribute_id", foreignKey = @ForeignKey(name = "fk_attribute"))
+    @JoinColumn(name = "attribute_id", foreignKey = @ForeignKey(name = "fk_category_attribute_attribute"))
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Attribute attribute;
 

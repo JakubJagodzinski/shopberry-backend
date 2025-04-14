@@ -6,7 +6,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -17,21 +16,20 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
 public class Cart {
 
     @EmbeddedId
-    private CartId cartId;
+    private CartId id;
 
     @ManyToOne
     @MapsId("customerId")
-    @JoinColumn(name = "customer_id", foreignKey = @ForeignKey(name = "fk_customer"))
+    @JoinColumn(name = "customer_id", foreignKey = @ForeignKey(name = "fk_cart_customer"))
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Customer customer;
 
     @ManyToOne
     @MapsId("productId")
-    @JoinColumn(name = "product_id", foreignKey = @ForeignKey(name = "fk_product"))
+    @JoinColumn(name = "product_id", foreignKey = @ForeignKey(name = "fk_cart_product"))
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Product product;
 
