@@ -5,15 +5,17 @@ import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @Embeddable
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@RequiredArgsConstructor
 public class CartId {
 
-    @Column(name = "order_id")
-    private Long orderId;
+    @Column(name = "customer_id")
+    private Long customerId;
 
     @Column(name = "product_id")
     private Long productId;

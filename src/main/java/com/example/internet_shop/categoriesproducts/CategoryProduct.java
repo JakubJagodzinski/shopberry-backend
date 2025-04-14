@@ -1,6 +1,6 @@
-package com.example.internet_shop.carts;
+package com.example.internet_shop.categoriesproducts;
 
-import com.example.internet_shop.customers.Customer;
+import com.example.internet_shop.categories.Category;
 import com.example.internet_shop.products.Product;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -10,35 +10,27 @@ import lombok.RequiredArgsConstructor;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-import java.time.LocalDateTime;
-
 @Entity
-@Table(name = "carts")
+@Table(name = "categories_products")
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @RequiredArgsConstructor
-public class Cart {
+public class CategoryProduct {
 
     @EmbeddedId
-    private CartId cartId;
+    private CategoryProductId id;
 
     @ManyToOne
-    @MapsId("customerId")
-    @JoinColumn(name = "customer_id", foreignKey = @ForeignKey(name = "fk_customer"))
+    @MapsId("categoryId")
+    @JoinColumn(name = "category_id", foreignKey = @ForeignKey(name = "fk_category"))
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private Customer customer;
+    private Category category;
 
     @ManyToOne
     @MapsId("productId")
     @JoinColumn(name = "product_id", foreignKey = @ForeignKey(name = "fk_product"))
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Product product;
-
-    @Column(nullable = false)
-    private Long quantity;
-
-    @Column(nullable = false)
-    private LocalDateTime addedAt = LocalDateTime.now();
 
 }

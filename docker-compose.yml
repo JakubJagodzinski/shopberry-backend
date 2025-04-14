@@ -1,25 +1,16 @@
-version: '3.8'
-
 services:
-  mssql-server:
+  mssql:
     image: mcr.microsoft.com/mssql/server:2022-latest
-    container_name: mssql-server
+    container_name: mssql
     environment:
       - ACCEPT_EULA=Y
-      - MSSQL_SA_PASSWORD=password
+      - SA_PASSWORD=SuperSilneHaslo!2024
       - MSSQL_PID=Developer
     ports:
       - "1433:1433"
     volumes:
-      - mssql-data:/var/opt/mssql
-    networks:
-      - sql-network
-    restart: always
+      - sql_data:/var/opt/mssql
+    restart: unless-stopped
 
 volumes:
-  mssql-data:
-    driver: local
-
-networks:
-  sql-network:
-    driver: bridge
+  sql_data:

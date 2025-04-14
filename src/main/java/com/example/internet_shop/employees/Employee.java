@@ -1,9 +1,7 @@
 package com.example.internet_shop.employees;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.example.internet_shop.employeetypes.EmployeeType;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,16 +21,20 @@ public class Employee {
     @Column(name = "employee_id")
     private Long employeeId;
 
-    @Column(name = "first_name", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "employee_type_id", nullable = false)
+    private EmployeeType employeeType;
+
+    @Column(name = "first_name", nullable = false, length = 30)
     private String firstName;
 
-    @Column(name = "last_name", nullable = false)
+    @Column(name = "last_name", nullable = false, length = 40)
     private String lastName;
 
-    @Column(unique = true, nullable = false)
+    @Column(unique = true, nullable = false, length = 100)
     private String email;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 100)
     private String password;
 
     @Column(name = "employed_at", nullable = false)

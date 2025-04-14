@@ -10,8 +10,8 @@ import lombok.RequiredArgsConstructor;
 @Entity
 @Table(name = "products")
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @RequiredArgsConstructor
 public class Product {
 
@@ -27,7 +27,7 @@ public class Product {
     private Double productPrice;
 
     @Column(name = "discount_percent_value")
-    private Double discountPercentValue;
+    private Double discountPercentValue = 0.0;
 
     @Column(name = "rating_value")
     private Double ratingValue;

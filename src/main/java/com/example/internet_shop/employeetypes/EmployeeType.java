@@ -9,17 +9,17 @@ import lombok.RequiredArgsConstructor;
 @Entity
 @Table(name = "employee_types")
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @RequiredArgsConstructor
 public class EmployeeType {
 
     @Id
-    @Column(name = "employee_type_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "employee_type_id")
     private Long employeeTypeId;
 
-    @Column(name = "employee_type_name", unique = true, nullable = false)
+    @Column(name = "employee_type_name", unique = true, nullable = false, length = 100)
     private String employeeTypeName;
 
 }

@@ -1,7 +1,7 @@
-package com.example.internet_shop.productattributes;
+package com.example.internet_shop.categoriesattributes;
 
 import com.example.internet_shop.attributes.Attribute;
-import com.example.internet_shop.products.Product;
+import com.example.internet_shop.categories.Category;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,29 +11,26 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
-@Table(name = "product_attributes")
+@Table(name = "category_attributes")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @RequiredArgsConstructor
-public class ProductAttribute {
+public class CategoryAttribute {
 
     @EmbeddedId
-    private ProductAttributeId productAttributeId;
+    private CategoryAttributeId id;
 
     @ManyToOne
-    @MapsId("productId")
-    @JoinColumn(name = "product_id", foreignKey = @ForeignKey(name = "fk_product"))
+    @MapsId("categoryId")
+    @JoinColumn(name = "category_id", foreignKey = @ForeignKey(name = "fk_category"))
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private Product product;
+    private Category category;
 
     @ManyToOne
     @MapsId("attributeId")
     @JoinColumn(name = "attribute_id", foreignKey = @ForeignKey(name = "fk_attribute"))
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Attribute attribute;
-
-    @Column(nullable = false)
-    private Double value;
 
 }

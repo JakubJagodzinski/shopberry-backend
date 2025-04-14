@@ -21,16 +21,16 @@ public class Customer {
     @Column(name = "customer_id")
     private Long customerId;
 
-    @Column(unique = true, nullable = false)
+    @Column(unique = true, nullable = false, length = 100)
     private String email;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 100)
     private String password;
 
     @Column(name = "is_company", nullable = false)
-    private Boolean isCompany;
+    private Boolean isCompany = false;
 
     @Column(name = "created_at")
-    private LocalDateTime createdAt;
+    private LocalDateTime createdAt = LocalDateTime.now();
 
 }

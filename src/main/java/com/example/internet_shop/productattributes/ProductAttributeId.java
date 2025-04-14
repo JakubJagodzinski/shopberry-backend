@@ -1,4 +1,4 @@
-package com.example.internet_shop.attributes;
+package com.example.internet_shop.productattributes;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;

@@ -15,11 +15,11 @@ import lombok.RequiredArgsConstructor;
 public class Producer {
 
     @Id
-    @Column(name = "producer_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "producer_id")
     private Long producerId;
 
-    @Column(name = "producer_name", unique = true, nullable = false)
+    @Column(name = "producer_name", unique = true, nullable = false, length = 100)
     private String producerName;
 
 }

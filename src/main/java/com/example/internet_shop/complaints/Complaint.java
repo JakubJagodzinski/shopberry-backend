@@ -30,7 +30,7 @@ public class Complaint {
     private Product product;
 
     @Column(length = 500)
-    private String info;
+    private String info = "";
 
     @Column(name = "first_name", length = 30)
     private String firstName;

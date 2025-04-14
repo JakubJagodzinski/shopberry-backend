@@ -23,6 +23,6 @@ public class ShipmentType {
     private String shipmentName;
 
     @Column(name = "shipment_cost", nullable = false)
-    private Long shipmentCost;
+    private Double shipmentCost;
 
 }

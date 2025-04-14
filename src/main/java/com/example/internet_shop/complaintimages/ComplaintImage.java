@@ -10,9 +10,9 @@ import lombok.RequiredArgsConstructor;
 @Entity
 @Table(name = "complaint_images")
 @Data
-@RequiredArgsConstructor
 @NoArgsConstructor
 @AllArgsConstructor
+@RequiredArgsConstructor
 public class ComplaintImage {
 
     @Id

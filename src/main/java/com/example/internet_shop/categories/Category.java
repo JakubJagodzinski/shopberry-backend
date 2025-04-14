@@ -9,8 +9,8 @@ import lombok.RequiredArgsConstructor;
 @Entity
 @Table(name = "categories")
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @RequiredArgsConstructor
 public class Category {
 
@@ -19,7 +19,7 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long categoryId;
 
-    @Column(name = "category_name", nullable = false, unique = true)
+    @Column(name = "category_name", nullable = false, unique = true, length = 100)
     private String categoryName;
 
     @ManyToOne

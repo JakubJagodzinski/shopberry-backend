@@ -9,8 +9,8 @@ import lombok.RequiredArgsConstructor;
 @Entity
 @Table(name = "payment_types")
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @RequiredArgsConstructor
 public class PaymentType {
 
@@ -19,10 +19,10 @@ public class PaymentType {
     @Column(name = "payment_type_id")
     private Long paymentTypeId;
 
-    @Column(name = "payment_name")
+    @Column(name = "payment_name", nullable = false, unique = true, length = 100)
     private String paymentName;
 
-    @Column(name = "payment_cost")
-    private Float paymentCost;
+    @Column(name = "payment_cost", nullable = false)
+    private Double paymentCost;
 
 }

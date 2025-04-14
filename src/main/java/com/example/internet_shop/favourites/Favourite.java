@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.LocalDateTime;
 
@@ -23,20 +25,17 @@ public class Favourite {
 
     @ManyToOne
     @MapsId("customerId")
-    @JoinColumn(name = "customer_id", referencedColumnName = "customer_id", insertable = false, updatable = false)
+    @JoinColumn(name = "customer_id", foreignKey = @ForeignKey(name = "fk_customer"))
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Customer customer;
 
     @ManyToOne
     @MapsId("productId")
-    @JoinColumn(name = "product_id", referencedColumnName = "product_id", insertable = false, updatable = false)
+    @JoinColumn(name = "product_id", foreignKey = @ForeignKey(name = "fk_product"))
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Product product;
 
     @Column(name = "added_at")
-    private LocalDateTime addedAt;
-
-    @PrePersist
-    private void prePersist() {
-        this.addedAt = LocalDateTime.now();
-    }
+    private LocalDateTime addedAt = LocalDateTime.now();
 
 }

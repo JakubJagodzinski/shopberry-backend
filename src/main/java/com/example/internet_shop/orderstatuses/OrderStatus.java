@@ -9,8 +9,8 @@ import lombok.RequiredArgsConstructor;
 @Entity
 @Table(name = "order_statuses")
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @RequiredArgsConstructor
 public class OrderStatus {
 
@@ -19,7 +19,7 @@ public class OrderStatus {
     @Column(name = "order_status_id")
     private Long orderStatusId;
 
-    @Column(name = "order_status_name", nullable = false, unique = true)
+    @Column(name = "order_status_name", nullable = false, unique = true, length = 100)
     private String orderStatusName;
 
 }

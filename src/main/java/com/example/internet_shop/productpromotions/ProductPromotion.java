@@ -1,7 +1,7 @@
-package com.example.internet_shop.carts;
+package com.example.internet_shop.productpromotions;
 
-import com.example.internet_shop.customers.Customer;
 import com.example.internet_shop.products.Product;
+import com.example.internet_shop.promotions.Promotion;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,24 +10,16 @@ import lombok.RequiredArgsConstructor;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-import java.time.LocalDateTime;
-
 @Entity
-@Table(name = "carts")
+@Table(name = "product_promotions")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @RequiredArgsConstructor
-public class Cart {
+public class ProductPromotion {
 
     @EmbeddedId
-    private CartId cartId;
-
-    @ManyToOne
-    @MapsId("customerId")
-    @JoinColumn(name = "customer_id", foreignKey = @ForeignKey(name = "fk_customer"))
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private Customer customer;
+    private ProductPromotionId id;
 
     @ManyToOne
     @MapsId("productId")
@@ -35,10 +27,10 @@ public class Cart {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Product product;
 
-    @Column(nullable = false)
-    private Long quantity;
-
-    @Column(nullable = false)
-    private LocalDateTime addedAt = LocalDateTime.now();
+    @ManyToOne
+    @MapsId("promotionId")
+    @JoinColumn(name = "promotion_id", foreignKey = @ForeignKey(name = "fk_promotion"))
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Promotion promotion;
 
 }
