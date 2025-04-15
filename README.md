@@ -82,15 +82,15 @@ The platform ensures a seamless shopping experience with efficient management to
 <br>
 <br>
 
-# Expected Technologies:
+# Technologies:
 * Frontend: ReactJS, CSS (SCSS, BootStrap)
 * Backend: Java (Spring Boot)
-* Database: MySQL
+* Database: MSSQL
 * APIs: InPost Points, (...to be added)
 
 <br>
 <br>
 <br>
 
-# Database scheme:
+# Database schema:
 <img src="internet_shop_schema.png">
