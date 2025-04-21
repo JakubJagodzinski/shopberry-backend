@@ -28,4 +28,7 @@ public class Customer {
     @Column(name = "created_at")
     private LocalDateTime createdAt = LocalDateTime.now();
 
+    @Column(name = "is_company")
+    private Boolean isCompany = false;
+
 }
