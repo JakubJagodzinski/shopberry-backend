@@ -21,10 +21,27 @@ public class ProducerController {
         return ResponseEntity.ok(producerService.getProducers());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<ProducerDto> getProducerById(@PathVariable Long id) {
+        return ResponseEntity.ok(producerService.getProducerById(id));
+    }
+
     @PostMapping("/")
     public ResponseEntity<ProducerDto> createProducer(@RequestBody CreateProducerDto createProducerDto) {
         ProducerDto createdProducer = producerService.createProducer(createProducerDto);
         return ResponseEntity.created(URI.create("/api/producers/" + createdProducer.getProducerId())).body(createdProducer);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ProducerDto> editProducerById(@PathVariable Long id, @RequestBody CreateProducerDto createProducerDto) {
+        ProducerDto updatedProducer = producerService.editProducerById(id, createProducerDto);
+        return ResponseEntity.ok(updatedProducer);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteProducerById(@PathVariable Long id) {
+        producerService.deleteProducerById(id);
+        return ResponseEntity.ok("Producer with ID " + id + " deleted successfully.");
     }
 
 }
