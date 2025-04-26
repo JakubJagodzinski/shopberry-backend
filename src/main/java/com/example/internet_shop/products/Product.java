@@ -1,5 +1,6 @@
 package com.example.internet_shop.products;
 
+import com.example.internet_shop.categories.Category;
 import com.example.internet_shop.producers.Producer;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -36,6 +37,10 @@ public class Product {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "producer_id", referencedColumnName = "producer_id")
     private Producer producer;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id", referencedColumnName = "category_id")
+    private Category category;
 
     @Column(name = "is_in_stock", nullable = false)
     private Boolean isInStock;
