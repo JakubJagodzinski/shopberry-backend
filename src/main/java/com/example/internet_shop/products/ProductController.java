@@ -29,7 +29,7 @@ public class ProductController {
     @PostMapping("/")
     public ResponseEntity<ProductDto> createProduct(@RequestBody CreateProductDto createProductDto) {
         ProductDto createdProduct = productService.createProduct(createProductDto);
-        return ResponseEntity.created(URI.create("/api/producers/" + createdProduct.getProductId())).body(createdProduct);
+        return ResponseEntity.created(URI.create("/api/products/" + createdProduct.getProductId())).body(createdProduct);
     }
 
     @PutMapping("/{id}")

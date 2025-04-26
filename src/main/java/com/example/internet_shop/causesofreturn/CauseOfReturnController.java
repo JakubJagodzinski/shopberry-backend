@@ -29,7 +29,7 @@ public class CauseOfReturnController {
     @PostMapping("/")
     public ResponseEntity<CauseOfReturnDto> createCauseOfReturn(@RequestBody CreateCauseOfReturnDto createCauseOfReturnDto) {
         CauseOfReturnDto createdCauseOfReturn = causeOfReturnService.createCauseOfReturn(createCauseOfReturnDto);
-        return ResponseEntity.created(URI.create("/api/causes-of-return/" + createdCauseOfReturn.getCauseOfReturnId())).body(createdCauseOfReturn);
+        return ResponseEntity.created(URI.create("/api/causes_of_return/" + createdCauseOfReturn.getCauseOfReturnId())).body(createdCauseOfReturn);
     }
 
     @PutMapping("/{id}")
