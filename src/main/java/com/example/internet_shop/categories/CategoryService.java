@@ -36,9 +36,9 @@ public class CategoryService {
     }
 
     @Transactional
-    public CategoryDto createCategory(CreateCategoryDto createCategoryDto) throws IllegalStateException {
+    public CategoryDto createCategory(CreateCategoryDto createCategoryDto) throws IllegalArgumentException {
         if (categoryRepository.existsByCategoryName(createCategoryDto.getCategoryName())) {
-            throw new IllegalStateException(CATEGORY_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE);
+            throw new IllegalArgumentException(CATEGORY_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE);
         }
 
         Category category = new Category();
@@ -49,7 +49,7 @@ public class CategoryService {
 
         if (parentCategoryId != null) {
             if (!categoryRepository.existsById(parentCategoryId)) {
-                throw new IllegalStateException(PARENT_CATEGORY_NOT_FOUND_MESSAGE);
+                throw new IllegalArgumentException(PARENT_CATEGORY_NOT_FOUND_MESSAGE);
             }
 
             Category parentCategory = categoryRepository.getReferenceById(parentCategoryId);
@@ -60,17 +60,17 @@ public class CategoryService {
     }
 
     @Transactional
-    public CategoryDto setParentCategory(Long childCategoryId, Long parentCategoryId) throws EntityNotFoundException, IllegalStateException {
+    public CategoryDto setParentCategory(Long childCategoryId, Long parentCategoryId) throws EntityNotFoundException, IllegalArgumentException {
         if (!categoryRepository.existsById(childCategoryId)) {
             throw new EntityNotFoundException(CATEGORY_NOT_FOUND_MESSAGE);
         }
 
         if (!categoryRepository.existsById(parentCategoryId)) {
-            throw new IllegalStateException(PARENT_CATEGORY_NOT_FOUND_MESSAGE);
+            throw new IllegalArgumentException(PARENT_CATEGORY_NOT_FOUND_MESSAGE);
         }
 
         if (parentCategoryId.equals(childCategoryId)) {
-            throw new IllegalStateException(CATEGORY_CANNOT_BE_PARENT_TO_ITSELF_MESSAGE);
+            throw new IllegalArgumentException(CATEGORY_CANNOT_BE_PARENT_TO_ITSELF_MESSAGE);
         }
 
         Category childCategory = categoryRepository.getReferenceById(childCategoryId);
@@ -82,7 +82,7 @@ public class CategoryService {
     }
 
     @Transactional
-    public CategoryDto updateCategoryById(Long id, UpdateCategoryDto updateCategoryDto) throws EntityNotFoundException, IllegalStateException {
+    public CategoryDto updateCategoryById(Long id, UpdateCategoryDto updateCategoryDto) throws EntityNotFoundException, IllegalArgumentException {
         if (!categoryRepository.existsById(id)) {
             throw new EntityNotFoundException(CATEGORY_NOT_FOUND_MESSAGE);
         }
@@ -93,7 +93,7 @@ public class CategoryService {
             Category otherCategory = categoryRepository.findByCategoryName(updateCategoryDto.getCategoryName());
 
             if (otherCategory != null && !otherCategory.getCategoryId().equals(id)) {
-                throw new IllegalStateException(CATEGORY_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE);
+                throw new IllegalArgumentException(CATEGORY_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE);
             }
 
             category.setCategoryName(updateCategoryDto.getCategoryName());

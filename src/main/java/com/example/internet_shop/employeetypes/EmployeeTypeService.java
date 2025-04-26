@@ -37,17 +37,17 @@ public class EmployeeTypeService {
     }
 
     @Transactional
-    public EmployeeTypeDto createEmployeeType(CreateEmployeeTypeDto createEmployeeTypeDto) throws IllegalStateException {
+    public EmployeeTypeDto createEmployeeType(CreateEmployeeTypeDto createEmployeeTypeDto) throws IllegalArgumentException {
         if (employeeTypeRepository.existsByEmployeeTypeName(createEmployeeTypeDto.getEmployeeTypeName())) {
-            throw new IllegalStateException(EMPLOYEE_TYPE_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE);
+            throw new IllegalArgumentException(EMPLOYEE_TYPE_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE);
         }
 
         if (createEmployeeTypeDto.getEmployeeTypeName() == null) {
-            throw new IllegalStateException(EMPLOYEE_TYPE_NAME_CANNOT_BE_NULL_MESSAGE);
+            throw new IllegalArgumentException(EMPLOYEE_TYPE_NAME_CANNOT_BE_NULL_MESSAGE);
         }
 
         if (createEmployeeTypeDto.getEmployeeTypeName().isEmpty()) {
-            throw new IllegalStateException(EMPLOYEE_TYPE_NAME_CANNOT_BE_EMPTY_MESSAGE);
+            throw new IllegalArgumentException(EMPLOYEE_TYPE_NAME_CANNOT_BE_EMPTY_MESSAGE);
         }
 
         EmployeeType employeeType = new EmployeeType();
@@ -58,7 +58,7 @@ public class EmployeeTypeService {
     }
 
     @Transactional
-    public EmployeeTypeDto updateEmployeeTypeById(Long id, UpdateEmployeeTypeDto updateEmployeeTypeDto) throws EntityNotFoundException, IllegalStateException {
+    public EmployeeTypeDto updateEmployeeTypeById(Long id, UpdateEmployeeTypeDto updateEmployeeTypeDto) throws EntityNotFoundException, IllegalArgumentException {
         if (!employeeTypeRepository.existsById(id)) {
             throw new EntityNotFoundException(EMPLOYEE_TYPE_NOT_FOUND_MESSAGE);
         }
@@ -69,11 +69,11 @@ public class EmployeeTypeService {
             EmployeeType otherEmployeeType = employeeTypeRepository.findByEmployeeTypeName(updateEmployeeTypeDto.getEmployeeTypeName());
 
             if (otherEmployeeType != null && !otherEmployeeType.getEmployeeTypeId().equals(id)) {
-                throw new IllegalStateException(EMPLOYEE_TYPE_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE);
+                throw new IllegalArgumentException(EMPLOYEE_TYPE_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE);
             }
 
             if (updateEmployeeTypeDto.getEmployeeTypeName().isEmpty()) {
-                throw new IllegalStateException(EMPLOYEE_TYPE_NAME_CANNOT_BE_EMPTY_MESSAGE);
+                throw new IllegalArgumentException(EMPLOYEE_TYPE_NAME_CANNOT_BE_EMPTY_MESSAGE);
             }
 
             employeeType.setEmployeeTypeName(updateEmployeeTypeDto.getEmployeeTypeName());

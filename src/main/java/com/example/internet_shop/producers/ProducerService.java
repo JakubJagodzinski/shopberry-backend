@@ -39,11 +39,11 @@ public class ProducerService {
     }
 
     @Transactional
-    public ProducerDto createProducer(CreateProducerDto createProducerDto) throws IllegalStateException {
+    public ProducerDto createProducer(CreateProducerDto createProducerDto) throws IllegalArgumentException {
         Producer producer = new Producer();
 
         if (producerRepository.existsByProducerName(createProducerDto.getProducerName())) {
-            throw new IllegalStateException(PRODUCER_ALREADY_EXISTS_MESSAGE);
+            throw new IllegalArgumentException(PRODUCER_ALREADY_EXISTS_MESSAGE);
         }
 
         producer.setProducerName(createProducerDto.getProducerName());
@@ -64,7 +64,7 @@ public class ProducerService {
             Producer otherProducer = producerRepository.findByProducerName(updateProducerDto.getProducerName());
 
             if (otherProducer != null && !producer.getProducerId().equals(otherProducer.getProducerId())) {
-                throw new IllegalStateException(PRODUCER_WITH_THAT_NAME_ALREADY_EXISTS);
+                throw new IllegalArgumentException(PRODUCER_WITH_THAT_NAME_ALREADY_EXISTS);
             }
 
             producer.setProducerName(updateProducerDto.getProducerName());

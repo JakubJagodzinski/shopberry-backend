@@ -37,19 +37,19 @@ public class CauseOfReturnService {
     }
 
     @Transactional
-    public CauseOfReturnDto createCauseOfReturn(CreateCauseOfReturnDto createCauseOfReturnDto) throws IllegalStateException {
+    public CauseOfReturnDto createCauseOfReturn(CreateCauseOfReturnDto createCauseOfReturnDto) throws IllegalArgumentException {
         CauseOfReturn causeOfReturn = new CauseOfReturn();
 
         if (causeOfReturnRepository.existsByCause(createCauseOfReturnDto.getCause())) {
-            throw new IllegalStateException(CAUSE_OF_RETURN_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE);
+            throw new IllegalArgumentException(CAUSE_OF_RETURN_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE);
         }
 
         if (createCauseOfReturnDto.getCause() == null) {
-            throw new IllegalStateException(CAUSE_CANNOT_BE_NULL_MESSAGE);
+            throw new IllegalArgumentException(CAUSE_CANNOT_BE_NULL_MESSAGE);
         }
 
         if (createCauseOfReturnDto.getCause().isEmpty()) {
-            throw new IllegalStateException(CAUSE_CANNOT_BE_EMPTY_MESSAGE);
+            throw new IllegalArgumentException(CAUSE_CANNOT_BE_EMPTY_MESSAGE);
         }
 
         causeOfReturn.setCause(createCauseOfReturnDto.getCause());
@@ -58,7 +58,7 @@ public class CauseOfReturnService {
     }
 
     @Transactional
-    public CauseOfReturnDto updateCauseOfReturnById(Long id, UpdateCauseOfReturnDto updateCauseOfReturnDto) throws EntityNotFoundException, IllegalStateException {
+    public CauseOfReturnDto updateCauseOfReturnById(Long id, UpdateCauseOfReturnDto updateCauseOfReturnDto) throws EntityNotFoundException, IllegalArgumentException {
         if (!causeOfReturnRepository.existsById(id)) {
             throw new EntityNotFoundException(CAUSE_OF_RETURN_NOT_FOUND_MESSAGE);
         }
@@ -69,11 +69,11 @@ public class CauseOfReturnService {
             CauseOfReturn otherCauseOfReturn = causeOfReturnRepository.findByCause(updateCauseOfReturnDto.getCause());
 
             if (otherCauseOfReturn != null && !otherCauseOfReturn.getCauseOfReturnId().equals(id)) {
-                throw new IllegalStateException(CAUSE_OF_RETURN_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE);
+                throw new IllegalArgumentException(CAUSE_OF_RETURN_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE);
             }
 
             if (updateCauseOfReturnDto.getCause().isEmpty()) {
-                throw new IllegalStateException(CAUSE_CANNOT_BE_EMPTY_MESSAGE);
+                throw new IllegalArgumentException(CAUSE_CANNOT_BE_EMPTY_MESSAGE);
             }
 
             causeOfReturn.setCause(updateCauseOfReturnDto.getCause());

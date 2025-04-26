@@ -39,19 +39,19 @@ public class AttributeService {
     }
 
     @Transactional
-    public AttributeDto createAttribute(CreateAttributeDto createAttributeDto) throws IllegalStateException {
+    public AttributeDto createAttribute(CreateAttributeDto createAttributeDto) throws IllegalArgumentException {
         Attribute attribute = new Attribute();
 
         if (attributeRepository.existsByAttributeName(createAttributeDto.getAttributeName())) {
-            throw new IllegalStateException(ATTRIBUTE_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE);
+            throw new IllegalArgumentException(ATTRIBUTE_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE);
         }
 
         if (createAttributeDto.getAttributeName() == null) {
-            throw new IllegalStateException(ATTRIBUTE_NAME_CANNOT_BY_NULL_MESSAGE);
+            throw new IllegalArgumentException(ATTRIBUTE_NAME_CANNOT_BY_NULL_MESSAGE);
         }
 
         if (createAttributeDto.getAttributeName().isEmpty()) {
-            throw new IllegalStateException(ATTRIBUTE_NAME_CANNOT_BY_EMPTY_MESSAGE);
+            throw new IllegalArgumentException(ATTRIBUTE_NAME_CANNOT_BY_EMPTY_MESSAGE);
         }
 
         attribute.setAttributeName(createAttributeDto.getAttributeName());
@@ -60,7 +60,7 @@ public class AttributeService {
     }
 
     @Transactional
-    public AttributeDto updateAttributeById(Long id, UpdateAttributeDto updateAttributeDto) throws EntityNotFoundException, IllegalStateException {
+    public AttributeDto updateAttributeById(Long id, UpdateAttributeDto updateAttributeDto) throws EntityNotFoundException, IllegalArgumentException {
         if (!attributeRepository.existsById(id)) {
             throw new EntityNotFoundException(ATTRIBUTE_NOT_FOUND_MESSAGE);
         }
@@ -71,11 +71,11 @@ public class AttributeService {
             Attribute otherAttribute = attributeRepository.findByAttributeName(updateAttributeDto.getAttributeName());
 
             if (otherAttribute != null && !otherAttribute.getAttributeId().equals(attribute.getAttributeId())) {
-                throw new IllegalStateException(ATTRIBUTE_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE);
+                throw new IllegalArgumentException(ATTRIBUTE_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE);
             }
 
             if (updateAttributeDto.getAttributeName().isEmpty()) {
-                throw new IllegalStateException(ATTRIBUTE_NAME_CANNOT_BY_EMPTY_MESSAGE);
+                throw new IllegalArgumentException(ATTRIBUTE_NAME_CANNOT_BY_EMPTY_MESSAGE);
             }
 
             attribute.setAttributeName(updateAttributeDto.getAttributeName());

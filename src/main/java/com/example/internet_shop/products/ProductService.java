@@ -40,9 +40,9 @@ public class ProductService {
     }
 
     @Transactional
-    public ProductDto createProduct(CreateProductDto createProductDto) throws IllegalStateException {
+    public ProductDto createProduct(CreateProductDto createProductDto) throws IllegalArgumentException {
         if (productRepository.existsByProductName(createProductDto.getProductName())) {
-            throw new IllegalStateException(PRODUCT_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE);
+            throw new IllegalArgumentException(PRODUCT_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE);
         }
 
         Product product = new Product();
@@ -56,7 +56,7 @@ public class ProductService {
     }
 
     @Transactional
-    public ProductDto updateProductById(Long id, UpdateProductDto updateProductDto) throws EntityNotFoundException, IllegalStateException {
+    public ProductDto updateProductById(Long id, UpdateProductDto updateProductDto) throws EntityNotFoundException, IllegalArgumentException {
         if (!productRepository.existsById(id)) {
             throw new EntityNotFoundException(PRODUCT_NOT_FOUND_MESSAGE);
         }
@@ -67,7 +67,7 @@ public class ProductService {
             Product otherProduct = productRepository.getProductByProductName(updateProductDto.getProductName());
 
             if (otherProduct != null && !otherProduct.getProductId().equals(id)) {
-                throw new IllegalStateException(PRODUCT_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE);
+                throw new IllegalArgumentException(PRODUCT_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE);
             }
 
             product.setProductName(updateProductDto.getProductName());
@@ -75,7 +75,7 @@ public class ProductService {
 
         if (updateProductDto.getProductPrice() != null) {
             if (updateProductDto.getProductPrice() <= 0) {
-                throw new IllegalStateException(PRODUCT_PRICE_MUST_BE_GREATER_THAN_ZERO_MESSAGE);
+                throw new IllegalArgumentException(PRODUCT_PRICE_MUST_BE_GREATER_THAN_ZERO_MESSAGE);
             }
 
             product.setProductPrice(updateProductDto.getProductPrice());
@@ -83,10 +83,10 @@ public class ProductService {
 
         if (updateProductDto.getDiscountPercentValue() != null) {
             if (updateProductDto.getDiscountPercentValue() < 0) {
-                throw new IllegalStateException(PRODUCT_DISCOUNT_PERCENT_VALUE_CAN_T_BE_NEGATIVE_MESSAGE);
+                throw new IllegalArgumentException(PRODUCT_DISCOUNT_PERCENT_VALUE_CAN_T_BE_NEGATIVE_MESSAGE);
             }
             if (updateProductDto.getDiscountPercentValue() > 100) {
-                throw new IllegalStateException(PRODUCT_DISCOUNT_PERCENT_VALUE_CAN_T_BE_GREATER_THAN_100_MESSAGE);
+                throw new IllegalArgumentException(PRODUCT_DISCOUNT_PERCENT_VALUE_CAN_T_BE_GREATER_THAN_100_MESSAGE);
             }
 
             product.setDiscountPercentValue(updateProductDto.getDiscountPercentValue());

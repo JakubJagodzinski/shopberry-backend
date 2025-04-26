@@ -34,9 +34,9 @@ public class CustomerService {
     }
 
     @Transactional
-    public CustomerDto createCustomer(CreateCustomerDto createCustomerDto) throws IllegalStateException {
+    public CustomerDto createCustomer(CreateCustomerDto createCustomerDto) throws IllegalArgumentException {
         if (customerRepository.existsByEmail(createCustomerDto.getEmail())) {
-            throw new IllegalStateException(CUSTOMER_WITH_THAT_EMAIL_ALREADY_EXISTS_MESSAGE);
+            throw new IllegalArgumentException(CUSTOMER_WITH_THAT_EMAIL_ALREADY_EXISTS_MESSAGE);
         }
 
         Customer customer = new Customer();
@@ -49,7 +49,7 @@ public class CustomerService {
     }
 
     @Transactional
-    public CustomerDto updateCustomerById(Long id, CreateCustomerDto createCustomerDto) throws EntityNotFoundException, IllegalStateException {
+    public CustomerDto updateCustomerById(Long id, CreateCustomerDto createCustomerDto) throws EntityNotFoundException, IllegalArgumentException {
         if (!customerRepository.existsById(id)) {
             throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
         }
@@ -60,7 +60,7 @@ public class CustomerService {
             Customer otherCustomer = customerRepository.findByEmail(createCustomerDto.getEmail());
 
             if (otherCustomer != null && !customer.getCustomerId().equals(otherCustomer.getCustomerId())) {
-                throw new IllegalStateException(CUSTOMER_WITH_THAT_EMAIL_ALREADY_EXISTS_MESSAGE);
+                throw new IllegalArgumentException(CUSTOMER_WITH_THAT_EMAIL_ALREADY_EXISTS_MESSAGE);
             }
 
             customer.setEmail(createCustomerDto.getEmail());
