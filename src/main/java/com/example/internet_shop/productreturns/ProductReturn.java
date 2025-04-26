@@ -1,6 +1,6 @@
 package com.example.internet_shop.productreturns;
 
-import com.example.internet_shop.causesofreturns.CauseOfReturn;
+import com.example.internet_shop.causesofreturn.CauseOfReturn;
 import com.example.internet_shop.orders.Order;
 import com.example.internet_shop.products.Product;
 import jakarta.persistence.*;

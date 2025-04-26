@@ -1,8 +1,13 @@
-package com.example.internet_shop.causesofreturns;
+package com.example.internet_shop.causesofreturn;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CauseOfReturnRepository extends JpaRepository<CauseOfReturn, Long> {
+
+    boolean existsByCause(String cause);
+
+    CauseOfReturn findByCause(String cause);
+
 }

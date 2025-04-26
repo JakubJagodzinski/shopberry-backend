@@ -1,4 +1,4 @@
-package com.example.internet_shop.causesofreturns;
+package com.example.internet_shop.causesofreturn;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
