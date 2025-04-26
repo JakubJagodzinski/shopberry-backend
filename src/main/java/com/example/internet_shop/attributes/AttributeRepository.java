@@ -5,4 +5,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AttributeRepository extends JpaRepository<Attribute, Long> {
+
+    boolean existsByAttributeName(String attributeName);
+
+    Attribute findByAttributeName(String attributeName);
+
 }
