@@ -60,7 +60,7 @@ public class AttributeService {
     }
 
     @Transactional
-    public AttributeDto updateAttributeById(Long id, CreateAttributeDto updateAttributeDto) throws EntityNotFoundException, IllegalStateException {
+    public AttributeDto updateAttributeById(Long id, UpdateAttributeDto updateAttributeDto) throws EntityNotFoundException, IllegalStateException {
         if (!attributeRepository.existsById(id)) {
             throw new EntityNotFoundException(ATTRIBUTE_NOT_FOUND_MESSAGE);
         }

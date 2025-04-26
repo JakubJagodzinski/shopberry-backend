@@ -33,7 +33,7 @@ public class CauseOfReturnController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CauseOfReturnDto> updateCauseOfReturnById(@PathVariable Long id, @RequestBody CreateCauseOfReturnDto updateCauseOfReturnDto) {
+    public ResponseEntity<CauseOfReturnDto> updateCauseOfReturnById(@PathVariable Long id, @RequestBody UpdateCauseOfReturnDto updateCauseOfReturnDto) {
         return ResponseEntity.ok(causeOfReturnService.updateCauseOfReturnById(id, updateCauseOfReturnDto));
     }
 

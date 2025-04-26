@@ -53,21 +53,21 @@ public class ProducerService {
     }
 
     @Transactional
-    public ProducerDto editProducerById(Long id, CreateProducerDto createProducerDto) throws EntityNotFoundException {
+    public ProducerDto editProducerById(Long id, UpdateProducerDto updateProducerDto) throws EntityNotFoundException {
         if (!producerRepository.existsById(id)) {
             throw new EntityNotFoundException(PRODUCER_NOT_FOUND_MESSAGE);
         }
 
         Producer producer = producerRepository.getReferenceById(id);
 
-        if (createProducerDto.getProducerName() != null) {
-            Producer otherProducer = producerRepository.findByProducerName(createProducerDto.getProducerName());
+        if (updateProducerDto.getProducerName() != null) {
+            Producer otherProducer = producerRepository.findByProducerName(updateProducerDto.getProducerName());
 
             if (otherProducer != null && !producer.getProducerId().equals(otherProducer.getProducerId())) {
                 throw new IllegalStateException(PRODUCER_WITH_THAT_NAME_ALREADY_EXISTS);
             }
 
-            producer.setProducerName(createProducerDto.getProducerName());
+            producer.setProducerName(updateProducerDto.getProducerName());
         }
 
         return producerDtoMapper.toDto(producerRepository.save(producer));

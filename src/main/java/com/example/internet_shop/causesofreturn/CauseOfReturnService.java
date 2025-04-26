@@ -58,7 +58,7 @@ public class CauseOfReturnService {
     }
 
     @Transactional
-    public CauseOfReturnDto updateCauseOfReturnById(Long id, CreateCauseOfReturnDto updateCauseOfReturnDto) throws EntityNotFoundException, IllegalStateException {
+    public CauseOfReturnDto updateCauseOfReturnById(Long id, UpdateCauseOfReturnDto updateCauseOfReturnDto) throws EntityNotFoundException, IllegalStateException {
         if (!causeOfReturnRepository.existsById(id)) {
             throw new EntityNotFoundException(CAUSE_OF_RETURN_NOT_FOUND_MESSAGE);
         }
