@@ -20,7 +20,4 @@ public class PaymentType {
     @Column(name = "payment_name", nullable = false, unique = true, length = 100)
     private String paymentName;
 
-    @Column(name = "payment_cost", nullable = false)
-    private Double paymentCost;
-
 }
