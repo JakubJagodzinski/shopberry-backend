@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class EditProductDto {
+public class UpdateProductDto {
 
     private String productName;
 

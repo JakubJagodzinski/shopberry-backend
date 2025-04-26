@@ -53,7 +53,7 @@ public class ProducerService {
     }
 
     @Transactional
-    public ProducerDto editProducerById(Long id, UpdateProducerDto updateProducerDto) throws EntityNotFoundException {
+    public ProducerDto updateProducerById(Long id, UpdateProducerDto updateProducerDto) throws EntityNotFoundException {
         if (!producerRepository.existsById(id)) {
             throw new EntityNotFoundException(PRODUCER_NOT_FOUND_MESSAGE);
         }

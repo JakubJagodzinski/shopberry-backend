@@ -33,8 +33,8 @@ public class ProducerController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ProducerDto> editProducerById(@PathVariable Long id, @RequestBody UpdateProducerDto updateProducerDto) {
-        ProducerDto updatedProducer = producerService.editProducerById(id, updateProducerDto);
+    public ResponseEntity<ProducerDto> updateProducerById(@PathVariable Long id, @RequestBody UpdateProducerDto updateProducerDto) {
+        ProducerDto updatedProducer = producerService.updateProducerById(id, updateProducerDto);
         return ResponseEntity.ok(updatedProducer);
     }
 

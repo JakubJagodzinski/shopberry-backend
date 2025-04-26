@@ -33,8 +33,8 @@ public class CustomerController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CustomerDto> editCustomerById(@PathVariable Long id, @RequestBody CreateCustomerDto createCustomerDto) {
-        return ResponseEntity.ok(customerService.editCustomerById(id, createCustomerDto));
+    public ResponseEntity<CustomerDto> updateCustomerById(@PathVariable Long id, @RequestBody CreateCustomerDto createCustomerDto) {
+        return ResponseEntity.ok(customerService.updateCustomerById(id, createCustomerDto));
     }
 
     @DeleteMapping("/{id}")

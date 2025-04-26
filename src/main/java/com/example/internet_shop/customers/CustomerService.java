@@ -49,7 +49,7 @@ public class CustomerService {
     }
 
     @Transactional
-    public CustomerDto editCustomerById(Long id, CreateCustomerDto createCustomerDto) throws EntityNotFoundException, IllegalStateException {
+    public CustomerDto updateCustomerById(Long id, CreateCustomerDto createCustomerDto) throws EntityNotFoundException, IllegalStateException {
         if (!customerRepository.existsById(id)) {
             throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
         }
