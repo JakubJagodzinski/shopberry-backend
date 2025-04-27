@@ -5,4 +5,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface OrderStatusRepository extends JpaRepository<OrderStatus, Long> {
+
+    boolean existsByOrderStatusName(String name);
+
+    OrderStatus findByOrderStatusName(String name);
+
 }
