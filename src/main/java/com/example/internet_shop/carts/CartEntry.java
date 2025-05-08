@@ -12,24 +12,24 @@ import org.hibernate.annotations.OnDeleteAction;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "carts")
+@Table(name = "cart_entries")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Cart {
+public class CartEntry {
 
     @EmbeddedId
-    private CartId id;
+    private CartEntryId id;
 
     @ManyToOne
     @MapsId("customerId")
-    @JoinColumn(name = "customer_id", foreignKey = @ForeignKey(name = "fk_cart_customer"))
+    @JoinColumn(name = "customer_id", foreignKey = @ForeignKey(name = "fk_cart_entry_customer"))
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Customer customer;
 
     @ManyToOne
     @MapsId("productId")
-    @JoinColumn(name = "product_id", foreignKey = @ForeignKey(name = "fk_cart_product"))
+    @JoinColumn(name = "product_id", foreignKey = @ForeignKey(name = "fk_cart_entry_product"))
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Product product;
 

@@ -1,21 +1,20 @@
 package com.example.internet_shop.carts;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Embeddable
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CartId {
+public class CreateCartEntryDto {
 
-    @Column(name = "customer_id")
     private Long customerId;
 
-    @Column(name = "product_id")
     private Long productId;
+
+    private Long quantity;
 
 }

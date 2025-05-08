@@ -25,10 +25,10 @@ The platform ensures a seamless shopping experience with efficient management to
    * Adding products to the wishlist
    * Removing products from the wishlist
 4. Orders & Shopping:
-   * Adding products to the cart
-   * Removing products from the cart
-   * Modifying the quantity of products in the cart
-   * Finalizing an order from the cart
+   * Adding products to the cartEntry
+   * Removing products from the cartEntry
+   * Modifying the quantity of products in the cartEntry
+   * Finalizing an order from the cartEntry
    * Adding coupons/promotion codes
    * Viewing order history
 
