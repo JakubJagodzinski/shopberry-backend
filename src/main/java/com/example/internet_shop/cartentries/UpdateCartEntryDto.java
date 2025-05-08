@@ -1,4 +1,4 @@
-package com.example.internet_shop.carts;
+package com.example.internet_shop.cartentries;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

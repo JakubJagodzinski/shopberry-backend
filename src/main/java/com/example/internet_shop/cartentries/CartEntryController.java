@@ -1,4 +1,4 @@
-package com.example.internet_shop.carts;
+package com.example.internet_shop.cartentries;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

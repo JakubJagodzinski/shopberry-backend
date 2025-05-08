@@ -1,4 +1,4 @@
-package com.example.internet_shop.carts;
+package com.example.internet_shop.cartentries;
 
 import org.springframework.stereotype.Component;
 

@@ -1,4 +1,4 @@
-package com.example.internet_shop.carts;
+package com.example.internet_shop.cartentries;
 
 import com.example.internet_shop.customers.Customer;
 import com.example.internet_shop.products.Product;

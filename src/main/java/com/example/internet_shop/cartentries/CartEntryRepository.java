@@ -1,4 +1,4 @@
-package com.example.internet_shop.carts;
+package com.example.internet_shop.cartentries;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
