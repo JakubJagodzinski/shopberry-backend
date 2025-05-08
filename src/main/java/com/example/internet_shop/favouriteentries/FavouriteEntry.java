@@ -1,4 +1,4 @@
-package com.example.internet_shop.favourites;
+package com.example.internet_shop.favouriteentries;
 
 import com.example.internet_shop.customers.Customer;
 import com.example.internet_shop.products.Product;
@@ -16,10 +16,10 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Favourite {
+public class FavouriteEntry {
 
     @EmbeddedId
-    private FavouriteId id;
+    private FavouriteEntryId id;
 
     @ManyToOne
     @MapsId("customerId")

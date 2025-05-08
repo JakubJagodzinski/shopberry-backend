@@ -1,4 +1,4 @@
-package com.example.internet_shop.favourites;
+package com.example.internet_shop.favouriteentries;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class FavouriteId {
+public class FavouriteEntryId {
 
     @Column(name = "customer_id")
     private Long customerId;
