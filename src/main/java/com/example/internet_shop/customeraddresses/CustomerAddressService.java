@@ -68,16 +68,16 @@ public class CustomerAddressService {
 
         CustomerAddress customerAddress = customerAddressRepository.getReferenceById(customerAddressId);
 
-        if (customerAddress.getFirstName() != null) {
-            if (customerAddress.getFirstName().isEmpty()) {
+        if (updateCustomerAddressDto.getFirstName() != null) {
+            if (updateCustomerAddressDto.getFirstName().isEmpty()) {
                 throw new IllegalArgumentException(FIRST_NAME_CANNOT_BE_EMPTY_MESSAGE);
             }
 
             customerAddress.setFirstName(updateCustomerAddressDto.getFirstName());
         }
 
-        if (customerAddress.getLastName() != null) {
-            if (customerAddress.getLastName().isEmpty()) {
+        if (updateCustomerAddressDto.getLastName() != null) {
+            if (updateCustomerAddressDto.getLastName().isEmpty()) {
                 throw new IllegalArgumentException(LAST_NAME_CANNOT_BE_EMPTY_MESSAGE);
             }
 
