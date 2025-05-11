@@ -2,6 +2,7 @@ package com.example.internet_shop.employees;
 
 import com.example.internet_shop.employees.dto.CreateEmployeeRequestDto;
 import com.example.internet_shop.employees.dto.EmployeeResponseDto;
+import com.example.internet_shop.employees.dto.UpdateEmployeeRequestDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -46,6 +47,16 @@ public class EmployeeController {
                 .location(URI.create("/api/v1/employees/" + createdEmployeeResponseDto.getEmployeeId()))
                 .body(createdEmployeeResponseDto);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<EmployeeResponseDto> updateEmployeeById(@PathVariable Long id, @RequestBody UpdateEmployeeRequestDto updateEmployeeRequestDto) {
+        EmployeeResponseDto updatedEmployeeResponseDto = employeeService.updateEmployeeById(id, updateEmployeeRequestDto);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(updatedEmployeeResponseDto);
+    }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteEmployeeById(@PathVariable Long id) {

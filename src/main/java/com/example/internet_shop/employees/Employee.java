@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 public class Employee {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "employee_id")
     private Long employeeId;
 
@@ -36,6 +37,6 @@ public class Employee {
     private String password;
 
     @Column(name = "employed_at", nullable = false)
-    private LocalDateTime employedAt;
+    private LocalDateTime employedAt = LocalDateTime.now();
 
 }
