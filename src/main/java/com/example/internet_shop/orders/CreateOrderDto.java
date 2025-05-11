@@ -11,8 +11,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class CreateOrderDto {
 
-    private Long orderId;
-
     private Long customerId;
 
     private Long shipmentTypeId;
