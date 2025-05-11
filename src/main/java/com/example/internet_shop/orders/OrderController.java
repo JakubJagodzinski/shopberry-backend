@@ -2,6 +2,7 @@ package com.example.internet_shop.orders;
 
 import com.example.internet_shop.orders.dto.CreateOrderRequestDto;
 import com.example.internet_shop.orders.dto.OrderResponseDto;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,26 +21,39 @@ public class OrderController {
 
     @GetMapping("/")
     public ResponseEntity<List<OrderResponseDto>> getOrders() {
-        return ResponseEntity.ok(orderService.getOrders());
+        List<OrderResponseDto> orderResponseDtoList = orderService.getOrders();
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(orderResponseDtoList);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<OrderResponseDto> getOrderById(@PathVariable Long id) {
-        return ResponseEntity.ok(orderService.getOrderById(id));
+        OrderResponseDto orderResponseDto = orderService.getOrderById(id);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(orderResponseDto);
     }
 
     @PostMapping("/")
     public ResponseEntity<OrderResponseDto> createOrder(@RequestBody CreateOrderRequestDto createOrderRequestDto) {
-        OrderResponseDto createdOrder = orderService.createOrder(createOrderRequestDto);
+        OrderResponseDto createdOrderResponseDto = orderService.createOrder(createOrderRequestDto);
 
-        return ResponseEntity.created(URI.create("/api/v1/orders/" + createdOrder.getOrderId())).body(createdOrder);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .location(URI.create("/api/v1/orders/" + createdOrderResponseDto.getOrderId()))
+                .body(createdOrderResponseDto);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteOrderById(@PathVariable Long id) {
         orderService.deleteOrderById(id);
 
-        return ResponseEntity.ok("Deleted order with id: " + id);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body("Order with id " + id + " deleted successfully");
     }
 
 }

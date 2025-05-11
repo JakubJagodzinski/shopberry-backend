@@ -2,6 +2,7 @@ package com.example.internet_shop.complaintimages;
 
 import com.example.internet_shop.complaintimages.dto.ComplaintImageResponseDto;
 import com.example.internet_shop.complaintimages.dto.CreateComplaintImageRequestDto;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,26 +21,39 @@ public class ComplaintImageController {
 
     @GetMapping("/")
     public ResponseEntity<List<ComplaintImageResponseDto>> getComplaintImages() {
-        return ResponseEntity.ok(complaintImageService.getComplaintImages());
+        List<ComplaintImageResponseDto> complaintImageResponseDtoList = complaintImageService.getComplaintImages();
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(complaintImageResponseDtoList);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<ComplaintImageResponseDto> getComplaintImageById(@PathVariable Long id) {
-        return ResponseEntity.ok(complaintImageService.getComplaintImageById(id));
+        ComplaintImageResponseDto complaintImageResponseDto = complaintImageService.getComplaintImageById(id);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(complaintImageResponseDto);
     }
 
     @PostMapping("/")
     public ResponseEntity<ComplaintImageResponseDto> createComplaintImage(@RequestBody CreateComplaintImageRequestDto createComplaintImageRequestDto) {
-        ComplaintImageResponseDto createdComplaintImage = complaintImageService.createComplaintImage(createComplaintImageRequestDto);
+        ComplaintImageResponseDto createdComplaintImageResponseDto = complaintImageService.createComplaintImage(createComplaintImageRequestDto);
 
-        return ResponseEntity.created(URI.create("/api/v1/complaint-images/" + createdComplaintImage.getId())).body(createdComplaintImage);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .location(URI.create("/api/v1/complaint-images/" + createdComplaintImageResponseDto.getId()))
+                .body(createdComplaintImageResponseDto);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteComplaintImageById(@PathVariable Long id) {
         complaintImageService.deleteComplaintImageById(id);
 
-        return ResponseEntity.ok("Deleted complaint image with id: " + id);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body("Complaint image with id " + id + " deleted successfully");
     }
 
 }

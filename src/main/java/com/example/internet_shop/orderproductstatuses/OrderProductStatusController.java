@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -21,33 +22,39 @@ public class OrderProductStatusController {
 
     @GetMapping("/")
     public ResponseEntity<List<OrderProductStatusResponseDto>> getOrderProductStatuses() {
+        List<OrderProductStatusResponseDto> orderProductStatusResponseDtoList = orderProductStatusService.getOrderProductStatuses();
+
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(orderProductStatusService.getOrderProductStatuses());
+                .body(orderProductStatusResponseDtoList);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<OrderProductStatusResponseDto> getOrderProductStatusById(@PathVariable Long id) {
+        OrderProductStatusResponseDto orderProductStatusResponseDto = orderProductStatusService.getOrderProductStatusById(id);
+
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(orderProductStatusService.getOrderProductStatusById(id));
+                .body(orderProductStatusResponseDto);
     }
 
     @PostMapping("/")
     public ResponseEntity<OrderProductStatusResponseDto> createOrderProductStatus(@RequestBody CreateOrderProductStatusRequestDto createOrderProductStatusRequestDto) {
-        OrderProductStatusResponseDto createdOrderProductStatus = orderProductStatusService.createOrderProductStatus(createOrderProductStatusRequestDto);
+        OrderProductStatusResponseDto createdOrderProductStatusResponseDto = orderProductStatusService.createOrderProductStatus(createOrderProductStatusRequestDto);
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .header("Location", "/api/v1/order-product-statuses/" + createdOrderProductStatus.getOrderProductStatusId())
-                .body(createdOrderProductStatus);
+                .location(URI.create("/api/v1/order-product-statuses/" + createdOrderProductStatusResponseDto.getOrderProductStatusId()))
+                .body(createdOrderProductStatusResponseDto);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<OrderProductStatusResponseDto> updateOrderProductStatusById(@PathVariable Long id, @RequestBody UpdateOrderProductStatusRequestDto updateOrderProductStatusRequestDto) {
+        OrderProductStatusResponseDto updatedOrderProductStatusResponseDto = orderProductStatusService.updateOrderProductStatusById(id, updateOrderProductStatusRequestDto);
+
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(orderProductStatusService.updateOrderProductStatusById(id, updateOrderProductStatusRequestDto));
+                .body(updatedOrderProductStatusResponseDto);
     }
 
     @DeleteMapping("/{id}")

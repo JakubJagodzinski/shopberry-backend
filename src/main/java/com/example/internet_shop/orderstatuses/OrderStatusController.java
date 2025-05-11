@@ -3,6 +3,7 @@ package com.example.internet_shop.orderstatuses;
 import com.example.internet_shop.orderstatuses.dto.CreateOrderStatusRequestDto;
 import com.example.internet_shop.orderstatuses.dto.OrderStatusResponseDto;
 import com.example.internet_shop.orderstatuses.dto.UpdateOrderStatusRequestDto;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,31 +22,48 @@ public class OrderStatusController {
 
     @GetMapping("/")
     public ResponseEntity<List<OrderStatusResponseDto>> getOrderStatuses() {
-        return ResponseEntity.ok(orderStatusService.getOrderStatuses());
+        List<OrderStatusResponseDto> orderStatusResponseDtoList = orderStatusService.getOrderStatuses();
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(orderStatusResponseDtoList);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<OrderStatusResponseDto> getOrderStatusById(@PathVariable Long id) {
-        return ResponseEntity.ok(orderStatusService.getOrderStatusById(id));
+        OrderStatusResponseDto orderStatusResponseDto = orderStatusService.getOrderStatusById(id);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(orderStatusResponseDto);
     }
 
     @PostMapping("/")
     public ResponseEntity<OrderStatusResponseDto> createOrderStatus(@RequestBody CreateOrderStatusRequestDto createOrderStatusRequestDto) {
-        OrderStatusResponseDto createdOrderStatus = orderStatusService.createOrderStatus(createOrderStatusRequestDto);
+        OrderStatusResponseDto createdOrderStatusResponseDto = orderStatusService.createOrderStatus(createOrderStatusRequestDto);
 
-        return ResponseEntity.created(URI.create("/api/v1/order-statuses/" + createdOrderStatus.getOrderStatusId())).body(createdOrderStatus);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .location(URI.create("/api/v1/order-statuses/" + createdOrderStatusResponseDto.getOrderStatusId()))
+                .body(createdOrderStatusResponseDto);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<OrderStatusResponseDto> updateOrderStatusById(@PathVariable Long id, @RequestBody UpdateOrderStatusRequestDto updateOrderStatusRequestDto) {
-        return ResponseEntity.ok(orderStatusService.updateOrderStatusById(id, updateOrderStatusRequestDto));
+        OrderStatusResponseDto updatedOrderStatusResponseDto = orderStatusService.updateOrderStatusById(id, updateOrderStatusRequestDto);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(updatedOrderStatusResponseDto);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteOrderStatusById(@PathVariable Long id) {
         orderStatusService.deleteOrderStatusById(id);
 
-        return ResponseEntity.ok("Deleted order status with id: " + id);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body("Order status with id " + id + " deleted successfully");
     }
 
 }

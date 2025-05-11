@@ -3,6 +3,7 @@ package com.example.internet_shop.complaints;
 import com.example.internet_shop.complaints.dto.ComplaintResponseDto;
 import com.example.internet_shop.complaints.dto.CreateComplaintRequestDto;
 import com.example.internet_shop.complaints.dto.UpdateComplaintRequestDto;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,31 +22,48 @@ public class ComplaintController {
 
     @GetMapping("/")
     public ResponseEntity<List<ComplaintResponseDto>> getComplaints() {
-        return ResponseEntity.ok(complaintService.getComplaints());
+        List<ComplaintResponseDto> complaintResponseDtoList = complaintService.getComplaints();
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(complaintResponseDtoList);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<ComplaintResponseDto> getComplaintById(@PathVariable Long id) {
-        return ResponseEntity.ok(complaintService.getComplaintById(id));
+        ComplaintResponseDto complaintResponseDto = complaintService.getComplaintById(id);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(complaintResponseDto);
     }
 
     @PostMapping("/")
     public ResponseEntity<ComplaintResponseDto> createComplaint(@RequestBody CreateComplaintRequestDto createComplaintRequestDto) {
-        ComplaintResponseDto createdComplaint = complaintService.createComplaint(createComplaintRequestDto);
+        ComplaintResponseDto createdComplaintResponseDto = complaintService.createComplaint(createComplaintRequestDto);
 
-        return ResponseEntity.created(URI.create("/api/v1/complaints/" + createdComplaint.getComplaintId())).body(createdComplaint);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .location(URI.create("/api/v1/complaints/" + createdComplaintResponseDto.getComplaintId()))
+                .body(createdComplaintResponseDto);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<ComplaintResponseDto> updateComplaintById(@PathVariable Long id, @RequestBody UpdateComplaintRequestDto updateComplaintRequestDto) {
-        return ResponseEntity.ok(complaintService.updateComplaintById(id, updateComplaintRequestDto));
+        ComplaintResponseDto updatedComplaintResponseDto = complaintService.updateComplaintById(id, updateComplaintRequestDto);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(updatedComplaintResponseDto);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteComplaintById(@PathVariable Long id) {
+    public ResponseEntity<String> deleteComplaintById(@PathVariable Long id) {
         complaintService.deleteComplaintById(id);
 
-        return ResponseEntity.noContent().build();
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body("Complaint with id " + id + " deleted successfully");
     }
 
 }

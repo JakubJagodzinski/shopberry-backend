@@ -3,6 +3,7 @@ package com.example.internet_shop.paymenttypes;
 import com.example.internet_shop.paymenttypes.dto.CreatePaymentTypeRequestDto;
 import com.example.internet_shop.paymenttypes.dto.PaymentTypeResponseDto;
 import com.example.internet_shop.paymenttypes.dto.UpdatePaymentTypeRequestDto;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,31 +22,48 @@ public class PaymentTypeController {
 
     @GetMapping("/")
     public ResponseEntity<List<PaymentTypeResponseDto>> getPaymentTypes() {
-        return ResponseEntity.ok(paymentTypeService.getPaymentTypes());
+        List<PaymentTypeResponseDto> paymentTypeResponseDtoList = paymentTypeService.getPaymentTypes();
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(paymentTypeResponseDtoList);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<PaymentTypeResponseDto> getPaymentTypeById(@PathVariable Long id) {
-        return ResponseEntity.ok(paymentTypeService.getPaymentTypeById(id));
+        PaymentTypeResponseDto paymentTypeResponseDto = paymentTypeService.getPaymentTypeById(id);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(paymentTypeResponseDto);
     }
 
     @PostMapping("/")
     public ResponseEntity<PaymentTypeResponseDto> createPaymentType(@RequestBody CreatePaymentTypeRequestDto createPaymentTypeRequestDto) {
-        PaymentTypeResponseDto createdPaymentType = paymentTypeService.createPaymentType(createPaymentTypeRequestDto);
+        PaymentTypeResponseDto createdPaymentTypeResponseDto = paymentTypeService.createPaymentType(createPaymentTypeRequestDto);
 
-        return ResponseEntity.created(URI.create("/api/v1/payment-types/" + createdPaymentType.getPaymentTypeId())).body(createdPaymentType);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .location(URI.create("/api/v1/payment-types/" + createdPaymentTypeResponseDto.getPaymentTypeId()))
+                .body(createdPaymentTypeResponseDto);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<PaymentTypeResponseDto> updatePaymentTypeById(@PathVariable Long id, @RequestBody UpdatePaymentTypeRequestDto updatePaymentTypeRequestDto) {
-        return ResponseEntity.ok(paymentTypeService.updatePaymentTypeById(id, updatePaymentTypeRequestDto));
+        PaymentTypeResponseDto updatedPaymentTypeResponseDto = paymentTypeService.updatePaymentTypeById(id, updatePaymentTypeRequestDto);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(updatedPaymentTypeResponseDto);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deletePaymentTypeById(@PathVariable Long id) {
         paymentTypeService.deletePaymentTypeById(id);
 
-        return ResponseEntity.ok("Deleted payment type with id: " + id);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body("Payment type with id: " + id + " deleted successfully");
     }
 
 }
