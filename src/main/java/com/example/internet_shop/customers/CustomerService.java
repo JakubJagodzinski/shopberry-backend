@@ -3,6 +3,7 @@ package com.example.internet_shop.customers;
 import com.example.internet_shop.customers.dto.CreateCustomerRequestDto;
 import com.example.internet_shop.customers.dto.CustomerDtoMapper;
 import com.example.internet_shop.customers.dto.CustomerResponseDto;
+import com.example.internet_shop.customers.dto.UpdateCustomerRequestDto;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -54,25 +55,25 @@ public class CustomerService {
     }
 
     @Transactional
-    public CustomerResponseDto updateCustomerById(Long id, CreateCustomerRequestDto createCustomerRequestDto) throws EntityNotFoundException, IllegalArgumentException {
+    public CustomerResponseDto updateCustomerById(Long id, UpdateCustomerRequestDto updateCustomerRequestDto) throws EntityNotFoundException, IllegalArgumentException {
         Customer customer = customerRepository.findById(id).orElse(null);
 
         if (customer == null) {
             throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
         }
 
-        if (createCustomerRequestDto.getEmail() != null) {
-            Customer otherCustomer = customerRepository.findByEmail(createCustomerRequestDto.getEmail());
+        if (updateCustomerRequestDto.getEmail() != null) {
+            Customer otherCustomer = customerRepository.findByEmail(updateCustomerRequestDto.getEmail());
 
             if (otherCustomer != null && !customer.getCustomerId().equals(otherCustomer.getCustomerId())) {
                 throw new IllegalArgumentException(CUSTOMER_WITH_THAT_EMAIL_ALREADY_EXISTS_MESSAGE);
             }
 
-            customer.setEmail(createCustomerRequestDto.getEmail());
+            customer.setEmail(updateCustomerRequestDto.getEmail());
         }
 
-        if (createCustomerRequestDto.getPassword() != null) {
-            customer.setPassword(createCustomerRequestDto.getPassword());
+        if (updateCustomerRequestDto.getPassword() != null) {
+            customer.setPassword(updateCustomerRequestDto.getPassword());
         }
 
         return customerDtoMapper.toDto(customerRepository.save(customer));

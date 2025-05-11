@@ -2,6 +2,7 @@ package com.example.internet_shop.customers;
 
 import com.example.internet_shop.customers.dto.CreateCustomerRequestDto;
 import com.example.internet_shop.customers.dto.CustomerResponseDto;
+import com.example.internet_shop.customers.dto.UpdateCustomerRequestDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -48,8 +49,8 @@ public class CustomerController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CustomerResponseDto> updateCustomerById(@PathVariable Long id, @RequestBody CreateCustomerRequestDto createCustomerRequestDto) {
-        CustomerResponseDto updatedCustomerResponseDto = customerService.updateCustomerById(id, createCustomerRequestDto);
+    public ResponseEntity<CustomerResponseDto> updateCustomerById(@PathVariable Long id, @RequestBody UpdateCustomerRequestDto updateCustomerRequestDto) {
+        CustomerResponseDto updatedCustomerResponseDto = customerService.updateCustomerById(id, updateCustomerRequestDto);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
