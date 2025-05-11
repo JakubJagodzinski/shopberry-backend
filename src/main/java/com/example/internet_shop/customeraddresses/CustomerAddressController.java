@@ -10,7 +10,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/customer_addresses")
+@RequestMapping("/api/v1/customer-addresses")
 public class CustomerAddressController {
 
     private final CustomerAddressService customerAddressService;
@@ -33,7 +33,7 @@ public class CustomerAddressController {
     public ResponseEntity<CustomerAddressResponseDto> createCustomerAddress(@PathVariable Long customerId, @RequestBody CreateCustomerAddressRequestDto createCustomerAddressRequestDto) {
         CustomerAddressResponseDto createdCustomerAddress = customerAddressService.createCustomerAddress(customerId, createCustomerAddressRequestDto);
 
-        return ResponseEntity.created(URI.create("/api/customer_addresses/" + createdCustomerAddress.getAddressId())).body(createdCustomerAddress);
+        return ResponseEntity.created(URI.create("/api/v1/customer-addresses/" + createdCustomerAddress.getAddressId())).body(createdCustomerAddress);
     }
 
     @PutMapping("/{customerAddressId}")

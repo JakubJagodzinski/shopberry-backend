@@ -10,7 +10,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/shipment_types")
+@RequestMapping("/api/v1/shipment-types")
 public class ShipmentTypeController {
 
     private final ShipmentTypeService shipmentTypeService;
@@ -33,7 +33,7 @@ public class ShipmentTypeController {
     public ResponseEntity<ShipmentTypeResponseDto> createShipmentType(@RequestBody CreateShipmentTypeRequestDto createShipmentTypeRequestDto) {
         ShipmentTypeResponseDto createdShipmentType = shipmentTypeService.createShipmentType(createShipmentTypeRequestDto);
 
-        return ResponseEntity.created(URI.create("/api/shipment_types/" + createdShipmentType.getShipmentTypeId())).body(createdShipmentType);
+        return ResponseEntity.created(URI.create("/api/v1/shipment-types/" + createdShipmentType.getShipmentTypeId())).body(createdShipmentType);
     }
 
     @PutMapping("/{id}")

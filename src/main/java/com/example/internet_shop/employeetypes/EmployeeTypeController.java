@@ -10,7 +10,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/employee_types")
+@RequestMapping("/api/v1/employee-types")
 public class EmployeeTypeController {
 
     private final EmployeeTypeService employeeTypeService;
@@ -32,7 +32,7 @@ public class EmployeeTypeController {
     @PostMapping("/")
     public ResponseEntity<EmployeeTypeResponseDto> createEmployeeType(@RequestBody CreateEmployeeTypeRequestDto createEmployeeTypeRequestDto) {
         EmployeeTypeResponseDto createdEmployeeTypeResponseDto = employeeTypeService.createEmployeeType(createEmployeeTypeRequestDto);
-        return ResponseEntity.created(URI.create("/api/employee_types/" + createdEmployeeTypeResponseDto.getEmployeeTypeId())).body(createdEmployeeTypeResponseDto);
+        return ResponseEntity.created(URI.create("/api/v1/employee-types/" + createdEmployeeTypeResponseDto.getEmployeeTypeId())).body(createdEmployeeTypeResponseDto);
     }
 
     @PutMapping("/{id}")

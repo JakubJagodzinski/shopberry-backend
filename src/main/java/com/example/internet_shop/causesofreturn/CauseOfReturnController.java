@@ -10,7 +10,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/causes_of_return")
+@RequestMapping("/api/v1/causes-of-return")
 public class CauseOfReturnController {
 
     private final CauseOfReturnService causeOfReturnService;
@@ -32,7 +32,7 @@ public class CauseOfReturnController {
     @PostMapping("/")
     public ResponseEntity<CauseOfReturnResponseDto> createCauseOfReturn(@RequestBody CreateCauseOfReturnRequestDto createCauseOfReturnRequestDto) {
         CauseOfReturnResponseDto createdCauseOfReturn = causeOfReturnService.createCauseOfReturn(createCauseOfReturnRequestDto);
-        return ResponseEntity.created(URI.create("/api/causes_of_return/" + createdCauseOfReturn.getCauseOfReturnId())).body(createdCauseOfReturn);
+        return ResponseEntity.created(URI.create("/api/v1/causes-of-return/" + createdCauseOfReturn.getCauseOfReturnId())).body(createdCauseOfReturn);
     }
 
     @PutMapping("/{id}")

@@ -10,7 +10,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/cart_entries")
+@RequestMapping("/api/v1/cart-entries")
 public class CartEntryController {
 
     private final CartEntryService cartEntryService;
@@ -33,7 +33,7 @@ public class CartEntryController {
     public ResponseEntity<CartEntryResponseDto> createCartEntry(@RequestBody CreateCartEntryRequestDto createCartEntryRequestDto) {
         CartEntryResponseDto createdCartEntry = cartEntryService.createCartEntry(createCartEntryRequestDto);
 
-        return ResponseEntity.created(URI.create("/api/cart_entries/" + createdCartEntry.getCustomerId() + "/" + createdCartEntry.getProductId())).body(createdCartEntry);
+        return ResponseEntity.created(URI.create("/api/v1/cart-entries/" + createdCartEntry.getCustomerId() + "/" + createdCartEntry.getProductId())).body(createdCartEntry);
     }
 
     @PutMapping("/{customerId}/{productId}")

@@ -9,7 +9,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/complaint_images")
+@RequestMapping("/api/v1/complaint-images")
 public class ComplaintImageController {
 
     private final ComplaintImageService complaintImageService;
@@ -32,7 +32,7 @@ public class ComplaintImageController {
     public ResponseEntity<ComplaintImageResponseDto> createComplaintImage(@RequestBody CreateComplaintImageRequestDto createComplaintImageRequestDto) {
         ComplaintImageResponseDto createdComplaintImage = complaintImageService.createComplaintImage(createComplaintImageRequestDto);
 
-        return ResponseEntity.created(URI.create("/api/complaint_images/" + createdComplaintImage.getId())).body(createdComplaintImage);
+        return ResponseEntity.created(URI.create("/api/v1/complaint-images/" + createdComplaintImage.getId())).body(createdComplaintImage);
     }
 
     @DeleteMapping("/{id}")

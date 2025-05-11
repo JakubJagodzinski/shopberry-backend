@@ -10,7 +10,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/payment_types")
+@RequestMapping("/api/v1/payment-types")
 public class PaymentTypeController {
 
     private final PaymentTypeService paymentTypeService;
@@ -33,7 +33,7 @@ public class PaymentTypeController {
     public ResponseEntity<PaymentTypeResponseDto> createPaymentType(@RequestBody CreatePaymentTypeRequestDto createPaymentTypeRequestDto) {
         PaymentTypeResponseDto createdPaymentType = paymentTypeService.createPaymentType(createPaymentTypeRequestDto);
 
-        return ResponseEntity.created(URI.create("/api/payment_types/" + createdPaymentType.getPaymentTypeId())).body(createdPaymentType);
+        return ResponseEntity.created(URI.create("/api/v1/payment-types/" + createdPaymentType.getPaymentTypeId())).body(createdPaymentType);
     }
 
     @PutMapping("/{id}")

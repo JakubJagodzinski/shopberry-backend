@@ -10,7 +10,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/promotions")
+@RequestMapping("/api/v1/promotions")
 public class PromotionController {
 
     private final PromotionService promotionService;
@@ -32,7 +32,7 @@ public class PromotionController {
     @PostMapping("/")
     public ResponseEntity<PromotionResponseDto> createPromotion(@RequestBody CreatePromotionRequestDto createPromotionRequestDto) {
         PromotionResponseDto createdPromotion = promotionService.createPromotion(createPromotionRequestDto);
-        return ResponseEntity.created(URI.create("/api/promotions/" + createdPromotion.getPromotionId())).body(createdPromotion);
+        return ResponseEntity.created(URI.create("/api/v1/promotions/" + createdPromotion.getPromotionId())).body(createdPromotion);
     }
 
     @PutMapping("/{id}")

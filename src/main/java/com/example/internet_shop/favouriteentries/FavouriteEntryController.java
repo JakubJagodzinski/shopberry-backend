@@ -9,7 +9,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/favourite_entries")
+@RequestMapping("/api/v1/favourite-entries")
 public class FavouriteEntryController {
 
     private final FavouriteEntryService favouriteEntryService;
@@ -27,7 +27,7 @@ public class FavouriteEntryController {
     public ResponseEntity<FavouriteEntryResponseDto> createFavouriteEntry(@RequestBody CreateFavouriteEntryRequestDto createFavouriteEntryRequestDto) {
         FavouriteEntryResponseDto createdFavouriteEntry = favouriteEntryService.createFavouriteEntry(createFavouriteEntryRequestDto);
 
-        return ResponseEntity.created(URI.create("/api/favourite_entries/" + createdFavouriteEntry.getCustomerId() + "/" + createdFavouriteEntry.getProductId())).body(createdFavouriteEntry);
+        return ResponseEntity.created(URI.create("/api/v1/favourite-entries/" + createdFavouriteEntry.getCustomerId() + "/" + createdFavouriteEntry.getProductId())).body(createdFavouriteEntry);
     }
 
     @DeleteMapping("/{customerId}/{productId}")

@@ -9,7 +9,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/employees")
+@RequestMapping("/api/v1/employees")
 public class EmployeeController {
 
     private final EmployeeService employeeService;
@@ -32,7 +32,7 @@ public class EmployeeController {
     public ResponseEntity<EmployeeResponseDto> createEmployee(@RequestBody CreateEmployeeRequestDto createEmployeeRequestDto) {
         EmployeeResponseDto createdEmployee = employeeService.createEmployee(createEmployeeRequestDto);
 
-        return ResponseEntity.created(URI.create("/api/employees/" + createdEmployee.getEmployeeId())).body(createdEmployee);
+        return ResponseEntity.created(URI.create("/api/v1/employees/" + createdEmployee.getEmployeeId())).body(createdEmployee);
     }
 
     @DeleteMapping("/{id}")

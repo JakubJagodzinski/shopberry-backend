@@ -9,7 +9,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/customers")
+@RequestMapping("/api/v1/customers")
 public class CustomerController {
 
     private final CustomerService customerService;
@@ -31,7 +31,7 @@ public class CustomerController {
     @PostMapping("/")
     public ResponseEntity<CustomerResponseDto> createCustomer(@RequestBody CreateCustomerRequestDto createCustomerRequestDto) {
         CustomerResponseDto createdCustomer = customerService.createCustomer(createCustomerRequestDto);
-        return ResponseEntity.created(URI.create("/api/customers/" + createdCustomer.getCustomerId())).body(createdCustomer);
+        return ResponseEntity.created(URI.create("/api/v1/customers/" + createdCustomer.getCustomerId())).body(createdCustomer);
     }
 
     @PutMapping("/{id}")

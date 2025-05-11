@@ -10,7 +10,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/categories")
+@RequestMapping("/api/v1/categories")
 public class CategoryController {
 
     private final CategoryService categoryService;
@@ -32,7 +32,7 @@ public class CategoryController {
     @PostMapping("/")
     public ResponseEntity<CategoryResponseDto> createCategory(@RequestBody CreateCategoryRequestDto createCategoryRequestDto) {
         CategoryResponseDto createdCategory = categoryService.createCategory(createCategoryRequestDto);
-        return ResponseEntity.created(URI.create("/api/categories/" + createdCategory.getCategoryId())).body(createdCategory);
+        return ResponseEntity.created(URI.create("/api/v1/categories/" + createdCategory.getCategoryId())).body(createdCategory);
     }
 
     @PostMapping("/{childId}/set_parent/{parentId}")

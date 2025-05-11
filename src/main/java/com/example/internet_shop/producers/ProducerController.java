@@ -10,7 +10,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/producers")
+@RequestMapping("/api/v1/producers")
 public class ProducerController {
 
     private final ProducerService producerService;
@@ -32,7 +32,7 @@ public class ProducerController {
     @PostMapping("/")
     public ResponseEntity<ProducerResponseDto> createProducer(@RequestBody CreateProducerRequestDto createProducerRequestDto) {
         ProducerResponseDto createdProducer = producerService.createProducer(createProducerRequestDto);
-        return ResponseEntity.created(URI.create("/api/producers/" + createdProducer.getProducerId())).body(createdProducer);
+        return ResponseEntity.created(URI.create("/api/v1/producers/" + createdProducer.getProducerId())).body(createdProducer);
     }
 
     @PutMapping("/{id}")

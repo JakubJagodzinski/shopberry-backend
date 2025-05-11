@@ -10,7 +10,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/attributes")
+@RequestMapping("/api/v1/attributes")
 public class AttributeController {
 
     private final AttributeService attributeService;
@@ -33,7 +33,7 @@ public class AttributeController {
     public ResponseEntity<AttributeResponseDto> createAttribute(@RequestBody CreateAttributeRequestDto createAttributeRequestDto) {
         AttributeResponseDto createdAttribute = attributeService.createAttribute(createAttributeRequestDto);
 
-        return ResponseEntity.created(URI.create("api/attributes/" + createdAttribute.getAttributeId())).body(createdAttribute);
+        return ResponseEntity.created(URI.create("/api/v1/attributes/" + createdAttribute.getAttributeId())).body(createdAttribute);
     }
 
     @PutMapping("/{id}")

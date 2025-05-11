@@ -9,7 +9,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/orders")
+@RequestMapping("/api/v1/orders")
 public class OrderController {
 
     private final OrderService orderService;
@@ -32,7 +32,7 @@ public class OrderController {
     public ResponseEntity<OrderResponseDto> createOrder(@RequestBody CreateOrderRequestDto createOrderRequestDto) {
         OrderResponseDto createdOrder = orderService.createOrder(createOrderRequestDto);
 
-        return ResponseEntity.created(URI.create("/api/orders/" + createdOrder.getOrderId())).body(createdOrder);
+        return ResponseEntity.created(URI.create("/api/v1/orders/" + createdOrder.getOrderId())).body(createdOrder);
     }
 
     @DeleteMapping("/{id}")

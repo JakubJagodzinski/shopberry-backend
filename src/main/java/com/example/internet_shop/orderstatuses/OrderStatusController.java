@@ -10,7 +10,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/order_statuses")
+@RequestMapping("/api/v1/order-statuses")
 public class OrderStatusController {
 
     private final OrderStatusService orderStatusService;
@@ -33,7 +33,7 @@ public class OrderStatusController {
     public ResponseEntity<OrderStatusResponseDto> createOrderStatus(@RequestBody CreateOrderStatusRequestDto createOrderStatusRequestDto) {
         OrderStatusResponseDto createdOrderStatus = orderStatusService.createOrderStatus(createOrderStatusRequestDto);
 
-        return ResponseEntity.created(URI.create("/api/order_statuses/" + createdOrderStatus.getOrderStatusId())).body(createdOrderStatus);
+        return ResponseEntity.created(URI.create("/api/v1/order-statuses/" + createdOrderStatus.getOrderStatusId())).body(createdOrderStatus);
     }
 
     @PutMapping("/{id}")

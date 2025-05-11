@@ -10,7 +10,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/complaints")
+@RequestMapping("/api/v1/complaints")
 public class ComplaintController {
 
     private final ComplaintService complaintService;
@@ -33,7 +33,7 @@ public class ComplaintController {
     public ResponseEntity<ComplaintResponseDto> createComplaint(@RequestBody CreateComplaintRequestDto createComplaintRequestDto) {
         ComplaintResponseDto createdComplaint = complaintService.createComplaint(createComplaintRequestDto);
 
-        return ResponseEntity.created(URI.create("/api/complaints/" + createdComplaint.getComplaintId())).body(createdComplaint);
+        return ResponseEntity.created(URI.create("/api/v1/complaints/" + createdComplaint.getComplaintId())).body(createdComplaint);
     }
 
     @PutMapping("/{id}")
