@@ -26,8 +26,8 @@ public class OrderController {
         return ResponseEntity.ok(orderService.getOrderById(id));
     }
 
-    @PostMapping("/create")
-    public ResponseEntity<OrderDto> createOrder(CreateOrderDto createOrderDto) {
+    @PostMapping("/")
+    public ResponseEntity<OrderDto> createOrder(@RequestBody CreateOrderDto createOrderDto) {
         OrderDto createdOrder = orderService.createOrder(createOrderDto);
 
         return ResponseEntity.created(URI.create("/api/orders/" + createdOrder.getOrderId())).body(createdOrder);
