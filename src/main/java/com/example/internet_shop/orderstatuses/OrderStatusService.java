@@ -1,8 +1,8 @@
 package com.example.internet_shop.orderstatuses;
 
 import com.example.internet_shop.orderstatuses.dto.CreateOrderStatusRequestDto;
-import com.example.internet_shop.orderstatuses.dto.OrderStatusResponseDto;
 import com.example.internet_shop.orderstatuses.dto.OrderStatusDtoMapper;
+import com.example.internet_shop.orderstatuses.dto.OrderStatusResponseDto;
 import com.example.internet_shop.orderstatuses.dto.UpdateOrderStatusRequestDto;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -33,11 +33,13 @@ public class OrderStatusService {
 
     @Transactional
     public OrderStatusResponseDto getOrderStatusById(Long id) throws EntityNotFoundException {
-        if (!orderStatusRepository.existsById(id)) {
+        OrderStatus orderStatus = orderStatusRepository.findById(id).orElse(null);
+
+        if (orderStatus == null) {
             throw new EntityNotFoundException(ORDER_STATUS_NOT_FOUND_MESSAGE);
         }
 
-        return orderStatusDtoMapper.toDto(orderStatusRepository.getReferenceById(id));
+        return orderStatusDtoMapper.toDto(orderStatus);
     }
 
     @Transactional
@@ -63,11 +65,11 @@ public class OrderStatusService {
 
     @Transactional
     public OrderStatusResponseDto updateOrderStatusById(Long id, UpdateOrderStatusRequestDto updateOrderStatusRequestDto) throws EntityNotFoundException, IllegalArgumentException {
-        if (!orderStatusRepository.existsById(id)) {
+        OrderStatus orderStatus = orderStatusRepository.findById(id).orElse(null);
+
+        if (orderStatus == null) {
             throw new EntityNotFoundException(ORDER_STATUS_NOT_FOUND_MESSAGE);
         }
-
-        OrderStatus orderStatus = orderStatusRepository.getReferenceById(id);
 
         if (updateOrderStatusRequestDto.getOrderStatusName() != null) {
             OrderStatus otherOrderStatus = orderStatusRepository.findByOrderStatusName(updateOrderStatusRequestDto.getOrderStatusName());

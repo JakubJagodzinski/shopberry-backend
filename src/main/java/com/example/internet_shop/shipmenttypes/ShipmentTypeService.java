@@ -1,8 +1,8 @@
 package com.example.internet_shop.shipmenttypes;
 
 import com.example.internet_shop.shipmenttypes.dto.CreateShipmentTypeRequestDto;
-import com.example.internet_shop.shipmenttypes.dto.ShipmentTypeResponseDto;
 import com.example.internet_shop.shipmenttypes.dto.ShipmentTypeDtoMapper;
+import com.example.internet_shop.shipmenttypes.dto.ShipmentTypeResponseDto;
 import com.example.internet_shop.shipmenttypes.dto.UpdateShipmentTypeRequestDto;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -34,11 +34,13 @@ public class ShipmentTypeService {
 
     @Transactional
     public ShipmentTypeResponseDto getShipmentTypeById(Long id) throws EntityNotFoundException {
-        if (!shipmentTypeRepository.existsById(id)) {
+        ShipmentType shipmentType = shipmentTypeRepository.findById(id).orElse(null);
+
+        if (shipmentType == null) {
             throw new EntityNotFoundException(SHIPMENT_TYPE_NOT_FOUND_MESSAGE);
         }
 
-        return shipmentTypeDtoMapper.toDto(shipmentTypeRepository.getReferenceById(id));
+        return shipmentTypeDtoMapper.toDto(shipmentType);
     }
 
     @Transactional
@@ -69,11 +71,11 @@ public class ShipmentTypeService {
 
     @Transactional
     public ShipmentTypeResponseDto updateShipmentTypeById(Long id, UpdateShipmentTypeRequestDto updateShipmentTypeRequestDto) throws EntityNotFoundException, IllegalArgumentException {
-        if (!shipmentTypeRepository.existsById(id)) {
+        ShipmentType shipmentType = shipmentTypeRepository.findById(id).orElse(null);
+
+        if (shipmentType == null) {
             throw new EntityNotFoundException(SHIPMENT_TYPE_NOT_FOUND_MESSAGE);
         }
-
-        ShipmentType shipmentType = shipmentTypeRepository.getReferenceById(id);
 
         if (updateShipmentTypeRequestDto.getShipmentName() != null) {
             ShipmentType otherShipmentType = shipmentTypeRepository.findByShipmentName(updateShipmentTypeRequestDto.getShipmentName());

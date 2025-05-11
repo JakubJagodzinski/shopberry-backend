@@ -1,8 +1,8 @@
 package com.example.internet_shop.employees;
 
 import com.example.internet_shop.employees.dto.CreateEmployeeRequestDto;
-import com.example.internet_shop.employees.dto.EmployeeResponseDto;
 import com.example.internet_shop.employees.dto.EmployeeDtoMapper;
+import com.example.internet_shop.employees.dto.EmployeeResponseDto;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -30,11 +30,13 @@ public class EmployeeService {
 
     @Transactional
     public EmployeeResponseDto getEmployeeById(Long id) throws EntityNotFoundException {
-        if (!employeeRepository.existsById(id)) {
+        Employee employee = employeeRepository.findById(id).orElse(null);
+
+        if (employee == null) {
             throw new EntityNotFoundException(EMPLOYEE_NOT_FOUND_MESSAGE);
         }
 
-        return employeeDtoMapper.toDto(employeeRepository.getReferenceById(id));
+        return employeeDtoMapper.toDto(employee);
     }
 
     @Transactional

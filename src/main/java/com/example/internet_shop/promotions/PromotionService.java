@@ -1,8 +1,8 @@
 package com.example.internet_shop.promotions;
 
 import com.example.internet_shop.promotions.dto.CreatePromotionRequestDto;
-import com.example.internet_shop.promotions.dto.PromotionResponseDto;
 import com.example.internet_shop.promotions.dto.PromotionDtoMapper;
+import com.example.internet_shop.promotions.dto.PromotionResponseDto;
 import com.example.internet_shop.promotions.dto.UpdatePromotionRequestDto;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -35,11 +35,13 @@ public class PromotionService {
 
     @Transactional
     public PromotionResponseDto getPromotionById(Long id) throws EntityNotFoundException {
-        if (!promotionRepository.existsById(id)) {
+        Promotion promotion = promotionRepository.findById(id).orElse(null);
+
+        if (promotion == null) {
             throw new EntityNotFoundException(PROMOTION_NOT_FOUND_MESSAGE);
         }
 
-        return promotionDtoMapper.toDto(promotionRepository.getReferenceById(id));
+        return promotionDtoMapper.toDto(promotion);
     }
 
     @Transactional
@@ -74,11 +76,11 @@ public class PromotionService {
 
     @Transactional
     public PromotionResponseDto updatePromotionById(Long id, UpdatePromotionRequestDto updatePromotionRequestDto) throws EntityNotFoundException, IllegalArgumentException {
-        if (!promotionRepository.existsById(id)) {
+        Promotion promotion = promotionRepository.findById(id).orElse(null);
+
+        if (promotion == null) {
             throw new EntityNotFoundException(PROMOTION_NOT_FOUND_MESSAGE);
         }
-
-        Promotion promotion = promotionRepository.getReferenceById(id);
 
         if (updatePromotionRequestDto.getPromotionName() != null) {
             Promotion otherPromotion = promotionRepository.findByPromotionName(updatePromotionRequestDto.getPromotionName());

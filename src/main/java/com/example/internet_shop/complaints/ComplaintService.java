@@ -1,12 +1,14 @@
 package com.example.internet_shop.complaints;
 
-import com.example.internet_shop.complaints.dto.ComplaintResponseDto;
 import com.example.internet_shop.complaints.dto.ComplaintDtoMapper;
+import com.example.internet_shop.complaints.dto.ComplaintResponseDto;
 import com.example.internet_shop.complaints.dto.CreateComplaintRequestDto;
 import com.example.internet_shop.complaints.dto.UpdateComplaintRequestDto;
 import com.example.internet_shop.orderproducts.OrderProductId;
 import com.example.internet_shop.orderproducts.OrderProductRepository;
+import com.example.internet_shop.orders.Order;
 import com.example.internet_shop.orders.OrderRepository;
+import com.example.internet_shop.products.Product;
 import com.example.internet_shop.products.ProductRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -45,11 +47,13 @@ public class ComplaintService {
 
     @Transactional
     public ComplaintResponseDto getComplaintById(Long id) throws EntityNotFoundException {
-        if (!complaintRepository.existsById(id)) {
+        Complaint complaint = complaintRepository.findById(id).orElse(null);
+
+        if (complaint == null) {
             throw new EntityNotFoundException(COMPLAINT_NOT_FOUND_MESSAGE);
         }
 
-        return complaintDtoMapper.toDto(complaintRepository.getReferenceById(id));
+        return complaintDtoMapper.toDto(complaint);
     }
 
     @Transactional
@@ -62,11 +66,15 @@ public class ComplaintService {
             throw new IllegalArgumentException(PRODUCT_ID_CANNOT_BE_NULL_MESSAGE);
         }
 
-        if (!orderRepository.existsById(createComplaintRequestDto.getOrderId())) {
+        Order order = orderRepository.findById(createComplaintRequestDto.getOrderId()).orElse(null);
+
+        if (order == null) {
             throw new EntityNotFoundException(ORDER_NOT_FOUND_MESSAGE);
         }
 
-        if (!productRepository.existsById(createComplaintRequestDto.getProductId())) {
+        Product product = productRepository.findById(createComplaintRequestDto.getProductId()).orElse(null);
+
+        if (product == null) {
             throw new EntityNotFoundException(PRODUCT_NOT_FOUND_MESSAGE);
         }
 
@@ -76,8 +84,8 @@ public class ComplaintService {
 
         Complaint complaint = new Complaint();
 
-        complaint.setOrder(orderRepository.getReferenceById(createComplaintRequestDto.getOrderId()));
-        complaint.setProduct(productRepository.getReferenceById(createComplaintRequestDto.getProductId()));
+        complaint.setOrder(order);
+        complaint.setProduct(product);
         complaint.setInfo(createComplaintRequestDto.getInfo());
         complaint.setFirstName(createComplaintRequestDto.getFirstName());
         complaint.setLastName(createComplaintRequestDto.getLastName());
@@ -94,19 +102,24 @@ public class ComplaintService {
 
     @Transactional
     public ComplaintResponseDto updateComplaintById(Long id, UpdateComplaintRequestDto updateComplaintRequestDto) throws EntityNotFoundException, IllegalArgumentException {
-        if (!complaintRepository.existsById(id)) {
+        Complaint complaint = complaintRepository.findById(id).orElse(null);
+
+        if (complaint == null) {
             throw new EntityNotFoundException(COMPLAINT_NOT_FOUND_MESSAGE);
         }
 
-        Complaint complaint = complaintRepository.getReferenceById(id);
-
         if (updateComplaintRequestDto.getProductId() != null) {
-            // TODO check if product belongs to order
-            if (!productRepository.existsById(updateComplaintRequestDto.getProductId())) {
+            Product product = productRepository.findById(updateComplaintRequestDto.getProductId()).orElse(null);
+
+            if (product == null) {
                 throw new EntityNotFoundException(PRODUCT_NOT_FOUND_MESSAGE);
             }
 
-            complaint.setProduct(productRepository.getReferenceById(updateComplaintRequestDto.getProductId()));
+            if (!orderProductRepository.existsById(new OrderProductId(id, product.getProductId()))) {
+                throw new IllegalArgumentException(PRODUCT_DOES_NOT_BELONG_TO_THAT_ORDER_MESSAGE);
+            }
+
+            complaint.setProduct(product);
         }
 
         if (updateComplaintRequestDto.getInfo() != null) {

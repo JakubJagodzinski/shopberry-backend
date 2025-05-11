@@ -1,11 +1,14 @@
 package com.example.internet_shop.orders;
 
+import com.example.internet_shop.customers.Customer;
 import com.example.internet_shop.customers.CustomerRepository;
 import com.example.internet_shop.orders.dto.CreateOrderRequestDto;
-import com.example.internet_shop.orders.dto.OrderResponseDto;
 import com.example.internet_shop.orders.dto.OrderDtoMapper;
+import com.example.internet_shop.orders.dto.OrderResponseDto;
 import com.example.internet_shop.orderstatuses.OrderStatusRepository;
+import com.example.internet_shop.paymenttypes.PaymentType;
 import com.example.internet_shop.paymenttypes.PaymentTypeRepository;
+import com.example.internet_shop.shipmenttypes.ShipmentType;
 import com.example.internet_shop.shipmenttypes.ShipmentTypeRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -44,36 +47,41 @@ public class OrderService {
 
     @Transactional
     public OrderResponseDto getOrderById(Long id) throws EntityNotFoundException {
-        if (!orderRepository.existsById(id)) {
+        Order order = orderRepository.findById(id).orElse(null);
+
+        if (order == null) {
             throw new EntityNotFoundException(ORDER_NOT_FOUND_MESSAGE);
         }
 
-        return orderDtoMapper.toDto(orderRepository.getReferenceById(id));
+        return orderDtoMapper.toDto(order);
     }
 
     @Transactional
     public OrderResponseDto createOrder(CreateOrderRequestDto createOrderRequestDto) throws EntityNotFoundException {
-        Order order = new Order();
+        Customer customer = customerRepository.findById(createOrderRequestDto.getCustomerId()).orElse(null);
 
-        order.setOrderStatus(orderStatusRepository.getReferenceById(1L)); // Default status
-
-        if (!customerRepository.existsById(createOrderRequestDto.getCustomerId())) {
+        if (customer == null) {
             throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
         }
-        order.setCustomer(customerRepository.getReferenceById(createOrderRequestDto.getCustomerId()));
 
-        if (!shipmentTypeRepository.existsById(createOrderRequestDto.getShipmentTypeId())) {
+        ShipmentType shipmentType = shipmentTypeRepository.findById(createOrderRequestDto.getShipmentTypeId()).orElse(null);
+
+        if (shipmentType == null) {
             throw new EntityNotFoundException(SHIPMENT_TYPE_NOT_FOUND_MESSAGE);
         }
-        order.setShipmentType(shipmentTypeRepository.getReferenceById(createOrderRequestDto.getShipmentTypeId()));
 
-        order.setShipmentIdentifier(createOrderRequestDto.getShipmentIdentifier());
+        PaymentType paymentType = paymentTypeRepository.findById(createOrderRequestDto.getPaymentTypeId()).orElse(null);
 
-        if (!paymentTypeRepository.existsById(createOrderRequestDto.getPaymentTypeId())) {
+        if (paymentType == null) {
             throw new EntityNotFoundException(PAYMENT_TYPE_NOT_FOUND_MESSAGE);
         }
-        order.setPaymentType(paymentTypeRepository.getReferenceById(createOrderRequestDto.getPaymentTypeId()));
 
+        Order order = new Order();
+        order.setOrderStatus(orderStatusRepository.getReferenceById(1L)); // Default status
+        order.setCustomer(customer);
+        order.setShipmentType(shipmentType);
+        order.setShipmentIdentifier(createOrderRequestDto.getShipmentIdentifier());
+        order.setPaymentType(paymentType);
         order.setIsInvoice(createOrderRequestDto.getIsInvoice());
 
         return orderDtoMapper.toDto(orderRepository.save(order));

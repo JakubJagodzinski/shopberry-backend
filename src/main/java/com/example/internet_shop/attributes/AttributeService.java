@@ -1,7 +1,7 @@
 package com.example.internet_shop.attributes;
 
-import com.example.internet_shop.attributes.dto.AttributeResponseDto;
 import com.example.internet_shop.attributes.dto.AttributeDtoMapper;
+import com.example.internet_shop.attributes.dto.AttributeResponseDto;
 import com.example.internet_shop.attributes.dto.CreateAttributeRequestDto;
 import com.example.internet_shop.attributes.dto.UpdateAttributeRequestDto;
 import jakarta.persistence.EntityNotFoundException;
@@ -35,11 +35,13 @@ public class AttributeService {
 
     @Transactional
     public AttributeResponseDto getAttributeById(Long id) throws EntityNotFoundException {
-        if (!attributeRepository.existsById(id)) {
+        Attribute attribute = attributeRepository.findById(id).orElse(null);
+
+        if (attribute == null) {
             throw new EntityNotFoundException(ATTRIBUTE_NOT_FOUND_MESSAGE);
         }
 
-        return attributeDtoMapper.toDto(attributeRepository.getReferenceById(id));
+        return attributeDtoMapper.toDto(attribute);
     }
 
     @Transactional
@@ -65,11 +67,11 @@ public class AttributeService {
 
     @Transactional
     public AttributeResponseDto updateAttributeById(Long id, UpdateAttributeRequestDto updateAttributeRequestDto) throws EntityNotFoundException, IllegalArgumentException {
-        if (!attributeRepository.existsById(id)) {
+        Attribute attribute = attributeRepository.findById(id).orElse(null);
+
+        if (attribute == null) {
             throw new EntityNotFoundException(ATTRIBUTE_NOT_FOUND_MESSAGE);
         }
-
-        Attribute attribute = attributeRepository.getReferenceById(id);
 
         if (updateAttributeRequestDto.getAttributeName() != null) {
             Attribute otherAttribute = attributeRepository.findByAttributeName(updateAttributeRequestDto.getAttributeName());

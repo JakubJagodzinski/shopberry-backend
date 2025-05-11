@@ -1,7 +1,7 @@
 package com.example.internet_shop.causesofreturn;
 
-import com.example.internet_shop.causesofreturn.dto.CauseOfReturnResponseDto;
 import com.example.internet_shop.causesofreturn.dto.CauseOfReturnDtoMapper;
+import com.example.internet_shop.causesofreturn.dto.CauseOfReturnResponseDto;
 import com.example.internet_shop.causesofreturn.dto.CreateCauseOfReturnRequestDto;
 import com.example.internet_shop.causesofreturn.dto.UpdateCauseOfReturnRequestDto;
 import jakarta.persistence.EntityNotFoundException;
@@ -33,11 +33,13 @@ public class CauseOfReturnService {
 
     @Transactional
     public CauseOfReturnResponseDto getCauseOfReturnById(Long id) throws EntityNotFoundException {
-        if (!causeOfReturnRepository.existsById(id)) {
+        CauseOfReturn causeOfReturn = causeOfReturnRepository.findById(id).orElse(null);
+
+        if (causeOfReturn == null) {
             throw new EntityNotFoundException(CAUSE_OF_RETURN_NOT_FOUND_MESSAGE);
         }
 
-        return causeOfReturnDtoMapper.toDto(causeOfReturnRepository.getReferenceById(id));
+        return causeOfReturnDtoMapper.toDto(causeOfReturn);
     }
 
     @Transactional
@@ -63,11 +65,11 @@ public class CauseOfReturnService {
 
     @Transactional
     public CauseOfReturnResponseDto updateCauseOfReturnById(Long id, UpdateCauseOfReturnRequestDto updateCauseOfReturnRequestDto) throws EntityNotFoundException, IllegalArgumentException {
-        if (!causeOfReturnRepository.existsById(id)) {
+        CauseOfReturn causeOfReturn = causeOfReturnRepository.findById(id).orElse(null);
+
+        if (causeOfReturn == null) {
             throw new EntityNotFoundException(CAUSE_OF_RETURN_NOT_FOUND_MESSAGE);
         }
-
-        CauseOfReturn causeOfReturn = causeOfReturnRepository.getReferenceById(id);
 
         if (updateCauseOfReturnRequestDto.getCause() != null) {
             CauseOfReturn otherCauseOfReturn = causeOfReturnRepository.findByCause(updateCauseOfReturnRequestDto.getCause());

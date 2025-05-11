@@ -1,8 +1,8 @@
 package com.example.internet_shop.products;
 
 import com.example.internet_shop.products.dto.CreateProductRequestDto;
-import com.example.internet_shop.products.dto.ProductResponseDto;
 import com.example.internet_shop.products.dto.ProductDtoMapper;
+import com.example.internet_shop.products.dto.ProductResponseDto;
 import com.example.internet_shop.products.dto.UpdateProductRequestDto;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -38,11 +38,13 @@ public class ProductService {
 
     @Transactional
     public ProductResponseDto getProductById(Long id) throws EntityNotFoundException {
-        if (!productRepository.existsById(id)) {
+        Product product = productRepository.findById(id).orElse(null);
+
+        if (product == null) {
             throw new EntityNotFoundException(PRODUCT_NOT_FOUND_MESSAGE);
         }
 
-        return productDtoMapper.toDto(productRepository.getReferenceById(id));
+        return productDtoMapper.toDto(product);
     }
 
     @Transactional
@@ -71,11 +73,11 @@ public class ProductService {
 
     @Transactional
     public ProductResponseDto updateProductById(Long id, UpdateProductRequestDto updateProductRequestDto) throws EntityNotFoundException, IllegalArgumentException {
-        if (!productRepository.existsById(id)) {
+        Product product = productRepository.findById(id).orElse(null);
+
+        if (product == null) {
             throw new EntityNotFoundException(PRODUCT_NOT_FOUND_MESSAGE);
         }
-
-        Product product = productRepository.getReferenceById(id);
 
         if (updateProductRequestDto.getProductName() != null) {
             Product otherProduct = productRepository.getProductByProductName(updateProductRequestDto.getProductName());

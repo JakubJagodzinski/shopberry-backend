@@ -1,9 +1,10 @@
 package com.example.internet_shop.customeraddresses;
 
 import com.example.internet_shop.customeraddresses.dto.CreateCustomerAddressRequestDto;
-import com.example.internet_shop.customeraddresses.dto.CustomerAddressResponseDto;
 import com.example.internet_shop.customeraddresses.dto.CustomerAddressDtoMapper;
+import com.example.internet_shop.customeraddresses.dto.CustomerAddressResponseDto;
 import com.example.internet_shop.customeraddresses.dto.UpdateCustomerAddressRequestDto;
+import com.example.internet_shop.customers.Customer;
 import com.example.internet_shop.customers.CustomerRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -44,14 +45,16 @@ public class CustomerAddressService {
     }
 
     @Transactional
-    public CustomerAddressResponseDto createCustomerAddress(Long customerId, CreateCustomerAddressRequestDto createCustomerAddressRequestDto) throws EntityNotFoundException{
-        if (!customerRepository.existsById(customerId)) {
+    public CustomerAddressResponseDto createCustomerAddress(Long customerId, CreateCustomerAddressRequestDto createCustomerAddressRequestDto) throws EntityNotFoundException {
+        Customer customer = customerRepository.findById(customerId).orElse(null);
+
+        if (customer == null) {
             throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
         }
 
         CustomerAddress customerAddress = new CustomerAddress();
 
-        customerAddress.setCustomer(customerRepository.getReferenceById(customerId));
+        customerAddress.setCustomer(customer);
         customerAddress.setFirstName(createCustomerAddressRequestDto.getFirstName());
         customerAddress.setLastName(createCustomerAddressRequestDto.getLastName());
         customerAddress.setCity(createCustomerAddressRequestDto.getCity());
@@ -66,11 +69,11 @@ public class CustomerAddressService {
 
     @Transactional
     public CustomerAddressResponseDto updateCustomerAddressById(Long customerAddressId, UpdateCustomerAddressRequestDto updateCustomerAddressRequestDto) throws EntityNotFoundException, IllegalArgumentException {
-        if (!customerAddressRepository.existsById(customerAddressId)) {
+        CustomerAddress customerAddress = customerAddressRepository.findById(customerAddressId).orElse(null);
+
+        if (customerAddress == null) {
             throw new EntityNotFoundException(CUSTOMER_ADDRESS_NOT_FOUND_MESSAGE);
         }
-
-        CustomerAddress customerAddress = customerAddressRepository.getReferenceById(customerAddressId);
 
         if (updateCustomerAddressRequestDto.getFirstName() != null) {
             if (updateCustomerAddressRequestDto.getFirstName().isEmpty()) {

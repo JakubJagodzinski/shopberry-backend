@@ -1,8 +1,8 @@
 package com.example.internet_shop.paymenttypes;
 
 import com.example.internet_shop.paymenttypes.dto.CreatePaymentTypeRequestDto;
-import com.example.internet_shop.paymenttypes.dto.PaymentTypeResponseDto;
 import com.example.internet_shop.paymenttypes.dto.PaymentTypeDtoMapper;
+import com.example.internet_shop.paymenttypes.dto.PaymentTypeResponseDto;
 import com.example.internet_shop.paymenttypes.dto.UpdatePaymentTypeRequestDto;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -33,11 +33,13 @@ public class PaymentTypeService {
 
     @Transactional
     public PaymentTypeResponseDto getPaymentTypeById(Long id) {
-        if (!paymentTypeRepository.existsById(id)) {
+        PaymentType paymentType = paymentTypeRepository.findById(id).orElse(null);
+
+        if (paymentType == null) {
             throw new IllegalArgumentException(PAYMENT_TYPE_NOT_FOUND_MESSAGE);
         }
 
-        return paymentTypeDtoMapper.toDto(paymentTypeRepository.getReferenceById(id));
+        return paymentTypeDtoMapper.toDto(paymentType);
     }
 
     @Transactional
@@ -63,11 +65,11 @@ public class PaymentTypeService {
 
     @Transactional
     public PaymentTypeResponseDto updatePaymentTypeById(Long id, UpdatePaymentTypeRequestDto updatePaymentTypeRequestDto) throws EntityNotFoundException, IllegalArgumentException {
-        if (!paymentTypeRepository.existsById(id)) {
+        PaymentType paymentType = paymentTypeRepository.findById(id).orElse(null);
+
+        if (paymentType == null) {
             throw new EntityNotFoundException(PAYMENT_TYPE_NOT_FOUND_MESSAGE);
         }
-
-        PaymentType paymentType = paymentTypeRepository.getReferenceById(id);
 
         if (updatePaymentTypeRequestDto.getPaymentName() != null) {
             PaymentType otherPaymentType = paymentTypeRepository.findByPaymentName(updatePaymentTypeRequestDto.getPaymentName());

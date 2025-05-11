@@ -1,8 +1,8 @@
 package com.example.internet_shop.employeetypes;
 
 import com.example.internet_shop.employeetypes.dto.CreateEmployeeTypeRequestDto;
-import com.example.internet_shop.employeetypes.dto.EmployeeTypeResponseDto;
 import com.example.internet_shop.employeetypes.dto.EmployeeTypeDtoMapper;
+import com.example.internet_shop.employeetypes.dto.EmployeeTypeResponseDto;
 import com.example.internet_shop.employeetypes.dto.UpdateEmployeeTypeRequestDto;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -33,11 +33,13 @@ public class EmployeeTypeService {
 
     @Transactional
     public EmployeeTypeResponseDto getEmployeeTypeById(Long id) throws EntityNotFoundException {
-        if (!employeeTypeRepository.existsById(id)) {
+        EmployeeType employeeType = employeeTypeRepository.findById(id).orElse(null);
+
+        if (employeeType == null) {
             throw new EntityNotFoundException(EMPLOYEE_TYPE_NOT_FOUND_MESSAGE);
         }
 
-        return employeeTypeDtoMapper.toDto(employeeTypeRepository.getReferenceById(id));
+        return employeeTypeDtoMapper.toDto(employeeType);
     }
 
     @Transactional
@@ -63,11 +65,11 @@ public class EmployeeTypeService {
 
     @Transactional
     public EmployeeTypeResponseDto updateEmployeeTypeById(Long id, UpdateEmployeeTypeRequestDto updateEmployeeTypeRequestDto) throws EntityNotFoundException, IllegalArgumentException {
-        if (!employeeTypeRepository.existsById(id)) {
+        EmployeeType employeeType = employeeTypeRepository.findById(id).orElse(null);
+
+        if (employeeType == null) {
             throw new EntityNotFoundException(EMPLOYEE_TYPE_NOT_FOUND_MESSAGE);
         }
-
-        EmployeeType employeeType = employeeTypeRepository.getReferenceById(id);
 
         if (updateEmployeeTypeRequestDto.getEmployeeTypeName() != null) {
             EmployeeType otherEmployeeType = employeeTypeRepository.findByEmployeeTypeName(updateEmployeeTypeRequestDto.getEmployeeTypeName());

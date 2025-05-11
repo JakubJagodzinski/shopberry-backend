@@ -1,8 +1,8 @@
 package com.example.internet_shop.producers;
 
 import com.example.internet_shop.producers.dto.CreateProducerRequestDto;
-import com.example.internet_shop.producers.dto.ProducerResponseDto;
 import com.example.internet_shop.producers.dto.ProducerDtoMapper;
+import com.example.internet_shop.producers.dto.ProducerResponseDto;
 import com.example.internet_shop.producers.dto.UpdateProducerRequestDto;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -35,11 +35,13 @@ public class ProducerService {
 
     @Transactional
     public ProducerResponseDto getProducerById(Long id) throws EntityNotFoundException {
-        if (!producerRepository.existsById(id)) {
+        Producer producer = producerRepository.findById(id).orElse(null);
+
+        if (producer == null) {
             throw new EntityNotFoundException(PRODUCER_NOT_FOUND_MESSAGE);
         }
 
-        return producerDtoMapper.toDto(producerRepository.getReferenceById(id));
+        return producerDtoMapper.toDto(producer);
     }
 
     @Transactional
@@ -58,11 +60,11 @@ public class ProducerService {
 
     @Transactional
     public ProducerResponseDto updateProducerById(Long id, UpdateProducerRequestDto updateProducerRequestDto) throws EntityNotFoundException {
-        if (!producerRepository.existsById(id)) {
+        Producer producer = producerRepository.findById(id).orElse(null);
+
+        if (producer == null) {
             throw new EntityNotFoundException(PRODUCER_NOT_FOUND_MESSAGE);
         }
-
-        Producer producer = producerRepository.getReferenceById(id);
 
         if (updateProducerRequestDto.getProducerName() != null) {
             Producer otherProducer = producerRepository.findByProducerName(updateProducerRequestDto.getProducerName());

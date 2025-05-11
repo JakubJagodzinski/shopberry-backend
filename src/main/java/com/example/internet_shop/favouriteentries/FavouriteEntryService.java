@@ -1,9 +1,11 @@
 package com.example.internet_shop.favouriteentries;
 
+import com.example.internet_shop.customers.Customer;
 import com.example.internet_shop.customers.CustomerRepository;
 import com.example.internet_shop.favouriteentries.dto.CreateFavouriteEntryRequestDto;
-import com.example.internet_shop.favouriteentries.dto.FavouriteEntryResponseDto;
 import com.example.internet_shop.favouriteentries.dto.FavouriteEntryDtoMapper;
+import com.example.internet_shop.favouriteentries.dto.FavouriteEntryResponseDto;
+import com.example.internet_shop.products.Product;
 import com.example.internet_shop.products.ProductRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -43,11 +45,15 @@ public class FavouriteEntryService {
 
     @Transactional
     public FavouriteEntryResponseDto createFavouriteEntry(CreateFavouriteEntryRequestDto createFavouriteEntryRequestDto) throws EntityNotFoundException, IllegalArgumentException {
-        if (!customerRepository.existsById(createFavouriteEntryRequestDto.getCustomerId())) {
+        Customer customer = customerRepository.findById(createFavouriteEntryRequestDto.getCustomerId()).orElse(null);
+
+        if (customer == null) {
             throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
         }
 
-        if (!productRepository.existsById(createFavouriteEntryRequestDto.getProductId())) {
+        Product product = productRepository.findById(createFavouriteEntryRequestDto.getProductId()).orElse(null);
+
+        if (product == null) {
             throw new EntityNotFoundException(PRODUCT_NOT_FOUND_MESSAGE);
         }
 
@@ -60,8 +66,8 @@ public class FavouriteEntryService {
         FavouriteEntry favouriteEntry = new FavouriteEntry();
 
         favouriteEntry.setId(favouriteEntryId);
-        favouriteEntry.setCustomer(customerRepository.getReferenceById(createFavouriteEntryRequestDto.getCustomerId()));
-        favouriteEntry.setProduct(productRepository.getReferenceById(createFavouriteEntryRequestDto.getProductId()));
+        favouriteEntry.setCustomer(customer);
+        favouriteEntry.setProduct(product);
 
         return favouriteEntryDtoMapper.toDto(favouriteEntryRepository.save(favouriteEntry));
     }

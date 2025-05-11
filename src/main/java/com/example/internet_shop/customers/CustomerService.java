@@ -1,8 +1,8 @@
 package com.example.internet_shop.customers;
 
 import com.example.internet_shop.customers.dto.CreateCustomerRequestDto;
-import com.example.internet_shop.customers.dto.CustomerResponseDto;
 import com.example.internet_shop.customers.dto.CustomerDtoMapper;
+import com.example.internet_shop.customers.dto.CustomerResponseDto;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -29,11 +29,13 @@ public class CustomerService {
 
     @Transactional
     public CustomerResponseDto getCustomerById(Long id) throws EntityNotFoundException {
-        if (!customerRepository.existsById(id)) {
+        Customer customer = customerRepository.findById(id).orElse(null);
+
+        if (customer == null) {
             throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
         }
 
-        return customerDtoMapper.toDto(customerRepository.getReferenceById(id));
+        return customerDtoMapper.toDto(customer);
     }
 
     @Transactional
@@ -53,11 +55,11 @@ public class CustomerService {
 
     @Transactional
     public CustomerResponseDto updateCustomerById(Long id, CreateCustomerRequestDto createCustomerRequestDto) throws EntityNotFoundException, IllegalArgumentException {
-        if (!customerRepository.existsById(id)) {
+        Customer customer = customerRepository.findById(id).orElse(null);
+
+        if (customer == null) {
             throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
         }
-
-        Customer customer = customerRepository.getReferenceById(id);
 
         if (createCustomerRequestDto.getEmail() != null) {
             Customer otherCustomer = customerRepository.findByEmail(createCustomerRequestDto.getEmail());

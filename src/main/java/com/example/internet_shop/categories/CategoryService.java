@@ -1,7 +1,7 @@
 package com.example.internet_shop.categories;
 
-import com.example.internet_shop.categories.dto.CategoryResponseDto;
 import com.example.internet_shop.categories.dto.CategoryDtoMapper;
+import com.example.internet_shop.categories.dto.CategoryResponseDto;
 import com.example.internet_shop.categories.dto.CreateCategoryRequestDto;
 import com.example.internet_shop.categories.dto.UpdateCategoryRequestDto;
 import jakarta.persistence.EntityNotFoundException;
@@ -32,11 +32,13 @@ public class CategoryService {
 
     @Transactional
     public CategoryResponseDto getCategoryById(Long id) throws EntityNotFoundException {
-        if (!categoryRepository.existsById(id)) {
+        Category category = categoryRepository.findById(id).orElse(null);
+
+        if (category == null) {
             throw new EntityNotFoundException(CATEGORY_NOT_FOUND_MESSAGE);
         }
 
-        return categoryDtoMapper.toDto(categoryRepository.getReferenceById(id));
+        return categoryDtoMapper.toDto(category);
     }
 
     @Transactional
@@ -52,11 +54,12 @@ public class CategoryService {
         Long parentCategoryId = createCategoryRequestDto.getParentCategoryId();
 
         if (parentCategoryId != null) {
-            if (!categoryRepository.existsById(parentCategoryId)) {
+            Category parentCategory = categoryRepository.findById(parentCategoryId).orElse(null);
+
+            if (parentCategory == null) {
                 throw new IllegalArgumentException(PARENT_CATEGORY_NOT_FOUND_MESSAGE);
             }
 
-            Category parentCategory = categoryRepository.getReferenceById(parentCategoryId);
             category.setParentCategory(parentCategory);
         }
 
@@ -65,20 +68,21 @@ public class CategoryService {
 
     @Transactional
     public CategoryResponseDto setParentCategory(Long childCategoryId, Long parentCategoryId) throws EntityNotFoundException, IllegalArgumentException {
-        if (!categoryRepository.existsById(childCategoryId)) {
-            throw new EntityNotFoundException(CATEGORY_NOT_FOUND_MESSAGE);
-        }
-
-        if (!categoryRepository.existsById(parentCategoryId)) {
-            throw new IllegalArgumentException(PARENT_CATEGORY_NOT_FOUND_MESSAGE);
-        }
-
         if (parentCategoryId.equals(childCategoryId)) {
             throw new IllegalArgumentException(CATEGORY_CANNOT_BE_PARENT_TO_ITSELF_MESSAGE);
         }
 
-        Category childCategory = categoryRepository.getReferenceById(childCategoryId);
-        Category parentCategory = categoryRepository.getReferenceById(parentCategoryId);
+        Category childCategory = categoryRepository.findById(childCategoryId).orElse(null);
+
+        if (childCategory == null) {
+            throw new EntityNotFoundException(CATEGORY_NOT_FOUND_MESSAGE);
+        }
+
+        Category parentCategory = categoryRepository.findById(parentCategoryId).orElse(null);
+
+        if (parentCategory == null) {
+            throw new IllegalArgumentException(PARENT_CATEGORY_NOT_FOUND_MESSAGE);
+        }
 
         childCategory.setParentCategory(parentCategory);
 
@@ -87,11 +91,11 @@ public class CategoryService {
 
     @Transactional
     public CategoryResponseDto updateCategoryById(Long id, UpdateCategoryRequestDto updateCategoryRequestDto) throws EntityNotFoundException, IllegalArgumentException {
-        if (!categoryRepository.existsById(id)) {
+        Category category = categoryRepository.findById(id).orElse(null);
+
+        if (category == null) {
             throw new EntityNotFoundException(CATEGORY_NOT_FOUND_MESSAGE);
         }
-
-        Category category = categoryRepository.getReferenceById(id);
 
         if (updateCategoryRequestDto.getCategoryName() != null) {
             Category otherCategory = categoryRepository.findByCategoryName(updateCategoryRequestDto.getCategoryName());

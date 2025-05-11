@@ -1,8 +1,9 @@
 package com.example.internet_shop.complaintimages;
 
-import com.example.internet_shop.complaintimages.dto.ComplaintImageResponseDto;
 import com.example.internet_shop.complaintimages.dto.ComplaintImageDtoMapper;
+import com.example.internet_shop.complaintimages.dto.ComplaintImageResponseDto;
 import com.example.internet_shop.complaintimages.dto.CreateComplaintImageRequestDto;
+import com.example.internet_shop.complaints.Complaint;
 import com.example.internet_shop.complaints.ComplaintRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -34,26 +35,30 @@ public class ComplaintImageService {
 
     @Transactional
     public ComplaintImageResponseDto getComplaintImageById(Long id) throws EntityNotFoundException {
-        if (!complaintImageRepository.existsById(id)) {
+        ComplaintImage complaintImage = complaintImageRepository.findById(id).orElse(null);
+
+        if (complaintImage == null) {
             throw new EntityNotFoundException(COMPLAINT_IMAGE_NOT_FOUND_MESSAGE);
         }
 
-        return complaintImageDtoMapper.toDto(complaintImageRepository.getReferenceById(id));
+        return complaintImageDtoMapper.toDto(complaintImage);
     }
 
     @Transactional
     public ComplaintImageResponseDto createComplaintImage(CreateComplaintImageRequestDto createComplaintImageRequestDto) throws EntityNotFoundException, IllegalArgumentException {
-        if (!complaintRepository.existsById(createComplaintImageRequestDto.getComplaintId())) {
-            throw new EntityNotFoundException(COMPLAINT_DOES_NOT_EXIST_MESSAGE);
-        }
-
         if (createComplaintImageRequestDto.getImage() == null) {
             throw new IllegalArgumentException(COMPLAINT_IMAGE_CANNOT_BE_NULL_MESSAGE);
         }
 
+        Complaint complaint = complaintRepository.findById(createComplaintImageRequestDto.getComplaintId()).orElse(null);
+
+        if (complaint == null) {
+            throw new EntityNotFoundException(COMPLAINT_DOES_NOT_EXIST_MESSAGE);
+        }
+
         ComplaintImage complaintImage = new ComplaintImage();
 
-        complaintImage.setComplaint(complaintRepository.getReferenceById(createComplaintImageRequestDto.getComplaintId()));
+        complaintImage.setComplaint(complaint);
         complaintImage.setImage(createComplaintImageRequestDto.getImage());
 
         return complaintImageDtoMapper.toDto(complaintImageRepository.save(complaintImage));
