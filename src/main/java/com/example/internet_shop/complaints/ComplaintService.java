@@ -1,5 +1,7 @@
 package com.example.internet_shop.complaints;
 
+import com.example.internet_shop.orderproducts.OrderProductId;
+import com.example.internet_shop.orderproducts.OrderProductRepository;
 import com.example.internet_shop.orders.OrderRepository;
 import com.example.internet_shop.products.ProductRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -14,6 +16,7 @@ public class ComplaintService {
     private final ComplaintRepository complaintRepository;
     private final OrderRepository orderRepository;
     private final ProductRepository productRepository;
+    private final OrderProductRepository orderProductRepository;
 
     private final ComplaintDtoMapper complaintDtoMapper;
 
@@ -24,11 +27,12 @@ public class ComplaintService {
     private final String PRODUCT_NOT_FOUND_MESSAGE = "Product not found";
     private final String PRODUCT_DOES_NOT_BELONG_TO_THAT_ORDER_MESSAGE = "Product does not belong to that order";
 
-    public ComplaintService(ComplaintRepository complaintRepository, ComplaintDtoMapper complaintDtoMapper, OrderRepository orderRepository, ProductRepository productRepository) {
+    public ComplaintService(ComplaintRepository complaintRepository, ComplaintDtoMapper complaintDtoMapper, OrderRepository orderRepository, ProductRepository productRepository, OrderProductRepository orderProductRepository) {
         this.complaintRepository = complaintRepository;
         this.complaintDtoMapper = complaintDtoMapper;
         this.orderRepository = orderRepository;
         this.productRepository = productRepository;
+        this.orderProductRepository = orderProductRepository;
     }
 
     public List<ComplaintDto> getComplaints() {
@@ -62,7 +66,9 @@ public class ComplaintService {
             throw new EntityNotFoundException(PRODUCT_NOT_FOUND_MESSAGE);
         }
 
-        // TODO check if product belongs to order
+        if (!orderProductRepository.existsById(new OrderProductId(createComplaintDto.getOrderId(), createComplaintDto.getProductId()))) {
+            throw new IllegalArgumentException(PRODUCT_DOES_NOT_BELONG_TO_THAT_ORDER_MESSAGE);
+        }
 
         Complaint complaint = new Complaint();
 

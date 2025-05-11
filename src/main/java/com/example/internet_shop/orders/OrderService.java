@@ -1,6 +1,7 @@
 package com.example.internet_shop.orders;
 
 import com.example.internet_shop.customers.CustomerRepository;
+import com.example.internet_shop.orderstatuses.OrderStatusRepository;
 import com.example.internet_shop.paymenttypes.PaymentTypeRepository;
 import com.example.internet_shop.shipmenttypes.ShipmentTypeRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -16,6 +17,7 @@ public class OrderService {
     private final CustomerRepository customerRepository;
     private final ShipmentTypeRepository shipmentTypeRepository;
     private final PaymentTypeRepository paymentTypeRepository;
+    private final OrderStatusRepository orderStatusRepository;
 
     private final OrderDtoMapper orderDtoMapper;
 
@@ -24,11 +26,12 @@ public class OrderService {
     private final String SHIPMENT_TYPE_NOT_FOUND_MESSAGE = "Shipment type not found";
     private final String PAYMENT_TYPE_NOT_FOUND_MESSAGE = "Payment type not found";
 
-    public OrderService(OrderRepository orderRepository, CustomerRepository customerRepository, ShipmentTypeRepository shipmentTypeRepository, PaymentTypeRepository paymentTypeRepository, OrderDtoMapper orderDtoMapper) {
+    public OrderService(OrderRepository orderRepository, CustomerRepository customerRepository, ShipmentTypeRepository shipmentTypeRepository, PaymentTypeRepository paymentTypeRepository, OrderStatusRepository orderStatusRepository, OrderDtoMapper orderDtoMapper) {
         this.orderRepository = orderRepository;
         this.customerRepository = customerRepository;
         this.shipmentTypeRepository = shipmentTypeRepository;
         this.paymentTypeRepository = paymentTypeRepository;
+        this.orderStatusRepository = orderStatusRepository;
         this.orderDtoMapper = orderDtoMapper;
     }
 
@@ -49,7 +52,7 @@ public class OrderService {
     public OrderDto createOrder(CreateOrderDto createOrderDto) throws EntityNotFoundException {
         Order order = new Order();
 
-        order.setOrderId(createOrderDto.getOrderId());
+        order.setOrderStatus(orderStatusRepository.getReferenceById(1L)); // Default status
 
         if (!customerRepository.existsById(createOrderDto.getCustomerId())) {
             throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);

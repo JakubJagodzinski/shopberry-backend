@@ -12,4 +12,6 @@ public interface OrderProductRepository extends JpaRepository<OrderProduct, Orde
 
     List<OrderProduct> findByIdProductId(Long productId);
 
+    boolean existsById(OrderProductId id);
+
 }
