@@ -1,5 +1,9 @@
 package com.example.internet_shop.products;
 
+import com.example.internet_shop.products.dto.CreateProductRequestDto;
+import com.example.internet_shop.products.dto.ProductResponseDto;
+import com.example.internet_shop.products.dto.ProductDtoMapper;
+import com.example.internet_shop.products.dto.UpdateProductRequestDto;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +32,12 @@ public class ProductService {
         this.productDtoMapper = productDtoMapper;
     }
 
-    public List<ProductDto> getProducts() {
+    public List<ProductResponseDto> getProducts() {
         return productDtoMapper.toDtoList(productRepository.findAll());
     }
 
     @Transactional
-    public ProductDto getProductById(Long id) throws EntityNotFoundException {
+    public ProductResponseDto getProductById(Long id) throws EntityNotFoundException {
         if (!productRepository.existsById(id)) {
             throw new EntityNotFoundException(PRODUCT_NOT_FOUND_MESSAGE);
         }
@@ -42,68 +46,68 @@ public class ProductService {
     }
 
     @Transactional
-    public ProductDto createProduct(CreateProductDto createProductDto) throws IllegalArgumentException {
-        if (productRepository.existsByProductName(createProductDto.getProductName())) {
+    public ProductResponseDto createProduct(CreateProductRequestDto createProductRequestDto) throws IllegalArgumentException {
+        if (productRepository.existsByProductName(createProductRequestDto.getProductName())) {
             throw new IllegalArgumentException(PRODUCT_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE);
         }
 
-        if (createProductDto.getProductName() == null) {
+        if (createProductRequestDto.getProductName() == null) {
             throw new IllegalArgumentException(PRODUCT_NAME_CANNOT_BE_NULL_MESSAGE);
         }
 
-        if (createProductDto.getProductName().isEmpty()) {
+        if (createProductRequestDto.getProductName().isEmpty()) {
             throw new IllegalArgumentException(PRODUCT_NAME_CANNOT_BE_EMPTY_MESSAGE);
         }
 
         Product product = new Product();
 
-        product.setProductName(createProductDto.getProductName());
-        product.setProductPrice(createProductDto.getProductPrice());
-        product.setIsInStock(createProductDto.getIsInStock());
-        product.setImage(createProductDto.getImage());
+        product.setProductName(createProductRequestDto.getProductName());
+        product.setProductPrice(createProductRequestDto.getProductPrice());
+        product.setIsInStock(createProductRequestDto.getIsInStock());
+        product.setImage(createProductRequestDto.getImage());
 
         return productDtoMapper.toDto(productRepository.save(product));
     }
 
     @Transactional
-    public ProductDto updateProductById(Long id, UpdateProductDto updateProductDto) throws EntityNotFoundException, IllegalArgumentException {
+    public ProductResponseDto updateProductById(Long id, UpdateProductRequestDto updateProductRequestDto) throws EntityNotFoundException, IllegalArgumentException {
         if (!productRepository.existsById(id)) {
             throw new EntityNotFoundException(PRODUCT_NOT_FOUND_MESSAGE);
         }
 
         Product product = productRepository.getReferenceById(id);
 
-        if (updateProductDto.getProductName() != null) {
-            Product otherProduct = productRepository.getProductByProductName(updateProductDto.getProductName());
+        if (updateProductRequestDto.getProductName() != null) {
+            Product otherProduct = productRepository.getProductByProductName(updateProductRequestDto.getProductName());
 
             if (otherProduct != null && !otherProduct.getProductId().equals(id)) {
                 throw new IllegalArgumentException(PRODUCT_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE);
             }
 
-            product.setProductName(updateProductDto.getProductName());
+            product.setProductName(updateProductRequestDto.getProductName());
         }
 
-        if (updateProductDto.getProductPrice() != null) {
-            if (updateProductDto.getProductPrice() <= 0) {
+        if (updateProductRequestDto.getProductPrice() != null) {
+            if (updateProductRequestDto.getProductPrice() <= 0) {
                 throw new IllegalArgumentException(PRODUCT_PRICE_MUST_BE_GREATER_THAN_ZERO_MESSAGE);
             }
 
-            product.setProductPrice(updateProductDto.getProductPrice());
+            product.setProductPrice(updateProductRequestDto.getProductPrice());
         }
 
-        if (updateProductDto.getDiscountPercentValue() != null) {
-            if (updateProductDto.getDiscountPercentValue() < 0) {
+        if (updateProductRequestDto.getDiscountPercentValue() != null) {
+            if (updateProductRequestDto.getDiscountPercentValue() < 0) {
                 throw new IllegalArgumentException(PRODUCT_DISCOUNT_PERCENT_VALUE_CAN_T_BE_NEGATIVE_MESSAGE);
             }
-            if (updateProductDto.getDiscountPercentValue() > 100) {
+            if (updateProductRequestDto.getDiscountPercentValue() > 100) {
                 throw new IllegalArgumentException(PRODUCT_DISCOUNT_PERCENT_VALUE_CAN_T_BE_GREATER_THAN_100_MESSAGE);
             }
 
-            product.setDiscountPercentValue(updateProductDto.getDiscountPercentValue());
+            product.setDiscountPercentValue(updateProductRequestDto.getDiscountPercentValue());
         }
 
-        if (updateProductDto.getImage() != null) {
-            product.setImage(updateProductDto.getImage());
+        if (updateProductRequestDto.getImage() != null) {
+            product.setImage(updateProductRequestDto.getImage());
         }
 
         return productDtoMapper.toDto(productRepository.save(product));

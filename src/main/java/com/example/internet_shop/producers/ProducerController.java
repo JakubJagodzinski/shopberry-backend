@@ -1,5 +1,8 @@
 package com.example.internet_shop.producers;
 
+import com.example.internet_shop.producers.dto.CreateProducerRequestDto;
+import com.example.internet_shop.producers.dto.ProducerResponseDto;
+import com.example.internet_shop.producers.dto.UpdateProducerRequestDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,24 +20,24 @@ public class ProducerController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<List<ProducerDto>> getProducers() {
+    public ResponseEntity<List<ProducerResponseDto>> getProducers() {
         return ResponseEntity.ok(producerService.getProducers());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProducerDto> getProducerById(@PathVariable Long id) {
+    public ResponseEntity<ProducerResponseDto> getProducerById(@PathVariable Long id) {
         return ResponseEntity.ok(producerService.getProducerById(id));
     }
 
     @PostMapping("/")
-    public ResponseEntity<ProducerDto> createProducer(@RequestBody CreateProducerDto createProducerDto) {
-        ProducerDto createdProducer = producerService.createProducer(createProducerDto);
+    public ResponseEntity<ProducerResponseDto> createProducer(@RequestBody CreateProducerRequestDto createProducerRequestDto) {
+        ProducerResponseDto createdProducer = producerService.createProducer(createProducerRequestDto);
         return ResponseEntity.created(URI.create("/api/producers/" + createdProducer.getProducerId())).body(createdProducer);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ProducerDto> updateProducerById(@PathVariable Long id, @RequestBody UpdateProducerDto updateProducerDto) {
-        ProducerDto updatedProducer = producerService.updateProducerById(id, updateProducerDto);
+    public ResponseEntity<ProducerResponseDto> updateProducerById(@PathVariable Long id, @RequestBody UpdateProducerRequestDto updateProducerRequestDto) {
+        ProducerResponseDto updatedProducer = producerService.updateProducerById(id, updateProducerRequestDto);
         return ResponseEntity.ok(updatedProducer);
     }
 

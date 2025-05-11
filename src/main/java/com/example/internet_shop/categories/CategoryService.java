@@ -1,5 +1,9 @@
 package com.example.internet_shop.categories;
 
+import com.example.internet_shop.categories.dto.CategoryResponseDto;
+import com.example.internet_shop.categories.dto.CategoryDtoMapper;
+import com.example.internet_shop.categories.dto.CreateCategoryRequestDto;
+import com.example.internet_shop.categories.dto.UpdateCategoryRequestDto;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -22,12 +26,12 @@ public class CategoryService {
         this.categoryDtoMapper = categoryDtoMapper;
     }
 
-    public List<CategoryDto> getCategories() {
+    public List<CategoryResponseDto> getCategories() {
         return categoryDtoMapper.toDtoList(categoryRepository.findAll());
     }
 
     @Transactional
-    public CategoryDto getCategoryById(Long id) throws EntityNotFoundException {
+    public CategoryResponseDto getCategoryById(Long id) throws EntityNotFoundException {
         if (!categoryRepository.existsById(id)) {
             throw new EntityNotFoundException(CATEGORY_NOT_FOUND_MESSAGE);
         }
@@ -36,16 +40,16 @@ public class CategoryService {
     }
 
     @Transactional
-    public CategoryDto createCategory(CreateCategoryDto createCategoryDto) throws IllegalArgumentException {
-        if (categoryRepository.existsByCategoryName(createCategoryDto.getCategoryName())) {
+    public CategoryResponseDto createCategory(CreateCategoryRequestDto createCategoryRequestDto) throws IllegalArgumentException {
+        if (categoryRepository.existsByCategoryName(createCategoryRequestDto.getCategoryName())) {
             throw new IllegalArgumentException(CATEGORY_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE);
         }
 
         Category category = new Category();
 
-        category.setCategoryName(createCategoryDto.getCategoryName());
+        category.setCategoryName(createCategoryRequestDto.getCategoryName());
 
-        Long parentCategoryId = createCategoryDto.getParentCategoryId();
+        Long parentCategoryId = createCategoryRequestDto.getParentCategoryId();
 
         if (parentCategoryId != null) {
             if (!categoryRepository.existsById(parentCategoryId)) {
@@ -60,7 +64,7 @@ public class CategoryService {
     }
 
     @Transactional
-    public CategoryDto setParentCategory(Long childCategoryId, Long parentCategoryId) throws EntityNotFoundException, IllegalArgumentException {
+    public CategoryResponseDto setParentCategory(Long childCategoryId, Long parentCategoryId) throws EntityNotFoundException, IllegalArgumentException {
         if (!categoryRepository.existsById(childCategoryId)) {
             throw new EntityNotFoundException(CATEGORY_NOT_FOUND_MESSAGE);
         }
@@ -82,21 +86,21 @@ public class CategoryService {
     }
 
     @Transactional
-    public CategoryDto updateCategoryById(Long id, UpdateCategoryDto updateCategoryDto) throws EntityNotFoundException, IllegalArgumentException {
+    public CategoryResponseDto updateCategoryById(Long id, UpdateCategoryRequestDto updateCategoryRequestDto) throws EntityNotFoundException, IllegalArgumentException {
         if (!categoryRepository.existsById(id)) {
             throw new EntityNotFoundException(CATEGORY_NOT_FOUND_MESSAGE);
         }
 
         Category category = categoryRepository.getReferenceById(id);
 
-        if (updateCategoryDto.getCategoryName() != null) {
-            Category otherCategory = categoryRepository.findByCategoryName(updateCategoryDto.getCategoryName());
+        if (updateCategoryRequestDto.getCategoryName() != null) {
+            Category otherCategory = categoryRepository.findByCategoryName(updateCategoryRequestDto.getCategoryName());
 
             if (otherCategory != null && !otherCategory.getCategoryId().equals(id)) {
                 throw new IllegalArgumentException(CATEGORY_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE);
             }
 
-            category.setCategoryName(updateCategoryDto.getCategoryName());
+            category.setCategoryName(updateCategoryRequestDto.getCategoryName());
         }
 
         return categoryDtoMapper.toDto(categoryRepository.save(category));

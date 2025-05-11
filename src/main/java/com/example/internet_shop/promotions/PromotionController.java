@@ -1,5 +1,8 @@
 package com.example.internet_shop.promotions;
 
+import com.example.internet_shop.promotions.dto.CreatePromotionRequestDto;
+import com.example.internet_shop.promotions.dto.PromotionResponseDto;
+import com.example.internet_shop.promotions.dto.UpdatePromotionRequestDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,24 +20,24 @@ public class PromotionController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<List<PromotionDto>> getPromotions() {
+    public ResponseEntity<List<PromotionResponseDto>> getPromotions() {
         return ResponseEntity.ok(promotionService.getPromotions());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PromotionDto> getPromotionById(@PathVariable Long id) {
+    public ResponseEntity<PromotionResponseDto> getPromotionById(@PathVariable Long id) {
         return ResponseEntity.ok(promotionService.getPromotionById(id));
     }
 
     @PostMapping("/")
-    public ResponseEntity<PromotionDto> createPromotion(@RequestBody CreatePromotionDto createPromotionDto) {
-        PromotionDto createdPromotion = promotionService.createPromotion(createPromotionDto);
+    public ResponseEntity<PromotionResponseDto> createPromotion(@RequestBody CreatePromotionRequestDto createPromotionRequestDto) {
+        PromotionResponseDto createdPromotion = promotionService.createPromotion(createPromotionRequestDto);
         return ResponseEntity.created(URI.create("/api/promotions/" + createdPromotion.getPromotionId())).body(createdPromotion);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<PromotionDto> updatePromotionById(@PathVariable Long id, @RequestBody UpdatePromotionDto updatePromotionDto) {
-        return ResponseEntity.ok(promotionService.updatePromotionById(id, updatePromotionDto));
+    public ResponseEntity<PromotionResponseDto> updatePromotionById(@PathVariable Long id, @RequestBody UpdatePromotionRequestDto updatePromotionRequestDto) {
+        return ResponseEntity.ok(promotionService.updatePromotionById(id, updatePromotionRequestDto));
     }
 
     @DeleteMapping("/{id}")

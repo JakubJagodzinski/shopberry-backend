@@ -1,5 +1,8 @@
 package com.example.internet_shop.employees;
 
+import com.example.internet_shop.employees.dto.CreateEmployeeRequestDto;
+import com.example.internet_shop.employees.dto.EmployeeResponseDto;
+import com.example.internet_shop.employees.dto.EmployeeDtoMapper;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -21,12 +24,12 @@ public class EmployeeService {
         this.employeeDtoMapper = employeeDtoMapper;
     }
 
-    public List<EmployeeDto> getEmployees() {
+    public List<EmployeeResponseDto> getEmployees() {
         return employeeDtoMapper.toDtoList(employeeRepository.findAll());
     }
 
     @Transactional
-    public EmployeeDto getEmployeeById(Long id) throws EntityNotFoundException {
+    public EmployeeResponseDto getEmployeeById(Long id) throws EntityNotFoundException {
         if (!employeeRepository.existsById(id)) {
             throw new EntityNotFoundException(EMPLOYEE_NOT_FOUND_MESSAGE);
         }
@@ -35,17 +38,17 @@ public class EmployeeService {
     }
 
     @Transactional
-    public EmployeeDto createEmployee(CreateEmployeeDto createEmployeeDto) throws IllegalArgumentException {
+    public EmployeeResponseDto createEmployee(CreateEmployeeRequestDto createEmployeeRequestDto) throws IllegalArgumentException {
         Employee employee = new Employee();
 
-        if (employeeRepository.existsByEmail(createEmployeeDto.getEmail())) {
+        if (employeeRepository.existsByEmail(createEmployeeRequestDto.getEmail())) {
             throw new IllegalArgumentException(EMPLOYEE_WITH_THAT_EMAIL_ALREADY_EXISTS);
         }
 
-        employee.setEmail(createEmployeeDto.getEmail());
-        employee.setFirstName(createEmployeeDto.getFirstName());
-        employee.setLastName(createEmployeeDto.getLastName());
-        employee.setPassword(createEmployeeDto.getPassword());
+        employee.setEmail(createEmployeeRequestDto.getEmail());
+        employee.setFirstName(createEmployeeRequestDto.getFirstName());
+        employee.setLastName(createEmployeeRequestDto.getLastName());
+        employee.setPassword(createEmployeeRequestDto.getPassword());
 
         return employeeDtoMapper.toDto(employeeRepository.save(employee));
     }

@@ -1,5 +1,9 @@
 package com.example.internet_shop.causesofreturn;
 
+import com.example.internet_shop.causesofreturn.dto.CauseOfReturnResponseDto;
+import com.example.internet_shop.causesofreturn.dto.CauseOfReturnDtoMapper;
+import com.example.internet_shop.causesofreturn.dto.CreateCauseOfReturnRequestDto;
+import com.example.internet_shop.causesofreturn.dto.UpdateCauseOfReturnRequestDto;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -23,12 +27,12 @@ public class CauseOfReturnService {
         this.causeOfReturnDtoMapper = causeOfReturnDtoMapper;
     }
 
-    public List<CauseOfReturnDto> getCausesOfReturn() {
+    public List<CauseOfReturnResponseDto> getCausesOfReturn() {
         return causeOfReturnDtoMapper.toDtoList(causeOfReturnRepository.findAll());
     }
 
     @Transactional
-    public CauseOfReturnDto getCauseOfReturnById(Long id) throws EntityNotFoundException {
+    public CauseOfReturnResponseDto getCauseOfReturnById(Long id) throws EntityNotFoundException {
         if (!causeOfReturnRepository.existsById(id)) {
             throw new EntityNotFoundException(CAUSE_OF_RETURN_NOT_FOUND_MESSAGE);
         }
@@ -37,46 +41,46 @@ public class CauseOfReturnService {
     }
 
     @Transactional
-    public CauseOfReturnDto createCauseOfReturn(CreateCauseOfReturnDto createCauseOfReturnDto) throws IllegalArgumentException {
+    public CauseOfReturnResponseDto createCauseOfReturn(CreateCauseOfReturnRequestDto createCauseOfReturnRequestDto) throws IllegalArgumentException {
         CauseOfReturn causeOfReturn = new CauseOfReturn();
 
-        if (causeOfReturnRepository.existsByCause(createCauseOfReturnDto.getCause())) {
+        if (causeOfReturnRepository.existsByCause(createCauseOfReturnRequestDto.getCause())) {
             throw new IllegalArgumentException(CAUSE_OF_RETURN_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE);
         }
 
-        if (createCauseOfReturnDto.getCause() == null) {
+        if (createCauseOfReturnRequestDto.getCause() == null) {
             throw new IllegalArgumentException(CAUSE_CANNOT_BE_NULL_MESSAGE);
         }
 
-        if (createCauseOfReturnDto.getCause().isEmpty()) {
+        if (createCauseOfReturnRequestDto.getCause().isEmpty()) {
             throw new IllegalArgumentException(CAUSE_CANNOT_BE_EMPTY_MESSAGE);
         }
 
-        causeOfReturn.setCause(createCauseOfReturnDto.getCause());
+        causeOfReturn.setCause(createCauseOfReturnRequestDto.getCause());
 
         return causeOfReturnDtoMapper.toDto(causeOfReturnRepository.save(causeOfReturn));
     }
 
     @Transactional
-    public CauseOfReturnDto updateCauseOfReturnById(Long id, UpdateCauseOfReturnDto updateCauseOfReturnDto) throws EntityNotFoundException, IllegalArgumentException {
+    public CauseOfReturnResponseDto updateCauseOfReturnById(Long id, UpdateCauseOfReturnRequestDto updateCauseOfReturnRequestDto) throws EntityNotFoundException, IllegalArgumentException {
         if (!causeOfReturnRepository.existsById(id)) {
             throw new EntityNotFoundException(CAUSE_OF_RETURN_NOT_FOUND_MESSAGE);
         }
 
         CauseOfReturn causeOfReturn = causeOfReturnRepository.getReferenceById(id);
 
-        if (updateCauseOfReturnDto.getCause() != null) {
-            CauseOfReturn otherCauseOfReturn = causeOfReturnRepository.findByCause(updateCauseOfReturnDto.getCause());
+        if (updateCauseOfReturnRequestDto.getCause() != null) {
+            CauseOfReturn otherCauseOfReturn = causeOfReturnRepository.findByCause(updateCauseOfReturnRequestDto.getCause());
 
             if (otherCauseOfReturn != null && !otherCauseOfReturn.getCauseOfReturnId().equals(id)) {
                 throw new IllegalArgumentException(CAUSE_OF_RETURN_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE);
             }
 
-            if (updateCauseOfReturnDto.getCause().isEmpty()) {
+            if (updateCauseOfReturnRequestDto.getCause().isEmpty()) {
                 throw new IllegalArgumentException(CAUSE_CANNOT_BE_EMPTY_MESSAGE);
             }
 
-            causeOfReturn.setCause(updateCauseOfReturnDto.getCause());
+            causeOfReturn.setCause(updateCauseOfReturnRequestDto.getCause());
         }
 
         return causeOfReturnDtoMapper.toDto(causeOfReturnRepository.save(causeOfReturn));

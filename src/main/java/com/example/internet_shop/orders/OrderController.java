@@ -1,5 +1,7 @@
 package com.example.internet_shop.orders;
 
+import com.example.internet_shop.orders.dto.CreateOrderRequestDto;
+import com.example.internet_shop.orders.dto.OrderResponseDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,18 +19,18 @@ public class OrderController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<List<OrderDto>> getOrders() {
+    public ResponseEntity<List<OrderResponseDto>> getOrders() {
         return ResponseEntity.ok(orderService.getOrders());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<OrderDto> getOrderById(@PathVariable Long id) {
+    public ResponseEntity<OrderResponseDto> getOrderById(@PathVariable Long id) {
         return ResponseEntity.ok(orderService.getOrderById(id));
     }
 
     @PostMapping("/")
-    public ResponseEntity<OrderDto> createOrder(@RequestBody CreateOrderDto createOrderDto) {
-        OrderDto createdOrder = orderService.createOrder(createOrderDto);
+    public ResponseEntity<OrderResponseDto> createOrder(@RequestBody CreateOrderRequestDto createOrderRequestDto) {
+        OrderResponseDto createdOrder = orderService.createOrder(createOrderRequestDto);
 
         return ResponseEntity.created(URI.create("/api/orders/" + createdOrder.getOrderId())).body(createdOrder);
     }

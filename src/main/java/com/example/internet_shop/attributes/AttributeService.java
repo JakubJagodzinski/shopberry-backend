@@ -1,5 +1,9 @@
 package com.example.internet_shop.attributes;
 
+import com.example.internet_shop.attributes.dto.AttributeResponseDto;
+import com.example.internet_shop.attributes.dto.AttributeDtoMapper;
+import com.example.internet_shop.attributes.dto.CreateAttributeRequestDto;
+import com.example.internet_shop.attributes.dto.UpdateAttributeRequestDto;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +29,12 @@ public class AttributeService {
         this.attributeDtoMapper = attributeDtoMapper;
     }
 
-    public List<AttributeDto> getAttributes() {
+    public List<AttributeResponseDto> getAttributes() {
         return attributeDtoMapper.toDtoList(attributeRepository.findAll());
     }
 
     @Transactional
-    public AttributeDto getAttributeById(Long id) throws EntityNotFoundException {
+    public AttributeResponseDto getAttributeById(Long id) throws EntityNotFoundException {
         if (!attributeRepository.existsById(id)) {
             throw new EntityNotFoundException(ATTRIBUTE_NOT_FOUND_MESSAGE);
         }
@@ -39,46 +43,46 @@ public class AttributeService {
     }
 
     @Transactional
-    public AttributeDto createAttribute(CreateAttributeDto createAttributeDto) throws IllegalArgumentException {
+    public AttributeResponseDto createAttribute(CreateAttributeRequestDto createAttributeRequestDto) throws IllegalArgumentException {
         Attribute attribute = new Attribute();
 
-        if (attributeRepository.existsByAttributeName(createAttributeDto.getAttributeName())) {
+        if (attributeRepository.existsByAttributeName(createAttributeRequestDto.getAttributeName())) {
             throw new IllegalArgumentException(ATTRIBUTE_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE);
         }
 
-        if (createAttributeDto.getAttributeName() == null) {
+        if (createAttributeRequestDto.getAttributeName() == null) {
             throw new IllegalArgumentException(ATTRIBUTE_NAME_CANNOT_BY_NULL_MESSAGE);
         }
 
-        if (createAttributeDto.getAttributeName().isEmpty()) {
+        if (createAttributeRequestDto.getAttributeName().isEmpty()) {
             throw new IllegalArgumentException(ATTRIBUTE_NAME_CANNOT_BY_EMPTY_MESSAGE);
         }
 
-        attribute.setAttributeName(createAttributeDto.getAttributeName());
+        attribute.setAttributeName(createAttributeRequestDto.getAttributeName());
 
         return attributeDtoMapper.toDto(attributeRepository.save(attribute));
     }
 
     @Transactional
-    public AttributeDto updateAttributeById(Long id, UpdateAttributeDto updateAttributeDto) throws EntityNotFoundException, IllegalArgumentException {
+    public AttributeResponseDto updateAttributeById(Long id, UpdateAttributeRequestDto updateAttributeRequestDto) throws EntityNotFoundException, IllegalArgumentException {
         if (!attributeRepository.existsById(id)) {
             throw new EntityNotFoundException(ATTRIBUTE_NOT_FOUND_MESSAGE);
         }
 
         Attribute attribute = attributeRepository.getReferenceById(id);
 
-        if (updateAttributeDto.getAttributeName() != null) {
-            Attribute otherAttribute = attributeRepository.findByAttributeName(updateAttributeDto.getAttributeName());
+        if (updateAttributeRequestDto.getAttributeName() != null) {
+            Attribute otherAttribute = attributeRepository.findByAttributeName(updateAttributeRequestDto.getAttributeName());
 
             if (otherAttribute != null && !otherAttribute.getAttributeId().equals(attribute.getAttributeId())) {
                 throw new IllegalArgumentException(ATTRIBUTE_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE);
             }
 
-            if (updateAttributeDto.getAttributeName().isEmpty()) {
+            if (updateAttributeRequestDto.getAttributeName().isEmpty()) {
                 throw new IllegalArgumentException(ATTRIBUTE_NAME_CANNOT_BY_EMPTY_MESSAGE);
             }
 
-            attribute.setAttributeName(updateAttributeDto.getAttributeName());
+            attribute.setAttributeName(updateAttributeRequestDto.getAttributeName());
         }
 
         return attributeDtoMapper.toDto(attributeRepository.save(attribute));

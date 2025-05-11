@@ -1,5 +1,8 @@
 package com.example.internet_shop.attributes;
 
+import com.example.internet_shop.attributes.dto.AttributeResponseDto;
+import com.example.internet_shop.attributes.dto.CreateAttributeRequestDto;
+import com.example.internet_shop.attributes.dto.UpdateAttributeRequestDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,25 +20,25 @@ public class AttributeController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<List<AttributeDto>> getAttributes() {
+    public ResponseEntity<List<AttributeResponseDto>> getAttributes() {
         return ResponseEntity.ok(attributeService.getAttributes());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<AttributeDto> getAttributeById(@PathVariable Long id) {
+    public ResponseEntity<AttributeResponseDto> getAttributeById(@PathVariable Long id) {
         return ResponseEntity.ok(attributeService.getAttributeById(id));
     }
 
     @PostMapping("/")
-    public ResponseEntity<AttributeDto> createAttribute(@RequestBody CreateAttributeDto createAttributeDto) {
-        AttributeDto createdAttribute = attributeService.createAttribute(createAttributeDto);
+    public ResponseEntity<AttributeResponseDto> createAttribute(@RequestBody CreateAttributeRequestDto createAttributeRequestDto) {
+        AttributeResponseDto createdAttribute = attributeService.createAttribute(createAttributeRequestDto);
 
         return ResponseEntity.created(URI.create("api/attributes/" + createdAttribute.getAttributeId())).body(createdAttribute);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<AttributeDto> updateAttributeById(@PathVariable Long id, @RequestBody UpdateAttributeDto updateAttributeDto) {
-        return ResponseEntity.ok(attributeService.updateAttributeById(id, updateAttributeDto));
+    public ResponseEntity<AttributeResponseDto> updateAttributeById(@PathVariable Long id, @RequestBody UpdateAttributeRequestDto updateAttributeRequestDto) {
+        return ResponseEntity.ok(attributeService.updateAttributeById(id, updateAttributeRequestDto));
     }
 
     @DeleteMapping("/{id}")

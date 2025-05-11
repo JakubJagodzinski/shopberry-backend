@@ -1,5 +1,8 @@
 package com.example.internet_shop.products;
 
+import com.example.internet_shop.products.dto.CreateProductRequestDto;
+import com.example.internet_shop.products.dto.ProductResponseDto;
+import com.example.internet_shop.products.dto.UpdateProductRequestDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,24 +20,24 @@ public class ProductController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<List<ProductDto>> getProducts() {
+    public ResponseEntity<List<ProductResponseDto>> getProducts() {
         return ResponseEntity.ok(productService.getProducts());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProductDto> getProductById(@PathVariable Long id) {
+    public ResponseEntity<ProductResponseDto> getProductById(@PathVariable Long id) {
         return ResponseEntity.ok(productService.getProductById(id));
     }
 
     @PostMapping("/")
-    public ResponseEntity<ProductDto> createProduct(@RequestBody CreateProductDto createProductDto) {
-        ProductDto createdProduct = productService.createProduct(createProductDto);
+    public ResponseEntity<ProductResponseDto> createProduct(@RequestBody CreateProductRequestDto createProductRequestDto) {
+        ProductResponseDto createdProduct = productService.createProduct(createProductRequestDto);
         return ResponseEntity.created(URI.create("/api/products/" + createdProduct.getProductId())).body(createdProduct);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ProductDto> updateProductById(@PathVariable Long id, @RequestBody UpdateProductDto updateProductDto) {
-        return ResponseEntity.ok(productService.updateProductById(id, updateProductDto));
+    public ResponseEntity<ProductResponseDto> updateProductById(@PathVariable Long id, @RequestBody UpdateProductRequestDto updateProductRequestDto) {
+        return ResponseEntity.ok(productService.updateProductById(id, updateProductRequestDto));
     }
 
     @DeleteMapping("/{id}")

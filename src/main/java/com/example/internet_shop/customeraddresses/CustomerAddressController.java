@@ -1,5 +1,8 @@
 package com.example.internet_shop.customeraddresses;
 
+import com.example.internet_shop.customeraddresses.dto.CreateCustomerAddressRequestDto;
+import com.example.internet_shop.customeraddresses.dto.CustomerAddressResponseDto;
+import com.example.internet_shop.customeraddresses.dto.UpdateCustomerAddressRequestDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,25 +20,25 @@ public class CustomerAddressController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<List<CustomerAddressDto>> getCustomerAddresses() {
+    public ResponseEntity<List<CustomerAddressResponseDto>> getCustomerAddresses() {
         return ResponseEntity.ok(customerAddressService.getCustomerAddresses());
     }
 
     @GetMapping("/{customerId}")
-    public ResponseEntity<List<CustomerAddressDto>> getCustomerAddressesByCustomerId(@PathVariable Long customerId) {
+    public ResponseEntity<List<CustomerAddressResponseDto>> getCustomerAddressesByCustomerId(@PathVariable Long customerId) {
         return ResponseEntity.ok(customerAddressService.getCustomerAddressesByCustomerId(customerId));
     }
 
     @PostMapping("/{customerId}")
-    public ResponseEntity<CustomerAddressDto> createCustomerAddress(@PathVariable Long customerId, @RequestBody CreateCustomerAddressDto createCustomerAddressDto) {
-        CustomerAddressDto createdCustomerAddress = customerAddressService.createCustomerAddress(customerId, createCustomerAddressDto);
+    public ResponseEntity<CustomerAddressResponseDto> createCustomerAddress(@PathVariable Long customerId, @RequestBody CreateCustomerAddressRequestDto createCustomerAddressRequestDto) {
+        CustomerAddressResponseDto createdCustomerAddress = customerAddressService.createCustomerAddress(customerId, createCustomerAddressRequestDto);
 
         return ResponseEntity.created(URI.create("/api/customer_addresses/" + createdCustomerAddress.getAddressId())).body(createdCustomerAddress);
     }
 
     @PutMapping("/{customerAddressId}")
-    public ResponseEntity<CustomerAddressDto> updateCustomerAddressById(@PathVariable Long customerAddressId, @RequestBody UpdateCustomerAddressDto updateCustomerAddressDto) {
-        return ResponseEntity.ok(customerAddressService.updateCustomerAddressById(customerAddressId, updateCustomerAddressDto));
+    public ResponseEntity<CustomerAddressResponseDto> updateCustomerAddressById(@PathVariable Long customerAddressId, @RequestBody UpdateCustomerAddressRequestDto updateCustomerAddressRequestDto) {
+        return ResponseEntity.ok(customerAddressService.updateCustomerAddressById(customerAddressId, updateCustomerAddressRequestDto));
     }
 
     @DeleteMapping("/customer/{customerId}")

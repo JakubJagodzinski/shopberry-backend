@@ -1,5 +1,8 @@
 package com.example.internet_shop.shipmenttypes;
 
+import com.example.internet_shop.shipmenttypes.dto.CreateShipmentTypeRequestDto;
+import com.example.internet_shop.shipmenttypes.dto.ShipmentTypeResponseDto;
+import com.example.internet_shop.shipmenttypes.dto.UpdateShipmentTypeRequestDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,25 +20,25 @@ public class ShipmentTypeController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<List<ShipmentTypeDto>> getShipmentTypes() {
+    public ResponseEntity<List<ShipmentTypeResponseDto>> getShipmentTypes() {
         return ResponseEntity.ok(shipmentTypeService.getShipmentTypes());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ShipmentTypeDto> getShipmentTypeById(@PathVariable Long id) {
+    public ResponseEntity<ShipmentTypeResponseDto> getShipmentTypeById(@PathVariable Long id) {
         return ResponseEntity.ok(shipmentTypeService.getShipmentTypeById(id));
     }
 
     @PostMapping("/")
-    public ResponseEntity<ShipmentTypeDto> createShipmentType(@RequestBody CreateShipmentTypeDto createShipmentTypeDto) {
-        ShipmentTypeDto createdShipmentType = shipmentTypeService.createShipmentType(createShipmentTypeDto);
+    public ResponseEntity<ShipmentTypeResponseDto> createShipmentType(@RequestBody CreateShipmentTypeRequestDto createShipmentTypeRequestDto) {
+        ShipmentTypeResponseDto createdShipmentType = shipmentTypeService.createShipmentType(createShipmentTypeRequestDto);
 
         return ResponseEntity.created(URI.create("/api/shipment_types/" + createdShipmentType.getShipmentTypeId())).body(createdShipmentType);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ShipmentTypeDto> updateShipmentTypeById(@PathVariable Long id, @RequestBody UpdateShipmentTypeDto updateShipmentTypeDto) {
-        return ResponseEntity.ok(shipmentTypeService.updateShipmentTypeById(id, updateShipmentTypeDto));
+    public ResponseEntity<ShipmentTypeResponseDto> updateShipmentTypeById(@PathVariable Long id, @RequestBody UpdateShipmentTypeRequestDto updateShipmentTypeRequestDto) {
+        return ResponseEntity.ok(shipmentTypeService.updateShipmentTypeById(id, updateShipmentTypeRequestDto));
     }
 
     @DeleteMapping("/{id}")

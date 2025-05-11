@@ -1,5 +1,9 @@
 package com.example.internet_shop.cartentries;
 
+import com.example.internet_shop.cartentries.dto.CartEntryResponseDto;
+import com.example.internet_shop.cartentries.dto.CartEntryDtoMapper;
+import com.example.internet_shop.cartentries.dto.CreateCartEntryRequestDto;
+import com.example.internet_shop.cartentries.dto.UpdateCartEntryRequestDto;
 import com.example.internet_shop.customers.CustomerRepository;
 import com.example.internet_shop.products.ProductRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -31,7 +35,7 @@ public class CartEntryService {
     }
 
     @Transactional
-    public CartEntryDto getCartEntryByCartEntryId(CartEntryId cartEntryId) throws EntityNotFoundException {
+    public CartEntryResponseDto getCartEntryByCartEntryId(CartEntryId cartEntryId) throws EntityNotFoundException {
         if (!cartEntryRepository.existsById(cartEntryId)) {
             throw new EntityNotFoundException(CART_ENTRY_NOT_FOUND_MESSAGE);
         }
@@ -40,7 +44,7 @@ public class CartEntryService {
     }
 
     @Transactional
-    public List<CartEntryDto> getCartEntriesByCustomerId(Long customerId) throws EntityNotFoundException {
+    public List<CartEntryResponseDto> getCartEntriesByCustomerId(Long customerId) throws EntityNotFoundException {
         if (!customerRepository.existsById(customerId)) {
             throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
         }
@@ -49,16 +53,16 @@ public class CartEntryService {
     }
 
     @Transactional
-    public CartEntryDto createCartEntry(CreateCartEntryDto createCartEntryDto) throws EntityNotFoundException {
-        if (!customerRepository.existsById(createCartEntryDto.getCustomerId())) {
+    public CartEntryResponseDto createCartEntry(CreateCartEntryRequestDto createCartEntryRequestDto) throws EntityNotFoundException {
+        if (!customerRepository.existsById(createCartEntryRequestDto.getCustomerId())) {
             throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
         }
 
-        if (!productRepository.existsById(createCartEntryDto.getProductId())) {
+        if (!productRepository.existsById(createCartEntryRequestDto.getProductId())) {
             throw new EntityNotFoundException(PRODUCT_NOT_FOUND_MESSAGE);
         }
 
-        CartEntryId cartEntryId = new CartEntryId(createCartEntryDto.getCustomerId(), createCartEntryDto.getProductId());
+        CartEntryId cartEntryId = new CartEntryId(createCartEntryRequestDto.getCustomerId(), createCartEntryRequestDto.getProductId());
 
         if (cartEntryRepository.existsById(cartEntryId)) {
             throw new EntityNotFoundException(CART_ENTRY_ALREADY_EXISTS_MESSAGE);
@@ -67,31 +71,31 @@ public class CartEntryService {
         CartEntry cartEntry = new CartEntry();
 
         cartEntry.setId(cartEntryId);
-        cartEntry.setCustomer(customerRepository.getReferenceById(createCartEntryDto.getCustomerId()));
-        cartEntry.setProduct(productRepository.getReferenceById(createCartEntryDto.getProductId()));
+        cartEntry.setCustomer(customerRepository.getReferenceById(createCartEntryRequestDto.getCustomerId()));
+        cartEntry.setProduct(productRepository.getReferenceById(createCartEntryRequestDto.getProductId()));
 
-        if (createCartEntryDto.getQuantity() <= 0) {
+        if (createCartEntryRequestDto.getQuantity() <= 0) {
             throw new IllegalArgumentException(QUANTITY_MUST_BE_POSITIVE_MESSAGE);
         }
-        cartEntry.setQuantity(createCartEntryDto.getQuantity());
+        cartEntry.setQuantity(createCartEntryRequestDto.getQuantity());
 
         return cartEntryDtoMapper.toDto(cartEntryRepository.save(cartEntry));
     }
 
     @Transactional
-    public CartEntryDto updateCartEntryByCartEntryId(CartEntryId cartEntryId, UpdateCartEntryDto updateCartEntryDto) throws EntityNotFoundException {
+    public CartEntryResponseDto updateCartEntryByCartEntryId(CartEntryId cartEntryId, UpdateCartEntryRequestDto updateCartEntryRequestDto) throws EntityNotFoundException {
         if (!cartEntryRepository.existsById(cartEntryId)) {
             throw new EntityNotFoundException(CART_ENTRY_NOT_FOUND_MESSAGE);
         }
 
         CartEntry cartEntry = cartEntryRepository.getReferenceById(cartEntryId);
 
-        if (updateCartEntryDto.getQuantity() != null) {
-            if (updateCartEntryDto.getQuantity() <= 0) {
+        if (updateCartEntryRequestDto.getQuantity() != null) {
+            if (updateCartEntryRequestDto.getQuantity() <= 0) {
                 throw new IllegalArgumentException(QUANTITY_MUST_BE_POSITIVE_MESSAGE);
             }
 
-            cartEntry.setQuantity(updateCartEntryDto.getQuantity());
+            cartEntry.setQuantity(updateCartEntryRequestDto.getQuantity());
         }
 
         return cartEntryDtoMapper.toDto(cartEntryRepository.save(cartEntry));

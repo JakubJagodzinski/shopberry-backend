@@ -1,5 +1,9 @@
 package com.example.internet_shop.customeraddresses;
 
+import com.example.internet_shop.customeraddresses.dto.CreateCustomerAddressRequestDto;
+import com.example.internet_shop.customeraddresses.dto.CustomerAddressResponseDto;
+import com.example.internet_shop.customeraddresses.dto.CustomerAddressDtoMapper;
+import com.example.internet_shop.customeraddresses.dto.UpdateCustomerAddressRequestDto;
 import com.example.internet_shop.customers.CustomerRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -26,12 +30,12 @@ public class CustomerAddressService {
         this.customerAddressDtoMapper = customerAddressDtoMapper;
     }
 
-    public List<CustomerAddressDto> getCustomerAddresses() {
+    public List<CustomerAddressResponseDto> getCustomerAddresses() {
         return customerAddressDtoMapper.toDtoList(customerAddressRepository.findAll());
     }
 
     @Transactional
-    public List<CustomerAddressDto> getCustomerAddressesByCustomerId(Long customerId) throws EntityNotFoundException {
+    public List<CustomerAddressResponseDto> getCustomerAddressesByCustomerId(Long customerId) throws EntityNotFoundException {
         if (!customerRepository.existsById(customerId)) {
             throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
         }
@@ -40,7 +44,7 @@ public class CustomerAddressService {
     }
 
     @Transactional
-    public CustomerAddressDto createCustomerAddress(Long customerId, CreateCustomerAddressDto createCustomerAddressDto) throws EntityNotFoundException{
+    public CustomerAddressResponseDto createCustomerAddress(Long customerId, CreateCustomerAddressRequestDto createCustomerAddressRequestDto) throws EntityNotFoundException{
         if (!customerRepository.existsById(customerId)) {
             throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
         }
@@ -48,64 +52,64 @@ public class CustomerAddressService {
         CustomerAddress customerAddress = new CustomerAddress();
 
         customerAddress.setCustomer(customerRepository.getReferenceById(customerId));
-        customerAddress.setFirstName(createCustomerAddressDto.getFirstName());
-        customerAddress.setLastName(createCustomerAddressDto.getLastName());
-        customerAddress.setCity(createCustomerAddressDto.getCity());
-        customerAddress.setPostalCode(createCustomerAddressDto.getPostalCode());
-        customerAddress.setStreet(createCustomerAddressDto.getStreet());
-        customerAddress.setHouseNumber(createCustomerAddressDto.getHouseNumber());
-        customerAddress.setApartment(createCustomerAddressDto.getApartment());
-        customerAddress.setPhoneNumber(createCustomerAddressDto.getPhoneNumber());
+        customerAddress.setFirstName(createCustomerAddressRequestDto.getFirstName());
+        customerAddress.setLastName(createCustomerAddressRequestDto.getLastName());
+        customerAddress.setCity(createCustomerAddressRequestDto.getCity());
+        customerAddress.setPostalCode(createCustomerAddressRequestDto.getPostalCode());
+        customerAddress.setStreet(createCustomerAddressRequestDto.getStreet());
+        customerAddress.setHouseNumber(createCustomerAddressRequestDto.getHouseNumber());
+        customerAddress.setApartment(createCustomerAddressRequestDto.getApartment());
+        customerAddress.setPhoneNumber(createCustomerAddressRequestDto.getPhoneNumber());
 
         return customerAddressDtoMapper.toDto(customerAddressRepository.save(customerAddress));
     }
 
     @Transactional
-    public CustomerAddressDto updateCustomerAddressById(Long customerAddressId, UpdateCustomerAddressDto updateCustomerAddressDto) throws EntityNotFoundException, IllegalArgumentException {
+    public CustomerAddressResponseDto updateCustomerAddressById(Long customerAddressId, UpdateCustomerAddressRequestDto updateCustomerAddressRequestDto) throws EntityNotFoundException, IllegalArgumentException {
         if (!customerAddressRepository.existsById(customerAddressId)) {
             throw new EntityNotFoundException(CUSTOMER_ADDRESS_NOT_FOUND_MESSAGE);
         }
 
         CustomerAddress customerAddress = customerAddressRepository.getReferenceById(customerAddressId);
 
-        if (updateCustomerAddressDto.getFirstName() != null) {
-            if (updateCustomerAddressDto.getFirstName().isEmpty()) {
+        if (updateCustomerAddressRequestDto.getFirstName() != null) {
+            if (updateCustomerAddressRequestDto.getFirstName().isEmpty()) {
                 throw new IllegalArgumentException(FIRST_NAME_CANNOT_BE_EMPTY_MESSAGE);
             }
 
-            customerAddress.setFirstName(updateCustomerAddressDto.getFirstName());
+            customerAddress.setFirstName(updateCustomerAddressRequestDto.getFirstName());
         }
 
-        if (updateCustomerAddressDto.getLastName() != null) {
-            if (updateCustomerAddressDto.getLastName().isEmpty()) {
+        if (updateCustomerAddressRequestDto.getLastName() != null) {
+            if (updateCustomerAddressRequestDto.getLastName().isEmpty()) {
                 throw new IllegalArgumentException(LAST_NAME_CANNOT_BE_EMPTY_MESSAGE);
             }
 
-            customerAddress.setLastName(updateCustomerAddressDto.getLastName());
+            customerAddress.setLastName(updateCustomerAddressRequestDto.getLastName());
         }
 
-        if (updateCustomerAddressDto.getCity() != null) {
-            customerAddress.setCity(updateCustomerAddressDto.getCity());
+        if (updateCustomerAddressRequestDto.getCity() != null) {
+            customerAddress.setCity(updateCustomerAddressRequestDto.getCity());
         }
 
-        if (updateCustomerAddressDto.getPostalCode() != null) {
-            customerAddress.setPostalCode(updateCustomerAddressDto.getPostalCode());
+        if (updateCustomerAddressRequestDto.getPostalCode() != null) {
+            customerAddress.setPostalCode(updateCustomerAddressRequestDto.getPostalCode());
         }
 
-        if (updateCustomerAddressDto.getStreet() != null) {
-            customerAddress.setStreet(updateCustomerAddressDto.getStreet());
+        if (updateCustomerAddressRequestDto.getStreet() != null) {
+            customerAddress.setStreet(updateCustomerAddressRequestDto.getStreet());
         }
 
-        if (updateCustomerAddressDto.getHouseNumber() != null) {
-            customerAddress.setHouseNumber(updateCustomerAddressDto.getHouseNumber());
+        if (updateCustomerAddressRequestDto.getHouseNumber() != null) {
+            customerAddress.setHouseNumber(updateCustomerAddressRequestDto.getHouseNumber());
         }
 
-        if (updateCustomerAddressDto.getApartment() != null) {
-            customerAddress.setApartment(updateCustomerAddressDto.getApartment());
+        if (updateCustomerAddressRequestDto.getApartment() != null) {
+            customerAddress.setApartment(updateCustomerAddressRequestDto.getApartment());
         }
 
-        if (updateCustomerAddressDto.getPhoneNumber() != null) {
-            customerAddress.setPhoneNumber(updateCustomerAddressDto.getPhoneNumber());
+        if (updateCustomerAddressRequestDto.getPhoneNumber() != null) {
+            customerAddress.setPhoneNumber(updateCustomerAddressRequestDto.getPhoneNumber());
         }
 
         return customerAddressDtoMapper.toDto(customerAddressRepository.save(customerAddress));

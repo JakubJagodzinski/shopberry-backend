@@ -1,5 +1,9 @@
 package com.example.internet_shop.shipmenttypes;
 
+import com.example.internet_shop.shipmenttypes.dto.CreateShipmentTypeRequestDto;
+import com.example.internet_shop.shipmenttypes.dto.ShipmentTypeResponseDto;
+import com.example.internet_shop.shipmenttypes.dto.ShipmentTypeDtoMapper;
+import com.example.internet_shop.shipmenttypes.dto.UpdateShipmentTypeRequestDto;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -24,12 +28,12 @@ public class ShipmentTypeService {
         this.shipmentTypeDtoMapper = shipmentTypeDtoMapper;
     }
 
-    public List<ShipmentTypeDto> getShipmentTypes() {
+    public List<ShipmentTypeResponseDto> getShipmentTypes() {
         return shipmentTypeDtoMapper.toDtoList(shipmentTypeRepository.findAll());
     }
 
     @Transactional
-    public ShipmentTypeDto getShipmentTypeById(Long id) throws EntityNotFoundException {
+    public ShipmentTypeResponseDto getShipmentTypeById(Long id) throws EntityNotFoundException {
         if (!shipmentTypeRepository.existsById(id)) {
             throw new EntityNotFoundException(SHIPMENT_TYPE_NOT_FOUND_MESSAGE);
         }
@@ -38,59 +42,59 @@ public class ShipmentTypeService {
     }
 
     @Transactional
-    public ShipmentTypeDto createShipmentType(CreateShipmentTypeDto createShipmentTypeDto) throws IllegalArgumentException {
-        if (shipmentTypeRepository.existsByShipmentName(createShipmentTypeDto.getShipmentName())) {
+    public ShipmentTypeResponseDto createShipmentType(CreateShipmentTypeRequestDto createShipmentTypeRequestDto) throws IllegalArgumentException {
+        if (shipmentTypeRepository.existsByShipmentName(createShipmentTypeRequestDto.getShipmentName())) {
             throw new IllegalArgumentException(SHIPMENT_TYPE_ALREADY_EXISTS_MESSAGE);
         }
 
-        if (createShipmentTypeDto.getShipmentName() == null) {
+        if (createShipmentTypeRequestDto.getShipmentName() == null) {
             throw new IllegalArgumentException(SHIPMENT_NAME_CANNOT_BE_NULL_MESSAGE);
         }
 
-        if (createShipmentTypeDto.getShipmentName().isEmpty()) {
+        if (createShipmentTypeRequestDto.getShipmentName().isEmpty()) {
             throw new IllegalArgumentException(SHIPMENT_NAME_CANNOT_BE_EMPTY_MESSAGE);
         }
 
-        if (createShipmentTypeDto.getShipmentCost() < 0) {
+        if (createShipmentTypeRequestDto.getShipmentCost() < 0) {
             throw new IllegalArgumentException(SHIPMENT_COST_CANNOT_BE_NEGATIVE_MESSAGE);
         }
 
         ShipmentType shipmentType = new ShipmentType();
 
-        shipmentType.setShipmentName(createShipmentTypeDto.getShipmentName());
-        shipmentType.setShipmentCost(createShipmentTypeDto.getShipmentCost());
+        shipmentType.setShipmentName(createShipmentTypeRequestDto.getShipmentName());
+        shipmentType.setShipmentCost(createShipmentTypeRequestDto.getShipmentCost());
 
         return shipmentTypeDtoMapper.toDto(shipmentTypeRepository.save(shipmentType));
     }
 
     @Transactional
-    public ShipmentTypeDto updateShipmentTypeById(Long id, UpdateShipmentTypeDto updateShipmentTypeDto) throws EntityNotFoundException, IllegalArgumentException {
+    public ShipmentTypeResponseDto updateShipmentTypeById(Long id, UpdateShipmentTypeRequestDto updateShipmentTypeRequestDto) throws EntityNotFoundException, IllegalArgumentException {
         if (!shipmentTypeRepository.existsById(id)) {
             throw new EntityNotFoundException(SHIPMENT_TYPE_NOT_FOUND_MESSAGE);
         }
 
         ShipmentType shipmentType = shipmentTypeRepository.getReferenceById(id);
 
-        if (updateShipmentTypeDto.getShipmentName() != null) {
-            ShipmentType otherShipmentType = shipmentTypeRepository.findByShipmentName(updateShipmentTypeDto.getShipmentName());
+        if (updateShipmentTypeRequestDto.getShipmentName() != null) {
+            ShipmentType otherShipmentType = shipmentTypeRepository.findByShipmentName(updateShipmentTypeRequestDto.getShipmentName());
 
             if (otherShipmentType != null && !otherShipmentType.getShipmentTypeId().equals(id)) {
                 throw new IllegalArgumentException(SHIPMENT_TYPE_ALREADY_EXISTS_MESSAGE);
             }
 
-            if (updateShipmentTypeDto.getShipmentName().isEmpty()) {
+            if (updateShipmentTypeRequestDto.getShipmentName().isEmpty()) {
                 throw new IllegalArgumentException(SHIPMENT_NAME_CANNOT_BE_EMPTY_MESSAGE);
             }
 
-            shipmentType.setShipmentName(updateShipmentTypeDto.getShipmentName());
+            shipmentType.setShipmentName(updateShipmentTypeRequestDto.getShipmentName());
         }
 
-        if (updateShipmentTypeDto.getShipmentCost() != null) {
-            if (updateShipmentTypeDto.getShipmentCost() < 0) {
+        if (updateShipmentTypeRequestDto.getShipmentCost() != null) {
+            if (updateShipmentTypeRequestDto.getShipmentCost() < 0) {
                 throw new IllegalArgumentException(SHIPMENT_COST_CANNOT_BE_NEGATIVE_MESSAGE);
             }
 
-            shipmentType.setShipmentCost(updateShipmentTypeDto.getShipmentCost());
+            shipmentType.setShipmentCost(updateShipmentTypeRequestDto.getShipmentCost());
         }
 
         return shipmentTypeDtoMapper.toDto(shipmentTypeRepository.save(shipmentType));

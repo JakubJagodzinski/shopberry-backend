@@ -1,5 +1,8 @@
 package com.example.internet_shop.paymenttypes;
 
+import com.example.internet_shop.paymenttypes.dto.CreatePaymentTypeRequestDto;
+import com.example.internet_shop.paymenttypes.dto.PaymentTypeResponseDto;
+import com.example.internet_shop.paymenttypes.dto.UpdatePaymentTypeRequestDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,25 +20,25 @@ public class PaymentTypeController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<List<PaymentTypeDto>> getPaymentTypes() {
+    public ResponseEntity<List<PaymentTypeResponseDto>> getPaymentTypes() {
         return ResponseEntity.ok(paymentTypeService.getPaymentTypes());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PaymentTypeDto> getPaymentTypeById(@PathVariable Long id) {
+    public ResponseEntity<PaymentTypeResponseDto> getPaymentTypeById(@PathVariable Long id) {
         return ResponseEntity.ok(paymentTypeService.getPaymentTypeById(id));
     }
 
     @PostMapping("/")
-    public ResponseEntity<PaymentTypeDto> createPaymentType(@RequestBody CreatePaymentTypeDto createPaymentTypeDto) {
-        PaymentTypeDto createdPaymentType = paymentTypeService.createPaymentType(createPaymentTypeDto);
+    public ResponseEntity<PaymentTypeResponseDto> createPaymentType(@RequestBody CreatePaymentTypeRequestDto createPaymentTypeRequestDto) {
+        PaymentTypeResponseDto createdPaymentType = paymentTypeService.createPaymentType(createPaymentTypeRequestDto);
 
         return ResponseEntity.created(URI.create("/api/payment_types/" + createdPaymentType.getPaymentTypeId())).body(createdPaymentType);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<PaymentTypeDto> updatePaymentTypeById(@PathVariable Long id, @RequestBody UpdatePaymentTypeDto updatePaymentTypeDto) {
-        return ResponseEntity.ok(paymentTypeService.updatePaymentTypeById(id, updatePaymentTypeDto));
+    public ResponseEntity<PaymentTypeResponseDto> updatePaymentTypeById(@PathVariable Long id, @RequestBody UpdatePaymentTypeRequestDto updatePaymentTypeRequestDto) {
+        return ResponseEntity.ok(paymentTypeService.updatePaymentTypeById(id, updatePaymentTypeRequestDto));
     }
 
     @DeleteMapping("/{id}")

@@ -1,5 +1,8 @@
 package com.example.internet_shop.orderstatuses;
 
+import com.example.internet_shop.orderstatuses.dto.CreateOrderStatusRequestDto;
+import com.example.internet_shop.orderstatuses.dto.OrderStatusResponseDto;
+import com.example.internet_shop.orderstatuses.dto.UpdateOrderStatusRequestDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,25 +20,25 @@ public class OrderStatusController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<List<OrderStatusDto>> getOrderStatuses() {
+    public ResponseEntity<List<OrderStatusResponseDto>> getOrderStatuses() {
         return ResponseEntity.ok(orderStatusService.getOrderStatuses());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<OrderStatusDto> getOrderStatusById(@PathVariable Long id) {
+    public ResponseEntity<OrderStatusResponseDto> getOrderStatusById(@PathVariable Long id) {
         return ResponseEntity.ok(orderStatusService.getOrderStatusById(id));
     }
 
     @PostMapping("/")
-    public ResponseEntity<OrderStatusDto> createOrderStatus(@RequestBody CreateOrderStatusDto createOrderStatusDto) {
-        OrderStatusDto createdOrderStatus = orderStatusService.createOrderStatus(createOrderStatusDto);
+    public ResponseEntity<OrderStatusResponseDto> createOrderStatus(@RequestBody CreateOrderStatusRequestDto createOrderStatusRequestDto) {
+        OrderStatusResponseDto createdOrderStatus = orderStatusService.createOrderStatus(createOrderStatusRequestDto);
 
         return ResponseEntity.created(URI.create("/api/order_statuses/" + createdOrderStatus.getOrderStatusId())).body(createdOrderStatus);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<OrderStatusDto> updateOrderStatusById(@PathVariable Long id, @RequestBody UpdateOrderStatusDto updateOrderStatusDto) {
-        return ResponseEntity.ok(orderStatusService.updateOrderStatusById(id, updateOrderStatusDto));
+    public ResponseEntity<OrderStatusResponseDto> updateOrderStatusById(@PathVariable Long id, @RequestBody UpdateOrderStatusRequestDto updateOrderStatusRequestDto) {
+        return ResponseEntity.ok(orderStatusService.updateOrderStatusById(id, updateOrderStatusRequestDto));
     }
 
     @DeleteMapping("/{id}")

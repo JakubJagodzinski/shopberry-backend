@@ -1,5 +1,8 @@
 package com.example.internet_shop.causesofreturn;
 
+import com.example.internet_shop.causesofreturn.dto.CauseOfReturnResponseDto;
+import com.example.internet_shop.causesofreturn.dto.CreateCauseOfReturnRequestDto;
+import com.example.internet_shop.causesofreturn.dto.UpdateCauseOfReturnRequestDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,24 +20,24 @@ public class CauseOfReturnController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<List<CauseOfReturnDto>> getCausesOfReturn() {
+    public ResponseEntity<List<CauseOfReturnResponseDto>> getCausesOfReturn() {
         return ResponseEntity.ok(causeOfReturnService.getCausesOfReturn());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CauseOfReturnDto> getCauseOfReturnById(@PathVariable Long id) {
+    public ResponseEntity<CauseOfReturnResponseDto> getCauseOfReturnById(@PathVariable Long id) {
         return ResponseEntity.ok(causeOfReturnService.getCauseOfReturnById(id));
     }
 
     @PostMapping("/")
-    public ResponseEntity<CauseOfReturnDto> createCauseOfReturn(@RequestBody CreateCauseOfReturnDto createCauseOfReturnDto) {
-        CauseOfReturnDto createdCauseOfReturn = causeOfReturnService.createCauseOfReturn(createCauseOfReturnDto);
+    public ResponseEntity<CauseOfReturnResponseDto> createCauseOfReturn(@RequestBody CreateCauseOfReturnRequestDto createCauseOfReturnRequestDto) {
+        CauseOfReturnResponseDto createdCauseOfReturn = causeOfReturnService.createCauseOfReturn(createCauseOfReturnRequestDto);
         return ResponseEntity.created(URI.create("/api/causes_of_return/" + createdCauseOfReturn.getCauseOfReturnId())).body(createdCauseOfReturn);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CauseOfReturnDto> updateCauseOfReturnById(@PathVariable Long id, @RequestBody UpdateCauseOfReturnDto updateCauseOfReturnDto) {
-        return ResponseEntity.ok(causeOfReturnService.updateCauseOfReturnById(id, updateCauseOfReturnDto));
+    public ResponseEntity<CauseOfReturnResponseDto> updateCauseOfReturnById(@PathVariable Long id, @RequestBody UpdateCauseOfReturnRequestDto updateCauseOfReturnRequestDto) {
+        return ResponseEntity.ok(causeOfReturnService.updateCauseOfReturnById(id, updateCauseOfReturnRequestDto));
     }
 
     @DeleteMapping("/{id}")

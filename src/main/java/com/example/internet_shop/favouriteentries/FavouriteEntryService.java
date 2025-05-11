@@ -1,6 +1,9 @@
 package com.example.internet_shop.favouriteentries;
 
 import com.example.internet_shop.customers.CustomerRepository;
+import com.example.internet_shop.favouriteentries.dto.CreateFavouriteEntryRequestDto;
+import com.example.internet_shop.favouriteentries.dto.FavouriteEntryResponseDto;
+import com.example.internet_shop.favouriteentries.dto.FavouriteEntryDtoMapper;
 import com.example.internet_shop.products.ProductRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -30,7 +33,7 @@ public class FavouriteEntryService {
     }
 
     @Transactional
-    public List<FavouriteEntryDto> getFavouriteEntriesByCustomerId(Long customerId) throws EntityNotFoundException {
+    public List<FavouriteEntryResponseDto> getFavouriteEntriesByCustomerId(Long customerId) throws EntityNotFoundException {
         if (!customerRepository.existsById(customerId)) {
             throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
         }
@@ -39,16 +42,16 @@ public class FavouriteEntryService {
     }
 
     @Transactional
-    public FavouriteEntryDto createFavouriteEntry(CreateFavouriteEntryDto createFavouriteEntryDto) throws EntityNotFoundException, IllegalArgumentException {
-        if (!customerRepository.existsById(createFavouriteEntryDto.getCustomerId())) {
+    public FavouriteEntryResponseDto createFavouriteEntry(CreateFavouriteEntryRequestDto createFavouriteEntryRequestDto) throws EntityNotFoundException, IllegalArgumentException {
+        if (!customerRepository.existsById(createFavouriteEntryRequestDto.getCustomerId())) {
             throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
         }
 
-        if (!productRepository.existsById(createFavouriteEntryDto.getProductId())) {
+        if (!productRepository.existsById(createFavouriteEntryRequestDto.getProductId())) {
             throw new EntityNotFoundException(PRODUCT_NOT_FOUND_MESSAGE);
         }
 
-        FavouriteEntryId favouriteEntryId = new FavouriteEntryId(createFavouriteEntryDto.getCustomerId(), createFavouriteEntryDto.getProductId());
+        FavouriteEntryId favouriteEntryId = new FavouriteEntryId(createFavouriteEntryRequestDto.getCustomerId(), createFavouriteEntryRequestDto.getProductId());
 
         if (favouriteEntryRepository.existsById(favouriteEntryId)) {
             throw new IllegalArgumentException(FAVOURITE_ENTRY_ALREADY_EXISTS_MESSAGE);
@@ -57,8 +60,8 @@ public class FavouriteEntryService {
         FavouriteEntry favouriteEntry = new FavouriteEntry();
 
         favouriteEntry.setId(favouriteEntryId);
-        favouriteEntry.setCustomer(customerRepository.getReferenceById(createFavouriteEntryDto.getCustomerId()));
-        favouriteEntry.setProduct(productRepository.getReferenceById(createFavouriteEntryDto.getProductId()));
+        favouriteEntry.setCustomer(customerRepository.getReferenceById(createFavouriteEntryRequestDto.getCustomerId()));
+        favouriteEntry.setProduct(productRepository.getReferenceById(createFavouriteEntryRequestDto.getProductId()));
 
         return favouriteEntryDtoMapper.toDto(favouriteEntryRepository.save(favouriteEntry));
     }

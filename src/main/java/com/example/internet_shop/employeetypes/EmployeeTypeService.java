@@ -1,5 +1,9 @@
 package com.example.internet_shop.employeetypes;
 
+import com.example.internet_shop.employeetypes.dto.CreateEmployeeTypeRequestDto;
+import com.example.internet_shop.employeetypes.dto.EmployeeTypeResponseDto;
+import com.example.internet_shop.employeetypes.dto.EmployeeTypeDtoMapper;
+import com.example.internet_shop.employeetypes.dto.UpdateEmployeeTypeRequestDto;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -23,12 +27,12 @@ public class EmployeeTypeService {
         this.employeeTypeDtoMapper = employeeTypeDtoMapper;
     }
 
-    public List<EmployeeTypeDto> getEmployeeTypes() {
+    public List<EmployeeTypeResponseDto> getEmployeeTypes() {
         return employeeTypeDtoMapper.toDtoList(employeeTypeRepository.findAll());
     }
 
     @Transactional
-    public EmployeeTypeDto getEmployeeTypeById(Long id) throws EntityNotFoundException {
+    public EmployeeTypeResponseDto getEmployeeTypeById(Long id) throws EntityNotFoundException {
         if (!employeeTypeRepository.existsById(id)) {
             throw new EntityNotFoundException(EMPLOYEE_TYPE_NOT_FOUND_MESSAGE);
         }
@@ -37,46 +41,46 @@ public class EmployeeTypeService {
     }
 
     @Transactional
-    public EmployeeTypeDto createEmployeeType(CreateEmployeeTypeDto createEmployeeTypeDto) throws IllegalArgumentException {
-        if (employeeTypeRepository.existsByEmployeeTypeName(createEmployeeTypeDto.getEmployeeTypeName())) {
+    public EmployeeTypeResponseDto createEmployeeType(CreateEmployeeTypeRequestDto createEmployeeTypeRequestDto) throws IllegalArgumentException {
+        if (employeeTypeRepository.existsByEmployeeTypeName(createEmployeeTypeRequestDto.getEmployeeTypeName())) {
             throw new IllegalArgumentException(EMPLOYEE_TYPE_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE);
         }
 
-        if (createEmployeeTypeDto.getEmployeeTypeName() == null) {
+        if (createEmployeeTypeRequestDto.getEmployeeTypeName() == null) {
             throw new IllegalArgumentException(EMPLOYEE_TYPE_NAME_CANNOT_BE_NULL_MESSAGE);
         }
 
-        if (createEmployeeTypeDto.getEmployeeTypeName().isEmpty()) {
+        if (createEmployeeTypeRequestDto.getEmployeeTypeName().isEmpty()) {
             throw new IllegalArgumentException(EMPLOYEE_TYPE_NAME_CANNOT_BE_EMPTY_MESSAGE);
         }
 
         EmployeeType employeeType = new EmployeeType();
 
-        employeeType.setEmployeeTypeName(createEmployeeTypeDto.getEmployeeTypeName());
+        employeeType.setEmployeeTypeName(createEmployeeTypeRequestDto.getEmployeeTypeName());
 
         return employeeTypeDtoMapper.toDto(employeeTypeRepository.save(employeeType));
     }
 
     @Transactional
-    public EmployeeTypeDto updateEmployeeTypeById(Long id, UpdateEmployeeTypeDto updateEmployeeTypeDto) throws EntityNotFoundException, IllegalArgumentException {
+    public EmployeeTypeResponseDto updateEmployeeTypeById(Long id, UpdateEmployeeTypeRequestDto updateEmployeeTypeRequestDto) throws EntityNotFoundException, IllegalArgumentException {
         if (!employeeTypeRepository.existsById(id)) {
             throw new EntityNotFoundException(EMPLOYEE_TYPE_NOT_FOUND_MESSAGE);
         }
 
         EmployeeType employeeType = employeeTypeRepository.getReferenceById(id);
 
-        if (updateEmployeeTypeDto.getEmployeeTypeName() != null) {
-            EmployeeType otherEmployeeType = employeeTypeRepository.findByEmployeeTypeName(updateEmployeeTypeDto.getEmployeeTypeName());
+        if (updateEmployeeTypeRequestDto.getEmployeeTypeName() != null) {
+            EmployeeType otherEmployeeType = employeeTypeRepository.findByEmployeeTypeName(updateEmployeeTypeRequestDto.getEmployeeTypeName());
 
             if (otherEmployeeType != null && !otherEmployeeType.getEmployeeTypeId().equals(id)) {
                 throw new IllegalArgumentException(EMPLOYEE_TYPE_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE);
             }
 
-            if (updateEmployeeTypeDto.getEmployeeTypeName().isEmpty()) {
+            if (updateEmployeeTypeRequestDto.getEmployeeTypeName().isEmpty()) {
                 throw new IllegalArgumentException(EMPLOYEE_TYPE_NAME_CANNOT_BE_EMPTY_MESSAGE);
             }
 
-            employeeType.setEmployeeTypeName(updateEmployeeTypeDto.getEmployeeTypeName());
+            employeeType.setEmployeeTypeName(updateEmployeeTypeRequestDto.getEmployeeTypeName());
         }
 
         return employeeTypeDtoMapper.toDto(employeeTypeRepository.save(employeeType));

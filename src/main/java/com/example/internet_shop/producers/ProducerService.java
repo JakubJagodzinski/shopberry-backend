@@ -1,5 +1,9 @@
 package com.example.internet_shop.producers;
 
+import com.example.internet_shop.producers.dto.CreateProducerRequestDto;
+import com.example.internet_shop.producers.dto.ProducerResponseDto;
+import com.example.internet_shop.producers.dto.ProducerDtoMapper;
+import com.example.internet_shop.producers.dto.UpdateProducerRequestDto;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,13 +28,13 @@ public class ProducerService {
         this.producerDtoMapper = producerDtoMapper;
     }
 
-    public List<ProducerDto> getProducers() {
+    public List<ProducerResponseDto> getProducers() {
         List<Producer> producers = producerRepository.findAll();
         return producerDtoMapper.toDtoList(producers);
     }
 
     @Transactional
-    public ProducerDto getProducerById(Long id) throws EntityNotFoundException {
+    public ProducerResponseDto getProducerById(Long id) throws EntityNotFoundException {
         if (!producerRepository.existsById(id)) {
             throw new EntityNotFoundException(PRODUCER_NOT_FOUND_MESSAGE);
         }
@@ -39,35 +43,35 @@ public class ProducerService {
     }
 
     @Transactional
-    public ProducerDto createProducer(CreateProducerDto createProducerDto) throws IllegalArgumentException {
+    public ProducerResponseDto createProducer(CreateProducerRequestDto createProducerRequestDto) throws IllegalArgumentException {
         Producer producer = new Producer();
 
-        if (producerRepository.existsByProducerName(createProducerDto.getProducerName())) {
+        if (producerRepository.existsByProducerName(createProducerRequestDto.getProducerName())) {
             throw new IllegalArgumentException(PRODUCER_ALREADY_EXISTS_MESSAGE);
         }
 
-        producer.setProducerName(createProducerDto.getProducerName());
+        producer.setProducerName(createProducerRequestDto.getProducerName());
 
 
         return producerDtoMapper.toDto(producerRepository.save(producer));
     }
 
     @Transactional
-    public ProducerDto updateProducerById(Long id, UpdateProducerDto updateProducerDto) throws EntityNotFoundException {
+    public ProducerResponseDto updateProducerById(Long id, UpdateProducerRequestDto updateProducerRequestDto) throws EntityNotFoundException {
         if (!producerRepository.existsById(id)) {
             throw new EntityNotFoundException(PRODUCER_NOT_FOUND_MESSAGE);
         }
 
         Producer producer = producerRepository.getReferenceById(id);
 
-        if (updateProducerDto.getProducerName() != null) {
-            Producer otherProducer = producerRepository.findByProducerName(updateProducerDto.getProducerName());
+        if (updateProducerRequestDto.getProducerName() != null) {
+            Producer otherProducer = producerRepository.findByProducerName(updateProducerRequestDto.getProducerName());
 
             if (otherProducer != null && !producer.getProducerId().equals(otherProducer.getProducerId())) {
                 throw new IllegalArgumentException(PRODUCER_WITH_THAT_NAME_ALREADY_EXISTS);
             }
 
-            producer.setProducerName(updateProducerDto.getProducerName());
+            producer.setProducerName(updateProducerRequestDto.getProducerName());
         }
 
         return producerDtoMapper.toDto(producerRepository.save(producer));

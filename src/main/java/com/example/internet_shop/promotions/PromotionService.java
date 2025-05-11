@@ -1,5 +1,9 @@
 package com.example.internet_shop.promotions;
 
+import com.example.internet_shop.promotions.dto.CreatePromotionRequestDto;
+import com.example.internet_shop.promotions.dto.PromotionResponseDto;
+import com.example.internet_shop.promotions.dto.PromotionDtoMapper;
+import com.example.internet_shop.promotions.dto.UpdatePromotionRequestDto;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -25,12 +29,12 @@ public class PromotionService {
         this.promotionDtoMapper = promotionDtoMapper;
     }
 
-    public List<PromotionDto> getPromotions() {
+    public List<PromotionResponseDto> getPromotions() {
         return promotionDtoMapper.toDtoList(promotionRepository.findAll());
     }
 
     @Transactional
-    public PromotionDto getPromotionById(Long id) throws EntityNotFoundException {
+    public PromotionResponseDto getPromotionById(Long id) throws EntityNotFoundException {
         if (!promotionRepository.existsById(id)) {
             throw new EntityNotFoundException(PROMOTION_NOT_FOUND_MESSAGE);
         }
@@ -39,67 +43,67 @@ public class PromotionService {
     }
 
     @Transactional
-    public PromotionDto createPromotion(CreatePromotionDto createPromotionDto) throws IllegalArgumentException {
-        if (promotionRepository.existsByPromotionName(createPromotionDto.getPromotionName())) {
+    public PromotionResponseDto createPromotion(CreatePromotionRequestDto createPromotionRequestDto) throws IllegalArgumentException {
+        if (promotionRepository.existsByPromotionName(createPromotionRequestDto.getPromotionName())) {
             throw new IllegalArgumentException(PROMOTION_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE);
         }
 
-        if (createPromotionDto.getPromotionName() == null) {
+        if (createPromotionRequestDto.getPromotionName() == null) {
             throw new IllegalArgumentException(PROMOTION_NAME_CANNOT_BE_NULL_MESSAGE);
         }
 
-        if (createPromotionDto.getPromotionName().isEmpty()) {
+        if (createPromotionRequestDto.getPromotionName().isEmpty()) {
             throw new IllegalArgumentException(PROMOTION_NAME_CANNOT_BE_EMPTY_MESSAGE);
         }
 
-        if (createPromotionDto.getDiscountPercentValue() < 0) {
+        if (createPromotionRequestDto.getDiscountPercentValue() < 0) {
             throw new IllegalArgumentException(PROMOTION_DISCOUNT_PERCENT_VALUE_CANNOT_BE_NEGATIVE_MESSAGE);
         }
 
-        if (createPromotionDto.getDiscountPercentValue() > 100) {
+        if (createPromotionRequestDto.getDiscountPercentValue() > 100) {
             throw new IllegalArgumentException(PROMOTION_DISCOUNT_PERCENT_VALUE_CANNOT_BE_GREATER_THAN_100_MESSAGE);
         }
 
         Promotion promotion = new Promotion();
 
-        promotion.setPromotionName(createPromotionDto.getPromotionName());
-        promotion.setDiscountPercentValue(createPromotionDto.getDiscountPercentValue());
+        promotion.setPromotionName(createPromotionRequestDto.getPromotionName());
+        promotion.setDiscountPercentValue(createPromotionRequestDto.getDiscountPercentValue());
 
         return promotionDtoMapper.toDto(promotionRepository.save(promotion));
     }
 
     @Transactional
-    public PromotionDto updatePromotionById(Long id, UpdatePromotionDto updatePromotionDto) throws EntityNotFoundException, IllegalArgumentException {
+    public PromotionResponseDto updatePromotionById(Long id, UpdatePromotionRequestDto updatePromotionRequestDto) throws EntityNotFoundException, IllegalArgumentException {
         if (!promotionRepository.existsById(id)) {
             throw new EntityNotFoundException(PROMOTION_NOT_FOUND_MESSAGE);
         }
 
         Promotion promotion = promotionRepository.getReferenceById(id);
 
-        if (updatePromotionDto.getPromotionName() != null) {
-            Promotion otherPromotion = promotionRepository.findByPromotionName(updatePromotionDto.getPromotionName());
+        if (updatePromotionRequestDto.getPromotionName() != null) {
+            Promotion otherPromotion = promotionRepository.findByPromotionName(updatePromotionRequestDto.getPromotionName());
 
             if (otherPromotion != null && !otherPromotion.getPromotionId().equals(id)) {
                 throw new IllegalArgumentException(PROMOTION_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE);
             }
 
-            if (updatePromotionDto.getPromotionName().isEmpty()) {
+            if (updatePromotionRequestDto.getPromotionName().isEmpty()) {
                 throw new IllegalArgumentException(PROMOTION_NAME_CANNOT_BE_EMPTY_MESSAGE);
             }
 
-            promotion.setPromotionName(updatePromotionDto.getPromotionName());
+            promotion.setPromotionName(updatePromotionRequestDto.getPromotionName());
         }
 
-        if (updatePromotionDto.getDiscountPercentValue() != null) {
-            if (updatePromotionDto.getDiscountPercentValue() < 0) {
+        if (updatePromotionRequestDto.getDiscountPercentValue() != null) {
+            if (updatePromotionRequestDto.getDiscountPercentValue() < 0) {
                 throw new IllegalArgumentException(PROMOTION_DISCOUNT_PERCENT_VALUE_CANNOT_BE_NEGATIVE_MESSAGE);
             }
 
-            if (updatePromotionDto.getDiscountPercentValue() > 100) {
+            if (updatePromotionRequestDto.getDiscountPercentValue() > 100) {
                 throw new IllegalArgumentException(PROMOTION_DISCOUNT_PERCENT_VALUE_CANNOT_BE_GREATER_THAN_100_MESSAGE);
             }
 
-            promotion.setDiscountPercentValue(updatePromotionDto.getDiscountPercentValue());
+            promotion.setDiscountPercentValue(updatePromotionRequestDto.getDiscountPercentValue());
         }
 
         return promotionDtoMapper.toDto(promotionRepository.save(promotion));

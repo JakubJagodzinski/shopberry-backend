@@ -1,5 +1,7 @@
 package com.example.internet_shop.customers;
 
+import com.example.internet_shop.customers.dto.CreateCustomerRequestDto;
+import com.example.internet_shop.customers.dto.CustomerResponseDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,24 +19,24 @@ public class CustomerController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<List<CustomerDto>> getCustomers() {
+    public ResponseEntity<List<CustomerResponseDto>> getCustomers() {
         return ResponseEntity.ok(customerService.getCustomers());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CustomerDto> getCustomerById(@PathVariable Long id) {
+    public ResponseEntity<CustomerResponseDto> getCustomerById(@PathVariable Long id) {
         return ResponseEntity.ok(customerService.getCustomerById(id));
     }
 
     @PostMapping("/")
-    public ResponseEntity<CustomerDto> createCustomer(@RequestBody CreateCustomerDto createCustomerDto) {
-        CustomerDto createdCustomer = customerService.createCustomer(createCustomerDto);
+    public ResponseEntity<CustomerResponseDto> createCustomer(@RequestBody CreateCustomerRequestDto createCustomerRequestDto) {
+        CustomerResponseDto createdCustomer = customerService.createCustomer(createCustomerRequestDto);
         return ResponseEntity.created(URI.create("/api/customers/" + createdCustomer.getCustomerId())).body(createdCustomer);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CustomerDto> updateCustomerById(@PathVariable Long id, @RequestBody CreateCustomerDto createCustomerDto) {
-        return ResponseEntity.ok(customerService.updateCustomerById(id, createCustomerDto));
+    public ResponseEntity<CustomerResponseDto> updateCustomerById(@PathVariable Long id, @RequestBody CreateCustomerRequestDto createCustomerRequestDto) {
+        return ResponseEntity.ok(customerService.updateCustomerById(id, createCustomerRequestDto));
     }
 
     @DeleteMapping("/{id}")

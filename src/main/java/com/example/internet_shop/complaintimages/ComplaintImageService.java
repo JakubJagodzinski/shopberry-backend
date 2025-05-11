@@ -1,5 +1,8 @@
 package com.example.internet_shop.complaintimages;
 
+import com.example.internet_shop.complaintimages.dto.ComplaintImageResponseDto;
+import com.example.internet_shop.complaintimages.dto.ComplaintImageDtoMapper;
+import com.example.internet_shop.complaintimages.dto.CreateComplaintImageRequestDto;
 import com.example.internet_shop.complaints.ComplaintRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -25,12 +28,12 @@ public class ComplaintImageService {
         this.complaintImageDtoMapper = complaintImageDtoMapper;
     }
 
-    public List<ComplaintImageDto> getComplaintImages() {
+    public List<ComplaintImageResponseDto> getComplaintImages() {
         return complaintImageDtoMapper.toDtoList(complaintImageRepository.findAll());
     }
 
     @Transactional
-    public ComplaintImageDto getComplaintImageById(Long id) throws EntityNotFoundException {
+    public ComplaintImageResponseDto getComplaintImageById(Long id) throws EntityNotFoundException {
         if (!complaintImageRepository.existsById(id)) {
             throw new EntityNotFoundException(COMPLAINT_IMAGE_NOT_FOUND_MESSAGE);
         }
@@ -39,19 +42,19 @@ public class ComplaintImageService {
     }
 
     @Transactional
-    public ComplaintImageDto createComplaintImage(CreateComplaintImageDto createComplaintImageDto) throws EntityNotFoundException, IllegalArgumentException {
-        if (!complaintRepository.existsById(createComplaintImageDto.getComplaintId())) {
+    public ComplaintImageResponseDto createComplaintImage(CreateComplaintImageRequestDto createComplaintImageRequestDto) throws EntityNotFoundException, IllegalArgumentException {
+        if (!complaintRepository.existsById(createComplaintImageRequestDto.getComplaintId())) {
             throw new EntityNotFoundException(COMPLAINT_DOES_NOT_EXIST_MESSAGE);
         }
 
-        if (createComplaintImageDto.getImage() == null) {
+        if (createComplaintImageRequestDto.getImage() == null) {
             throw new IllegalArgumentException(COMPLAINT_IMAGE_CANNOT_BE_NULL_MESSAGE);
         }
 
         ComplaintImage complaintImage = new ComplaintImage();
 
-        complaintImage.setComplaint(complaintRepository.getReferenceById(createComplaintImageDto.getComplaintId()));
-        complaintImage.setImage(createComplaintImageDto.getImage());
+        complaintImage.setComplaint(complaintRepository.getReferenceById(createComplaintImageRequestDto.getComplaintId()));
+        complaintImage.setImage(createComplaintImageRequestDto.getImage());
 
         return complaintImageDtoMapper.toDto(complaintImageRepository.save(complaintImage));
     }

@@ -1,5 +1,9 @@
 package com.example.internet_shop.complaints;
 
+import com.example.internet_shop.complaints.dto.ComplaintResponseDto;
+import com.example.internet_shop.complaints.dto.ComplaintDtoMapper;
+import com.example.internet_shop.complaints.dto.CreateComplaintRequestDto;
+import com.example.internet_shop.complaints.dto.UpdateComplaintRequestDto;
 import com.example.internet_shop.orderproducts.OrderProductId;
 import com.example.internet_shop.orderproducts.OrderProductRepository;
 import com.example.internet_shop.orders.OrderRepository;
@@ -35,12 +39,12 @@ public class ComplaintService {
         this.orderProductRepository = orderProductRepository;
     }
 
-    public List<ComplaintDto> getComplaints() {
+    public List<ComplaintResponseDto> getComplaints() {
         return complaintDtoMapper.toDtoList(complaintRepository.findAll());
     }
 
     @Transactional
-    public ComplaintDto getComplaintById(Long id) throws EntityNotFoundException {
+    public ComplaintResponseDto getComplaintById(Long id) throws EntityNotFoundException {
         if (!complaintRepository.existsById(id)) {
             throw new EntityNotFoundException(COMPLAINT_NOT_FOUND_MESSAGE);
         }
@@ -49,100 +53,100 @@ public class ComplaintService {
     }
 
     @Transactional
-    public ComplaintDto createComplaint(CreateComplaintDto createComplaintDto) throws EntityNotFoundException, IllegalArgumentException {
-        if (createComplaintDto.getOrderId() == null) {
+    public ComplaintResponseDto createComplaint(CreateComplaintRequestDto createComplaintRequestDto) throws EntityNotFoundException, IllegalArgumentException {
+        if (createComplaintRequestDto.getOrderId() == null) {
             throw new IllegalArgumentException(ORDER_ID_CANNOT_BE_NULL_MESSAGE);
         }
 
-        if (createComplaintDto.getProductId() == null) {
+        if (createComplaintRequestDto.getProductId() == null) {
             throw new IllegalArgumentException(PRODUCT_ID_CANNOT_BE_NULL_MESSAGE);
         }
 
-        if (!orderRepository.existsById(createComplaintDto.getOrderId())) {
+        if (!orderRepository.existsById(createComplaintRequestDto.getOrderId())) {
             throw new EntityNotFoundException(ORDER_NOT_FOUND_MESSAGE);
         }
 
-        if (!productRepository.existsById(createComplaintDto.getProductId())) {
+        if (!productRepository.existsById(createComplaintRequestDto.getProductId())) {
             throw new EntityNotFoundException(PRODUCT_NOT_FOUND_MESSAGE);
         }
 
-        if (!orderProductRepository.existsById(new OrderProductId(createComplaintDto.getOrderId(), createComplaintDto.getProductId()))) {
+        if (!orderProductRepository.existsById(new OrderProductId(createComplaintRequestDto.getOrderId(), createComplaintRequestDto.getProductId()))) {
             throw new IllegalArgumentException(PRODUCT_DOES_NOT_BELONG_TO_THAT_ORDER_MESSAGE);
         }
 
         Complaint complaint = new Complaint();
 
-        complaint.setOrder(orderRepository.getReferenceById(createComplaintDto.getOrderId()));
-        complaint.setProduct(productRepository.getReferenceById(createComplaintDto.getProductId()));
-        complaint.setInfo(createComplaintDto.getInfo());
-        complaint.setFirstName(createComplaintDto.getFirstName());
-        complaint.setLastName(createComplaintDto.getLastName());
-        complaint.setNip(createComplaintDto.getNip());
-        complaint.setCity(createComplaintDto.getCity());
-        complaint.setPostalCode(createComplaintDto.getPostalCode());
-        complaint.setStreet(createComplaintDto.getStreet());
-        complaint.setHouseNumber(createComplaintDto.getHouseNumber());
-        complaint.setApartment(createComplaintDto.getApartment());
-        complaint.setPhoneNumber(createComplaintDto.getPhoneNumber());
+        complaint.setOrder(orderRepository.getReferenceById(createComplaintRequestDto.getOrderId()));
+        complaint.setProduct(productRepository.getReferenceById(createComplaintRequestDto.getProductId()));
+        complaint.setInfo(createComplaintRequestDto.getInfo());
+        complaint.setFirstName(createComplaintRequestDto.getFirstName());
+        complaint.setLastName(createComplaintRequestDto.getLastName());
+        complaint.setNip(createComplaintRequestDto.getNip());
+        complaint.setCity(createComplaintRequestDto.getCity());
+        complaint.setPostalCode(createComplaintRequestDto.getPostalCode());
+        complaint.setStreet(createComplaintRequestDto.getStreet());
+        complaint.setHouseNumber(createComplaintRequestDto.getHouseNumber());
+        complaint.setApartment(createComplaintRequestDto.getApartment());
+        complaint.setPhoneNumber(createComplaintRequestDto.getPhoneNumber());
 
         return complaintDtoMapper.toDto(complaintRepository.save(complaint));
     }
 
     @Transactional
-    public ComplaintDto updateComplaintById(Long id, UpdateComplaintDto updateComplaintDto) throws EntityNotFoundException, IllegalArgumentException {
+    public ComplaintResponseDto updateComplaintById(Long id, UpdateComplaintRequestDto updateComplaintRequestDto) throws EntityNotFoundException, IllegalArgumentException {
         if (!complaintRepository.existsById(id)) {
             throw new EntityNotFoundException(COMPLAINT_NOT_FOUND_MESSAGE);
         }
 
         Complaint complaint = complaintRepository.getReferenceById(id);
 
-        if (updateComplaintDto.getProductId() != null) {
+        if (updateComplaintRequestDto.getProductId() != null) {
             // TODO check if product belongs to order
-            if (!productRepository.existsById(updateComplaintDto.getProductId())) {
+            if (!productRepository.existsById(updateComplaintRequestDto.getProductId())) {
                 throw new EntityNotFoundException(PRODUCT_NOT_FOUND_MESSAGE);
             }
 
-            complaint.setProduct(productRepository.getReferenceById(updateComplaintDto.getProductId()));
+            complaint.setProduct(productRepository.getReferenceById(updateComplaintRequestDto.getProductId()));
         }
 
-        if (updateComplaintDto.getInfo() != null) {
-            complaint.setInfo(updateComplaintDto.getInfo());
+        if (updateComplaintRequestDto.getInfo() != null) {
+            complaint.setInfo(updateComplaintRequestDto.getInfo());
         }
 
-        if (updateComplaintDto.getFirstName() != null) {
-            complaint.setFirstName(updateComplaintDto.getFirstName());
+        if (updateComplaintRequestDto.getFirstName() != null) {
+            complaint.setFirstName(updateComplaintRequestDto.getFirstName());
         }
 
-        if (updateComplaintDto.getLastName() != null) {
-            complaint.setLastName(updateComplaintDto.getLastName());
+        if (updateComplaintRequestDto.getLastName() != null) {
+            complaint.setLastName(updateComplaintRequestDto.getLastName());
         }
 
-        if (updateComplaintDto.getNip() != null) {
-            complaint.setNip(updateComplaintDto.getNip());
+        if (updateComplaintRequestDto.getNip() != null) {
+            complaint.setNip(updateComplaintRequestDto.getNip());
         }
 
-        if (updateComplaintDto.getCity() != null) {
-            complaint.setCity(updateComplaintDto.getCity());
+        if (updateComplaintRequestDto.getCity() != null) {
+            complaint.setCity(updateComplaintRequestDto.getCity());
         }
 
-        if (updateComplaintDto.getPostalCode() != null) {
-            complaint.setPostalCode(updateComplaintDto.getPostalCode());
+        if (updateComplaintRequestDto.getPostalCode() != null) {
+            complaint.setPostalCode(updateComplaintRequestDto.getPostalCode());
         }
 
-        if (updateComplaintDto.getStreet() != null) {
-            complaint.setStreet(updateComplaintDto.getStreet());
+        if (updateComplaintRequestDto.getStreet() != null) {
+            complaint.setStreet(updateComplaintRequestDto.getStreet());
         }
 
-        if (updateComplaintDto.getHouseNumber() != null) {
-            complaint.setHouseNumber(updateComplaintDto.getHouseNumber());
+        if (updateComplaintRequestDto.getHouseNumber() != null) {
+            complaint.setHouseNumber(updateComplaintRequestDto.getHouseNumber());
         }
 
-        if (updateComplaintDto.getApartment() != null) {
-            complaint.setApartment(updateComplaintDto.getApartment());
+        if (updateComplaintRequestDto.getApartment() != null) {
+            complaint.setApartment(updateComplaintRequestDto.getApartment());
         }
 
-        if (updateComplaintDto.getPhoneNumber() != null) {
-            complaint.setPhoneNumber(updateComplaintDto.getPhoneNumber());
+        if (updateComplaintRequestDto.getPhoneNumber() != null) {
+            complaint.setPhoneNumber(updateComplaintRequestDto.getPhoneNumber());
         }
 
         return complaintDtoMapper.toDto(complaintRepository.save(complaint));

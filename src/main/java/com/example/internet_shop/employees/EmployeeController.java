@@ -1,5 +1,7 @@
 package com.example.internet_shop.employees;
 
+import com.example.internet_shop.employees.dto.CreateEmployeeRequestDto;
+import com.example.internet_shop.employees.dto.EmployeeResponseDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,18 +19,18 @@ public class EmployeeController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<List<EmployeeDto>> getEmployees() {
+    public ResponseEntity<List<EmployeeResponseDto>> getEmployees() {
         return ResponseEntity.ok(employeeService.getEmployees());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<EmployeeDto> getEmployeeById(@PathVariable Long id) {
+    public ResponseEntity<EmployeeResponseDto> getEmployeeById(@PathVariable Long id) {
         return ResponseEntity.ok(employeeService.getEmployeeById(id));
     }
 
     @PostMapping("/")
-    public ResponseEntity<EmployeeDto> createEmployee(@RequestBody CreateEmployeeDto createEmployeeDto) {
-        EmployeeDto createdEmployee = employeeService.createEmployee(createEmployeeDto);
+    public ResponseEntity<EmployeeResponseDto> createEmployee(@RequestBody CreateEmployeeRequestDto createEmployeeRequestDto) {
+        EmployeeResponseDto createdEmployee = employeeService.createEmployee(createEmployeeRequestDto);
 
         return ResponseEntity.created(URI.create("/api/employees/" + createdEmployee.getEmployeeId())).body(createdEmployee);
     }

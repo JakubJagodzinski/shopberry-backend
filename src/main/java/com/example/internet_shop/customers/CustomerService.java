@@ -1,5 +1,8 @@
 package com.example.internet_shop.customers;
 
+import com.example.internet_shop.customers.dto.CreateCustomerRequestDto;
+import com.example.internet_shop.customers.dto.CustomerResponseDto;
+import com.example.internet_shop.customers.dto.CustomerDtoMapper;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -20,12 +23,12 @@ public class CustomerService {
         this.customerDtoMapper = customerDtoMapper;
     }
 
-    public List<CustomerDto> getCustomers() {
+    public List<CustomerResponseDto> getCustomers() {
         return customerDtoMapper.toDtoList(customerRepository.findAll());
     }
 
     @Transactional
-    public CustomerDto getCustomerById(Long id) throws EntityNotFoundException {
+    public CustomerResponseDto getCustomerById(Long id) throws EntityNotFoundException {
         if (!customerRepository.existsById(id)) {
             throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
         }
@@ -34,40 +37,40 @@ public class CustomerService {
     }
 
     @Transactional
-    public CustomerDto createCustomer(CreateCustomerDto createCustomerDto) throws IllegalArgumentException {
-        if (customerRepository.existsByEmail(createCustomerDto.getEmail())) {
+    public CustomerResponseDto createCustomer(CreateCustomerRequestDto createCustomerRequestDto) throws IllegalArgumentException {
+        if (customerRepository.existsByEmail(createCustomerRequestDto.getEmail())) {
             throw new IllegalArgumentException(CUSTOMER_WITH_THAT_EMAIL_ALREADY_EXISTS_MESSAGE);
         }
 
         Customer customer = new Customer();
 
-        customer.setEmail(createCustomerDto.getEmail());
-        customer.setPassword(createCustomerDto.getPassword());
-        customer.setIsCompany(createCustomerDto.getIsCompany());
+        customer.setEmail(createCustomerRequestDto.getEmail());
+        customer.setPassword(createCustomerRequestDto.getPassword());
+        customer.setIsCompany(createCustomerRequestDto.getIsCompany());
 
         return customerDtoMapper.toDto(customerRepository.save(customer));
     }
 
     @Transactional
-    public CustomerDto updateCustomerById(Long id, CreateCustomerDto createCustomerDto) throws EntityNotFoundException, IllegalArgumentException {
+    public CustomerResponseDto updateCustomerById(Long id, CreateCustomerRequestDto createCustomerRequestDto) throws EntityNotFoundException, IllegalArgumentException {
         if (!customerRepository.existsById(id)) {
             throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
         }
 
         Customer customer = customerRepository.getReferenceById(id);
 
-        if (createCustomerDto.getEmail() != null) {
-            Customer otherCustomer = customerRepository.findByEmail(createCustomerDto.getEmail());
+        if (createCustomerRequestDto.getEmail() != null) {
+            Customer otherCustomer = customerRepository.findByEmail(createCustomerRequestDto.getEmail());
 
             if (otherCustomer != null && !customer.getCustomerId().equals(otherCustomer.getCustomerId())) {
                 throw new IllegalArgumentException(CUSTOMER_WITH_THAT_EMAIL_ALREADY_EXISTS_MESSAGE);
             }
 
-            customer.setEmail(createCustomerDto.getEmail());
+            customer.setEmail(createCustomerRequestDto.getEmail());
         }
 
-        if (createCustomerDto.getPassword() != null) {
-            customer.setPassword(createCustomerDto.getPassword());
+        if (createCustomerRequestDto.getPassword() != null) {
+            customer.setPassword(createCustomerRequestDto.getPassword());
         }
 
         return customerDtoMapper.toDto(customerRepository.save(customer));

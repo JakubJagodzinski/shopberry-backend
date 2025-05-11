@@ -1,5 +1,7 @@
 package com.example.internet_shop.favouriteentries;
 
+import com.example.internet_shop.favouriteentries.dto.CreateFavouriteEntryRequestDto;
+import com.example.internet_shop.favouriteentries.dto.FavouriteEntryResponseDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,13 +19,13 @@ public class FavouriteEntryController {
     }
 
     @GetMapping("/{customerId}")
-    public ResponseEntity<List<FavouriteEntryDto>> getFavouriteEntriesByCustomerId(@PathVariable Long customerId) {
+    public ResponseEntity<List<FavouriteEntryResponseDto>> getFavouriteEntriesByCustomerId(@PathVariable Long customerId) {
         return ResponseEntity.ok(favouriteEntryService.getFavouriteEntriesByCustomerId(customerId));
     }
 
     @PostMapping("/")
-    public ResponseEntity<FavouriteEntryDto> createFavouriteEntry(@RequestBody CreateFavouriteEntryDto createFavouriteEntryDto) {
-        FavouriteEntryDto createdFavouriteEntry = favouriteEntryService.createFavouriteEntry(createFavouriteEntryDto);
+    public ResponseEntity<FavouriteEntryResponseDto> createFavouriteEntry(@RequestBody CreateFavouriteEntryRequestDto createFavouriteEntryRequestDto) {
+        FavouriteEntryResponseDto createdFavouriteEntry = favouriteEntryService.createFavouriteEntry(createFavouriteEntryRequestDto);
 
         return ResponseEntity.created(URI.create("/api/favourite_entries/" + createdFavouriteEntry.getCustomerId() + "/" + createdFavouriteEntry.getProductId())).body(createdFavouriteEntry);
     }

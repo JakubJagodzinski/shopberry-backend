@@ -1,0 +1,26 @@
+package com.example.internet_shop.paymenttypes.dto;
+
+import com.example.internet_shop.paymenttypes.PaymentType;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+
+@Component
+public class PaymentTypeDtoMapper {
+
+    public PaymentTypeResponseDto toDto(PaymentType paymentType) {
+        PaymentTypeResponseDto dto = new PaymentTypeResponseDto();
+
+        dto.setPaymentTypeId(paymentType.getPaymentTypeId());
+        dto.setPaymentName(paymentType.getPaymentName());
+
+        return dto;
+    }
+
+    public List<PaymentTypeResponseDto> toDtoList(List<PaymentType> paymentTypes) {
+        return paymentTypes.stream()
+                .map(this::toDto)
+                .toList();
+    }
+
+}

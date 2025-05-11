@@ -1,5 +1,9 @@
 package com.example.internet_shop.paymenttypes;
 
+import com.example.internet_shop.paymenttypes.dto.CreatePaymentTypeRequestDto;
+import com.example.internet_shop.paymenttypes.dto.PaymentTypeResponseDto;
+import com.example.internet_shop.paymenttypes.dto.PaymentTypeDtoMapper;
+import com.example.internet_shop.paymenttypes.dto.UpdatePaymentTypeRequestDto;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -23,12 +27,12 @@ public class PaymentTypeService {
         this.paymentTypeDtoMapper = paymentTypeDtoMapper;
     }
 
-    public List<PaymentTypeDto> getPaymentTypes() {
+    public List<PaymentTypeResponseDto> getPaymentTypes() {
         return paymentTypeDtoMapper.toDtoList(paymentTypeRepository.findAll());
     }
 
     @Transactional
-    public PaymentTypeDto getPaymentTypeById(Long id) {
+    public PaymentTypeResponseDto getPaymentTypeById(Long id) {
         if (!paymentTypeRepository.existsById(id)) {
             throw new IllegalArgumentException(PAYMENT_TYPE_NOT_FOUND_MESSAGE);
         }
@@ -37,46 +41,46 @@ public class PaymentTypeService {
     }
 
     @Transactional
-    public PaymentTypeDto createPaymentType(CreatePaymentTypeDto createPaymentTypeDto) throws IllegalArgumentException {
-        if (paymentTypeRepository.existsByPaymentName(createPaymentTypeDto.getPaymentName())) {
+    public PaymentTypeResponseDto createPaymentType(CreatePaymentTypeRequestDto createPaymentTypeRequestDto) throws IllegalArgumentException {
+        if (paymentTypeRepository.existsByPaymentName(createPaymentTypeRequestDto.getPaymentName())) {
             throw new IllegalArgumentException(PAYMENT_TYPE_ALREADY_EXISTS_MESSAGE);
         }
 
-        if (createPaymentTypeDto.getPaymentName() == null) {
+        if (createPaymentTypeRequestDto.getPaymentName() == null) {
             throw new IllegalArgumentException(PAYMENT_TYPE_NAME_CANNOT_BE_NULL_MESSAGE);
         }
 
-        if (createPaymentTypeDto.getPaymentName().isEmpty()) {
+        if (createPaymentTypeRequestDto.getPaymentName().isEmpty()) {
             throw new IllegalArgumentException(PAYMENT_TYPE_NAME_CANNOT_BE_EMPTY_MESSAGE);
         }
 
         PaymentType paymentType = new PaymentType();
 
-        paymentType.setPaymentName(createPaymentTypeDto.getPaymentName());
+        paymentType.setPaymentName(createPaymentTypeRequestDto.getPaymentName());
 
         return paymentTypeDtoMapper.toDto(paymentTypeRepository.save(paymentType));
     }
 
     @Transactional
-    public PaymentTypeDto updatePaymentTypeById(Long id, UpdatePaymentTypeDto updatePaymentTypeDto) throws EntityNotFoundException, IllegalArgumentException {
+    public PaymentTypeResponseDto updatePaymentTypeById(Long id, UpdatePaymentTypeRequestDto updatePaymentTypeRequestDto) throws EntityNotFoundException, IllegalArgumentException {
         if (!paymentTypeRepository.existsById(id)) {
             throw new EntityNotFoundException(PAYMENT_TYPE_NOT_FOUND_MESSAGE);
         }
 
         PaymentType paymentType = paymentTypeRepository.getReferenceById(id);
 
-        if (updatePaymentTypeDto.getPaymentName() != null) {
-            PaymentType otherPaymentType = paymentTypeRepository.findByPaymentName(updatePaymentTypeDto.getPaymentName());
+        if (updatePaymentTypeRequestDto.getPaymentName() != null) {
+            PaymentType otherPaymentType = paymentTypeRepository.findByPaymentName(updatePaymentTypeRequestDto.getPaymentName());
 
             if (otherPaymentType != null && !otherPaymentType.getPaymentTypeId().equals(id)) {
                 throw new IllegalArgumentException(PAYMENT_TYPE_ALREADY_EXISTS_MESSAGE);
             }
 
-            if (updatePaymentTypeDto.getPaymentName().isEmpty()) {
+            if (updatePaymentTypeRequestDto.getPaymentName().isEmpty()) {
                 throw new IllegalArgumentException(PAYMENT_TYPE_NAME_CANNOT_BE_EMPTY_MESSAGE);
             }
 
-            paymentType.setPaymentName(updatePaymentTypeDto.getPaymentName());
+            paymentType.setPaymentName(updatePaymentTypeRequestDto.getPaymentName());
         }
 
         return paymentTypeDtoMapper.toDto(paymentTypeRepository.save(paymentType));

@@ -1,5 +1,7 @@
 package com.example.internet_shop.complaintimages;
 
+import com.example.internet_shop.complaintimages.dto.ComplaintImageResponseDto;
+import com.example.internet_shop.complaintimages.dto.CreateComplaintImageRequestDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,18 +19,18 @@ public class ComplaintImageController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<List<ComplaintImageDto>> getComplaintImages() {
+    public ResponseEntity<List<ComplaintImageResponseDto>> getComplaintImages() {
         return ResponseEntity.ok(complaintImageService.getComplaintImages());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ComplaintImageDto> getComplaintImageById(@PathVariable Long id) {
+    public ResponseEntity<ComplaintImageResponseDto> getComplaintImageById(@PathVariable Long id) {
         return ResponseEntity.ok(complaintImageService.getComplaintImageById(id));
     }
 
     @PostMapping("/")
-    public ResponseEntity<ComplaintImageDto> createComplaintImage(@RequestBody CreateComplaintImageDto createComplaintImageDto) {
-        ComplaintImageDto createdComplaintImage = complaintImageService.createComplaintImage(createComplaintImageDto);
+    public ResponseEntity<ComplaintImageResponseDto> createComplaintImage(@RequestBody CreateComplaintImageRequestDto createComplaintImageRequestDto) {
+        ComplaintImageResponseDto createdComplaintImage = complaintImageService.createComplaintImage(createComplaintImageRequestDto);
 
         return ResponseEntity.created(URI.create("/api/complaint_images/" + createdComplaintImage.getId())).body(createdComplaintImage);
     }
