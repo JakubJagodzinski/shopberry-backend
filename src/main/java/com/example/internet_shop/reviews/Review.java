@@ -30,7 +30,6 @@ public class Review {
 
     @ManyToOne
     @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
-    // TODO when user is deleted, replace with anonymous user
     private Customer customer;
 
     @Column(name = "rating_value", nullable = false)
