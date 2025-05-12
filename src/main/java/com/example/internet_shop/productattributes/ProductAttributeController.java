@@ -47,4 +47,15 @@ public class ProductAttributeController {
                 .body(createdProductAttributeResponseDto);
     }
 
+    @DeleteMapping("/{productId}/{attributeId}")
+    public ResponseEntity<String> deleteProductAttributeById(@PathVariable Long productId, @PathVariable Long attributeId) {
+        ProductAttributeId productAttributeId = new ProductAttributeId(productId, attributeId);
+
+        productAttributeService.deleteProductAttributeById(productAttributeId);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body("Product attribute with id " + productAttributeId + " deleted successfully");
+    }
+
 }

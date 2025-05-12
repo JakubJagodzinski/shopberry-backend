@@ -22,6 +22,7 @@ public class ProductAttributeService {
 
     private final ProductAttributeDtoMapper productAttributeDtoMapper;
 
+    private final String PRODUCT_ATTRIBUTE_NOT_FOUND_MESSAGE = "Product attribute not found";
     private final String ATTRIBUTE_ALREADY_ASSIGNED_TO_THIS_PRODUCT_MESSAGE = "Attribute already assigned to this product";
     private final String PRODUCT_NOT_FOUND_MESSAGE = "Product not found";
     private final String ATTRIBUTE_NOT_FOUND_MESSAGE = "Attribute not found";
@@ -85,6 +86,29 @@ public class ProductAttributeService {
         productAttribute.setValue(createProductAttributeRequestDto.getValue());
 
         return productAttributeDtoMapper.toDto(productAttributeRepository.save(productAttribute));
+    }
+
+    @Transactional
+    public void deleteProductAttributeById(ProductAttributeId productAttributeId) throws EntityNotFoundException {
+        Product product = productRepository.findById(productAttributeId.getProductId()).orElse(null);
+
+        if (product == null) {
+            throw new EntityNotFoundException(PRODUCT_NOT_FOUND_MESSAGE);
+        }
+
+        Attribute attribute = attributeRepository.findById(productAttributeId.getAttributeId()).orElse(null);
+
+        if (attribute == null) {
+            throw new EntityNotFoundException(ATTRIBUTE_NOT_FOUND_MESSAGE);
+        }
+
+        ProductAttribute productAttribute = productAttributeRepository.findById(productAttributeId).orElse(null);
+
+        if (productAttribute == null) {
+            throw new EntityNotFoundException(PRODUCT_ATTRIBUTE_NOT_FOUND_MESSAGE);
+        }
+
+        productAttributeRepository.deleteById(productAttributeId);
     }
 
 }
