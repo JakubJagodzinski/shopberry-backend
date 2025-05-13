@@ -1,4 +1,4 @@
-# Internet Shop (Backend)
+# Shopberry (Backend)
 This project is an e-commerce website that allows customers to browse products, manage their accounts, place orders, and track their purchase history. <br>
 Employees handle order processing, returns, and customer complaints. <br>
 Administrators manage products, categories, users, and reviews, while also configuring discounts and store settings. <br>
