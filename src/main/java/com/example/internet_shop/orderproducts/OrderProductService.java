@@ -3,6 +3,8 @@ package com.example.internet_shop.orderproducts;
 import com.example.internet_shop.orderproducts.dto.CreateOrderProductRequestDto;
 import com.example.internet_shop.orderproducts.dto.OrderProductDtoMapper;
 import com.example.internet_shop.orderproducts.dto.OrderProductResponseDto;
+import com.example.internet_shop.orderproductstatuses.OrderProductStatus;
+import com.example.internet_shop.orderproductstatuses.OrderProductStatusRepository;
 import com.example.internet_shop.orders.Order;
 import com.example.internet_shop.orders.OrderRepository;
 import com.example.internet_shop.products.Product;
@@ -28,12 +30,15 @@ public class OrderProductService {
     private final String PRODUCT_ALREADY_ADDED_TO_THIS_ORDER_MESSAGE = "Product already added to this order";
     private final String PRODUCT_QUANTITY_MUST_BE_GREATER_THAN_ZERO_MESSAGE = "Product quantity must be greater than zero";
     private final String PRODUCT_PRICE_MUST_BE_POSITIVE_MESSAGE = "Product price must be positive";
+    private final String ORDER_PRODUCT_STATUS_NOT_FOUND_MESSAGE = "Order product status not found";
+    private final OrderProductStatusRepository orderProductStatusRepository;
 
-    public OrderProductService(OrderProductRepository orderProductRepository, OrderRepository orderRepository, ProductRepository productRepository, OrderProductDtoMapper orderProductDtoMapper) {
+    public OrderProductService(OrderProductRepository orderProductRepository, OrderRepository orderRepository, ProductRepository productRepository, OrderProductDtoMapper orderProductDtoMapper, OrderProductStatusRepository orderProductStatusRepository) {
         this.orderProductRepository = orderProductRepository;
         this.orderRepository = orderRepository;
         this.productRepository = productRepository;
         this.orderProductDtoMapper = orderProductDtoMapper;
+        this.orderProductStatusRepository = orderProductStatusRepository;
     }
 
     @Transactional
@@ -70,12 +75,15 @@ public class OrderProductService {
             throw new EntityNotFoundException(PRODUCT_NOT_FOUND_MESSAGE);
         }
 
-        if (orderProductRepository.existsById(new OrderProductId(order.getOrderId(), product.getProductId()))) {
+        OrderProductId orderProductId = new OrderProductId(order.getOrderId(), product.getProductId());
+
+        if (orderProductRepository.existsById(orderProductId)) {
             throw new IllegalArgumentException(PRODUCT_ALREADY_ADDED_TO_THIS_ORDER_MESSAGE);
         }
 
         OrderProduct orderProduct = new OrderProduct();
 
+        orderProduct.setId(orderProductId);
         orderProduct.setOrder(order);
         orderProduct.setProduct(product);
 
@@ -90,6 +98,14 @@ public class OrderProductService {
         }
 
         orderProduct.setProductPrice(createOrderProductRequestDto.getProductPrice());
+
+        OrderProductStatus orderProductStatus = orderProductStatusRepository.findById(1L).orElse(null);
+
+        if (orderProductStatus == null) {
+            throw new EntityNotFoundException(ORDER_PRODUCT_STATUS_NOT_FOUND_MESSAGE);
+        }
+
+        orderProduct.setOrderProductStatus(orderProductStatus);
 
         return orderProductDtoMapper.toDto(orderProductRepository.save(orderProduct));
     }
