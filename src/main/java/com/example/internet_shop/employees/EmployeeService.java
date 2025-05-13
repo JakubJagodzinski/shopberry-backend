@@ -107,7 +107,9 @@ public class EmployeeService {
         }
 
         if (updateEmployeeRequestDto.getEmail() != null) {
-            if (employeeRepository.existsByEmail(updateEmployeeRequestDto.getEmail())) {
+            Employee otherEmployee = employeeRepository.findByEmail(updateEmployeeRequestDto.getEmail());
+
+            if (otherEmployee != null && !employee.getEmployeeId().equals(otherEmployee.getEmployeeId())) {
                 throw new IllegalArgumentException(EMPLOYEE_WITH_THAT_EMAIL_ALREADY_EXISTS_MESSAGE);
             }
 
