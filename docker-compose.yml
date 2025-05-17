@@ -1,16 +1,33 @@
 services:
   mssql:
     image: mcr.microsoft.com/mssql/server:2022-latest
-    container_name: mssql
+    container_name: shopberry-db
     environment:
-      - ACCEPT_EULA=Y
-      - SA_PASSWORD=SuperSilneHaslo!2024
-      - MSSQL_PID=Developer
+      - ACCEPT_EULA=${ACCEPT_EULA}
+      - SA_PASSWORD=${SA_PASSWORD}
+      - MSSQL_PID=${MSSQL_PID}
     ports:
       - "1433:1433"
     volumes:
       - sql_data:/var/opt/mssql
     restart: unless-stopped
 
+  db-init:
+    image: mcr.microsoft.com/mssql-tools
+    container_name: shopberry-init
+    depends_on:
+      - mssql
+    entrypoint: /bin/bash -c "
+      echo 'Waiting for SQL Server to be ready...';
+      until /opt/mssql-tools/bin/sqlcmd -S mssql -U sa -P ${SA_PASSWORD} -Q 'SELECT 1' &> /dev/null; do
+      echo 'Still waiting...';
+      sleep 2;
+      done;
+      echo 'SQL Server is ready.';
+      /opt/mssql-tools/bin/sqlcmd -S mssql -U sa -P ${SA_PASSWORD} -i /init.sql;
+      echo 'Init script done.';"
+    volumes:
+      - ./db-init/init.sql:/init.sql
+
 volumes:
-  sql_data:
+  sql_data: { }
