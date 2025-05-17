@@ -2,10 +2,11 @@ spring:
   application:
     name: internet_shop
   datasource:
-    url: jdbc:sqlserver://localhost:1433;databaseName=internet_shop;encrypt=true;trustServerCertificate=true
+    url: jdbc:sqlserver://localhost:1433;databaseName=shopberry;encrypt=true;trustServerCertificate=true
     username: sa
-    password: SuperSilneHaslo!2024
+    password: Password1!
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+
   jpa:
     hibernate:
       ddl-auto: update
@@ -14,6 +15,7 @@ spring:
     properties:
       hibernate:
         format_sql: true
+        default_schema: app
     database: sql_server
 
 server:
