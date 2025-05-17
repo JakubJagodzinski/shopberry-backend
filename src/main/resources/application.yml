@@ -1,6 +1,7 @@
 spring:
   application:
-    name: internet_shop
+    name: shopberry
+
   datasource:
     url: jdbc:sqlserver://localhost:1433;databaseName=shopberry;encrypt=true;trustServerCertificate=true
     username: sa

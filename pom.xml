@@ -12,10 +12,10 @@
     </parent>
 
     <groupId>com.example</groupId>
-    <artifactId>internet_shop</artifactId>
+    <artifactId>shopberry</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>internet_shop</name>
-    <description>Internet shop backend</description>
+    <name>shopberry</name>
+    <description>Shopberry backend</description>
 
     <properties>
         <java.version>21</java.version>
