@@ -1,0 +1,39 @@
+package com.example.shopberry.domain.favouriteentries;
+
+import com.example.shopberry.domain.customers.Customer;
+import com.example.shopberry.domain.products.Product;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import java.time.LocalDateTime;
+
+@Entity
+@Table(name = "favourite_entries")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class FavouriteEntry {
+
+    @EmbeddedId
+    private FavouriteEntryId id;
+
+    @ManyToOne
+    @MapsId("customerId")
+    @JoinColumn(name = "customer_id", foreignKey = @ForeignKey(name = "fk_favourite_customer"))
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Customer customer;
+
+    @ManyToOne
+    @MapsId("productId")
+    @JoinColumn(name = "product_id", foreignKey = @ForeignKey(name = "fk_favourite_product"))
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Product product;
+
+    @Column(name = "added_at")
+    private LocalDateTime addedAt = LocalDateTime.now();
+
+}
