@@ -2,6 +2,13 @@ spring:
   application:
     name: shopberry
 
+  security:
+    jwt:
+      secret-key: ${JWT_SECRET_KEY}
+      expiration: ${JWT_EXPIRATION}
+      refresh-token:
+        expiration: ${JWT_REFRESH_TOKEN_EXPIRATION}
+
   datasource:
     url: jdbc:sqlserver://localhost:1433;databaseName=shopberry;encrypt=true;trustServerCertificate=true
     username: sa
