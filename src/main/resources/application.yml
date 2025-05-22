@@ -10,9 +10,9 @@ spring:
         expiration: ${JWT_REFRESH_TOKEN_EXPIRATION}
 
   datasource:
-    url: jdbc:sqlserver://localhost:1433;databaseName=shopberry;encrypt=true;trustServerCertificate=true
+    url: ${DATASOURCE_URL}
     username: sa
-    password: Password1!
+    password: ${SA_PASSWORD}
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
 
   jpa:
@@ -27,4 +27,4 @@ spring:
     database: sql_server
 
 server:
-  port: 8090
+  port: ${SERVER_PORT}
