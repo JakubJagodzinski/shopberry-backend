@@ -8,8 +8,8 @@ import java.util.List;
 @Repository
 public interface CustomerAddressRepository extends JpaRepository<CustomerAddress, Long> {
 
-    List<CustomerAddress> findAllByCustomer_CustomerId(Long customerId);
+    List<CustomerAddress> findAllByCustomer_Id(Long customerId);
 
-    void deleteAllByCustomer_CustomerId(Long customerId);
+    void deleteAllByCustomer_Id(Long customerId);
 
 }

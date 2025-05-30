@@ -1,13 +1,11 @@
 package com.example.shopberry.domain.customers;
 
-import com.example.shopberry.domain.customers.dto.CreateCustomerRequestDto;
 import com.example.shopberry.domain.customers.dto.CustomerResponseDto;
 import com.example.shopberry.domain.customers.dto.UpdateCustomerRequestDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -36,16 +34,6 @@ public class CustomerController {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(customerResponseDto);
-    }
-
-    @PostMapping("/")
-    public ResponseEntity<CustomerResponseDto> createCustomer(@RequestBody CreateCustomerRequestDto createCustomerRequestDto) {
-        CustomerResponseDto createdCustomerResponseDto = customerService.createCustomer(createCustomerRequestDto);
-
-        return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .location(URI.create("/api/v1/customers/" + createdCustomerResponseDto.getCustomerId()))
-                .body(createdCustomerResponseDto);
     }
 
     @PutMapping("/{id}")

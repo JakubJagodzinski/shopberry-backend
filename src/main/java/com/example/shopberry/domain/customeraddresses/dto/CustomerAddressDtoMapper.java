@@ -12,7 +12,7 @@ public class CustomerAddressDtoMapper {
         CustomerAddressResponseDto customerAddressResponseDto = new CustomerAddressResponseDto();
 
         customerAddressResponseDto.setAddressId(customerAddress.getAddressId());
-        customerAddressResponseDto.setCustomerId(customerAddress.getCustomer().getCustomerId());
+        customerAddressResponseDto.setCustomerId(customerAddress.getCustomer().getId());
         customerAddressResponseDto.setFirstName(customerAddress.getFirstName());
         customerAddressResponseDto.setLastName(customerAddress.getLastName());
         customerAddressResponseDto.setCity(customerAddress.getCity());

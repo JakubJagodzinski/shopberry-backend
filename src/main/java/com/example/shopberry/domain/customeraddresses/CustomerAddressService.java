@@ -41,7 +41,7 @@ public class CustomerAddressService {
             throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
         }
 
-        return customerAddressDtoMapper.toDtoList(customerAddressRepository.findAllByCustomer_CustomerId(customerId));
+        return customerAddressDtoMapper.toDtoList(customerAddressRepository.findAllByCustomer_Id(customerId));
     }
 
     @Transactional
@@ -124,7 +124,7 @@ public class CustomerAddressService {
             throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
         }
 
-        customerAddressRepository.deleteAllByCustomer_CustomerId(customerId);
+        customerAddressRepository.deleteAllByCustomer_Id(customerId);
     }
 
     @Transactional

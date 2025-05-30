@@ -1,11 +1,12 @@
 package com.example.shopberry.domain.customers;
 
-import com.example.shopberry.domain.customers.dto.CreateCustomerRequestDto;
+import com.example.shopberry.auth.dto.RegisterRequestDto;
 import com.example.shopberry.domain.customers.dto.CustomerDtoMapper;
 import com.example.shopberry.domain.customers.dto.CustomerResponseDto;
 import com.example.shopberry.domain.customers.dto.UpdateCustomerRequestDto;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,12 +17,14 @@ public class CustomerService {
     private final CustomerRepository customerRepository;
     private final CustomerDtoMapper customerDtoMapper;
 
-    private final String CUSTOMER_NOT_FOUND_MESSAGE = "Customer not found";
-    private final String CUSTOMER_WITH_THAT_EMAIL_ALREADY_EXISTS_MESSAGE = "Customer with that email already exists";
+    private final PasswordEncoder passwordEncoder;
 
-    public CustomerService(CustomerRepository customerRepository, CustomerDtoMapper customerDtoMapper) {
+    private final String CUSTOMER_NOT_FOUND_MESSAGE = "Customer not found";
+
+    public CustomerService(CustomerRepository customerRepository, CustomerDtoMapper customerDtoMapper, PasswordEncoder passwordEncoder) {
         this.customerRepository = customerRepository;
         this.customerDtoMapper = customerDtoMapper;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public List<CustomerResponseDto> getCustomers() {
@@ -40,18 +43,17 @@ public class CustomerService {
     }
 
     @Transactional
-    public CustomerResponseDto createCustomer(CreateCustomerRequestDto createCustomerRequestDto) throws IllegalArgumentException {
-        if (customerRepository.existsByEmail(createCustomerRequestDto.getEmail())) {
-            throw new IllegalArgumentException(CUSTOMER_WITH_THAT_EMAIL_ALREADY_EXISTS_MESSAGE);
-        }
-
+    public Customer register(RegisterRequestDto registerRequestDto) throws IllegalArgumentException {
         Customer customer = new Customer();
 
-        customer.setEmail(createCustomerRequestDto.getEmail());
-        customer.setPassword(createCustomerRequestDto.getPassword());
-        customer.setIsCompany(createCustomerRequestDto.getIsCompany());
+        customer.setFirstName(registerRequestDto.getFirstname());
+        customer.setLastName(registerRequestDto.getLastname());
+        customer.setIsCompany(registerRequestDto.getIsCompany());
+        customer.setEmail(registerRequestDto.getEmail());
+        customer.setPassword(passwordEncoder.encode(registerRequestDto.getPassword()));
+        customer.setRole(registerRequestDto.getRole());
 
-        return customerDtoMapper.toDto(customerRepository.save(customer));
+        return customerRepository.save(customer);
     }
 
     @Transactional
@@ -62,18 +64,8 @@ public class CustomerService {
             throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
         }
 
-        if (updateCustomerRequestDto.getEmail() != null) {
-            Customer otherCustomer = customerRepository.findByEmail(updateCustomerRequestDto.getEmail());
-
-            if (otherCustomer != null && !customer.getCustomerId().equals(otherCustomer.getCustomerId())) {
-                throw new IllegalArgumentException(CUSTOMER_WITH_THAT_EMAIL_ALREADY_EXISTS_MESSAGE);
-            }
-
-            customer.setEmail(updateCustomerRequestDto.getEmail());
-        }
-
-        if (updateCustomerRequestDto.getPassword() != null) {
-            customer.setPassword(updateCustomerRequestDto.getPassword());
+        if (updateCustomerRequestDto.getIsCompany() != null) {
+            customer.setIsCompany(updateCustomerRequestDto.getIsCompany());
         }
 
         return customerDtoMapper.toDto(customerRepository.save(customer));

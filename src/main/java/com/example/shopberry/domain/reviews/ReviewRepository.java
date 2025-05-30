@@ -10,9 +10,9 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
 
     List<Review> findByProduct_ProductId(Long productId);
 
-    List<Review> findByCustomer_CustomerId(Long customerId);
+    List<Review> findByCustomer_Id(Long customerId);
 
-    void deleteByCustomer_CustomerId(Long customerId);
+    void deleteByCustomer_Id(Long customerId);
 
     void deleteByProduct_ProductId(Long productId);
 

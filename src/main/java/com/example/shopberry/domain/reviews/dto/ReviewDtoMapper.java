@@ -13,7 +13,7 @@ public class ReviewDtoMapper {
 
         reviewResponseDto.setReviewId(review.getReviewId());
         reviewResponseDto.setProductId(review.getProduct().getProductId());
-        reviewResponseDto.setCustomerId(review.getCustomer().getCustomerId());
+        reviewResponseDto.setCustomerId(review.getCustomer().getId());
         reviewResponseDto.setRatingValue(review.getRatingValue());
         reviewResponseDto.setReviewText(review.getReviewText());
         reviewResponseDto.setReviewedAt(review.getReviewedAt());

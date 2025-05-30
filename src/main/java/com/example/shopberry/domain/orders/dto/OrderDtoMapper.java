@@ -15,7 +15,7 @@ public class OrderDtoMapper {
         OrderResponseDto.setCreatedAt(Order.getCreatedAt());
         OrderResponseDto.setSentAt(Order.getSentAt());
         OrderResponseDto.setOrderStatusId(Order.getOrderStatus().getOrderStatusId());
-        OrderResponseDto.setCustomerId(Order.getCustomer().getCustomerId());
+        OrderResponseDto.setCustomerId(Order.getCustomer().getId());
         OrderResponseDto.setShipmentTypeId(Order.getShipmentType().getShipmentTypeId());
         OrderResponseDto.setShipmentIdentifier(Order.getShipmentIdentifier());
         OrderResponseDto.setPaymentTypeId(Order.getPaymentType().getPaymentTypeId());

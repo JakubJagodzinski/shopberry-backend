@@ -1,5 +1,6 @@
 package com.example.shopberry.domain.customers.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,6 +15,12 @@ import java.time.LocalDateTime;
 public class CustomerResponseDto {
 
     private Long customerId;
+
+    @JsonProperty("first_name")
+    private String firstName;
+
+    @JsonProperty("last_name")
+    private String lastName;
 
     private String email;
 

@@ -56,7 +56,7 @@ public class ReviewService {
             throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
         }
 
-        return reviewDtoMapper.toDtoList(reviewRepository.findByCustomer_CustomerId(customerId));
+        return reviewDtoMapper.toDtoList(reviewRepository.findByCustomer_Id(customerId));
     }
 
     @Transactional
@@ -153,7 +153,7 @@ public class ReviewService {
             throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
         }
 
-        reviewRepository.deleteByCustomer_CustomerId(customerId);
+        reviewRepository.deleteByCustomer_Id(customerId);
     }
 
     @Transactional

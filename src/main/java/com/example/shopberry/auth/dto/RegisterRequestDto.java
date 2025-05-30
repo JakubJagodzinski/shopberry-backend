@@ -23,6 +23,12 @@ public class RegisterRequestDto {
 
     private String password;
 
+    @JsonProperty("is_company")
+    private Boolean isCompany = false;
+
+    @JsonProperty("employee_type_id")
+    private Long employeeTypeId;
+
     private Role role;
 
 }

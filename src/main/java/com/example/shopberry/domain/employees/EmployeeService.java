@@ -1,6 +1,6 @@
 package com.example.shopberry.domain.employees;
 
-import com.example.shopberry.domain.employees.dto.CreateEmployeeRequestDto;
+import com.example.shopberry.auth.dto.RegisterRequestDto;
 import com.example.shopberry.domain.employees.dto.EmployeeDtoMapper;
 import com.example.shopberry.domain.employees.dto.EmployeeResponseDto;
 import com.example.shopberry.domain.employees.dto.UpdateEmployeeRequestDto;
@@ -8,6 +8,7 @@ import com.example.shopberry.domain.employeetypes.EmployeeType;
 import com.example.shopberry.domain.employeetypes.EmployeeTypeRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,6 +21,8 @@ public class EmployeeService {
 
     private final EmployeeDtoMapper employeeDtoMapper;
 
+    private final PasswordEncoder passwordEncoder;
+
     private final String EMPLOYEE_NOT_FOUND_MESSAGE = "Employee not found";
     private final String EMPLOYEE_TYPE_NOT_FOUND_MESSAGE = "Employee type not found";
     private final String EMPLOYEE_WITH_THAT_EMAIL_ALREADY_EXISTS_MESSAGE = "Employee with that email already exists";
@@ -28,9 +31,10 @@ public class EmployeeService {
     private final String EMPLOYEE_EMAIL_CANNOT_BE_EMPTY_MESSAGE = "Employee email cannot be empty";
     private final String EMPLOYEE_PASSWORD_CANNOT_BE_EMPTY_MESSAGE = "Employee password cannot be empty";
 
-    public EmployeeService(EmployeeRepository employeeRepository, EmployeeTypeRepository employeeTypeRepository, EmployeeDtoMapper employeeDtoMapper) {
+    public EmployeeService(EmployeeRepository employeeRepository, EmployeeTypeRepository employeeTypeRepository, PasswordEncoder passwordEncoder, EmployeeDtoMapper employeeDtoMapper) {
         this.employeeRepository = employeeRepository;
         this.employeeTypeRepository = employeeTypeRepository;
+        this.passwordEncoder = passwordEncoder;
         this.employeeDtoMapper = employeeDtoMapper;
     }
 
@@ -50,12 +54,8 @@ public class EmployeeService {
     }
 
     @Transactional
-    public EmployeeResponseDto createEmployee(CreateEmployeeRequestDto createEmployeeRequestDto) throws EntityNotFoundException, IllegalArgumentException {
-        if (employeeRepository.existsByEmail(createEmployeeRequestDto.getEmail())) {
-            throw new IllegalArgumentException(EMPLOYEE_WITH_THAT_EMAIL_ALREADY_EXISTS_MESSAGE);
-        }
-
-        EmployeeType employeeType = employeeTypeRepository.findById(createEmployeeRequestDto.getEmployeeTypeId()).orElse(null);
+    public Employee register(RegisterRequestDto registerRequestDto) throws EntityNotFoundException, IllegalArgumentException {
+        EmployeeType employeeType = employeeTypeRepository.findById(registerRequestDto.getEmployeeTypeId()).orElse(null);
 
         if (employeeType == null) {
             throw new EntityNotFoundException(EMPLOYEE_TYPE_NOT_FOUND_MESSAGE);
@@ -63,13 +63,13 @@ public class EmployeeService {
 
         Employee employee = new Employee();
 
+        employee.setFirstName(registerRequestDto.getFirstname());
+        employee.setLastName(registerRequestDto.getLastname());
+        employee.setEmail(registerRequestDto.getEmail());
+        employee.setPassword(passwordEncoder.encode(registerRequestDto.getPassword()));
         employee.setEmployeeType(employeeType);
-        employee.setFirstName(createEmployeeRequestDto.getFirstName());
-        employee.setLastName(createEmployeeRequestDto.getLastName());
-        employee.setEmail(createEmployeeRequestDto.getEmail());
-        employee.setPassword(createEmployeeRequestDto.getPassword());
 
-        return employeeDtoMapper.toDto(employeeRepository.save(employee));
+        return employeeRepository.save(employee);
     }
 
     @Transactional
@@ -106,19 +106,19 @@ public class EmployeeService {
             employee.setLastName(updateEmployeeRequestDto.getLastName());
         }
 
-        if (updateEmployeeRequestDto.getEmail() != null) {
-            Employee otherEmployee = employeeRepository.findByEmail(updateEmployeeRequestDto.getEmail());
-
-            if (otherEmployee != null && !employee.getEmployeeId().equals(otherEmployee.getEmployeeId())) {
-                throw new IllegalArgumentException(EMPLOYEE_WITH_THAT_EMAIL_ALREADY_EXISTS_MESSAGE);
-            }
-
-            if (updateEmployeeRequestDto.getEmail().isEmpty()) {
-                throw new IllegalArgumentException(EMPLOYEE_EMAIL_CANNOT_BE_EMPTY_MESSAGE);
-            }
-
-            employee.setEmail(updateEmployeeRequestDto.getEmail());
-        }
+//        if (updateEmployeeRequestDto.getEmail() != null) {
+//            Employee otherEmployee = employeeRepository.findByEmail(updateEmployeeRequestDto.getEmail());
+//
+//            if (otherEmployee != null && !employee.getId().equals(otherEmployee.getId())) {
+//                throw new IllegalArgumentException(EMPLOYEE_WITH_THAT_EMAIL_ALREADY_EXISTS_MESSAGE);
+//            }
+//
+//            if (updateEmployeeRequestDto.getEmail().isEmpty()) {
+//                throw new IllegalArgumentException(EMPLOYEE_EMAIL_CANNOT_BE_EMPTY_MESSAGE);
+//            }
+//
+//            employee.setEmail(updateEmployeeRequestDto.getEmail());
+//        }
 
         if (updateEmployeeRequestDto.getPassword() != null) {
             if (updateEmployeeRequestDto.getPassword().isEmpty()) {

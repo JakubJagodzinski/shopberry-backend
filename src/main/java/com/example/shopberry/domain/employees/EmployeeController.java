@@ -1,13 +1,11 @@
 package com.example.shopberry.domain.employees;
 
-import com.example.shopberry.domain.employees.dto.CreateEmployeeRequestDto;
 import com.example.shopberry.domain.employees.dto.EmployeeResponseDto;
 import com.example.shopberry.domain.employees.dto.UpdateEmployeeRequestDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -36,16 +34,6 @@ public class EmployeeController {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(employeeResponseDto);
-    }
-
-    @PostMapping("/")
-    public ResponseEntity<EmployeeResponseDto> createEmployee(@RequestBody CreateEmployeeRequestDto createEmployeeRequestDto) {
-        EmployeeResponseDto createdEmployeeResponseDto = employeeService.createEmployee(createEmployeeRequestDto);
-
-        return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .location(URI.create("/api/v1/employees/" + createdEmployeeResponseDto.getEmployeeId()))
-                .body(createdEmployeeResponseDto);
     }
 
     @PutMapping("/{id}")

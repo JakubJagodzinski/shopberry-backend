@@ -1,7 +1,6 @@
 package com.example.shopberry.user;
 
 
-import com.example.shopberry.auth.jwt.Token;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,34 +9,39 @@ import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
-import java.util.List;
 
+@Entity
+@Table(name = "users")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table(name = "_user")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
-    private String firstname;
+    @Column(name = "first_name", nullable = false, length = 100)
+    private String firstName;
 
-    private String lastname;
+    @Column(name = "last_name", nullable = false, length = 100)
+    private String lastName;
 
+    @Column(unique = true, nullable = false, length = 100)
     private String email;
 
+    @Column(nullable = false, length = 100)
     private String password;
+
+    @Column(name = "created_at")
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     @Enumerated(EnumType.STRING)
     private Role role;
-
-    @OneToMany(mappedBy = "user")
-    private List<Token> tokens;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
