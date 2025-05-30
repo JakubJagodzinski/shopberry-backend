@@ -11,7 +11,7 @@ public class CartEntryDtoMapper {
     public CartEntryResponseDto toDto(CartEntry cartEntry) {
         CartEntryResponseDto cartEntryResponseDto = new CartEntryResponseDto();
 
-        cartEntryResponseDto.setCustomerId(cartEntry.getCustomer().getCustomerId());
+        cartEntryResponseDto.setCustomerId(cartEntry.getCustomer().getId());
         cartEntryResponseDto.setProductId(cartEntry.getProduct().getProductId());
         cartEntryResponseDto.setQuantity(cartEntry.getQuantity());
         cartEntryResponseDto.setAddedAt(cartEntry.getAddedAt());
