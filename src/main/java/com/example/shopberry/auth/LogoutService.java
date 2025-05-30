@@ -19,7 +19,6 @@ public class LogoutService implements LogoutHandler {
     @Override
     public void logout(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
         final String authHeader = request.getHeader("Authorization");
-
         final String headerStart = "Bearer ";
 
         if (authHeader == null || !authHeader.startsWith(headerStart)) {

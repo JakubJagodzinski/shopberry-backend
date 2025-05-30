@@ -12,6 +12,20 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AuthenticationResponseDto {
 
+    @JsonProperty("user_id")
+    private Long userId;
+
+    @JsonProperty("first_name")
+    private String firstName;
+
+    @JsonProperty("last_name")
+    private String lastName;
+
+    @JsonProperty("is_company")
+    private Boolean isCompany;
+
+    private String role;
+
     @JsonProperty("access_token")
     private String accessToken;
 
