@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class CustomerResponseDto {
 
+    @JsonProperty("customer_id")
     private Long customerId;
 
     @JsonProperty("first_name")
@@ -24,8 +25,10 @@ public class CustomerResponseDto {
 
     private String email;
 
+    @JsonProperty("created_at")
     private LocalDateTime createdAt;
 
+    @JsonProperty("is_company")
     private Boolean isCompany;
 
 }

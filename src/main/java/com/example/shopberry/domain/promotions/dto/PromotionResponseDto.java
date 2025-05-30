@@ -1,5 +1,6 @@
 package com.example.shopberry.domain.promotions.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,10 +12,13 @@ import lombok.Setter;
 @AllArgsConstructor
 public class PromotionResponseDto {
 
+    @JsonProperty("promotion_id")
     private Long promotionId;
 
+    @JsonProperty("promotion_name")
     private String promotionName;
 
+    @JsonProperty("discount_percent_value")
     private Long discountPercentValue;
 
 }

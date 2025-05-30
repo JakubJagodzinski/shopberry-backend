@@ -1,5 +1,6 @@
 package com.example.shopberry.domain.customers.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,6 +16,7 @@ public class CreateCustomerRequestDto {
 
     private String password;
 
+    @JsonProperty("is_company")
     private Boolean isCompany;
 
 }
