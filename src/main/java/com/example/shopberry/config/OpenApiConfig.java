@@ -20,9 +20,11 @@ public class OpenApiConfig {
     public static final String API_VERSION = "1.0";
     public static final String API_DESCRIPTION = "Shopberry API documentation";
 
+    public static final String BAD_REQUEST_CODE = "400";
     public static final String FORBIDDEN_CODE = "403";
     public static final String NOT_FOUND_CODE = "404";
 
+    public static final String BAD_REQUEST_DESCRIPTION = "Bad Request";
     public static final String FORBIDDEN_DESCRIPTION = "Forbidden";
     public static final String NOT_FOUND_DESCRIPTION = "Not Found";
 
@@ -54,6 +56,13 @@ public class OpenApiConfig {
         return openApi -> openApi.getPaths().forEach((path, pathItem) ->
                 pathItem.readOperations().forEach(operation -> {
                     ApiResponses responses = operation.getResponses();
+
+                    if (!responses.containsKey(BAD_REQUEST_CODE)) {
+                        responses.addApiResponse(
+                                BAD_REQUEST_CODE,
+                                new ApiResponse().description(BAD_REQUEST_DESCRIPTION)
+                        );
+                    }
 
                     if (!responses.containsKey(FORBIDDEN_CODE)) {
                         responses.addApiResponse(
