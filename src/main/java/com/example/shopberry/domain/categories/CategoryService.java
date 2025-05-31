@@ -6,11 +6,13 @@ import com.example.shopberry.domain.categories.dto.CreateCategoryRequestDto;
 import com.example.shopberry.domain.categories.dto.UpdateCategoryRequestDto;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class CategoryService {
 
     private final CategoryRepository categoryRepository;
@@ -20,11 +22,6 @@ public class CategoryService {
     private final String PARENT_CATEGORY_NOT_FOUND_MESSAGE = "Parent category not found";
     private final String CATEGORY_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE = "Category with that name already exists";
     private final String CATEGORY_CANNOT_BE_PARENT_TO_ITSELF_MESSAGE = "Category cannot be parent to itself";
-
-    public CategoryService(CategoryRepository categoryRepository, CategoryDtoMapper categoryDtoMapper) {
-        this.categoryRepository = categoryRepository;
-        this.categoryDtoMapper = categoryDtoMapper;
-    }
 
     public List<CategoryResponseDto> getCategories() {
         return categoryDtoMapper.toDtoList(categoryRepository.findAll());

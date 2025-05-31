@@ -2,6 +2,7 @@ package com.example.shopberry.domain.complaintimages;
 
 import com.example.shopberry.domain.complaintimages.dto.ComplaintImageResponseDto;
 import com.example.shopberry.domain.complaintimages.dto.CreateComplaintImageRequestDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,13 +12,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/complaint-images")
+@RequiredArgsConstructor
 public class ComplaintImageController {
 
     private final ComplaintImageService complaintImageService;
-
-    public ComplaintImageController(ComplaintImageService complaintImageService) {
-        this.complaintImageService = complaintImageService;
-    }
 
     @GetMapping("/")
     public ResponseEntity<List<ComplaintImageResponseDto>> getComplaintImages() {

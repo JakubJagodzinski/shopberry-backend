@@ -3,6 +3,7 @@ package com.example.shopberry.domain.paymenttypes;
 import com.example.shopberry.domain.paymenttypes.dto.CreatePaymentTypeRequestDto;
 import com.example.shopberry.domain.paymenttypes.dto.PaymentTypeResponseDto;
 import com.example.shopberry.domain.paymenttypes.dto.UpdatePaymentTypeRequestDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,13 +13,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/payment-types")
+@RequiredArgsConstructor
 public class PaymentTypeController {
 
     private final PaymentTypeService paymentTypeService;
-
-    public PaymentTypeController(PaymentTypeService paymentTypeService) {
-        this.paymentTypeService = paymentTypeService;
-    }
 
     @GetMapping("/")
     public ResponseEntity<List<PaymentTypeResponseDto>> getPaymentTypes() {

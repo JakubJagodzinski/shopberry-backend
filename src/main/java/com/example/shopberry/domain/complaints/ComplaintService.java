@@ -12,11 +12,13 @@ import com.example.shopberry.domain.products.Product;
 import com.example.shopberry.domain.products.ProductRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ComplaintService {
 
     private final ComplaintRepository complaintRepository;
@@ -32,14 +34,6 @@ public class ComplaintService {
     private final String ORDER_NOT_FOUND_MESSAGE = "Order not found";
     private final String PRODUCT_NOT_FOUND_MESSAGE = "Product not found";
     private final String PRODUCT_DOES_NOT_BELONG_TO_THAT_ORDER_MESSAGE = "Product does not belong to that order";
-
-    public ComplaintService(ComplaintRepository complaintRepository, ComplaintDtoMapper complaintDtoMapper, OrderRepository orderRepository, ProductRepository productRepository, OrderProductRepository orderProductRepository) {
-        this.complaintRepository = complaintRepository;
-        this.complaintDtoMapper = complaintDtoMapper;
-        this.orderRepository = orderRepository;
-        this.productRepository = productRepository;
-        this.orderProductRepository = orderProductRepository;
-    }
 
     public List<ComplaintResponseDto> getComplaints() {
         return complaintDtoMapper.toDtoList(complaintRepository.findAll());

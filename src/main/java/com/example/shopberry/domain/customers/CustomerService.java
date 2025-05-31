@@ -6,12 +6,14 @@ import com.example.shopberry.domain.customers.dto.CustomerResponseDto;
 import com.example.shopberry.domain.customers.dto.UpdateCustomerRequestDto;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class CustomerService {
 
     private final CustomerRepository customerRepository;
@@ -20,12 +22,6 @@ public class CustomerService {
     private final PasswordEncoder passwordEncoder;
 
     private final String CUSTOMER_NOT_FOUND_MESSAGE = "Customer not found";
-
-    public CustomerService(CustomerRepository customerRepository, CustomerDtoMapper customerDtoMapper, PasswordEncoder passwordEncoder) {
-        this.customerRepository = customerRepository;
-        this.customerDtoMapper = customerDtoMapper;
-        this.passwordEncoder = passwordEncoder;
-    }
 
     public List<CustomerResponseDto> getCustomers() {
         return customerDtoMapper.toDtoList(customerRepository.findAll());

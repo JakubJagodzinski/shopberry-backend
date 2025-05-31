@@ -7,11 +7,13 @@ import com.example.shopberry.domain.complaints.Complaint;
 import com.example.shopberry.domain.complaints.ComplaintRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ComplaintImageService {
 
     private final ComplaintImageRepository complaintImageRepository;
@@ -22,12 +24,6 @@ public class ComplaintImageService {
     private final String COMPLAINT_IMAGE_NOT_FOUND_MESSAGE = "Complaint image not found";
     private final String COMPLAINT_DOES_NOT_EXIST_MESSAGE = "Complaint does not exist";
     private final String COMPLAINT_IMAGE_CANNOT_BE_NULL_MESSAGE = "Complaint image cannot be null";
-
-    public ComplaintImageService(ComplaintImageRepository complaintImageRepository, ComplaintRepository complaintRepository, ComplaintImageDtoMapper complaintImageDtoMapper) {
-        this.complaintImageRepository = complaintImageRepository;
-        this.complaintRepository = complaintRepository;
-        this.complaintImageDtoMapper = complaintImageDtoMapper;
-    }
 
     public List<ComplaintImageResponseDto> getComplaintImages() {
         return complaintImageDtoMapper.toDtoList(complaintImageRepository.findAll());

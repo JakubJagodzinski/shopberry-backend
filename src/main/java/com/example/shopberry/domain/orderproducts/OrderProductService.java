@@ -11,11 +11,13 @@ import com.example.shopberry.domain.products.Product;
 import com.example.shopberry.domain.products.ProductRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class OrderProductService {
 
     private final OrderProductRepository orderProductRepository;
@@ -32,14 +34,6 @@ public class OrderProductService {
     private final String PRODUCT_PRICE_MUST_BE_POSITIVE_MESSAGE = "Product price must be positive";
     private final String ORDER_PRODUCT_STATUS_NOT_FOUND_MESSAGE = "Order product status not found";
     private final OrderProductStatusRepository orderProductStatusRepository;
-
-    public OrderProductService(OrderProductRepository orderProductRepository, OrderRepository orderRepository, ProductRepository productRepository, OrderProductDtoMapper orderProductDtoMapper, OrderProductStatusRepository orderProductStatusRepository) {
-        this.orderProductRepository = orderProductRepository;
-        this.orderRepository = orderRepository;
-        this.productRepository = productRepository;
-        this.orderProductDtoMapper = orderProductDtoMapper;
-        this.orderProductStatusRepository = orderProductStatusRepository;
-    }
 
     @Transactional
     public List<OrderProductResponseDto> getOrderProductsByOrderId(Long orderId) throws EntityNotFoundException {

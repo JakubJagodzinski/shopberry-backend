@@ -6,12 +6,13 @@ import com.example.shopberry.domain.products.dto.ProductResponseDto;
 import com.example.shopberry.domain.products.dto.UpdateProductRequestDto;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ProductService {
 
     private final ProductRepository productRepository;
@@ -25,12 +26,6 @@ public class ProductService {
     private final String PRODUCT_PRICE_MUST_BE_GREATER_THAN_ZERO_MESSAGE = "Product price must be greater than zero";
     private final String PRODUCT_DISCOUNT_PERCENT_VALUE_CAN_T_BE_NEGATIVE_MESSAGE = "Product discount percent value can't be negative";
     private final String PRODUCT_DISCOUNT_PERCENT_VALUE_CAN_T_BE_GREATER_THAN_100_MESSAGE = "Product discount percent value can't be greater than 100";
-
-    @Autowired
-    public ProductService(ProductRepository productRepository, ProductDtoMapper productDtoMapper) {
-        this.productRepository = productRepository;
-        this.productDtoMapper = productDtoMapper;
-    }
 
     public List<ProductResponseDto> getProducts() {
         return productDtoMapper.toDtoList(productRepository.findAll());

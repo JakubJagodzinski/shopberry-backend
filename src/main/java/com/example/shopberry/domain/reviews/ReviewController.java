@@ -3,6 +3,7 @@ package com.example.shopberry.domain.reviews;
 import com.example.shopberry.domain.reviews.dto.CreateReviewRequestDto;
 import com.example.shopberry.domain.reviews.dto.ReviewResponseDto;
 import com.example.shopberry.domain.reviews.dto.UpdateReviewRequestDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,13 +13,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/reviews")
+@RequiredArgsConstructor
 public class ReviewController {
 
     private final ReviewService reviewService;
-
-    public ReviewController(ReviewService reviewService) {
-        this.reviewService = reviewService;
-    }
 
     @GetMapping("/by-product/{productId}")
     public ResponseEntity<List<ReviewResponseDto>> getReviewsByProductId(@PathVariable Long productId) {

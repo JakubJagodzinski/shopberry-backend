@@ -6,11 +6,13 @@ import com.example.shopberry.domain.employeetypes.dto.EmployeeTypeResponseDto;
 import com.example.shopberry.domain.employeetypes.dto.UpdateEmployeeTypeRequestDto;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class EmployeeTypeService {
 
     private final EmployeeTypeRepository employeeTypeRepository;
@@ -21,11 +23,6 @@ public class EmployeeTypeService {
     private final String EMPLOYEE_TYPE_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE = "Employee type with that name already exists";
     private final String EMPLOYEE_TYPE_NAME_CANNOT_BE_NULL_MESSAGE = "Employee type name cannot be null";
     private final String EMPLOYEE_TYPE_NAME_CANNOT_BE_EMPTY_MESSAGE = "Employee type name cannot be empty";
-
-    public EmployeeTypeService(EmployeeTypeRepository employeeTypeRepository, EmployeeTypeDtoMapper employeeTypeDtoMapper) {
-        this.employeeTypeRepository = employeeTypeRepository;
-        this.employeeTypeDtoMapper = employeeTypeDtoMapper;
-    }
 
     public List<EmployeeTypeResponseDto> getEmployeeTypes() {
         return employeeTypeDtoMapper.toDtoList(employeeTypeRepository.findAll());

@@ -9,11 +9,13 @@ import com.example.shopberry.domain.products.Product;
 import com.example.shopberry.domain.products.ProductRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ProductAttributeService {
 
     private final ProductAttributeRepository productAttributeRepository;
@@ -27,13 +29,6 @@ public class ProductAttributeService {
     private final String PRODUCT_NOT_FOUND_MESSAGE = "Product not found";
     private final String ATTRIBUTE_NOT_FOUND_MESSAGE = "Attribute not found";
     private final String ATTRIBUTE_VALUE_CANNOT_BE_NULL_MESSAGE = "Attribute value cannot be null";
-
-    public ProductAttributeService(ProductAttributeRepository productAttributeRepository, ProductRepository productRepository, AttributeRepository attributeRepository, ProductAttributeDtoMapper productAttributeDtoMapper) {
-        this.productAttributeRepository = productAttributeRepository;
-        this.productRepository = productRepository;
-        this.attributeRepository = attributeRepository;
-        this.productAttributeDtoMapper = productAttributeDtoMapper;
-    }
 
     @Transactional
     public List<ProductAttributeResponseDto> getProductAttributesByProductId(Long productId) throws EntityNotFoundException {

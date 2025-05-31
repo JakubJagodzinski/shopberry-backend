@@ -3,6 +3,7 @@ package com.example.shopberry.domain.causesofreturn;
 import com.example.shopberry.domain.causesofreturn.dto.CauseOfReturnResponseDto;
 import com.example.shopberry.domain.causesofreturn.dto.CreateCauseOfReturnRequestDto;
 import com.example.shopberry.domain.causesofreturn.dto.UpdateCauseOfReturnRequestDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,13 +13,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/causes-of-return")
+@RequiredArgsConstructor
 public class CauseOfReturnController {
 
     private final CauseOfReturnService causeOfReturnService;
-
-    public CauseOfReturnController(CauseOfReturnService causeOfReturnService) {
-        this.causeOfReturnService = causeOfReturnService;
-    }
 
     @GetMapping("/")
     public ResponseEntity<List<CauseOfReturnResponseDto>> getCausesOfReturn() {

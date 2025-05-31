@@ -10,11 +10,13 @@ import com.example.shopberry.domain.reviews.dto.ReviewResponseDto;
 import com.example.shopberry.domain.reviews.dto.UpdateReviewRequestDto;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ReviewService {
 
     private final ReviewRepository reviewRepository;
@@ -33,13 +35,6 @@ public class ReviewService {
     private final String RATING_VALUE_CANNOT_BE_NULL_MESSAGE = "Rating value cannot be null";
     private final String RATING_VALUE_OUT_OF_BOUNDS_MESSAGE = "Rating value must be between " + MIN_RATING_VALUE + " and " + MAX_RATING_VALUE;
     private final String REVIEW_TEXT_TOO_LONG_MESSAGE = "Review text cannot exceed " + MAX_REVIEW_TEXT_LENGTH + " characters";
-
-    public ReviewService(ReviewRepository reviewRepository, ProductRepository productRepository, CustomerRepository customerRepository, ReviewDtoMapper reviewDtoMapper) {
-        this.reviewRepository = reviewRepository;
-        this.productRepository = productRepository;
-        this.customerRepository = customerRepository;
-        this.reviewDtoMapper = reviewDtoMapper;
-    }
 
     @Transactional
     public List<ReviewResponseDto> getReviewsByProductId(Long productId) throws EntityNotFoundException {

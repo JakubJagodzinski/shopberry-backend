@@ -6,11 +6,13 @@ import com.example.shopberry.domain.shipmenttypes.dto.ShipmentTypeResponseDto;
 import com.example.shopberry.domain.shipmenttypes.dto.UpdateShipmentTypeRequestDto;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ShipmentTypeService {
 
     private final ShipmentTypeRepository shipmentTypeRepository;
@@ -22,11 +24,6 @@ public class ShipmentTypeService {
     private final String SHIPMENT_NAME_CANNOT_BE_EMPTY_MESSAGE = "Shipment name cannot be empty";
     private final String SHIPMENT_NAME_CANNOT_BE_NULL_MESSAGE = "Shipment name cannot be null";
     private final String SHIPMENT_COST_CANNOT_BE_NEGATIVE_MESSAGE = "Shipment cost cannot be negative";
-
-    public ShipmentTypeService(ShipmentTypeRepository shipmentTypeRepository, ShipmentTypeDtoMapper shipmentTypeDtoMapper) {
-        this.shipmentTypeRepository = shipmentTypeRepository;
-        this.shipmentTypeDtoMapper = shipmentTypeDtoMapper;
-    }
 
     public List<ShipmentTypeResponseDto> getShipmentTypes() {
         return shipmentTypeDtoMapper.toDtoList(shipmentTypeRepository.findAll());

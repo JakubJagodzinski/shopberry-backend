@@ -9,11 +9,13 @@ import com.example.shopberry.domain.categoriesattributes.dto.CategoryAttributeRe
 import com.example.shopberry.domain.categoriesattributes.dto.CreateCategoryAttributeRequestDto;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class CategoryAttributeService {
 
     private final CategoryAttributeRepository categoryAttributeRepository;
@@ -26,13 +28,6 @@ public class CategoryAttributeService {
     private final String CATEGORY_NOT_FOUND_MESSAGE = "Category not found";
     private final String ATTRIBUTE_NOT_FOUND_MESSAGE = "Attribute not found";
     private final String ATTRIBUTE_ALREADY_ASSIGNED_TO_THIS_CATEGORY_MESSAGE = "Attribute already assigned to this category";
-
-    public CategoryAttributeService(CategoryAttributeRepository categoryAttributeRepository, CategoryRepository categoryRepository, AttributeRepository attributeRepository, CategoryAttributeDtoMapper categoryAttributeDtoMapper) {
-        this.categoryAttributeRepository = categoryAttributeRepository;
-        this.categoryRepository = categoryRepository;
-        this.attributeRepository = attributeRepository;
-        this.categoryAttributeDtoMapper = categoryAttributeDtoMapper;
-    }
 
     @Transactional
     public List<CategoryAttributeResponseDto> getCategoryAttributesByCategoryId(Long categoryId) throws EntityNotFoundException {

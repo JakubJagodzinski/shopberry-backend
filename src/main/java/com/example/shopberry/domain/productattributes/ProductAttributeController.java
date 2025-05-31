@@ -2,6 +2,7 @@ package com.example.shopberry.domain.productattributes;
 
 import com.example.shopberry.domain.productattributes.dto.CreateProductAttributeRequestDto;
 import com.example.shopberry.domain.productattributes.dto.ProductAttributeResponseDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,13 +12,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/product-attributes")
+@RequiredArgsConstructor
 public class ProductAttributeController {
 
     private final ProductAttributeService productAttributeService;
-
-    public ProductAttributeController(ProductAttributeService productAttributeService) {
-        this.productAttributeService = productAttributeService;
-    }
 
     @GetMapping("/by-product/{productId}")
     public ResponseEntity<List<ProductAttributeResponseDto>> getProductAttributesByProductId(@PathVariable Long productId) {

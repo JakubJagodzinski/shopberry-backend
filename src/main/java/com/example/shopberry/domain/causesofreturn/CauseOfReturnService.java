@@ -6,11 +6,13 @@ import com.example.shopberry.domain.causesofreturn.dto.CreateCauseOfReturnReques
 import com.example.shopberry.domain.causesofreturn.dto.UpdateCauseOfReturnRequestDto;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class CauseOfReturnService {
 
     private final CauseOfReturnRepository causeOfReturnRepository;
@@ -21,11 +23,6 @@ public class CauseOfReturnService {
     private final String CAUSE_OF_RETURN_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE = "Cause of return with that name already exists";
     private final String CAUSE_CANNOT_BE_NULL_MESSAGE = "Cause cannot be null";
     private final String CAUSE_CANNOT_BE_EMPTY_MESSAGE = "Cause cannot be empty";
-
-    public CauseOfReturnService(CauseOfReturnRepository causeOfReturnRepository, CauseOfReturnDtoMapper causeOfReturnDtoMapper) {
-        this.causeOfReturnRepository = causeOfReturnRepository;
-        this.causeOfReturnDtoMapper = causeOfReturnDtoMapper;
-    }
 
     public List<CauseOfReturnResponseDto> getCausesOfReturn() {
         return causeOfReturnDtoMapper.toDtoList(causeOfReturnRepository.findAll());

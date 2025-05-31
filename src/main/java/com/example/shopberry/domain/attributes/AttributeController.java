@@ -3,6 +3,7 @@ package com.example.shopberry.domain.attributes;
 import com.example.shopberry.domain.attributes.dto.AttributeResponseDto;
 import com.example.shopberry.domain.attributes.dto.CreateAttributeRequestDto;
 import com.example.shopberry.domain.attributes.dto.UpdateAttributeRequestDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,13 +13,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/attributes")
+@RequiredArgsConstructor
 public class AttributeController {
 
     private final AttributeService attributeService;
-
-    public AttributeController(AttributeService attributeService) {
-        this.attributeService = attributeService;
-    }
 
     @GetMapping("/")
     public ResponseEntity<List<AttributeResponseDto>> getAttributes() {

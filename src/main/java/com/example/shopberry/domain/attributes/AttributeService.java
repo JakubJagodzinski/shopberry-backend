@@ -6,12 +6,13 @@ import com.example.shopberry.domain.attributes.dto.CreateAttributeRequestDto;
 import com.example.shopberry.domain.attributes.dto.UpdateAttributeRequestDto;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class AttributeService {
 
     private final AttributeRepository attributeRepository;
@@ -22,12 +23,6 @@ public class AttributeService {
     private final String ATTRIBUTE_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE = "Attribute with that name already exists";
     private final String ATTRIBUTE_NAME_CANNOT_BY_NULL_MESSAGE = "Attribute name cannot be null";
     private final String ATTRIBUTE_NAME_CANNOT_BY_EMPTY_MESSAGE = "Attribute name cannot be empty";
-
-    @Autowired
-    public AttributeService(AttributeRepository attributeRepository, AttributeDtoMapper attributeDtoMapper) {
-        this.attributeRepository = attributeRepository;
-        this.attributeDtoMapper = attributeDtoMapper;
-    }
 
     public List<AttributeResponseDto> getAttributes() {
         return attributeDtoMapper.toDtoList(attributeRepository.findAll());

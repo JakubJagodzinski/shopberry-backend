@@ -2,6 +2,7 @@ package com.example.shopberry.domain.productreturns;
 
 import com.example.shopberry.domain.productreturns.dto.CreateProductReturnRequestDto;
 import com.example.shopberry.domain.productreturns.dto.ProductReturnResponseDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,13 +12,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/product-returns")
+@RequiredArgsConstructor
 public class ProductReturnController {
 
     private final ProductReturnService productReturnService;
-
-    public ProductReturnController(ProductReturnService productReturnService) {
-        this.productReturnService = productReturnService;
-    }
 
     @GetMapping("/{productReturnId}")
     public ResponseEntity<ProductReturnResponseDto> getProductReturnById(@PathVariable Long productReturnId) {

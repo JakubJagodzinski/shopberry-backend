@@ -13,11 +13,13 @@ import com.example.shopberry.domain.products.Product;
 import com.example.shopberry.domain.products.ProductRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ProductReturnService {
 
     private final ProductReturnRepository productReturnRepository;
@@ -34,15 +36,6 @@ public class ProductReturnService {
     private final String CAUSE_OF_RETURN_NOT_FOUND_MESSAGE = "Cause of return not found";
     private final String PRODUCT_DOES_NOT_BELONG_TO_THAT_ORDER_MESSAGE = "Product does not belong to that order";
     private final String PRODUCT_RETURN_ALREADY_EXISTS_MESSAGE = "Product return already exists";
-
-    public ProductReturnService(ProductReturnRepository productReturnRepository, OrderRepository orderRepository, ProductRepository productRepository, CauseOfReturnRepository causeOfReturnRepository, OrderProductRepository orderProductRepository, ProductReturnDtoMapper productReturnDtoMapper) {
-        this.productReturnRepository = productReturnRepository;
-        this.orderRepository = orderRepository;
-        this.productRepository = productRepository;
-        this.causeOfReturnRepository = causeOfReturnRepository;
-        this.orderProductRepository = orderProductRepository;
-        this.productReturnDtoMapper = productReturnDtoMapper;
-    }
 
     @Transactional
     public ProductReturnResponseDto getProductReturnById(Long productReturnId) throws EntityNotFoundException {

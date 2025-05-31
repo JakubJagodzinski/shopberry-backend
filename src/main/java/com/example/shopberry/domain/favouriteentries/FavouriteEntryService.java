@@ -9,11 +9,13 @@ import com.example.shopberry.domain.products.Product;
 import com.example.shopberry.domain.products.ProductRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class FavouriteEntryService {
 
     private final FavouriteEntryRepository favouriteEntryRepository;
@@ -26,13 +28,6 @@ public class FavouriteEntryService {
     private final String PRODUCT_NOT_FOUND_MESSAGE = "Product not found";
     private final String FAVOURITE_ENTRY_NOT_FOUND_MESSAGE = "Favourite entry not found";
     private final String FAVOURITE_ENTRY_ALREADY_EXISTS_MESSAGE = "Favourite entry already exists";
-
-    public FavouriteEntryService(FavouriteEntryRepository favouriteEntryRepository, CustomerRepository customerRepository, ProductRepository productRepository, FavouriteEntryDtoMapper favouriteEntryDtoMapper) {
-        this.favouriteEntryRepository = favouriteEntryRepository;
-        this.customerRepository = customerRepository;
-        this.productRepository = productRepository;
-        this.favouriteEntryDtoMapper = favouriteEntryDtoMapper;
-    }
 
     @Transactional
     public List<FavouriteEntryResponseDto> getFavouriteEntriesByCustomerId(Long customerId) throws EntityNotFoundException {

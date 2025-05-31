@@ -10,11 +10,13 @@ import com.example.shopberry.domain.products.Product;
 import com.example.shopberry.domain.products.ProductRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class CartEntryService {
 
     private final CartEntryRepository cartEntryRepository;
@@ -28,13 +30,6 @@ public class CartEntryService {
     private final String CART_ENTRY_NOT_FOUND_MESSAGE = "Cart entry not found";
     private final String QUANTITY_MUST_BE_POSITIVE_MESSAGE = "Quantity must be positive";
     private final String CART_ENTRY_ALREADY_EXISTS_MESSAGE = "Cart entry already exists";
-
-    public CartEntryService(CartEntryRepository cartEntryRepository, CustomerRepository customerRepository, ProductRepository productRepository, CartEntryDtoMapper cartEntryDtoMapper) {
-        this.cartEntryRepository = cartEntryRepository;
-        this.customerRepository = customerRepository;
-        this.productRepository = productRepository;
-        this.cartEntryDtoMapper = cartEntryDtoMapper;
-    }
 
     @Transactional
     public CartEntryResponseDto getCartEntryByCartEntryId(CartEntryId cartEntryId) throws EntityNotFoundException {

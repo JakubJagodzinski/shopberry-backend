@@ -3,6 +3,7 @@ package com.example.shopberry.domain.producers;
 import com.example.shopberry.domain.producers.dto.CreateProducerRequestDto;
 import com.example.shopberry.domain.producers.dto.ProducerResponseDto;
 import com.example.shopberry.domain.producers.dto.UpdateProducerRequestDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,13 +13,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/producers")
+@RequiredArgsConstructor
 public class ProducerController {
 
     private final ProducerService producerService;
-
-    public ProducerController(ProducerService producerService) {
-        this.producerService = producerService;
-    }
 
     @GetMapping("/")
     public ResponseEntity<List<ProducerResponseDto>> getProducers() {

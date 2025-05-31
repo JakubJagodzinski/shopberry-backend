@@ -2,6 +2,7 @@ package com.example.shopberry.domain.categoriesattributes;
 
 import com.example.shopberry.domain.categoriesattributes.dto.CategoryAttributeResponseDto;
 import com.example.shopberry.domain.categoriesattributes.dto.CreateCategoryAttributeRequestDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,13 +12,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/category-attributes")
+@RequiredArgsConstructor
 public class CategoryAttributeController {
 
     private final CategoryAttributeService categoryAttributeService;
-
-    public CategoryAttributeController(CategoryAttributeService categoryAttributeService) {
-        this.categoryAttributeService = categoryAttributeService;
-    }
 
     @GetMapping("/by-category/{categoryId}")
     public ResponseEntity<List<CategoryAttributeResponseDto>> getCategoryAttributesByCategoryId(@PathVariable Long categoryId) {

@@ -6,11 +6,13 @@ import com.example.shopberry.domain.promotions.dto.PromotionResponseDto;
 import com.example.shopberry.domain.promotions.dto.UpdatePromotionRequestDto;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class PromotionService {
 
     private final PromotionRepository promotionRepository;
@@ -23,11 +25,6 @@ public class PromotionService {
     private final String PROMOTION_NAME_CANNOT_BE_EMPTY_MESSAGE = "Promotion name cannot be empty";
     private final String PROMOTION_DISCOUNT_PERCENT_VALUE_CANNOT_BE_NEGATIVE_MESSAGE = "Promotion discount percent value cannot be negative";
     private final String PROMOTION_DISCOUNT_PERCENT_VALUE_CANNOT_BE_GREATER_THAN_100_MESSAGE = "Promotion discount percent value cannot be greater than 100";
-
-    public PromotionService(PromotionRepository promotionRepository, PromotionDtoMapper promotionDtoMapper) {
-        this.promotionRepository = promotionRepository;
-        this.promotionDtoMapper = promotionDtoMapper;
-    }
 
     public List<PromotionResponseDto> getPromotions() {
         return promotionDtoMapper.toDtoList(promotionRepository.findAll());

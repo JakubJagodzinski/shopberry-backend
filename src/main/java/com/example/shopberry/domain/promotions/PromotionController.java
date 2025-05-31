@@ -3,6 +3,7 @@ package com.example.shopberry.domain.promotions;
 import com.example.shopberry.domain.promotions.dto.CreatePromotionRequestDto;
 import com.example.shopberry.domain.promotions.dto.PromotionResponseDto;
 import com.example.shopberry.domain.promotions.dto.UpdatePromotionRequestDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,13 +13,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/promotions")
+@RequiredArgsConstructor
 public class PromotionController {
 
     private final PromotionService promotionService;
-
-    public PromotionController(PromotionService promotionService) {
-        this.promotionService = promotionService;
-    }
 
     @GetMapping("/")
     public ResponseEntity<List<PromotionResponseDto>> getPromotions() {

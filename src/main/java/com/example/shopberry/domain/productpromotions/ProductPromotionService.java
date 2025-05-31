@@ -9,11 +9,13 @@ import com.example.shopberry.domain.promotions.Promotion;
 import com.example.shopberry.domain.promotions.PromotionRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ProductPromotionService {
 
     private final ProductPromotionRepository productPromotionRepository;
@@ -25,13 +27,6 @@ public class ProductPromotionService {
     private final String PROMOTION_ALREADY_ASSIGNED_TO_THIS_PRODUCT_MESSAGE = "Promotion already assigned to this product";
     private final String PRODUCT_NOT_FOUND_MESSAGE = "Product not found";
     private final String PROMOTION_NOT_FOUND_MESSAGE = "Promotion not found";
-
-    public ProductPromotionService(ProductPromotionRepository productPromotionRepository, ProductRepository productRepository, PromotionRepository promotionRepository, ProductPromotionDtoMapper productPromotionDtoMapper) {
-        this.productPromotionRepository = productPromotionRepository;
-        this.productRepository = productRepository;
-        this.promotionRepository = promotionRepository;
-        this.productPromotionDtoMapper = productPromotionDtoMapper;
-    }
 
     public List<ProductPromotionResponseDto> getProductPromotions() {
         return productPromotionDtoMapper.toDtoList(productPromotionRepository.findAll());

@@ -6,12 +6,13 @@ import com.example.shopberry.domain.producers.dto.ProducerResponseDto;
 import com.example.shopberry.domain.producers.dto.UpdateProducerRequestDto;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ProducerService {
 
     private final ProducerRepository producerRepository;
@@ -21,12 +22,6 @@ public class ProducerService {
     private final String PRODUCER_ALREADY_EXISTS_MESSAGE = "Producer already exists";
     private final String PRODUCER_WITH_THAT_NAME_ALREADY_EXISTS = "Producer with that name already exists";
     private final String PRODUCER_NOT_FOUND_MESSAGE = "Producer not found";
-
-    @Autowired
-    public ProducerService(ProducerRepository producerRepository, ProducerDtoMapper producerDtoMapper) {
-        this.producerRepository = producerRepository;
-        this.producerDtoMapper = producerDtoMapper;
-    }
 
     public List<ProducerResponseDto> getProducers() {
         List<Producer> producers = producerRepository.findAll();

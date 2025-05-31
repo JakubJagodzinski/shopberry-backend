@@ -3,6 +3,7 @@ package com.example.shopberry.domain.orderproductstatuses;
 import com.example.shopberry.domain.orderproductstatuses.dto.CreateOrderProductStatusRequestDto;
 import com.example.shopberry.domain.orderproductstatuses.dto.OrderProductStatusResponseDto;
 import com.example.shopberry.domain.orderproductstatuses.dto.UpdateOrderProductStatusRequestDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,13 +13,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/order-product-statuses")
+@RequiredArgsConstructor
 public class OrderProductStatusController {
 
     private final OrderProductStatusService orderProductStatusService;
-
-    public OrderProductStatusController(OrderProductStatusService orderProductStatusService) {
-        this.orderProductStatusService = orderProductStatusService;
-    }
 
     @GetMapping("/")
     public ResponseEntity<List<OrderProductStatusResponseDto>> getOrderProductStatuses() {

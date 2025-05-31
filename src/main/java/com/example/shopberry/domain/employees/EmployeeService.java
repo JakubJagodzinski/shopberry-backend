@@ -8,12 +8,14 @@ import com.example.shopberry.domain.employeetypes.EmployeeType;
 import com.example.shopberry.domain.employeetypes.EmployeeTypeRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class EmployeeService {
 
     private final EmployeeRepository employeeRepository;
@@ -30,13 +32,6 @@ public class EmployeeService {
     private final String EMPLOYEE_LAST_NAME_CANNOT_BE_EMPTY_MESSAGE = "Employee last name cannot be empty";
     private final String EMPLOYEE_EMAIL_CANNOT_BE_EMPTY_MESSAGE = "Employee email cannot be empty";
     private final String EMPLOYEE_PASSWORD_CANNOT_BE_EMPTY_MESSAGE = "Employee password cannot be empty";
-
-    public EmployeeService(EmployeeRepository employeeRepository, EmployeeTypeRepository employeeTypeRepository, PasswordEncoder passwordEncoder, EmployeeDtoMapper employeeDtoMapper) {
-        this.employeeRepository = employeeRepository;
-        this.employeeTypeRepository = employeeTypeRepository;
-        this.passwordEncoder = passwordEncoder;
-        this.employeeDtoMapper = employeeDtoMapper;
-    }
 
     public List<EmployeeResponseDto> getEmployees() {
         return employeeDtoMapper.toDtoList(employeeRepository.findAll());

@@ -7,11 +7,13 @@ import com.example.shopberry.domain.orderproductstatuses.dto.OrderProductStatusR
 import com.example.shopberry.domain.orderproductstatuses.dto.UpdateOrderProductStatusRequestDto;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class OrderProductStatusService {
 
     private final OrderProductStatusRepository orderProductStatusRepository;
@@ -24,12 +26,6 @@ public class OrderProductStatusService {
     private final String ORDER_PRODUCT_STATUS_NAME_CANNOT_BE_NULL_MESSAGE = "Order product status name cannot be null";
     private final String ORDER_PRODUCT_STATUS_NAME_CANNOT_BE_EMPTY_MESSAGE = "Order product status name cannot be empty";
     private final String ORDER_PRODUCT_STATUS_IS_IN_USE_MESSAGE = "Order product status is in use and cannot be deleted";
-
-    public OrderProductStatusService(OrderProductStatusRepository orderProductStatusRepository, OrderProductRepository orderProductRepository, OrderProductStatusDtoMapper orderProductStatusDtoMapper) {
-        this.orderProductStatusRepository = orderProductStatusRepository;
-        this.orderProductRepository = orderProductRepository;
-        this.orderProductStatusDtoMapper = orderProductStatusDtoMapper;
-    }
 
     public List<OrderProductStatusResponseDto> getOrderProductStatuses() {
         return orderProductStatusDtoMapper.toDtoList(orderProductStatusRepository.findAll());

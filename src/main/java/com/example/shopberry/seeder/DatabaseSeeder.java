@@ -21,6 +21,7 @@ import com.example.shopberry.domain.shipmenttypes.ShipmentTypeRepository;
 import com.example.shopberry.user.Role;
 import com.example.shopberry.user.User;
 import com.example.shopberry.user.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -30,6 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
+@RequiredArgsConstructor
 public class DatabaseSeeder implements ApplicationRunner {
 
     private final CategoryRepository categoryRepository;
@@ -44,20 +46,6 @@ public class DatabaseSeeder implements ApplicationRunner {
     private final UserRepository userRepository;
 
     private final PasswordEncoder passwordEncoder;
-
-    public DatabaseSeeder(CategoryRepository categoryRepository, ProducerRepository producerRepository, PaymentTypeRepository paymentTypeRepository, CauseOfReturnRepository causeOfReturnRepository, OrderStatusRepository orderStatusRepository, ShipmentTypeRepository shipmentTypeRepository, AttributeRepository attributeRepository, PromotionRepository promotionRepository, OrderProductStatusRepository orderProductStatusRepository, UserRepository userRepository, PasswordEncoder passwordEncoder) {
-        this.categoryRepository = categoryRepository;
-        this.producerRepository = producerRepository;
-        this.paymentTypeRepository = paymentTypeRepository;
-        this.causeOfReturnRepository = causeOfReturnRepository;
-        this.orderStatusRepository = orderStatusRepository;
-        this.shipmentTypeRepository = shipmentTypeRepository;
-        this.attributeRepository = attributeRepository;
-        this.promotionRepository = promotionRepository;
-        this.orderProductStatusRepository = orderProductStatusRepository;
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
-    }
 
     @Override
     public void run(ApplicationArguments args) {

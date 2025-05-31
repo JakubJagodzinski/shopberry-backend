@@ -3,6 +3,7 @@ package com.example.shopberry.domain.employeetypes;
 import com.example.shopberry.domain.employeetypes.dto.CreateEmployeeTypeRequestDto;
 import com.example.shopberry.domain.employeetypes.dto.EmployeeTypeResponseDto;
 import com.example.shopberry.domain.employeetypes.dto.UpdateEmployeeTypeRequestDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,13 +13,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/employee-types")
+@RequiredArgsConstructor
 public class EmployeeTypeController {
 
     private final EmployeeTypeService employeeTypeService;
-
-    public EmployeeTypeController(EmployeeTypeService employeeTypeService) {
-        this.employeeTypeService = employeeTypeService;
-    }
 
     @GetMapping("/")
     public ResponseEntity<List<EmployeeTypeResponseDto>> getEmployeeTypes() {

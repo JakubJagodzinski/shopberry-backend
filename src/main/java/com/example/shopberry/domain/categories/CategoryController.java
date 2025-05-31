@@ -3,6 +3,7 @@ package com.example.shopberry.domain.categories;
 import com.example.shopberry.domain.categories.dto.CategoryResponseDto;
 import com.example.shopberry.domain.categories.dto.CreateCategoryRequestDto;
 import com.example.shopberry.domain.categories.dto.UpdateCategoryRequestDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,13 +13,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/categories")
+@RequiredArgsConstructor
 public class CategoryController {
 
     private final CategoryService categoryService;
-
-    public CategoryController(CategoryService categoryService) {
-        this.categoryService = categoryService;
-    }
 
     @GetMapping("/")
     public ResponseEntity<List<CategoryResponseDto>> getCategories() {

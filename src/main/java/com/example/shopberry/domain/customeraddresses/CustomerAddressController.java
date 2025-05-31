@@ -3,6 +3,7 @@ package com.example.shopberry.domain.customeraddresses;
 import com.example.shopberry.domain.customeraddresses.dto.CreateCustomerAddressRequestDto;
 import com.example.shopberry.domain.customeraddresses.dto.CustomerAddressResponseDto;
 import com.example.shopberry.domain.customeraddresses.dto.UpdateCustomerAddressRequestDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,13 +13,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/customer-addresses")
+@RequiredArgsConstructor
 public class CustomerAddressController {
 
     private final CustomerAddressService customerAddressService;
-
-    public CustomerAddressController(CustomerAddressService customerAddressService) {
-        this.customerAddressService = customerAddressService;
-    }
 
     @GetMapping("/")
     public ResponseEntity<List<CustomerAddressResponseDto>> getCustomerAddresses() {

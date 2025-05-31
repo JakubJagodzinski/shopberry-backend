@@ -2,6 +2,7 @@ package com.example.shopberry.domain.orderproducts;
 
 import com.example.shopberry.domain.orderproducts.dto.CreateOrderProductRequestDto;
 import com.example.shopberry.domain.orderproducts.dto.OrderProductResponseDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,13 +12,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/order-products")
+@RequiredArgsConstructor
 public class OrderProductController {
 
     private final OrderProductService orderProductService;
-
-    public OrderProductController(OrderProductService orderProductService) {
-        this.orderProductService = orderProductService;
-    }
 
     @GetMapping("/{orderId}/{productId}")
     public ResponseEntity<OrderProductResponseDto> getOrderProductById(@PathVariable Long orderId, @PathVariable Long productId) {

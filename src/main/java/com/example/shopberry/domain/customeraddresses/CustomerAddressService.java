@@ -8,11 +8,13 @@ import com.example.shopberry.domain.customers.Customer;
 import com.example.shopberry.domain.customers.CustomerRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class CustomerAddressService {
 
     private final CustomerAddressRepository customerAddressRepository;
@@ -24,12 +26,6 @@ public class CustomerAddressService {
     private final String CUSTOMER_ADDRESS_NOT_FOUND_MESSAGE = "Customer address not found";
     private final String FIRST_NAME_CANNOT_BE_EMPTY_MESSAGE = "First name cannot be empty";
     private final String LAST_NAME_CANNOT_BE_EMPTY_MESSAGE = "Last name cannot be empty";
-
-    public CustomerAddressService(CustomerAddressRepository customerAddressRepository, CustomerRepository customerRepository, CustomerAddressDtoMapper customerAddressDtoMapper) {
-        this.customerAddressRepository = customerAddressRepository;
-        this.customerRepository = customerRepository;
-        this.customerAddressDtoMapper = customerAddressDtoMapper;
-    }
 
     public List<CustomerAddressResponseDto> getCustomerAddresses() {
         return customerAddressDtoMapper.toDtoList(customerAddressRepository.findAll());

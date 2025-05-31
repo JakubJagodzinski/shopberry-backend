@@ -6,11 +6,13 @@ import com.example.shopberry.domain.orderstatuses.dto.OrderStatusResponseDto;
 import com.example.shopberry.domain.orderstatuses.dto.UpdateOrderStatusRequestDto;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class OrderStatusService {
 
     private final OrderStatusRepository orderStatusRepository;
@@ -21,11 +23,6 @@ public class OrderStatusService {
     private final String ORDER_STATUS_ALREADY_EXISTS_MESSAGE = "Order status already exists";
     private final String ORDER_STATUS_NAME_CANNOT_BE_NULL_MESSAGE = "Order status name cannot be null";
     private final String ORDER_STATUS_NAME_CANNOT_BE_EMPTY_MESSAGE = "Order status name cannot be empty";
-
-    public OrderStatusService(OrderStatusRepository orderStatusRepository, OrderStatusDtoMapper orderStatusDtoMapper) {
-        this.orderStatusRepository = orderStatusRepository;
-        this.orderStatusDtoMapper = orderStatusDtoMapper;
-    }
 
     public List<OrderStatusResponseDto> getOrderStatuses() {
         return orderStatusDtoMapper.toDtoList(orderStatusRepository.findAll());

@@ -2,6 +2,7 @@ package com.example.shopberry.domain.favouriteentries;
 
 import com.example.shopberry.domain.favouriteentries.dto.CreateFavouriteEntryRequestDto;
 import com.example.shopberry.domain.favouriteentries.dto.FavouriteEntryResponseDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,13 +12,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/favourite-entries")
+@RequiredArgsConstructor
 public class FavouriteEntryController {
 
     private final FavouriteEntryService favouriteEntryService;
-
-    public FavouriteEntryController(FavouriteEntryService favouriteEntryService) {
-        this.favouriteEntryService = favouriteEntryService;
-    }
 
     @GetMapping("/{customerId}")
     public ResponseEntity<List<FavouriteEntryResponseDto>> getFavouriteEntriesByCustomerId(@PathVariable Long customerId) {

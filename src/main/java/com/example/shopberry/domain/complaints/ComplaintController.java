@@ -3,6 +3,7 @@ package com.example.shopberry.domain.complaints;
 import com.example.shopberry.domain.complaints.dto.ComplaintResponseDto;
 import com.example.shopberry.domain.complaints.dto.CreateComplaintRequestDto;
 import com.example.shopberry.domain.complaints.dto.UpdateComplaintRequestDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,13 +13,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/complaints")
+@RequiredArgsConstructor
 public class ComplaintController {
 
     private final ComplaintService complaintService;
-
-    public ComplaintController(ComplaintService complaintService) {
-        this.complaintService = complaintService;
-    }
 
     @GetMapping("/")
     public ResponseEntity<List<ComplaintResponseDto>> getComplaints() {

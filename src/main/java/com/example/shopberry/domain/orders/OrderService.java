@@ -12,11 +12,13 @@ import com.example.shopberry.domain.shipmenttypes.ShipmentType;
 import com.example.shopberry.domain.shipmenttypes.ShipmentTypeRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class OrderService {
 
     private final OrderRepository orderRepository;
@@ -31,15 +33,6 @@ public class OrderService {
     private final String CUSTOMER_NOT_FOUND_MESSAGE = "Customer not found";
     private final String SHIPMENT_TYPE_NOT_FOUND_MESSAGE = "Shipment type not found";
     private final String PAYMENT_TYPE_NOT_FOUND_MESSAGE = "Payment type not found";
-
-    public OrderService(OrderRepository orderRepository, CustomerRepository customerRepository, ShipmentTypeRepository shipmentTypeRepository, PaymentTypeRepository paymentTypeRepository, OrderStatusRepository orderStatusRepository, OrderDtoMapper orderDtoMapper) {
-        this.orderRepository = orderRepository;
-        this.customerRepository = customerRepository;
-        this.shipmentTypeRepository = shipmentTypeRepository;
-        this.paymentTypeRepository = paymentTypeRepository;
-        this.orderStatusRepository = orderStatusRepository;
-        this.orderDtoMapper = orderDtoMapper;
-    }
 
     public List<OrderResponseDto> getOrders() {
         return orderDtoMapper.toDtoList(orderRepository.findAll());

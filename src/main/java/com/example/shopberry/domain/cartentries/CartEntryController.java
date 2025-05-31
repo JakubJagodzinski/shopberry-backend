@@ -3,6 +3,7 @@ package com.example.shopberry.domain.cartentries;
 import com.example.shopberry.domain.cartentries.dto.CartEntryResponseDto;
 import com.example.shopberry.domain.cartentries.dto.CreateCartEntryRequestDto;
 import com.example.shopberry.domain.cartentries.dto.UpdateCartEntryRequestDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,13 +13,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/cart-entries")
+@RequiredArgsConstructor
 public class CartEntryController {
 
     private final CartEntryService cartEntryService;
-
-    public CartEntryController(CartEntryService cartEntryService) {
-        this.cartEntryService = cartEntryService;
-    }
 
     @GetMapping("/{customerId}/{productId}")
     public ResponseEntity<CartEntryResponseDto> getCartEntryByCartEntryId(@PathVariable Long customerId, @PathVariable Long productId) {
