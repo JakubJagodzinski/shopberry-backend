@@ -1,5 +1,6 @@
 package com.example.shopberry.domain.shipmenttypes;
 
+import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.shipmenttypes.dto.CreateShipmentTypeRequestDto;
 import com.example.shopberry.domain.shipmenttypes.dto.ShipmentTypeResponseDto;
 import com.example.shopberry.domain.shipmenttypes.dto.UpdateShipmentTypeRequestDto;
@@ -56,12 +57,12 @@ public class ShipmentTypeController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteShipmentTypeById(@PathVariable Long id) {
+    public ResponseEntity<MessageResponseDto> deleteShipmentTypeById(@PathVariable Long id) {
         shipmentTypeService.deleteShipmentTypeById(id);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body("Shipment type with id " + id + " was deleted");
+                .body(new MessageResponseDto("Shipment type with id " + id + " was deleted"));
     }
 
 }

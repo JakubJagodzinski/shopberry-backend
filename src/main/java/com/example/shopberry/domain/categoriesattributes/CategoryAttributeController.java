@@ -1,5 +1,6 @@
 package com.example.shopberry.domain.categoriesattributes;
 
+import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.categoriesattributes.dto.CategoryAttributeResponseDto;
 import com.example.shopberry.domain.categoriesattributes.dto.CreateCategoryAttributeRequestDto;
 import lombok.RequiredArgsConstructor;
@@ -37,14 +38,14 @@ public class CategoryAttributeController {
     }
 
     @DeleteMapping("/{categoryId}/{attributeId}")
-    public ResponseEntity<String> deleteCategoryAttributeById(@PathVariable Long categoryId, @PathVariable Long attributeId) {
+    public ResponseEntity<MessageResponseDto> deleteCategoryAttributeById(@PathVariable Long categoryId, @PathVariable Long attributeId) {
         CategoryAttributeId categoryAttributeId = new CategoryAttributeId(categoryId, attributeId);
 
         categoryAttributeService.deleteCategoryAttributeById(categoryAttributeId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body("Category attribute with id " + categoryAttributeId + " deleted successfully");
+                .body(new MessageResponseDto("Category attribute with id " + categoryAttributeId + " deleted successfully"));
     }
 
 }

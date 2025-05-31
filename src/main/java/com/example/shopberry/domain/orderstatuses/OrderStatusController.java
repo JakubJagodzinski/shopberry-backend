@@ -1,5 +1,6 @@
 package com.example.shopberry.domain.orderstatuses;
 
+import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.orderstatuses.dto.CreateOrderStatusRequestDto;
 import com.example.shopberry.domain.orderstatuses.dto.OrderStatusResponseDto;
 import com.example.shopberry.domain.orderstatuses.dto.UpdateOrderStatusRequestDto;
@@ -56,12 +57,12 @@ public class OrderStatusController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteOrderStatusById(@PathVariable Long id) {
+    public ResponseEntity<MessageResponseDto> deleteOrderStatusById(@PathVariable Long id) {
         orderStatusService.deleteOrderStatusById(id);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body("Order status with id " + id + " deleted successfully");
+                .body(new MessageResponseDto("Order status with id " + id + " deleted successfully"));
     }
 
 }

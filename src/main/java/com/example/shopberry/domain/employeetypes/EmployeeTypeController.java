@@ -1,5 +1,6 @@
 package com.example.shopberry.domain.employeetypes;
 
+import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.employeetypes.dto.CreateEmployeeTypeRequestDto;
 import com.example.shopberry.domain.employeetypes.dto.EmployeeTypeResponseDto;
 import com.example.shopberry.domain.employeetypes.dto.UpdateEmployeeTypeRequestDto;
@@ -56,12 +57,12 @@ public class EmployeeTypeController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteEmployeeTypeById(@PathVariable Long id) {
+    public ResponseEntity<MessageResponseDto> deleteEmployeeTypeById(@PathVariable Long id) {
         employeeTypeService.deleteEmployeeTypeById(id);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body("Employee type with id " + id + " deleted successfully");
+                .body(new MessageResponseDto("Employee type with id " + id + " deleted successfully"));
     }
 
 }

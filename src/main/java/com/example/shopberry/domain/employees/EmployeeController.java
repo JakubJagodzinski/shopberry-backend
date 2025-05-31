@@ -1,5 +1,6 @@
 package com.example.shopberry.domain.employees;
 
+import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.employees.dto.EmployeeResponseDto;
 import com.example.shopberry.domain.employees.dto.UpdateEmployeeRequestDto;
 import lombok.RequiredArgsConstructor;
@@ -45,12 +46,12 @@ public class EmployeeController {
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteEmployeeById(@PathVariable Long id) {
+    public ResponseEntity<MessageResponseDto> deleteEmployeeById(@PathVariable Long id) {
         employeeService.deleteEmployeeById(id);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body("Employee with id " + id + " deleted successfully");
+                .body(new MessageResponseDto("Employee with id " + id + " deleted successfully"));
     }
 
 }

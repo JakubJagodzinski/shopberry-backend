@@ -1,5 +1,6 @@
 package com.example.shopberry.domain.categories;
 
+import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.categories.dto.CategoryResponseDto;
 import com.example.shopberry.domain.categories.dto.CreateCategoryRequestDto;
 import com.example.shopberry.domain.categories.dto.UpdateCategoryRequestDto;
@@ -65,12 +66,12 @@ public class CategoryController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteCategoryById(@PathVariable Long id) {
+    public ResponseEntity<MessageResponseDto> deleteCategoryById(@PathVariable Long id) {
         categoryService.deleteCategoryById(id);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body("Category with id " + id + " deleted successfully");
+                .body(new MessageResponseDto("Category with id " + id + " deleted successfully"));
     }
 
 }

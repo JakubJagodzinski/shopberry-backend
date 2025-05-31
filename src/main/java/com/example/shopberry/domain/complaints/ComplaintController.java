@@ -1,5 +1,6 @@
 package com.example.shopberry.domain.complaints;
 
+import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.complaints.dto.ComplaintResponseDto;
 import com.example.shopberry.domain.complaints.dto.CreateComplaintRequestDto;
 import com.example.shopberry.domain.complaints.dto.UpdateComplaintRequestDto;
@@ -56,12 +57,12 @@ public class ComplaintController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteComplaintById(@PathVariable Long id) {
+    public ResponseEntity<MessageResponseDto> deleteComplaintById(@PathVariable Long id) {
         complaintService.deleteComplaintById(id);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body("Complaint with id " + id + " deleted successfully");
+                .body(new MessageResponseDto("Complaint with id " + id + " deleted successfully"));
     }
 
 }

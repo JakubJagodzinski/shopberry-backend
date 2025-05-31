@@ -1,5 +1,6 @@
 package com.example.shopberry.domain.complaintimages;
 
+import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.complaintimages.dto.ComplaintImageResponseDto;
 import com.example.shopberry.domain.complaintimages.dto.CreateComplaintImageRequestDto;
 import lombok.RequiredArgsConstructor;
@@ -46,12 +47,12 @@ public class ComplaintImageController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteComplaintImageById(@PathVariable Long id) {
+    public ResponseEntity<MessageResponseDto> deleteComplaintImageById(@PathVariable Long id) {
         complaintImageService.deleteComplaintImageById(id);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body("Complaint image with id " + id + " deleted successfully");
+                .body(new MessageResponseDto("Complaint image with id " + id + " deleted successfully"));
     }
 
 }

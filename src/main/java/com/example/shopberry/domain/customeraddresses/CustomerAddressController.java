@@ -1,5 +1,6 @@
 package com.example.shopberry.domain.customeraddresses;
 
+import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.customeraddresses.dto.CreateCustomerAddressRequestDto;
 import com.example.shopberry.domain.customeraddresses.dto.CustomerAddressResponseDto;
 import com.example.shopberry.domain.customeraddresses.dto.UpdateCustomerAddressRequestDto;
@@ -56,21 +57,21 @@ public class CustomerAddressController {
     }
 
     @DeleteMapping("/customer/{customerId}")
-    public ResponseEntity<String> deleteCustomerAddressesByCustomerId(@PathVariable Long customerId) {
+    public ResponseEntity<MessageResponseDto> deleteCustomerAddressesByCustomerId(@PathVariable Long customerId) {
         customerAddressService.deleteCustomerAddressesByCustomerId(customerId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body("All customer addresses with customer id " + customerId + " deleted");
+                .body(new MessageResponseDto("All customer addresses with customer id " + customerId + " deleted"));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteCustomerAddressById(@PathVariable Long id) {
+    public ResponseEntity<MessageResponseDto> deleteCustomerAddressById(@PathVariable Long id) {
         customerAddressService.deleteCustomerAddressById(id);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body("Customer address with id " + id + " deleted");
+                .body(new MessageResponseDto("Customer address with id " + id + " deleted"));
     }
 
 }

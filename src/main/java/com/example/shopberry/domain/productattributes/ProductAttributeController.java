@@ -1,5 +1,6 @@
 package com.example.shopberry.domain.productattributes;
 
+import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.productattributes.dto.CreateProductAttributeRequestDto;
 import com.example.shopberry.domain.productattributes.dto.ProductAttributeResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -46,14 +47,14 @@ public class ProductAttributeController {
     }
 
     @DeleteMapping("/{productId}/{attributeId}")
-    public ResponseEntity<String> deleteProductAttributeById(@PathVariable Long productId, @PathVariable Long attributeId) {
+    public ResponseEntity<MessageResponseDto> deleteProductAttributeById(@PathVariable Long productId, @PathVariable Long attributeId) {
         ProductAttributeId productAttributeId = new ProductAttributeId(productId, attributeId);
 
         productAttributeService.deleteProductAttributeById(productAttributeId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body("Product attribute with id " + productAttributeId + " deleted successfully");
+                .body(new MessageResponseDto("Product attribute with id " + productAttributeId + " deleted successfully"));
     }
 
 }

@@ -1,5 +1,6 @@
 package com.example.shopberry.domain.productreturns;
 
+import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.productreturns.dto.CreateProductReturnRequestDto;
 import com.example.shopberry.domain.productreturns.dto.ProductReturnResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -46,12 +47,12 @@ public class ProductReturnController {
     }
 
     @DeleteMapping("/{productReturnId}")
-    public ResponseEntity<String> deleteProductReturnById(@PathVariable Long productReturnId) {
+    public ResponseEntity<MessageResponseDto> deleteProductReturnById(@PathVariable Long productReturnId) {
         productReturnService.deleteProductReturnById(productReturnId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body("Product return with id " + productReturnId + " deleted successfully");
+                .body(new MessageResponseDto("Product return with id " + productReturnId + " deleted successfully"));
     }
 
 }

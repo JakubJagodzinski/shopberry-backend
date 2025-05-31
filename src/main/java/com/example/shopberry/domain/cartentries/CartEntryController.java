@@ -1,5 +1,6 @@
 package com.example.shopberry.domain.cartentries;
 
+import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.cartentries.dto.CartEntryResponseDto;
 import com.example.shopberry.domain.cartentries.dto.CreateCartEntryRequestDto;
 import com.example.shopberry.domain.cartentries.dto.UpdateCartEntryRequestDto;
@@ -58,14 +59,14 @@ public class CartEntryController {
     }
 
     @DeleteMapping("/{customerId}/{productId}")
-    public ResponseEntity<String> deleteCartEntryByCartEntryId(@PathVariable Long customerId, @PathVariable Long productId) {
+    public ResponseEntity<MessageResponseDto> deleteCartEntryByCartEntryId(@PathVariable Long customerId, @PathVariable Long productId) {
         CartEntryId cartEntryId = new CartEntryId(customerId, productId);
 
         cartEntryService.deleteCartEntryByCartEntryId(cartEntryId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body("Cart entry with ID " + cartEntryId + " deleted successfully.");
+                .body(new MessageResponseDto("Cart entry with ID " + cartEntryId + " deleted successfully."));
     }
 
 }

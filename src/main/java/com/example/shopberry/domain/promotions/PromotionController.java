@@ -1,5 +1,6 @@
 package com.example.shopberry.domain.promotions;
 
+import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.promotions.dto.CreatePromotionRequestDto;
 import com.example.shopberry.domain.promotions.dto.PromotionResponseDto;
 import com.example.shopberry.domain.promotions.dto.UpdatePromotionRequestDto;
@@ -56,12 +57,12 @@ public class PromotionController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deletePromotionById(@PathVariable Long id) {
+    public ResponseEntity<MessageResponseDto> deletePromotionById(@PathVariable Long id) {
         promotionService.deletePromotionById(id);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body("Promotion with id " + id + " deleted successfully");
+                .body(new MessageResponseDto("Promotion with id " + id + " deleted successfully"));
     }
 
 }

@@ -1,5 +1,6 @@
 package com.example.shopberry.domain.favouriteentries;
 
+import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.favouriteentries.dto.CreateFavouriteEntryRequestDto;
 import com.example.shopberry.domain.favouriteentries.dto.FavouriteEntryResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -37,14 +38,14 @@ public class FavouriteEntryController {
     }
 
     @DeleteMapping("/{customerId}/{productId}")
-    public ResponseEntity<String> deleteFavouriteEntryByFavouriteEntryId(@PathVariable Long customerId, @PathVariable Long productId) {
+    public ResponseEntity<MessageResponseDto> deleteFavouriteEntryByFavouriteEntryId(@PathVariable Long customerId, @PathVariable Long productId) {
         FavouriteEntryId favouriteEntryId = new FavouriteEntryId(productId, customerId);
 
         favouriteEntryService.deleteFavouriteEntryByFavouriteEntryId(favouriteEntryId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body("Favourite entry with id " + favouriteEntryId + " deleted successfully");
+                .body(new MessageResponseDto("Favourite entry with id " + favouriteEntryId + " deleted successfully"));
     }
 
 }

@@ -1,5 +1,6 @@
 package com.example.shopberry.domain.productpromotions;
 
+import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.productpromotions.dto.CreateProductPromotionRequestDto;
 import com.example.shopberry.domain.productpromotions.dto.ProductPromotionResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -55,21 +56,21 @@ public class ProductPromotionController {
     }
 
     @DeleteMapping("/by-product/{productId}")
-    public ResponseEntity<String> deleteProductPromotionsByProductId(@PathVariable Long productId) {
+    public ResponseEntity<MessageResponseDto> deleteProductPromotionsByProductId(@PathVariable Long productId) {
         productPromotionService.deleteProductPromotionsByProductId(productId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body("Product promotions with productId " + productId + " deleted successfully");
+                .body(new MessageResponseDto("Product promotions with productId " + productId + " deleted successfully"));
     }
 
     @DeleteMapping("/by-promotion/{promotionId}")
-    public ResponseEntity<String> deleteProductPromotionsByPromotionId(@PathVariable Long promotionId) {
+    public ResponseEntity<MessageResponseDto> deleteProductPromotionsByPromotionId(@PathVariable Long promotionId) {
         productPromotionService.deleteProductPromotionsByPromotionId(promotionId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body("Product promotions with promotionId " + promotionId + " deleted successfully");
+                .body(new MessageResponseDto("Product promotions with promotionId " + promotionId + " deleted successfully"));
     }
 
 }

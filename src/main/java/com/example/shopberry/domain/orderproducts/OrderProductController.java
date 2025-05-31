@@ -1,5 +1,6 @@
 package com.example.shopberry.domain.orderproducts;
 
+import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.orderproducts.dto.CreateOrderProductRequestDto;
 import com.example.shopberry.domain.orderproducts.dto.OrderProductResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -48,14 +49,14 @@ public class OrderProductController {
     }
 
     @DeleteMapping("/{orderId}/{productId}")
-    public ResponseEntity<String> deleteOrderProductById(@PathVariable Long orderId, @PathVariable Long productId) {
+    public ResponseEntity<MessageResponseDto> deleteOrderProductById(@PathVariable Long orderId, @PathVariable Long productId) {
         OrderProductId orderProductId = new OrderProductId(orderId, productId);
 
         orderProductService.deleteOrderProductById(orderProductId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body("Order product with id " + orderProductId + " deleted successfully");
+                .body(new MessageResponseDto("Order product with id " + orderProductId + " deleted successfully"));
     }
 
 }

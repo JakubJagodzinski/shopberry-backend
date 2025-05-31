@@ -1,5 +1,6 @@
 package com.example.shopberry.domain.reviews;
 
+import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.reviews.dto.CreateReviewRequestDto;
 import com.example.shopberry.domain.reviews.dto.ReviewResponseDto;
 import com.example.shopberry.domain.reviews.dto.UpdateReviewRequestDto;
@@ -65,30 +66,30 @@ public class ReviewController {
     }
 
     @DeleteMapping("/{reviewId}")
-    public ResponseEntity<String> deleteReview(@PathVariable Long reviewId) {
+    public ResponseEntity<MessageResponseDto> deleteReview(@PathVariable Long reviewId) {
         reviewService.deleteReviewById(reviewId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body("Review with id " + reviewId + " deleted successfully");
+                .body(new MessageResponseDto("Review with id " + reviewId + " deleted successfully"));
     }
 
     @DeleteMapping("/by-customer/{customerId}")
-    public ResponseEntity<String> deleteReviewsByCustomerId(@PathVariable Long customerId) {
+    public ResponseEntity<MessageResponseDto> deleteReviewsByCustomerId(@PathVariable Long customerId) {
         reviewService.deleteReviewsByCustomerId(customerId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body("Reviews for customer with id " + customerId + " deleted successfully");
+                .body(new MessageResponseDto("Reviews for customer with id " + customerId + " deleted successfully"));
     }
 
     @DeleteMapping("/by-product/{productId}")
-    public ResponseEntity<String> deleteReviewsByProductId(@PathVariable Long productId) {
+    public ResponseEntity<MessageResponseDto> deleteReviewsByProductId(@PathVariable Long productId) {
         reviewService.deleteReviewsByProductId(productId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body("Reviews for product with id " + productId + " deleted successfully");
+                .body(new MessageResponseDto("Reviews for product with id " + productId + " deleted successfully"));
     }
 
 }

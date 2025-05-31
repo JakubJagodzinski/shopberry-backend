@@ -1,5 +1,6 @@
 package com.example.shopberry.domain.attributes;
 
+import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.attributes.dto.AttributeResponseDto;
 import com.example.shopberry.domain.attributes.dto.CreateAttributeRequestDto;
 import com.example.shopberry.domain.attributes.dto.UpdateAttributeRequestDto;
@@ -56,12 +57,12 @@ public class AttributeController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteAttributeById(@PathVariable Long id) {
+    public ResponseEntity<MessageResponseDto> deleteAttributeById(@PathVariable Long id) {
         attributeService.deleteAttributeById(id);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body("Attribute with id " + id + " deleted successfully");
+                .body(new MessageResponseDto("Attribute with id " + id + " deleted successfully"));
     }
 
 }

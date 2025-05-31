@@ -1,5 +1,6 @@
 package com.example.shopberry.domain.causesofreturn;
 
+import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.causesofreturn.dto.CauseOfReturnResponseDto;
 import com.example.shopberry.domain.causesofreturn.dto.CreateCauseOfReturnRequestDto;
 import com.example.shopberry.domain.causesofreturn.dto.UpdateCauseOfReturnRequestDto;
@@ -56,12 +57,12 @@ public class CauseOfReturnController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteCauseOfReturnById(@PathVariable Long id) {
+    public ResponseEntity<MessageResponseDto> deleteCauseOfReturnById(@PathVariable Long id) {
         causeOfReturnService.deleteCauseOfReturnById(id);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body("Cause of return with id " + id + " deleted successfully");
+                .body(new MessageResponseDto("Cause of return with id " + id + " deleted successfully"));
     }
 
 }

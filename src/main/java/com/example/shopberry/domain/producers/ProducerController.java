@@ -1,5 +1,6 @@
 package com.example.shopberry.domain.producers;
 
+import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.producers.dto.CreateProducerRequestDto;
 import com.example.shopberry.domain.producers.dto.ProducerResponseDto;
 import com.example.shopberry.domain.producers.dto.UpdateProducerRequestDto;
@@ -56,12 +57,12 @@ public class ProducerController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteProducerById(@PathVariable Long id) {
+    public ResponseEntity<MessageResponseDto> deleteProducerById(@PathVariable Long id) {
         producerService.deleteProducerById(id);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body("Producer with id " + id + " deleted successfully");
+                .body(new MessageResponseDto("Producer with id " + id + " deleted successfully"));
     }
 
 }

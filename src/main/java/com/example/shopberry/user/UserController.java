@@ -1,5 +1,6 @@
 package com.example.shopberry.user;
 
+import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.user.dto.ChangePasswordRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,12 +20,12 @@ public class UserController {
     private final UserService userService;
 
     @PatchMapping
-    public ResponseEntity<String> changePassword(@RequestBody ChangePasswordRequestDto changePasswordRequestDto, Principal connectedUser) {
+    public ResponseEntity<MessageResponseDto> changePassword(@RequestBody ChangePasswordRequestDto changePasswordRequestDto, Principal connectedUser) {
         userService.changePassword(changePasswordRequestDto, connectedUser);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body("Password changed successfully");
+                .body(new MessageResponseDto("Password changed successfully"));
     }
 
 }

@@ -1,5 +1,6 @@
 package com.example.shopberry.domain.paymenttypes;
 
+import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.paymenttypes.dto.CreatePaymentTypeRequestDto;
 import com.example.shopberry.domain.paymenttypes.dto.PaymentTypeResponseDto;
 import com.example.shopberry.domain.paymenttypes.dto.UpdatePaymentTypeRequestDto;
@@ -56,12 +57,12 @@ public class PaymentTypeController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deletePaymentTypeById(@PathVariable Long id) {
+    public ResponseEntity<MessageResponseDto> deletePaymentTypeById(@PathVariable Long id) {
         paymentTypeService.deletePaymentTypeById(id);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body("Payment type with id: " + id + " deleted successfully");
+                .body(new MessageResponseDto("Payment type with id: " + id + " deleted successfully"));
     }
 
 }
