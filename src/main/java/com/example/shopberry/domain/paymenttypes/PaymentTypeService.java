@@ -29,7 +29,7 @@ public class PaymentTypeService {
     }
 
     @Transactional
-    public PaymentTypeResponseDto getPaymentTypeById(Long id) {
+    public PaymentTypeResponseDto getPaymentTypeById(Long id) throws IllegalArgumentException {
         PaymentType paymentType = paymentTypeRepository.findById(id).orElse(null);
 
         if (paymentType == null) {

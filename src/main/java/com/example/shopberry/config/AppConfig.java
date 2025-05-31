@@ -22,7 +22,7 @@ public class AppConfig {
     private final String USER_NOT_FOUND_MESSAGE = "User not found";
 
     @Bean
-    public UserDetailsService userDetailsService() {
+    public UserDetailsService userDetailsService() throws UsernameNotFoundException {
         return username -> userRepository.findByEmail(username)
                 .orElseThrow(() -> new UsernameNotFoundException(USER_NOT_FOUND_MESSAGE));
     }
