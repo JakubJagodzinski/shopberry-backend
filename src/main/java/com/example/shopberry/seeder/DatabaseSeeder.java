@@ -18,8 +18,12 @@ import com.example.shopberry.domain.promotions.Promotion;
 import com.example.shopberry.domain.promotions.PromotionRepository;
 import com.example.shopberry.domain.shipmenttypes.ShipmentType;
 import com.example.shopberry.domain.shipmenttypes.ShipmentTypeRepository;
+import com.example.shopberry.user.Role;
+import com.example.shopberry.user.User;
+import com.example.shopberry.user.UserRepository;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -37,8 +41,11 @@ public class DatabaseSeeder implements ApplicationRunner {
     private final AttributeRepository attributeRepository;
     private final PromotionRepository promotionRepository;
     private final OrderProductStatusRepository orderProductStatusRepository;
+    private final UserRepository userRepository;
 
-    public DatabaseSeeder(CategoryRepository categoryRepository, ProducerRepository producerRepository, PaymentTypeRepository paymentTypeRepository, CauseOfReturnRepository causeOfReturnRepository, OrderStatusRepository orderStatusRepository, ShipmentTypeRepository shipmentTypeRepository, AttributeRepository attributeRepository, PromotionRepository promotionRepository, OrderProductStatusRepository orderProductStatusRepository) {
+    private final PasswordEncoder passwordEncoder;
+
+    public DatabaseSeeder(CategoryRepository categoryRepository, ProducerRepository producerRepository, PaymentTypeRepository paymentTypeRepository, CauseOfReturnRepository causeOfReturnRepository, OrderStatusRepository orderStatusRepository, ShipmentTypeRepository shipmentTypeRepository, AttributeRepository attributeRepository, PromotionRepository promotionRepository, OrderProductStatusRepository orderProductStatusRepository, UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.categoryRepository = categoryRepository;
         this.producerRepository = producerRepository;
         this.paymentTypeRepository = paymentTypeRepository;
@@ -48,6 +55,8 @@ public class DatabaseSeeder implements ApplicationRunner {
         this.attributeRepository = attributeRepository;
         this.promotionRepository = promotionRepository;
         this.orderProductStatusRepository = orderProductStatusRepository;
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -61,6 +70,7 @@ public class DatabaseSeeder implements ApplicationRunner {
         seedAttributes();
         seedPromotions();
         seedOrderProductStatus();
+        seedAdminAccount();
     }
 
     private void seedProducers() {
@@ -386,6 +396,21 @@ public class DatabaseSeeder implements ApplicationRunner {
             orderProductStatuses.add(orderProductStatus2);
 
             orderProductStatusRepository.saveAll(orderProductStatuses);
+        }
+    }
+
+    private void seedAdminAccount() {
+        final String adminEmail = "admin@shopberry.com";
+
+        if (!userRepository.existsByEmail(adminEmail)) {
+            User admin = new User();
+            admin.setEmail(adminEmail);
+            admin.setFirstName("Admin");
+            admin.setLastName("Shopberry");
+            admin.setPassword(passwordEncoder.encode("admin"));
+            admin.setRole(Role.ADMIN);
+
+            userRepository.save(admin);
         }
     }
 
