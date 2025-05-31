@@ -3,17 +3,15 @@ package com.example.shopberry.domain.productpromotions;
 import com.example.shopberry.domain.products.Product;
 import com.example.shopberry.domain.promotions.Promotion;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "product_promotions")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class ProductPromotion {
 
     @EmbeddedId

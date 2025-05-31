@@ -4,13 +4,13 @@ import com.example.shopberry.user.User;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Entity
-@Table(name = "tokens")
 @Getter
 @Setter
-@Builder
 @NoArgsConstructor
+@Builder
 @AllArgsConstructor
+@Entity
+@Table(name = "tokens")
 public class Token {
 
     @Id

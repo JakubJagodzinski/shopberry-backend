@@ -5,17 +5,15 @@ import com.example.shopberry.domain.orderstatuses.OrderStatus;
 import com.example.shopberry.domain.paymenttypes.PaymentType;
 import com.example.shopberry.domain.shipmenttypes.ShipmentType;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "orders")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class Order {
 
     @Id

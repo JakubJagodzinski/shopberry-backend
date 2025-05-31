@@ -3,15 +3,13 @@ package com.example.shopberry.domain.complaints;
 import com.example.shopberry.domain.orders.Order;
 import com.example.shopberry.domain.products.Product;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "complaints")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class Complaint {
 
     @Id

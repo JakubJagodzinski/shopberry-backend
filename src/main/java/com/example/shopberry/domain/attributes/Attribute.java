@@ -1,15 +1,13 @@
 package com.example.shopberry.domain.attributes;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "attributes")
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class Attribute {
 
     @Id

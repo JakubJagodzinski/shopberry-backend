@@ -1,15 +1,13 @@
 package com.example.shopberry.domain.paymenttypes;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "payment_types")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class PaymentType {
 
     @Id

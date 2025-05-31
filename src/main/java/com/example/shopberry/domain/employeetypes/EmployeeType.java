@@ -1,15 +1,13 @@
 package com.example.shopberry.domain.employeetypes;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "employee_types")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class EmployeeType {
 
     @Id

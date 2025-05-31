@@ -1,15 +1,13 @@
 package com.example.shopberry.domain.orderproductstatuses;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "order_product_statuses")
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class OrderProductStatus {
 
     @Id

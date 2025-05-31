@@ -4,17 +4,15 @@ import com.example.shopberry.domain.orderproductstatuses.OrderProductStatus;
 import com.example.shopberry.domain.orders.Order;
 import com.example.shopberry.domain.products.Product;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "order_products")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class OrderProduct {
 
     @EmbeddedId

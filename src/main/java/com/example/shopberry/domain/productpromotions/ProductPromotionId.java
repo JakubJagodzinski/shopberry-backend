@@ -1,14 +1,12 @@
 package com.example.shopberry.domain.productpromotions;
 
 import jakarta.persistence.Embeddable;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Embeddable
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Embeddable
 public class ProductPromotionId {
 
     private Long productId;

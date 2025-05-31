@@ -3,17 +3,15 @@ package com.example.shopberry.domain.categoriesattributes;
 import com.example.shopberry.domain.attributes.Attribute;
 import com.example.shopberry.domain.categories.Category;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "category_attributes")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class CategoryAttribute {
 
     @EmbeddedId

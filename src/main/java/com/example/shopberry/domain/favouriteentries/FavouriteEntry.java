@@ -3,19 +3,17 @@ package com.example.shopberry.domain.favouriteentries;
 import com.example.shopberry.domain.customers.Customer;
 import com.example.shopberry.domain.products.Product;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.LocalDateTime;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "favourite_entries")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class FavouriteEntry {
 
     @EmbeddedId

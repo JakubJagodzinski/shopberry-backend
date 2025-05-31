@@ -3,15 +3,13 @@ package com.example.shopberry.domain.employees;
 import com.example.shopberry.domain.employeetypes.EmployeeType;
 import com.example.shopberry.user.User;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "employees")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @PrimaryKeyJoinColumn(name = "employee_id")
 public class Employee extends User {
 

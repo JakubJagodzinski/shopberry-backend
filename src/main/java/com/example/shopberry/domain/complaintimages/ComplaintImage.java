@@ -2,17 +2,15 @@ package com.example.shopberry.domain.complaintimages;
 
 import com.example.shopberry.domain.complaints.Complaint;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "complaint_images")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class ComplaintImage {
 
     @Id
