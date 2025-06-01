@@ -31,16 +31,18 @@ public class AuthenticationService {
 
     private final CustomerService customerService;
     private final EmployeeService employeeService;
-
     private final JwtService jwtService;
 
     private final AuthenticationManager authenticationManager;
 
     private final String USER_NOT_FOUND_MESSAGE = "User not found";
     private final String USER_ALREADY_EXISTS_MESSAGE = "User already exists";
-    private final String INVALID_REFRESH_TOKEN_MESSAGE = "Invalid refresh token";
-    private final String INVALID_OR_EXPIRED_REFRESH_TOKEN_MESSAGE = "Invalid or expired refresh token";
     private final String INVALID_ROLE_MESSAGE = "Invalid role specified";
+    private final String REFRESH_TOKEN_IS_MISSING_MESSAGE = "Refresh token is missing";
+    private final String INVALID_TOKEN_NO_SUBJECT_MESSAGE = "Invalid token: no subject";
+    private final String TOKEN_NOT_FOUND_MESSAGE = "Token not found";
+    private final String PROVIDED_TOKEN_IS_NOT_A_REFRESH_TOKEN_MESSAGE = "Provided token is not a refresh token";
+    private final String REFRESH_TOKEN_IS_INVALID_OR_EXPIRED_MESSAGE = "Refresh token is invalid or expired";
 
     public AuthenticationResponseDto register(RegisterRequestDto registerRequestDto) throws IllegalArgumentException {
         if (userRepository.existsByEmail(registerRequestDto.getEmail())) {
@@ -136,12 +138,12 @@ public class AuthenticationService {
         String refreshToken = requestDto.getRefreshToken();
 
         if (refreshToken == null || refreshToken.isBlank()) {
-            throw new IllegalArgumentException("Refresh token is missing");
+            throw new IllegalArgumentException(REFRESH_TOKEN_IS_MISSING_MESSAGE);
         }
 
         String userEmail = jwtService.extractUsername(refreshToken);
         if (userEmail == null) {
-            throw new IllegalArgumentException("Invalid token: no subject");
+            throw new IllegalArgumentException(INVALID_TOKEN_NO_SUBJECT_MESSAGE);
         }
 
         User user = userRepository.findByEmail(userEmail).orElse(null);
@@ -153,15 +155,15 @@ public class AuthenticationService {
         Token token = tokenRepository.findByToken(refreshToken).orElse(null);
 
         if (token == null) {
-            throw new IllegalArgumentException("Token not found");
+            throw new IllegalArgumentException(TOKEN_NOT_FOUND_MESSAGE);
         }
 
         if (token.getTokenType() != TokenType.REFRESH) {
-            throw new IllegalArgumentException("Provided token is not a refresh token");
+            throw new IllegalArgumentException(PROVIDED_TOKEN_IS_NOT_A_REFRESH_TOKEN_MESSAGE);
         }
 
         if (!jwtService.isTokenValid(refreshToken, user) || token.getIsExpired() || token.getIsRevoked()) {
-            throw new IllegalArgumentException("Refresh token is invalid or expired");
+            throw new IllegalArgumentException(REFRESH_TOKEN_IS_INVALID_OR_EXPIRED_MESSAGE);
         }
 
         revokeAllUserTokens(user);
