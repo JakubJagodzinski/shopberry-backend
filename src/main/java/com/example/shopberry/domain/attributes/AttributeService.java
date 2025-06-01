@@ -19,10 +19,10 @@ public class AttributeService {
 
     private final AttributeDtoMapper attributeDtoMapper;
 
-    private final String ATTRIBUTE_NOT_FOUND_MESSAGE = "Attribute not found";
-    private final String ATTRIBUTE_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE = "Attribute with that name already exists";
-    private final String ATTRIBUTE_NAME_CANNOT_BY_NULL_MESSAGE = "Attribute name cannot be null";
-    private final String ATTRIBUTE_NAME_CANNOT_BY_EMPTY_MESSAGE = "Attribute name cannot be empty";
+    private static final String ATTRIBUTE_NOT_FOUND_MESSAGE = "Attribute not found";
+    private static final String ATTRIBUTE_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE = "Attribute with that name already exists";
+    private static final String ATTRIBUTE_NAME_CANNOT_BY_NULL_MESSAGE = "Attribute name cannot be null";
+    private static final String ATTRIBUTE_NAME_CANNOT_BY_EMPTY_MESSAGE = "Attribute name cannot be empty";
 
     public List<AttributeResponseDto> getAttributes() {
         return attributeDtoMapper.toDtoList(attributeRepository.findAll());

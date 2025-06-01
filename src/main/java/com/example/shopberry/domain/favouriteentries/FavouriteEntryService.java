@@ -24,10 +24,10 @@ public class FavouriteEntryService {
 
     private final FavouriteEntryDtoMapper favouriteEntryDtoMapper;
 
-    private final String CUSTOMER_NOT_FOUND_MESSAGE = "Customer not found";
-    private final String PRODUCT_NOT_FOUND_MESSAGE = "Product not found";
-    private final String FAVOURITE_ENTRY_NOT_FOUND_MESSAGE = "Favourite entry not found";
-    private final String FAVOURITE_ENTRY_ALREADY_EXISTS_MESSAGE = "Favourite entry already exists";
+    private static final String CUSTOMER_NOT_FOUND_MESSAGE = "Customer not found";
+    private static final String PRODUCT_NOT_FOUND_MESSAGE = "Product not found";
+    private static final String FAVOURITE_ENTRY_NOT_FOUND_MESSAGE = "Favourite entry not found";
+    private static final String FAVOURITE_ENTRY_ALREADY_EXISTS_MESSAGE = "Favourite entry already exists";
 
     @Transactional
     public List<FavouriteEntryResponseDto> getFavouriteEntriesByCustomerId(Long customerId) throws EntityNotFoundException {

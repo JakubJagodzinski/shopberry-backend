@@ -26,13 +26,13 @@ public class OrderProductService {
 
     private final OrderProductDtoMapper orderProductDtoMapper;
 
-    private final String ORDER_PRODUCT_NOT_FOUND_MESSAGE = "Order product not found";
-    private final String ORDER_NOT_FOUND_MESSAGE = "Order not found";
-    private final String PRODUCT_NOT_FOUND_MESSAGE = "Product not found";
-    private final String PRODUCT_ALREADY_ADDED_TO_THIS_ORDER_MESSAGE = "Product already added to this order";
-    private final String PRODUCT_QUANTITY_MUST_BE_GREATER_THAN_ZERO_MESSAGE = "Product quantity must be greater than zero";
-    private final String PRODUCT_PRICE_MUST_BE_POSITIVE_MESSAGE = "Product price must be positive";
-    private final String ORDER_PRODUCT_STATUS_NOT_FOUND_MESSAGE = "Order product status not found";
+    private static final String ORDER_PRODUCT_NOT_FOUND_MESSAGE = "Order product not found";
+    private static final String ORDER_NOT_FOUND_MESSAGE = "Order not found";
+    private static final String PRODUCT_NOT_FOUND_MESSAGE = "Product not found";
+    private static final String PRODUCT_ALREADY_ADDED_TO_THIS_ORDER_MESSAGE = "Product already added to this order";
+    private static final String PRODUCT_QUANTITY_MUST_BE_GREATER_THAN_ZERO_MESSAGE = "Product quantity must be greater than zero";
+    private static final String PRODUCT_PRICE_MUST_BE_POSITIVE_MESSAGE = "Product price must be positive";
+    private static final String ORDER_PRODUCT_STATUS_NOT_FOUND_MESSAGE = "Order product status not found";
     private final OrderProductStatusRepository orderProductStatusRepository;
 
     @Transactional

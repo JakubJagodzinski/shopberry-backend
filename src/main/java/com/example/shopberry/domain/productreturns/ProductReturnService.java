@@ -30,12 +30,12 @@ public class ProductReturnService {
 
     private final ProductReturnDtoMapper productReturnDtoMapper;
 
-    private final String PRODUCT_RETURN_NOT_FOUND_MESSAGE = "Product return not found";
-    private final String ORDER_NOT_FOUND_MESSAGE = "Order not found";
-    private final String PRODUCT_NOT_FOUND_MESSAGE = "Product not found";
-    private final String CAUSE_OF_RETURN_NOT_FOUND_MESSAGE = "Cause of return not found";
-    private final String PRODUCT_DOES_NOT_BELONG_TO_THAT_ORDER_MESSAGE = "Product does not belong to that order";
-    private final String PRODUCT_RETURN_ALREADY_EXISTS_MESSAGE = "Product return already exists";
+    private static final String PRODUCT_RETURN_NOT_FOUND_MESSAGE = "Product return not found";
+    private static final String ORDER_NOT_FOUND_MESSAGE = "Order not found";
+    private static final String PRODUCT_NOT_FOUND_MESSAGE = "Product not found";
+    private static final String CAUSE_OF_RETURN_NOT_FOUND_MESSAGE = "Cause of return not found";
+    private static final String PRODUCT_DOES_NOT_BELONG_TO_THAT_ORDER_MESSAGE = "Product does not belong to that order";
+    private static final String PRODUCT_RETURN_ALREADY_EXISTS_MESSAGE = "Product return already exists";
 
     @Transactional
     public ProductReturnResponseDto getProductReturnById(Long productReturnId) throws EntityNotFoundException {

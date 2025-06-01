@@ -24,10 +24,10 @@ public class CategoryAttributeService {
 
     private final CategoryAttributeDtoMapper categoryAttributeDtoMapper;
 
-    private final String CATEGORY_ATTRIBUTE_NOT_FOUND_MESSAGE = "Category attribute not found";
-    private final String CATEGORY_NOT_FOUND_MESSAGE = "Category not found";
-    private final String ATTRIBUTE_NOT_FOUND_MESSAGE = "Attribute not found";
-    private final String ATTRIBUTE_ALREADY_ASSIGNED_TO_THIS_CATEGORY_MESSAGE = "Attribute already assigned to this category";
+    private static final String CATEGORY_ATTRIBUTE_NOT_FOUND_MESSAGE = "Category attribute not found";
+    private static final String CATEGORY_NOT_FOUND_MESSAGE = "Category not found";
+    private static final String ATTRIBUTE_NOT_FOUND_MESSAGE = "Attribute not found";
+    private static final String ATTRIBUTE_ALREADY_ASSIGNED_TO_THIS_CATEGORY_MESSAGE = "Attribute already assigned to this category";
 
     @Transactional
     public List<CategoryAttributeResponseDto> getCategoryAttributesByCategoryId(Long categoryId) throws EntityNotFoundException {

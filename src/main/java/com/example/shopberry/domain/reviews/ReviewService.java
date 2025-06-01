@@ -29,10 +29,11 @@ public class ReviewService {
     private final Integer MAX_RATING_VALUE = 5;
     private final Integer MAX_REVIEW_TEXT_LENGTH = 1_000;
 
-    private final String REVIEW_NOT_FOUND_MESSAGE = "Review not found";
-    private final String PRODUCT_NOT_FOUND_MESSAGE = "Product not found";
-    private final String CUSTOMER_NOT_FOUND_MESSAGE = "Customer not found";
-    private final String RATING_VALUE_CANNOT_BE_NULL_MESSAGE = "Rating value cannot be null";
+    private static final String REVIEW_NOT_FOUND_MESSAGE = "Review not found";
+    private static final String PRODUCT_NOT_FOUND_MESSAGE = "Product not found";
+    private static final String CUSTOMER_NOT_FOUND_MESSAGE = "Customer not found";
+    private static final String RATING_VALUE_CANNOT_BE_NULL_MESSAGE = "Rating value cannot be null";
+
     private final String RATING_VALUE_OUT_OF_BOUNDS_MESSAGE = "Rating value must be between " + MIN_RATING_VALUE + " and " + MAX_RATING_VALUE;
     private final String REVIEW_TEXT_TOO_LONG_MESSAGE = "Review text cannot exceed " + MAX_REVIEW_TEXT_LENGTH + " characters";
 

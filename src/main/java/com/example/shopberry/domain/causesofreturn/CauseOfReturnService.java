@@ -19,10 +19,10 @@ public class CauseOfReturnService {
 
     private final CauseOfReturnDtoMapper causeOfReturnDtoMapper;
 
-    private final String CAUSE_OF_RETURN_NOT_FOUND_MESSAGE = "Cause of return not found";
-    private final String CAUSE_OF_RETURN_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE = "Cause of return with that name already exists";
-    private final String CAUSE_CANNOT_BE_NULL_MESSAGE = "Cause cannot be null";
-    private final String CAUSE_CANNOT_BE_EMPTY_MESSAGE = "Cause cannot be empty";
+    private static final String CAUSE_OF_RETURN_NOT_FOUND_MESSAGE = "Cause of return not found";
+    private static final String CAUSE_OF_RETURN_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE = "Cause of return with that name already exists";
+    private static final String CAUSE_CANNOT_BE_NULL_MESSAGE = "Cause cannot be null";
+    private static final String CAUSE_CANNOT_BE_EMPTY_MESSAGE = "Cause cannot be empty";
 
     public List<CauseOfReturnResponseDto> getCausesOfReturn() {
         return causeOfReturnDtoMapper.toDtoList(causeOfReturnRepository.findAll());

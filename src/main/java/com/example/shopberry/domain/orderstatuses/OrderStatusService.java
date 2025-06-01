@@ -19,10 +19,10 @@ public class OrderStatusService {
 
     private final OrderStatusDtoMapper orderStatusDtoMapper;
 
-    private final String ORDER_STATUS_NOT_FOUND_MESSAGE = "Order status not found";
-    private final String ORDER_STATUS_ALREADY_EXISTS_MESSAGE = "Order status already exists";
-    private final String ORDER_STATUS_NAME_CANNOT_BE_NULL_MESSAGE = "Order status name cannot be null";
-    private final String ORDER_STATUS_NAME_CANNOT_BE_EMPTY_MESSAGE = "Order status name cannot be empty";
+    private static final String ORDER_STATUS_NOT_FOUND_MESSAGE = "Order status not found";
+    private static final String ORDER_STATUS_ALREADY_EXISTS_MESSAGE = "Order status already exists";
+    private static final String ORDER_STATUS_NAME_CANNOT_BE_NULL_MESSAGE = "Order status name cannot be null";
+    private static final String ORDER_STATUS_NAME_CANNOT_BE_EMPTY_MESSAGE = "Order status name cannot be empty";
 
     public List<OrderStatusResponseDto> getOrderStatuses() {
         return orderStatusDtoMapper.toDtoList(orderStatusRepository.findAll());

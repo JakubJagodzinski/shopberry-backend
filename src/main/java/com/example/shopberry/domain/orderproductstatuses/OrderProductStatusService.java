@@ -21,11 +21,11 @@ public class OrderProductStatusService {
 
     private final OrderProductStatusDtoMapper orderProductStatusDtoMapper;
 
-    private final String ORDER_PRODUCT_STATUS_NOT_FOUND_MESSAGE = "Order product status not found";
-    private final String ORDER_PRODUCT_STATUS_ALREADY_EXISTS_MESSAGE = "Order product status already exists";
-    private final String ORDER_PRODUCT_STATUS_NAME_CANNOT_BE_NULL_MESSAGE = "Order product status name cannot be null";
-    private final String ORDER_PRODUCT_STATUS_NAME_CANNOT_BE_EMPTY_MESSAGE = "Order product status name cannot be empty";
-    private final String ORDER_PRODUCT_STATUS_IS_IN_USE_MESSAGE = "Order product status is in use and cannot be deleted";
+    private static final String ORDER_PRODUCT_STATUS_NOT_FOUND_MESSAGE = "Order product status not found";
+    private static final String ORDER_PRODUCT_STATUS_ALREADY_EXISTS_MESSAGE = "Order product status already exists";
+    private static final String ORDER_PRODUCT_STATUS_NAME_CANNOT_BE_NULL_MESSAGE = "Order product status name cannot be null";
+    private static final String ORDER_PRODUCT_STATUS_NAME_CANNOT_BE_EMPTY_MESSAGE = "Order product status name cannot be empty";
+    private static final String ORDER_PRODUCT_STATUS_IS_IN_USE_MESSAGE = "Order product status is in use and cannot be deleted";
 
     public List<OrderProductStatusResponseDto> getOrderProductStatuses() {
         return orderProductStatusDtoMapper.toDtoList(orderProductStatusRepository.findAll());

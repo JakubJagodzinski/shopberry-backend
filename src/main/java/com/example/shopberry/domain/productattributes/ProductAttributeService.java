@@ -24,11 +24,11 @@ public class ProductAttributeService {
 
     private final ProductAttributeDtoMapper productAttributeDtoMapper;
 
-    private final String PRODUCT_ATTRIBUTE_NOT_FOUND_MESSAGE = "Product attribute not found";
-    private final String ATTRIBUTE_ALREADY_ASSIGNED_TO_THIS_PRODUCT_MESSAGE = "Attribute already assigned to this product";
-    private final String PRODUCT_NOT_FOUND_MESSAGE = "Product not found";
-    private final String ATTRIBUTE_NOT_FOUND_MESSAGE = "Attribute not found";
-    private final String ATTRIBUTE_VALUE_CANNOT_BE_NULL_MESSAGE = "Attribute value cannot be null";
+    private static final String PRODUCT_ATTRIBUTE_NOT_FOUND_MESSAGE = "Product attribute not found";
+    private static final String ATTRIBUTE_ALREADY_ASSIGNED_TO_THIS_PRODUCT_MESSAGE = "Attribute already assigned to this product";
+    private static final String PRODUCT_NOT_FOUND_MESSAGE = "Product not found";
+    private static final String ATTRIBUTE_NOT_FOUND_MESSAGE = "Attribute not found";
+    private static final String ATTRIBUTE_VALUE_CANNOT_BE_NULL_MESSAGE = "Attribute value cannot be null";
 
     @Transactional
     public List<ProductAttributeResponseDto> getProductAttributesByProductId(Long productId) throws EntityNotFoundException {

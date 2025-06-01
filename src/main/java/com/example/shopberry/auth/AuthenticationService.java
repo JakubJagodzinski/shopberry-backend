@@ -35,14 +35,14 @@ public class AuthenticationService {
 
     private final AuthenticationManager authenticationManager;
 
-    private final String USER_NOT_FOUND_MESSAGE = "User not found";
-    private final String USER_ALREADY_EXISTS_MESSAGE = "User already exists";
-    private final String INVALID_ROLE_MESSAGE = "Invalid role specified";
-    private final String REFRESH_TOKEN_IS_MISSING_MESSAGE = "Refresh token is missing";
-    private final String INVALID_TOKEN_NO_SUBJECT_MESSAGE = "Invalid token: no subject";
-    private final String TOKEN_NOT_FOUND_MESSAGE = "Token not found";
-    private final String PROVIDED_TOKEN_IS_NOT_A_REFRESH_TOKEN_MESSAGE = "Provided token is not a refresh token";
-    private final String REFRESH_TOKEN_IS_INVALID_OR_EXPIRED_MESSAGE = "Refresh token is invalid or expired";
+    private static final String USER_NOT_FOUND_MESSAGE = "User not found";
+    private static final String USER_ALREADY_EXISTS_MESSAGE = "User already exists";
+    private static final String INVALID_ROLE_MESSAGE = "Invalid role specified";
+    private static final String REFRESH_TOKEN_IS_MISSING_MESSAGE = "Refresh token is missing";
+    private static final String INVALID_TOKEN_NO_SUBJECT_MESSAGE = "Invalid token: no subject";
+    private static final String TOKEN_NOT_FOUND_MESSAGE = "Token not found";
+    private static final String PROVIDED_TOKEN_IS_NOT_A_REFRESH_TOKEN_MESSAGE = "Provided token is not a refresh token";
+    private static final String REFRESH_TOKEN_IS_INVALID_OR_EXPIRED_MESSAGE = "Refresh token is invalid or expired";
 
     public AuthenticationResponseDto register(RegisterRequestDto registerRequestDto) throws IllegalArgumentException {
         if (userRepository.existsByEmail(registerRequestDto.getEmail())) {

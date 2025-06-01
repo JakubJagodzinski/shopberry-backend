@@ -29,10 +29,10 @@ public class OrderService {
 
     private final OrderDtoMapper orderDtoMapper;
 
-    private final String ORDER_NOT_FOUND_MESSAGE = "Order not found";
-    private final String CUSTOMER_NOT_FOUND_MESSAGE = "Customer not found";
-    private final String SHIPMENT_TYPE_NOT_FOUND_MESSAGE = "Shipment type not found";
-    private final String PAYMENT_TYPE_NOT_FOUND_MESSAGE = "Payment type not found";
+    private static final String ORDER_NOT_FOUND_MESSAGE = "Order not found";
+    private static final String CUSTOMER_NOT_FOUND_MESSAGE = "Customer not found";
+    private static final String SHIPMENT_TYPE_NOT_FOUND_MESSAGE = "Shipment type not found";
+    private static final String PAYMENT_TYPE_NOT_FOUND_MESSAGE = "Payment type not found";
 
     public List<OrderResponseDto> getOrders() {
         return orderDtoMapper.toDtoList(orderRepository.findAll());

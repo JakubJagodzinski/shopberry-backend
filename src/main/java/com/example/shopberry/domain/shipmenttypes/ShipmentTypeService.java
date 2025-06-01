@@ -19,11 +19,11 @@ public class ShipmentTypeService {
 
     private final ShipmentTypeDtoMapper shipmentTypeDtoMapper;
 
-    private final String SHIPMENT_TYPE_NOT_FOUND_MESSAGE = "Shipment type not found";
-    private final String SHIPMENT_TYPE_ALREADY_EXISTS_MESSAGE = "Shipment type already exists";
-    private final String SHIPMENT_NAME_CANNOT_BE_EMPTY_MESSAGE = "Shipment name cannot be empty";
-    private final String SHIPMENT_NAME_CANNOT_BE_NULL_MESSAGE = "Shipment name cannot be null";
-    private final String SHIPMENT_COST_CANNOT_BE_NEGATIVE_MESSAGE = "Shipment cost cannot be negative";
+    private static final String SHIPMENT_TYPE_NOT_FOUND_MESSAGE = "Shipment type not found";
+    private static final String SHIPMENT_TYPE_ALREADY_EXISTS_MESSAGE = "Shipment type already exists";
+    private static final String SHIPMENT_NAME_CANNOT_BE_EMPTY_MESSAGE = "Shipment name cannot be empty";
+    private static final String SHIPMENT_NAME_CANNOT_BE_NULL_MESSAGE = "Shipment name cannot be null";
+    private static final String SHIPMENT_COST_CANNOT_BE_NEGATIVE_MESSAGE = "Shipment cost cannot be negative";
 
     public List<ShipmentTypeResponseDto> getShipmentTypes() {
         return shipmentTypeDtoMapper.toDtoList(shipmentTypeRepository.findAll());

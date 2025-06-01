@@ -18,10 +18,10 @@ public class CategoryService {
     private final CategoryRepository categoryRepository;
     private final CategoryDtoMapper categoryDtoMapper;
 
-    private final String CATEGORY_NOT_FOUND_MESSAGE = "Category not found";
-    private final String PARENT_CATEGORY_NOT_FOUND_MESSAGE = "Parent category not found";
-    private final String CATEGORY_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE = "Category with that name already exists";
-    private final String CATEGORY_CANNOT_BE_PARENT_TO_ITSELF_MESSAGE = "Category cannot be parent to itself";
+    private static final String CATEGORY_NOT_FOUND_MESSAGE = "Category not found";
+    private static final String PARENT_CATEGORY_NOT_FOUND_MESSAGE = "Parent category not found";
+    private static final String CATEGORY_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE = "Category with that name already exists";
+    private static final String CATEGORY_CANNOT_BE_PARENT_TO_ITSELF_MESSAGE = "Category cannot be parent to itself";
 
     public List<CategoryResponseDto> getCategories() {
         return categoryDtoMapper.toDtoList(categoryRepository.findAll());

@@ -19,9 +19,9 @@ public class ProducerService {
 
     private final ProducerDtoMapper producerDtoMapper;
 
-    private final String PRODUCER_ALREADY_EXISTS_MESSAGE = "Producer already exists";
-    private final String PRODUCER_WITH_THAT_NAME_ALREADY_EXISTS = "Producer with that name already exists";
-    private final String PRODUCER_NOT_FOUND_MESSAGE = "Producer not found";
+    private static final String PRODUCER_ALREADY_EXISTS_MESSAGE = "Producer already exists";
+    private static final String PRODUCER_WITH_THAT_NAME_ALREADY_EXISTS = "Producer with that name already exists";
+    private static final String PRODUCER_NOT_FOUND_MESSAGE = "Producer not found";
 
     public List<ProducerResponseDto> getProducers() {
         List<Producer> producers = producerRepository.findAll();

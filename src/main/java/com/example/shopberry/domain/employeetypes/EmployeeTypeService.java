@@ -19,10 +19,10 @@ public class EmployeeTypeService {
 
     private final EmployeeTypeDtoMapper employeeTypeDtoMapper;
 
-    private final String EMPLOYEE_TYPE_NOT_FOUND_MESSAGE = "Employee type not found";
-    private final String EMPLOYEE_TYPE_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE = "Employee type with that name already exists";
-    private final String EMPLOYEE_TYPE_NAME_CANNOT_BE_NULL_MESSAGE = "Employee type name cannot be null";
-    private final String EMPLOYEE_TYPE_NAME_CANNOT_BE_EMPTY_MESSAGE = "Employee type name cannot be empty";
+    private static final String EMPLOYEE_TYPE_NOT_FOUND_MESSAGE = "Employee type not found";
+    private static final String EMPLOYEE_TYPE_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE = "Employee type with that name already exists";
+    private static final String EMPLOYEE_TYPE_NAME_CANNOT_BE_NULL_MESSAGE = "Employee type name cannot be null";
+    private static final String EMPLOYEE_TYPE_NAME_CANNOT_BE_EMPTY_MESSAGE = "Employee type name cannot be empty";
 
     public List<EmployeeTypeResponseDto> getEmployeeTypes() {
         return employeeTypeDtoMapper.toDtoList(employeeTypeRepository.findAll());

@@ -19,13 +19,13 @@ public class ProductService {
 
     private final ProductDtoMapper productDtoMapper;
 
-    private final String PRODUCT_NOT_FOUND_MESSAGE = "Product not found";
-    private final String PRODUCT_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE = "Product with that name already exists";
-    private final String PRODUCT_NAME_CANNOT_BE_EMPTY_MESSAGE = "Product name cannot be empty";
-    private final String PRODUCT_NAME_CANNOT_BE_NULL_MESSAGE = "Product name cannot be null";
-    private final String PRODUCT_PRICE_MUST_BE_GREATER_THAN_ZERO_MESSAGE = "Product price must be greater than zero";
-    private final String PRODUCT_DISCOUNT_PERCENT_VALUE_CAN_T_BE_NEGATIVE_MESSAGE = "Product discount percent value can't be negative";
-    private final String PRODUCT_DISCOUNT_PERCENT_VALUE_CAN_T_BE_GREATER_THAN_100_MESSAGE = "Product discount percent value can't be greater than 100";
+    private static final String PRODUCT_NOT_FOUND_MESSAGE = "Product not found";
+    private static final String PRODUCT_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE = "Product with that name already exists";
+    private static final String PRODUCT_NAME_CANNOT_BE_EMPTY_MESSAGE = "Product name cannot be empty";
+    private static final String PRODUCT_NAME_CANNOT_BE_NULL_MESSAGE = "Product name cannot be null";
+    private static final String PRODUCT_PRICE_MUST_BE_GREATER_THAN_ZERO_MESSAGE = "Product price must be greater than zero";
+    private static final String PRODUCT_DISCOUNT_PERCENT_VALUE_CAN_T_BE_NEGATIVE_MESSAGE = "Product discount percent value can't be negative";
+    private static final String PRODUCT_DISCOUNT_PERCENT_VALUE_CAN_T_BE_GREATER_THAN_100_MESSAGE = "Product discount percent value can't be greater than 100";
 
     public List<ProductResponseDto> getProducts() {
         return productDtoMapper.toDtoList(productRepository.findAll());

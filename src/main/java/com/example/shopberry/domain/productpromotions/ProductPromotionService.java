@@ -24,9 +24,9 @@ public class ProductPromotionService {
 
     private final ProductPromotionDtoMapper productPromotionDtoMapper;
 
-    private final String PROMOTION_ALREADY_ASSIGNED_TO_THIS_PRODUCT_MESSAGE = "Promotion already assigned to this product";
-    private final String PRODUCT_NOT_FOUND_MESSAGE = "Product not found";
-    private final String PROMOTION_NOT_FOUND_MESSAGE = "Promotion not found";
+    private static final String PROMOTION_ALREADY_ASSIGNED_TO_THIS_PRODUCT_MESSAGE = "Promotion already assigned to this product";
+    private static final String PRODUCT_NOT_FOUND_MESSAGE = "Product not found";
+    private static final String PROMOTION_NOT_FOUND_MESSAGE = "Promotion not found";
 
     public List<ProductPromotionResponseDto> getProductPromotions() {
         return productPromotionDtoMapper.toDtoList(productPromotionRepository.findAll());

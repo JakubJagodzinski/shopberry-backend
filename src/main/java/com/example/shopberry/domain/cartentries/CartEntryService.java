@@ -25,11 +25,11 @@ public class CartEntryService {
 
     private final CartEntryDtoMapper cartEntryDtoMapper;
 
-    private final String CUSTOMER_NOT_FOUND_MESSAGE = "Customer not found";
-    private final String PRODUCT_NOT_FOUND_MESSAGE = "Product not found";
-    private final String CART_ENTRY_NOT_FOUND_MESSAGE = "Cart entry not found";
-    private final String QUANTITY_MUST_BE_POSITIVE_MESSAGE = "Quantity must be positive";
-    private final String CART_ENTRY_ALREADY_EXISTS_MESSAGE = "Cart entry already exists";
+    private static final String CUSTOMER_NOT_FOUND_MESSAGE = "Customer not found";
+    private static final String PRODUCT_NOT_FOUND_MESSAGE = "Product not found";
+    private static final String CART_ENTRY_NOT_FOUND_MESSAGE = "Cart entry not found";
+    private static final String QUANTITY_MUST_BE_POSITIVE_MESSAGE = "Quantity must be positive";
+    private static final String CART_ENTRY_ALREADY_EXISTS_MESSAGE = "Cart entry already exists";
 
     @Transactional
     public CartEntryResponseDto getCartEntryByCartEntryId(CartEntryId cartEntryId) throws EntityNotFoundException {

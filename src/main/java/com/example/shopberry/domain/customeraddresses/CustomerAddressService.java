@@ -22,10 +22,10 @@ public class CustomerAddressService {
 
     private final CustomerAddressDtoMapper customerAddressDtoMapper;
 
-    private final String CUSTOMER_NOT_FOUND_MESSAGE = "Customer not found";
-    private final String CUSTOMER_ADDRESS_NOT_FOUND_MESSAGE = "Customer address not found";
-    private final String FIRST_NAME_CANNOT_BE_EMPTY_MESSAGE = "First name cannot be empty";
-    private final String LAST_NAME_CANNOT_BE_EMPTY_MESSAGE = "Last name cannot be empty";
+    private static final String CUSTOMER_NOT_FOUND_MESSAGE = "Customer not found";
+    private static final String CUSTOMER_ADDRESS_NOT_FOUND_MESSAGE = "Customer address not found";
+    private static final String FIRST_NAME_CANNOT_BE_EMPTY_MESSAGE = "First name cannot be empty";
+    private static final String LAST_NAME_CANNOT_BE_EMPTY_MESSAGE = "Last name cannot be empty";
 
     public List<CustomerAddressResponseDto> getCustomerAddresses() {
         return customerAddressDtoMapper.toDtoList(customerAddressRepository.findAll());

@@ -28,12 +28,12 @@ public class ComplaintService {
 
     private final ComplaintDtoMapper complaintDtoMapper;
 
-    private final String COMPLAINT_NOT_FOUND_MESSAGE = "Complaint not found";
-    private final String ORDER_ID_CANNOT_BE_NULL_MESSAGE = "Order ID cannot be null";
-    private final String PRODUCT_ID_CANNOT_BE_NULL_MESSAGE = "Product ID cannot be null";
-    private final String ORDER_NOT_FOUND_MESSAGE = "Order not found";
-    private final String PRODUCT_NOT_FOUND_MESSAGE = "Product not found";
-    private final String PRODUCT_DOES_NOT_BELONG_TO_THAT_ORDER_MESSAGE = "Product does not belong to that order";
+    private static final String COMPLAINT_NOT_FOUND_MESSAGE = "Complaint not found";
+    private static final String ORDER_ID_CANNOT_BE_NULL_MESSAGE = "Order ID cannot be null";
+    private static final String PRODUCT_ID_CANNOT_BE_NULL_MESSAGE = "Product ID cannot be null";
+    private static final String ORDER_NOT_FOUND_MESSAGE = "Order not found";
+    private static final String PRODUCT_NOT_FOUND_MESSAGE = "Product not found";
+    private static final String PRODUCT_DOES_NOT_BELONG_TO_THAT_ORDER_MESSAGE = "Product does not belong to that order";
 
     public List<ComplaintResponseDto> getComplaints() {
         return complaintDtoMapper.toDtoList(complaintRepository.findAll());

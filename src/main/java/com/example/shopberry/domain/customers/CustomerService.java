@@ -21,7 +21,7 @@ public class CustomerService {
 
     private final PasswordEncoder passwordEncoder;
 
-    private final String CUSTOMER_NOT_FOUND_MESSAGE = "Customer not found";
+    private static final String CUSTOMER_NOT_FOUND_MESSAGE = "Customer not found";
 
     public List<CustomerResponseDto> getCustomers() {
         return customerDtoMapper.toDtoList(customerRepository.findAll());

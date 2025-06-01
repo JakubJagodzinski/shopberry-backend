@@ -19,12 +19,12 @@ public class PromotionService {
 
     private final PromotionDtoMapper promotionDtoMapper;
 
-    private final String PROMOTION_NOT_FOUND_MESSAGE = "Promotion not found";
-    private final String PROMOTION_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE = "Promotion with that name already exists";
-    private final String PROMOTION_NAME_CANNOT_BE_NULL_MESSAGE = "Promotion name cannot be null";
-    private final String PROMOTION_NAME_CANNOT_BE_EMPTY_MESSAGE = "Promotion name cannot be empty";
-    private final String PROMOTION_DISCOUNT_PERCENT_VALUE_CANNOT_BE_NEGATIVE_MESSAGE = "Promotion discount percent value cannot be negative";
-    private final String PROMOTION_DISCOUNT_PERCENT_VALUE_CANNOT_BE_GREATER_THAN_100_MESSAGE = "Promotion discount percent value cannot be greater than 100";
+    private static final String PROMOTION_NOT_FOUND_MESSAGE = "Promotion not found";
+    private static final String PROMOTION_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE = "Promotion with that name already exists";
+    private static final String PROMOTION_NAME_CANNOT_BE_NULL_MESSAGE = "Promotion name cannot be null";
+    private static final String PROMOTION_NAME_CANNOT_BE_EMPTY_MESSAGE = "Promotion name cannot be empty";
+    private static final String PROMOTION_DISCOUNT_PERCENT_VALUE_CANNOT_BE_NEGATIVE_MESSAGE = "Promotion discount percent value cannot be negative";
+    private static final String PROMOTION_DISCOUNT_PERCENT_VALUE_CANNOT_BE_GREATER_THAN_100_MESSAGE = "Promotion discount percent value cannot be greater than 100";
 
     public List<PromotionResponseDto> getPromotions() {
         return promotionDtoMapper.toDtoList(promotionRepository.findAll());

@@ -25,13 +25,13 @@ public class EmployeeService {
 
     private final PasswordEncoder passwordEncoder;
 
-    private final String EMPLOYEE_NOT_FOUND_MESSAGE = "Employee not found";
-    private final String EMPLOYEE_TYPE_NOT_FOUND_MESSAGE = "Employee type not found";
-    private final String EMPLOYEE_WITH_THAT_EMAIL_ALREADY_EXISTS_MESSAGE = "Employee with that email already exists";
-    private final String EMPLOYEE_FIRST_NAME_CANNOT_BE_EMPTY_MESSAGE = "Employee first name cannot be empty";
-    private final String EMPLOYEE_LAST_NAME_CANNOT_BE_EMPTY_MESSAGE = "Employee last name cannot be empty";
-    private final String EMPLOYEE_EMAIL_CANNOT_BE_EMPTY_MESSAGE = "Employee email cannot be empty";
-    private final String EMPLOYEE_PASSWORD_CANNOT_BE_EMPTY_MESSAGE = "Employee password cannot be empty";
+    private static final String EMPLOYEE_NOT_FOUND_MESSAGE = "Employee not found";
+    private static final String EMPLOYEE_TYPE_NOT_FOUND_MESSAGE = "Employee type not found";
+    private static final String EMPLOYEE_WITH_THAT_EMAIL_ALREADY_EXISTS_MESSAGE = "Employee with that email already exists";
+    private static final String EMPLOYEE_FIRST_NAME_CANNOT_BE_EMPTY_MESSAGE = "Employee first name cannot be empty";
+    private static final String EMPLOYEE_LAST_NAME_CANNOT_BE_EMPTY_MESSAGE = "Employee last name cannot be empty";
+    private static final String EMPLOYEE_EMAIL_CANNOT_BE_EMPTY_MESSAGE = "Employee email cannot be empty";
+    private static final String EMPLOYEE_PASSWORD_CANNOT_BE_EMPTY_MESSAGE = "Employee password cannot be empty";
 
     public List<EmployeeResponseDto> getEmployees() {
         return employeeDtoMapper.toDtoList(employeeRepository.findAll());

@@ -19,10 +19,10 @@ public class PaymentTypeService {
 
     private final PaymentTypeDtoMapper paymentTypeDtoMapper;
 
-    private final String PAYMENT_TYPE_NOT_FOUND_MESSAGE = "Payment type not found";
-    private final String PAYMENT_TYPE_ALREADY_EXISTS_MESSAGE = "Payment type already exists";
-    private final String PAYMENT_TYPE_NAME_CANNOT_BE_NULL_MESSAGE = "Payment type name cannot be null";
-    private final String PAYMENT_TYPE_NAME_CANNOT_BE_EMPTY_MESSAGE = "Payment type name cannot be empty";
+    private static final String PAYMENT_TYPE_NOT_FOUND_MESSAGE = "Payment type not found";
+    private static final String PAYMENT_TYPE_ALREADY_EXISTS_MESSAGE = "Payment type already exists";
+    private static final String PAYMENT_TYPE_NAME_CANNOT_BE_NULL_MESSAGE = "Payment type name cannot be null";
+    private static final String PAYMENT_TYPE_NAME_CANNOT_BE_EMPTY_MESSAGE = "Payment type name cannot be empty";
 
     public List<PaymentTypeResponseDto> getPaymentTypes() {
         return paymentTypeDtoMapper.toDtoList(paymentTypeRepository.findAll());

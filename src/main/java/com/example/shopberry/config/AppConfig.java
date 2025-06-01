@@ -19,7 +19,7 @@ public class AppConfig {
 
     private final UserRepository userRepository;
 
-    private final String USER_NOT_FOUND_MESSAGE = "User not found";
+    private static final String USER_NOT_FOUND_MESSAGE = "User not found";
 
     @Bean
     public UserDetailsService userDetailsService() throws UsernameNotFoundException {

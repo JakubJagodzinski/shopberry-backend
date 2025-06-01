@@ -21,9 +21,9 @@ public class ComplaintImageService {
 
     private final ComplaintImageDtoMapper complaintImageDtoMapper;
 
-    private final String COMPLAINT_IMAGE_NOT_FOUND_MESSAGE = "Complaint image not found";
-    private final String COMPLAINT_DOES_NOT_EXIST_MESSAGE = "Complaint does not exist";
-    private final String COMPLAINT_IMAGE_CANNOT_BE_NULL_MESSAGE = "Complaint image cannot be null";
+    private static final String COMPLAINT_IMAGE_NOT_FOUND_MESSAGE = "Complaint image not found";
+    private static final String COMPLAINT_DOES_NOT_EXIST_MESSAGE = "Complaint does not exist";
+    private static final String COMPLAINT_IMAGE_CANNOT_BE_NULL_MESSAGE = "Complaint image cannot be null";
 
     public List<ComplaintImageResponseDto> getComplaintImages() {
         return complaintImageDtoMapper.toDtoList(complaintImageRepository.findAll());

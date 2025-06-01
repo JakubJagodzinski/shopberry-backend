@@ -17,8 +17,8 @@ public class UserService {
 
     private final PasswordEncoder passwordEncoder;
 
-    private final String WRONG_PASSWORD_MESSAGE = "Wrong password";
-    private final String PASSWORDS_ARE_NOT_THE_SAME_MESSAGE = "Passwords are not the same";
+    private static final String WRONG_PASSWORD_MESSAGE = "Wrong password";
+    private static final String PASSWORDS_ARE_NOT_THE_SAME_MESSAGE = "Passwords are not the same";
 
     @Transactional
     public void changePassword(ChangePasswordRequestDto changePasswordRequestDto, Principal connectedUser) throws IllegalArgumentException {
