@@ -27,11 +27,6 @@ public class EmployeeService {
 
     private static final String EMPLOYEE_NOT_FOUND_MESSAGE = "Employee not found";
     private static final String EMPLOYEE_TYPE_NOT_FOUND_MESSAGE = "Employee type not found";
-    private static final String EMPLOYEE_WITH_THAT_EMAIL_ALREADY_EXISTS_MESSAGE = "Employee with that email already exists";
-    private static final String EMPLOYEE_FIRST_NAME_CANNOT_BE_EMPTY_MESSAGE = "Employee first name cannot be empty";
-    private static final String EMPLOYEE_LAST_NAME_CANNOT_BE_EMPTY_MESSAGE = "Employee last name cannot be empty";
-    private static final String EMPLOYEE_EMAIL_CANNOT_BE_EMPTY_MESSAGE = "Employee email cannot be empty";
-    private static final String EMPLOYEE_PASSWORD_CANNOT_BE_EMPTY_MESSAGE = "Employee password cannot be empty";
 
     public List<EmployeeResponseDto> getEmployees() {
         return employeeDtoMapper.toDtoList(employeeRepository.findAll());
@@ -83,44 +78,6 @@ public class EmployeeService {
             }
 
             employee.setEmployeeType(employeeType);
-        }
-
-        if (updateEmployeeRequestDto.getFirstName() != null) {
-            if (updateEmployeeRequestDto.getFirstName().isEmpty()) {
-                throw new IllegalArgumentException(EMPLOYEE_FIRST_NAME_CANNOT_BE_EMPTY_MESSAGE);
-            }
-
-            employee.setFirstName(updateEmployeeRequestDto.getFirstName());
-        }
-
-        if (updateEmployeeRequestDto.getLastName() != null) {
-            if (updateEmployeeRequestDto.getLastName().isEmpty()) {
-                throw new IllegalArgumentException(EMPLOYEE_LAST_NAME_CANNOT_BE_EMPTY_MESSAGE);
-            }
-
-            employee.setLastName(updateEmployeeRequestDto.getLastName());
-        }
-
-//        if (updateEmployeeRequestDto.getEmail() != null) {
-//            Employee otherEmployee = employeeRepository.findByEmail(updateEmployeeRequestDto.getEmail());
-//
-//            if (otherEmployee != null && !employee.getId().equals(otherEmployee.getId())) {
-//                throw new IllegalArgumentException(EMPLOYEE_WITH_THAT_EMAIL_ALREADY_EXISTS_MESSAGE);
-//            }
-//
-//            if (updateEmployeeRequestDto.getEmail().isEmpty()) {
-//                throw new IllegalArgumentException(EMPLOYEE_EMAIL_CANNOT_BE_EMPTY_MESSAGE);
-//            }
-//
-//            employee.setEmail(updateEmployeeRequestDto.getEmail());
-//        }
-
-        if (updateEmployeeRequestDto.getPassword() != null) {
-            if (updateEmployeeRequestDto.getPassword().isEmpty()) {
-                throw new IllegalArgumentException(EMPLOYEE_PASSWORD_CANNOT_BE_EMPTY_MESSAGE);
-            }
-
-            employee.setPassword(updateEmployeeRequestDto.getPassword());
         }
 
         return employeeDtoMapper.toDto(employeeRepository.save(employee));
