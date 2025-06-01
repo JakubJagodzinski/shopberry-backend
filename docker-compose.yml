@@ -14,7 +14,7 @@ services:
 
   db-init:
     image: mcr.microsoft.com/mssql-tools
-    container_name: dbinit
+    container_name: db-init
     depends_on:
       - mssql
     entrypoint: /bin/bash -c "
