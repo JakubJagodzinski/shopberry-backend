@@ -24,10 +24,10 @@ public class Token {
     private TokenType tokenType;
 
     @Column(name = "is_revoked")
-    private Boolean isRevoked;
+    private Boolean isRevoked = false;
 
     @Column(name = "is_expired")
-    private Boolean isExpired;
+    private Boolean isExpired = false;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")

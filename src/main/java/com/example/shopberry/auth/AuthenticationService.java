@@ -116,8 +116,6 @@ public class AuthenticationService {
         token.setToken(tokenValue);
         token.setTokenType(tokenType);
         token.setUser(user);
-        token.setIsExpired(false);
-        token.setIsRevoked(false);
 
         tokenRepository.save(token);
     }
