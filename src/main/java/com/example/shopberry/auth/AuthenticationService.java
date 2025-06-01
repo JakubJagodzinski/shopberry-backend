@@ -50,32 +50,30 @@ public class AuthenticationService {
             throw new IllegalArgumentException(USER_ALREADY_EXISTS_MESSAGE);
         }
 
-        User createdUser;
+        User user;
 
         if (registerRequestDto.getRole().equals(Role.CUSTOMER)) {
-            createdUser = customerService.register(registerRequestDto);
+            user = customerService.register(registerRequestDto);
         } else if (registerRequestDto.getRole().equals(Role.EMPLOYEE)) {
-            createdUser = employeeService.register(registerRequestDto);
+            user = employeeService.register(registerRequestDto);
         } else {
             throw new IllegalArgumentException(INVALID_ROLE_MESSAGE);
         }
 
-        String jwtToken = jwtService.generateToken(createdUser);
-        saveUserToken(createdUser, jwtToken, TokenType.ACCESS);
+        String jwtToken = jwtService.generateToken(user);
+        saveUserToken(user, jwtToken, TokenType.ACCESS);
 
-        String refreshToken = jwtService.generateRefreshToken(createdUser);
-        saveUserToken(createdUser, refreshToken, TokenType.REFRESH);
+        String refreshToken = jwtService.generateRefreshToken(user);
+        saveUserToken(user, refreshToken, TokenType.REFRESH);
 
-        AuthenticationResponseDto authenticationResponseDto = new AuthenticationResponseDto();
-
-        authenticationResponseDto.setUserId(createdUser.getId());
-        authenticationResponseDto.setFirstName(createdUser.getFirstName());
-        authenticationResponseDto.setLastName(createdUser.getLastName());
-        authenticationResponseDto.setRole(String.valueOf(createdUser.getRole()));
-        authenticationResponseDto.setAccessToken(jwtToken);
-        authenticationResponseDto.setRefreshToken(refreshToken);
-
-        return authenticationResponseDto;
+        return AuthenticationResponseDto.builder()
+                .accessToken(jwtToken)
+                .refreshToken(refreshToken)
+                .userId(user.getId())
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
+                .role(user.getRole())
+                .build();
     }
 
     public AuthenticationResponseDto authenticate(AuthenticationRequestDto request) throws EntityNotFoundException {
@@ -106,7 +104,7 @@ public class AuthenticationService {
                 .userId(user.getId())
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
-                .role(String.valueOf(user.getRole()))
+                .role(user.getRole())
                 .build();
     }
 

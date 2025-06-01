@@ -1,5 +1,6 @@
 package com.example.shopberry.auth.dto;
 
+import com.example.shopberry.user.Role;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
@@ -22,7 +23,7 @@ public class AuthenticationResponseDto {
     @JsonProperty("is_company")
     private Boolean isCompany;
 
-    private String role;
+    private Role role;
 
     @JsonProperty("access_token")
     private String accessToken;
