@@ -93,4 +93,4 @@ The platform ensures a seamless shopping experience with efficient management to
 <br>
 
 # Database schema:
-<img src="db_schema.png" alt="database schema">
+<img src="assets/db_schema.png" alt="database schema">
