@@ -9,6 +9,18 @@ The platform ensures a seamless shopping experience with efficient management to
 <br>
 <br>
 
+
+## Table of Contents
+1. [Application Functionalities](#application-functionalities)
+   - [Customer Website Features](#customer-website-features)
+   - [Employee Website Features](#employee-website-features)
+   - [Administrator Website Features](#administrator-website-features)
+   - [Owner Website Features](#owner-website-features)
+2. [Technologies](#technologies)
+3. [Database Schema](#database-schema)
+4. [How to Run the Project](#how-to-run-the-project)
+
+
 # Application Functionalities:
 ## Customer Website Features:
 1. Account:
@@ -94,3 +106,50 @@ The platform ensures a seamless shopping experience with efficient management to
 
 # Database schema:
 <img src="assets/db_schema.png" alt="database schema">
+
+# How to Run the Project:
+### Prerequisites
+
+- Java 21+
+- Docker
+
+### Step-by-step
+
+1. **Clone the repository:**
+
+```bash
+  git clone https://github.com/JakubJagodzinski/shopberry-backend.git
+  cd shopberry-backend
+```
+
+2. **Prepare .env file from template**
+<br><br>
+
+3. **Load environment variables from the `.env` file**
+
+```bash
+   Get-Content .env | ForEach-Object {
+       if ($_ -match '^\s*([^#][\w\.\-]+)\s*=\s*(.*)$') {
+           $name = $matches[1]
+           $value = $matches[2].Trim('"')
+           [System.Environment]::SetEnvironmentVariable($name, $value, 'Process')
+       }
+   }
+```
+3. **Create containers**
+
+```bash
+   docker-compose up -d
+```
+
+4. **Build the project:**
+
+```bash
+  ./mvnw clean package
+```
+
+5. **Run the application:**
+
+```bash
+   ./mvnw spring-boot:run
+```
