@@ -20,9 +20,6 @@ public class AuthenticationResponseDto {
     @JsonProperty("last_name")
     private String lastName;
 
-    @JsonProperty("is_company")
-    private Boolean isCompany;
-
     private Role role;
 
     @JsonProperty("access_token")
