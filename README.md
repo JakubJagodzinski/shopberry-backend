@@ -117,9 +117,9 @@ The platform ensures a seamless shopping experience with efficient management to
 
 1. **Clone the repository:**
 
-```bash
-  git clone https://github.com/JakubJagodzinski/shopberry-backend.git
-  cd shopberry-backend
+```powershell
+git clone https://github.com/JakubJagodzinski/shopberry-backend.git
+cd shopberry-backend
 ```
 
 2. **Prepare .env file from template**
@@ -127,29 +127,29 @@ The platform ensures a seamless shopping experience with efficient management to
 
 3. **Load environment variables from the `.env` file**
 
-```bash
-   Get-Content .env | ForEach-Object {
-       if ($_ -match '^\s*([^#][\w\.\-]+)\s*=\s*(.*)$') {
-           $name = $matches[1]
-           $value = $matches[2].Trim('"')
-           [System.Environment]::SetEnvironmentVariable($name, $value, 'Process')
-       }
-   }
+```powershell
+Get-Content .env | ForEach-Object {
+    if ($_ -match '^\s*([^#][\w\.\-]+)\s*=\s*(.*)$') {
+        $name = $matches[1]
+        $value = $matches[2].Trim('"')
+        [System.Environment]::SetEnvironmentVariable($name, $value, 'Process')
+    }
+}
 ```
 3. **Create containers**
 
-```bash
-   docker-compose up -d
+```powershell
+docker-compose up -d
 ```
 
 4. **Build the project:**
 
-```bash
-  ./mvnw clean package
+```powershell
+./mvnw clean package
 ```
 
 5. **Run the application:**
 
-```bash
-   ./mvnw spring-boot:run
+```powershell
+./mvnw spring-boot:run
 ```
