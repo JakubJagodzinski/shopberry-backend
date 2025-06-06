@@ -1,6 +1,5 @@
 package com.example.shopberry.auth.dto;
 
-import com.example.shopberry.user.Role;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
@@ -27,6 +26,6 @@ public class RegisterRequestDto {
     @JsonProperty("employee_type_id")
     private Long employeeTypeId;
 
-    private Role role;
+    private String role;
 
 }

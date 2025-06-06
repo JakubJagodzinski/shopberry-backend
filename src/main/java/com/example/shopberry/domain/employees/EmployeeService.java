@@ -6,6 +6,7 @@ import com.example.shopberry.domain.employees.dto.EmployeeResponseDto;
 import com.example.shopberry.domain.employees.dto.UpdateEmployeeRequestDto;
 import com.example.shopberry.domain.employeetypes.EmployeeType;
 import com.example.shopberry.domain.employeetypes.EmployeeTypeRepository;
+import com.example.shopberry.user.Role;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -57,6 +58,7 @@ public class EmployeeService {
         employee.setLastName(registerRequestDto.getLastname());
         employee.setEmail(registerRequestDto.getEmail());
         employee.setPassword(passwordEncoder.encode(registerRequestDto.getPassword()));
+        employee.setRole(Role.valueOf(registerRequestDto.getRole()));
         employee.setEmployeeType(employeeType);
 
         return employeeRepository.save(employee);

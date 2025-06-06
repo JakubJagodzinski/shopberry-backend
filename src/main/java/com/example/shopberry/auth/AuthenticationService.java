@@ -51,11 +51,20 @@ public class AuthenticationService {
 
         User user;
 
-        if (registerRequestDto.getRole().equals(Role.CUSTOMER)) {
-            user = customerService.register(registerRequestDto);
-        } else if (registerRequestDto.getRole().equals(Role.EMPLOYEE)) {
-            user = employeeService.register(registerRequestDto);
-        } else {
+        try {
+            String roleAsString = registerRequestDto.getRole().toUpperCase();
+            Role userRole = Role.valueOf(roleAsString);
+
+            registerRequestDto.setRole(roleAsString);
+
+            if (userRole.equals(Role.CUSTOMER)) {
+                user = customerService.register(registerRequestDto);
+            } else if (userRole.equals(Role.EMPLOYEE)) {
+                user = employeeService.register(registerRequestDto);
+            } else {
+                throw new IllegalArgumentException(INVALID_ROLE_MESSAGE);
+            }
+        } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(INVALID_ROLE_MESSAGE);
         }
 

@@ -4,6 +4,7 @@ import com.example.shopberry.auth.dto.RegisterRequestDto;
 import com.example.shopberry.domain.customers.dto.CustomerDtoMapper;
 import com.example.shopberry.domain.customers.dto.CustomerResponseDto;
 import com.example.shopberry.domain.customers.dto.UpdateCustomerRequestDto;
+import com.example.shopberry.user.Role;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -47,7 +48,7 @@ public class CustomerService {
         customer.setIsCompany(registerRequestDto.getIsCompany());
         customer.setEmail(registerRequestDto.getEmail());
         customer.setPassword(passwordEncoder.encode(registerRequestDto.getPassword()));
-        customer.setRole(registerRequestDto.getRole());
+        customer.setRole(Role.valueOf(registerRequestDto.getRole()));
 
         return customerRepository.save(customer);
     }
