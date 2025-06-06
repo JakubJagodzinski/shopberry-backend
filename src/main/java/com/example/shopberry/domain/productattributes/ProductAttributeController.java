@@ -36,7 +36,7 @@ public class ProductAttributeController {
                 .body(productAttributeResponseDtoList);
     }
 
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<ProductAttributeResponseDto> createProductAttribute(@RequestBody CreateProductAttributeRequestDto createProductAttributeRequestDto) {
         ProductAttributeResponseDto createdProductAttributeResponseDto = productAttributeService.createProductAttribute(createProductAttributeRequestDto);
 
@@ -46,7 +46,7 @@ public class ProductAttributeController {
                 .body(createdProductAttributeResponseDto);
     }
 
-    @DeleteMapping("/{productId}/{attributeId}")
+    @DeleteMapping("/by-product/{productId}/by-attribute/{attributeId}")
     public ResponseEntity<MessageResponseDto> deleteProductAttributeById(@PathVariable Long productId, @PathVariable Long attributeId) {
         ProductAttributeId productAttributeId = new ProductAttributeId(productId, attributeId);
 

@@ -12,6 +12,9 @@ import lombok.Setter;
 @AllArgsConstructor
 public class CreateCustomerAddressRequestDto {
 
+    @JsonProperty("customer_id")
+    private Long customerId;
+
     @JsonProperty("first_name")
     private String firstName;
 

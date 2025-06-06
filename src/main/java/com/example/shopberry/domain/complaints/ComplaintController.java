@@ -19,7 +19,7 @@ public class ComplaintController {
 
     private final ComplaintService complaintService;
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<ComplaintResponseDto>> getComplaints() {
         List<ComplaintResponseDto> complaintResponseDtoList = complaintService.getComplaints();
 
@@ -28,16 +28,16 @@ public class ComplaintController {
                 .body(complaintResponseDtoList);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<ComplaintResponseDto> getComplaintById(@PathVariable Long id) {
-        ComplaintResponseDto complaintResponseDto = complaintService.getComplaintById(id);
+    @GetMapping("/{complaintId}")
+    public ResponseEntity<ComplaintResponseDto> getComplaintById(@PathVariable Long complaintId) {
+        ComplaintResponseDto complaintResponseDto = complaintService.getComplaintById(complaintId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(complaintResponseDto);
     }
 
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<ComplaintResponseDto> createComplaint(@RequestBody CreateComplaintRequestDto createComplaintRequestDto) {
         ComplaintResponseDto createdComplaintResponseDto = complaintService.createComplaint(createComplaintRequestDto);
 
@@ -47,22 +47,22 @@ public class ComplaintController {
                 .body(createdComplaintResponseDto);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<ComplaintResponseDto> updateComplaintById(@PathVariable Long id, @RequestBody UpdateComplaintRequestDto updateComplaintRequestDto) {
-        ComplaintResponseDto updatedComplaintResponseDto = complaintService.updateComplaintById(id, updateComplaintRequestDto);
+    @PutMapping("/{complaintId}")
+    public ResponseEntity<ComplaintResponseDto> updateComplaintById(@PathVariable Long complaintId, @RequestBody UpdateComplaintRequestDto updateComplaintRequestDto) {
+        ComplaintResponseDto updatedComplaintResponseDto = complaintService.updateComplaintById(complaintId, updateComplaintRequestDto);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(updatedComplaintResponseDto);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<MessageResponseDto> deleteComplaintById(@PathVariable Long id) {
-        complaintService.deleteComplaintById(id);
+    @DeleteMapping("/{complaintId}")
+    public ResponseEntity<MessageResponseDto> deleteComplaintById(@PathVariable Long complaintId) {
+        complaintService.deleteComplaintById(complaintId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(new MessageResponseDto("Complaint with id " + id + " deleted successfully"));
+                .body(new MessageResponseDto("Complaint with id " + complaintId + " deleted successfully"));
     }
 
 }

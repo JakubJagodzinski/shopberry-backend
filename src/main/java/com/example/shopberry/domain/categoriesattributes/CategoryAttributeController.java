@@ -27,7 +27,7 @@ public class CategoryAttributeController {
                 .body(categoryAttributeResponseDtoList);
     }
 
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<CategoryAttributeResponseDto> createCategoryAttribute(@RequestBody CreateCategoryAttributeRequestDto createCategoryAttributeRequestDto) {
         CategoryAttributeResponseDto createdCategoryAttributeResponseDto = categoryAttributeService.createCategoryAttribute(createCategoryAttributeRequestDto);
 
@@ -37,7 +37,7 @@ public class CategoryAttributeController {
                 .body(createdCategoryAttributeResponseDto);
     }
 
-    @DeleteMapping("/{categoryId}/{attributeId}")
+    @DeleteMapping("/by-category/{categoryId}/by-attribute/{attributeId}")
     public ResponseEntity<MessageResponseDto> deleteCategoryAttributeById(@PathVariable Long categoryId, @PathVariable Long attributeId) {
         CategoryAttributeId categoryAttributeId = new CategoryAttributeId(categoryId, attributeId);
 

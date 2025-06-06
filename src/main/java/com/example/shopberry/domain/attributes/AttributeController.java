@@ -19,7 +19,7 @@ public class AttributeController {
 
     private final AttributeService attributeService;
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<AttributeResponseDto>> getAttributes() {
         List<AttributeResponseDto> attributeResponseDtoList = attributeService.getAttributes();
 
@@ -28,16 +28,16 @@ public class AttributeController {
                 .body(attributeResponseDtoList);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<AttributeResponseDto> getAttributeById(@PathVariable Long id) {
-        AttributeResponseDto attributeResponseDto = attributeService.getAttributeById(id);
+    @GetMapping("/{attributeId}")
+    public ResponseEntity<AttributeResponseDto> getAttributeById(@PathVariable Long attributeId) {
+        AttributeResponseDto attributeResponseDto = attributeService.getAttributeById(attributeId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(attributeResponseDto);
     }
 
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<AttributeResponseDto> createAttribute(@RequestBody CreateAttributeRequestDto createAttributeRequestDto) {
         AttributeResponseDto createdAttributeResponseDto = attributeService.createAttribute(createAttributeRequestDto);
 
@@ -47,22 +47,22 @@ public class AttributeController {
                 .body(createdAttributeResponseDto);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<AttributeResponseDto> updateAttributeById(@PathVariable Long id, @RequestBody UpdateAttributeRequestDto updateAttributeRequestDto) {
-        AttributeResponseDto updatedAttributeResponseDto = attributeService.updateAttributeById(id, updateAttributeRequestDto);
+    @PutMapping("/{attributeId}")
+    public ResponseEntity<AttributeResponseDto> updateAttributeById(@PathVariable Long attributeId, @RequestBody UpdateAttributeRequestDto updateAttributeRequestDto) {
+        AttributeResponseDto updatedAttributeResponseDto = attributeService.updateAttributeById(attributeId, updateAttributeRequestDto);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(updatedAttributeResponseDto);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<MessageResponseDto> deleteAttributeById(@PathVariable Long id) {
-        attributeService.deleteAttributeById(id);
+    @DeleteMapping("/{attributeId}")
+    public ResponseEntity<MessageResponseDto> deleteAttributeById(@PathVariable Long attributeId) {
+        attributeService.deleteAttributeById(attributeId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(new MessageResponseDto("Attribute with id " + id + " deleted successfully"));
+                .body(new MessageResponseDto("Attribute with id " + attributeId + " deleted successfully"));
     }
 
 }

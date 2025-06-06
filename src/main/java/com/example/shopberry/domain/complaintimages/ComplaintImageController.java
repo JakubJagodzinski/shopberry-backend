@@ -18,7 +18,7 @@ public class ComplaintImageController {
 
     private final ComplaintImageService complaintImageService;
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<ComplaintImageResponseDto>> getComplaintImages() {
         List<ComplaintImageResponseDto> complaintImageResponseDtoList = complaintImageService.getComplaintImages();
 
@@ -27,16 +27,16 @@ public class ComplaintImageController {
                 .body(complaintImageResponseDtoList);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<ComplaintImageResponseDto> getComplaintImageById(@PathVariable Long id) {
-        ComplaintImageResponseDto complaintImageResponseDto = complaintImageService.getComplaintImageById(id);
+    @GetMapping("/{complaintImageId}")
+    public ResponseEntity<ComplaintImageResponseDto> getComplaintImageById(@PathVariable Long complaintImageId) {
+        ComplaintImageResponseDto complaintImageResponseDto = complaintImageService.getComplaintImageById(complaintImageId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(complaintImageResponseDto);
     }
 
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<ComplaintImageResponseDto> createComplaintImage(@RequestBody CreateComplaintImageRequestDto createComplaintImageRequestDto) {
         ComplaintImageResponseDto createdComplaintImageResponseDto = complaintImageService.createComplaintImage(createComplaintImageRequestDto);
 
@@ -46,13 +46,13 @@ public class ComplaintImageController {
                 .body(createdComplaintImageResponseDto);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<MessageResponseDto> deleteComplaintImageById(@PathVariable Long id) {
-        complaintImageService.deleteComplaintImageById(id);
+    @DeleteMapping("/{complaintImageId}")
+    public ResponseEntity<MessageResponseDto> deleteComplaintImageById(@PathVariable Long complaintImageId) {
+        complaintImageService.deleteComplaintImageById(complaintImageId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(new MessageResponseDto("Complaint image with id " + id + " deleted successfully"));
+                .body(new MessageResponseDto("Complaint image with id " + complaintImageId + " deleted successfully"));
     }
 
 }

@@ -18,7 +18,7 @@ public class OrderProductController {
 
     private final OrderProductService orderProductService;
 
-    @GetMapping("/{orderId}/{productId}")
+    @GetMapping("/by-order/{orderId}/by-product/{productId}")
     public ResponseEntity<OrderProductResponseDto> getOrderProductById(@PathVariable Long orderId, @PathVariable Long productId) {
         OrderProductId orderProductId = new OrderProductId(orderId, productId);
 
@@ -38,7 +38,7 @@ public class OrderProductController {
                 .body(orderProductResponseDtoList);
     }
 
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<OrderProductResponseDto> createOrderProduct(@RequestBody CreateOrderProductRequestDto createOrderProductRequestDto) {
         OrderProductResponseDto createdOrderProductResponseDto = orderProductService.createOrderProduct(createOrderProductRequestDto);
 
@@ -48,7 +48,7 @@ public class OrderProductController {
                 .body(createdOrderProductResponseDto);
     }
 
-    @DeleteMapping("/{orderId}/{productId}")
+    @DeleteMapping("/by-order/{orderId}/by-product/{productId}")
     public ResponseEntity<MessageResponseDto> deleteOrderProductById(@PathVariable Long orderId, @PathVariable Long productId) {
         OrderProductId orderProductId = new OrderProductId(orderId, productId);
 

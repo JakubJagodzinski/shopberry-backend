@@ -18,7 +18,7 @@ public class OrderController {
 
     private final OrderService orderService;
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<OrderResponseDto>> getOrders() {
         List<OrderResponseDto> orderResponseDtoList = orderService.getOrders();
 
@@ -27,16 +27,16 @@ public class OrderController {
                 .body(orderResponseDtoList);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<OrderResponseDto> getOrderById(@PathVariable Long id) {
-        OrderResponseDto orderResponseDto = orderService.getOrderById(id);
+    @GetMapping("/{orderId}")
+    public ResponseEntity<OrderResponseDto> getOrderById(@PathVariable Long orderId) {
+        OrderResponseDto orderResponseDto = orderService.getOrderById(orderId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(orderResponseDto);
     }
 
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<OrderResponseDto> createOrder(@RequestBody CreateOrderRequestDto createOrderRequestDto) {
         OrderResponseDto createdOrderResponseDto = orderService.createOrder(createOrderRequestDto);
 
@@ -46,13 +46,13 @@ public class OrderController {
                 .body(createdOrderResponseDto);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<MessageResponseDto> deleteOrderById(@PathVariable Long id) {
-        orderService.deleteOrderById(id);
+    @DeleteMapping("/{orderId}")
+    public ResponseEntity<MessageResponseDto> deleteOrderById(@PathVariable Long orderId) {
+        orderService.deleteOrderById(orderId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(new MessageResponseDto("Order with id " + id + " deleted successfully"));
+                .body(new MessageResponseDto("Order with id " + orderId + " deleted successfully"));
     }
 
 }

@@ -41,8 +41,8 @@ public class CustomerAddressService {
     }
 
     @Transactional
-    public CustomerAddressResponseDto createCustomerAddress(Long customerId, CreateCustomerAddressRequestDto createCustomerAddressRequestDto) throws EntityNotFoundException {
-        Customer customer = customerRepository.findById(customerId).orElse(null);
+    public CustomerAddressResponseDto createCustomerAddress(CreateCustomerAddressRequestDto createCustomerAddressRequestDto) throws EntityNotFoundException {
+        Customer customer = customerRepository.findById(createCustomerAddressRequestDto.getCustomerId()).orElse(null);
 
         if (customer == null) {
             throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);

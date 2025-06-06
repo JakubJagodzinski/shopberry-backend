@@ -19,7 +19,7 @@ public class CauseOfReturnController {
 
     private final CauseOfReturnService causeOfReturnService;
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<CauseOfReturnResponseDto>> getCausesOfReturn() {
         List<CauseOfReturnResponseDto> causeOfReturnResponseDtoList = causeOfReturnService.getCausesOfReturn();
 
@@ -28,16 +28,16 @@ public class CauseOfReturnController {
                 .body(causeOfReturnResponseDtoList);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<CauseOfReturnResponseDto> getCauseOfReturnById(@PathVariable Long id) {
-        CauseOfReturnResponseDto causeOfReturnResponseDto = causeOfReturnService.getCauseOfReturnById(id);
+    @GetMapping("/{causeOfReturnId}")
+    public ResponseEntity<CauseOfReturnResponseDto> getCauseOfReturnById(@PathVariable Long causeOfReturnId) {
+        CauseOfReturnResponseDto causeOfReturnResponseDto = causeOfReturnService.getCauseOfReturnById(causeOfReturnId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(causeOfReturnResponseDto);
     }
 
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<CauseOfReturnResponseDto> createCauseOfReturn(@RequestBody CreateCauseOfReturnRequestDto createCauseOfReturnRequestDto) {
         CauseOfReturnResponseDto createdCauseOfReturnResponseDto = causeOfReturnService.createCauseOfReturn(createCauseOfReturnRequestDto);
 
@@ -47,22 +47,22 @@ public class CauseOfReturnController {
                 .body(createdCauseOfReturnResponseDto);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<CauseOfReturnResponseDto> updateCauseOfReturnById(@PathVariable Long id, @RequestBody UpdateCauseOfReturnRequestDto updateCauseOfReturnRequestDto) {
-        CauseOfReturnResponseDto updatedCauseOfReturnResponseDto = causeOfReturnService.updateCauseOfReturnById(id, updateCauseOfReturnRequestDto);
+    @PutMapping("/{causeOfReturnId}")
+    public ResponseEntity<CauseOfReturnResponseDto> updateCauseOfReturnById(@PathVariable Long causeOfReturnId, @RequestBody UpdateCauseOfReturnRequestDto updateCauseOfReturnRequestDto) {
+        CauseOfReturnResponseDto updatedCauseOfReturnResponseDto = causeOfReturnService.updateCauseOfReturnById(causeOfReturnId, updateCauseOfReturnRequestDto);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(updatedCauseOfReturnResponseDto);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<MessageResponseDto> deleteCauseOfReturnById(@PathVariable Long id) {
-        causeOfReturnService.deleteCauseOfReturnById(id);
+    @DeleteMapping("/{causeOfReturnId}")
+    public ResponseEntity<MessageResponseDto> deleteCauseOfReturnById(@PathVariable Long causeOfReturnId) {
+        causeOfReturnService.deleteCauseOfReturnById(causeOfReturnId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(new MessageResponseDto("Cause of return with id " + id + " deleted successfully"));
+                .body(new MessageResponseDto("Cause of return with id " + causeOfReturnId + " deleted successfully"));
     }
 
 }

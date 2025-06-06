@@ -46,7 +46,7 @@ public class ReviewController {
                 .body(reviewResponseDto);
     }
 
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<ReviewResponseDto> createReview(@RequestBody CreateReviewRequestDto createReviewRequestDto) {
         ReviewResponseDto createdReviewResponseDto = reviewService.createReview(createReviewRequestDto);
 
@@ -66,7 +66,7 @@ public class ReviewController {
     }
 
     @DeleteMapping("/{reviewId}")
-    public ResponseEntity<MessageResponseDto> deleteReview(@PathVariable Long reviewId) {
+    public ResponseEntity<MessageResponseDto> deleteReviewById(@PathVariable Long reviewId) {
         reviewService.deleteReviewById(reviewId);
 
         return ResponseEntity

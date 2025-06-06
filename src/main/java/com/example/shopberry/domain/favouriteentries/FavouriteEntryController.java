@@ -18,7 +18,7 @@ public class FavouriteEntryController {
 
     private final FavouriteEntryService favouriteEntryService;
 
-    @GetMapping("/{customerId}")
+    @GetMapping("/by-customer/{customerId}")
     public ResponseEntity<List<FavouriteEntryResponseDto>> getFavouriteEntriesByCustomerId(@PathVariable Long customerId) {
         List<FavouriteEntryResponseDto> favouriteEntryResponseDtoList = favouriteEntryService.getFavouriteEntriesByCustomerId(customerId);
 
@@ -27,7 +27,7 @@ public class FavouriteEntryController {
                 .body(favouriteEntryResponseDtoList);
     }
 
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<FavouriteEntryResponseDto> createFavouriteEntry(@RequestBody CreateFavouriteEntryRequestDto createFavouriteEntryRequestDto) {
         FavouriteEntryResponseDto createdFavouriteEntryResponseDto = favouriteEntryService.createFavouriteEntry(createFavouriteEntryRequestDto);
 
@@ -37,7 +37,7 @@ public class FavouriteEntryController {
                 .body(createdFavouriteEntryResponseDto);
     }
 
-    @DeleteMapping("/{customerId}/{productId}")
+    @DeleteMapping("/by-customer/{customerId}/by-product/{productId}")
     public ResponseEntity<MessageResponseDto> deleteFavouriteEntryByFavouriteEntryId(@PathVariable Long customerId, @PathVariable Long productId) {
         FavouriteEntryId favouriteEntryId = new FavouriteEntryId(productId, customerId);
 

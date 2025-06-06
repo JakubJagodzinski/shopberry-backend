@@ -17,7 +17,7 @@ public class CustomerController {
 
     private final CustomerService customerService;
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<CustomerResponseDto>> getCustomers() {
         List<CustomerResponseDto> customerResponseDtoList = customerService.getCustomers();
 
@@ -26,31 +26,31 @@ public class CustomerController {
                 .body(customerResponseDtoList);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<CustomerResponseDto> getCustomerById(@PathVariable Long id) {
-        CustomerResponseDto customerResponseDto = customerService.getCustomerById(id);
+    @GetMapping("/{customerId}")
+    public ResponseEntity<CustomerResponseDto> getCustomerById(@PathVariable Long customerId) {
+        CustomerResponseDto customerResponseDto = customerService.getCustomerById(customerId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(customerResponseDto);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<CustomerResponseDto> updateCustomerById(@PathVariable Long id, @RequestBody UpdateCustomerRequestDto updateCustomerRequestDto) {
-        CustomerResponseDto updatedCustomerResponseDto = customerService.updateCustomerById(id, updateCustomerRequestDto);
+    @PutMapping("/{customerId}")
+    public ResponseEntity<CustomerResponseDto> updateCustomerById(@PathVariable Long customerId, @RequestBody UpdateCustomerRequestDto updateCustomerRequestDto) {
+        CustomerResponseDto updatedCustomerResponseDto = customerService.updateCustomerById(customerId, updateCustomerRequestDto);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(updatedCustomerResponseDto);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<MessageResponseDto> deleteCustomerById(@PathVariable Long id) {
-        customerService.deleteCustomerById(id);
+    @DeleteMapping("/{customerId}")
+    public ResponseEntity<MessageResponseDto> deleteCustomerById(@PathVariable Long customerId) {
+        customerService.deleteCustomerById(customerId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(new MessageResponseDto("Customer with id " + id + " deleted successfully"));
+                .body(new MessageResponseDto("Customer with id " + customerId + " deleted successfully"));
     }
 
 }

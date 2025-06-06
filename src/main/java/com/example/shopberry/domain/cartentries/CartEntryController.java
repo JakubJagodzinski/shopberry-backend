@@ -19,7 +19,7 @@ public class CartEntryController {
 
     private final CartEntryService cartEntryService;
 
-    @GetMapping("/{customerId}/{productId}")
+    @GetMapping("/by-customer/{customerId}/by-product/{productId}")
     public ResponseEntity<CartEntryResponseDto> getCartEntryByCartEntryId(@PathVariable Long customerId, @PathVariable Long productId) {
         CartEntryResponseDto cartEntryResponseDto = cartEntryService.getCartEntryByCartEntryId(new CartEntryId(customerId, productId));
 
@@ -28,7 +28,7 @@ public class CartEntryController {
                 .body(cartEntryResponseDto);
     }
 
-    @GetMapping("/{customerId}")
+    @GetMapping("/by-customer/{customerId}")
     public ResponseEntity<List<CartEntryResponseDto>> getCartEntriesByCustomerId(@PathVariable Long customerId) {
         List<CartEntryResponseDto> cartEntryResponseDtoList = cartEntryService.getCartEntriesByCustomerId(customerId);
 
@@ -37,7 +37,7 @@ public class CartEntryController {
                 .body(cartEntryResponseDtoList);
     }
 
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<CartEntryResponseDto> createCartEntry(@RequestBody CreateCartEntryRequestDto createCartEntryRequestDto) {
         CartEntryResponseDto createdCartEntryResponseDto = cartEntryService.createCartEntry(createCartEntryRequestDto);
 
@@ -47,7 +47,7 @@ public class CartEntryController {
                 .body(createdCartEntryResponseDto);
     }
 
-    @PutMapping("/{customerId}/{productId}")
+    @PutMapping("/by-customer/{customerId}/by-product/{productId}")
     public ResponseEntity<CartEntryResponseDto> updateCartEntryByCartEntryId(@PathVariable Long customerId, @PathVariable Long productId, @RequestBody UpdateCartEntryRequestDto updateCartEntryRequestDto) {
         CartEntryId cartEntryId = new CartEntryId(customerId, productId);
 
@@ -58,7 +58,7 @@ public class CartEntryController {
                 .body(updatedCartEntryResponseDto);
     }
 
-    @DeleteMapping("/{customerId}/{productId}")
+    @DeleteMapping("/by-customer/{customerId}/by-product/{productId}")
     public ResponseEntity<MessageResponseDto> deleteCartEntryByCartEntryId(@PathVariable Long customerId, @PathVariable Long productId) {
         CartEntryId cartEntryId = new CartEntryId(customerId, productId);
 

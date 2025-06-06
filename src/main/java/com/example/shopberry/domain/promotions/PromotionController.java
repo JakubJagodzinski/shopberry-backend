@@ -19,7 +19,7 @@ public class PromotionController {
 
     private final PromotionService promotionService;
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<PromotionResponseDto>> getPromotions() {
         List<PromotionResponseDto> promotionResponseDtoList = promotionService.getPromotions();
 
@@ -28,16 +28,16 @@ public class PromotionController {
                 .body(promotionResponseDtoList);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<PromotionResponseDto> getPromotionById(@PathVariable Long id) {
-        PromotionResponseDto promotionResponseDto = promotionService.getPromotionById(id);
+    @GetMapping("/{promotionId}")
+    public ResponseEntity<PromotionResponseDto> getPromotionById(@PathVariable Long promotionId) {
+        PromotionResponseDto promotionResponseDto = promotionService.getPromotionById(promotionId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(promotionResponseDto);
     }
 
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<PromotionResponseDto> createPromotion(@RequestBody CreatePromotionRequestDto createPromotionRequestDto) {
         PromotionResponseDto createdPromotionResponseDto = promotionService.createPromotion(createPromotionRequestDto);
 
@@ -47,22 +47,22 @@ public class PromotionController {
                 .body(createdPromotionResponseDto);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<PromotionResponseDto> updatePromotionById(@PathVariable Long id, @RequestBody UpdatePromotionRequestDto updatePromotionRequestDto) {
-        PromotionResponseDto updatedPromotionResponseDto = promotionService.updatePromotionById(id, updatePromotionRequestDto);
+    @PutMapping("/{promotionId}")
+    public ResponseEntity<PromotionResponseDto> updatePromotionById(@PathVariable Long promotionId, @RequestBody UpdatePromotionRequestDto updatePromotionRequestDto) {
+        PromotionResponseDto updatedPromotionResponseDto = promotionService.updatePromotionById(promotionId, updatePromotionRequestDto);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(updatedPromotionResponseDto);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<MessageResponseDto> deletePromotionById(@PathVariable Long id) {
-        promotionService.deletePromotionById(id);
+    @DeleteMapping("/{promotionId}")
+    public ResponseEntity<MessageResponseDto> deletePromotionById(@PathVariable Long promotionId) {
+        promotionService.deletePromotionById(promotionId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(new MessageResponseDto("Promotion with id " + id + " deleted successfully"));
+                .body(new MessageResponseDto("Promotion with id " + promotionId + " deleted successfully"));
     }
 
 }

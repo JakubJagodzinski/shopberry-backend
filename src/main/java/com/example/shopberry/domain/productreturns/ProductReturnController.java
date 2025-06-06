@@ -36,7 +36,7 @@ public class ProductReturnController {
                 .body(productReturnResponseDtoList);
     }
 
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<ProductReturnResponseDto> createProductReturn(@RequestBody CreateProductReturnRequestDto createProductReturnRequestDto) {
         ProductReturnResponseDto createdProductReturnResponseDto = productReturnService.createProductReturn(createProductReturnRequestDto);
 

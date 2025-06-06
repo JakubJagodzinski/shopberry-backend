@@ -18,7 +18,7 @@ public class ProductPromotionController {
 
     private final ProductPromotionService productPromotionService;
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<ProductPromotionResponseDto>> getProductPromotions() {
         List<ProductPromotionResponseDto> productPromotionResponseDtoList = productPromotionService.getProductPromotions();
 
@@ -45,7 +45,7 @@ public class ProductPromotionController {
                 .body(productPromotionResponseDtoList);
     }
 
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<ProductPromotionResponseDto> createProductPromotion(@RequestBody CreateProductPromotionRequestDto createProductPromotionRequestDto) {
         ProductPromotionResponseDto createdProductPromotionResponseDto = productPromotionService.createProductPromotion(createProductPromotionRequestDto);
 

@@ -19,7 +19,7 @@ public class ProducerController {
 
     private final ProducerService producerService;
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<ProducerResponseDto>> getProducers() {
         List<ProducerResponseDto> producerResponseDtoList = producerService.getProducers();
 
@@ -28,16 +28,16 @@ public class ProducerController {
                 .body(producerResponseDtoList);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<ProducerResponseDto> getProducerById(@PathVariable Long id) {
-        ProducerResponseDto producerResponseDto = producerService.getProducerById(id);
+    @GetMapping("/{producerId}")
+    public ResponseEntity<ProducerResponseDto> getProducerById(@PathVariable Long producerId) {
+        ProducerResponseDto producerResponseDto = producerService.getProducerById(producerId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(producerResponseDto);
     }
 
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<ProducerResponseDto> createProducer(@RequestBody CreateProducerRequestDto createProducerRequestDto) {
         ProducerResponseDto createdProducerResponseDto = producerService.createProducer(createProducerRequestDto);
 
@@ -47,22 +47,22 @@ public class ProducerController {
                 .body(createdProducerResponseDto);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<ProducerResponseDto> updateProducerById(@PathVariable Long id, @RequestBody UpdateProducerRequestDto updateProducerRequestDto) {
-        ProducerResponseDto updatedProducerResponseDto = producerService.updateProducerById(id, updateProducerRequestDto);
+    @PutMapping("/{producerId}")
+    public ResponseEntity<ProducerResponseDto> updateProducerById(@PathVariable Long producerId, @RequestBody UpdateProducerRequestDto updateProducerRequestDto) {
+        ProducerResponseDto updatedProducerResponseDto = producerService.updateProducerById(producerId, updateProducerRequestDto);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(updatedProducerResponseDto);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<MessageResponseDto> deleteProducerById(@PathVariable Long id) {
-        producerService.deleteProducerById(id);
+    @DeleteMapping("/{producerId}")
+    public ResponseEntity<MessageResponseDto> deleteProducerById(@PathVariable Long producerId) {
+        producerService.deleteProducerById(producerId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(new MessageResponseDto("Producer with id " + id + " deleted successfully"));
+                .body(new MessageResponseDto("Producer with id " + producerId + " deleted successfully"));
     }
 
 }

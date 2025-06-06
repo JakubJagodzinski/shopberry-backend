@@ -17,7 +17,7 @@ public class EmployeeController {
 
     private final EmployeeService employeeService;
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<EmployeeResponseDto>> getEmployees() {
         List<EmployeeResponseDto> employeeResponseDtoList = employeeService.getEmployees();
 
@@ -26,18 +26,18 @@ public class EmployeeController {
                 .body(employeeResponseDtoList);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<EmployeeResponseDto> getEmployeeById(@PathVariable Long id) {
-        EmployeeResponseDto employeeResponseDto = employeeService.getEmployeeById(id);
+    @GetMapping("/{employeeId}")
+    public ResponseEntity<EmployeeResponseDto> getEmployeeById(@PathVariable Long employeeId) {
+        EmployeeResponseDto employeeResponseDto = employeeService.getEmployeeById(employeeId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(employeeResponseDto);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<EmployeeResponseDto> updateEmployeeById(@PathVariable Long id, @RequestBody UpdateEmployeeRequestDto updateEmployeeRequestDto) {
-        EmployeeResponseDto updatedEmployeeResponseDto = employeeService.updateEmployeeById(id, updateEmployeeRequestDto);
+    @PutMapping("/{employeeId}")
+    public ResponseEntity<EmployeeResponseDto> updateEmployeeById(@PathVariable Long employeeId, @RequestBody UpdateEmployeeRequestDto updateEmployeeRequestDto) {
+        EmployeeResponseDto updatedEmployeeResponseDto = employeeService.updateEmployeeById(employeeId, updateEmployeeRequestDto);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
@@ -45,13 +45,13 @@ public class EmployeeController {
     }
 
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<MessageResponseDto> deleteEmployeeById(@PathVariable Long id) {
-        employeeService.deleteEmployeeById(id);
+    @DeleteMapping("/{employeeId}")
+    public ResponseEntity<MessageResponseDto> deleteEmployeeById(@PathVariable Long employeeId) {
+        employeeService.deleteEmployeeById(employeeId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(new MessageResponseDto("Employee with id " + id + " deleted successfully"));
+                .body(new MessageResponseDto("Employee with id " + employeeId + " deleted successfully"));
     }
 
 }

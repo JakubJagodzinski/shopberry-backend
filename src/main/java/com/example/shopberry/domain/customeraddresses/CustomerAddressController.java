@@ -19,7 +19,7 @@ public class CustomerAddressController {
 
     private final CustomerAddressService customerAddressService;
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<CustomerAddressResponseDto>> getCustomerAddresses() {
         List<CustomerAddressResponseDto> customerAddressResponseDtoList = customerAddressService.getCustomerAddresses();
 
@@ -28,7 +28,7 @@ public class CustomerAddressController {
                 .body(customerAddressResponseDtoList);
     }
 
-    @GetMapping("/{customerId}")
+    @GetMapping("/by-customer/{customerId}")
     public ResponseEntity<List<CustomerAddressResponseDto>> getCustomerAddressesByCustomerId(@PathVariable Long customerId) {
         List<CustomerAddressResponseDto> customerAddressResponseDtoList = customerAddressService.getCustomerAddressesByCustomerId(customerId);
 
@@ -37,9 +37,9 @@ public class CustomerAddressController {
                 .body(customerAddressResponseDtoList);
     }
 
-    @PostMapping("/{customerId}")
-    public ResponseEntity<CustomerAddressResponseDto> createCustomerAddress(@PathVariable Long customerId, @RequestBody CreateCustomerAddressRequestDto createCustomerAddressRequestDto) {
-        CustomerAddressResponseDto createdCustomerAddressResponseDto = customerAddressService.createCustomerAddress(customerId, createCustomerAddressRequestDto);
+    @PostMapping
+    public ResponseEntity<CustomerAddressResponseDto> createCustomerAddress(@RequestBody CreateCustomerAddressRequestDto createCustomerAddressRequestDto) {
+        CustomerAddressResponseDto createdCustomerAddressResponseDto = customerAddressService.createCustomerAddress(createCustomerAddressRequestDto);
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
@@ -56,7 +56,7 @@ public class CustomerAddressController {
                 .body(updatedCustomerAddressResponseDto);
     }
 
-    @DeleteMapping("/customer/{customerId}")
+    @DeleteMapping("/by-customer/{customerId}")
     public ResponseEntity<MessageResponseDto> deleteCustomerAddressesByCustomerId(@PathVariable Long customerId) {
         customerAddressService.deleteCustomerAddressesByCustomerId(customerId);
 
@@ -65,13 +65,13 @@ public class CustomerAddressController {
                 .body(new MessageResponseDto("All customer addresses with customer id " + customerId + " deleted"));
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<MessageResponseDto> deleteCustomerAddressById(@PathVariable Long id) {
-        customerAddressService.deleteCustomerAddressById(id);
+    @DeleteMapping("/{customerAddressId}")
+    public ResponseEntity<MessageResponseDto> deleteCustomerAddressById(@PathVariable Long customerAddressId) {
+        customerAddressService.deleteCustomerAddressById(customerAddressId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(new MessageResponseDto("Customer address with id " + id + " deleted"));
+                .body(new MessageResponseDto("Customer address with id " + customerAddressId + " deleted"));
     }
 
 }

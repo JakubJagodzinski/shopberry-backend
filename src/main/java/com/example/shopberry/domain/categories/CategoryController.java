@@ -19,7 +19,7 @@ public class CategoryController {
 
     private final CategoryService categoryService;
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<CategoryResponseDto>> getCategories() {
         List<CategoryResponseDto> categoryResponseDtoList = categoryService.getCategories();
 
@@ -28,16 +28,16 @@ public class CategoryController {
                 .body(categoryResponseDtoList);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<CategoryResponseDto> getCategoryById(@PathVariable Long id) {
-        CategoryResponseDto categoryResponseDto = categoryService.getCategoryById(id);
+    @GetMapping("/{categoryId}")
+    public ResponseEntity<CategoryResponseDto> getCategoryById(@PathVariable Long categoryId) {
+        CategoryResponseDto categoryResponseDto = categoryService.getCategoryById(categoryId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(categoryResponseDto);
     }
 
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<CategoryResponseDto> createCategory(@RequestBody CreateCategoryRequestDto createCategoryRequestDto) {
         CategoryResponseDto createdCategory = categoryService.createCategory(createCategoryRequestDto);
 
@@ -47,31 +47,31 @@ public class CategoryController {
                 .body(createdCategory);
     }
 
-    @PostMapping("/{childId}/set_parent/{parentId}")
-    public ResponseEntity<CategoryResponseDto> setParentCategory(@PathVariable Long childId, @PathVariable Long parentId) {
-        CategoryResponseDto updatedCategoryResponseDto = categoryService.setParentCategory(childId, parentId);
+    @PostMapping("/{childCategoryId}/set-parent-category/{parentCategoryId}")
+    public ResponseEntity<CategoryResponseDto> setParentCategory(@PathVariable Long childCategoryId, @PathVariable Long parentCategoryId) {
+        CategoryResponseDto updatedCategoryResponseDto = categoryService.setParentCategory(childCategoryId, parentCategoryId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(updatedCategoryResponseDto);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<CategoryResponseDto> updateCategory(@PathVariable Long id, @RequestBody UpdateCategoryRequestDto updateCategoryRequestDto) {
-        CategoryResponseDto updatedCategoryResponseDto = categoryService.updateCategoryById(id, updateCategoryRequestDto);
+    @PutMapping("/{categoryId}")
+    public ResponseEntity<CategoryResponseDto> updateCategory(@PathVariable Long categoryId, @RequestBody UpdateCategoryRequestDto updateCategoryRequestDto) {
+        CategoryResponseDto updatedCategoryResponseDto = categoryService.updateCategoryById(categoryId, updateCategoryRequestDto);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(updatedCategoryResponseDto);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<MessageResponseDto> deleteCategoryById(@PathVariable Long id) {
-        categoryService.deleteCategoryById(id);
+    @DeleteMapping("/{categoryId}")
+    public ResponseEntity<MessageResponseDto> deleteCategoryById(@PathVariable Long categoryId) {
+        categoryService.deleteCategoryById(categoryId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(new MessageResponseDto("Category with id " + id + " deleted successfully"));
+                .body(new MessageResponseDto("Category with id " + categoryId + " deleted successfully"));
     }
 
 }

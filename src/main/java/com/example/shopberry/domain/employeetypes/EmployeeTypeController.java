@@ -19,7 +19,7 @@ public class EmployeeTypeController {
 
     private final EmployeeTypeService employeeTypeService;
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<EmployeeTypeResponseDto>> getEmployeeTypes() {
         List<EmployeeTypeResponseDto> employeeTypeResponseDtoList = employeeTypeService.getEmployeeTypes();
 
@@ -28,16 +28,16 @@ public class EmployeeTypeController {
                 .body(employeeTypeResponseDtoList);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<EmployeeTypeResponseDto> getEmployeeTypeById(@PathVariable Long id) {
-        EmployeeTypeResponseDto employeeTypeResponseDto = employeeTypeService.getEmployeeTypeById(id);
+    @GetMapping("/{employeeTypeId}")
+    public ResponseEntity<EmployeeTypeResponseDto> getEmployeeTypeById(@PathVariable Long employeeTypeId) {
+        EmployeeTypeResponseDto employeeTypeResponseDto = employeeTypeService.getEmployeeTypeById(employeeTypeId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(employeeTypeResponseDto);
     }
 
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<EmployeeTypeResponseDto> createEmployeeType(@RequestBody CreateEmployeeTypeRequestDto createEmployeeTypeRequestDto) {
         EmployeeTypeResponseDto createdEmployeeTypeResponseDto = employeeTypeService.createEmployeeType(createEmployeeTypeRequestDto);
 
@@ -47,22 +47,22 @@ public class EmployeeTypeController {
                 .body(createdEmployeeTypeResponseDto);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<EmployeeTypeResponseDto> updateEmployeeTypeById(@PathVariable Long id, @RequestBody UpdateEmployeeTypeRequestDto updateEmployeeTypeRequestDto) {
-        EmployeeTypeResponseDto updatedEmployeeTypeResponseDto = employeeTypeService.updateEmployeeTypeById(id, updateEmployeeTypeRequestDto);
+    @PutMapping("/{employeeTypeId}")
+    public ResponseEntity<EmployeeTypeResponseDto> updateEmployeeTypeById(@PathVariable Long employeeTypeId, @RequestBody UpdateEmployeeTypeRequestDto updateEmployeeTypeRequestDto) {
+        EmployeeTypeResponseDto updatedEmployeeTypeResponseDto = employeeTypeService.updateEmployeeTypeById(employeeTypeId, updateEmployeeTypeRequestDto);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(updatedEmployeeTypeResponseDto);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<MessageResponseDto> deleteEmployeeTypeById(@PathVariable Long id) {
-        employeeTypeService.deleteEmployeeTypeById(id);
+    @DeleteMapping("/{employeeTypeId}")
+    public ResponseEntity<MessageResponseDto> deleteEmployeeTypeById(@PathVariable Long employeeTypeId) {
+        employeeTypeService.deleteEmployeeTypeById(employeeTypeId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(new MessageResponseDto("Employee type with id " + id + " deleted successfully"));
+                .body(new MessageResponseDto("Employee type with id " + employeeTypeId + " deleted successfully"));
     }
 
 }

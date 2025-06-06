@@ -19,7 +19,7 @@ public class PaymentTypeController {
 
     private final PaymentTypeService paymentTypeService;
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<PaymentTypeResponseDto>> getPaymentTypes() {
         List<PaymentTypeResponseDto> paymentTypeResponseDtoList = paymentTypeService.getPaymentTypes();
 
@@ -28,16 +28,16 @@ public class PaymentTypeController {
                 .body(paymentTypeResponseDtoList);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<PaymentTypeResponseDto> getPaymentTypeById(@PathVariable Long id) {
-        PaymentTypeResponseDto paymentTypeResponseDto = paymentTypeService.getPaymentTypeById(id);
+    @GetMapping("/{paymentTypeId}")
+    public ResponseEntity<PaymentTypeResponseDto> getPaymentTypeById(@PathVariable Long paymentTypeId) {
+        PaymentTypeResponseDto paymentTypeResponseDto = paymentTypeService.getPaymentTypeById(paymentTypeId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(paymentTypeResponseDto);
     }
 
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<PaymentTypeResponseDto> createPaymentType(@RequestBody CreatePaymentTypeRequestDto createPaymentTypeRequestDto) {
         PaymentTypeResponseDto createdPaymentTypeResponseDto = paymentTypeService.createPaymentType(createPaymentTypeRequestDto);
 
@@ -47,22 +47,22 @@ public class PaymentTypeController {
                 .body(createdPaymentTypeResponseDto);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<PaymentTypeResponseDto> updatePaymentTypeById(@PathVariable Long id, @RequestBody UpdatePaymentTypeRequestDto updatePaymentTypeRequestDto) {
-        PaymentTypeResponseDto updatedPaymentTypeResponseDto = paymentTypeService.updatePaymentTypeById(id, updatePaymentTypeRequestDto);
+    @PutMapping("/{paymentTypeId}")
+    public ResponseEntity<PaymentTypeResponseDto> updatePaymentTypeById(@PathVariable Long paymentTypeId, @RequestBody UpdatePaymentTypeRequestDto updatePaymentTypeRequestDto) {
+        PaymentTypeResponseDto updatedPaymentTypeResponseDto = paymentTypeService.updatePaymentTypeById(paymentTypeId, updatePaymentTypeRequestDto);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(updatedPaymentTypeResponseDto);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<MessageResponseDto> deletePaymentTypeById(@PathVariable Long id) {
-        paymentTypeService.deletePaymentTypeById(id);
+    @DeleteMapping("/{paymentTypeId}")
+    public ResponseEntity<MessageResponseDto> deletePaymentTypeById(@PathVariable Long paymentTypeId) {
+        paymentTypeService.deletePaymentTypeById(paymentTypeId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(new MessageResponseDto("Payment type with id: " + id + " deleted successfully"));
+                .body(new MessageResponseDto("Payment type with id: " + paymentTypeId + " deleted successfully"));
     }
 
 }
