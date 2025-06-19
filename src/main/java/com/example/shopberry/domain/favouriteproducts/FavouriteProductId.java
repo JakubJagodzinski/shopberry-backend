@@ -1,4 +1,4 @@
-package com.example.shopberry.domain.favouriteentries;
+package com.example.shopberry.domain.favouriteproducts;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
@@ -8,7 +8,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Embeddable
-public class FavouriteEntryId {
+public class FavouriteProductId {
 
     @Column(name = "customer_id")
     private Long customerId;

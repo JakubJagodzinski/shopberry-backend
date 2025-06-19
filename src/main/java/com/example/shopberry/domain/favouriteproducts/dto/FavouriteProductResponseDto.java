@@ -1,4 +1,4 @@
-package com.example.shopberry.domain.favouriteentries.dto;
+package com.example.shopberry.domain.favouriteproducts.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class FavouriteEntryResponseDto {
+public class FavouriteProductResponseDto {
 
     @JsonProperty("customer_id")
     private Long customerId;

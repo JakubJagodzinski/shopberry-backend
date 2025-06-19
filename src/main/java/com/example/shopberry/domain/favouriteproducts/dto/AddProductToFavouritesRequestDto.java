@@ -1,4 +1,4 @@
-package com.example.shopberry.domain.favouriteentries.dto;
+package com.example.shopberry.domain.favouriteproducts.dto;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class AddProductToCustomerFavouritesRequestDto {
+public class AddProductToFavouritesRequestDto {
 
     @JsonProperty("product_id")
     private Long productId;

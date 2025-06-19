@@ -1,4 +1,4 @@
-package com.example.shopberry.domain.favouriteentries;
+package com.example.shopberry.domain.favouriteproducts;
 
 import com.example.shopberry.domain.customers.Customer;
 import com.example.shopberry.domain.products.Product;
@@ -13,21 +13,21 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "favourite_entries")
-public class FavouriteEntry {
+@Table(name = "favourite_products")
+public class FavouriteProduct {
 
     @EmbeddedId
-    private FavouriteEntryId id;
+    private FavouriteProductId id;
 
     @ManyToOne
     @MapsId("customerId")
-    @JoinColumn(name = "customer_id", foreignKey = @ForeignKey(name = "fk_favourite_customer"))
+    @JoinColumn(name = "customer_id", foreignKey = @ForeignKey(name = "fk_favourite_products_customer"))
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Customer customer;
 
     @ManyToOne
     @MapsId("productId")
-    @JoinColumn(name = "product_id", foreignKey = @ForeignKey(name = "fk_favourite_product"))
+    @JoinColumn(name = "product_id", foreignKey = @ForeignKey(name = "fk_favourite_products_product"))
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Product product;
 
