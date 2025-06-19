@@ -13,22 +13,22 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/causes-of-return")
+@RequestMapping("/api/v1")
 @RequiredArgsConstructor
 public class CauseOfReturnController {
 
     private final CauseOfReturnService causeOfReturnService;
 
-    @GetMapping
-    public ResponseEntity<List<CauseOfReturnResponseDto>> getCausesOfReturn() {
-        List<CauseOfReturnResponseDto> causeOfReturnResponseDtoList = causeOfReturnService.getCausesOfReturn();
+    @GetMapping("/causes-of-return")
+    public ResponseEntity<List<CauseOfReturnResponseDto>> getAllCausesOfReturn() {
+        List<CauseOfReturnResponseDto> causeOfReturnResponseDtoList = causeOfReturnService.getAllCausesOfReturn();
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(causeOfReturnResponseDtoList);
     }
 
-    @GetMapping("/{causeOfReturnId}")
+    @GetMapping("/causes-of-return/{causeOfReturnId}")
     public ResponseEntity<CauseOfReturnResponseDto> getCauseOfReturnById(@PathVariable Long causeOfReturnId) {
         CauseOfReturnResponseDto causeOfReturnResponseDto = causeOfReturnService.getCauseOfReturnById(causeOfReturnId);
 
@@ -37,7 +37,7 @@ public class CauseOfReturnController {
                 .body(causeOfReturnResponseDto);
     }
 
-    @PostMapping
+    @PostMapping("/causes-of-return")
     public ResponseEntity<CauseOfReturnResponseDto> createCauseOfReturn(@RequestBody CreateCauseOfReturnRequestDto createCauseOfReturnRequestDto) {
         CauseOfReturnResponseDto createdCauseOfReturnResponseDto = causeOfReturnService.createCauseOfReturn(createCauseOfReturnRequestDto);
 
@@ -47,7 +47,7 @@ public class CauseOfReturnController {
                 .body(createdCauseOfReturnResponseDto);
     }
 
-    @PatchMapping("/{causeOfReturnId}")
+    @PatchMapping("/causes-of-return/{causeOfReturnId}")
     public ResponseEntity<CauseOfReturnResponseDto> updateCauseOfReturnById(@PathVariable Long causeOfReturnId, @RequestBody UpdateCauseOfReturnRequestDto updateCauseOfReturnRequestDto) {
         CauseOfReturnResponseDto updatedCauseOfReturnResponseDto = causeOfReturnService.updateCauseOfReturnById(causeOfReturnId, updateCauseOfReturnRequestDto);
 
@@ -56,7 +56,7 @@ public class CauseOfReturnController {
                 .body(updatedCauseOfReturnResponseDto);
     }
 
-    @DeleteMapping("/{causeOfReturnId}")
+    @DeleteMapping("/causes-of-return/{causeOfReturnId}")
     public ResponseEntity<MessageResponseDto> deleteCauseOfReturnById(@PathVariable Long causeOfReturnId) {
         causeOfReturnService.deleteCauseOfReturnById(causeOfReturnId);
 

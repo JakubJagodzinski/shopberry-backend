@@ -10,10 +10,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateOrderProductRequestDto {
-
-    @JsonProperty("order_id")
-    private Long orderId;
+public class AddProductToOrderRequestDto {
 
     @JsonProperty("product_id")
     private Long productId;

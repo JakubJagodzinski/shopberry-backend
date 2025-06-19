@@ -29,7 +29,7 @@ public class EmployeeService {
     private static final String EMPLOYEE_NOT_FOUND_MESSAGE = "Employee not found";
     private static final String EMPLOYEE_TYPE_NOT_FOUND_MESSAGE = "Employee type not found";
 
-    public List<EmployeeResponseDto> getEmployees() {
+    public List<EmployeeResponseDto> getAllEmployees() {
         return employeeDtoMapper.toDtoList(employeeRepository.findAll());
     }
 

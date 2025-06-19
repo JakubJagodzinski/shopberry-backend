@@ -11,22 +11,22 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/employees")
+@RequestMapping("/api/v1")
 @RequiredArgsConstructor
 public class EmployeeController {
 
     private final EmployeeService employeeService;
 
-    @GetMapping
-    public ResponseEntity<List<EmployeeResponseDto>> getEmployees() {
-        List<EmployeeResponseDto> employeeResponseDtoList = employeeService.getEmployees();
+    @GetMapping("/employees")
+    public ResponseEntity<List<EmployeeResponseDto>> getAllEmployees() {
+        List<EmployeeResponseDto> employeeResponseDtoList = employeeService.getAllEmployees();
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(employeeResponseDtoList);
     }
 
-    @GetMapping("/{employeeId}")
+    @GetMapping("/employees/{employeeId}")
     public ResponseEntity<EmployeeResponseDto> getEmployeeById(@PathVariable Long employeeId) {
         EmployeeResponseDto employeeResponseDto = employeeService.getEmployeeById(employeeId);
 
@@ -35,7 +35,7 @@ public class EmployeeController {
                 .body(employeeResponseDto);
     }
 
-    @PatchMapping("/{employeeId}")
+    @PatchMapping("/employees/{employeeId}")
     public ResponseEntity<EmployeeResponseDto> updateEmployeeById(@PathVariable Long employeeId, @RequestBody UpdateEmployeeRequestDto updateEmployeeRequestDto) {
         EmployeeResponseDto updatedEmployeeResponseDto = employeeService.updateEmployeeById(employeeId, updateEmployeeRequestDto);
 
@@ -44,7 +44,7 @@ public class EmployeeController {
                 .body(updatedEmployeeResponseDto);
     }
 
-    @DeleteMapping("/{employeeId}")
+    @DeleteMapping("/employees/{employeeId}")
     public ResponseEntity<MessageResponseDto> deleteEmployeeById(@PathVariable Long employeeId) {
         employeeService.deleteEmployeeById(employeeId);
 

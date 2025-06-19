@@ -13,22 +13,22 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/attributes")
+@RequestMapping("/api/v1")
 @RequiredArgsConstructor
 public class AttributeController {
 
     private final AttributeService attributeService;
 
-    @GetMapping
-    public ResponseEntity<List<AttributeResponseDto>> getAttributes() {
-        List<AttributeResponseDto> attributeResponseDtoList = attributeService.getAttributes();
+    @GetMapping("/attributes")
+    public ResponseEntity<List<AttributeResponseDto>> getAllAttributes() {
+        List<AttributeResponseDto> attributeResponseDtoList = attributeService.getAllAttributes();
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(attributeResponseDtoList);
     }
 
-    @GetMapping("/{attributeId}")
+    @GetMapping("/attributes/{attributeId}")
     public ResponseEntity<AttributeResponseDto> getAttributeById(@PathVariable Long attributeId) {
         AttributeResponseDto attributeResponseDto = attributeService.getAttributeById(attributeId);
 
@@ -37,7 +37,7 @@ public class AttributeController {
                 .body(attributeResponseDto);
     }
 
-    @PostMapping
+    @PostMapping("/attributes")
     public ResponseEntity<AttributeResponseDto> createAttribute(@RequestBody CreateAttributeRequestDto createAttributeRequestDto) {
         AttributeResponseDto createdAttributeResponseDto = attributeService.createAttribute(createAttributeRequestDto);
 
@@ -47,7 +47,7 @@ public class AttributeController {
                 .body(createdAttributeResponseDto);
     }
 
-    @PatchMapping("/{attributeId}")
+    @PatchMapping("/attributes/{attributeId}")
     public ResponseEntity<AttributeResponseDto> updateAttributeById(@PathVariable Long attributeId, @RequestBody UpdateAttributeRequestDto updateAttributeRequestDto) {
         AttributeResponseDto updatedAttributeResponseDto = attributeService.updateAttributeById(attributeId, updateAttributeRequestDto);
 
@@ -56,7 +56,7 @@ public class AttributeController {
                 .body(updatedAttributeResponseDto);
     }
 
-    @DeleteMapping("/{attributeId}")
+    @DeleteMapping("/attributes/{attributeId}")
     public ResponseEntity<MessageResponseDto> deleteAttributeById(@PathVariable Long attributeId) {
         attributeService.deleteAttributeById(attributeId);
 

@@ -13,31 +13,31 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/reviews")
+@RequestMapping("/api/v1")
 @RequiredArgsConstructor
 public class ReviewController {
 
     private final ReviewService reviewService;
 
-    @GetMapping("/by-product/{productId}")
-    public ResponseEntity<List<ReviewResponseDto>> getReviewsByProductId(@PathVariable Long productId) {
-        List<ReviewResponseDto> reviewResponseDtoList = reviewService.getReviewsByProductId(productId);
+    @GetMapping("/products/{productId}/reviews")
+    public ResponseEntity<List<ReviewResponseDto>> getProductAllReviews(@PathVariable Long productId) {
+        List<ReviewResponseDto> reviewResponseDtoList = reviewService.getProductAllReviews(productId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(reviewResponseDtoList);
     }
 
-    @GetMapping("/by-customer/{customerId}")
-    public ResponseEntity<List<ReviewResponseDto>> getReviewsByCustomerId(@PathVariable Long customerId) {
-        List<ReviewResponseDto> reviewResponseDtoList = reviewService.getReviewsByCustomerId(customerId);
+    @GetMapping("/customers/{customerId}/reviews")
+    public ResponseEntity<List<ReviewResponseDto>> getCustomerAllReviews(@PathVariable Long customerId) {
+        List<ReviewResponseDto> reviewResponseDtoList = reviewService.getCustomerAllReviews(customerId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(reviewResponseDtoList);
     }
 
-    @GetMapping("/{reviewId}")
+    @GetMapping("/reviews/{reviewId}")
     public ResponseEntity<ReviewResponseDto> getReviewById(@PathVariable Long reviewId) {
         ReviewResponseDto reviewResponseDto = reviewService.getReviewById(reviewId);
 
@@ -46,9 +46,9 @@ public class ReviewController {
                 .body(reviewResponseDto);
     }
 
-    @PostMapping
-    public ResponseEntity<ReviewResponseDto> createReview(@RequestBody CreateReviewRequestDto createReviewRequestDto) {
-        ReviewResponseDto createdReviewResponseDto = reviewService.createReview(createReviewRequestDto);
+    @PostMapping("/products/{productId}/reviews")
+    public ResponseEntity<ReviewResponseDto> createReview(@PathVariable Long productId, @RequestBody CreateReviewRequestDto createReviewRequestDto) {
+        ReviewResponseDto createdReviewResponseDto = reviewService.createReview(productId, createReviewRequestDto);
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
@@ -56,7 +56,7 @@ public class ReviewController {
                 .body(createdReviewResponseDto);
     }
 
-    @PatchMapping("/{reviewId}")
+    @PatchMapping("/reviews/{reviewId}")
     public ResponseEntity<ReviewResponseDto> updateReviewById(@PathVariable Long reviewId, @RequestBody UpdateReviewRequestDto updateReviewRequestDto) {
         ReviewResponseDto updatedReviewResponseDto = reviewService.updateReviewById(reviewId, updateReviewRequestDto);
 
@@ -65,7 +65,7 @@ public class ReviewController {
                 .body(updatedReviewResponseDto);
     }
 
-    @DeleteMapping("/{reviewId}")
+    @DeleteMapping("/reviews/{reviewId}")
     public ResponseEntity<MessageResponseDto> deleteReviewById(@PathVariable Long reviewId) {
         reviewService.deleteReviewById(reviewId);
 
@@ -74,22 +74,22 @@ public class ReviewController {
                 .body(new MessageResponseDto("Review with id " + reviewId + " deleted successfully"));
     }
 
-    @DeleteMapping("/by-customer/{customerId}")
-    public ResponseEntity<MessageResponseDto> deleteReviewsByCustomerId(@PathVariable Long customerId) {
-        reviewService.deleteReviewsByCustomerId(customerId);
+    @DeleteMapping("/customers/{customerId}/reviews")
+    public ResponseEntity<MessageResponseDto> deleteCustomerAllReviews(@PathVariable Long customerId) {
+        reviewService.deleteCustomerAllReviews(customerId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(new MessageResponseDto("Reviews for customer with id " + customerId + " deleted successfully"));
+                .body(new MessageResponseDto("All reviews from customer with id " + customerId + " deleted successfully"));
     }
 
-    @DeleteMapping("/by-product/{productId}")
-    public ResponseEntity<MessageResponseDto> deleteReviewsByProductId(@PathVariable Long productId) {
-        reviewService.deleteReviewsByProductId(productId);
+    @DeleteMapping("/products/{productId}/reviews")
+    public ResponseEntity<MessageResponseDto> deleteProductAllReviews(@PathVariable Long productId) {
+        reviewService.deleteProductAllReviews(productId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(new MessageResponseDto("Reviews for product with id " + productId + " deleted successfully"));
+                .body(new MessageResponseDto("All reviews for product with id " + productId + " deleted successfully"));
     }
 
 }

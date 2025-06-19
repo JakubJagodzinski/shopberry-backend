@@ -2,7 +2,7 @@ package com.example.shopberry.domain.productattributes;
 
 import com.example.shopberry.domain.attributes.Attribute;
 import com.example.shopberry.domain.attributes.AttributeRepository;
-import com.example.shopberry.domain.productattributes.dto.CreateProductAttributeRequestDto;
+import com.example.shopberry.domain.productattributes.dto.AssignAttributeToProductRequestDto;
 import com.example.shopberry.domain.productattributes.dto.ProductAttributeDtoMapper;
 import com.example.shopberry.domain.productattributes.dto.ProductAttributeResponseDto;
 import com.example.shopberry.domain.products.Product;
@@ -31,7 +31,7 @@ public class ProductAttributeService {
     private static final String ATTRIBUTE_VALUE_CANNOT_BE_NULL_MESSAGE = "Attribute value cannot be null";
 
     @Transactional
-    public List<ProductAttributeResponseDto> getProductAttributesByProductId(Long productId) throws EntityNotFoundException {
+    public List<ProductAttributeResponseDto> getProductAllAttributes(Long productId) throws EntityNotFoundException {
         if (!productRepository.existsById(productId)) {
             throw new EntityNotFoundException(PRODUCT_NOT_FOUND_MESSAGE);
         }
@@ -40,7 +40,7 @@ public class ProductAttributeService {
     }
 
     @Transactional
-    public List<ProductAttributeResponseDto> getProductAttributesByAttributeId(Long attributeId) throws EntityNotFoundException {
+    public List<ProductAttributeResponseDto> getAllProductsWithAttribute(Long attributeId) throws EntityNotFoundException {
         if (!attributeRepository.existsById(attributeId)) {
             throw new EntityNotFoundException(ATTRIBUTE_NOT_FOUND_MESSAGE);
         }
@@ -49,20 +49,20 @@ public class ProductAttributeService {
     }
 
     @Transactional
-    public ProductAttributeResponseDto createProductAttribute(CreateProductAttributeRequestDto createProductAttributeRequestDto) throws EntityNotFoundException, IllegalArgumentException {
-        Product product = productRepository.findById(createProductAttributeRequestDto.getProductId()).orElse(null);
+    public ProductAttributeResponseDto assignAttributeToProduct(Long productId, AssignAttributeToProductRequestDto assignAttributeToProductRequestDto) throws EntityNotFoundException, IllegalArgumentException {
+        Product product = productRepository.findById(productId).orElse(null);
 
         if (product == null) {
             throw new EntityNotFoundException(PRODUCT_NOT_FOUND_MESSAGE);
         }
 
-        Attribute attribute = attributeRepository.findById(createProductAttributeRequestDto.getAttributeId()).orElse(null);
+        Attribute attribute = attributeRepository.findById(assignAttributeToProductRequestDto.getAttributeId()).orElse(null);
 
         if (attribute == null) {
             throw new EntityNotFoundException(ATTRIBUTE_NOT_FOUND_MESSAGE);
         }
 
-        ProductAttributeId productAttributeId = new ProductAttributeId(product.getProductId(), attribute.getAttributeId());
+        ProductAttributeId productAttributeId = new ProductAttributeId(productId, attribute.getAttributeId());
 
         if (productAttributeRepository.existsById(productAttributeId)) {
             throw new IllegalArgumentException(ATTRIBUTE_ALREADY_ASSIGNED_TO_THIS_PRODUCT_MESSAGE);
@@ -74,28 +74,30 @@ public class ProductAttributeService {
         productAttribute.setProduct(product);
         productAttribute.setAttribute(attribute);
 
-        if (createProductAttributeRequestDto.getValue() == null) {
+        if (assignAttributeToProductRequestDto.getValue() == null) {
             throw new IllegalArgumentException(ATTRIBUTE_VALUE_CANNOT_BE_NULL_MESSAGE);
         }
 
-        productAttribute.setValue(createProductAttributeRequestDto.getValue());
+        productAttribute.setValue(assignAttributeToProductRequestDto.getValue());
 
         return productAttributeDtoMapper.toDto(productAttributeRepository.save(productAttribute));
     }
 
     @Transactional
-    public void deleteProductAttributeById(ProductAttributeId productAttributeId) throws EntityNotFoundException {
-        Product product = productRepository.findById(productAttributeId.getProductId()).orElse(null);
+    public void unassignAttributeFromProduct(Long productId, Long attributeId) throws EntityNotFoundException {
+        Product product = productRepository.findById(productId).orElse(null);
 
         if (product == null) {
             throw new EntityNotFoundException(PRODUCT_NOT_FOUND_MESSAGE);
         }
 
-        Attribute attribute = attributeRepository.findById(productAttributeId.getAttributeId()).orElse(null);
+        Attribute attribute = attributeRepository.findById(attributeId).orElse(null);
 
         if (attribute == null) {
             throw new EntityNotFoundException(ATTRIBUTE_NOT_FOUND_MESSAGE);
         }
+
+        ProductAttributeId productAttributeId = new ProductAttributeId(productId, attributeId);
 
         ProductAttribute productAttribute = productAttributeRepository.findById(productAttributeId).orElse(null);
 

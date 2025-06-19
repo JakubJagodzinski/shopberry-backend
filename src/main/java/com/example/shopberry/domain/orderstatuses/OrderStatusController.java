@@ -13,22 +13,22 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/order-statuses")
+@RequestMapping("/api/v1")
 @RequiredArgsConstructor
 public class OrderStatusController {
 
     private final OrderStatusService orderStatusService;
 
-    @GetMapping
-    public ResponseEntity<List<OrderStatusResponseDto>> getOrderStatuses() {
-        List<OrderStatusResponseDto> orderStatusResponseDtoList = orderStatusService.getOrderStatuses();
+    @GetMapping("/order-statuses")
+    public ResponseEntity<List<OrderStatusResponseDto>> getAllOrderStatuses() {
+        List<OrderStatusResponseDto> orderStatusResponseDtoList = orderStatusService.getAllOrderStatuses();
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(orderStatusResponseDtoList);
     }
 
-    @GetMapping("/{orderStatusId}")
+    @GetMapping("/order-statuses/{orderStatusId}")
     public ResponseEntity<OrderStatusResponseDto> getOrderStatusById(@PathVariable Long orderStatusId) {
         OrderStatusResponseDto orderStatusResponseDto = orderStatusService.getOrderStatusById(orderStatusId);
 
@@ -37,7 +37,7 @@ public class OrderStatusController {
                 .body(orderStatusResponseDto);
     }
 
-    @PostMapping
+    @PostMapping("/order-statuses")
     public ResponseEntity<OrderStatusResponseDto> createOrderStatus(@RequestBody CreateOrderStatusRequestDto createOrderStatusRequestDto) {
         OrderStatusResponseDto createdOrderStatusResponseDto = orderStatusService.createOrderStatus(createOrderStatusRequestDto);
 
@@ -47,7 +47,7 @@ public class OrderStatusController {
                 .body(createdOrderStatusResponseDto);
     }
 
-    @PatchMapping("/{orderStatusId}")
+    @PatchMapping("/order-statuses/{orderStatusId}")
     public ResponseEntity<OrderStatusResponseDto> updateOrderStatusById(@PathVariable Long orderStatusId, @RequestBody UpdateOrderStatusRequestDto updateOrderStatusRequestDto) {
         OrderStatusResponseDto updatedOrderStatusResponseDto = orderStatusService.updateOrderStatusById(orderStatusId, updateOrderStatusRequestDto);
 
@@ -56,7 +56,7 @@ public class OrderStatusController {
                 .body(updatedOrderStatusResponseDto);
     }
 
-    @DeleteMapping("/{orderStatusId}")
+    @DeleteMapping("/order-statuses/{orderStatusId}")
     public ResponseEntity<MessageResponseDto> deleteOrderStatusById(@PathVariable Long orderStatusId) {
         orderStatusService.deleteOrderStatusById(orderStatusId);
 

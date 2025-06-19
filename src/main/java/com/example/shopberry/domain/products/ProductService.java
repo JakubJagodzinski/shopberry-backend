@@ -27,7 +27,7 @@ public class ProductService {
     private static final String PRODUCT_DISCOUNT_PERCENT_VALUE_CAN_T_BE_NEGATIVE_MESSAGE = "Product discount percent value can't be negative";
     private static final String PRODUCT_DISCOUNT_PERCENT_VALUE_CAN_T_BE_GREATER_THAN_100_MESSAGE = "Product discount percent value can't be greater than 100";
 
-    public List<ProductResponseDto> getProducts() {
+    public List<ProductResponseDto> getAllProducts() {
         return productDtoMapper.toDtoList(productRepository.findAll());
     }
 

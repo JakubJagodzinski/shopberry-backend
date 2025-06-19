@@ -24,7 +24,7 @@ public class CauseOfReturnService {
     private static final String CAUSE_CANNOT_BE_NULL_MESSAGE = "Cause cannot be null";
     private static final String CAUSE_CANNOT_BE_EMPTY_MESSAGE = "Cause cannot be empty";
 
-    public List<CauseOfReturnResponseDto> getCausesOfReturn() {
+    public List<CauseOfReturnResponseDto> getAllCausesOfReturn() {
         return causeOfReturnDtoMapper.toDtoList(causeOfReturnRepository.findAll());
     }
 

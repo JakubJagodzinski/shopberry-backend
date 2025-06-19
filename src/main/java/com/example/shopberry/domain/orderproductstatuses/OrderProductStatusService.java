@@ -27,7 +27,7 @@ public class OrderProductStatusService {
     private static final String ORDER_PRODUCT_STATUS_NAME_CANNOT_BE_EMPTY_MESSAGE = "Order product status name cannot be empty";
     private static final String ORDER_PRODUCT_STATUS_IS_IN_USE_MESSAGE = "Order product status is in use and cannot be deleted";
 
-    public List<OrderProductStatusResponseDto> getOrderProductStatuses() {
+    public List<OrderProductStatusResponseDto> getAllOrderProductStatuses() {
         return orderProductStatusDtoMapper.toDtoList(orderProductStatusRepository.findAll());
     }
 

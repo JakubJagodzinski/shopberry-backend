@@ -1,7 +1,7 @@
 package com.example.shopberry.domain.orderproducts;
 
 import com.example.shopberry.common.MessageResponseDto;
-import com.example.shopberry.domain.orderproducts.dto.CreateOrderProductRequestDto;
+import com.example.shopberry.domain.orderproducts.dto.AddProductToOrderRequestDto;
 import com.example.shopberry.domain.orderproducts.dto.OrderProductResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -12,51 +12,47 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/order-products")
+@RequestMapping("/api/v1")
 @RequiredArgsConstructor
 public class OrderProductController {
 
     private final OrderProductService orderProductService;
 
-    @GetMapping("/by-order/{orderId}/by-product/{productId}")
+    @GetMapping("/orders/{orderId}/products/{productId}")
     public ResponseEntity<OrderProductResponseDto> getOrderProductById(@PathVariable Long orderId, @PathVariable Long productId) {
-        OrderProductId orderProductId = new OrderProductId(orderId, productId);
-
-        OrderProductResponseDto orderProductResponseDto = orderProductService.getOrderProductById(orderProductId);
+        OrderProductResponseDto orderProductResponseDto = orderProductService.getOrderProductById(orderId, productId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(orderProductResponseDto);
     }
 
-    @GetMapping("/by-order/{orderId}")
-    public ResponseEntity<List<OrderProductResponseDto>> getOrderProductsByOrderId(@PathVariable Long orderId) {
-        List<OrderProductResponseDto> orderProductResponseDtoList = orderProductService.getOrderProductsByOrderId(orderId);
+    @GetMapping("/orders/{orderId}/products")
+    public ResponseEntity<List<OrderProductResponseDto>> getOrderAllProducts(@PathVariable Long orderId) {
+        List<OrderProductResponseDto> orderProductResponseDtoList = orderProductService.getOrderAllProducts(orderId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(orderProductResponseDtoList);
     }
 
-    @PostMapping
-    public ResponseEntity<OrderProductResponseDto> createOrderProduct(@RequestBody CreateOrderProductRequestDto createOrderProductRequestDto) {
-        OrderProductResponseDto createdOrderProductResponseDto = orderProductService.createOrderProduct(createOrderProductRequestDto);
+    @PostMapping("/orders/{orderId}/products")
+    public ResponseEntity<OrderProductResponseDto> addProductToOrder(@PathVariable Long orderId, @RequestBody AddProductToOrderRequestDto addProductToOrderRequestDto) {
+        OrderProductResponseDto createdOrderProductResponseDto = orderProductService.addProductToOrder(orderId, addProductToOrderRequestDto);
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .location(URI.create("/api/v1/order-products/" + createdOrderProductResponseDto.getOrderId() + "/" + createdOrderProductResponseDto.getProductId()))
+                .location(URI.create("/api/v1/orders/" + orderId + "/products/" + createdOrderProductResponseDto.getProductId()))
                 .body(createdOrderProductResponseDto);
     }
 
-    @DeleteMapping("/by-order/{orderId}/by-product/{productId}")
-    public ResponseEntity<MessageResponseDto> deleteOrderProductById(@PathVariable Long orderId, @PathVariable Long productId) {
-        OrderProductId orderProductId = new OrderProductId(orderId, productId);
-
-        orderProductService.deleteOrderProductById(orderProductId);
+    @DeleteMapping("/orders/{orderId}/products/{productId}")
+    public ResponseEntity<MessageResponseDto> removeProductFromOrder(@PathVariable Long orderId, @PathVariable Long productId) {
+        orderProductService.removeProductFromOrder(orderId, productId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(new MessageResponseDto("Order product with id " + orderProductId + " deleted successfully"));
+                .body(new MessageResponseDto("Product with id " + productId + " removed from order with id " + orderId));
     }
 
 }

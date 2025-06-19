@@ -27,12 +27,12 @@ public class CustomerAddressService {
     private static final String FIRST_NAME_CANNOT_BE_EMPTY_MESSAGE = "First name cannot be empty";
     private static final String LAST_NAME_CANNOT_BE_EMPTY_MESSAGE = "Last name cannot be empty";
 
-    public List<CustomerAddressResponseDto> getCustomerAddresses() {
+    public List<CustomerAddressResponseDto> getAllCustomerAddresses() {
         return customerAddressDtoMapper.toDtoList(customerAddressRepository.findAll());
     }
 
     @Transactional
-    public List<CustomerAddressResponseDto> getCustomerAddressesByCustomerId(Long customerId) throws EntityNotFoundException {
+    public List<CustomerAddressResponseDto> getCustomerAllAddresses(Long customerId) throws EntityNotFoundException {
         if (!customerRepository.existsById(customerId)) {
             throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
         }
@@ -41,8 +41,8 @@ public class CustomerAddressService {
     }
 
     @Transactional
-    public CustomerAddressResponseDto createCustomerAddress(CreateCustomerAddressRequestDto createCustomerAddressRequestDto) throws EntityNotFoundException {
-        Customer customer = customerRepository.findById(createCustomerAddressRequestDto.getCustomerId()).orElse(null);
+    public CustomerAddressResponseDto createCustomerAddress(Long customerId, CreateCustomerAddressRequestDto createCustomerAddressRequestDto) throws EntityNotFoundException {
+        Customer customer = customerRepository.findById(customerId).orElse(null);
 
         if (customer == null) {
             throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
@@ -115,7 +115,7 @@ public class CustomerAddressService {
     }
 
     @Transactional
-    public void deleteCustomerAddressesByCustomerId(Long customerId) throws EntityNotFoundException {
+    public void deleteCustomerAllAddresses(Long customerId) throws EntityNotFoundException {
         if (!customerRepository.existsById(customerId)) {
             throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
         }

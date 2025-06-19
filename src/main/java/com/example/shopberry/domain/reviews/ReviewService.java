@@ -38,7 +38,7 @@ public class ReviewService {
     private final String REVIEW_TEXT_TOO_LONG_MESSAGE = "Review text cannot exceed " + MAX_REVIEW_TEXT_LENGTH + " characters";
 
     @Transactional
-    public List<ReviewResponseDto> getReviewsByProductId(Long productId) throws EntityNotFoundException {
+    public List<ReviewResponseDto> getProductAllReviews(Long productId) throws EntityNotFoundException {
         if (!productRepository.existsById(productId)) {
             throw new EntityNotFoundException(PRODUCT_NOT_FOUND_MESSAGE);
         }
@@ -47,7 +47,7 @@ public class ReviewService {
     }
 
     @Transactional
-    public List<ReviewResponseDto> getReviewsByCustomerId(Long customerId) throws EntityNotFoundException {
+    public List<ReviewResponseDto> getCustomerAllReviews(Long customerId) throws EntityNotFoundException {
         if (!customerRepository.existsById(customerId)) {
             throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
         }
@@ -67,8 +67,8 @@ public class ReviewService {
     }
 
     @Transactional
-    public ReviewResponseDto createReview(CreateReviewRequestDto createReviewRequestDto) throws EntityNotFoundException, IllegalArgumentException {
-        Product product = productRepository.findById(createReviewRequestDto.getProductId()).orElse(null);
+    public ReviewResponseDto createReview(Long productId, CreateReviewRequestDto createReviewRequestDto) throws EntityNotFoundException, IllegalArgumentException {
+        Product product = productRepository.findById(productId).orElse(null);
 
         if (product == null) {
             throw new EntityNotFoundException(PRODUCT_NOT_FOUND_MESSAGE);
@@ -144,7 +144,7 @@ public class ReviewService {
     }
 
     @Transactional
-    public void deleteReviewsByCustomerId(Long customerId) throws EntityNotFoundException {
+    public void deleteCustomerAllReviews(Long customerId) throws EntityNotFoundException {
         if (!customerRepository.existsById(customerId)) {
             throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
         }
@@ -153,7 +153,7 @@ public class ReviewService {
     }
 
     @Transactional
-    public void deleteReviewsByProductId(Long productId) throws EntityNotFoundException {
+    public void deleteProductAllReviews(Long productId) throws EntityNotFoundException {
         if (!productRepository.existsById(productId)) {
             throw new EntityNotFoundException(PRODUCT_NOT_FOUND_MESSAGE);
         }

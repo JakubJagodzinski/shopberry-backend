@@ -12,9 +12,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class CreateReviewRequestDto {
 
-    @JsonProperty("product_id")
-    private Long productId;
-
     @JsonProperty("customer_id")
     private Long customerId;
 

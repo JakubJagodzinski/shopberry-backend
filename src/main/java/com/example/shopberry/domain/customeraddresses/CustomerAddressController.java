@@ -13,41 +13,41 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/customer-addresses")
+@RequestMapping("/api/v1")
 @RequiredArgsConstructor
 public class CustomerAddressController {
 
     private final CustomerAddressService customerAddressService;
 
-    @GetMapping
-    public ResponseEntity<List<CustomerAddressResponseDto>> getCustomerAddresses() {
-        List<CustomerAddressResponseDto> customerAddressResponseDtoList = customerAddressService.getCustomerAddresses();
+    @GetMapping("/customers/addresses")
+    public ResponseEntity<List<CustomerAddressResponseDto>> getAllCustomerAddresses() {
+        List<CustomerAddressResponseDto> customerAddressResponseDtoList = customerAddressService.getAllCustomerAddresses();
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(customerAddressResponseDtoList);
     }
 
-    @GetMapping("/by-customer/{customerId}")
-    public ResponseEntity<List<CustomerAddressResponseDto>> getCustomerAddressesByCustomerId(@PathVariable Long customerId) {
-        List<CustomerAddressResponseDto> customerAddressResponseDtoList = customerAddressService.getCustomerAddressesByCustomerId(customerId);
+    @GetMapping("/customers/{customerId}/addresses")
+    public ResponseEntity<List<CustomerAddressResponseDto>> getCustomerAllAddresses(@PathVariable Long customerId) {
+        List<CustomerAddressResponseDto> customerAddressResponseDtoList = customerAddressService.getCustomerAllAddresses(customerId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(customerAddressResponseDtoList);
     }
 
-    @PostMapping
-    public ResponseEntity<CustomerAddressResponseDto> createCustomerAddress(@RequestBody CreateCustomerAddressRequestDto createCustomerAddressRequestDto) {
-        CustomerAddressResponseDto createdCustomerAddressResponseDto = customerAddressService.createCustomerAddress(createCustomerAddressRequestDto);
+    @PostMapping("/customers/{customerId}/addresses")
+    public ResponseEntity<CustomerAddressResponseDto> createCustomerAddress(@PathVariable Long customerId, @RequestBody CreateCustomerAddressRequestDto createCustomerAddressRequestDto) {
+        CustomerAddressResponseDto createdCustomerAddressResponseDto = customerAddressService.createCustomerAddress(customerId, createCustomerAddressRequestDto);
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .location(URI.create("/api/v1/customer-addresses/" + createdCustomerAddressResponseDto.getAddressId()))
+                .location(URI.create("/api/v1/customers/" + customerId + "/addresses/" + createdCustomerAddressResponseDto.getAddressId()))
                 .body(createdCustomerAddressResponseDto);
     }
 
-    @PatchMapping("/{customerAddressId}")
+    @PatchMapping("/customers/addresses/{customerAddressId}")
     public ResponseEntity<CustomerAddressResponseDto> updateCustomerAddressById(@PathVariable Long customerAddressId, @RequestBody UpdateCustomerAddressRequestDto updateCustomerAddressRequestDto) {
         CustomerAddressResponseDto updatedCustomerAddressResponseDto = customerAddressService.updateCustomerAddressById(customerAddressId, updateCustomerAddressRequestDto);
 
@@ -56,16 +56,16 @@ public class CustomerAddressController {
                 .body(updatedCustomerAddressResponseDto);
     }
 
-    @DeleteMapping("/by-customer/{customerId}")
-    public ResponseEntity<MessageResponseDto> deleteCustomerAddressesByCustomerId(@PathVariable Long customerId) {
-        customerAddressService.deleteCustomerAddressesByCustomerId(customerId);
+    @DeleteMapping("/customers/{customerId}/addresses")
+    public ResponseEntity<MessageResponseDto> deleteCustomerAllAddresses(@PathVariable Long customerId) {
+        customerAddressService.deleteCustomerAllAddresses(customerId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(new MessageResponseDto("All customer addresses with customer id " + customerId + " deleted"));
     }
 
-    @DeleteMapping("/{customerAddressId}")
+    @DeleteMapping("/customers/addresses/{customerAddressId}")
     public ResponseEntity<MessageResponseDto> deleteCustomerAddressById(@PathVariable Long customerAddressId) {
         customerAddressService.deleteCustomerAddressById(customerAddressId);
 

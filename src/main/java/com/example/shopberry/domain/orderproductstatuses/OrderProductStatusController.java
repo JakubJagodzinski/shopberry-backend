@@ -13,22 +13,22 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/order-product-statuses")
+@RequestMapping("/api/v1")
 @RequiredArgsConstructor
 public class OrderProductStatusController {
 
     private final OrderProductStatusService orderProductStatusService;
 
-    @GetMapping
-    public ResponseEntity<List<OrderProductStatusResponseDto>> getOrderProductStatuses() {
-        List<OrderProductStatusResponseDto> orderProductStatusResponseDtoList = orderProductStatusService.getOrderProductStatuses();
+    @GetMapping("/order-product-statuses")
+    public ResponseEntity<List<OrderProductStatusResponseDto>> getAllOrderProductStatuses() {
+        List<OrderProductStatusResponseDto> orderProductStatusResponseDtoList = orderProductStatusService.getAllOrderProductStatuses();
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(orderProductStatusResponseDtoList);
     }
 
-    @GetMapping("/{orderProductStatusId}")
+    @GetMapping("/order-product-statuses/{orderProductStatusId}")
     public ResponseEntity<OrderProductStatusResponseDto> getOrderProductStatusById(@PathVariable Long orderProductStatusId) {
         OrderProductStatusResponseDto orderProductStatusResponseDto = orderProductStatusService.getOrderProductStatusById(orderProductStatusId);
 
@@ -37,7 +37,7 @@ public class OrderProductStatusController {
                 .body(orderProductStatusResponseDto);
     }
 
-    @PostMapping
+    @PostMapping("/order-product-statuses")
     public ResponseEntity<OrderProductStatusResponseDto> createOrderProductStatus(@RequestBody CreateOrderProductStatusRequestDto createOrderProductStatusRequestDto) {
         OrderProductStatusResponseDto createdOrderProductStatusResponseDto = orderProductStatusService.createOrderProductStatus(createOrderProductStatusRequestDto);
 
@@ -47,7 +47,7 @@ public class OrderProductStatusController {
                 .body(createdOrderProductStatusResponseDto);
     }
 
-    @PatchMapping("/{orderProductStatusId}")
+    @PatchMapping("/order-product-statuses/{orderProductStatusId}")
     public ResponseEntity<OrderProductStatusResponseDto> updateOrderProductStatusById(@PathVariable Long orderProductStatusId, @RequestBody UpdateOrderProductStatusRequestDto updateOrderProductStatusRequestDto) {
         OrderProductStatusResponseDto updatedOrderProductStatusResponseDto = orderProductStatusService.updateOrderProductStatusById(orderProductStatusId, updateOrderProductStatusRequestDto);
 
@@ -56,7 +56,7 @@ public class OrderProductStatusController {
                 .body(updatedOrderProductStatusResponseDto);
     }
 
-    @DeleteMapping("/{orderProductStatusId}")
+    @DeleteMapping("/order-product-statuses/{orderProductStatusId}")
     public ResponseEntity<MessageResponseDto> deleteOrderProductStatusById(@PathVariable Long orderProductStatusId) {
         orderProductStatusService.deleteOrderProductStatusById(orderProductStatusId);
 

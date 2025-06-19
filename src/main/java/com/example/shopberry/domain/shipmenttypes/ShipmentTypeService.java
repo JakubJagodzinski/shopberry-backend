@@ -25,7 +25,7 @@ public class ShipmentTypeService {
     private static final String SHIPMENT_NAME_CANNOT_BE_NULL_MESSAGE = "Shipment name cannot be null";
     private static final String SHIPMENT_COST_CANNOT_BE_NEGATIVE_MESSAGE = "Shipment cost cannot be negative";
 
-    public List<ShipmentTypeResponseDto> getShipmentTypes() {
+    public List<ShipmentTypeResponseDto> getAllShipmentTypes() {
         return shipmentTypeDtoMapper.toDtoList(shipmentTypeRepository.findAll());
     }
 

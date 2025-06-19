@@ -12,9 +12,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class CreateProductReturnRequestDto {
 
-    @JsonProperty("order_id")
-    private Long orderId;
-
     @JsonProperty("product_id")
     private Long productId;
 

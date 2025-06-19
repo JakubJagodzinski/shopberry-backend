@@ -23,7 +23,7 @@ public class ProducerService {
     private static final String PRODUCER_WITH_THAT_NAME_ALREADY_EXISTS = "Producer with that name already exists";
     private static final String PRODUCER_NOT_FOUND_MESSAGE = "Producer not found";
 
-    public List<ProducerResponseDto> getProducers() {
+    public List<ProducerResponseDto> getAllProducers() {
         List<Producer> producers = producerRepository.findAll();
         return producerDtoMapper.toDtoList(producers);
     }

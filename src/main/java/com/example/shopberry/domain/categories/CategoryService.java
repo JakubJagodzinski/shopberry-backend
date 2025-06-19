@@ -1,9 +1,6 @@
 package com.example.shopberry.domain.categories;
 
-import com.example.shopberry.domain.categories.dto.CategoryDtoMapper;
-import com.example.shopberry.domain.categories.dto.CategoryResponseDto;
-import com.example.shopberry.domain.categories.dto.CreateCategoryRequestDto;
-import com.example.shopberry.domain.categories.dto.UpdateCategoryRequestDto;
+import com.example.shopberry.domain.categories.dto.*;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +20,7 @@ public class CategoryService {
     private static final String CATEGORY_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE = "Category with that name already exists";
     private static final String CATEGORY_CANNOT_BE_PARENT_TO_ITSELF_MESSAGE = "Category cannot be parent to itself";
 
-    public List<CategoryResponseDto> getCategories() {
+    public List<CategoryResponseDto> getAllCategories() {
         return categoryDtoMapper.toDtoList(categoryRepository.findAll());
     }
 
@@ -64,18 +61,18 @@ public class CategoryService {
     }
 
     @Transactional
-    public CategoryResponseDto setParentCategory(Long childCategoryId, Long parentCategoryId) throws EntityNotFoundException, IllegalArgumentException {
-        if (parentCategoryId.equals(childCategoryId)) {
+    public CategoryResponseDto setParentCategory(Long categoryId, SetParentCategoryRequestDto setParentCategoryRequestDto) throws EntityNotFoundException, IllegalArgumentException {
+        if (categoryId.equals(setParentCategoryRequestDto.getParentCategoryId())) {
             throw new IllegalArgumentException(CATEGORY_CANNOT_BE_PARENT_TO_ITSELF_MESSAGE);
         }
 
-        Category childCategory = categoryRepository.findById(childCategoryId).orElse(null);
+        Category childCategory = categoryRepository.findById(categoryId).orElse(null);
 
         if (childCategory == null) {
             throw new EntityNotFoundException(CATEGORY_NOT_FOUND_MESSAGE);
         }
 
-        Category parentCategory = categoryRepository.findById(parentCategoryId).orElse(null);
+        Category parentCategory = categoryRepository.findById(setParentCategoryRequestDto.getParentCategoryId()).orElse(null);
 
         if (parentCategory == null) {
             throw new IllegalArgumentException(PARENT_CATEGORY_NOT_FOUND_MESSAGE);

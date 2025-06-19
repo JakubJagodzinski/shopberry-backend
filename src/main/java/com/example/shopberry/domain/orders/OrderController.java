@@ -12,22 +12,22 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/orders")
+@RequestMapping("/api/v1")
 @RequiredArgsConstructor
 public class OrderController {
 
     private final OrderService orderService;
 
-    @GetMapping
-    public ResponseEntity<List<OrderResponseDto>> getOrders() {
-        List<OrderResponseDto> orderResponseDtoList = orderService.getOrders();
+    @GetMapping("/orders")
+    public ResponseEntity<List<OrderResponseDto>> getAllOrders() {
+        List<OrderResponseDto> orderResponseDtoList = orderService.getAllOrders();
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(orderResponseDtoList);
     }
 
-    @GetMapping("/{orderId}")
+    @GetMapping("/orders/{orderId}")
     public ResponseEntity<OrderResponseDto> getOrderById(@PathVariable Long orderId) {
         OrderResponseDto orderResponseDto = orderService.getOrderById(orderId);
 
@@ -36,7 +36,7 @@ public class OrderController {
                 .body(orderResponseDto);
     }
 
-    @PostMapping
+    @PostMapping("/orders")
     public ResponseEntity<OrderResponseDto> createOrder(@RequestBody CreateOrderRequestDto createOrderRequestDto) {
         OrderResponseDto createdOrderResponseDto = orderService.createOrder(createOrderRequestDto);
 
@@ -46,7 +46,7 @@ public class OrderController {
                 .body(createdOrderResponseDto);
     }
 
-    @DeleteMapping("/{orderId}")
+    @DeleteMapping("/orders/{orderId}")
     public ResponseEntity<MessageResponseDto> deleteOrderById(@PathVariable Long orderId) {
         orderService.deleteOrderById(orderId);
 

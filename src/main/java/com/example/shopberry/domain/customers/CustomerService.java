@@ -24,7 +24,7 @@ public class CustomerService {
 
     private static final String CUSTOMER_NOT_FOUND_MESSAGE = "Customer not found";
 
-    public List<CustomerResponseDto> getCustomers() {
+    public List<CustomerResponseDto> getAllCustomers() {
         return customerDtoMapper.toDtoList(customerRepository.findAll());
     }
 

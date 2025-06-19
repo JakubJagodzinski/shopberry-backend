@@ -24,7 +24,7 @@ public class EmployeeTypeService {
     private static final String EMPLOYEE_TYPE_NAME_CANNOT_BE_NULL_MESSAGE = "Employee type name cannot be null";
     private static final String EMPLOYEE_TYPE_NAME_CANNOT_BE_EMPTY_MESSAGE = "Employee type name cannot be empty";
 
-    public List<EmployeeTypeResponseDto> getEmployeeTypes() {
+    public List<EmployeeTypeResponseDto> getAllEmployeeTypes() {
         return employeeTypeDtoMapper.toDtoList(employeeTypeRepository.findAll());
     }
 

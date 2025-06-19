@@ -24,7 +24,7 @@ public class OrderStatusService {
     private static final String ORDER_STATUS_NAME_CANNOT_BE_NULL_MESSAGE = "Order status name cannot be null";
     private static final String ORDER_STATUS_NAME_CANNOT_BE_EMPTY_MESSAGE = "Order status name cannot be empty";
 
-    public List<OrderStatusResponseDto> getOrderStatuses() {
+    public List<OrderStatusResponseDto> getAllOrderStatuses() {
         return orderStatusDtoMapper.toDtoList(orderStatusRepository.findAll());
     }
 

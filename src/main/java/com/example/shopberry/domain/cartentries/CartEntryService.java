@@ -1,8 +1,8 @@
 package com.example.shopberry.domain.cartentries;
 
+import com.example.shopberry.domain.cartentries.dto.AddProductToCustomerCartRequestDto;
 import com.example.shopberry.domain.cartentries.dto.CartEntryDtoMapper;
 import com.example.shopberry.domain.cartentries.dto.CartEntryResponseDto;
-import com.example.shopberry.domain.cartentries.dto.CreateCartEntryRequestDto;
 import com.example.shopberry.domain.cartentries.dto.UpdateCartEntryRequestDto;
 import com.example.shopberry.domain.customers.Customer;
 import com.example.shopberry.domain.customers.CustomerRepository;
@@ -32,7 +32,9 @@ public class CartEntryService {
     private static final String CART_ENTRY_ALREADY_EXISTS_MESSAGE = "Cart entry already exists";
 
     @Transactional
-    public CartEntryResponseDto getCartEntryByCartEntryId(CartEntryId cartEntryId) throws EntityNotFoundException {
+    public CartEntryResponseDto getCustomerCartProduct(Long customerId, Long productId) throws EntityNotFoundException {
+        CartEntryId cartEntryId = new CartEntryId(customerId, productId);
+
         CartEntry cartEntry = cartEntryRepository.findById(cartEntryId).orElse(null);
 
         if (cartEntry == null) {
@@ -43,7 +45,7 @@ public class CartEntryService {
     }
 
     @Transactional
-    public List<CartEntryResponseDto> getCartEntriesByCustomerId(Long customerId) throws EntityNotFoundException {
+    public List<CartEntryResponseDto> getCustomerAllCartProducts(Long customerId) throws EntityNotFoundException {
         if (!customerRepository.existsById(customerId)) {
             throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
         }
@@ -52,20 +54,20 @@ public class CartEntryService {
     }
 
     @Transactional
-    public CartEntryResponseDto createCartEntry(CreateCartEntryRequestDto createCartEntryRequestDto) throws EntityNotFoundException {
-        Customer customer = customerRepository.findById(createCartEntryRequestDto.getCustomerId()).orElse(null);
+    public CartEntryResponseDto addProductToCustomerCart(Long customerId, AddProductToCustomerCartRequestDto addProductToCustomerCartRequestDto) throws EntityNotFoundException {
+        Customer customer = customerRepository.findById(customerId).orElse(null);
 
         if (customer == null) {
             throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
         }
 
-        Product product = productRepository.findById(createCartEntryRequestDto.getProductId()).orElse(null);
+        Product product = productRepository.findById(addProductToCustomerCartRequestDto.getProductId()).orElse(null);
 
         if (product == null) {
             throw new EntityNotFoundException(PRODUCT_NOT_FOUND_MESSAGE);
         }
 
-        CartEntryId cartEntryId = new CartEntryId(createCartEntryRequestDto.getCustomerId(), createCartEntryRequestDto.getProductId());
+        CartEntryId cartEntryId = new CartEntryId(customerId, addProductToCustomerCartRequestDto.getProductId());
 
         if (cartEntryRepository.existsById(cartEntryId)) {
             throw new EntityNotFoundException(CART_ENTRY_ALREADY_EXISTS_MESSAGE);
@@ -77,16 +79,18 @@ public class CartEntryService {
         cartEntry.setCustomer(customer);
         cartEntry.setProduct(product);
 
-        if (createCartEntryRequestDto.getQuantity() <= 0) {
+        if (addProductToCustomerCartRequestDto.getQuantity() <= 0) {
             throw new IllegalArgumentException(QUANTITY_MUST_BE_POSITIVE_MESSAGE);
         }
-        cartEntry.setQuantity(createCartEntryRequestDto.getQuantity());
+        cartEntry.setQuantity(addProductToCustomerCartRequestDto.getQuantity());
 
         return cartEntryDtoMapper.toDto(cartEntryRepository.save(cartEntry));
     }
 
     @Transactional
-    public CartEntryResponseDto updateCartEntryByCartEntryId(CartEntryId cartEntryId, UpdateCartEntryRequestDto updateCartEntryRequestDto) throws EntityNotFoundException {
+    public CartEntryResponseDto updateCustomerCartProduct(Long customerId, Long productId, UpdateCartEntryRequestDto updateCartEntryRequestDto) throws EntityNotFoundException {
+        CartEntryId cartEntryId = new CartEntryId(customerId, productId);
+
         CartEntry cartEntry = cartEntryRepository.findById(cartEntryId).orElse(null);
 
         if (cartEntry == null) {
@@ -105,7 +109,9 @@ public class CartEntryService {
     }
 
     @Transactional
-    public void deleteCartEntryByCartEntryId(CartEntryId cartEntryId) throws EntityNotFoundException {
+    public void removeProductFromCustomerCart(Long customerId, Long productId) throws EntityNotFoundException {
+        CartEntryId cartEntryId = new CartEntryId(customerId, productId);
+
         if (!cartEntryRepository.existsById(cartEntryId)) {
             throw new EntityNotFoundException(CART_ENTRY_NOT_FOUND_MESSAGE);
         }

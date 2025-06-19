@@ -26,7 +26,7 @@ public class PromotionService {
     private static final String PROMOTION_DISCOUNT_PERCENT_VALUE_CANNOT_BE_NEGATIVE_MESSAGE = "Promotion discount percent value cannot be negative";
     private static final String PROMOTION_DISCOUNT_PERCENT_VALUE_CANNOT_BE_GREATER_THAN_100_MESSAGE = "Promotion discount percent value cannot be greater than 100";
 
-    public List<PromotionResponseDto> getPromotions() {
+    public List<PromotionResponseDto> getAllPromotions() {
         return promotionDtoMapper.toDtoList(promotionRepository.findAll());
     }
 

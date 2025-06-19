@@ -1,8 +1,8 @@
 package com.example.shopberry.domain.cartentries;
 
 import com.example.shopberry.common.MessageResponseDto;
+import com.example.shopberry.domain.cartentries.dto.AddProductToCustomerCartRequestDto;
 import com.example.shopberry.domain.cartentries.dto.CartEntryResponseDto;
-import com.example.shopberry.domain.cartentries.dto.CreateCartEntryRequestDto;
 import com.example.shopberry.domain.cartentries.dto.UpdateCartEntryRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -13,60 +13,56 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/cart-entries")
+@RequestMapping("/api/v1")
 @RequiredArgsConstructor
 public class CartEntryController {
 
     private final CartEntryService cartEntryService;
 
-    @GetMapping("/by-customer/{customerId}/by-product/{productId}")
-    public ResponseEntity<CartEntryResponseDto> getCartEntryByCartEntryId(@PathVariable Long customerId, @PathVariable Long productId) {
-        CartEntryResponseDto cartEntryResponseDto = cartEntryService.getCartEntryByCartEntryId(new CartEntryId(customerId, productId));
+    @GetMapping("/customers/{customerId}/cart/{productId}")
+    public ResponseEntity<CartEntryResponseDto> getCustomerCartProduct(@PathVariable Long customerId, @PathVariable Long productId) {
+        CartEntryResponseDto cartEntryResponseDto = cartEntryService.getCustomerCartProduct(customerId, productId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(cartEntryResponseDto);
     }
 
-    @GetMapping("/by-customer/{customerId}")
-    public ResponseEntity<List<CartEntryResponseDto>> getCartEntriesByCustomerId(@PathVariable Long customerId) {
-        List<CartEntryResponseDto> cartEntryResponseDtoList = cartEntryService.getCartEntriesByCustomerId(customerId);
+    @GetMapping("/customers/{customerId}/cart")
+    public ResponseEntity<List<CartEntryResponseDto>> getCustomerAllCartProducts(@PathVariable Long customerId) {
+        List<CartEntryResponseDto> cartEntryResponseDtoList = cartEntryService.getCustomerAllCartProducts(customerId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(cartEntryResponseDtoList);
     }
 
-    @PostMapping
-    public ResponseEntity<CartEntryResponseDto> createCartEntry(@RequestBody CreateCartEntryRequestDto createCartEntryRequestDto) {
-        CartEntryResponseDto createdCartEntryResponseDto = cartEntryService.createCartEntry(createCartEntryRequestDto);
+    @PostMapping("/customers/{customerId}/cart")
+    public ResponseEntity<CartEntryResponseDto> addProductToCustomerCart(@PathVariable Long customerId, @RequestBody AddProductToCustomerCartRequestDto addProductToCustomerCartRequestDto) {
+        CartEntryResponseDto createdCartEntryResponseDto = cartEntryService.addProductToCustomerCart(customerId, addProductToCustomerCartRequestDto);
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .location(URI.create("/api/v1/cart-entries/" + createdCartEntryResponseDto.getCustomerId() + "/" + createdCartEntryResponseDto.getProductId()))
+                .location(URI.create("/api/v1/customers/" + customerId + "/cart/" + createdCartEntryResponseDto.getProductId()))
                 .body(createdCartEntryResponseDto);
     }
 
-    @PatchMapping("/by-customer/{customerId}/by-product/{productId}")
-    public ResponseEntity<CartEntryResponseDto> updateCartEntryByCartEntryId(@PathVariable Long customerId, @PathVariable Long productId, @RequestBody UpdateCartEntryRequestDto updateCartEntryRequestDto) {
-        CartEntryId cartEntryId = new CartEntryId(customerId, productId);
-
-        CartEntryResponseDto updatedCartEntryResponseDto = cartEntryService.updateCartEntryByCartEntryId(cartEntryId, updateCartEntryRequestDto);
+    @PatchMapping("/customers/{customerId}/cart/{productId}")
+    public ResponseEntity<CartEntryResponseDto> updateCustomerCartProduct(@PathVariable Long customerId, @PathVariable Long productId, @RequestBody UpdateCartEntryRequestDto updateCartEntryRequestDto) {
+        CartEntryResponseDto updatedCartEntryResponseDto = cartEntryService.updateCustomerCartProduct(customerId, productId, updateCartEntryRequestDto);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(updatedCartEntryResponseDto);
     }
 
-    @DeleteMapping("/by-customer/{customerId}/by-product/{productId}")
-    public ResponseEntity<MessageResponseDto> deleteCartEntryByCartEntryId(@PathVariable Long customerId, @PathVariable Long productId) {
-        CartEntryId cartEntryId = new CartEntryId(customerId, productId);
-
-        cartEntryService.deleteCartEntryByCartEntryId(cartEntryId);
+    @DeleteMapping("/customers/{customerId}/cart/{productId}")
+    public ResponseEntity<MessageResponseDto> removeProductFromCustomerCart(@PathVariable Long customerId, @PathVariable Long productId) {
+        cartEntryService.removeProductFromCustomerCart(customerId, productId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(new MessageResponseDto("Cart entry with ID " + cartEntryId + " deleted successfully."));
+                .body(new MessageResponseDto("Product with id " + productId + " removed from customer with id " + customerId + " cart successfully"));
     }
 
 }

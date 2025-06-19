@@ -1,6 +1,6 @@
 package com.example.shopberry.domain.productpromotions;
 
-import com.example.shopberry.domain.productpromotions.dto.CreateProductPromotionRequestDto;
+import com.example.shopberry.domain.productpromotions.dto.AssignPromotionToProductRequestDto;
 import com.example.shopberry.domain.productpromotions.dto.ProductPromotionDtoMapper;
 import com.example.shopberry.domain.productpromotions.dto.ProductPromotionResponseDto;
 import com.example.shopberry.domain.products.Product;
@@ -28,12 +28,12 @@ public class ProductPromotionService {
     private static final String PRODUCT_NOT_FOUND_MESSAGE = "Product not found";
     private static final String PROMOTION_NOT_FOUND_MESSAGE = "Promotion not found";
 
-    public List<ProductPromotionResponseDto> getProductPromotions() {
+    public List<ProductPromotionResponseDto> getAllProductPromotions() {
         return productPromotionDtoMapper.toDtoList(productPromotionRepository.findAll());
     }
 
     @Transactional
-    public List<ProductPromotionResponseDto> getProductPromotionsByProductId(Long productId) throws EntityNotFoundException {
+    public List<ProductPromotionResponseDto> getProductAllPromotions(Long productId) throws EntityNotFoundException {
         if (!productRepository.existsById(productId)) {
             throw new EntityNotFoundException(PRODUCT_NOT_FOUND_MESSAGE);
         }
@@ -42,7 +42,7 @@ public class ProductPromotionService {
     }
 
     @Transactional
-    public List<ProductPromotionResponseDto> getProductPromotionsByPromotionId(Long promotionId) throws EntityNotFoundException {
+    public List<ProductPromotionResponseDto> getAllProductsWithPromotion(Long promotionId) throws EntityNotFoundException {
         if (!promotionRepository.existsById(promotionId)) {
             throw new EntityNotFoundException(PROMOTION_NOT_FOUND_MESSAGE);
         }
@@ -51,20 +51,20 @@ public class ProductPromotionService {
     }
 
     @Transactional
-    public ProductPromotionResponseDto createProductPromotion(CreateProductPromotionRequestDto createProductPromotionRequestDto) throws EntityNotFoundException, IllegalArgumentException {
-        Product product = productRepository.findById(createProductPromotionRequestDto.getProductId()).orElse(null);
+    public ProductPromotionResponseDto assignPromotionToProduct(Long productId, AssignPromotionToProductRequestDto assignPromotionToProductRequestDto) throws EntityNotFoundException, IllegalArgumentException {
+        Product product = productRepository.findById(productId).orElse(null);
 
         if (product == null) {
             throw new EntityNotFoundException(PRODUCT_NOT_FOUND_MESSAGE);
         }
 
-        Promotion promotion = promotionRepository.findById(createProductPromotionRequestDto.getPromotionId()).orElse(null);
+        Promotion promotion = promotionRepository.findById(assignPromotionToProductRequestDto.getPromotionId()).orElse(null);
 
         if (promotion == null) {
             throw new EntityNotFoundException(PROMOTION_NOT_FOUND_MESSAGE);
         }
 
-        ProductPromotionId productPromotionId = new ProductPromotionId(createProductPromotionRequestDto.getProductId(), createProductPromotionRequestDto.getPromotionId());
+        ProductPromotionId productPromotionId = new ProductPromotionId(productId, assignPromotionToProductRequestDto.getPromotionId());
 
         if (productPromotionRepository.existsById(productPromotionId)) {
             throw new IllegalArgumentException(PROMOTION_ALREADY_ASSIGNED_TO_THIS_PRODUCT_MESSAGE);
@@ -80,7 +80,7 @@ public class ProductPromotionService {
     }
 
     @Transactional
-    public void deleteProductPromotionsByProductId(Long productId) throws EntityNotFoundException {
+    public void unassignAllPromotionsFromProduct(Long productId) throws EntityNotFoundException {
         if (!productRepository.existsById(productId)) {
             throw new EntityNotFoundException(PRODUCT_NOT_FOUND_MESSAGE);
         }

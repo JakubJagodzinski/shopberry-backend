@@ -49,7 +49,7 @@ public class ProductReturnService {
     }
 
     @Transactional
-    public List<ProductReturnResponseDto> getProductReturnsByOrderId(Long orderId) throws EntityNotFoundException {
+    public List<ProductReturnResponseDto> getOrderAllProductReturns(Long orderId) throws EntityNotFoundException {
         if (!orderRepository.existsById(orderId)) {
             throw new EntityNotFoundException(ORDER_NOT_FOUND_MESSAGE);
         }
@@ -58,8 +58,8 @@ public class ProductReturnService {
     }
 
     @Transactional
-    public ProductReturnResponseDto createProductReturn(CreateProductReturnRequestDto createProductReturnRequestDto) throws EntityNotFoundException, IllegalArgumentException {
-        Order order = orderRepository.findById(createProductReturnRequestDto.getOrderId()).orElse(null);
+    public ProductReturnResponseDto createProductReturn(Long orderId, CreateProductReturnRequestDto createProductReturnRequestDto) throws EntityNotFoundException, IllegalArgumentException {
+        Order order = orderRepository.findById(orderId).orElse(null);
 
         if (order == null) {
             throw new EntityNotFoundException(ORDER_NOT_FOUND_MESSAGE);
@@ -71,7 +71,7 @@ public class ProductReturnService {
             throw new EntityNotFoundException(PRODUCT_NOT_FOUND_MESSAGE);
         }
 
-        OrderProductId orderProductId = new OrderProductId(order.getOrderId(), product.getProductId());
+        OrderProductId orderProductId = new OrderProductId(orderId, product.getProductId());
 
         if (!orderProductRepository.existsById(orderProductId)) {
             throw new IllegalArgumentException(PRODUCT_DOES_NOT_BELONG_TO_THAT_ORDER_MESSAGE);
@@ -83,7 +83,7 @@ public class ProductReturnService {
             throw new EntityNotFoundException(CAUSE_OF_RETURN_NOT_FOUND_MESSAGE);
         }
 
-        if (productReturnRepository.existsByOrder_OrderIdAndProduct_ProductId(order.getOrderId(), product.getProductId())) {
+        if (productReturnRepository.existsByOrder_OrderIdAndProduct_ProductId(orderId, product.getProductId())) {
             throw new IllegalArgumentException(PRODUCT_RETURN_ALREADY_EXISTS_MESSAGE);
         }
 

@@ -24,7 +24,7 @@ public class AttributeService {
     private static final String ATTRIBUTE_NAME_CANNOT_BY_NULL_MESSAGE = "Attribute name cannot be null";
     private static final String ATTRIBUTE_NAME_CANNOT_BY_EMPTY_MESSAGE = "Attribute name cannot be empty";
 
-    public List<AttributeResponseDto> getAttributes() {
+    public List<AttributeResponseDto> getAllAttributes() {
         return attributeDtoMapper.toDtoList(attributeRepository.findAll());
     }
 

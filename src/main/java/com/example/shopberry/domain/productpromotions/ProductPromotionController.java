@@ -1,7 +1,7 @@
 package com.example.shopberry.domain.productpromotions;
 
 import com.example.shopberry.common.MessageResponseDto;
-import com.example.shopberry.domain.productpromotions.dto.CreateProductPromotionRequestDto;
+import com.example.shopberry.domain.productpromotions.dto.AssignPromotionToProductRequestDto;
 import com.example.shopberry.domain.productpromotions.dto.ProductPromotionResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -12,65 +12,65 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/product-promotions")
+@RequestMapping("/api/v1")
 @RequiredArgsConstructor
 public class ProductPromotionController {
 
     private final ProductPromotionService productPromotionService;
 
-    @GetMapping
-    public ResponseEntity<List<ProductPromotionResponseDto>> getProductPromotions() {
-        List<ProductPromotionResponseDto> productPromotionResponseDtoList = productPromotionService.getProductPromotions();
+    @GetMapping("/product-promotions")
+    public ResponseEntity<List<ProductPromotionResponseDto>> getAllProductPromotions() {
+        List<ProductPromotionResponseDto> productPromotionResponseDtoList = productPromotionService.getAllProductPromotions();
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(productPromotionResponseDtoList);
     }
 
-    @GetMapping("/by-product/{productId}")
-    public ResponseEntity<List<ProductPromotionResponseDto>> getProductPromotionsByProductId(@PathVariable Long productId) {
-        List<ProductPromotionResponseDto> productPromotionResponseDtoList = productPromotionService.getProductPromotionsByProductId(productId);
+    @GetMapping("/products/promotions/{promotionId}")
+    public ResponseEntity<List<ProductPromotionResponseDto>> getAllProductsWithPromotion(@PathVariable Long promotionId) {
+        List<ProductPromotionResponseDto> productPromotionResponseDtoList = productPromotionService.getAllProductsWithPromotion(promotionId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(productPromotionResponseDtoList);
     }
 
-    @GetMapping("/by-promotion/{promotionId}")
-    public ResponseEntity<List<ProductPromotionResponseDto>> getProductPromotionsByPromotionId(@PathVariable Long promotionId) {
-        List<ProductPromotionResponseDto> productPromotionResponseDtoList = productPromotionService.getProductPromotionsByPromotionId(promotionId);
+    @GetMapping("/products/{productId}/promotions")
+    public ResponseEntity<List<ProductPromotionResponseDto>> getProductAllPromotions(@PathVariable Long productId) {
+        List<ProductPromotionResponseDto> productPromotionResponseDtoList = productPromotionService.getProductAllPromotions(productId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(productPromotionResponseDtoList);
     }
 
-    @PostMapping
-    public ResponseEntity<ProductPromotionResponseDto> createProductPromotion(@RequestBody CreateProductPromotionRequestDto createProductPromotionRequestDto) {
-        ProductPromotionResponseDto createdProductPromotionResponseDto = productPromotionService.createProductPromotion(createProductPromotionRequestDto);
+    @PostMapping("/products/{productId}/promotions")
+    public ResponseEntity<ProductPromotionResponseDto> assignPromotionToProduct(@PathVariable Long productId, @RequestBody AssignPromotionToProductRequestDto assignPromotionToProductRequestDto) {
+        ProductPromotionResponseDto createdProductPromotionResponseDto = productPromotionService.assignPromotionToProduct(productId, assignPromotionToProductRequestDto);
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .location(URI.create("/api/v1/product-promotions/" + createdProductPromotionResponseDto.getProductId() + "/" + createdProductPromotionResponseDto.getPromotionId()))
+                .location(URI.create("/api/v1/products/" + productId + "/promotions/" + createdProductPromotionResponseDto.getPromotionId()))
                 .body(createdProductPromotionResponseDto);
     }
 
-    @DeleteMapping("/by-product/{productId}")
-    public ResponseEntity<MessageResponseDto> deleteProductPromotionsByProductId(@PathVariable Long productId) {
-        productPromotionService.deleteProductPromotionsByProductId(productId);
+    @DeleteMapping("/products/{productId}/promotions")
+    public ResponseEntity<MessageResponseDto> unassignAllPromotionsFromProduct(@PathVariable Long productId) {
+        productPromotionService.unassignAllPromotionsFromProduct(productId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(new MessageResponseDto("Product promotions with productId " + productId + " deleted successfully"));
+                .body(new MessageResponseDto("All promotions unassigned from product with id " + productId + " successfully"));
     }
 
-    @DeleteMapping("/by-promotion/{promotionId}")
-    public ResponseEntity<MessageResponseDto> deleteProductPromotionsByPromotionId(@PathVariable Long promotionId) {
+    @DeleteMapping("/products/promotions/{promotionId}")
+    public ResponseEntity<MessageResponseDto> unassignPromotionFromAllProducts(@PathVariable Long promotionId) {
         productPromotionService.deleteProductPromotionsByPromotionId(promotionId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(new MessageResponseDto("Product promotions with promotionId " + promotionId + " deleted successfully"));
+                .body(new MessageResponseDto("Promotion with id " + promotionId + " unassigned from all products successfully"));
     }
 
 }

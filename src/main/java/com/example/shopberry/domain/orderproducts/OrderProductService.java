@@ -1,6 +1,6 @@
 package com.example.shopberry.domain.orderproducts;
 
-import com.example.shopberry.domain.orderproducts.dto.CreateOrderProductRequestDto;
+import com.example.shopberry.domain.orderproducts.dto.AddProductToOrderRequestDto;
 import com.example.shopberry.domain.orderproducts.dto.OrderProductDtoMapper;
 import com.example.shopberry.domain.orderproducts.dto.OrderProductResponseDto;
 import com.example.shopberry.domain.orderproductstatuses.OrderProductStatus;
@@ -36,7 +36,7 @@ public class OrderProductService {
     private final OrderProductStatusRepository orderProductStatusRepository;
 
     @Transactional
-    public List<OrderProductResponseDto> getOrderProductsByOrderId(Long orderId) throws EntityNotFoundException {
+    public List<OrderProductResponseDto> getOrderAllProducts(Long orderId) throws EntityNotFoundException {
         if (!orderRepository.existsById(orderId)) {
             throw new IllegalArgumentException(ORDER_NOT_FOUND_MESSAGE);
         }
@@ -45,7 +45,9 @@ public class OrderProductService {
     }
 
     @Transactional
-    public OrderProductResponseDto getOrderProductById(OrderProductId orderProductId) throws EntityNotFoundException {
+    public OrderProductResponseDto getOrderProductById(Long orderId, Long productId) throws EntityNotFoundException {
+        OrderProductId orderProductId = new OrderProductId(orderId, productId);
+
         OrderProduct orderProduct = orderProductRepository.findById(orderProductId).orElse(null);
 
         if (orderProduct == null) {
@@ -56,14 +58,14 @@ public class OrderProductService {
     }
 
     @Transactional
-    public OrderProductResponseDto createOrderProduct(CreateOrderProductRequestDto createOrderProductRequestDto) throws EntityNotFoundException, IllegalArgumentException {
-        Order order = orderRepository.findById(createOrderProductRequestDto.getOrderId()).orElse(null);
+    public OrderProductResponseDto addProductToOrder(Long orderId, AddProductToOrderRequestDto addProductToOrderRequestDto) throws EntityNotFoundException, IllegalArgumentException {
+        Order order = orderRepository.findById(orderId).orElse(null);
 
         if (order == null) {
             throw new EntityNotFoundException(ORDER_NOT_FOUND_MESSAGE);
         }
 
-        Product product = productRepository.findById(createOrderProductRequestDto.getProductId()).orElse(null);
+        Product product = productRepository.findById(addProductToOrderRequestDto.getProductId()).orElse(null);
 
         if (product == null) {
             throw new EntityNotFoundException(PRODUCT_NOT_FOUND_MESSAGE);
@@ -81,17 +83,17 @@ public class OrderProductService {
         orderProduct.setOrder(order);
         orderProduct.setProduct(product);
 
-        if (createOrderProductRequestDto.getProductQuantity() <= 0) {
+        if (addProductToOrderRequestDto.getProductQuantity() <= 0) {
             throw new IllegalArgumentException(PRODUCT_QUANTITY_MUST_BE_GREATER_THAN_ZERO_MESSAGE);
         }
 
-        orderProduct.setProductQuantity(createOrderProductRequestDto.getProductQuantity());
+        orderProduct.setProductQuantity(addProductToOrderRequestDto.getProductQuantity());
 
-        if (createOrderProductRequestDto.getProductPrice() < 0) {
+        if (addProductToOrderRequestDto.getProductPrice() < 0) {
             throw new IllegalArgumentException(PRODUCT_PRICE_MUST_BE_POSITIVE_MESSAGE);
         }
 
-        orderProduct.setProductPrice(createOrderProductRequestDto.getProductPrice());
+        orderProduct.setProductPrice(addProductToOrderRequestDto.getProductPrice());
 
         OrderProductStatus orderProductStatus = orderProductStatusRepository.findById(1L).orElse(null);
 
@@ -105,14 +107,16 @@ public class OrderProductService {
     }
 
     @Transactional
-    public void deleteOrderProductById(OrderProductId orderProductId) throws EntityNotFoundException {
-        if (!orderRepository.existsById(orderProductId.getOrderId())) {
+    public void removeProductFromOrder(Long orderId, Long productId) throws EntityNotFoundException {
+        if (!orderRepository.existsById(orderId)) {
             throw new EntityNotFoundException(ORDER_NOT_FOUND_MESSAGE);
         }
 
-        if (!productRepository.existsById(orderProductId.getProductId())) {
+        if (!productRepository.existsById(productId)) {
             throw new EntityNotFoundException(PRODUCT_NOT_FOUND_MESSAGE);
         }
+
+        OrderProductId orderProductId = new OrderProductId(orderId, productId);
 
         if (!orderProductRepository.existsById(orderProductId)) {
             throw new EntityNotFoundException(ORDER_PRODUCT_NOT_FOUND_MESSAGE);

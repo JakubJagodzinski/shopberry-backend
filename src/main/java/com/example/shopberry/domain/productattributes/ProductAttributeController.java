@@ -1,7 +1,7 @@
 package com.example.shopberry.domain.productattributes;
 
 import com.example.shopberry.common.MessageResponseDto;
-import com.example.shopberry.domain.productattributes.dto.CreateProductAttributeRequestDto;
+import com.example.shopberry.domain.productattributes.dto.AssignAttributeToProductRequestDto;
 import com.example.shopberry.domain.productattributes.dto.ProductAttributeResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -12,49 +12,47 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/product-attributes")
+@RequestMapping("/api/v1")
 @RequiredArgsConstructor
 public class ProductAttributeController {
 
     private final ProductAttributeService productAttributeService;
 
-    @GetMapping("/by-product/{productId}")
-    public ResponseEntity<List<ProductAttributeResponseDto>> getProductAttributesByProductId(@PathVariable Long productId) {
-        List<ProductAttributeResponseDto> productAttributeResponseDtoList = productAttributeService.getProductAttributesByProductId(productId);
+    @GetMapping("/products/{productId}/attributes")
+    public ResponseEntity<List<ProductAttributeResponseDto>> getProductAllAttributes(@PathVariable Long productId) {
+        List<ProductAttributeResponseDto> productAttributeResponseDtoList = productAttributeService.getProductAllAttributes(productId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(productAttributeResponseDtoList);
     }
 
-    @GetMapping("/by-attribute/{attributeId}")
-    public ResponseEntity<List<ProductAttributeResponseDto>> getProductAttributesByAttributeId(@PathVariable Long attributeId) {
-        List<ProductAttributeResponseDto> productAttributeResponseDtoList = productAttributeService.getProductAttributesByAttributeId(attributeId);
+    @GetMapping("/products/attributes/{attributeId}")
+    public ResponseEntity<List<ProductAttributeResponseDto>> getAllProductsWithAttribute(@PathVariable Long attributeId) {
+        List<ProductAttributeResponseDto> productAttributeResponseDtoList = productAttributeService.getAllProductsWithAttribute(attributeId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(productAttributeResponseDtoList);
     }
 
-    @PostMapping
-    public ResponseEntity<ProductAttributeResponseDto> createProductAttribute(@RequestBody CreateProductAttributeRequestDto createProductAttributeRequestDto) {
-        ProductAttributeResponseDto createdProductAttributeResponseDto = productAttributeService.createProductAttribute(createProductAttributeRequestDto);
+    @PostMapping("/products/{productId}/attributes")
+    public ResponseEntity<ProductAttributeResponseDto> assignAttributeToProduct(@PathVariable Long productId, @RequestBody AssignAttributeToProductRequestDto assignAttributeToProductRequestDto) {
+        ProductAttributeResponseDto createdProductAttributeResponseDto = productAttributeService.assignAttributeToProduct(productId, assignAttributeToProductRequestDto);
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .location(URI.create("/api/v1/product-attributes/" + createdProductAttributeResponseDto.getProductId() + "/" + createdProductAttributeResponseDto.getAttributeId()))
+                .location(URI.create("/api/v1/products/" + productId + "/attributes/" + createdProductAttributeResponseDto.getAttributeId()))
                 .body(createdProductAttributeResponseDto);
     }
 
-    @DeleteMapping("/by-product/{productId}/by-attribute/{attributeId}")
-    public ResponseEntity<MessageResponseDto> deleteProductAttributeById(@PathVariable Long productId, @PathVariable Long attributeId) {
-        ProductAttributeId productAttributeId = new ProductAttributeId(productId, attributeId);
-
-        productAttributeService.deleteProductAttributeById(productAttributeId);
+    @DeleteMapping("/products/{productId}/attributes/{attributeId}")
+    public ResponseEntity<MessageResponseDto> unassignAttributeFromProduct(@PathVariable Long productId, @PathVariable Long attributeId) {
+        productAttributeService.unassignAttributeFromProduct(productId, attributeId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(new MessageResponseDto("Product attribute with id " + productAttributeId + " deleted successfully"));
+                .body(new MessageResponseDto("Attribute with id " + attributeId + " unassigned from product with id " + productId + " successfully"));
     }
 
 }

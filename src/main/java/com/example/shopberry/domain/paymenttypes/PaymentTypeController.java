@@ -13,22 +13,22 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/payment-types")
+@RequestMapping("/api/v1")
 @RequiredArgsConstructor
 public class PaymentTypeController {
 
     private final PaymentTypeService paymentTypeService;
 
-    @GetMapping
-    public ResponseEntity<List<PaymentTypeResponseDto>> getPaymentTypes() {
-        List<PaymentTypeResponseDto> paymentTypeResponseDtoList = paymentTypeService.getPaymentTypes();
+    @GetMapping("/payment-types")
+    public ResponseEntity<List<PaymentTypeResponseDto>> getAllPaymentTypes() {
+        List<PaymentTypeResponseDto> paymentTypeResponseDtoList = paymentTypeService.getAllPaymentTypes();
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(paymentTypeResponseDtoList);
     }
 
-    @GetMapping("/{paymentTypeId}")
+    @GetMapping("/payment-types/{paymentTypeId}")
     public ResponseEntity<PaymentTypeResponseDto> getPaymentTypeById(@PathVariable Long paymentTypeId) {
         PaymentTypeResponseDto paymentTypeResponseDto = paymentTypeService.getPaymentTypeById(paymentTypeId);
 
@@ -37,7 +37,7 @@ public class PaymentTypeController {
                 .body(paymentTypeResponseDto);
     }
 
-    @PostMapping
+    @PostMapping("/payment-types")
     public ResponseEntity<PaymentTypeResponseDto> createPaymentType(@RequestBody CreatePaymentTypeRequestDto createPaymentTypeRequestDto) {
         PaymentTypeResponseDto createdPaymentTypeResponseDto = paymentTypeService.createPaymentType(createPaymentTypeRequestDto);
 
@@ -47,7 +47,7 @@ public class PaymentTypeController {
                 .body(createdPaymentTypeResponseDto);
     }
 
-    @PatchMapping("/{paymentTypeId}")
+    @PatchMapping("/payment-types/{paymentTypeId}")
     public ResponseEntity<PaymentTypeResponseDto> updatePaymentTypeById(@PathVariable Long paymentTypeId, @RequestBody UpdatePaymentTypeRequestDto updatePaymentTypeRequestDto) {
         PaymentTypeResponseDto updatedPaymentTypeResponseDto = paymentTypeService.updatePaymentTypeById(paymentTypeId, updatePaymentTypeRequestDto);
 
@@ -56,7 +56,7 @@ public class PaymentTypeController {
                 .body(updatedPaymentTypeResponseDto);
     }
 
-    @DeleteMapping("/{paymentTypeId}")
+    @DeleteMapping("/payment-types/{paymentTypeId}")
     public ResponseEntity<MessageResponseDto> deletePaymentTypeById(@PathVariable Long paymentTypeId) {
         paymentTypeService.deletePaymentTypeById(paymentTypeId);
 

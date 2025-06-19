@@ -11,22 +11,22 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/customers")
+@RequestMapping("/api/v1")
 @RequiredArgsConstructor
 public class CustomerController {
 
     private final CustomerService customerService;
 
-    @GetMapping
-    public ResponseEntity<List<CustomerResponseDto>> getCustomers() {
-        List<CustomerResponseDto> customerResponseDtoList = customerService.getCustomers();
+    @GetMapping("/customers")
+    public ResponseEntity<List<CustomerResponseDto>> getAllCustomers() {
+        List<CustomerResponseDto> customerResponseDtoList = customerService.getAllCustomers();
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(customerResponseDtoList);
     }
 
-    @GetMapping("/{customerId}")
+    @GetMapping("/customers/{customerId}")
     public ResponseEntity<CustomerResponseDto> getCustomerById(@PathVariable Long customerId) {
         CustomerResponseDto customerResponseDto = customerService.getCustomerById(customerId);
 
@@ -35,7 +35,7 @@ public class CustomerController {
                 .body(customerResponseDto);
     }
 
-    @PatchMapping("/{customerId}")
+    @PatchMapping("/customers/{customerId}")
     public ResponseEntity<CustomerResponseDto> updateCustomerById(@PathVariable Long customerId, @RequestBody UpdateCustomerRequestDto updateCustomerRequestDto) {
         CustomerResponseDto updatedCustomerResponseDto = customerService.updateCustomerById(customerId, updateCustomerRequestDto);
 
@@ -44,7 +44,7 @@ public class CustomerController {
                 .body(updatedCustomerResponseDto);
     }
 
-    @DeleteMapping("/{customerId}")
+    @DeleteMapping("/customer/{customerId}")
     public ResponseEntity<MessageResponseDto> deleteCustomerById(@PathVariable Long customerId) {
         customerService.deleteCustomerById(customerId);
 

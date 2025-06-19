@@ -12,13 +12,13 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/product-returns")
+@RequestMapping("/api/v1")
 @RequiredArgsConstructor
 public class ProductReturnController {
 
     private final ProductReturnService productReturnService;
 
-    @GetMapping("/{productReturnId}")
+    @GetMapping("/product-returns/{productReturnId}")
     public ResponseEntity<ProductReturnResponseDto> getProductReturnById(@PathVariable Long productReturnId) {
         ProductReturnResponseDto productReturnResponseDto = productReturnService.getProductReturnById(productReturnId);
 
@@ -27,26 +27,26 @@ public class ProductReturnController {
                 .body(productReturnResponseDto);
     }
 
-    @GetMapping("/by-order/{orderId}")
-    public ResponseEntity<List<ProductReturnResponseDto>> getProductReturnsByOrderId(@PathVariable Long orderId) {
-        List<ProductReturnResponseDto> productReturnResponseDtoList = productReturnService.getProductReturnsByOrderId(orderId);
+    @GetMapping("/orders/{orderId}/product-returns")
+    public ResponseEntity<List<ProductReturnResponseDto>> getOrderAllProductReturns(@PathVariable Long orderId) {
+        List<ProductReturnResponseDto> productReturnResponseDtoList = productReturnService.getOrderAllProductReturns(orderId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(productReturnResponseDtoList);
     }
 
-    @PostMapping
-    public ResponseEntity<ProductReturnResponseDto> createProductReturn(@RequestBody CreateProductReturnRequestDto createProductReturnRequestDto) {
-        ProductReturnResponseDto createdProductReturnResponseDto = productReturnService.createProductReturn(createProductReturnRequestDto);
+    @PostMapping("/orders/{orderId}/product-returns")
+    public ResponseEntity<ProductReturnResponseDto> createProductReturn(@PathVariable Long orderId, @RequestBody CreateProductReturnRequestDto createProductReturnRequestDto) {
+        ProductReturnResponseDto createdProductReturnResponseDto = productReturnService.createProductReturn(orderId, createProductReturnRequestDto);
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .location(URI.create("/api/v1/product-returns/" + createdProductReturnResponseDto.getProductReturnId()))
+                .location(URI.create("/api/v1/orders/" + orderId + "/product-returns/" + createdProductReturnResponseDto.getProductReturnId()))
                 .body(createdProductReturnResponseDto);
     }
 
-    @DeleteMapping("/{productReturnId}")
+    @DeleteMapping("/product-returns/{productReturnId}")
     public ResponseEntity<MessageResponseDto> deleteProductReturnById(@PathVariable Long productReturnId) {
         productReturnService.deleteProductReturnById(productReturnId);
 

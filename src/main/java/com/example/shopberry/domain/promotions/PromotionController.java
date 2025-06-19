@@ -13,22 +13,22 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/promotions")
+@RequestMapping("/api/v1")
 @RequiredArgsConstructor
 public class PromotionController {
 
     private final PromotionService promotionService;
 
-    @GetMapping
-    public ResponseEntity<List<PromotionResponseDto>> getPromotions() {
-        List<PromotionResponseDto> promotionResponseDtoList = promotionService.getPromotions();
+    @GetMapping("/promotions")
+    public ResponseEntity<List<PromotionResponseDto>> getAllPromotions() {
+        List<PromotionResponseDto> promotionResponseDtoList = promotionService.getAllPromotions();
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(promotionResponseDtoList);
     }
 
-    @GetMapping("/{promotionId}")
+    @GetMapping("/promotions/{promotionId}")
     public ResponseEntity<PromotionResponseDto> getPromotionById(@PathVariable Long promotionId) {
         PromotionResponseDto promotionResponseDto = promotionService.getPromotionById(promotionId);
 
@@ -37,7 +37,7 @@ public class PromotionController {
                 .body(promotionResponseDto);
     }
 
-    @PostMapping
+    @PostMapping("/promotions")
     public ResponseEntity<PromotionResponseDto> createPromotion(@RequestBody CreatePromotionRequestDto createPromotionRequestDto) {
         PromotionResponseDto createdPromotionResponseDto = promotionService.createPromotion(createPromotionRequestDto);
 
@@ -47,7 +47,7 @@ public class PromotionController {
                 .body(createdPromotionResponseDto);
     }
 
-    @PatchMapping("/{promotionId}")
+    @PatchMapping("/promotions/{promotionId}")
     public ResponseEntity<PromotionResponseDto> updatePromotionById(@PathVariable Long promotionId, @RequestBody UpdatePromotionRequestDto updatePromotionRequestDto) {
         PromotionResponseDto updatedPromotionResponseDto = promotionService.updatePromotionById(promotionId, updatePromotionRequestDto);
 
@@ -56,7 +56,7 @@ public class PromotionController {
                 .body(updatedPromotionResponseDto);
     }
 
-    @DeleteMapping("/{promotionId}")
+    @DeleteMapping("/promotions/{promotionId}")
     public ResponseEntity<MessageResponseDto> deletePromotionById(@PathVariable Long promotionId) {
         promotionService.deletePromotionById(promotionId);
 

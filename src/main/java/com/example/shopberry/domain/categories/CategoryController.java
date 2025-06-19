@@ -3,6 +3,7 @@ package com.example.shopberry.domain.categories;
 import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.categories.dto.CategoryResponseDto;
 import com.example.shopberry.domain.categories.dto.CreateCategoryRequestDto;
+import com.example.shopberry.domain.categories.dto.SetParentCategoryRequestDto;
 import com.example.shopberry.domain.categories.dto.UpdateCategoryRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -13,22 +14,22 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/categories")
+@RequestMapping("/api/v1")
 @RequiredArgsConstructor
 public class CategoryController {
 
     private final CategoryService categoryService;
 
-    @GetMapping
-    public ResponseEntity<List<CategoryResponseDto>> getCategories() {
-        List<CategoryResponseDto> categoryResponseDtoList = categoryService.getCategories();
+    @GetMapping("/categories")
+    public ResponseEntity<List<CategoryResponseDto>> getAllCategories() {
+        List<CategoryResponseDto> categoryResponseDtoList = categoryService.getAllCategories();
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(categoryResponseDtoList);
     }
 
-    @GetMapping("/{categoryId}")
+    @GetMapping("/categories/{categoryId}")
     public ResponseEntity<CategoryResponseDto> getCategoryById(@PathVariable Long categoryId) {
         CategoryResponseDto categoryResponseDto = categoryService.getCategoryById(categoryId);
 
@@ -37,7 +38,7 @@ public class CategoryController {
                 .body(categoryResponseDto);
     }
 
-    @PostMapping
+    @PostMapping("/categories")
     public ResponseEntity<CategoryResponseDto> createCategory(@RequestBody CreateCategoryRequestDto createCategoryRequestDto) {
         CategoryResponseDto createdCategory = categoryService.createCategory(createCategoryRequestDto);
 
@@ -47,17 +48,17 @@ public class CategoryController {
                 .body(createdCategory);
     }
 
-    @PostMapping("/{childCategoryId}/set-parent-category/{parentCategoryId}")
-    public ResponseEntity<CategoryResponseDto> setParentCategory(@PathVariable Long childCategoryId, @PathVariable Long parentCategoryId) {
-        CategoryResponseDto updatedCategoryResponseDto = categoryService.setParentCategory(childCategoryId, parentCategoryId);
+    @PostMapping("/categories/{categoryId}")
+    public ResponseEntity<CategoryResponseDto> setParentCategory(@PathVariable Long categoryId, @RequestBody SetParentCategoryRequestDto setParentCategoryRequestDto) {
+        CategoryResponseDto updatedCategoryResponseDto = categoryService.setParentCategory(categoryId, setParentCategoryRequestDto);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(updatedCategoryResponseDto);
     }
 
-    @PatchMapping("/{categoryId}")
-    public ResponseEntity<CategoryResponseDto> updateCategory(@PathVariable Long categoryId, @RequestBody UpdateCategoryRequestDto updateCategoryRequestDto) {
+    @PatchMapping("/categories/{categoryId}")
+    public ResponseEntity<CategoryResponseDto> updateCategoryById(@PathVariable Long categoryId, @RequestBody UpdateCategoryRequestDto updateCategoryRequestDto) {
         CategoryResponseDto updatedCategoryResponseDto = categoryService.updateCategoryById(categoryId, updateCategoryRequestDto);
 
         return ResponseEntity
@@ -65,7 +66,7 @@ public class CategoryController {
                 .body(updatedCategoryResponseDto);
     }
 
-    @DeleteMapping("/{categoryId}")
+    @DeleteMapping("/categories/{categoryId}")
     public ResponseEntity<MessageResponseDto> deleteCategoryById(@PathVariable Long categoryId) {
         categoryService.deleteCategoryById(categoryId);
 

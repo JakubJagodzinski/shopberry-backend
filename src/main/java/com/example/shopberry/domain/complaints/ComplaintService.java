@@ -35,7 +35,7 @@ public class ComplaintService {
     private static final String PRODUCT_NOT_FOUND_MESSAGE = "Product not found";
     private static final String PRODUCT_DOES_NOT_BELONG_TO_THAT_ORDER_MESSAGE = "Product does not belong to that order";
 
-    public List<ComplaintResponseDto> getComplaints() {
+    public List<ComplaintResponseDto> getAllComplaints() {
         return complaintDtoMapper.toDtoList(complaintRepository.findAll());
     }
 

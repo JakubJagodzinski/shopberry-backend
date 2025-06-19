@@ -1,8 +1,8 @@
 package com.example.shopberry.domain.categoriesattributes;
 
 import com.example.shopberry.common.MessageResponseDto;
+import com.example.shopberry.domain.categoriesattributes.dto.AssignAttributeToCategoryRequestDto;
 import com.example.shopberry.domain.categoriesattributes.dto.CategoryAttributeResponseDto;
-import com.example.shopberry.domain.categoriesattributes.dto.CreateCategoryAttributeRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,14 +12,14 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/category-attributes")
+@RequestMapping("/api/v1")
 @RequiredArgsConstructor
 public class CategoryAttributeController {
 
     private final CategoryAttributeService categoryAttributeService;
 
-    @GetMapping("/by-category/{categoryId}")
-    public ResponseEntity<List<CategoryAttributeResponseDto>> getCategoryAttributesByCategoryId(@PathVariable Long categoryId) {
+    @GetMapping("/categories/{categoryId}/attributes")
+    public ResponseEntity<List<CategoryAttributeResponseDto>> getCategoryAllAttributes(@PathVariable Long categoryId) {
         List<CategoryAttributeResponseDto> categoryAttributeResponseDtoList = categoryAttributeService.getCategoryAttributesByCategoryId(categoryId);
 
         return ResponseEntity
@@ -27,9 +27,9 @@ public class CategoryAttributeController {
                 .body(categoryAttributeResponseDtoList);
     }
 
-    @PostMapping
-    public ResponseEntity<CategoryAttributeResponseDto> createCategoryAttribute(@RequestBody CreateCategoryAttributeRequestDto createCategoryAttributeRequestDto) {
-        CategoryAttributeResponseDto createdCategoryAttributeResponseDto = categoryAttributeService.createCategoryAttribute(createCategoryAttributeRequestDto);
+    @PostMapping("/categories/{categoryId}/attributes")
+    public ResponseEntity<CategoryAttributeResponseDto> assignAttributeToCategory(@PathVariable Long categoryId, @RequestBody AssignAttributeToCategoryRequestDto assignAttributeToCategoryRequestDto) {
+        CategoryAttributeResponseDto createdCategoryAttributeResponseDto = categoryAttributeService.assignAttributeToCategory(categoryId, assignAttributeToCategoryRequestDto);
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
@@ -37,15 +37,13 @@ public class CategoryAttributeController {
                 .body(createdCategoryAttributeResponseDto);
     }
 
-    @DeleteMapping("/by-category/{categoryId}/by-attribute/{attributeId}")
-    public ResponseEntity<MessageResponseDto> deleteCategoryAttributeById(@PathVariable Long categoryId, @PathVariable Long attributeId) {
-        CategoryAttributeId categoryAttributeId = new CategoryAttributeId(categoryId, attributeId);
-
-        categoryAttributeService.deleteCategoryAttributeById(categoryAttributeId);
+    @DeleteMapping("/categories/{categoryId}/attributes/{attributeId}")
+    public ResponseEntity<MessageResponseDto> unassignAttributeFromCategory(@PathVariable Long categoryId, @PathVariable Long attributeId) {
+        categoryAttributeService.unassignAttributeFromCategory(categoryId, attributeId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(new MessageResponseDto("Category attribute with id " + categoryAttributeId + " deleted successfully"));
+                .body(new MessageResponseDto("Attribute with id " + attributeId + " removed from category with id " + categoryId));
     }
 
 }

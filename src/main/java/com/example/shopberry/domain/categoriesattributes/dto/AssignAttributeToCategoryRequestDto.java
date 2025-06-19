@@ -1,4 +1,4 @@
-package com.example.shopberry.domain.complaintimages.dto;
+package com.example.shopberry.domain.categoriesattributes.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -10,13 +10,9 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateComplaintImageRequestDto {
+public class AssignAttributeToCategoryRequestDto {
 
-    private Long id;
-
-    @JsonProperty("complaint_id")
-    private Long complaintId;
-
-    private byte[] image;
+    @JsonProperty("attribute_id")
+    private Long attributeId;
 
 }

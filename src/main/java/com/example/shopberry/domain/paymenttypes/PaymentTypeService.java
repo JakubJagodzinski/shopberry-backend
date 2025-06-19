@@ -24,7 +24,7 @@ public class PaymentTypeService {
     private static final String PAYMENT_TYPE_NAME_CANNOT_BE_NULL_MESSAGE = "Payment type name cannot be null";
     private static final String PAYMENT_TYPE_NAME_CANNOT_BE_EMPTY_MESSAGE = "Payment type name cannot be empty";
 
-    public List<PaymentTypeResponseDto> getPaymentTypes() {
+    public List<PaymentTypeResponseDto> getAllPaymentTypes() {
         return paymentTypeDtoMapper.toDtoList(paymentTypeRepository.findAll());
     }
 

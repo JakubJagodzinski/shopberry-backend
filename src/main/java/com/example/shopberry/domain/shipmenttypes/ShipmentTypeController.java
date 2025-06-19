@@ -13,22 +13,22 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/shipment-types")
+@RequestMapping("/api/v1")
 @RequiredArgsConstructor
 public class ShipmentTypeController {
 
     private final ShipmentTypeService shipmentTypeService;
 
-    @GetMapping
-    public ResponseEntity<List<ShipmentTypeResponseDto>> getShipmentTypes() {
-        List<ShipmentTypeResponseDto> shipmentTypeResponseDtoList = shipmentTypeService.getShipmentTypes();
+    @GetMapping("/shipment-types")
+    public ResponseEntity<List<ShipmentTypeResponseDto>> getAllShipmentTypes() {
+        List<ShipmentTypeResponseDto> shipmentTypeResponseDtoList = shipmentTypeService.getAllShipmentTypes();
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(shipmentTypeResponseDtoList);
     }
 
-    @GetMapping("/{shipmentTypeId}")
+    @GetMapping("/shipment-types/{shipmentTypeId}")
     public ResponseEntity<ShipmentTypeResponseDto> getShipmentTypeById(@PathVariable Long shipmentTypeId) {
         ShipmentTypeResponseDto shipmentTypeResponseDto = shipmentTypeService.getShipmentTypeById(shipmentTypeId);
 
@@ -37,7 +37,7 @@ public class ShipmentTypeController {
                 .body(shipmentTypeResponseDto);
     }
 
-    @PostMapping
+    @PostMapping("/shipment-types")
     public ResponseEntity<ShipmentTypeResponseDto> createShipmentType(@RequestBody CreateShipmentTypeRequestDto createShipmentTypeRequestDto) {
         ShipmentTypeResponseDto createdShipmentTypeResponseDto = shipmentTypeService.createShipmentType(createShipmentTypeRequestDto);
 
@@ -47,7 +47,7 @@ public class ShipmentTypeController {
                 .body(createdShipmentTypeResponseDto);
     }
 
-    @PatchMapping("/{shipmentTypeId}")
+    @PatchMapping("/shipment-types/{shipmentTypeId}")
     public ResponseEntity<ShipmentTypeResponseDto> updateShipmentTypeById(@PathVariable Long shipmentTypeId, @RequestBody UpdateShipmentTypeRequestDto updateShipmentTypeRequestDto) {
         ShipmentTypeResponseDto updatedShipmentTypeResponseDto = shipmentTypeService.updateShipmentTypeById(shipmentTypeId, updateShipmentTypeRequestDto);
 
@@ -56,13 +56,13 @@ public class ShipmentTypeController {
                 .body(updatedShipmentTypeResponseDto);
     }
 
-    @DeleteMapping("/{shipmentTypeId}")
+    @DeleteMapping("/shipment-types/{shipmentTypeId}")
     public ResponseEntity<MessageResponseDto> deleteShipmentTypeById(@PathVariable Long shipmentTypeId) {
         shipmentTypeService.deleteShipmentTypeById(shipmentTypeId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(new MessageResponseDto("Shipment type with id " + shipmentTypeId + " was deleted"));
+                .body(new MessageResponseDto("Shipment type with id " + shipmentTypeId + " deleted successfully"));
     }
 
 }

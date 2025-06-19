@@ -13,22 +13,22 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/complaints")
+@RequestMapping("/api/v1")
 @RequiredArgsConstructor
 public class ComplaintController {
 
     private final ComplaintService complaintService;
 
-    @GetMapping
-    public ResponseEntity<List<ComplaintResponseDto>> getComplaints() {
-        List<ComplaintResponseDto> complaintResponseDtoList = complaintService.getComplaints();
+    @GetMapping("/complaints")
+    public ResponseEntity<List<ComplaintResponseDto>> getAllComplaints() {
+        List<ComplaintResponseDto> complaintResponseDtoList = complaintService.getAllComplaints();
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(complaintResponseDtoList);
     }
 
-    @GetMapping("/{complaintId}")
+    @GetMapping("/complaints/{complaintId}")
     public ResponseEntity<ComplaintResponseDto> getComplaintById(@PathVariable Long complaintId) {
         ComplaintResponseDto complaintResponseDto = complaintService.getComplaintById(complaintId);
 
@@ -37,7 +37,7 @@ public class ComplaintController {
                 .body(complaintResponseDto);
     }
 
-    @PostMapping
+    @PostMapping("/complaints")
     public ResponseEntity<ComplaintResponseDto> createComplaint(@RequestBody CreateComplaintRequestDto createComplaintRequestDto) {
         ComplaintResponseDto createdComplaintResponseDto = complaintService.createComplaint(createComplaintRequestDto);
 
@@ -47,7 +47,7 @@ public class ComplaintController {
                 .body(createdComplaintResponseDto);
     }
 
-    @PatchMapping("/{complaintId}")
+    @PatchMapping("/complaints/{complaintId}")
     public ResponseEntity<ComplaintResponseDto> updateComplaintById(@PathVariable Long complaintId, @RequestBody UpdateComplaintRequestDto updateComplaintRequestDto) {
         ComplaintResponseDto updatedComplaintResponseDto = complaintService.updateComplaintById(complaintId, updateComplaintRequestDto);
 
@@ -56,7 +56,7 @@ public class ComplaintController {
                 .body(updatedComplaintResponseDto);
     }
 
-    @DeleteMapping("/{complaintId}")
+    @DeleteMapping("/complaints/{complaintId}")
     public ResponseEntity<MessageResponseDto> deleteComplaintById(@PathVariable Long complaintId) {
         complaintService.deleteComplaintById(complaintId);
 

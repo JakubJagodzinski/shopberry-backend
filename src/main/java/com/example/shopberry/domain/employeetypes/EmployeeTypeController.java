@@ -13,22 +13,22 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/employee-types")
+@RequestMapping("/api/v1")
 @RequiredArgsConstructor
 public class EmployeeTypeController {
 
     private final EmployeeTypeService employeeTypeService;
 
-    @GetMapping
-    public ResponseEntity<List<EmployeeTypeResponseDto>> getEmployeeTypes() {
-        List<EmployeeTypeResponseDto> employeeTypeResponseDtoList = employeeTypeService.getEmployeeTypes();
+    @GetMapping("/employee-types")
+    public ResponseEntity<List<EmployeeTypeResponseDto>> getAllEmployeeTypes() {
+        List<EmployeeTypeResponseDto> employeeTypeResponseDtoList = employeeTypeService.getAllEmployeeTypes();
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(employeeTypeResponseDtoList);
     }
 
-    @GetMapping("/{employeeTypeId}")
+    @GetMapping("/employee-types/{employeeTypeId}")
     public ResponseEntity<EmployeeTypeResponseDto> getEmployeeTypeById(@PathVariable Long employeeTypeId) {
         EmployeeTypeResponseDto employeeTypeResponseDto = employeeTypeService.getEmployeeTypeById(employeeTypeId);
 
@@ -37,7 +37,7 @@ public class EmployeeTypeController {
                 .body(employeeTypeResponseDto);
     }
 
-    @PostMapping
+    @PostMapping("/employee-types")
     public ResponseEntity<EmployeeTypeResponseDto> createEmployeeType(@RequestBody CreateEmployeeTypeRequestDto createEmployeeTypeRequestDto) {
         EmployeeTypeResponseDto createdEmployeeTypeResponseDto = employeeTypeService.createEmployeeType(createEmployeeTypeRequestDto);
 
@@ -47,7 +47,7 @@ public class EmployeeTypeController {
                 .body(createdEmployeeTypeResponseDto);
     }
 
-    @PatchMapping("/{employeeTypeId}")
+    @PatchMapping("/employee-types/{employeeTypeId}")
     public ResponseEntity<EmployeeTypeResponseDto> updateEmployeeTypeById(@PathVariable Long employeeTypeId, @RequestBody UpdateEmployeeTypeRequestDto updateEmployeeTypeRequestDto) {
         EmployeeTypeResponseDto updatedEmployeeTypeResponseDto = employeeTypeService.updateEmployeeTypeById(employeeTypeId, updateEmployeeTypeRequestDto);
 
@@ -56,7 +56,7 @@ public class EmployeeTypeController {
                 .body(updatedEmployeeTypeResponseDto);
     }
 
-    @DeleteMapping("/{employeeTypeId}")
+    @DeleteMapping("/employee-types/{employeeTypeId}")
     public ResponseEntity<MessageResponseDto> deleteEmployeeTypeById(@PathVariable Long employeeTypeId) {
         employeeTypeService.deleteEmployeeTypeById(employeeTypeId);
 

@@ -34,7 +34,7 @@ public class OrderService {
     private static final String SHIPMENT_TYPE_NOT_FOUND_MESSAGE = "Shipment type not found";
     private static final String PAYMENT_TYPE_NOT_FOUND_MESSAGE = "Payment type not found";
 
-    public List<OrderResponseDto> getOrders() {
+    public List<OrderResponseDto> getAllOrders() {
         return orderDtoMapper.toDtoList(orderRepository.findAll());
     }
 
