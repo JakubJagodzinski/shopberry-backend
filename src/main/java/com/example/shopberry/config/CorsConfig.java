@@ -17,10 +17,10 @@ public class CorsConfig {
 
         config.setAllowedOrigins(List.of(
                 "http://localhost:3000",
-                "https://localhost:7681",
-                "https://localhost:7682",
-                "https://localhost:7683",
-                "https://localhost:7684"
+                "http://localhost:7681",
+                "http://localhost:7682",
+                "http://localhost:7683",
+                "http://localhost:7684"
         ));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
