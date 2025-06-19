@@ -103,6 +103,10 @@ public class ProductService {
             product.setDiscountPercentValue(updateProductRequestDto.getDiscountPercentValue());
         }
 
+        if (updateProductRequestDto.getIsInStock() != null) {
+            product.setIsInStock(updateProductRequestDto.getIsInStock());
+        }
+
         if (updateProductRequestDto.getImage() != null) {
             product.setImage(updateProductRequestDto.getImage());
         }
