@@ -4,6 +4,7 @@ import com.example.shopberry.auth.jwt.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -47,8 +48,9 @@ public class SecurityConfig {
                 .cors(withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req ->
-                        req.requestMatchers(WHITE_LIST_URL)
-                                .permitAll()
+                        req.requestMatchers(WHITE_LIST_URL).permitAll()
+                                .requestMatchers(HttpMethod.GET, "/api/v1/products/**").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/api/v1/categories/**").permitAll()
                                 .anyRequest()
                                 .authenticated()
                 )
