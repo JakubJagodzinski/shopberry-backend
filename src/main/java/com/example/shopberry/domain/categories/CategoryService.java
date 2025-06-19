@@ -110,6 +110,12 @@ public class CategoryService {
             throw new EntityNotFoundException(CATEGORY_NOT_FOUND_MESSAGE);
         }
 
+        List<Category> childCategories = categoryRepository.findAllByParentCategory_CategoryId(id);
+
+        for (Category childCategory : childCategories) {
+            childCategory.setParentCategory(null);
+        }
+
         categoryRepository.deleteById(id);
     }
 
