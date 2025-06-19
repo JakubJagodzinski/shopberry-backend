@@ -1,7 +1,6 @@
 package com.example.shopberry.domain.orderproductstatuses;
 
 import com.example.shopberry.common.constants.messages.OrderProductStatusMessages;
-import com.example.shopberry.domain.orderproducts.OrderProductRepository;
 import com.example.shopberry.domain.orderproductstatuses.dto.CreateOrderProductStatusRequestDto;
 import com.example.shopberry.domain.orderproductstatuses.dto.OrderProductStatusDtoMapper;
 import com.example.shopberry.domain.orderproductstatuses.dto.OrderProductStatusResponseDto;
@@ -18,7 +17,6 @@ import java.util.List;
 public class OrderProductStatusService {
 
     private final OrderProductStatusRepository orderProductStatusRepository;
-    private final OrderProductRepository orderProductRepository;
 
     private final OrderProductStatusDtoMapper orderProductStatusDtoMapper;
 
