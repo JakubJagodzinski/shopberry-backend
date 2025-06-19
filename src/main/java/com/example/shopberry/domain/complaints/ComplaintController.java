@@ -47,7 +47,7 @@ public class ComplaintController {
                 .body(createdComplaintResponseDto);
     }
 
-    @PutMapping("/{complaintId}")
+    @PatchMapping("/{complaintId}")
     public ResponseEntity<ComplaintResponseDto> updateComplaintById(@PathVariable Long complaintId, @RequestBody UpdateComplaintRequestDto updateComplaintRequestDto) {
         ComplaintResponseDto updatedComplaintResponseDto = complaintService.updateComplaintById(complaintId, updateComplaintRequestDto);
 

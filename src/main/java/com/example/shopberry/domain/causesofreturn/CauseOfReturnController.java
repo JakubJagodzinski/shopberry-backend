@@ -47,7 +47,7 @@ public class CauseOfReturnController {
                 .body(createdCauseOfReturnResponseDto);
     }
 
-    @PutMapping("/{causeOfReturnId}")
+    @PatchMapping("/{causeOfReturnId}")
     public ResponseEntity<CauseOfReturnResponseDto> updateCauseOfReturnById(@PathVariable Long causeOfReturnId, @RequestBody UpdateCauseOfReturnRequestDto updateCauseOfReturnRequestDto) {
         CauseOfReturnResponseDto updatedCauseOfReturnResponseDto = causeOfReturnService.updateCauseOfReturnById(causeOfReturnId, updateCauseOfReturnRequestDto);
 

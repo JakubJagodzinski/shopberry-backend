@@ -47,7 +47,7 @@ public class ShipmentTypeController {
                 .body(createdShipmentTypeResponseDto);
     }
 
-    @PutMapping("/{shipmentTypeId}")
+    @PatchMapping("/{shipmentTypeId}")
     public ResponseEntity<ShipmentTypeResponseDto> updateShipmentTypeById(@PathVariable Long shipmentTypeId, @RequestBody UpdateShipmentTypeRequestDto updateShipmentTypeRequestDto) {
         ShipmentTypeResponseDto updatedShipmentTypeResponseDto = shipmentTypeService.updateShipmentTypeById(shipmentTypeId, updateShipmentTypeRequestDto);
 

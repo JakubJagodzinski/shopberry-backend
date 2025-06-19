@@ -47,7 +47,7 @@ public class EmployeeTypeController {
                 .body(createdEmployeeTypeResponseDto);
     }
 
-    @PutMapping("/{employeeTypeId}")
+    @PatchMapping("/{employeeTypeId}")
     public ResponseEntity<EmployeeTypeResponseDto> updateEmployeeTypeById(@PathVariable Long employeeTypeId, @RequestBody UpdateEmployeeTypeRequestDto updateEmployeeTypeRequestDto) {
         EmployeeTypeResponseDto updatedEmployeeTypeResponseDto = employeeTypeService.updateEmployeeTypeById(employeeTypeId, updateEmployeeTypeRequestDto);
 

@@ -56,7 +56,7 @@ public class ReviewController {
                 .body(createdReviewResponseDto);
     }
 
-    @PutMapping("/{reviewId}")
+    @PatchMapping("/{reviewId}")
     public ResponseEntity<ReviewResponseDto> updateReviewById(@PathVariable Long reviewId, @RequestBody UpdateReviewRequestDto updateReviewRequestDto) {
         ReviewResponseDto updatedReviewResponseDto = reviewService.updateReviewById(reviewId, updateReviewRequestDto);
 

@@ -47,7 +47,7 @@ public class PaymentTypeController {
                 .body(createdPaymentTypeResponseDto);
     }
 
-    @PutMapping("/{paymentTypeId}")
+    @PatchMapping("/{paymentTypeId}")
     public ResponseEntity<PaymentTypeResponseDto> updatePaymentTypeById(@PathVariable Long paymentTypeId, @RequestBody UpdatePaymentTypeRequestDto updatePaymentTypeRequestDto) {
         PaymentTypeResponseDto updatedPaymentTypeResponseDto = paymentTypeService.updatePaymentTypeById(paymentTypeId, updatePaymentTypeRequestDto);
 

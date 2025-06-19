@@ -47,7 +47,7 @@ public class PromotionController {
                 .body(createdPromotionResponseDto);
     }
 
-    @PutMapping("/{promotionId}")
+    @PatchMapping("/{promotionId}")
     public ResponseEntity<PromotionResponseDto> updatePromotionById(@PathVariable Long promotionId, @RequestBody UpdatePromotionRequestDto updatePromotionRequestDto) {
         PromotionResponseDto updatedPromotionResponseDto = promotionService.updatePromotionById(promotionId, updatePromotionRequestDto);
 

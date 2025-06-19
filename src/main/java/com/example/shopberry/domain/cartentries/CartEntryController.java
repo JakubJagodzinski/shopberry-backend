@@ -47,7 +47,7 @@ public class CartEntryController {
                 .body(createdCartEntryResponseDto);
     }
 
-    @PutMapping("/by-customer/{customerId}/by-product/{productId}")
+    @PatchMapping("/by-customer/{customerId}/by-product/{productId}")
     public ResponseEntity<CartEntryResponseDto> updateCartEntryByCartEntryId(@PathVariable Long customerId, @PathVariable Long productId, @RequestBody UpdateCartEntryRequestDto updateCartEntryRequestDto) {
         CartEntryId cartEntryId = new CartEntryId(customerId, productId);
 

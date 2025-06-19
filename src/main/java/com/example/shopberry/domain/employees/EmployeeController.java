@@ -35,7 +35,7 @@ public class EmployeeController {
                 .body(employeeResponseDto);
     }
 
-    @PutMapping("/{employeeId}")
+    @PatchMapping("/{employeeId}")
     public ResponseEntity<EmployeeResponseDto> updateEmployeeById(@PathVariable Long employeeId, @RequestBody UpdateEmployeeRequestDto updateEmployeeRequestDto) {
         EmployeeResponseDto updatedEmployeeResponseDto = employeeService.updateEmployeeById(employeeId, updateEmployeeRequestDto);
 
@@ -43,7 +43,6 @@ public class EmployeeController {
                 .status(HttpStatus.OK)
                 .body(updatedEmployeeResponseDto);
     }
-
 
     @DeleteMapping("/{employeeId}")
     public ResponseEntity<MessageResponseDto> deleteEmployeeById(@PathVariable Long employeeId) {

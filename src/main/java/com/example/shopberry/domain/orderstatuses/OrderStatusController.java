@@ -47,7 +47,7 @@ public class OrderStatusController {
                 .body(createdOrderStatusResponseDto);
     }
 
-    @PutMapping("/{orderStatusId}")
+    @PatchMapping("/{orderStatusId}")
     public ResponseEntity<OrderStatusResponseDto> updateOrderStatusById(@PathVariable Long orderStatusId, @RequestBody UpdateOrderStatusRequestDto updateOrderStatusRequestDto) {
         OrderStatusResponseDto updatedOrderStatusResponseDto = orderStatusService.updateOrderStatusById(orderStatusId, updateOrderStatusRequestDto);
 

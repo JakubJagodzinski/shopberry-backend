@@ -47,7 +47,7 @@ public class ProducerController {
                 .body(createdProducerResponseDto);
     }
 
-    @PutMapping("/{producerId}")
+    @PatchMapping("/{producerId}")
     public ResponseEntity<ProducerResponseDto> updateProducerById(@PathVariable Long producerId, @RequestBody UpdateProducerRequestDto updateProducerRequestDto) {
         ProducerResponseDto updatedProducerResponseDto = producerService.updateProducerById(producerId, updateProducerRequestDto);
 

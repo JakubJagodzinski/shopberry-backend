@@ -35,7 +35,7 @@ public class CustomerController {
                 .body(customerResponseDto);
     }
 
-    @PutMapping("/{customerId}")
+    @PatchMapping("/{customerId}")
     public ResponseEntity<CustomerResponseDto> updateCustomerById(@PathVariable Long customerId, @RequestBody UpdateCustomerRequestDto updateCustomerRequestDto) {
         CustomerResponseDto updatedCustomerResponseDto = customerService.updateCustomerById(customerId, updateCustomerRequestDto);
 

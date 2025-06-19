@@ -47,7 +47,7 @@ public class AttributeController {
                 .body(createdAttributeResponseDto);
     }
 
-    @PutMapping("/{attributeId}")
+    @PatchMapping("/{attributeId}")
     public ResponseEntity<AttributeResponseDto> updateAttributeById(@PathVariable Long attributeId, @RequestBody UpdateAttributeRequestDto updateAttributeRequestDto) {
         AttributeResponseDto updatedAttributeResponseDto = attributeService.updateAttributeById(attributeId, updateAttributeRequestDto);
 
