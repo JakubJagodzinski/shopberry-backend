@@ -12,10 +12,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class UpdateCustomerRequestDto {
 
-    private String email;
-
-    private String password;
-
     @JsonProperty("is_company")
     private Boolean isCompany;
 
