@@ -3,6 +3,8 @@ package com.example.shopberry.domain.customeraddresses;
 import com.example.shopberry.domain.customers.Customer;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Getter
 @Setter
@@ -18,6 +20,7 @@ public class CustomerAddress {
 
     @ManyToOne
     @JoinColumn(name = "customer_id", referencedColumnName = "customer_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Customer customer;
 
     @Column(name = "first_name", nullable = false, length = 30)

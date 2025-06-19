@@ -28,6 +28,7 @@ public class Review {
 
     @ManyToOne
     @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
+    @OnDelete(action = OnDeleteAction.SET_NULL)
     private Customer customer;
 
     @Column(name = "rating_value", nullable = false)

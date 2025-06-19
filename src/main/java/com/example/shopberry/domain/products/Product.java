@@ -4,6 +4,8 @@ import com.example.shopberry.domain.categories.Category;
 import com.example.shopberry.domain.producers.Producer;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Getter
 @Setter
@@ -34,10 +36,12 @@ public class Product {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "producer_id", referencedColumnName = "producer_id")
+    @OnDelete(action = OnDeleteAction.SET_NULL)
     private Producer producer;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id", referencedColumnName = "category_id")
+    @OnDelete(action = OnDeleteAction.SET_NULL)
     private Category category;
 
     @Column(name = "is_in_stock", nullable = false)

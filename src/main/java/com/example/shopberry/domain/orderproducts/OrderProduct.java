@@ -37,7 +37,8 @@ public class OrderProduct {
     private Double productPrice;
 
     @ManyToOne
-    @JoinColumn(name = "order_product_status_id", referencedColumnName = "order_product_status_id", nullable = false)
+    @JoinColumn(name = "order_product_status_id", referencedColumnName = "order_product_status_id")
+    @OnDelete(action = OnDeleteAction.SET_NULL)
     private OrderProductStatus orderProductStatus;
 
 }

@@ -4,7 +4,9 @@ import com.example.shopberry.domain.causesofreturn.CauseOfReturn;
 import com.example.shopberry.domain.orders.Order;
 import com.example.shopberry.domain.products.Product;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -31,7 +33,8 @@ public class ProductReturn {
     private Product product;
 
     @ManyToOne
-    @JoinColumn(name = "cause_of_return_id", referencedColumnName = "cause_of_return_id", nullable = false)
+    @JoinColumn(name = "cause_of_return_id", referencedColumnName = "cause_of_return_id")
+    @OnDelete(action = OnDeleteAction.SET_NULL)
     private CauseOfReturn causeOfReturn;
 
 }
