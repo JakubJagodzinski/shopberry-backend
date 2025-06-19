@@ -36,6 +36,15 @@ public class OrderController {
                 .body(orderResponseDto);
     }
 
+    @GetMapping("/customers/{customerId}/orders")
+    public ResponseEntity<List<OrderResponseDto>> getCustomerAllOrders(@PathVariable Long customerId) {
+        List<OrderResponseDto> orderResponseDtoList = orderService.getCustomerAllOrders(customerId);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(orderResponseDtoList);
+    }
+
     @PostMapping("/orders")
     public ResponseEntity<OrderResponseDto> createOrder(@RequestBody CreateOrderRequestDto createOrderRequestDto) {
         OrderResponseDto createdOrderResponseDto = orderService.createOrder(createOrderRequestDto);

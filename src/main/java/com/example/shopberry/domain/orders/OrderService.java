@@ -50,6 +50,17 @@ public class OrderService {
     }
 
     @Transactional
+    public List<OrderResponseDto> getCustomerAllOrders(Long customerId) throws EntityNotFoundException {
+        Customer customer = customerRepository.findById(customerId).orElse(null);
+
+        if (customer == null) {
+            throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
+        }
+
+        return orderDtoMapper.toDtoList(orderRepository.findAllByCustomer_Id(customerId));
+    }
+
+    @Transactional
     public OrderResponseDto createOrder(CreateOrderRequestDto createOrderRequestDto) throws EntityNotFoundException {
         Customer customer = customerRepository.findById(createOrderRequestDto.getCustomerId()).orElse(null);
 
@@ -88,5 +99,4 @@ public class OrderService {
 
         orderRepository.deleteById(id);
     }
-
 }
