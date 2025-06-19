@@ -19,7 +19,7 @@ public class Category {
     private String categoryName;
 
     @ManyToOne
-    @JoinColumn(name = "parent_category_id", referencedColumnName = "category_id")
+    @JoinColumn(name = "parent_category_id", foreignKey = @ForeignKey(name = "fk_categories_parent_category"))
     private Category parentCategory = null;
 
 }

@@ -20,13 +20,13 @@ public class OrderProduct {
 
     @ManyToOne
     @MapsId("orderId")
-    @JoinColumn(name = "order_id", foreignKey = @ForeignKey(name = "fk_order_product_order"))
+    @JoinColumn(name = "order_id", foreignKey = @ForeignKey(name = "fk_order_products_order"))
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Order order;
 
     @ManyToOne
     @MapsId("productId")
-    @JoinColumn(name = "product_id", foreignKey = @ForeignKey(name = "fk_order_product_product"))
+    @JoinColumn(name = "product_id", foreignKey = @ForeignKey(name = "fk_order_products_product"))
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Product product;
 
@@ -37,7 +37,7 @@ public class OrderProduct {
     private Double productPrice;
 
     @ManyToOne
-    @JoinColumn(name = "order_product_status_id", referencedColumnName = "order_product_status_id")
+    @JoinColumn(name = "order_product_status_id", foreignKey = @ForeignKey(name = "fk_order_products_order_product_status"))
     @OnDelete(action = OnDeleteAction.SET_NULL)
     private OrderProductStatus orderProductStatus;
 

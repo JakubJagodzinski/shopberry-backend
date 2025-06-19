@@ -20,12 +20,12 @@ public class Complaint {
     private Long complaintId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id", referencedColumnName = "order_id", nullable = false)
+    @JoinColumn(name = "order_id", nullable = false, foreignKey = @ForeignKey(name = "fk_complaints_order"))
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Order order;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id", referencedColumnName = "product_id", nullable = false)
+    @JoinColumn(name = "product_id", nullable = false, foreignKey = @ForeignKey(name = "fk_complaints_product"))
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Product product;
 

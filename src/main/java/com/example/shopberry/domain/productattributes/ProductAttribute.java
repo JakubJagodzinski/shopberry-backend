@@ -19,13 +19,13 @@ public class ProductAttribute {
 
     @ManyToOne
     @MapsId("productId")
-    @JoinColumn(name = "product_id", foreignKey = @ForeignKey(name = "fk_product_attribute_product"))
+    @JoinColumn(name = "product_id", foreignKey = @ForeignKey(name = "fk_product_attributes_product"))
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Product product;
 
     @ManyToOne
     @MapsId("attributeId")
-    @JoinColumn(name = "attribute_id", foreignKey = @ForeignKey(name = "fk_product_attribute_attribute"))
+    @JoinColumn(name = "attribute_id", foreignKey = @ForeignKey(name = "fk_product_attributes_attribute"))
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Attribute attribute;
 

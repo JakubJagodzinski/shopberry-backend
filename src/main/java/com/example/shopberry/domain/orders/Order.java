@@ -30,17 +30,17 @@ public class Order {
     private LocalDateTime sentAt = null;
 
     @ManyToOne
-    @JoinColumn(name = "order_status_id", referencedColumnName = "order_status_id")
+    @JoinColumn(name = "order_status_id", foreignKey = @ForeignKey(name = "fk_orders_order_status"))
     @OnDelete(action = OnDeleteAction.SET_NULL)
     private OrderStatus orderStatus;
 
     @ManyToOne
-    @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
+    @JoinColumn(name = "customer_id", foreignKey = @ForeignKey(name = "fk_orders_customer"))
     @OnDelete(action = OnDeleteAction.SET_NULL)
     private Customer customer;
 
     @ManyToOne
-    @JoinColumn(name = "shipment_type_id", referencedColumnName = "shipment_type_id")
+    @JoinColumn(name = "shipment_type_id", foreignKey = @ForeignKey(name = "fk_orders_shipment_type"))
     @OnDelete(action = OnDeleteAction.SET_NULL)
     private ShipmentType shipmentType;
 
@@ -48,7 +48,7 @@ public class Order {
     private String shipmentIdentifier = null;
 
     @ManyToOne
-    @JoinColumn(name = "payment_type_id", referencedColumnName = "payment_type_id")
+    @JoinColumn(name = "payment_type_id", foreignKey = @ForeignKey(name = "fk_orders_payment_type"))
     @OnDelete(action = OnDeleteAction.SET_NULL)
     private PaymentType paymentType;
 

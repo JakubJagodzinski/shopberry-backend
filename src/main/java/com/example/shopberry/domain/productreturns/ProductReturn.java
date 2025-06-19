@@ -23,17 +23,17 @@ public class ProductReturn {
     private Long productReturnId;
 
     @ManyToOne
-    @JoinColumn(name = "order_id", referencedColumnName = "order_id", nullable = false)
+    @JoinColumn(name = "order_id", nullable = false, foreignKey = @ForeignKey(name = "fk_product_returns_order"))
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Order order;
 
     @ManyToOne
-    @JoinColumn(name = "product_id", referencedColumnName = "product_id", nullable = false)
+    @JoinColumn(name = "product_id", nullable = false, foreignKey = @ForeignKey(name = "fk_product_returns_product"))
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Product product;
 
     @ManyToOne
-    @JoinColumn(name = "cause_of_return_id", referencedColumnName = "cause_of_return_id")
+    @JoinColumn(name = "cause_of_return_id", foreignKey = @ForeignKey(name = "fk_product_returns_cause_of_return"))
     @OnDelete(action = OnDeleteAction.SET_NULL)
     private CauseOfReturn causeOfReturn;
 

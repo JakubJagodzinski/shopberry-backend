@@ -3,7 +3,9 @@ package com.example.shopberry.domain.reviews;
 import com.example.shopberry.domain.customers.Customer;
 import com.example.shopberry.domain.products.Product;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -22,12 +24,12 @@ public class Review {
     private Long reviewId;
 
     @ManyToOne
-    @JoinColumn(name = "product_id", referencedColumnName = "product_id")
+    @JoinColumn(name = "product_id", nullable = false, foreignKey = @ForeignKey(name = "fk_reviews_product"))
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Product product;
 
     @ManyToOne
-    @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
+    @JoinColumn(name = "customer_id", foreignKey = @ForeignKey(name = "fk_reviews_customer"))
     @OnDelete(action = OnDeleteAction.SET_NULL)
     private Customer customer;
 

@@ -9,7 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "customers")
-@PrimaryKeyJoinColumn(name = "customer_id")
+@PrimaryKeyJoinColumn(name = "customer_id", foreignKey = @ForeignKey(name = "fk_customers_user"))
 public class Customer extends User {
 
     @Column(name = "is_company")

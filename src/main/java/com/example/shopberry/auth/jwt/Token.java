@@ -32,7 +32,7 @@ public class Token {
     private Boolean isExpired = false;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false, foreignKey = @ForeignKey(name = "fk_tokens_user_id"))
     @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
 

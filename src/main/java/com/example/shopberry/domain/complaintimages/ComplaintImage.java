@@ -18,7 +18,7 @@ public class ComplaintImage {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "complaint_id", referencedColumnName = "complaint_id", nullable = false)
+    @JoinColumn(name = "complaint_id", nullable = false, foreignKey = @ForeignKey(name = "fk_complaint_images_complaint"))
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Complaint complaint;
 

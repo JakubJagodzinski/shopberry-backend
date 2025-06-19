@@ -12,11 +12,11 @@ import org.hibernate.annotations.OnDeleteAction;
 @NoArgsConstructor
 @Entity
 @Table(name = "employees")
-@PrimaryKeyJoinColumn(name = "employee_id")
+@PrimaryKeyJoinColumn(name = "employee_id", foreignKey = @ForeignKey(name = "fk_employees_user"))
 public class Employee extends User {
 
     @ManyToOne
-    @JoinColumn(name = "employee_type_id")
+    @JoinColumn(name = "employee_type_id", foreignKey = @ForeignKey(name = "fk_employees_employee_type"))
     @OnDelete(action = OnDeleteAction.SET_NULL)
     private EmployeeType employeeType;
 

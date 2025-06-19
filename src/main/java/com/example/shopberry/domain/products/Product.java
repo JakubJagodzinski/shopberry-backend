@@ -35,12 +35,12 @@ public class Product {
     private Long ratingsCount;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "producer_id", referencedColumnName = "producer_id")
+    @JoinColumn(name = "producer_id", foreignKey = @ForeignKey(name = "fk_products_producer"))
     @OnDelete(action = OnDeleteAction.SET_NULL)
     private Producer producer;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_id", referencedColumnName = "category_id")
+    @JoinColumn(name = "category_id", foreignKey = @ForeignKey(name = "fk_products_category"))
     @OnDelete(action = OnDeleteAction.SET_NULL)
     private Category category;
 

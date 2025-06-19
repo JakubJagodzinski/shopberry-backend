@@ -19,13 +19,13 @@ public class ProductPromotion {
 
     @ManyToOne
     @MapsId("productId")
-    @JoinColumn(name = "product_id", foreignKey = @ForeignKey(name = "fk_product_promotion_product"))
+    @JoinColumn(name = "product_id", foreignKey = @ForeignKey(name = "fk_product_promotions_product"))
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Product product;
 
     @ManyToOne
     @MapsId("promotionId")
-    @JoinColumn(name = "promotion_id", foreignKey = @ForeignKey(name = "fk_product_promotion_promotion"))
+    @JoinColumn(name = "promotion_id", foreignKey = @ForeignKey(name = "fk_product_promotions_promotion"))
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Promotion promotion;
 

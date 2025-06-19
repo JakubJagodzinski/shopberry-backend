@@ -19,7 +19,7 @@ public class CustomerAddress {
     private Long addressId;
 
     @ManyToOne
-    @JoinColumn(name = "customer_id", referencedColumnName = "customer_id", nullable = false)
+    @JoinColumn(name = "customer_id", nullable = false, foreignKey = @ForeignKey(name = "fk_customer_addresses_customer"))
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Customer customer;
 
