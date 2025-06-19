@@ -11,7 +11,7 @@ public class FavouriteProductDtoMapper {
     public FavouriteProductResponseDto toDto(FavouriteProduct favouriteProduct) {
         FavouriteProductResponseDto favouriteProductResponseDto = new FavouriteProductResponseDto();
 
-        favouriteProductResponseDto.setCustomerId(favouriteProduct.getCustomer().getId());
+        favouriteProductResponseDto.setCustomerId(favouriteProduct.getCustomer().getUserId());
         favouriteProductResponseDto.setProductId(favouriteProduct.getProduct().getProductId());
         favouriteProductResponseDto.setAddedAt(favouriteProduct.getAddedAt());
 

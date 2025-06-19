@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -20,8 +21,9 @@ import java.util.Collection;
 public class User implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue
+    @Column(name = "user_id", updatable = false, nullable = false)
+    private UUID userId;
 
     @Column(name = "first_name", nullable = false, length = 100)
     private String firstName;

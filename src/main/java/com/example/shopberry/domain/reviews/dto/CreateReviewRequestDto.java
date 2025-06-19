@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.UUID;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -13,7 +15,7 @@ import lombok.Setter;
 public class CreateReviewRequestDto {
 
     @JsonProperty("customer_id")
-    private Long customerId;
+    private UUID customerId;
 
     @JsonProperty("rating_value")
     private Double ratingValue;

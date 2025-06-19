@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -29,7 +30,7 @@ public class CustomerAddressController {
     }
 
     @GetMapping("/customers/{customerId}/addresses")
-    public ResponseEntity<List<CustomerAddressResponseDto>> getCustomerAllAddresses(@PathVariable Long customerId) {
+    public ResponseEntity<List<CustomerAddressResponseDto>> getCustomerAllAddresses(@PathVariable UUID customerId) {
         List<CustomerAddressResponseDto> customerAddressResponseDtoList = customerAddressService.getCustomerAllAddresses(customerId);
 
         return ResponseEntity
@@ -38,7 +39,7 @@ public class CustomerAddressController {
     }
 
     @PostMapping("/customers/{customerId}/addresses")
-    public ResponseEntity<CustomerAddressResponseDto> createCustomerAddress(@PathVariable Long customerId, @RequestBody CreateCustomerAddressRequestDto createCustomerAddressRequestDto) {
+    public ResponseEntity<CustomerAddressResponseDto> createCustomerAddress(@PathVariable UUID customerId, @RequestBody CreateCustomerAddressRequestDto createCustomerAddressRequestDto) {
         CustomerAddressResponseDto createdCustomerAddressResponseDto = customerAddressService.createCustomerAddress(customerId, createCustomerAddressRequestDto);
 
         return ResponseEntity
@@ -57,7 +58,7 @@ public class CustomerAddressController {
     }
 
     @DeleteMapping("/customers/{customerId}/addresses")
-    public ResponseEntity<MessageResponseDto> deleteCustomerAllAddresses(@PathVariable Long customerId) {
+    public ResponseEntity<MessageResponseDto> deleteCustomerAllAddresses(@PathVariable UUID customerId) {
         customerAddressService.deleteCustomerAllAddresses(customerId);
 
         return ResponseEntity

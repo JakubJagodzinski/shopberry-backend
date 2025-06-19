@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -32,7 +33,7 @@ public class CartProductService {
     private static final String PRODUCT_ALREADY_IN_CART_MESSAGE = "Product already in cart";
 
     @Transactional
-    public CartProductResponseDto getCustomerCartProduct(Long customerId, Long productId) throws EntityNotFoundException {
+    public CartProductResponseDto getCustomerCartProduct(UUID customerId, Long productId) throws EntityNotFoundException {
         CartProductId cartProductId = new CartProductId(customerId, productId);
 
         CartProduct cartProduct = cartProductRepository.findById(cartProductId).orElse(null);
@@ -45,16 +46,16 @@ public class CartProductService {
     }
 
     @Transactional
-    public List<CartProductResponseDto> getCustomerAllCartProducts(Long customerId) throws EntityNotFoundException {
+    public List<CartProductResponseDto> getCustomerAllCartProducts(UUID customerId) throws EntityNotFoundException {
         if (!customerRepository.existsById(customerId)) {
             throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
         }
 
-        return cartProductDtoMapper.toDtoList(cartProductRepository.findByCustomer_Id(customerId));
+        return cartProductDtoMapper.toDtoList(cartProductRepository.findByCustomer_UserId(customerId));
     }
 
     @Transactional
-    public CartProductResponseDto addProductToCustomerCart(Long customerId, AddProductToCartRequestDto addProductToCartRequestDto) throws EntityNotFoundException {
+    public CartProductResponseDto addProductToCustomerCart(UUID customerId, AddProductToCartRequestDto addProductToCartRequestDto) throws EntityNotFoundException {
         Customer customer = customerRepository.findById(customerId).orElse(null);
 
         if (customer == null) {
@@ -88,7 +89,7 @@ public class CartProductService {
     }
 
     @Transactional
-    public CartProductResponseDto updateCustomerCartProduct(Long customerId, Long productId, UpdateCartProductRequestDto updateCartProductRequestDto) throws EntityNotFoundException {
+    public CartProductResponseDto updateCustomerCartProduct(UUID customerId, Long productId, UpdateCartProductRequestDto updateCartProductRequestDto) throws EntityNotFoundException {
         CartProductId cartProductId = new CartProductId(customerId, productId);
 
         CartProduct cartProduct = cartProductRepository.findById(cartProductId).orElse(null);
@@ -109,7 +110,7 @@ public class CartProductService {
     }
 
     @Transactional
-    public void removeProductFromCustomerCart(Long customerId, Long productId) throws EntityNotFoundException {
+    public void removeProductFromCustomerCart(UUID customerId, Long productId) throws EntityNotFoundException {
         CartProductId cartProductId = new CartProductId(customerId, productId);
 
         if (!cartProductRepository.existsById(cartProductId)) {

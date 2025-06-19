@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -47,12 +48,12 @@ public class ReviewService {
     }
 
     @Transactional
-    public List<ReviewResponseDto> getCustomerAllReviews(Long customerId) throws EntityNotFoundException {
+    public List<ReviewResponseDto> getCustomerAllReviews(UUID customerId) throws EntityNotFoundException {
         if (!customerRepository.existsById(customerId)) {
             throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
         }
 
-        return reviewDtoMapper.toDtoList(reviewRepository.findByCustomer_Id(customerId));
+        return reviewDtoMapper.toDtoList(reviewRepository.findByCustomer_UserId(customerId));
     }
 
     @Transactional
@@ -144,12 +145,12 @@ public class ReviewService {
     }
 
     @Transactional
-    public void deleteCustomerAllReviews(Long customerId) throws EntityNotFoundException {
+    public void deleteCustomerAllReviews(UUID customerId) throws EntityNotFoundException {
         if (!customerRepository.existsById(customerId)) {
             throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
         }
 
-        reviewRepository.deleteByCustomer_Id(customerId);
+        reviewRepository.deleteByCustomer_UserId(customerId);
     }
 
     @Transactional

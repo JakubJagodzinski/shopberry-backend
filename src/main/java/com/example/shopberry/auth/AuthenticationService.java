@@ -45,7 +45,7 @@ public class AuthenticationService {
         return AuthenticationResponseDto.builder()
                 .accessToken(jwtToken)
                 .refreshToken(refreshToken)
-                .userId(user.getId())
+                .userId(user.getUserId())
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
                 .role(user.getRole())
@@ -119,7 +119,7 @@ public class AuthenticationService {
     }
 
     private void revokeAllUserTokens(User user) {
-        List<Token> validUserTokens = tokenRepository.findByUser_IdAndIsExpiredFalseOrIsRevokedFalse(user.getId());
+        List<Token> validUserTokens = tokenRepository.findByUser_UserIdAndIsExpiredFalseOrIsRevokedFalse(user.getUserId());
 
         if (validUserTokens.isEmpty()) {
             return;

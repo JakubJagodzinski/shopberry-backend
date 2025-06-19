@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -27,7 +28,7 @@ public class CustomerController {
     }
 
     @GetMapping("/customers/{customerId}")
-    public ResponseEntity<CustomerResponseDto> getCustomerById(@PathVariable Long customerId) {
+    public ResponseEntity<CustomerResponseDto> getCustomerById(@PathVariable UUID customerId) {
         CustomerResponseDto customerResponseDto = customerService.getCustomerById(customerId);
 
         return ResponseEntity
@@ -36,7 +37,7 @@ public class CustomerController {
     }
 
     @PatchMapping("/customers/{customerId}")
-    public ResponseEntity<CustomerResponseDto> updateCustomerById(@PathVariable Long customerId, @RequestBody UpdateCustomerRequestDto updateCustomerRequestDto) {
+    public ResponseEntity<CustomerResponseDto> updateCustomerById(@PathVariable UUID customerId, @RequestBody UpdateCustomerRequestDto updateCustomerRequestDto) {
         CustomerResponseDto updatedCustomerResponseDto = customerService.updateCustomerById(customerId, updateCustomerRequestDto);
 
         return ResponseEntity
@@ -45,7 +46,7 @@ public class CustomerController {
     }
 
     @DeleteMapping("/customer/{customerId}")
-    public ResponseEntity<MessageResponseDto> deleteCustomerById(@PathVariable Long customerId) {
+    public ResponseEntity<MessageResponseDto> deleteCustomerById(@PathVariable UUID customerId) {
         customerService.deleteCustomerById(customerId);
 
         return ResponseEntity

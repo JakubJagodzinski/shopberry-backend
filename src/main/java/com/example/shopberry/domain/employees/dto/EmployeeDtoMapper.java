@@ -11,7 +11,7 @@ public class EmployeeDtoMapper {
     public EmployeeResponseDto toDto(Employee employee) {
         EmployeeResponseDto employeeResponseDto = new EmployeeResponseDto();
 
-        employeeResponseDto.setEmployeeId(employee.getId());
+        employeeResponseDto.setEmployeeId(employee.getUserId());
         employeeResponseDto.setEmployeeTypeId(employee.getEmployeeType().getEmployeeTypeId());
         employeeResponseDto.setFirstName(employee.getFirstName());
         employeeResponseDto.setLastName(employee.getLastName());

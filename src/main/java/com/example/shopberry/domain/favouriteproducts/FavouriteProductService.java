@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -30,16 +31,16 @@ public class FavouriteProductService {
     private static final String PRODUCT_IS_ALREADY_IN_FAVOURITES = "Product is already in favourites";
 
     @Transactional
-    public List<FavouriteProductResponseDto> getCustomerAllFavourites(Long customerId) throws EntityNotFoundException {
+    public List<FavouriteProductResponseDto> getCustomerAllFavourites(UUID customerId) throws EntityNotFoundException {
         if (!customerRepository.existsById(customerId)) {
             throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
         }
 
-        return favouriteProductDtoMapper.toDtoList(favouriteProductRepository.findById_CustomerId(customerId));
+        return favouriteProductDtoMapper.toDtoList(favouriteProductRepository.findByCustomer_UserId(customerId));
     }
 
     @Transactional
-    public FavouriteProductResponseDto addProductToCustomerFavourites(Long customerId, AddProductToFavouritesRequestDto addProductToFavouritesRequestDto) throws EntityNotFoundException, IllegalArgumentException {
+    public FavouriteProductResponseDto addProductToCustomerFavourites(UUID customerId, AddProductToFavouritesRequestDto addProductToFavouritesRequestDto) throws EntityNotFoundException, IllegalArgumentException {
         Customer customer = customerRepository.findById(customerId).orElse(null);
 
         if (customer == null) {
@@ -68,7 +69,7 @@ public class FavouriteProductService {
     }
 
     @Transactional
-    public void removeProductFromCustomerFavourites(Long customerId, Long productId) throws EntityNotFoundException {
+    public void removeProductFromCustomerFavourites(UUID customerId, Long productId) throws EntityNotFoundException {
         FavouriteProductId favouriteProductId = new FavouriteProductId(customerId, productId);
 
         if (!favouriteProductRepository.existsById(favouriteProductId)) {

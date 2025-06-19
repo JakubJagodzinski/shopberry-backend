@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface ProductAttributeRepository extends JpaRepository<ProductAttribute, ProductAttributeId> {
 
-    List<ProductAttribute> findById_ProductId(Long productId);
+    List<ProductAttribute> findByProduct_ProductId(Long productId);
 
-    List<ProductAttribute> findById_AttributeId(Long attributeId);
+    List<ProductAttribute> findByAttribute_AttributeId(Long attributeId);
 
 }

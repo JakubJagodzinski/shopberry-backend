@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.UUID;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -13,7 +15,7 @@ import lombok.Setter;
 public class CreateOrderRequestDto {
 
     @JsonProperty("customer_id")
-    private Long customerId;
+    private UUID customerId;
 
     @JsonProperty("shipment_type_id")
     private Long shipmentTypeId;

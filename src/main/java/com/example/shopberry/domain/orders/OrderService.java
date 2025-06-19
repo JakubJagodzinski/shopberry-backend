@@ -16,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -50,14 +51,14 @@ public class OrderService {
     }
 
     @Transactional
-    public List<OrderResponseDto> getCustomerAllOrders(Long customerId) throws EntityNotFoundException {
+    public List<OrderResponseDto> getCustomerAllOrders(UUID customerId) throws EntityNotFoundException {
         Customer customer = customerRepository.findById(customerId).orElse(null);
 
         if (customer == null) {
             throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
         }
 
-        return orderDtoMapper.toDtoList(orderRepository.findAllByCustomer_Id(customerId));
+        return orderDtoMapper.toDtoList(orderRepository.findAllByCustomer_UserId(customerId));
     }
 
     @Transactional

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -29,7 +30,7 @@ public class ReviewController {
     }
 
     @GetMapping("/customers/{customerId}/reviews")
-    public ResponseEntity<List<ReviewResponseDto>> getCustomerAllReviews(@PathVariable Long customerId) {
+    public ResponseEntity<List<ReviewResponseDto>> getCustomerAllReviews(@PathVariable UUID customerId) {
         List<ReviewResponseDto> reviewResponseDtoList = reviewService.getCustomerAllReviews(customerId);
 
         return ResponseEntity
@@ -75,7 +76,7 @@ public class ReviewController {
     }
 
     @DeleteMapping("/customers/{customerId}/reviews")
-    public ResponseEntity<MessageResponseDto> deleteCustomerAllReviews(@PathVariable Long customerId) {
+    public ResponseEntity<MessageResponseDto> deleteCustomerAllReviews(@PathVariable UUID customerId) {
         reviewService.deleteCustomerAllReviews(customerId);
 
         return ResponseEntity

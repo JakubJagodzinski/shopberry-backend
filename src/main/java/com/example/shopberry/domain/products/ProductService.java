@@ -75,7 +75,7 @@ public class ProductService {
         }
 
         if (updateProductRequestDto.getProductName() != null) {
-            Product otherProduct = productRepository.getProductByProductName(updateProductRequestDto.getProductName());
+            Product otherProduct = productRepository.findByProductName(updateProductRequestDto.getProductName());
 
             if (otherProduct != null && !otherProduct.getProductId().equals(id)) {
                 throw new IllegalArgumentException(PRODUCT_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE);

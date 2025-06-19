@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -27,7 +28,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/employees/{employeeId}")
-    public ResponseEntity<EmployeeResponseDto> getEmployeeById(@PathVariable Long employeeId) {
+    public ResponseEntity<EmployeeResponseDto> getEmployeeById(@PathVariable UUID employeeId) {
         EmployeeResponseDto employeeResponseDto = employeeService.getEmployeeById(employeeId);
 
         return ResponseEntity
@@ -36,7 +37,7 @@ public class EmployeeController {
     }
 
     @PatchMapping("/employees/{employeeId}")
-    public ResponseEntity<EmployeeResponseDto> updateEmployeeById(@PathVariable Long employeeId, @RequestBody UpdateEmployeeRequestDto updateEmployeeRequestDto) {
+    public ResponseEntity<EmployeeResponseDto> updateEmployeeById(@PathVariable UUID employeeId, @RequestBody UpdateEmployeeRequestDto updateEmployeeRequestDto) {
         EmployeeResponseDto updatedEmployeeResponseDto = employeeService.updateEmployeeById(employeeId, updateEmployeeRequestDto);
 
         return ResponseEntity
@@ -45,7 +46,7 @@ public class EmployeeController {
     }
 
     @DeleteMapping("/employees/{employeeId}")
-    public ResponseEntity<MessageResponseDto> deleteEmployeeById(@PathVariable Long employeeId) {
+    public ResponseEntity<MessageResponseDto> deleteEmployeeById(@PathVariable UUID employeeId) {
         employeeService.deleteEmployeeById(employeeId);
 
         return ResponseEntity

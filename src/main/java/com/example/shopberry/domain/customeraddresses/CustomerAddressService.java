@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -32,16 +33,16 @@ public class CustomerAddressService {
     }
 
     @Transactional
-    public List<CustomerAddressResponseDto> getCustomerAllAddresses(Long customerId) throws EntityNotFoundException {
+    public List<CustomerAddressResponseDto> getCustomerAllAddresses(UUID customerId) throws EntityNotFoundException {
         if (!customerRepository.existsById(customerId)) {
             throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
         }
 
-        return customerAddressDtoMapper.toDtoList(customerAddressRepository.findAllByCustomer_Id(customerId));
+        return customerAddressDtoMapper.toDtoList(customerAddressRepository.findAllByCustomer_UserId(customerId));
     }
 
     @Transactional
-    public CustomerAddressResponseDto createCustomerAddress(Long customerId, CreateCustomerAddressRequestDto createCustomerAddressRequestDto) throws EntityNotFoundException {
+    public CustomerAddressResponseDto createCustomerAddress(UUID customerId, CreateCustomerAddressRequestDto createCustomerAddressRequestDto) throws EntityNotFoundException {
         Customer customer = customerRepository.findById(customerId).orElse(null);
 
         if (customer == null) {
@@ -115,12 +116,12 @@ public class CustomerAddressService {
     }
 
     @Transactional
-    public void deleteCustomerAllAddresses(Long customerId) throws EntityNotFoundException {
+    public void deleteCustomerAllAddresses(UUID customerId) throws EntityNotFoundException {
         if (!customerRepository.existsById(customerId)) {
             throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
         }
 
-        customerAddressRepository.deleteAllByCustomer_Id(customerId);
+        customerAddressRepository.deleteAllByCustomer_UserId(customerId);
     }
 
     @Transactional

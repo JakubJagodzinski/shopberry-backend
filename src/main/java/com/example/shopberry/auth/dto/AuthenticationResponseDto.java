@@ -4,6 +4,8 @@ import com.example.shopberry.user.Role;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
+import java.util.UUID;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -12,7 +14,7 @@ import lombok.*;
 public class AuthenticationResponseDto {
 
     @JsonProperty("user_id")
-    private Long userId;
+    private UUID userId;
 
     @JsonProperty("first_name")
     private String firstName;

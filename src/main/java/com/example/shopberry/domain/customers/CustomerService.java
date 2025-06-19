@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -24,8 +25,8 @@ public class CustomerService {
     }
 
     @Transactional
-    public CustomerResponseDto getCustomerById(Long id) throws EntityNotFoundException {
-        Customer customer = customerRepository.findById(id).orElse(null);
+    public CustomerResponseDto getCustomerById(UUID customerId) throws EntityNotFoundException {
+        Customer customer = customerRepository.findById(customerId).orElse(null);
 
         if (customer == null) {
             throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
@@ -35,8 +36,8 @@ public class CustomerService {
     }
 
     @Transactional
-    public CustomerResponseDto updateCustomerById(Long id, UpdateCustomerRequestDto updateCustomerRequestDto) throws EntityNotFoundException, IllegalArgumentException {
-        Customer customer = customerRepository.findById(id).orElse(null);
+    public CustomerResponseDto updateCustomerById(UUID customerId, UpdateCustomerRequestDto updateCustomerRequestDto) throws EntityNotFoundException, IllegalArgumentException {
+        Customer customer = customerRepository.findById(customerId).orElse(null);
 
         if (customer == null) {
             throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
@@ -50,12 +51,12 @@ public class CustomerService {
     }
 
     @Transactional
-    public void deleteCustomerById(Long id) throws EntityNotFoundException {
-        if (!customerRepository.existsById(id)) {
+    public void deleteCustomerById(UUID customerId) throws EntityNotFoundException {
+        if (!customerRepository.existsById(customerId)) {
             throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
         }
 
-        customerRepository.deleteById(id);
+        customerRepository.deleteById(customerId);
     }
 
 }

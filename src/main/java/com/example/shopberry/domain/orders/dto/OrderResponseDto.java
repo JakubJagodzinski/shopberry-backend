@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -27,7 +28,7 @@ public class OrderResponseDto {
     private Long orderStatusId;
 
     @JsonProperty("customer_id")
-    private Long customerId;
+    private UUID customerId;
 
     @JsonProperty("shipment_type_id")
     private Long shipmentTypeId;

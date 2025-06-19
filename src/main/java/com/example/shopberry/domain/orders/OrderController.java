@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -37,7 +38,7 @@ public class OrderController {
     }
 
     @GetMapping("/customers/{customerId}/orders")
-    public ResponseEntity<List<OrderResponseDto>> getCustomerAllOrders(@PathVariable Long customerId) {
+    public ResponseEntity<List<OrderResponseDto>> getCustomerAllOrders(@PathVariable UUID customerId) {
         List<OrderResponseDto> orderResponseDtoList = orderService.getCustomerAllOrders(customerId);
 
         return ResponseEntity

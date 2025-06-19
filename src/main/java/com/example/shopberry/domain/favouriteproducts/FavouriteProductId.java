@@ -4,6 +4,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.*;
 
+import java.util.UUID;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -11,7 +13,7 @@ import lombok.*;
 public class FavouriteProductId {
 
     @Column(name = "customer_id")
-    private Long customerId;
+    private UUID customerId;
 
     @Column(name = "product_id")
     private Long productId;

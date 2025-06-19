@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -15,7 +16,7 @@ import java.time.LocalDateTime;
 public class FavouriteProductResponseDto {
 
     @JsonProperty("customer_id")
-    private Long customerId;
+    private UUID customerId;
 
     @JsonProperty("product_id")
     private Long productId;

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -20,7 +21,7 @@ public class CartProductController {
     private final CartProductService cartProductService;
 
     @GetMapping("/customers/{customerId}/cart/{productId}")
-    public ResponseEntity<CartProductResponseDto> getCustomerCartProduct(@PathVariable Long customerId, @PathVariable Long productId) {
+    public ResponseEntity<CartProductResponseDto> getCustomerCartProduct(@PathVariable UUID customerId, @PathVariable Long productId) {
         CartProductResponseDto cartProductResponseDto = cartProductService.getCustomerCartProduct(customerId, productId);
 
         return ResponseEntity
@@ -29,7 +30,7 @@ public class CartProductController {
     }
 
     @GetMapping("/customers/{customerId}/cart")
-    public ResponseEntity<List<CartProductResponseDto>> getCustomerAllCartProducts(@PathVariable Long customerId) {
+    public ResponseEntity<List<CartProductResponseDto>> getCustomerAllCartProducts(@PathVariable UUID customerId) {
         List<CartProductResponseDto> cartProductResponseDtoList = cartProductService.getCustomerAllCartProducts(customerId);
 
         return ResponseEntity
@@ -38,7 +39,7 @@ public class CartProductController {
     }
 
     @PostMapping("/customers/{customerId}/cart")
-    public ResponseEntity<CartProductResponseDto> addProductToCustomerCart(@PathVariable Long customerId, @RequestBody AddProductToCartRequestDto addProductToCartRequestDto) {
+    public ResponseEntity<CartProductResponseDto> addProductToCustomerCart(@PathVariable UUID customerId, @RequestBody AddProductToCartRequestDto addProductToCartRequestDto) {
         CartProductResponseDto createdCartProductResponseDto = cartProductService.addProductToCustomerCart(customerId, addProductToCartRequestDto);
 
         return ResponseEntity
@@ -48,7 +49,7 @@ public class CartProductController {
     }
 
     @PatchMapping("/customers/{customerId}/cart/{productId}")
-    public ResponseEntity<CartProductResponseDto> updateCustomerCartProduct(@PathVariable Long customerId, @PathVariable Long productId, @RequestBody UpdateCartProductRequestDto updateCartProductRequestDto) {
+    public ResponseEntity<CartProductResponseDto> updateCustomerCartProduct(@PathVariable UUID customerId, @PathVariable Long productId, @RequestBody UpdateCartProductRequestDto updateCartProductRequestDto) {
         CartProductResponseDto updatedCartProductResponseDto = cartProductService.updateCustomerCartProduct(customerId, productId, updateCartProductRequestDto);
 
         return ResponseEntity
@@ -57,7 +58,7 @@ public class CartProductController {
     }
 
     @DeleteMapping("/customers/{customerId}/cart/{productId}")
-    public ResponseEntity<MessageResponseDto> removeProductFromCustomerCart(@PathVariable Long customerId, @PathVariable Long productId) {
+    public ResponseEntity<MessageResponseDto> removeProductFromCustomerCart(@PathVariable UUID customerId, @PathVariable Long productId) {
         cartProductService.removeProductFromCustomerCart(customerId, productId);
 
         return ResponseEntity

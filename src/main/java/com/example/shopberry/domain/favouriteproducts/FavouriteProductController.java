@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -19,7 +20,7 @@ public class FavouriteProductController {
     private final FavouriteProductService favouriteProductService;
 
     @GetMapping("/customers/{customerId}/favourites")
-    public ResponseEntity<List<FavouriteProductResponseDto>> getCustomerAllFavourites(@PathVariable Long customerId) {
+    public ResponseEntity<List<FavouriteProductResponseDto>> getCustomerAllFavourites(@PathVariable UUID customerId) {
         List<FavouriteProductResponseDto> favouriteProductResponseDtoList = favouriteProductService.getCustomerAllFavourites(customerId);
 
         return ResponseEntity
@@ -28,7 +29,7 @@ public class FavouriteProductController {
     }
 
     @PostMapping("/customers/{customerId}/favourites")
-    public ResponseEntity<FavouriteProductResponseDto> addProductToCustomerFavourites(@PathVariable Long customerId, @RequestBody AddProductToFavouritesRequestDto addProductToFavouritesRequestDto) {
+    public ResponseEntity<FavouriteProductResponseDto> addProductToCustomerFavourites(@PathVariable UUID customerId, @RequestBody AddProductToFavouritesRequestDto addProductToFavouritesRequestDto) {
         FavouriteProductResponseDto createdFavouriteProductResponseDto = favouriteProductService.addProductToCustomerFavourites(customerId, addProductToFavouritesRequestDto);
 
         return ResponseEntity
@@ -38,7 +39,7 @@ public class FavouriteProductController {
     }
 
     @DeleteMapping("/customers/{customerId}/favourites/{productId}")
-    public ResponseEntity<MessageResponseDto> removeProductFromCustomerFavourites(@PathVariable Long customerId, @PathVariable Long productId) {
+    public ResponseEntity<MessageResponseDto> removeProductFromCustomerFavourites(@PathVariable UUID customerId, @PathVariable Long productId) {
         favouriteProductService.removeProductFromCustomerFavourites(customerId, productId);
 
         return ResponseEntity

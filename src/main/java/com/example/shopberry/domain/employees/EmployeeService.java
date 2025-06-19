@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -29,8 +30,8 @@ public class EmployeeService {
     }
 
     @Transactional
-    public EmployeeResponseDto getEmployeeById(Long id) throws EntityNotFoundException {
-        Employee employee = employeeRepository.findById(id).orElse(null);
+    public EmployeeResponseDto getEmployeeById(UUID employeeId) throws EntityNotFoundException {
+        Employee employee = employeeRepository.findById(employeeId).orElse(null);
 
         if (employee == null) {
             throw new EntityNotFoundException(EMPLOYEE_NOT_FOUND_MESSAGE);
@@ -40,8 +41,8 @@ public class EmployeeService {
     }
 
     @Transactional
-    public EmployeeResponseDto updateEmployeeById(Long id, UpdateEmployeeRequestDto updateEmployeeRequestDto) throws EntityNotFoundException, IllegalArgumentException {
-        Employee employee = employeeRepository.findById(id).orElse(null);
+    public EmployeeResponseDto updateEmployeeById(UUID employeeId, UpdateEmployeeRequestDto updateEmployeeRequestDto) throws EntityNotFoundException, IllegalArgumentException {
+        Employee employee = employeeRepository.findById(employeeId).orElse(null);
 
         if (employee == null) {
             throw new EntityNotFoundException(EMPLOYEE_NOT_FOUND_MESSAGE);
@@ -61,12 +62,12 @@ public class EmployeeService {
     }
 
     @Transactional
-    public void deleteEmployeeById(Long id) throws EntityNotFoundException {
-        if (!employeeRepository.existsById(id)) {
+    public void deleteEmployeeById(UUID employeeId) throws EntityNotFoundException {
+        if (!employeeRepository.existsById(employeeId)) {
             throw new EntityNotFoundException(EMPLOYEE_NOT_FOUND_MESSAGE);
         }
 
-        employeeRepository.deleteById(id);
+        employeeRepository.deleteById(employeeId);
     }
 
 }
