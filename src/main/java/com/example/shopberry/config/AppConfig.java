@@ -1,5 +1,6 @@
 package com.example.shopberry.config;
 
+import com.example.shopberry.common.constants.messages.UserMessages;
 import com.example.shopberry.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -19,12 +20,10 @@ public class AppConfig {
 
     private final UserRepository userRepository;
 
-    private static final String USER_NOT_FOUND_MESSAGE = "User not found";
-
     @Bean
     public UserDetailsService userDetailsService() throws UsernameNotFoundException {
         return username -> userRepository.findByEmail(username)
-                .orElseThrow(() -> new UsernameNotFoundException(USER_NOT_FOUND_MESSAGE));
+                .orElseThrow(() -> new UsernameNotFoundException(UserMessages.USER_NOT_FOUND));
     }
 
     @Bean

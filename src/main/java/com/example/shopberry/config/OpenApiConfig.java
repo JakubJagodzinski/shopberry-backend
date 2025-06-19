@@ -1,5 +1,8 @@
 package com.example.shopberry.config;
 
+import com.example.shopberry.common.constants.ApiConstants;
+import com.example.shopberry.common.constants.HttpStatusConstants;
+import com.example.shopberry.common.constants.SecurityConstants;
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
@@ -14,36 +17,22 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class OpenApiConfig {
 
-    private static final String SECURITY_SCHEME_NAME = "bearerAuth";
-
-    public static final String API_TITLE = "Shopberry API";
-    public static final String API_VERSION = "1.0";
-    public static final String API_DESCRIPTION = "Shopberry API documentation";
-
-    public static final String BAD_REQUEST_CODE = "400";
-    public static final String FORBIDDEN_CODE = "403";
-    public static final String NOT_FOUND_CODE = "404";
-
-    public static final String BAD_REQUEST_DESCRIPTION = "Bad Request";
-    public static final String FORBIDDEN_DESCRIPTION = "Forbidden";
-    public static final String NOT_FOUND_DESCRIPTION = "Not Found";
-
     @Bean
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .info(
                         new Info()
-                                .title(API_TITLE)
-                                .version(API_VERSION)
-                                .description(API_DESCRIPTION)
+                                .title(ApiConstants.API_INFO_TITLE)
+                                .version(ApiConstants.API_INFO_VERSION)
+                                .description(ApiConstants.API_INFO_DESCRIPTION)
                 )
-                .addSecurityItem(new SecurityRequirement().addList(SECURITY_SCHEME_NAME))
+                .addSecurityItem(new SecurityRequirement().addList(SecurityConstants.SECURITY_SCHEME_NAME))
                 .components(
                         new Components()
                                 .addSecuritySchemes(
-                                        SECURITY_SCHEME_NAME,
+                                        SecurityConstants.SECURITY_SCHEME_NAME,
                                         new SecurityScheme()
-                                                .name(SECURITY_SCHEME_NAME)
+                                                .name(SecurityConstants.SECURITY_SCHEME_NAME)
                                                 .type(SecurityScheme.Type.HTTP)
                                                 .scheme("bearer")
                                                 .bearerFormat("JWT")
@@ -57,24 +46,24 @@ public class OpenApiConfig {
                 pathItem.readOperations().forEach(operation -> {
                     ApiResponses responses = operation.getResponses();
 
-                    if (!responses.containsKey(BAD_REQUEST_CODE)) {
+                    if (!responses.containsKey(HttpStatusConstants.HTTP_STATUS_BAD_REQUEST)) {
                         responses.addApiResponse(
-                                BAD_REQUEST_CODE,
-                                new ApiResponse().description(BAD_REQUEST_DESCRIPTION)
+                                HttpStatusConstants.HTTP_STATUS_BAD_REQUEST,
+                                new ApiResponse().description(HttpStatusConstants.HTTP_DESCRIPTION_BAD_REQUEST)
                         );
                     }
 
-                    if (!responses.containsKey(FORBIDDEN_CODE)) {
+                    if (!responses.containsKey(HttpStatusConstants.HTTP_STATUS_FORBIDDEN)) {
                         responses.addApiResponse(
-                                FORBIDDEN_CODE,
-                                new ApiResponse().description(FORBIDDEN_DESCRIPTION)
+                                HttpStatusConstants.HTTP_STATUS_FORBIDDEN,
+                                new ApiResponse().description(HttpStatusConstants.HTTP_DESCRIPTION_FORBIDDEN)
                         );
                     }
 
-                    if (!responses.containsKey(NOT_FOUND_CODE)) {
+                    if (!responses.containsKey(HttpStatusConstants.HTTP_STATUS_NOT_FOUND)) {
                         responses.addApiResponse(
-                                NOT_FOUND_CODE,
-                                new ApiResponse().description(NOT_FOUND_DESCRIPTION)
+                                HttpStatusConstants.HTTP_STATUS_NOT_FOUND,
+                                new ApiResponse().description(HttpStatusConstants.HTTP_DESCRIPTION_NOT_FOUND)
                         );
                     }
                 })
