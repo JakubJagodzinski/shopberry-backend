@@ -1,4 +1,4 @@
-package com.example.shopberry.domain.cartentries.dto;
+package com.example.shopberry.domain.cartproducts.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class AddProductToCustomerCartRequestDto {
+public class AddProductToCartRequestDto {
 
     @JsonProperty("product_id")
     private Long productId;

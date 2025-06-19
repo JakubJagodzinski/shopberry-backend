@@ -1,4 +1,4 @@
-package com.example.shopberry.domain.cartentries.dto;
+package com.example.shopberry.domain.cartproducts.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CartEntryResponseDto {
+public class CartProductResponseDto {
 
     @JsonProperty("customer_id")
     private Long customerId;

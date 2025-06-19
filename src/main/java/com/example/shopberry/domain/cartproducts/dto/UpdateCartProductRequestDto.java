@@ -1,4 +1,4 @@
-package com.example.shopberry.domain.cartentries.dto;
+package com.example.shopberry.domain.cartproducts.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UpdateCartEntryRequestDto {
+public class UpdateCartProductRequestDto {
 
     private Long quantity;
 

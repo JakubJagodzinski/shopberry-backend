@@ -1,4 +1,4 @@
-package com.example.shopberry.domain.cartentries;
+package com.example.shopberry.domain.cartproducts;
 
 import com.example.shopberry.domain.customers.Customer;
 import com.example.shopberry.domain.products.Product;
@@ -13,21 +13,21 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "cart_entries")
-public class CartEntry {
+@Table(name = "cart_products")
+public class CartProduct {
 
     @EmbeddedId
-    private CartEntryId id;
+    private CartProductId id;
 
     @ManyToOne
     @MapsId("customerId")
-    @JoinColumn(name = "customer_id", foreignKey = @ForeignKey(name = "fk_cart_entry_customer"))
+    @JoinColumn(name = "customer_id", foreignKey = @ForeignKey(name = "fk_cart_products_customer"))
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Customer customer;
 
     @ManyToOne
     @MapsId("productId")
-    @JoinColumn(name = "product_id", foreignKey = @ForeignKey(name = "fk_cart_entry_product"))
+    @JoinColumn(name = "product_id", foreignKey = @ForeignKey(name = "fk_cart_products_product"))
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Product product;
 

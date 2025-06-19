@@ -1,4 +1,4 @@
-package com.example.shopberry.domain.cartentries;
+package com.example.shopberry.domain.cartproducts;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
@@ -8,7 +8,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Embeddable
-public class CartEntryId {
+public class CartProductId {
 
     @Column(name = "customer_id")
     private Long customerId;
