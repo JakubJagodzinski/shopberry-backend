@@ -38,7 +38,7 @@ public class ProductPromotionService {
             throw new EntityNotFoundException(PRODUCT_NOT_FOUND_MESSAGE);
         }
 
-        return productPromotionDtoMapper.toDtoList(productPromotionRepository.findByProduct_ProductId(productId));
+        return productPromotionDtoMapper.toDtoList(productPromotionRepository.findAllByProduct_ProductId(productId));
     }
 
     @Transactional
@@ -47,7 +47,7 @@ public class ProductPromotionService {
             throw new EntityNotFoundException(PROMOTION_NOT_FOUND_MESSAGE);
         }
 
-        return productPromotionDtoMapper.toDtoList(productPromotionRepository.findByPromotion_PromotionId(promotionId));
+        return productPromotionDtoMapper.toDtoList(productPromotionRepository.findAllByPromotion_PromotionId(promotionId));
     }
 
     @Transactional
@@ -85,7 +85,7 @@ public class ProductPromotionService {
             throw new EntityNotFoundException(PRODUCT_NOT_FOUND_MESSAGE);
         }
 
-        productPromotionRepository.deleteByProduct_ProductId(productId);
+        productPromotionRepository.deleteAllByProduct_ProductId(productId);
     }
 
     @Transactional
@@ -94,7 +94,7 @@ public class ProductPromotionService {
             throw new EntityNotFoundException(PROMOTION_NOT_FOUND_MESSAGE);
         }
 
-        productPromotionRepository.deleteByPromotion_PromotionId(promotionId);
+        productPromotionRepository.deleteAllByPromotion_PromotionId(promotionId);
     }
 
 }

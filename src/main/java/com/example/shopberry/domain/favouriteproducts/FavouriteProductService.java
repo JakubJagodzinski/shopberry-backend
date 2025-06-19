@@ -36,7 +36,7 @@ public class FavouriteProductService {
             throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
         }
 
-        return favouriteProductDtoMapper.toDtoList(favouriteProductRepository.findByCustomer_UserId(customerId));
+        return favouriteProductDtoMapper.toDtoList(favouriteProductRepository.findAllByCustomer_UserId(customerId));
     }
 
     @Transactional

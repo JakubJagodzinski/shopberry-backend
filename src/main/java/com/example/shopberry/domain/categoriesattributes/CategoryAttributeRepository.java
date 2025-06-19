@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface CategoryAttributeRepository extends JpaRepository<CategoryAttribute, CategoryAttributeId> {
 
-    List<CategoryAttribute> findByCategory_CategoryId(Long categoryId);
+    List<CategoryAttribute> findAllByCategory_CategoryId(Long categoryId);
 
 }

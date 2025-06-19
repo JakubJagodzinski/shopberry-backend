@@ -6,12 +6,12 @@ import java.util.List;
 
 public interface ProductPromotionRepository extends JpaRepository<ProductPromotion, ProductPromotionId> {
 
-    List<ProductPromotion> findByProduct_ProductId(Long productId);
+    List<ProductPromotion> findAllByProduct_ProductId(Long productId);
 
-    List<ProductPromotion> findByPromotion_PromotionId(Long promotionId);
+    List<ProductPromotion> findAllByPromotion_PromotionId(Long promotionId);
 
-    void deleteByProduct_ProductId(Long productId);
+    void deleteAllByProduct_ProductId(Long productId);
 
-    void deleteByPromotion_PromotionId(Long promotionId);
+    void deleteAllByPromotion_PromotionId(Long promotionId);
 
 }

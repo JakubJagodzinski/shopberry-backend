@@ -41,7 +41,7 @@ public class OrderProductService {
             throw new IllegalArgumentException(ORDER_NOT_FOUND_MESSAGE);
         }
 
-        return orderProductDtoMapper.toDtoList(orderProductRepository.findByOrder_OrderId(orderId));
+        return orderProductDtoMapper.toDtoList(orderProductRepository.findAllByOrder_OrderId(orderId));
     }
 
     @Transactional

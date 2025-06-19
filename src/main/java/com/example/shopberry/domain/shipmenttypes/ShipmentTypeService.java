@@ -75,7 +75,7 @@ public class ShipmentTypeService {
         }
 
         if (updateShipmentTypeRequestDto.getShipmentName() != null) {
-            ShipmentType otherShipmentType = shipmentTypeRepository.findByShipmentName(updateShipmentTypeRequestDto.getShipmentName());
+            ShipmentType otherShipmentType = shipmentTypeRepository.findByShipmentName(updateShipmentTypeRequestDto.getShipmentName()).orElse(null);
 
             if (otherShipmentType != null && !otherShipmentType.getShipmentTypeId().equals(id)) {
                 throw new IllegalArgumentException(SHIPMENT_TYPE_ALREADY_EXISTS_MESSAGE);

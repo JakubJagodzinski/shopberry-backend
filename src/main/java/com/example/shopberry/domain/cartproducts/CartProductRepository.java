@@ -7,6 +7,6 @@ import java.util.UUID;
 
 public interface CartProductRepository extends JpaRepository<CartProduct, CartProductId> {
 
-    List<CartProduct> findByCustomer_UserId(UUID customerId);
+    List<CartProduct> findAllByCustomer_UserId(UUID customerId);
 
 }

@@ -69,7 +69,7 @@ public class EmployeeTypeService {
         }
 
         if (updateEmployeeTypeRequestDto.getEmployeeTypeName() != null) {
-            EmployeeType otherEmployeeType = employeeTypeRepository.findByEmployeeTypeName(updateEmployeeTypeRequestDto.getEmployeeTypeName());
+            EmployeeType otherEmployeeType = employeeTypeRepository.findByEmployeeTypeName(updateEmployeeTypeRequestDto.getEmployeeTypeName()).orElse(null);
 
             if (otherEmployeeType != null && !otherEmployeeType.getEmployeeTypeId().equals(id)) {
                 throw new IllegalArgumentException(EMPLOYEE_TYPE_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE);

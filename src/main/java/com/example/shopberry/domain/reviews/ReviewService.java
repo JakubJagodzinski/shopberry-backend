@@ -44,7 +44,7 @@ public class ReviewService {
             throw new EntityNotFoundException(PRODUCT_NOT_FOUND_MESSAGE);
         }
 
-        return reviewDtoMapper.toDtoList(reviewRepository.findByProduct_ProductId(productId));
+        return reviewDtoMapper.toDtoList(reviewRepository.findAllByProduct_ProductId(productId));
     }
 
     @Transactional
@@ -53,7 +53,7 @@ public class ReviewService {
             throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
         }
 
-        return reviewDtoMapper.toDtoList(reviewRepository.findByCustomer_UserId(customerId));
+        return reviewDtoMapper.toDtoList(reviewRepository.findAllByCustomer_UserId(customerId));
     }
 
     @Transactional
@@ -150,7 +150,7 @@ public class ReviewService {
             throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
         }
 
-        reviewRepository.deleteByCustomer_UserId(customerId);
+        reviewRepository.deleteAllByCustomer_UserId(customerId);
     }
 
     @Transactional
@@ -159,7 +159,7 @@ public class ReviewService {
             throw new EntityNotFoundException(PRODUCT_NOT_FOUND_MESSAGE);
         }
 
-        reviewRepository.deleteByProduct_ProductId(productId);
+        reviewRepository.deleteAllByProduct_ProductId(productId);
     }
 
 }

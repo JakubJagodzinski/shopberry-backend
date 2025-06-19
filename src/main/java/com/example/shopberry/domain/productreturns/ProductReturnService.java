@@ -54,7 +54,7 @@ public class ProductReturnService {
             throw new EntityNotFoundException(ORDER_NOT_FOUND_MESSAGE);
         }
 
-        return productReturnDtoMapper.toDtoList(productReturnRepository.findByOrder_OrderId(orderId));
+        return productReturnDtoMapper.toDtoList(productReturnRepository.findAllByOrder_OrderId(orderId));
     }
 
     @Transactional

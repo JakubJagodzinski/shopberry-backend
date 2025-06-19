@@ -80,7 +80,7 @@ public class PromotionService {
         }
 
         if (updatePromotionRequestDto.getPromotionName() != null) {
-            Promotion otherPromotion = promotionRepository.findByPromotionName(updatePromotionRequestDto.getPromotionName());
+            Promotion otherPromotion = promotionRepository.findByPromotionName(updatePromotionRequestDto.getPromotionName()).orElse(null);
 
             if (otherPromotion != null && !otherPromotion.getPromotionId().equals(id)) {
                 throw new IllegalArgumentException(PROMOTION_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE);

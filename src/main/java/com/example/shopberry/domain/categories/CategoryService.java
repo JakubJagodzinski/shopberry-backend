@@ -92,7 +92,7 @@ public class CategoryService {
         }
 
         if (updateCategoryRequestDto.getCategoryName() != null) {
-            Category otherCategory = categoryRepository.findByCategoryName(updateCategoryRequestDto.getCategoryName());
+            Category otherCategory = categoryRepository.findByCategoryName(updateCategoryRequestDto.getCategoryName()).orElse(null);
 
             if (otherCategory != null && !otherCategory.getCategoryId().equals(id)) {
                 throw new IllegalArgumentException(CATEGORY_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE);

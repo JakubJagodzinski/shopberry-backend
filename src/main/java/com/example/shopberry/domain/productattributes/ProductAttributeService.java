@@ -36,7 +36,7 @@ public class ProductAttributeService {
             throw new EntityNotFoundException(PRODUCT_NOT_FOUND_MESSAGE);
         }
 
-        return productAttributeDtoMapper.toDtoList(productAttributeRepository.findByProduct_ProductId(productId));
+        return productAttributeDtoMapper.toDtoList(productAttributeRepository.findAllByProduct_ProductId(productId));
     }
 
     @Transactional
@@ -45,7 +45,7 @@ public class ProductAttributeService {
             throw new EntityNotFoundException(ATTRIBUTE_NOT_FOUND_MESSAGE);
         }
 
-        return productAttributeDtoMapper.toDtoList(productAttributeRepository.findByAttribute_AttributeId(attributeId));
+        return productAttributeDtoMapper.toDtoList(productAttributeRepository.findAllByAttribute_AttributeId(attributeId));
     }
 
     @Transactional

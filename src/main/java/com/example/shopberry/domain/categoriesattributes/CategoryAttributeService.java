@@ -35,7 +35,7 @@ public class CategoryAttributeService {
             throw new EntityNotFoundException(CATEGORY_NOT_FOUND_MESSAGE);
         }
 
-        return categoryAttributeDtoMapper.toDtoList(categoryAttributeRepository.findByCategory_CategoryId(categoryId));
+        return categoryAttributeDtoMapper.toDtoList(categoryAttributeRepository.findAllByCategory_CategoryId(categoryId));
     }
 
     @Transactional

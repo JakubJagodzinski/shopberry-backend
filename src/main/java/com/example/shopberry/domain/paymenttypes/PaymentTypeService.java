@@ -69,7 +69,7 @@ public class PaymentTypeService {
         }
 
         if (updatePaymentTypeRequestDto.getPaymentName() != null) {
-            PaymentType otherPaymentType = paymentTypeRepository.findByPaymentName(updatePaymentTypeRequestDto.getPaymentName());
+            PaymentType otherPaymentType = paymentTypeRepository.findByPaymentName(updatePaymentTypeRequestDto.getPaymentName()).orElse(null);
 
             if (otherPaymentType != null && !otherPaymentType.getPaymentTypeId().equals(id)) {
                 throw new IllegalArgumentException(PAYMENT_TYPE_ALREADY_EXISTS_MESSAGE);

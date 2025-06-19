@@ -69,7 +69,7 @@ public class CauseOfReturnService {
         }
 
         if (updateCauseOfReturnRequestDto.getCause() != null) {
-            CauseOfReturn otherCauseOfReturn = causeOfReturnRepository.findByCause(updateCauseOfReturnRequestDto.getCause());
+            CauseOfReturn otherCauseOfReturn = causeOfReturnRepository.findByCause(updateCauseOfReturnRequestDto.getCause()).orElse(null);
 
             if (otherCauseOfReturn != null && !otherCauseOfReturn.getCauseOfReturnId().equals(id)) {
                 throw new IllegalArgumentException(CAUSE_OF_RETURN_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE);

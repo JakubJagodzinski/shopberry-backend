@@ -62,7 +62,7 @@ public class ProducerService {
         }
 
         if (updateProducerRequestDto.getProducerName() != null) {
-            Producer otherProducer = producerRepository.findByProducerName(updateProducerRequestDto.getProducerName());
+            Producer otherProducer = producerRepository.findByProducerName(updateProducerRequestDto.getProducerName()).orElse(null);
 
             if (otherProducer != null && !producer.getProducerId().equals(otherProducer.getProducerId())) {
                 throw new IllegalArgumentException(PRODUCER_WITH_THAT_NAME_ALREADY_EXISTS);

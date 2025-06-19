@@ -7,12 +7,12 @@ import java.util.UUID;
 
 public interface ReviewRepository extends JpaRepository<Review, Long> {
 
-    List<Review> findByProduct_ProductId(Long productId);
+    List<Review> findAllByProduct_ProductId(Long productId);
 
-    List<Review> findByCustomer_UserId(UUID customerId);
+    List<Review> findAllByCustomer_UserId(UUID customerId);
 
-    void deleteByCustomer_UserId(UUID customerId);
+    void deleteAllByCustomer_UserId(UUID customerId);
 
-    void deleteByProduct_ProductId(Long productId);
+    void deleteAllByProduct_ProductId(Long productId);
 
 }

@@ -69,7 +69,7 @@ public class AttributeService {
         }
 
         if (updateAttributeRequestDto.getAttributeName() != null) {
-            Attribute otherAttribute = attributeRepository.findByAttributeName(updateAttributeRequestDto.getAttributeName());
+            Attribute otherAttribute = attributeRepository.findByAttributeName(updateAttributeRequestDto.getAttributeName()).orElse(null);
 
             if (otherAttribute != null && !otherAttribute.getAttributeId().equals(attribute.getAttributeId())) {
                 throw new IllegalArgumentException(ATTRIBUTE_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE);

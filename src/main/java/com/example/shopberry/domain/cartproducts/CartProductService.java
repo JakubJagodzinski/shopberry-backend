@@ -51,7 +51,7 @@ public class CartProductService {
             throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
         }
 
-        return cartProductDtoMapper.toDtoList(cartProductRepository.findByCustomer_UserId(customerId));
+        return cartProductDtoMapper.toDtoList(cartProductRepository.findAllByCustomer_UserId(customerId));
     }
 
     @Transactional

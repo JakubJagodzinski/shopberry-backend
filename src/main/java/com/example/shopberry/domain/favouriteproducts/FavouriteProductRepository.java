@@ -7,6 +7,6 @@ import java.util.UUID;
 
 public interface FavouriteProductRepository extends JpaRepository<FavouriteProduct, FavouriteProductId> {
 
-    List<FavouriteProduct> findByCustomer_UserId(UUID customerId);
+    List<FavouriteProduct> findAllByCustomer_UserId(UUID customerId);
 
 }

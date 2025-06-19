@@ -69,7 +69,7 @@ public class OrderStatusService {
         }
 
         if (updateOrderStatusRequestDto.getOrderStatusName() != null) {
-            OrderStatus otherOrderStatus = orderStatusRepository.findByOrderStatusName(updateOrderStatusRequestDto.getOrderStatusName());
+            OrderStatus otherOrderStatus = orderStatusRepository.findByOrderStatusName(updateOrderStatusRequestDto.getOrderStatusName()).orElse(null);
 
             if (otherOrderStatus != null && !otherOrderStatus.getOrderStatusId().equals(id)) {
                 throw new IllegalArgumentException(ORDER_STATUS_ALREADY_EXISTS_MESSAGE);
