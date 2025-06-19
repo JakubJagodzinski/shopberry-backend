@@ -1,5 +1,7 @@
 package com.example.shopberry.domain.productpromotions;
 
+import com.example.shopberry.common.constants.messages.ProductMessages;
+import com.example.shopberry.common.constants.messages.PromotionMessages;
 import com.example.shopberry.domain.productpromotions.dto.AssignPromotionToProductRequestDto;
 import com.example.shopberry.domain.productpromotions.dto.ProductPromotionDtoMapper;
 import com.example.shopberry.domain.productpromotions.dto.ProductPromotionResponseDto;
@@ -24,10 +26,6 @@ public class ProductPromotionService {
 
     private final ProductPromotionDtoMapper productPromotionDtoMapper;
 
-    private static final String PROMOTION_ALREADY_ASSIGNED_TO_THIS_PRODUCT_MESSAGE = "Promotion already assigned to this product";
-    private static final String PRODUCT_NOT_FOUND_MESSAGE = "Product not found";
-    private static final String PROMOTION_NOT_FOUND_MESSAGE = "Promotion not found";
-
     public List<ProductPromotionResponseDto> getAllProductPromotions() {
         return productPromotionDtoMapper.toDtoList(productPromotionRepository.findAll());
     }
@@ -35,7 +33,7 @@ public class ProductPromotionService {
     @Transactional
     public List<ProductPromotionResponseDto> getProductAllPromotions(Long productId) throws EntityNotFoundException {
         if (!productRepository.existsById(productId)) {
-            throw new EntityNotFoundException(PRODUCT_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(ProductMessages.PRODUCT_NOT_FOUND);
         }
 
         return productPromotionDtoMapper.toDtoList(productPromotionRepository.findAllByProduct_ProductId(productId));
@@ -44,7 +42,7 @@ public class ProductPromotionService {
     @Transactional
     public List<ProductPromotionResponseDto> getAllProductsWithPromotion(Long promotionId) throws EntityNotFoundException {
         if (!promotionRepository.existsById(promotionId)) {
-            throw new EntityNotFoundException(PROMOTION_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(PromotionMessages.PROMOTION_NOT_FOUND);
         }
 
         return productPromotionDtoMapper.toDtoList(productPromotionRepository.findAllByPromotion_PromotionId(promotionId));
@@ -55,19 +53,19 @@ public class ProductPromotionService {
         Product product = productRepository.findById(productId).orElse(null);
 
         if (product == null) {
-            throw new EntityNotFoundException(PRODUCT_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(ProductMessages.PRODUCT_NOT_FOUND);
         }
 
         Promotion promotion = promotionRepository.findById(assignPromotionToProductRequestDto.getPromotionId()).orElse(null);
 
         if (promotion == null) {
-            throw new EntityNotFoundException(PROMOTION_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(PromotionMessages.PROMOTION_NOT_FOUND);
         }
 
         ProductPromotionId productPromotionId = new ProductPromotionId(productId, assignPromotionToProductRequestDto.getPromotionId());
 
         if (productPromotionRepository.existsById(productPromotionId)) {
-            throw new IllegalArgumentException(PROMOTION_ALREADY_ASSIGNED_TO_THIS_PRODUCT_MESSAGE);
+            throw new IllegalArgumentException(PromotionMessages.PROMOTION_ALREADY_ASSIGNED_TO_THIS_PRODUCT);
         }
 
         ProductPromotion productPromotion = new ProductPromotion();
@@ -82,7 +80,7 @@ public class ProductPromotionService {
     @Transactional
     public void unassignAllPromotionsFromProduct(Long productId) throws EntityNotFoundException {
         if (!productRepository.existsById(productId)) {
-            throw new EntityNotFoundException(PRODUCT_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(ProductMessages.PRODUCT_NOT_FOUND);
         }
 
         productPromotionRepository.deleteAllByProduct_ProductId(productId);
@@ -91,7 +89,7 @@ public class ProductPromotionService {
     @Transactional
     public void deleteProductPromotionsByPromotionId(Long promotionId) throws EntityNotFoundException {
         if (!promotionRepository.existsById(promotionId)) {
-            throw new EntityNotFoundException(PROMOTION_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(PromotionMessages.PROMOTION_NOT_FOUND);
         }
 
         productPromotionRepository.deleteAllByPromotion_PromotionId(promotionId);

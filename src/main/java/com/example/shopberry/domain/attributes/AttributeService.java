@@ -1,5 +1,6 @@
 package com.example.shopberry.domain.attributes;
 
+import com.example.shopberry.common.constants.messages.AttributeMessages;
 import com.example.shopberry.domain.attributes.dto.AttributeDtoMapper;
 import com.example.shopberry.domain.attributes.dto.AttributeResponseDto;
 import com.example.shopberry.domain.attributes.dto.CreateAttributeRequestDto;
@@ -19,11 +20,6 @@ public class AttributeService {
 
     private final AttributeDtoMapper attributeDtoMapper;
 
-    private static final String ATTRIBUTE_NOT_FOUND_MESSAGE = "Attribute not found";
-    private static final String ATTRIBUTE_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE = "Attribute with that name already exists";
-    private static final String ATTRIBUTE_NAME_CANNOT_BY_NULL_MESSAGE = "Attribute name cannot be null";
-    private static final String ATTRIBUTE_NAME_CANNOT_BY_EMPTY_MESSAGE = "Attribute name cannot be empty";
-
     public List<AttributeResponseDto> getAllAttributes() {
         return attributeDtoMapper.toDtoList(attributeRepository.findAll());
     }
@@ -33,7 +29,7 @@ public class AttributeService {
         Attribute attribute = attributeRepository.findById(id).orElse(null);
 
         if (attribute == null) {
-            throw new EntityNotFoundException(ATTRIBUTE_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(AttributeMessages.ATTRIBUTE_NOT_FOUND);
         }
 
         return attributeDtoMapper.toDto(attribute);
@@ -44,15 +40,15 @@ public class AttributeService {
         Attribute attribute = new Attribute();
 
         if (attributeRepository.existsByAttributeName(createAttributeRequestDto.getAttributeName())) {
-            throw new IllegalArgumentException(ATTRIBUTE_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE);
+            throw new IllegalArgumentException(AttributeMessages.ATTRIBUTE_WITH_THAT_NAME_ALREADY_EXISTS);
         }
 
         if (createAttributeRequestDto.getAttributeName() == null) {
-            throw new IllegalArgumentException(ATTRIBUTE_NAME_CANNOT_BY_NULL_MESSAGE);
+            throw new IllegalArgumentException(AttributeMessages.ATTRIBUTE_NAME_CANNOT_BE_NULL);
         }
 
         if (createAttributeRequestDto.getAttributeName().isEmpty()) {
-            throw new IllegalArgumentException(ATTRIBUTE_NAME_CANNOT_BY_EMPTY_MESSAGE);
+            throw new IllegalArgumentException(AttributeMessages.ATTRIBUTE_NAME_CANNOT_BE_EMPTY);
         }
 
         attribute.setAttributeName(createAttributeRequestDto.getAttributeName());
@@ -65,18 +61,18 @@ public class AttributeService {
         Attribute attribute = attributeRepository.findById(id).orElse(null);
 
         if (attribute == null) {
-            throw new EntityNotFoundException(ATTRIBUTE_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(AttributeMessages.ATTRIBUTE_NOT_FOUND);
         }
 
         if (updateAttributeRequestDto.getAttributeName() != null) {
             Attribute otherAttribute = attributeRepository.findByAttributeName(updateAttributeRequestDto.getAttributeName()).orElse(null);
 
             if (otherAttribute != null && !otherAttribute.getAttributeId().equals(attribute.getAttributeId())) {
-                throw new IllegalArgumentException(ATTRIBUTE_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE);
+                throw new IllegalArgumentException(AttributeMessages.ATTRIBUTE_WITH_THAT_NAME_ALREADY_EXISTS);
             }
 
             if (updateAttributeRequestDto.getAttributeName().isEmpty()) {
-                throw new IllegalArgumentException(ATTRIBUTE_NAME_CANNOT_BY_EMPTY_MESSAGE);
+                throw new IllegalArgumentException(AttributeMessages.ATTRIBUTE_NAME_CANNOT_BE_EMPTY);
             }
 
             attribute.setAttributeName(updateAttributeRequestDto.getAttributeName());
@@ -88,7 +84,7 @@ public class AttributeService {
     @Transactional
     public void deleteAttributeById(Long id) throws EntityNotFoundException {
         if (!attributeRepository.existsById(id)) {
-            throw new EntityNotFoundException(ATTRIBUTE_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(AttributeMessages.ATTRIBUTE_NOT_FOUND);
         }
 
         attributeRepository.deleteById(id);

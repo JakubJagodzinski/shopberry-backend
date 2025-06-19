@@ -1,5 +1,7 @@
 package com.example.shopberry.domain.favouriteproducts;
 
+import com.example.shopberry.common.constants.messages.CustomerMessages;
+import com.example.shopberry.common.constants.messages.ProductMessages;
 import com.example.shopberry.domain.customers.Customer;
 import com.example.shopberry.domain.customers.CustomerRepository;
 import com.example.shopberry.domain.favouriteproducts.dto.AddProductToFavouritesRequestDto;
@@ -25,15 +27,10 @@ public class FavouriteProductService {
 
     private final FavouriteProductDtoMapper favouriteProductDtoMapper;
 
-    private static final String CUSTOMER_NOT_FOUND_MESSAGE = "Customer not found";
-    private static final String PRODUCT_NOT_FOUND_MESSAGE = "Product not found";
-    private static final String PRODUCT_IS_NOT_IN_FAVOURITES = "Product is not in favourites";
-    private static final String PRODUCT_IS_ALREADY_IN_FAVOURITES = "Product is already in favourites";
-
     @Transactional
     public List<FavouriteProductResponseDto> getCustomerAllFavourites(UUID customerId) throws EntityNotFoundException {
         if (!customerRepository.existsById(customerId)) {
-            throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(CustomerMessages.CUSTOMER_NOT_FOUND);
         }
 
         return favouriteProductDtoMapper.toDtoList(favouriteProductRepository.findAllByCustomer_UserId(customerId));
@@ -44,19 +41,19 @@ public class FavouriteProductService {
         Customer customer = customerRepository.findById(customerId).orElse(null);
 
         if (customer == null) {
-            throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(CustomerMessages.CUSTOMER_NOT_FOUND);
         }
 
         Product product = productRepository.findById(addProductToFavouritesRequestDto.getProductId()).orElse(null);
 
         if (product == null) {
-            throw new EntityNotFoundException(PRODUCT_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(ProductMessages.PRODUCT_NOT_FOUND);
         }
 
         FavouriteProductId favouriteProductId = new FavouriteProductId(customerId, addProductToFavouritesRequestDto.getProductId());
 
         if (favouriteProductRepository.existsById(favouriteProductId)) {
-            throw new IllegalArgumentException(PRODUCT_IS_ALREADY_IN_FAVOURITES);
+            throw new IllegalArgumentException(ProductMessages.PRODUCT_ALREADY_IN_FAVOURITES);
         }
 
         FavouriteProduct favouriteProduct = new FavouriteProduct();
@@ -73,7 +70,7 @@ public class FavouriteProductService {
         FavouriteProductId favouriteProductId = new FavouriteProductId(customerId, productId);
 
         if (!favouriteProductRepository.existsById(favouriteProductId)) {
-            throw new EntityNotFoundException(PRODUCT_IS_NOT_IN_FAVOURITES);
+            throw new EntityNotFoundException(ProductMessages.PRODUCT_NOT_IN_FAVOURITES);
         }
 
         favouriteProductRepository.deleteById(favouriteProductId);

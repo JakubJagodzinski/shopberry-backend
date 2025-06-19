@@ -1,5 +1,8 @@
 package com.example.shopberry.domain.reviews;
 
+import com.example.shopberry.common.constants.messages.CustomerMessages;
+import com.example.shopberry.common.constants.messages.ProductMessages;
+import com.example.shopberry.common.constants.messages.ReviewMessages;
 import com.example.shopberry.domain.customers.Customer;
 import com.example.shopberry.domain.customers.CustomerRepository;
 import com.example.shopberry.domain.products.Product;
@@ -30,18 +33,13 @@ public class ReviewService {
     private final Integer MAX_RATING_VALUE = 5;
     private final Integer MAX_REVIEW_TEXT_LENGTH = 1_000;
 
-    private static final String REVIEW_NOT_FOUND_MESSAGE = "Review not found";
-    private static final String PRODUCT_NOT_FOUND_MESSAGE = "Product not found";
-    private static final String CUSTOMER_NOT_FOUND_MESSAGE = "Customer not found";
-    private static final String RATING_VALUE_CANNOT_BE_NULL_MESSAGE = "Rating value cannot be null";
-
     private final String RATING_VALUE_OUT_OF_BOUNDS_MESSAGE = "Rating value must be between " + MIN_RATING_VALUE + " and " + MAX_RATING_VALUE;
     private final String REVIEW_TEXT_TOO_LONG_MESSAGE = "Review text cannot exceed " + MAX_REVIEW_TEXT_LENGTH + " characters";
 
     @Transactional
     public List<ReviewResponseDto> getProductAllReviews(Long productId) throws EntityNotFoundException {
         if (!productRepository.existsById(productId)) {
-            throw new EntityNotFoundException(PRODUCT_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(ProductMessages.PRODUCT_NOT_FOUND);
         }
 
         return reviewDtoMapper.toDtoList(reviewRepository.findAllByProduct_ProductId(productId));
@@ -50,7 +48,7 @@ public class ReviewService {
     @Transactional
     public List<ReviewResponseDto> getCustomerAllReviews(UUID customerId) throws EntityNotFoundException {
         if (!customerRepository.existsById(customerId)) {
-            throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(CustomerMessages.CUSTOMER_NOT_FOUND);
         }
 
         return reviewDtoMapper.toDtoList(reviewRepository.findAllByCustomer_UserId(customerId));
@@ -61,7 +59,7 @@ public class ReviewService {
         Review review = reviewRepository.findById(reviewId).orElse(null);
 
         if (review == null) {
-            throw new EntityNotFoundException(REVIEW_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(ReviewMessages.REVIEW_NOT_FOUND);
         }
 
         return reviewDtoMapper.toDto(review);
@@ -72,17 +70,17 @@ public class ReviewService {
         Product product = productRepository.findById(productId).orElse(null);
 
         if (product == null) {
-            throw new EntityNotFoundException(PRODUCT_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(ProductMessages.PRODUCT_NOT_FOUND);
         }
 
         Customer customer = customerRepository.findById(createReviewRequestDto.getCustomerId()).orElse(null);
 
         if (customer == null) {
-            throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(CustomerMessages.CUSTOMER_NOT_FOUND);
         }
 
         if (createReviewRequestDto.getRatingValue() == null) {
-            throw new IllegalArgumentException(RATING_VALUE_CANNOT_BE_NULL_MESSAGE);
+            throw new IllegalArgumentException(ReviewMessages.RATING_VALUE_CANNOT_BE_NULL);
         }
 
         if (createReviewRequestDto.getRatingValue() < MIN_RATING_VALUE || createReviewRequestDto.getRatingValue() > MAX_RATING_VALUE) {
@@ -113,7 +111,7 @@ public class ReviewService {
         Review review = reviewRepository.findById(reviewId).orElse(null);
 
         if (review == null) {
-            throw new EntityNotFoundException(REVIEW_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(ReviewMessages.REVIEW_NOT_FOUND);
         }
 
         if (updateReviewRequestDto.getRatingValue() != null) {
@@ -138,7 +136,7 @@ public class ReviewService {
     @Transactional
     public void deleteReviewById(Long reviewId) throws EntityNotFoundException {
         if (!reviewRepository.existsById(reviewId)) {
-            throw new EntityNotFoundException(REVIEW_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(ReviewMessages.REVIEW_NOT_FOUND);
         }
 
         reviewRepository.deleteById(reviewId);
@@ -147,7 +145,7 @@ public class ReviewService {
     @Transactional
     public void deleteCustomerAllReviews(UUID customerId) throws EntityNotFoundException {
         if (!customerRepository.existsById(customerId)) {
-            throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(CustomerMessages.CUSTOMER_NOT_FOUND);
         }
 
         reviewRepository.deleteAllByCustomer_UserId(customerId);
@@ -156,7 +154,7 @@ public class ReviewService {
     @Transactional
     public void deleteProductAllReviews(Long productId) throws EntityNotFoundException {
         if (!productRepository.existsById(productId)) {
-            throw new EntityNotFoundException(PRODUCT_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(ProductMessages.PRODUCT_NOT_FOUND);
         }
 
         reviewRepository.deleteAllByProduct_ProductId(productId);

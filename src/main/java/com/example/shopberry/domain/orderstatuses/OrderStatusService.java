@@ -1,5 +1,6 @@
 package com.example.shopberry.domain.orderstatuses;
 
+import com.example.shopberry.common.constants.messages.OrderStatusMessages;
 import com.example.shopberry.domain.orderstatuses.dto.CreateOrderStatusRequestDto;
 import com.example.shopberry.domain.orderstatuses.dto.OrderStatusDtoMapper;
 import com.example.shopberry.domain.orderstatuses.dto.OrderStatusResponseDto;
@@ -19,11 +20,6 @@ public class OrderStatusService {
 
     private final OrderStatusDtoMapper orderStatusDtoMapper;
 
-    private static final String ORDER_STATUS_NOT_FOUND_MESSAGE = "Order status not found";
-    private static final String ORDER_STATUS_ALREADY_EXISTS_MESSAGE = "Order status already exists";
-    private static final String ORDER_STATUS_NAME_CANNOT_BE_NULL_MESSAGE = "Order status name cannot be null";
-    private static final String ORDER_STATUS_NAME_CANNOT_BE_EMPTY_MESSAGE = "Order status name cannot be empty";
-
     public List<OrderStatusResponseDto> getAllOrderStatuses() {
         return orderStatusDtoMapper.toDtoList(orderStatusRepository.findAll());
     }
@@ -33,7 +29,7 @@ public class OrderStatusService {
         OrderStatus orderStatus = orderStatusRepository.findById(id).orElse(null);
 
         if (orderStatus == null) {
-            throw new EntityNotFoundException(ORDER_STATUS_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(OrderStatusMessages.ORDER_STATUS_NOT_FOUND);
         }
 
         return orderStatusDtoMapper.toDto(orderStatus);
@@ -42,15 +38,15 @@ public class OrderStatusService {
     @Transactional
     public OrderStatusResponseDto createOrderStatus(CreateOrderStatusRequestDto createOrderStatusRequestDto) throws EntityNotFoundException, IllegalArgumentException {
         if (orderStatusRepository.existsByOrderStatusName(createOrderStatusRequestDto.getOrderStatusName())) {
-            throw new EntityNotFoundException(ORDER_STATUS_ALREADY_EXISTS_MESSAGE);
+            throw new EntityNotFoundException(OrderStatusMessages.ORDER_STATUS_ALREADY_EXISTS);
         }
 
         if (createOrderStatusRequestDto.getOrderStatusName() == null) {
-            throw new IllegalArgumentException(ORDER_STATUS_NAME_CANNOT_BE_NULL_MESSAGE);
+            throw new IllegalArgumentException(OrderStatusMessages.ORDER_STATUS_NAME_CANNOT_BE_NULL);
         }
 
         if (createOrderStatusRequestDto.getOrderStatusName().isEmpty()) {
-            throw new IllegalArgumentException(ORDER_STATUS_NAME_CANNOT_BE_EMPTY_MESSAGE);
+            throw new IllegalArgumentException(OrderStatusMessages.ORDER_STATUS_NAME_CANNOT_BE_EMPTY);
         }
 
         OrderStatus orderStatus = new OrderStatus();
@@ -65,18 +61,18 @@ public class OrderStatusService {
         OrderStatus orderStatus = orderStatusRepository.findById(id).orElse(null);
 
         if (orderStatus == null) {
-            throw new EntityNotFoundException(ORDER_STATUS_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(OrderStatusMessages.ORDER_STATUS_NOT_FOUND);
         }
 
         if (updateOrderStatusRequestDto.getOrderStatusName() != null) {
             OrderStatus otherOrderStatus = orderStatusRepository.findByOrderStatusName(updateOrderStatusRequestDto.getOrderStatusName()).orElse(null);
 
             if (otherOrderStatus != null && !otherOrderStatus.getOrderStatusId().equals(id)) {
-                throw new IllegalArgumentException(ORDER_STATUS_ALREADY_EXISTS_MESSAGE);
+                throw new IllegalArgumentException(OrderStatusMessages.ORDER_STATUS_ALREADY_EXISTS);
             }
 
             if (updateOrderStatusRequestDto.getOrderStatusName().isEmpty()) {
-                throw new IllegalArgumentException(ORDER_STATUS_NAME_CANNOT_BE_EMPTY_MESSAGE);
+                throw new IllegalArgumentException(OrderStatusMessages.ORDER_STATUS_NAME_CANNOT_BE_EMPTY);
             }
 
             orderStatus.setOrderStatusName(updateOrderStatusRequestDto.getOrderStatusName());
@@ -88,7 +84,7 @@ public class OrderStatusService {
     @Transactional
     public void deleteOrderStatusById(Long id) throws EntityNotFoundException {
         if (!orderStatusRepository.existsById(id)) {
-            throw new EntityNotFoundException(ORDER_STATUS_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(OrderStatusMessages.ORDER_STATUS_NOT_FOUND);
         }
 
         orderStatusRepository.deleteById(id);

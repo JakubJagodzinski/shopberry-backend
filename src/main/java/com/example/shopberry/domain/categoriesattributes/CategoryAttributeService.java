@@ -1,5 +1,7 @@
 package com.example.shopberry.domain.categoriesattributes;
 
+import com.example.shopberry.common.constants.messages.AttributeMessages;
+import com.example.shopberry.common.constants.messages.CategoryMessages;
 import com.example.shopberry.domain.attributes.Attribute;
 import com.example.shopberry.domain.attributes.AttributeRepository;
 import com.example.shopberry.domain.categories.Category;
@@ -24,15 +26,10 @@ public class CategoryAttributeService {
 
     private final CategoryAttributeDtoMapper categoryAttributeDtoMapper;
 
-    private static final String CATEGORY_ATTRIBUTE_NOT_FOUND_MESSAGE = "Category attribute not found";
-    private static final String CATEGORY_NOT_FOUND_MESSAGE = "Category not found";
-    private static final String ATTRIBUTE_NOT_FOUND_MESSAGE = "Attribute not found";
-    private static final String ATTRIBUTE_ALREADY_ASSIGNED_TO_THIS_CATEGORY_MESSAGE = "Attribute already assigned to this category";
-
     @Transactional
-    public List<CategoryAttributeResponseDto> getCategoryAttributesByCategoryId(Long categoryId) throws EntityNotFoundException {
+    public List<CategoryAttributeResponseDto> getCategoryAllAttributes(Long categoryId) throws EntityNotFoundException {
         if (!categoryRepository.existsById(categoryId)) {
-            throw new EntityNotFoundException(CATEGORY_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(CategoryMessages.CATEGORY_NOT_FOUND);
         }
 
         return categoryAttributeDtoMapper.toDtoList(categoryAttributeRepository.findAllByCategory_CategoryId(categoryId));
@@ -43,19 +40,19 @@ public class CategoryAttributeService {
         Category category = categoryRepository.findById(categoryId).orElse(null);
 
         if (category == null) {
-            throw new EntityNotFoundException(CATEGORY_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(CategoryMessages.CATEGORY_NOT_FOUND);
         }
 
         Attribute attribute = attributeRepository.findById(assignAttributeToCategoryRequestDto.getAttributeId()).orElse(null);
 
         if (attribute == null) {
-            throw new EntityNotFoundException(ATTRIBUTE_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(AttributeMessages.ATTRIBUTE_NOT_FOUND);
         }
 
         CategoryAttributeId categoryAttributeId = new CategoryAttributeId(categoryId, assignAttributeToCategoryRequestDto.getAttributeId());
 
         if (categoryAttributeRepository.existsById(categoryAttributeId)) {
-            throw new IllegalArgumentException(ATTRIBUTE_ALREADY_ASSIGNED_TO_THIS_CATEGORY_MESSAGE);
+            throw new IllegalArgumentException(AttributeMessages.ATTRIBUTE_ALREADY_ASSIGNED_TO_THIS_CATEGORY);
         }
 
         CategoryAttribute categoryAttribute = new CategoryAttribute();
@@ -70,17 +67,17 @@ public class CategoryAttributeService {
     @Transactional
     public void unassignAttributeFromCategory(Long categoryId, Long attributeId) throws EntityNotFoundException {
         if (!categoryRepository.existsById(categoryId)) {
-            throw new EntityNotFoundException(CATEGORY_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(CategoryMessages.CATEGORY_NOT_FOUND);
         }
 
         if (!attributeRepository.existsById(attributeId)) {
-            throw new EntityNotFoundException(ATTRIBUTE_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(AttributeMessages.ATTRIBUTE_NOT_FOUND);
         }
 
         CategoryAttributeId categoryAttributeId = new CategoryAttributeId(categoryId, attributeId);
 
         if (!categoryAttributeRepository.existsById(categoryAttributeId)) {
-            throw new EntityNotFoundException(CATEGORY_ATTRIBUTE_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(CategoryMessages.ATTRIBUTE_NOT_ASSIGNED_TO_THIS_CATEGORY);
         }
 
         categoryAttributeRepository.deleteById(categoryAttributeId);

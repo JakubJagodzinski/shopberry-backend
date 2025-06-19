@@ -1,5 +1,7 @@
 package com.example.shopberry.domain.employees;
 
+import com.example.shopberry.common.constants.messages.EmployeeMessages;
+import com.example.shopberry.common.constants.messages.EmployeeTypeMessages;
 import com.example.shopberry.domain.employees.dto.EmployeeDtoMapper;
 import com.example.shopberry.domain.employees.dto.EmployeeResponseDto;
 import com.example.shopberry.domain.employees.dto.UpdateEmployeeRequestDto;
@@ -22,9 +24,6 @@ public class EmployeeService {
 
     private final EmployeeDtoMapper employeeDtoMapper;
 
-    private static final String EMPLOYEE_NOT_FOUND_MESSAGE = "Employee not found";
-    private static final String EMPLOYEE_TYPE_NOT_FOUND_MESSAGE = "Employee type not found";
-
     public List<EmployeeResponseDto> getAllEmployees() {
         return employeeDtoMapper.toDtoList(employeeRepository.findAll());
     }
@@ -34,7 +33,7 @@ public class EmployeeService {
         Employee employee = employeeRepository.findById(employeeId).orElse(null);
 
         if (employee == null) {
-            throw new EntityNotFoundException(EMPLOYEE_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(EmployeeMessages.EMPLOYEE_NOT_FOUND);
         }
 
         return employeeDtoMapper.toDto(employee);
@@ -45,14 +44,14 @@ public class EmployeeService {
         Employee employee = employeeRepository.findById(employeeId).orElse(null);
 
         if (employee == null) {
-            throw new EntityNotFoundException(EMPLOYEE_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(EmployeeMessages.EMPLOYEE_NOT_FOUND);
         }
 
         if (updateEmployeeRequestDto.getEmployeeTypeId() != null) {
             EmployeeType employeeType = employeeTypeRepository.findById(updateEmployeeRequestDto.getEmployeeTypeId()).orElse(null);
 
             if (employeeType == null) {
-                throw new EntityNotFoundException(EMPLOYEE_TYPE_NOT_FOUND_MESSAGE);
+                throw new EntityNotFoundException(EmployeeTypeMessages.EMPLOYEE_TYPE_NOT_FOUND);
             }
 
             employee.setEmployeeType(employeeType);
@@ -64,7 +63,7 @@ public class EmployeeService {
     @Transactional
     public void deleteEmployeeById(UUID employeeId) throws EntityNotFoundException {
         if (!employeeRepository.existsById(employeeId)) {
-            throw new EntityNotFoundException(EMPLOYEE_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(EmployeeMessages.EMPLOYEE_NOT_FOUND);
         }
 
         employeeRepository.deleteById(employeeId);

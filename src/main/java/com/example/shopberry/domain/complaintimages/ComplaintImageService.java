@@ -1,8 +1,9 @@
 package com.example.shopberry.domain.complaintimages;
 
+import com.example.shopberry.common.constants.messages.ComplaintMessages;
+import com.example.shopberry.domain.complaintimages.dto.AddImageToComplaintRequestDto;
 import com.example.shopberry.domain.complaintimages.dto.ComplaintImageDtoMapper;
 import com.example.shopberry.domain.complaintimages.dto.ComplaintImageResponseDto;
-import com.example.shopberry.domain.complaintimages.dto.AddImageToComplaintRequestDto;
 import com.example.shopberry.domain.complaints.Complaint;
 import com.example.shopberry.domain.complaints.ComplaintRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -21,10 +22,6 @@ public class ComplaintImageService {
 
     private final ComplaintImageDtoMapper complaintImageDtoMapper;
 
-    private static final String COMPLAINT_IMAGE_NOT_FOUND_MESSAGE = "Complaint image not found";
-    private static final String COMPLAINT_DOES_NOT_EXIST_MESSAGE = "Complaint does not exist";
-    private static final String COMPLAINT_IMAGE_CANNOT_BE_NULL_MESSAGE = "Complaint image cannot be null";
-
     public List<ComplaintImageResponseDto> getAllComplaintImages() {
         return complaintImageDtoMapper.toDtoList(complaintImageRepository.findAll());
     }
@@ -34,7 +31,7 @@ public class ComplaintImageService {
         ComplaintImage complaintImage = complaintImageRepository.findById(id).orElse(null);
 
         if (complaintImage == null) {
-            throw new EntityNotFoundException(COMPLAINT_IMAGE_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(ComplaintMessages.COMPLAINT_IMAGE_NOT_FOUND);
         }
 
         return complaintImageDtoMapper.toDto(complaintImage);
@@ -45,11 +42,11 @@ public class ComplaintImageService {
         Complaint complaint = complaintRepository.findById(complaintId).orElse(null);
 
         if (complaint == null) {
-            throw new EntityNotFoundException(COMPLAINT_DOES_NOT_EXIST_MESSAGE);
+            throw new EntityNotFoundException(ComplaintMessages.COMPLAINT_NOT_FOUND);
         }
 
         if (addImageToComplaintRequestDto.getImage() == null) {
-            throw new IllegalArgumentException(COMPLAINT_IMAGE_CANNOT_BE_NULL_MESSAGE);
+            throw new IllegalArgumentException(ComplaintMessages.COMPLAINT_IMAGE_CANNOT_BE_NULL);
         }
 
         ComplaintImage complaintImage = new ComplaintImage();
@@ -63,7 +60,7 @@ public class ComplaintImageService {
     @Transactional
     public void deleteComplaintImageById(Long id) throws EntityNotFoundException {
         if (!complaintImageRepository.existsById(id)) {
-            throw new EntityNotFoundException(COMPLAINT_IMAGE_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(ComplaintMessages.COMPLAINT_IMAGE_NOT_FOUND);
         }
 
         complaintImageRepository.deleteById(id);

@@ -1,5 +1,6 @@
 package com.example.shopberry.domain.employeetypes;
 
+import com.example.shopberry.common.constants.messages.EmployeeTypeMessages;
 import com.example.shopberry.domain.employeetypes.dto.CreateEmployeeTypeRequestDto;
 import com.example.shopberry.domain.employeetypes.dto.EmployeeTypeDtoMapper;
 import com.example.shopberry.domain.employeetypes.dto.EmployeeTypeResponseDto;
@@ -19,11 +20,6 @@ public class EmployeeTypeService {
 
     private final EmployeeTypeDtoMapper employeeTypeDtoMapper;
 
-    private static final String EMPLOYEE_TYPE_NOT_FOUND_MESSAGE = "Employee type not found";
-    private static final String EMPLOYEE_TYPE_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE = "Employee type with that name already exists";
-    private static final String EMPLOYEE_TYPE_NAME_CANNOT_BE_NULL_MESSAGE = "Employee type name cannot be null";
-    private static final String EMPLOYEE_TYPE_NAME_CANNOT_BE_EMPTY_MESSAGE = "Employee type name cannot be empty";
-
     public List<EmployeeTypeResponseDto> getAllEmployeeTypes() {
         return employeeTypeDtoMapper.toDtoList(employeeTypeRepository.findAll());
     }
@@ -33,7 +29,7 @@ public class EmployeeTypeService {
         EmployeeType employeeType = employeeTypeRepository.findById(id).orElse(null);
 
         if (employeeType == null) {
-            throw new EntityNotFoundException(EMPLOYEE_TYPE_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(EmployeeTypeMessages.EMPLOYEE_TYPE_NOT_FOUND);
         }
 
         return employeeTypeDtoMapper.toDto(employeeType);
@@ -42,15 +38,15 @@ public class EmployeeTypeService {
     @Transactional
     public EmployeeTypeResponseDto createEmployeeType(CreateEmployeeTypeRequestDto createEmployeeTypeRequestDto) throws IllegalArgumentException {
         if (employeeTypeRepository.existsByEmployeeTypeName(createEmployeeTypeRequestDto.getEmployeeTypeName())) {
-            throw new IllegalArgumentException(EMPLOYEE_TYPE_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE);
+            throw new IllegalArgumentException(EmployeeTypeMessages.EMPLOYEE_TYPE_WITH_THAT_NAME_ALREADY_EXISTS);
         }
 
         if (createEmployeeTypeRequestDto.getEmployeeTypeName() == null) {
-            throw new IllegalArgumentException(EMPLOYEE_TYPE_NAME_CANNOT_BE_NULL_MESSAGE);
+            throw new IllegalArgumentException(EmployeeTypeMessages.EMPLOYEE_TYPE_NAME_CANNOT_BE_NULL);
         }
 
         if (createEmployeeTypeRequestDto.getEmployeeTypeName().isEmpty()) {
-            throw new IllegalArgumentException(EMPLOYEE_TYPE_NAME_CANNOT_BE_EMPTY_MESSAGE);
+            throw new IllegalArgumentException(EmployeeTypeMessages.EMPLOYEE_TYPE_NAME_CANNOT_BE_EMPTY);
         }
 
         EmployeeType employeeType = new EmployeeType();
@@ -65,18 +61,18 @@ public class EmployeeTypeService {
         EmployeeType employeeType = employeeTypeRepository.findById(id).orElse(null);
 
         if (employeeType == null) {
-            throw new EntityNotFoundException(EMPLOYEE_TYPE_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(EmployeeTypeMessages.EMPLOYEE_TYPE_NOT_FOUND);
         }
 
         if (updateEmployeeTypeRequestDto.getEmployeeTypeName() != null) {
             EmployeeType otherEmployeeType = employeeTypeRepository.findByEmployeeTypeName(updateEmployeeTypeRequestDto.getEmployeeTypeName()).orElse(null);
 
             if (otherEmployeeType != null && !otherEmployeeType.getEmployeeTypeId().equals(id)) {
-                throw new IllegalArgumentException(EMPLOYEE_TYPE_WITH_THAT_NAME_ALREADY_EXISTS_MESSAGE);
+                throw new IllegalArgumentException(EmployeeTypeMessages.EMPLOYEE_TYPE_WITH_THAT_NAME_ALREADY_EXISTS);
             }
 
             if (updateEmployeeTypeRequestDto.getEmployeeTypeName().isEmpty()) {
-                throw new IllegalArgumentException(EMPLOYEE_TYPE_NAME_CANNOT_BE_EMPTY_MESSAGE);
+                throw new IllegalArgumentException(EmployeeTypeMessages.EMPLOYEE_TYPE_NAME_CANNOT_BE_EMPTY);
             }
 
             employeeType.setEmployeeTypeName(updateEmployeeTypeRequestDto.getEmployeeTypeName());
@@ -88,7 +84,7 @@ public class EmployeeTypeService {
     @Transactional
     public void deleteEmployeeTypeById(Long id) throws EntityNotFoundException {
         if (!employeeTypeRepository.existsById(id)) {
-            throw new EntityNotFoundException(EMPLOYEE_TYPE_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(EmployeeTypeMessages.EMPLOYEE_TYPE_NOT_FOUND);
         }
 
         employeeTypeRepository.deleteById(id);

@@ -1,5 +1,8 @@
 package com.example.shopberry.domain.complaints;
 
+import com.example.shopberry.common.constants.messages.ComplaintMessages;
+import com.example.shopberry.common.constants.messages.OrderMessages;
+import com.example.shopberry.common.constants.messages.ProductMessages;
 import com.example.shopberry.domain.complaints.dto.ComplaintDtoMapper;
 import com.example.shopberry.domain.complaints.dto.ComplaintResponseDto;
 import com.example.shopberry.domain.complaints.dto.CreateComplaintRequestDto;
@@ -28,13 +31,6 @@ public class ComplaintService {
 
     private final ComplaintDtoMapper complaintDtoMapper;
 
-    private static final String COMPLAINT_NOT_FOUND_MESSAGE = "Complaint not found";
-    private static final String ORDER_ID_CANNOT_BE_NULL_MESSAGE = "Order ID cannot be null";
-    private static final String PRODUCT_ID_CANNOT_BE_NULL_MESSAGE = "Product ID cannot be null";
-    private static final String ORDER_NOT_FOUND_MESSAGE = "Order not found";
-    private static final String PRODUCT_NOT_FOUND_MESSAGE = "Product not found";
-    private static final String PRODUCT_DOES_NOT_BELONG_TO_THAT_ORDER_MESSAGE = "Product does not belong to that order";
-
     public List<ComplaintResponseDto> getAllComplaints() {
         return complaintDtoMapper.toDtoList(complaintRepository.findAll());
     }
@@ -44,7 +40,7 @@ public class ComplaintService {
         Complaint complaint = complaintRepository.findById(id).orElse(null);
 
         if (complaint == null) {
-            throw new EntityNotFoundException(COMPLAINT_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(ComplaintMessages.COMPLAINT_NOT_FOUND);
         }
 
         return complaintDtoMapper.toDto(complaint);
@@ -52,28 +48,20 @@ public class ComplaintService {
 
     @Transactional
     public ComplaintResponseDto createComplaint(CreateComplaintRequestDto createComplaintRequestDto) throws EntityNotFoundException, IllegalArgumentException {
-        if (createComplaintRequestDto.getOrderId() == null) {
-            throw new IllegalArgumentException(ORDER_ID_CANNOT_BE_NULL_MESSAGE);
-        }
-
-        if (createComplaintRequestDto.getProductId() == null) {
-            throw new IllegalArgumentException(PRODUCT_ID_CANNOT_BE_NULL_MESSAGE);
-        }
-
         Order order = orderRepository.findById(createComplaintRequestDto.getOrderId()).orElse(null);
 
         if (order == null) {
-            throw new EntityNotFoundException(ORDER_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(OrderMessages.ORDER_NOT_FOUND);
         }
 
         Product product = productRepository.findById(createComplaintRequestDto.getProductId()).orElse(null);
 
         if (product == null) {
-            throw new EntityNotFoundException(PRODUCT_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(ProductMessages.PRODUCT_NOT_FOUND);
         }
 
         if (!orderProductRepository.existsById(new OrderProductId(createComplaintRequestDto.getOrderId(), createComplaintRequestDto.getProductId()))) {
-            throw new IllegalArgumentException(PRODUCT_DOES_NOT_BELONG_TO_THAT_ORDER_MESSAGE);
+            throw new IllegalArgumentException(ProductMessages.PRODUCT_DOES_NOT_BELONG_TO_THAT_ORDER);
         }
 
         Complaint complaint = new Complaint();
@@ -99,7 +87,7 @@ public class ComplaintService {
         Complaint complaint = complaintRepository.findById(id).orElse(null);
 
         if (complaint == null) {
-            throw new EntityNotFoundException(COMPLAINT_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(ComplaintMessages.COMPLAINT_NOT_FOUND);
         }
 
         if (updateComplaintRequestDto.getInfo() != null) {
@@ -148,7 +136,7 @@ public class ComplaintService {
     @Transactional
     public void deleteComplaintById(Long id) throws EntityNotFoundException {
         if (!complaintRepository.existsById(id)) {
-            throw new EntityNotFoundException(COMPLAINT_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(ComplaintMessages.COMPLAINT_NOT_FOUND);
         }
 
         complaintRepository.deleteById(id);

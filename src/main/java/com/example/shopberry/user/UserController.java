@@ -1,6 +1,7 @@
 package com.example.shopberry.user;
 
 import com.example.shopberry.common.MessageResponseDto;
+import com.example.shopberry.common.constants.messages.PasswordMessages;
 import com.example.shopberry.user.dto.ChangePasswordRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -25,7 +26,7 @@ public class UserController {
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(new MessageResponseDto("Password changed successfully"));
+                .body(new MessageResponseDto(PasswordMessages.PASSWORD_CHANGED_SUCCESSFULLY));
     }
 
 }

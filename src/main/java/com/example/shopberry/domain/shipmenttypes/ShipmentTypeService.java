@@ -1,5 +1,6 @@
 package com.example.shopberry.domain.shipmenttypes;
 
+import com.example.shopberry.common.constants.messages.ShipmentTypeMessages;
 import com.example.shopberry.domain.shipmenttypes.dto.CreateShipmentTypeRequestDto;
 import com.example.shopberry.domain.shipmenttypes.dto.ShipmentTypeDtoMapper;
 import com.example.shopberry.domain.shipmenttypes.dto.ShipmentTypeResponseDto;
@@ -19,12 +20,6 @@ public class ShipmentTypeService {
 
     private final ShipmentTypeDtoMapper shipmentTypeDtoMapper;
 
-    private static final String SHIPMENT_TYPE_NOT_FOUND_MESSAGE = "Shipment type not found";
-    private static final String SHIPMENT_TYPE_ALREADY_EXISTS_MESSAGE = "Shipment type already exists";
-    private static final String SHIPMENT_NAME_CANNOT_BE_EMPTY_MESSAGE = "Shipment name cannot be empty";
-    private static final String SHIPMENT_NAME_CANNOT_BE_NULL_MESSAGE = "Shipment name cannot be null";
-    private static final String SHIPMENT_COST_CANNOT_BE_NEGATIVE_MESSAGE = "Shipment cost cannot be negative";
-
     public List<ShipmentTypeResponseDto> getAllShipmentTypes() {
         return shipmentTypeDtoMapper.toDtoList(shipmentTypeRepository.findAll());
     }
@@ -34,7 +29,7 @@ public class ShipmentTypeService {
         ShipmentType shipmentType = shipmentTypeRepository.findById(id).orElse(null);
 
         if (shipmentType == null) {
-            throw new EntityNotFoundException(SHIPMENT_TYPE_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(ShipmentTypeMessages.SHIPMENT_TYPE_NOT_FOUND);
         }
 
         return shipmentTypeDtoMapper.toDto(shipmentType);
@@ -43,19 +38,19 @@ public class ShipmentTypeService {
     @Transactional
     public ShipmentTypeResponseDto createShipmentType(CreateShipmentTypeRequestDto createShipmentTypeRequestDto) throws IllegalArgumentException {
         if (shipmentTypeRepository.existsByShipmentName(createShipmentTypeRequestDto.getShipmentName())) {
-            throw new IllegalArgumentException(SHIPMENT_TYPE_ALREADY_EXISTS_MESSAGE);
+            throw new IllegalArgumentException(ShipmentTypeMessages.SHIPMENT_TYPE_ALREADY_EXISTS);
         }
 
         if (createShipmentTypeRequestDto.getShipmentName() == null) {
-            throw new IllegalArgumentException(SHIPMENT_NAME_CANNOT_BE_NULL_MESSAGE);
+            throw new IllegalArgumentException(ShipmentTypeMessages.SHIPMENT_NAME_CANNOT_BE_NULL);
         }
 
         if (createShipmentTypeRequestDto.getShipmentName().isEmpty()) {
-            throw new IllegalArgumentException(SHIPMENT_NAME_CANNOT_BE_EMPTY_MESSAGE);
+            throw new IllegalArgumentException(ShipmentTypeMessages.SHIPMENT_NAME_CANNOT_BE_EMPTY);
         }
 
         if (createShipmentTypeRequestDto.getShipmentCost() < 0) {
-            throw new IllegalArgumentException(SHIPMENT_COST_CANNOT_BE_NEGATIVE_MESSAGE);
+            throw new IllegalArgumentException(ShipmentTypeMessages.SHIPMENT_COST_CANNOT_BE_NEGATIVE);
         }
 
         ShipmentType shipmentType = new ShipmentType();
@@ -71,18 +66,18 @@ public class ShipmentTypeService {
         ShipmentType shipmentType = shipmentTypeRepository.findById(id).orElse(null);
 
         if (shipmentType == null) {
-            throw new EntityNotFoundException(SHIPMENT_TYPE_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(ShipmentTypeMessages.SHIPMENT_TYPE_NOT_FOUND);
         }
 
         if (updateShipmentTypeRequestDto.getShipmentName() != null) {
             ShipmentType otherShipmentType = shipmentTypeRepository.findByShipmentName(updateShipmentTypeRequestDto.getShipmentName()).orElse(null);
 
             if (otherShipmentType != null && !otherShipmentType.getShipmentTypeId().equals(id)) {
-                throw new IllegalArgumentException(SHIPMENT_TYPE_ALREADY_EXISTS_MESSAGE);
+                throw new IllegalArgumentException(ShipmentTypeMessages.SHIPMENT_TYPE_ALREADY_EXISTS);
             }
 
             if (updateShipmentTypeRequestDto.getShipmentName().isEmpty()) {
-                throw new IllegalArgumentException(SHIPMENT_NAME_CANNOT_BE_EMPTY_MESSAGE);
+                throw new IllegalArgumentException(ShipmentTypeMessages.SHIPMENT_NAME_CANNOT_BE_EMPTY);
             }
 
             shipmentType.setShipmentName(updateShipmentTypeRequestDto.getShipmentName());
@@ -90,7 +85,7 @@ public class ShipmentTypeService {
 
         if (updateShipmentTypeRequestDto.getShipmentCost() != null) {
             if (updateShipmentTypeRequestDto.getShipmentCost() < 0) {
-                throw new IllegalArgumentException(SHIPMENT_COST_CANNOT_BE_NEGATIVE_MESSAGE);
+                throw new IllegalArgumentException(ShipmentTypeMessages.SHIPMENT_COST_CANNOT_BE_NEGATIVE);
             }
 
             shipmentType.setShipmentCost(updateShipmentTypeRequestDto.getShipmentCost());
@@ -102,7 +97,7 @@ public class ShipmentTypeService {
     @Transactional
     public void deleteShipmentTypeById(Long id) throws EntityNotFoundException {
         if (!shipmentTypeRepository.existsById(id)) {
-            throw new EntityNotFoundException(SHIPMENT_TYPE_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(ShipmentTypeMessages.SHIPMENT_TYPE_NOT_FOUND);
         }
 
         shipmentTypeRepository.deleteById(id);

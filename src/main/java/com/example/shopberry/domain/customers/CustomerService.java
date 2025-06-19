@@ -1,5 +1,6 @@
 package com.example.shopberry.domain.customers;
 
+import com.example.shopberry.common.constants.messages.CustomerMessages;
 import com.example.shopberry.domain.customers.dto.CustomerDtoMapper;
 import com.example.shopberry.domain.customers.dto.CustomerResponseDto;
 import com.example.shopberry.domain.customers.dto.UpdateCustomerRequestDto;
@@ -18,8 +19,6 @@ public class CustomerService {
     private final CustomerRepository customerRepository;
     private final CustomerDtoMapper customerDtoMapper;
 
-    private static final String CUSTOMER_NOT_FOUND_MESSAGE = "Customer not found";
-
     public List<CustomerResponseDto> getAllCustomers() {
         return customerDtoMapper.toDtoList(customerRepository.findAll());
     }
@@ -29,7 +28,7 @@ public class CustomerService {
         Customer customer = customerRepository.findById(customerId).orElse(null);
 
         if (customer == null) {
-            throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(CustomerMessages.CUSTOMER_NOT_FOUND);
         }
 
         return customerDtoMapper.toDto(customer);
@@ -40,7 +39,7 @@ public class CustomerService {
         Customer customer = customerRepository.findById(customerId).orElse(null);
 
         if (customer == null) {
-            throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(CustomerMessages.CUSTOMER_NOT_FOUND);
         }
 
         if (updateCustomerRequestDto.getIsCompany() != null) {
@@ -53,7 +52,7 @@ public class CustomerService {
     @Transactional
     public void deleteCustomerById(UUID customerId) throws EntityNotFoundException {
         if (!customerRepository.existsById(customerId)) {
-            throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(CustomerMessages.CUSTOMER_NOT_FOUND);
         }
 
         customerRepository.deleteById(customerId);

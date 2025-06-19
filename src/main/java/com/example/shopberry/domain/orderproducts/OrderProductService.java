@@ -1,5 +1,8 @@
 package com.example.shopberry.domain.orderproducts;
 
+import com.example.shopberry.common.constants.messages.OrderMessages;
+import com.example.shopberry.common.constants.messages.OrderProductStatusMessages;
+import com.example.shopberry.common.constants.messages.ProductMessages;
 import com.example.shopberry.domain.orderproducts.dto.AddProductToOrderRequestDto;
 import com.example.shopberry.domain.orderproducts.dto.OrderProductDtoMapper;
 import com.example.shopberry.domain.orderproducts.dto.OrderProductResponseDto;
@@ -23,22 +26,14 @@ public class OrderProductService {
     private final OrderProductRepository orderProductRepository;
     private final OrderRepository orderRepository;
     private final ProductRepository productRepository;
+    private final OrderProductStatusRepository orderProductStatusRepository;
 
     private final OrderProductDtoMapper orderProductDtoMapper;
-
-    private static final String ORDER_PRODUCT_NOT_FOUND_MESSAGE = "Order product not found";
-    private static final String ORDER_NOT_FOUND_MESSAGE = "Order not found";
-    private static final String PRODUCT_NOT_FOUND_MESSAGE = "Product not found";
-    private static final String PRODUCT_ALREADY_ADDED_TO_THIS_ORDER_MESSAGE = "Product already added to this order";
-    private static final String PRODUCT_QUANTITY_MUST_BE_GREATER_THAN_ZERO_MESSAGE = "Product quantity must be greater than zero";
-    private static final String PRODUCT_PRICE_MUST_BE_POSITIVE_MESSAGE = "Product price must be positive";
-    private static final String ORDER_PRODUCT_STATUS_NOT_FOUND_MESSAGE = "Order product status not found";
-    private final OrderProductStatusRepository orderProductStatusRepository;
 
     @Transactional
     public List<OrderProductResponseDto> getOrderAllProducts(Long orderId) throws EntityNotFoundException {
         if (!orderRepository.existsById(orderId)) {
-            throw new IllegalArgumentException(ORDER_NOT_FOUND_MESSAGE);
+            throw new IllegalArgumentException(OrderMessages.ORDER_NOT_FOUND);
         }
 
         return orderProductDtoMapper.toDtoList(orderProductRepository.findAllByOrder_OrderId(orderId));
@@ -51,7 +46,7 @@ public class OrderProductService {
         OrderProduct orderProduct = orderProductRepository.findById(orderProductId).orElse(null);
 
         if (orderProduct == null) {
-            throw new EntityNotFoundException(ORDER_PRODUCT_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(ProductMessages.PRODUCT_DOES_NOT_BELONG_TO_THAT_ORDER);
         }
 
         return orderProductDtoMapper.toDto(orderProduct);
@@ -62,19 +57,19 @@ public class OrderProductService {
         Order order = orderRepository.findById(orderId).orElse(null);
 
         if (order == null) {
-            throw new EntityNotFoundException(ORDER_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(OrderMessages.ORDER_NOT_FOUND);
         }
 
         Product product = productRepository.findById(addProductToOrderRequestDto.getProductId()).orElse(null);
 
         if (product == null) {
-            throw new EntityNotFoundException(PRODUCT_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(ProductMessages.PRODUCT_NOT_FOUND);
         }
 
         OrderProductId orderProductId = new OrderProductId(order.getOrderId(), product.getProductId());
 
         if (orderProductRepository.existsById(orderProductId)) {
-            throw new IllegalArgumentException(PRODUCT_ALREADY_ADDED_TO_THIS_ORDER_MESSAGE);
+            throw new IllegalArgumentException(ProductMessages.PRODUCT_ALREADY_ADDED_TO_THIS_ORDER);
         }
 
         OrderProduct orderProduct = new OrderProduct();
@@ -84,13 +79,13 @@ public class OrderProductService {
         orderProduct.setProduct(product);
 
         if (addProductToOrderRequestDto.getProductQuantity() <= 0) {
-            throw new IllegalArgumentException(PRODUCT_QUANTITY_MUST_BE_GREATER_THAN_ZERO_MESSAGE);
+            throw new IllegalArgumentException(ProductMessages.PRODUCT_QUANTITY_MUST_BE_GREATER_THAN_ZERO);
         }
 
         orderProduct.setProductQuantity(addProductToOrderRequestDto.getProductQuantity());
 
         if (addProductToOrderRequestDto.getProductPrice() < 0) {
-            throw new IllegalArgumentException(PRODUCT_PRICE_MUST_BE_POSITIVE_MESSAGE);
+            throw new IllegalArgumentException(ProductMessages.PRODUCT_PRICE_CANNOT_BE_NEGATIVE);
         }
 
         orderProduct.setProductPrice(addProductToOrderRequestDto.getProductPrice());
@@ -98,7 +93,7 @@ public class OrderProductService {
         OrderProductStatus orderProductStatus = orderProductStatusRepository.findById(1L).orElse(null);
 
         if (orderProductStatus == null) {
-            throw new EntityNotFoundException(ORDER_PRODUCT_STATUS_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(OrderProductStatusMessages.ORDER_PRODUCT_STATUS_NOT_FOUND);
         }
 
         orderProduct.setOrderProductStatus(orderProductStatus);
@@ -109,17 +104,17 @@ public class OrderProductService {
     @Transactional
     public void removeProductFromOrder(Long orderId, Long productId) throws EntityNotFoundException {
         if (!orderRepository.existsById(orderId)) {
-            throw new EntityNotFoundException(ORDER_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(OrderMessages.ORDER_NOT_FOUND);
         }
 
         if (!productRepository.existsById(productId)) {
-            throw new EntityNotFoundException(PRODUCT_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(ProductMessages.PRODUCT_NOT_FOUND);
         }
 
         OrderProductId orderProductId = new OrderProductId(orderId, productId);
 
         if (!orderProductRepository.existsById(orderProductId)) {
-            throw new EntityNotFoundException(ORDER_PRODUCT_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(ProductMessages.PRODUCT_DOES_NOT_BELONG_TO_THAT_ORDER);
         }
 
         orderProductRepository.deleteById(orderProductId);

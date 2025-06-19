@@ -1,5 +1,6 @@
 package com.example.shopberry.user;
 
+import com.example.shopberry.common.constants.messages.PasswordMessages;
 import com.example.shopberry.user.dto.ChangePasswordRequestDto;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -17,19 +18,16 @@ public class UserService {
 
     private final PasswordEncoder passwordEncoder;
 
-    private static final String WRONG_PASSWORD_MESSAGE = "Wrong password";
-    private static final String PASSWORDS_ARE_NOT_THE_SAME_MESSAGE = "Passwords are not the same";
-
     @Transactional
     public void changePassword(ChangePasswordRequestDto changePasswordRequestDto, Principal connectedUser) throws IllegalArgumentException {
         User user = (User) ((UsernamePasswordAuthenticationToken) connectedUser).getPrincipal();
 
         if (!passwordEncoder.matches(changePasswordRequestDto.getCurrentPassword(), user.getPassword())) {
-            throw new IllegalArgumentException(WRONG_PASSWORD_MESSAGE);
+            throw new IllegalArgumentException(PasswordMessages.WRONG_PASSWORD);
         }
 
         if (!changePasswordRequestDto.getNewPassword().equals(changePasswordRequestDto.getConfirmationPassword())) {
-            throw new IllegalArgumentException(PASSWORDS_ARE_NOT_THE_SAME_MESSAGE);
+            throw new IllegalArgumentException(PasswordMessages.PASSWORDS_ARE_NOT_THE_SAME);
         }
 
         user.setPassword(passwordEncoder.encode(changePasswordRequestDto.getNewPassword()));

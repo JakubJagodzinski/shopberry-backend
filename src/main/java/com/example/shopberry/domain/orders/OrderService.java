@@ -1,5 +1,9 @@
 package com.example.shopberry.domain.orders;
 
+import com.example.shopberry.common.constants.messages.CustomerMessages;
+import com.example.shopberry.common.constants.messages.OrderMessages;
+import com.example.shopberry.common.constants.messages.PaymentTypeMessages;
+import com.example.shopberry.common.constants.messages.ShipmentTypeMessages;
 import com.example.shopberry.domain.customers.Customer;
 import com.example.shopberry.domain.customers.CustomerRepository;
 import com.example.shopberry.domain.orders.dto.CreateOrderRequestDto;
@@ -30,11 +34,6 @@ public class OrderService {
 
     private final OrderDtoMapper orderDtoMapper;
 
-    private static final String ORDER_NOT_FOUND_MESSAGE = "Order not found";
-    private static final String CUSTOMER_NOT_FOUND_MESSAGE = "Customer not found";
-    private static final String SHIPMENT_TYPE_NOT_FOUND_MESSAGE = "Shipment type not found";
-    private static final String PAYMENT_TYPE_NOT_FOUND_MESSAGE = "Payment type not found";
-
     public List<OrderResponseDto> getAllOrders() {
         return orderDtoMapper.toDtoList(orderRepository.findAll());
     }
@@ -44,7 +43,7 @@ public class OrderService {
         Order order = orderRepository.findById(id).orElse(null);
 
         if (order == null) {
-            throw new EntityNotFoundException(ORDER_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(OrderMessages.ORDER_NOT_FOUND);
         }
 
         return orderDtoMapper.toDto(order);
@@ -55,7 +54,7 @@ public class OrderService {
         Customer customer = customerRepository.findById(customerId).orElse(null);
 
         if (customer == null) {
-            throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(CustomerMessages.CUSTOMER_NOT_FOUND);
         }
 
         return orderDtoMapper.toDtoList(orderRepository.findAllByCustomer_UserId(customerId));
@@ -66,22 +65,23 @@ public class OrderService {
         Customer customer = customerRepository.findById(createOrderRequestDto.getCustomerId()).orElse(null);
 
         if (customer == null) {
-            throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(CustomerMessages.CUSTOMER_NOT_FOUND);
         }
 
         ShipmentType shipmentType = shipmentTypeRepository.findById(createOrderRequestDto.getShipmentTypeId()).orElse(null);
 
         if (shipmentType == null) {
-            throw new EntityNotFoundException(SHIPMENT_TYPE_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(ShipmentTypeMessages.SHIPMENT_TYPE_NOT_FOUND);
         }
 
         PaymentType paymentType = paymentTypeRepository.findById(createOrderRequestDto.getPaymentTypeId()).orElse(null);
 
         if (paymentType == null) {
-            throw new EntityNotFoundException(PAYMENT_TYPE_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(PaymentTypeMessages.PAYMENT_TYPE_NOT_FOUND);
         }
 
         Order order = new Order();
+
         order.setOrderStatus(orderStatusRepository.getReferenceById(1L)); // Default status
         order.setCustomer(customer);
         order.setShipmentType(shipmentType);
@@ -95,7 +95,7 @@ public class OrderService {
     @Transactional
     public void deleteOrderById(Long id) throws EntityNotFoundException {
         if (!orderRepository.existsById(id)) {
-            throw new EntityNotFoundException(ORDER_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(OrderMessages.ORDER_NOT_FOUND);
         }
 
         orderRepository.deleteById(id);

@@ -1,5 +1,6 @@
 package com.example.shopberry.domain.orderproductstatuses;
 
+import com.example.shopberry.common.constants.messages.OrderProductStatusMessages;
 import com.example.shopberry.domain.orderproducts.OrderProductRepository;
 import com.example.shopberry.domain.orderproductstatuses.dto.CreateOrderProductStatusRequestDto;
 import com.example.shopberry.domain.orderproductstatuses.dto.OrderProductStatusDtoMapper;
@@ -21,12 +22,6 @@ public class OrderProductStatusService {
 
     private final OrderProductStatusDtoMapper orderProductStatusDtoMapper;
 
-    private static final String ORDER_PRODUCT_STATUS_NOT_FOUND_MESSAGE = "Order product status not found";
-    private static final String ORDER_PRODUCT_STATUS_ALREADY_EXISTS_MESSAGE = "Order product status already exists";
-    private static final String ORDER_PRODUCT_STATUS_NAME_CANNOT_BE_NULL_MESSAGE = "Order product status name cannot be null";
-    private static final String ORDER_PRODUCT_STATUS_NAME_CANNOT_BE_EMPTY_MESSAGE = "Order product status name cannot be empty";
-    private static final String ORDER_PRODUCT_STATUS_IS_IN_USE_MESSAGE = "Order product status is in use and cannot be deleted";
-
     public List<OrderProductStatusResponseDto> getAllOrderProductStatuses() {
         return orderProductStatusDtoMapper.toDtoList(orderProductStatusRepository.findAll());
     }
@@ -36,7 +31,7 @@ public class OrderProductStatusService {
         OrderProductStatus orderProductStatus = orderProductStatusRepository.findById(orderProductStatusId).orElse(null);
 
         if (orderProductStatus == null) {
-            throw new EntityNotFoundException(ORDER_PRODUCT_STATUS_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(OrderProductStatusMessages.ORDER_PRODUCT_STATUS_NOT_FOUND);
         }
 
         return orderProductStatusDtoMapper.toDto(orderProductStatus);
@@ -45,15 +40,15 @@ public class OrderProductStatusService {
     @Transactional
     public OrderProductStatusResponseDto createOrderProductStatus(CreateOrderProductStatusRequestDto createOrderProductStatusRequestDto) throws IllegalArgumentException {
         if (orderProductStatusRepository.existsByStatusName(createOrderProductStatusRequestDto.getStatusName())) {
-            throw new IllegalArgumentException(ORDER_PRODUCT_STATUS_ALREADY_EXISTS_MESSAGE);
+            throw new IllegalArgumentException(OrderProductStatusMessages.ORDER_PRODUCT_STATUS_ALREADY_EXISTS);
         }
 
         if (createOrderProductStatusRequestDto.getStatusName() == null) {
-            throw new IllegalArgumentException(ORDER_PRODUCT_STATUS_NAME_CANNOT_BE_NULL_MESSAGE);
+            throw new IllegalArgumentException(OrderProductStatusMessages.ORDER_PRODUCT_STATUS_NAME_CANNOT_BE_NULL);
         }
 
         if (createOrderProductStatusRequestDto.getStatusName().isEmpty()) {
-            throw new IllegalArgumentException(ORDER_PRODUCT_STATUS_NAME_CANNOT_BE_EMPTY_MESSAGE);
+            throw new IllegalArgumentException(OrderProductStatusMessages.ORDER_PRODUCT_STATUS_NAME_CANNOT_BE_EMPTY);
         }
 
         OrderProductStatus orderProductStatus = new OrderProductStatus();
@@ -68,18 +63,18 @@ public class OrderProductStatusService {
         OrderProductStatus orderProductStatus = orderProductStatusRepository.findById(orderProductStatusId).orElse(null);
 
         if (orderProductStatus == null) {
-            throw new EntityNotFoundException(ORDER_PRODUCT_STATUS_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(OrderProductStatusMessages.ORDER_PRODUCT_STATUS_NOT_FOUND);
         }
 
         if (updateOrderProductStatusRequestDto.getStatusName() != null) {
             OrderProductStatus otherOrderProductStatus = orderProductStatusRepository.findByStatusName(updateOrderProductStatusRequestDto.getStatusName()).orElse(null);
 
             if (otherOrderProductStatus != null && !otherOrderProductStatus.getOrderProductStatusId().equals(orderProductStatusId)) {
-                throw new IllegalArgumentException(ORDER_PRODUCT_STATUS_ALREADY_EXISTS_MESSAGE);
+                throw new IllegalArgumentException(OrderProductStatusMessages.ORDER_PRODUCT_STATUS_ALREADY_EXISTS);
             }
 
             if (updateOrderProductStatusRequestDto.getStatusName().isEmpty()) {
-                throw new IllegalArgumentException(ORDER_PRODUCT_STATUS_NAME_CANNOT_BE_EMPTY_MESSAGE);
+                throw new IllegalArgumentException(OrderProductStatusMessages.ORDER_PRODUCT_STATUS_NAME_CANNOT_BE_EMPTY);
             }
 
             orderProductStatus.setStatusName(updateOrderProductStatusRequestDto.getStatusName());
@@ -93,11 +88,7 @@ public class OrderProductStatusService {
         OrderProductStatus orderProductStatus = orderProductStatusRepository.findById(orderProductStatusId).orElse(null);
 
         if (orderProductStatus == null) {
-            throw new EntityNotFoundException(ORDER_PRODUCT_STATUS_NOT_FOUND_MESSAGE);
-        }
-
-        if (orderProductRepository.existsByOrderProductStatus_OrderProductStatusId(orderProductStatusId)) {
-            throw new IllegalArgumentException(ORDER_PRODUCT_STATUS_IS_IN_USE_MESSAGE);
+            throw new EntityNotFoundException(OrderProductStatusMessages.ORDER_PRODUCT_STATUS_NOT_FOUND);
         }
 
         orderProductStatusRepository.deleteById(orderProductStatusId);

@@ -1,5 +1,7 @@
 package com.example.shopberry.domain.cartproducts;
 
+import com.example.shopberry.common.constants.messages.CustomerMessages;
+import com.example.shopberry.common.constants.messages.ProductMessages;
 import com.example.shopberry.domain.cartproducts.dto.AddProductToCartRequestDto;
 import com.example.shopberry.domain.cartproducts.dto.CartProductDtoMapper;
 import com.example.shopberry.domain.cartproducts.dto.CartProductResponseDto;
@@ -26,12 +28,6 @@ public class CartProductService {
 
     private final CartProductDtoMapper cartProductDtoMapper;
 
-    private static final String CUSTOMER_NOT_FOUND_MESSAGE = "Customer not found";
-    private static final String PRODUCT_NOT_FOUND_MESSAGE = "Product not found";
-    private static final String PRODUCT_NOT_IN_CART_MESSAGE = "Product not in cart";
-    private static final String QUANTITY_MUST_BE_POSITIVE_MESSAGE = "Quantity must be positive";
-    private static final String PRODUCT_ALREADY_IN_CART_MESSAGE = "Product already in cart";
-
     @Transactional
     public CartProductResponseDto getCustomerCartProduct(UUID customerId, Long productId) throws EntityNotFoundException {
         CartProductId cartProductId = new CartProductId(customerId, productId);
@@ -39,7 +35,7 @@ public class CartProductService {
         CartProduct cartProduct = cartProductRepository.findById(cartProductId).orElse(null);
 
         if (cartProduct == null) {
-            throw new EntityNotFoundException(PRODUCT_NOT_IN_CART_MESSAGE);
+            throw new EntityNotFoundException(ProductMessages.PRODUCT_NOT_IN_CART);
         }
 
         return cartProductDtoMapper.toDto(cartProduct);
@@ -48,7 +44,7 @@ public class CartProductService {
     @Transactional
     public List<CartProductResponseDto> getCustomerAllCartProducts(UUID customerId) throws EntityNotFoundException {
         if (!customerRepository.existsById(customerId)) {
-            throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(CustomerMessages.CUSTOMER_NOT_FOUND);
         }
 
         return cartProductDtoMapper.toDtoList(cartProductRepository.findAllByCustomer_UserId(customerId));
@@ -59,19 +55,19 @@ public class CartProductService {
         Customer customer = customerRepository.findById(customerId).orElse(null);
 
         if (customer == null) {
-            throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(CustomerMessages.CUSTOMER_NOT_FOUND);
         }
 
         Product product = productRepository.findById(addProductToCartRequestDto.getProductId()).orElse(null);
 
         if (product == null) {
-            throw new EntityNotFoundException(PRODUCT_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(ProductMessages.PRODUCT_NOT_FOUND);
         }
 
         CartProductId cartProductId = new CartProductId(customerId, addProductToCartRequestDto.getProductId());
 
         if (cartProductRepository.existsById(cartProductId)) {
-            throw new EntityNotFoundException(PRODUCT_ALREADY_IN_CART_MESSAGE);
+            throw new EntityNotFoundException(ProductMessages.PRODUCT_ALREADY_IN_CART);
         }
 
         CartProduct cartProduct = new CartProduct();
@@ -81,7 +77,7 @@ public class CartProductService {
         cartProduct.setProduct(product);
 
         if (addProductToCartRequestDto.getQuantity() <= 0) {
-            throw new IllegalArgumentException(QUANTITY_MUST_BE_POSITIVE_MESSAGE);
+            throw new IllegalArgumentException(ProductMessages.PRODUCT_QUANTITY_MUST_BE_GREATER_THAN_ZERO);
         }
         cartProduct.setQuantity(addProductToCartRequestDto.getQuantity());
 
@@ -95,12 +91,12 @@ public class CartProductService {
         CartProduct cartProduct = cartProductRepository.findById(cartProductId).orElse(null);
 
         if (cartProduct == null) {
-            throw new EntityNotFoundException(PRODUCT_NOT_IN_CART_MESSAGE);
+            throw new EntityNotFoundException(ProductMessages.PRODUCT_NOT_IN_CART);
         }
 
         if (updateCartProductRequestDto.getQuantity() != null) {
             if (updateCartProductRequestDto.getQuantity() <= 0) {
-                throw new IllegalArgumentException(QUANTITY_MUST_BE_POSITIVE_MESSAGE);
+                throw new IllegalArgumentException(ProductMessages.PRODUCT_QUANTITY_MUST_BE_GREATER_THAN_ZERO);
             }
 
             cartProduct.setQuantity(updateCartProductRequestDto.getQuantity());
@@ -114,7 +110,7 @@ public class CartProductService {
         CartProductId cartProductId = new CartProductId(customerId, productId);
 
         if (!cartProductRepository.existsById(cartProductId)) {
-            throw new EntityNotFoundException(PRODUCT_NOT_IN_CART_MESSAGE);
+            throw new EntityNotFoundException(ProductMessages.PRODUCT_NOT_IN_CART);
         }
 
         cartProductRepository.deleteById(cartProductId);

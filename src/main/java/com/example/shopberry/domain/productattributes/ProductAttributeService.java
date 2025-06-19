@@ -1,5 +1,7 @@
 package com.example.shopberry.domain.productattributes;
 
+import com.example.shopberry.common.constants.messages.AttributeMessages;
+import com.example.shopberry.common.constants.messages.ProductMessages;
 import com.example.shopberry.domain.attributes.Attribute;
 import com.example.shopberry.domain.attributes.AttributeRepository;
 import com.example.shopberry.domain.productattributes.dto.AssignAttributeToProductRequestDto;
@@ -24,16 +26,10 @@ public class ProductAttributeService {
 
     private final ProductAttributeDtoMapper productAttributeDtoMapper;
 
-    private static final String PRODUCT_ATTRIBUTE_NOT_FOUND_MESSAGE = "Product attribute not found";
-    private static final String ATTRIBUTE_ALREADY_ASSIGNED_TO_THIS_PRODUCT_MESSAGE = "Attribute already assigned to this product";
-    private static final String PRODUCT_NOT_FOUND_MESSAGE = "Product not found";
-    private static final String ATTRIBUTE_NOT_FOUND_MESSAGE = "Attribute not found";
-    private static final String ATTRIBUTE_VALUE_CANNOT_BE_NULL_MESSAGE = "Attribute value cannot be null";
-
     @Transactional
     public List<ProductAttributeResponseDto> getProductAllAttributes(Long productId) throws EntityNotFoundException {
         if (!productRepository.existsById(productId)) {
-            throw new EntityNotFoundException(PRODUCT_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(ProductMessages.PRODUCT_NOT_FOUND);
         }
 
         return productAttributeDtoMapper.toDtoList(productAttributeRepository.findAllByProduct_ProductId(productId));
@@ -42,7 +38,7 @@ public class ProductAttributeService {
     @Transactional
     public List<ProductAttributeResponseDto> getAllProductsWithAttribute(Long attributeId) throws EntityNotFoundException {
         if (!attributeRepository.existsById(attributeId)) {
-            throw new EntityNotFoundException(ATTRIBUTE_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(AttributeMessages.ATTRIBUTE_NOT_FOUND);
         }
 
         return productAttributeDtoMapper.toDtoList(productAttributeRepository.findAllByAttribute_AttributeId(attributeId));
@@ -53,19 +49,19 @@ public class ProductAttributeService {
         Product product = productRepository.findById(productId).orElse(null);
 
         if (product == null) {
-            throw new EntityNotFoundException(PRODUCT_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(ProductMessages.PRODUCT_NOT_FOUND);
         }
 
         Attribute attribute = attributeRepository.findById(assignAttributeToProductRequestDto.getAttributeId()).orElse(null);
 
         if (attribute == null) {
-            throw new EntityNotFoundException(ATTRIBUTE_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(AttributeMessages.ATTRIBUTE_NOT_FOUND);
         }
 
         ProductAttributeId productAttributeId = new ProductAttributeId(productId, attribute.getAttributeId());
 
         if (productAttributeRepository.existsById(productAttributeId)) {
-            throw new IllegalArgumentException(ATTRIBUTE_ALREADY_ASSIGNED_TO_THIS_PRODUCT_MESSAGE);
+            throw new IllegalArgumentException(AttributeMessages.ATTRIBUTE_ALREADY_ASSIGNED_TO_THIS_PRODUCT);
         }
 
         ProductAttribute productAttribute = new ProductAttribute();
@@ -75,7 +71,7 @@ public class ProductAttributeService {
         productAttribute.setAttribute(attribute);
 
         if (assignAttributeToProductRequestDto.getValue() == null) {
-            throw new IllegalArgumentException(ATTRIBUTE_VALUE_CANNOT_BE_NULL_MESSAGE);
+            throw new IllegalArgumentException(AttributeMessages.ATTRIBUTE_VALUE_CANNOT_BE_NULL);
         }
 
         productAttribute.setValue(assignAttributeToProductRequestDto.getValue());
@@ -88,13 +84,13 @@ public class ProductAttributeService {
         Product product = productRepository.findById(productId).orElse(null);
 
         if (product == null) {
-            throw new EntityNotFoundException(PRODUCT_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(ProductMessages.PRODUCT_NOT_FOUND);
         }
 
         Attribute attribute = attributeRepository.findById(attributeId).orElse(null);
 
         if (attribute == null) {
-            throw new EntityNotFoundException(ATTRIBUTE_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(AttributeMessages.ATTRIBUTE_NOT_FOUND);
         }
 
         ProductAttributeId productAttributeId = new ProductAttributeId(productId, attributeId);
@@ -102,7 +98,7 @@ public class ProductAttributeService {
         ProductAttribute productAttribute = productAttributeRepository.findById(productAttributeId).orElse(null);
 
         if (productAttribute == null) {
-            throw new EntityNotFoundException(PRODUCT_ATTRIBUTE_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(AttributeMessages.ATTRIBUTE_NOT_ASSIGNED_TO_THIS_PRODUCT);
         }
 
         productAttributeRepository.deleteById(productAttributeId);

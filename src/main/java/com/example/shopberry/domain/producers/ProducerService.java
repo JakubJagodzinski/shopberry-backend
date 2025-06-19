@@ -1,5 +1,6 @@
 package com.example.shopberry.domain.producers;
 
+import com.example.shopberry.common.constants.messages.ProducerMessages;
 import com.example.shopberry.domain.producers.dto.CreateProducerRequestDto;
 import com.example.shopberry.domain.producers.dto.ProducerDtoMapper;
 import com.example.shopberry.domain.producers.dto.ProducerResponseDto;
@@ -19,10 +20,6 @@ public class ProducerService {
 
     private final ProducerDtoMapper producerDtoMapper;
 
-    private static final String PRODUCER_ALREADY_EXISTS_MESSAGE = "Producer already exists";
-    private static final String PRODUCER_WITH_THAT_NAME_ALREADY_EXISTS = "Producer with that name already exists";
-    private static final String PRODUCER_NOT_FOUND_MESSAGE = "Producer not found";
-
     public List<ProducerResponseDto> getAllProducers() {
         List<Producer> producers = producerRepository.findAll();
         return producerDtoMapper.toDtoList(producers);
@@ -33,7 +30,7 @@ public class ProducerService {
         Producer producer = producerRepository.findById(id).orElse(null);
 
         if (producer == null) {
-            throw new EntityNotFoundException(PRODUCER_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(ProducerMessages.PRODUCER_NOT_FOUND);
         }
 
         return producerDtoMapper.toDto(producer);
@@ -44,7 +41,7 @@ public class ProducerService {
         Producer producer = new Producer();
 
         if (producerRepository.existsByProducerName(createProducerRequestDto.getProducerName())) {
-            throw new IllegalArgumentException(PRODUCER_ALREADY_EXISTS_MESSAGE);
+            throw new IllegalArgumentException(ProducerMessages.PRODUCER_WITH_THAT_NAME_ALREADY_EXISTS);
         }
 
         producer.setProducerName(createProducerRequestDto.getProducerName());
@@ -58,14 +55,14 @@ public class ProducerService {
         Producer producer = producerRepository.findById(id).orElse(null);
 
         if (producer == null) {
-            throw new EntityNotFoundException(PRODUCER_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(ProducerMessages.PRODUCER_NOT_FOUND);
         }
 
         if (updateProducerRequestDto.getProducerName() != null) {
             Producer otherProducer = producerRepository.findByProducerName(updateProducerRequestDto.getProducerName()).orElse(null);
 
             if (otherProducer != null && !producer.getProducerId().equals(otherProducer.getProducerId())) {
-                throw new IllegalArgumentException(PRODUCER_WITH_THAT_NAME_ALREADY_EXISTS);
+                throw new IllegalArgumentException(ProducerMessages.PRODUCER_WITH_THAT_NAME_ALREADY_EXISTS);
             }
 
             producer.setProducerName(updateProducerRequestDto.getProducerName());
@@ -77,7 +74,7 @@ public class ProducerService {
     @Transactional
     public void deleteProducerById(Long id) throws EntityNotFoundException {
         if (!producerRepository.existsById(id)) {
-            throw new EntityNotFoundException(PRODUCER_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(ProducerMessages.PRODUCER_NOT_FOUND);
         }
 
         producerRepository.deleteById(id);

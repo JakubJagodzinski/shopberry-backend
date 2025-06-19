@@ -1,5 +1,7 @@
 package com.example.shopberry.domain.customeraddresses;
 
+import com.example.shopberry.common.constants.messages.CustomerMessages;
+import com.example.shopberry.common.constants.messages.UserMessages;
 import com.example.shopberry.domain.customeraddresses.dto.CreateCustomerAddressRequestDto;
 import com.example.shopberry.domain.customeraddresses.dto.CustomerAddressDtoMapper;
 import com.example.shopberry.domain.customeraddresses.dto.CustomerAddressResponseDto;
@@ -23,11 +25,6 @@ public class CustomerAddressService {
 
     private final CustomerAddressDtoMapper customerAddressDtoMapper;
 
-    private static final String CUSTOMER_NOT_FOUND_MESSAGE = "Customer not found";
-    private static final String CUSTOMER_ADDRESS_NOT_FOUND_MESSAGE = "Customer address not found";
-    private static final String FIRST_NAME_CANNOT_BE_EMPTY_MESSAGE = "First name cannot be empty";
-    private static final String LAST_NAME_CANNOT_BE_EMPTY_MESSAGE = "Last name cannot be empty";
-
     public List<CustomerAddressResponseDto> getAllCustomerAddresses() {
         return customerAddressDtoMapper.toDtoList(customerAddressRepository.findAll());
     }
@@ -35,7 +32,7 @@ public class CustomerAddressService {
     @Transactional
     public List<CustomerAddressResponseDto> getCustomerAllAddresses(UUID customerId) throws EntityNotFoundException {
         if (!customerRepository.existsById(customerId)) {
-            throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(CustomerMessages.CUSTOMER_NOT_FOUND);
         }
 
         return customerAddressDtoMapper.toDtoList(customerAddressRepository.findAllByCustomer_UserId(customerId));
@@ -46,7 +43,7 @@ public class CustomerAddressService {
         Customer customer = customerRepository.findById(customerId).orElse(null);
 
         if (customer == null) {
-            throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(CustomerMessages.CUSTOMER_NOT_FOUND);
         }
 
         CustomerAddress customerAddress = new CustomerAddress();
@@ -69,12 +66,12 @@ public class CustomerAddressService {
         CustomerAddress customerAddress = customerAddressRepository.findById(customerAddressId).orElse(null);
 
         if (customerAddress == null) {
-            throw new EntityNotFoundException(CUSTOMER_ADDRESS_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(CustomerMessages.CUSTOMER_ADDRESS_NOT_FOUND);
         }
 
         if (updateCustomerAddressRequestDto.getFirstName() != null) {
             if (updateCustomerAddressRequestDto.getFirstName().isEmpty()) {
-                throw new IllegalArgumentException(FIRST_NAME_CANNOT_BE_EMPTY_MESSAGE);
+                throw new IllegalArgumentException(UserMessages.FIRST_NAME_CANNOT_BE_EMPTY_MESSAGE);
             }
 
             customerAddress.setFirstName(updateCustomerAddressRequestDto.getFirstName());
@@ -82,7 +79,7 @@ public class CustomerAddressService {
 
         if (updateCustomerAddressRequestDto.getLastName() != null) {
             if (updateCustomerAddressRequestDto.getLastName().isEmpty()) {
-                throw new IllegalArgumentException(LAST_NAME_CANNOT_BE_EMPTY_MESSAGE);
+                throw new IllegalArgumentException(UserMessages.LAST_NAME_CANNOT_BE_EMPTY_MESSAGE);
             }
 
             customerAddress.setLastName(updateCustomerAddressRequestDto.getLastName());
@@ -118,7 +115,7 @@ public class CustomerAddressService {
     @Transactional
     public void deleteCustomerAllAddresses(UUID customerId) throws EntityNotFoundException {
         if (!customerRepository.existsById(customerId)) {
-            throw new EntityNotFoundException(CUSTOMER_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(CustomerMessages.CUSTOMER_NOT_FOUND);
         }
 
         customerAddressRepository.deleteAllByCustomer_UserId(customerId);
@@ -127,7 +124,7 @@ public class CustomerAddressService {
     @Transactional
     public void deleteCustomerAddressById(Long customerAddressId) throws EntityNotFoundException {
         if (!customerAddressRepository.existsById(customerAddressId)) {
-            throw new EntityNotFoundException(CUSTOMER_ADDRESS_NOT_FOUND_MESSAGE);
+            throw new EntityNotFoundException(CustomerMessages.CUSTOMER_ADDRESS_NOT_FOUND);
         }
 
         customerAddressRepository.deleteById(customerAddressId);

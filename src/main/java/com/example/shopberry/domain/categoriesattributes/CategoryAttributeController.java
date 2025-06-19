@@ -20,7 +20,7 @@ public class CategoryAttributeController {
 
     @GetMapping("/categories/{categoryId}/attributes")
     public ResponseEntity<List<CategoryAttributeResponseDto>> getCategoryAllAttributes(@PathVariable Long categoryId) {
-        List<CategoryAttributeResponseDto> categoryAttributeResponseDtoList = categoryAttributeService.getCategoryAttributesByCategoryId(categoryId);
+        List<CategoryAttributeResponseDto> categoryAttributeResponseDtoList = categoryAttributeService.getCategoryAllAttributes(categoryId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
