@@ -12,9 +12,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class UpdateComplaintRequestDto {
 
-    @JsonProperty("product_id")
-    private Long productId;
-
     private String info;
 
     @JsonProperty("first_name")

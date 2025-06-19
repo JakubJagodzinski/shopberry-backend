@@ -102,20 +102,6 @@ public class ComplaintService {
             throw new EntityNotFoundException(COMPLAINT_NOT_FOUND_MESSAGE);
         }
 
-        if (updateComplaintRequestDto.getProductId() != null) {
-            Product product = productRepository.findById(updateComplaintRequestDto.getProductId()).orElse(null);
-
-            if (product == null) {
-                throw new EntityNotFoundException(PRODUCT_NOT_FOUND_MESSAGE);
-            }
-
-            if (!orderProductRepository.existsById(new OrderProductId(id, product.getProductId()))) {
-                throw new IllegalArgumentException(PRODUCT_DOES_NOT_BELONG_TO_THAT_ORDER_MESSAGE);
-            }
-
-            complaint.setProduct(product);
-        }
-
         if (updateComplaintRequestDto.getInfo() != null) {
             complaint.setInfo(updateComplaintRequestDto.getInfo());
         }
