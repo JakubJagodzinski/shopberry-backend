@@ -2,9 +2,11 @@ package com.example.shopberry.auth;
 
 import com.example.shopberry.auth.jwt.Token;
 import com.example.shopberry.auth.jwt.TokenRepository;
+import com.example.shopberry.common.constants.SecurityConstants;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
@@ -18,14 +20,13 @@ public class LogoutService implements LogoutHandler {
 
     @Override
     public void logout(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
-        final String authHeader = request.getHeader("Authorization");
-        final String headerStart = "Bearer ";
+        final String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
 
-        if (authHeader == null || !authHeader.startsWith(headerStart)) {
+        if (authHeader == null || !authHeader.startsWith(SecurityConstants.HEADER_START)) {
             return;
         }
 
-        final String jwt = authHeader.substring(headerStart.length());
+        final String jwt = authHeader.substring(SecurityConstants.HEADER_START.length());
 
         Token storedToken = tokenRepository.findByToken(jwt).orElse(null);
 

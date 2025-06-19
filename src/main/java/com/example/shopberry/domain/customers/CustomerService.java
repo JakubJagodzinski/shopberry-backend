@@ -1,14 +1,11 @@
 package com.example.shopberry.domain.customers;
 
-import com.example.shopberry.auth.dto.RegisterRequestDto;
 import com.example.shopberry.domain.customers.dto.CustomerDtoMapper;
 import com.example.shopberry.domain.customers.dto.CustomerResponseDto;
 import com.example.shopberry.domain.customers.dto.UpdateCustomerRequestDto;
-import com.example.shopberry.user.Role;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,8 +16,6 @@ public class CustomerService {
 
     private final CustomerRepository customerRepository;
     private final CustomerDtoMapper customerDtoMapper;
-
-    private final PasswordEncoder passwordEncoder;
 
     private static final String CUSTOMER_NOT_FOUND_MESSAGE = "Customer not found";
 
@@ -37,20 +32,6 @@ public class CustomerService {
         }
 
         return customerDtoMapper.toDto(customer);
-    }
-
-    @Transactional
-    public Customer register(RegisterRequestDto registerRequestDto) throws IllegalArgumentException {
-        Customer customer = new Customer();
-
-        customer.setFirstName(registerRequestDto.getFirstname());
-        customer.setLastName(registerRequestDto.getLastname());
-        customer.setIsCompany(registerRequestDto.getIsCompany());
-        customer.setEmail(registerRequestDto.getEmail());
-        customer.setPassword(passwordEncoder.encode(registerRequestDto.getPassword()));
-        customer.setRole(Role.valueOf(registerRequestDto.getRole()));
-
-        return customerRepository.save(customer);
     }
 
     @Transactional

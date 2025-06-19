@@ -1,6 +1,6 @@
 package com.example.shopberry.auth.jwt;
 
-import com.example.shopberry.user.User;
+import  com.example.shopberry.user.User;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;

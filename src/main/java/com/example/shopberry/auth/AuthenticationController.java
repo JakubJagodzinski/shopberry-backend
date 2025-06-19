@@ -1,9 +1,8 @@
 package com.example.shopberry.auth;
 
-import com.example.shopberry.auth.dto.AuthenticationRequestDto;
-import com.example.shopberry.auth.dto.AuthenticationResponseDto;
-import com.example.shopberry.auth.dto.RefreshTokenRequestDto;
-import com.example.shopberry.auth.dto.RegisterRequestDto;
+import com.example.shopberry.auth.dto.*;
+import com.example.shopberry.common.MessageResponseDto;
+import com.example.shopberry.common.constants.messages.UserMessages;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,12 +17,12 @@ public class AuthenticationController {
     private final AuthenticationService service;
 
     @PostMapping("/register")
-    public ResponseEntity<AuthenticationResponseDto> register(@RequestBody RegisterRequestDto registerRequestDto) {
-        AuthenticationResponseDto authenticationResponseDto = service.register(registerRequestDto);
+    public ResponseEntity<MessageResponseDto> register(@RequestBody RegisterRequestDto registerRequestDto) {
+        service.register(registerRequestDto);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(authenticationResponseDto);
+                .body(new MessageResponseDto(UserMessages.USER_CREATED_SUCCESSFULLY));
     }
 
     @PostMapping("/authenticate")
@@ -36,12 +35,12 @@ public class AuthenticationController {
     }
 
     @PostMapping("/refresh-token")
-    public ResponseEntity<AuthenticationResponseDto> refreshToken(@RequestBody RefreshTokenRequestDto refreshTokenRequestDto) {
-        AuthenticationResponseDto authenticationResponseDto = service.refreshToken(refreshTokenRequestDto);
+    public ResponseEntity<RefreshTokenResponseDto> refreshToken(@RequestBody RefreshTokenRequestDto refreshTokenRequestDto) {
+        RefreshTokenResponseDto refreshTokenResponseDto = service.refreshToken(refreshTokenRequestDto);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(authenticationResponseDto);
+                .body(refreshTokenResponseDto);
     }
 
 }

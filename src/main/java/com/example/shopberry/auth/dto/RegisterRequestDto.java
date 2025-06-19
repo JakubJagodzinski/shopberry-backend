@@ -11,10 +11,10 @@ import lombok.*;
 public class RegisterRequestDto {
 
     @JsonProperty("first_name")
-    private String firstname;
+    private String firstName;
 
     @JsonProperty("last_name")
-    private String lastname;
+    private String lastName;
 
     private String email;
 
