@@ -16,5 +16,7 @@ public class ProductMessages {
     public static final String PRODUCT_PRICE_CANNOT_BE_NEGATIVE = "Product price cannot be negative";
     public static final String PRODUCT_DISCOUNT_PERCENT_VALUE_CANNOT_BE_NEGATIVE = "Product discount percent value can't be negative";
     public static final String PRODUCT_DISCOUNT_PERCENT_VALUE_CANNOT_BE_GREATER_THAN_100 = "Product discount percent value can't be greater than 100";
+    public static final String PRODUCT_QUANTITY_CANNOT_BE_NULL = "Product quantity cannot be null";
+    public static final String PRODUCT_ID_CANNOT_BE_NULL = "Product id cannot be null";
 
 }

@@ -6,9 +6,11 @@ import com.example.shopberry.domain.cartproducts.dto.AddProductToCartRequestDto;
 import com.example.shopberry.domain.cartproducts.dto.CartProductResponseDto;
 import com.example.shopberry.domain.cartproducts.dto.UpdateCartProductRequestDto;
 import com.example.shopberry.user.Permission;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -18,6 +20,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/v1")
 @RequiredArgsConstructor
+@Validated
 public class CartProductController {
 
     private final CartProductService cartProductService;
@@ -44,7 +47,7 @@ public class CartProductController {
 
     @CheckPermission(Permission.CART_PRODUCT_ADD)
     @PostMapping("/customers/{customerId}/cart")
-    public ResponseEntity<CartProductResponseDto> addProductToCustomerCart(@PathVariable UUID customerId, @RequestBody AddProductToCartRequestDto addProductToCartRequestDto) {
+    public ResponseEntity<CartProductResponseDto> addProductToCustomerCart(@PathVariable UUID customerId, @Valid @RequestBody AddProductToCartRequestDto addProductToCartRequestDto) {
         CartProductResponseDto createdCartProductResponseDto = cartProductService.addProductToCustomerCart(customerId, addProductToCartRequestDto);
 
         return ResponseEntity
@@ -55,7 +58,7 @@ public class CartProductController {
 
     @CheckPermission(Permission.CART_PRODUCT_UPDATE)
     @PatchMapping("/customers/{customerId}/cart/{productId}")
-    public ResponseEntity<CartProductResponseDto> updateCustomerCartProduct(@PathVariable UUID customerId, @PathVariable Long productId, @RequestBody UpdateCartProductRequestDto updateCartProductRequestDto) {
+    public ResponseEntity<CartProductResponseDto> updateCustomerCartProduct(@PathVariable UUID customerId, @PathVariable Long productId, @Valid @RequestBody UpdateCartProductRequestDto updateCartProductRequestDto) {
         CartProductResponseDto updatedCartProductResponseDto = cartProductService.updateCustomerCartProduct(customerId, productId, updateCartProductRequestDto);
 
         return ResponseEntity

@@ -76,17 +76,13 @@ public class CartProductService {
         cartProduct.setId(cartProductId);
         cartProduct.setCustomer(customer);
         cartProduct.setProduct(product);
-
-        if (addProductToCartRequestDto.getProductQuantity() <= 0) {
-            throw new IllegalArgumentException(ProductMessages.PRODUCT_QUANTITY_MUST_BE_GREATER_THAN_ZERO);
-        }
         cartProduct.setProductQuantity(addProductToCartRequestDto.getProductQuantity());
 
         return cartProductDtoMapper.toDto(cartProductRepository.save(cartProduct));
     }
 
     @Transactional
-    public CartProductResponseDto updateCustomerCartProduct(UUID customerId, Long productId, UpdateCartProductRequestDto updateCartProductRequestDto) throws EntityNotFoundException, IllegalArgumentException {
+    public CartProductResponseDto updateCustomerCartProduct(UUID customerId, Long productId, UpdateCartProductRequestDto updateCartProductRequestDto) throws EntityNotFoundException {
         CartProductId cartProductId = new CartProductId(customerId, productId);
 
         CartProduct cartProduct = cartProductRepository.findById(cartProductId).orElse(null);
@@ -96,10 +92,6 @@ public class CartProductService {
         }
 
         if (updateCartProductRequestDto.getProductQuantity() != null) {
-            if (updateCartProductRequestDto.getProductQuantity() <= 0) {
-                throw new IllegalArgumentException(ProductMessages.PRODUCT_QUANTITY_MUST_BE_GREATER_THAN_ZERO);
-            }
-
             cartProduct.setProductQuantity(updateCartProductRequestDto.getProductQuantity());
         }
 
