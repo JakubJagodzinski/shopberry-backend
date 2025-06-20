@@ -66,4 +66,15 @@ public class ComplaintImageService {
         complaintImageRepository.deleteById(id);
     }
 
+    @Transactional
+    public List<ComplaintImageResponseDto> getComplaintAllImages(Long complaintId) throws EntityNotFoundException {
+        if (!complaintRepository.existsById(complaintId)) {
+            throw new EntityNotFoundException(ComplaintMessages.COMPLAINT_NOT_FOUND);
+        }
+
+        List<ComplaintImage> complaintImages = complaintImageRepository.findAllByComplaint_ComplaintId(complaintId);
+
+        return complaintImageDtoMapper.toDtoList(complaintImages);
+    }
+
 }

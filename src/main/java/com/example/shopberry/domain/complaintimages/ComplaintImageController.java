@@ -31,6 +31,16 @@ public class ComplaintImageController {
     }
 
     @CheckPermission(Permission.COMPLAINT_IMAGE_READ)
+    @GetMapping("/complaints/{complaintId}/images")
+    public ResponseEntity<List<ComplaintImageResponseDto>> getComplaintAllImages(@PathVariable Long complaintId) {
+        List<ComplaintImageResponseDto> complaintImageResponseDtoList = complaintImageService.getComplaintAllImages(complaintId);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(complaintImageResponseDtoList);
+    }
+
+    @CheckPermission(Permission.COMPLAINT_IMAGE_READ)
     @GetMapping("/complaints/images/{complaintImageId}")
     public ResponseEntity<ComplaintImageResponseDto> getComplaintImageById(@PathVariable Long complaintImageId) {
         ComplaintImageResponseDto complaintImageResponseDto = complaintImageService.getComplaintImageById(complaintImageId);
