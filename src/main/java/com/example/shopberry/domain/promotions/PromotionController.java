@@ -1,9 +1,11 @@
 package com.example.shopberry.domain.promotions;
 
+import com.example.shopberry.auth.access.CheckPermission;
 import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.promotions.dto.CreatePromotionRequestDto;
 import com.example.shopberry.domain.promotions.dto.PromotionResponseDto;
 import com.example.shopberry.domain.promotions.dto.UpdatePromotionRequestDto;
+import com.example.shopberry.user.Permission;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,6 +39,7 @@ public class PromotionController {
                 .body(promotionResponseDto);
     }
 
+    @CheckPermission(Permission.PROMOTION_CREATE)
     @PostMapping("/promotions")
     public ResponseEntity<PromotionResponseDto> createPromotion(@RequestBody CreatePromotionRequestDto createPromotionRequestDto) {
         PromotionResponseDto createdPromotionResponseDto = promotionService.createPromotion(createPromotionRequestDto);
@@ -47,6 +50,7 @@ public class PromotionController {
                 .body(createdPromotionResponseDto);
     }
 
+    @CheckPermission(Permission.PROMOTION_UPDATE)
     @PatchMapping("/promotions/{promotionId}")
     public ResponseEntity<PromotionResponseDto> updatePromotionById(@PathVariable Long promotionId, @RequestBody UpdatePromotionRequestDto updatePromotionRequestDto) {
         PromotionResponseDto updatedPromotionResponseDto = promotionService.updatePromotionById(promotionId, updatePromotionRequestDto);
@@ -56,6 +60,7 @@ public class PromotionController {
                 .body(updatedPromotionResponseDto);
     }
 
+    @CheckPermission(Permission.PROMOTION_DELETE)
     @DeleteMapping("/promotions/{promotionId}")
     public ResponseEntity<MessageResponseDto> deletePromotionById(@PathVariable Long promotionId) {
         promotionService.deletePromotionById(promotionId);

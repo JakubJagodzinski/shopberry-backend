@@ -1,9 +1,11 @@
 package com.example.shopberry.domain.paymenttypes;
 
+import com.example.shopberry.auth.access.CheckPermission;
 import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.paymenttypes.dto.CreatePaymentTypeRequestDto;
 import com.example.shopberry.domain.paymenttypes.dto.PaymentTypeResponseDto;
 import com.example.shopberry.domain.paymenttypes.dto.UpdatePaymentTypeRequestDto;
+import com.example.shopberry.user.Permission;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +21,7 @@ public class PaymentTypeController {
 
     private final PaymentTypeService paymentTypeService;
 
+    @CheckPermission(Permission.PAYMENT_TYPE_READ_ALL)
     @GetMapping("/payment-types")
     public ResponseEntity<List<PaymentTypeResponseDto>> getAllPaymentTypes() {
         List<PaymentTypeResponseDto> paymentTypeResponseDtoList = paymentTypeService.getAllPaymentTypes();
@@ -28,6 +31,7 @@ public class PaymentTypeController {
                 .body(paymentTypeResponseDtoList);
     }
 
+    @CheckPermission(Permission.PAYMENT_TYPE_READ)
     @GetMapping("/payment-types/{paymentTypeId}")
     public ResponseEntity<PaymentTypeResponseDto> getPaymentTypeById(@PathVariable Long paymentTypeId) {
         PaymentTypeResponseDto paymentTypeResponseDto = paymentTypeService.getPaymentTypeById(paymentTypeId);
@@ -37,6 +41,7 @@ public class PaymentTypeController {
                 .body(paymentTypeResponseDto);
     }
 
+    @CheckPermission(Permission.PAYMENT_TYPE_CREATE)
     @PostMapping("/payment-types")
     public ResponseEntity<PaymentTypeResponseDto> createPaymentType(@RequestBody CreatePaymentTypeRequestDto createPaymentTypeRequestDto) {
         PaymentTypeResponseDto createdPaymentTypeResponseDto = paymentTypeService.createPaymentType(createPaymentTypeRequestDto);
@@ -47,6 +52,7 @@ public class PaymentTypeController {
                 .body(createdPaymentTypeResponseDto);
     }
 
+    @CheckPermission(Permission.PAYMENT_TYPE_UPDATE)
     @PatchMapping("/payment-types/{paymentTypeId}")
     public ResponseEntity<PaymentTypeResponseDto> updatePaymentTypeById(@PathVariable Long paymentTypeId, @RequestBody UpdatePaymentTypeRequestDto updatePaymentTypeRequestDto) {
         PaymentTypeResponseDto updatedPaymentTypeResponseDto = paymentTypeService.updatePaymentTypeById(paymentTypeId, updatePaymentTypeRequestDto);
@@ -56,6 +62,7 @@ public class PaymentTypeController {
                 .body(updatedPaymentTypeResponseDto);
     }
 
+    @CheckPermission(Permission.PAYMENT_TYPE_DELETE)
     @DeleteMapping("/payment-types/{paymentTypeId}")
     public ResponseEntity<MessageResponseDto> deletePaymentTypeById(@PathVariable Long paymentTypeId) {
         paymentTypeService.deletePaymentTypeById(paymentTypeId);

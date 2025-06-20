@@ -1,8 +1,10 @@
 package com.example.shopberry.domain.orders;
 
+import com.example.shopberry.auth.access.CheckPermission;
 import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.orders.dto.CreateOrderRequestDto;
 import com.example.shopberry.domain.orders.dto.OrderResponseDto;
+import com.example.shopberry.user.Permission;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +21,7 @@ public class OrderController {
 
     private final OrderService orderService;
 
+    @CheckPermission(Permission.ORDER_READ_ALL)
     @GetMapping("/orders")
     public ResponseEntity<List<OrderResponseDto>> getAllOrders() {
         List<OrderResponseDto> orderResponseDtoList = orderService.getAllOrders();
@@ -28,6 +31,7 @@ public class OrderController {
                 .body(orderResponseDtoList);
     }
 
+    @CheckPermission(Permission.ORDER_READ)
     @GetMapping("/orders/{orderId}")
     public ResponseEntity<OrderResponseDto> getOrderById(@PathVariable Long orderId) {
         OrderResponseDto orderResponseDto = orderService.getOrderById(orderId);
@@ -37,6 +41,7 @@ public class OrderController {
                 .body(orderResponseDto);
     }
 
+    @CheckPermission(Permission.CUSTOMER_ORDER_READ_ALL)
     @GetMapping("/customers/{customerId}/orders")
     public ResponseEntity<List<OrderResponseDto>> getCustomerAllOrders(@PathVariable UUID customerId) {
         List<OrderResponseDto> orderResponseDtoList = orderService.getCustomerAllOrders(customerId);
@@ -46,6 +51,7 @@ public class OrderController {
                 .body(orderResponseDtoList);
     }
 
+    @CheckPermission(Permission.ORDER_CREATE)
     @PostMapping("/orders")
     public ResponseEntity<OrderResponseDto> createOrder(@RequestBody CreateOrderRequestDto createOrderRequestDto) {
         OrderResponseDto createdOrderResponseDto = orderService.createOrder(createOrderRequestDto);
@@ -56,6 +62,7 @@ public class OrderController {
                 .body(createdOrderResponseDto);
     }
 
+    @CheckPermission(Permission.ORDER_DELETE)
     @DeleteMapping("/orders/{orderId}")
     public ResponseEntity<MessageResponseDto> deleteOrderById(@PathVariable Long orderId) {
         orderService.deleteOrderById(orderId);

@@ -1,9 +1,11 @@
 package com.example.shopberry.domain.causesofreturn;
 
+import com.example.shopberry.auth.access.CheckPermission;
 import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.causesofreturn.dto.CauseOfReturnResponseDto;
 import com.example.shopberry.domain.causesofreturn.dto.CreateCauseOfReturnRequestDto;
 import com.example.shopberry.domain.causesofreturn.dto.UpdateCauseOfReturnRequestDto;
+import com.example.shopberry.user.Permission;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,6 +39,7 @@ public class CauseOfReturnController {
                 .body(causeOfReturnResponseDto);
     }
 
+    @CheckPermission(Permission.CAUSE_OF_RETURN_CREATE)
     @PostMapping("/causes-of-return")
     public ResponseEntity<CauseOfReturnResponseDto> createCauseOfReturn(@RequestBody CreateCauseOfReturnRequestDto createCauseOfReturnRequestDto) {
         CauseOfReturnResponseDto createdCauseOfReturnResponseDto = causeOfReturnService.createCauseOfReturn(createCauseOfReturnRequestDto);
@@ -47,6 +50,7 @@ public class CauseOfReturnController {
                 .body(createdCauseOfReturnResponseDto);
     }
 
+    @CheckPermission(Permission.CAUSE_OF_RETURN_UPDATE)
     @PatchMapping("/causes-of-return/{causeOfReturnId}")
     public ResponseEntity<CauseOfReturnResponseDto> updateCauseOfReturnById(@PathVariable Long causeOfReturnId, @RequestBody UpdateCauseOfReturnRequestDto updateCauseOfReturnRequestDto) {
         CauseOfReturnResponseDto updatedCauseOfReturnResponseDto = causeOfReturnService.updateCauseOfReturnById(causeOfReturnId, updateCauseOfReturnRequestDto);
@@ -56,6 +60,7 @@ public class CauseOfReturnController {
                 .body(updatedCauseOfReturnResponseDto);
     }
 
+    @CheckPermission(Permission.CAUSE_OF_RETURN_DELETE)
     @DeleteMapping("/causes-of-return/{causeOfReturnId}")
     public ResponseEntity<MessageResponseDto> deleteCauseOfReturnById(@PathVariable Long causeOfReturnId) {
         causeOfReturnService.deleteCauseOfReturnById(causeOfReturnId);

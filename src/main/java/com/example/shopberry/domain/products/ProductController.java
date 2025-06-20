@@ -1,9 +1,11 @@
 package com.example.shopberry.domain.products;
 
+import com.example.shopberry.auth.access.CheckPermission;
 import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.products.dto.CreateProductRequestDto;
 import com.example.shopberry.domain.products.dto.ProductResponseDto;
 import com.example.shopberry.domain.products.dto.UpdateProductRequestDto;
+import com.example.shopberry.user.Permission;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,6 +39,7 @@ public class ProductController {
                 .body(productResponseDto);
     }
 
+    @CheckPermission(Permission.PRODUCT_CREATE)
     @PostMapping("/products")
     public ResponseEntity<ProductResponseDto> createProduct(@RequestBody CreateProductRequestDto createProductRequestDto) {
         ProductResponseDto createdProductResponseDto = productService.createProduct(createProductRequestDto);
@@ -47,6 +50,7 @@ public class ProductController {
                 .body(createdProductResponseDto);
     }
 
+    @CheckPermission(Permission.PRODUCT_UPDATE)
     @PatchMapping("/products/{productId}")
     public ResponseEntity<ProductResponseDto> updateProductById(@PathVariable Long productId, @RequestBody UpdateProductRequestDto updateProductRequestDto) {
         ProductResponseDto updatedProductResponseDto = productService.updateProductById(productId, updateProductRequestDto);
@@ -56,6 +60,7 @@ public class ProductController {
                 .body(updatedProductResponseDto);
     }
 
+    @CheckPermission(Permission.PRODUCT_DELETE)
     @DeleteMapping("/products/{productId}")
     public ResponseEntity<MessageResponseDto> deleteProductById(@PathVariable Long productId) {
         productService.deleteProductById(productId);

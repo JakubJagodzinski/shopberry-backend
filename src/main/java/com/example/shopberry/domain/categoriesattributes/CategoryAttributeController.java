@@ -1,8 +1,10 @@
 package com.example.shopberry.domain.categoriesattributes;
 
+import com.example.shopberry.auth.access.CheckPermission;
 import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.categoriesattributes.dto.AssignAttributeToCategoryRequestDto;
 import com.example.shopberry.domain.categoriesattributes.dto.CategoryAttributeResponseDto;
+import com.example.shopberry.user.Permission;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +29,7 @@ public class CategoryAttributeController {
                 .body(categoryAttributeResponseDtoList);
     }
 
+    @CheckPermission(Permission.CATEGORY_ATTRIBUTE_ASSIGN)
     @PostMapping("/categories/{categoryId}/attributes")
     public ResponseEntity<CategoryAttributeResponseDto> assignAttributeToCategory(@PathVariable Long categoryId, @RequestBody AssignAttributeToCategoryRequestDto assignAttributeToCategoryRequestDto) {
         CategoryAttributeResponseDto createdCategoryAttributeResponseDto = categoryAttributeService.assignAttributeToCategory(categoryId, assignAttributeToCategoryRequestDto);
@@ -37,6 +40,7 @@ public class CategoryAttributeController {
                 .body(createdCategoryAttributeResponseDto);
     }
 
+    @CheckPermission(Permission.CATEGORY_ATTRIBUTE_UNASSIGN)
     @DeleteMapping("/categories/{categoryId}/attributes/{attributeId}")
     public ResponseEntity<MessageResponseDto> unassignAttributeFromCategory(@PathVariable Long categoryId, @PathVariable Long attributeId) {
         categoryAttributeService.unassignAttributeFromCategory(categoryId, attributeId);

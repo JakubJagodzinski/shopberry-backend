@@ -1,8 +1,10 @@
 package com.example.shopberry.domain.productattributes;
 
+import com.example.shopberry.auth.access.CheckPermission;
 import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.productattributes.dto.AssignAttributeToProductRequestDto;
 import com.example.shopberry.domain.productattributes.dto.ProductAttributeResponseDto;
+import com.example.shopberry.user.Permission;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,6 +38,7 @@ public class ProductAttributeController {
                 .body(productAttributeResponseDtoList);
     }
 
+    @CheckPermission(Permission.PRODUCT_ATTRIBUTE_ASSIGN)
     @PostMapping("/products/{productId}/attributes")
     public ResponseEntity<ProductAttributeResponseDto> assignAttributeToProduct(@PathVariable Long productId, @RequestBody AssignAttributeToProductRequestDto assignAttributeToProductRequestDto) {
         ProductAttributeResponseDto createdProductAttributeResponseDto = productAttributeService.assignAttributeToProduct(productId, assignAttributeToProductRequestDto);
@@ -46,6 +49,7 @@ public class ProductAttributeController {
                 .body(createdProductAttributeResponseDto);
     }
 
+    @CheckPermission(Permission.PRODUCT_ATTRIBUTE_UNASSIGN)
     @DeleteMapping("/products/{productId}/attributes/{attributeId}")
     public ResponseEntity<MessageResponseDto> unassignAttributeFromProduct(@PathVariable Long productId, @PathVariable Long attributeId) {
         productAttributeService.unassignAttributeFromProduct(productId, attributeId);

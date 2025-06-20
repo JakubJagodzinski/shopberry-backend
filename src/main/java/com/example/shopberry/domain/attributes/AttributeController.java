@@ -1,9 +1,11 @@
 package com.example.shopberry.domain.attributes;
 
+import com.example.shopberry.auth.access.CheckPermission;
 import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.attributes.dto.AttributeResponseDto;
 import com.example.shopberry.domain.attributes.dto.CreateAttributeRequestDto;
 import com.example.shopberry.domain.attributes.dto.UpdateAttributeRequestDto;
+import com.example.shopberry.user.Permission;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,6 +39,7 @@ public class AttributeController {
                 .body(attributeResponseDto);
     }
 
+    @CheckPermission(Permission.ATTRIBUTE_CREATE)
     @PostMapping("/attributes")
     public ResponseEntity<AttributeResponseDto> createAttribute(@RequestBody CreateAttributeRequestDto createAttributeRequestDto) {
         AttributeResponseDto createdAttributeResponseDto = attributeService.createAttribute(createAttributeRequestDto);
@@ -47,6 +50,7 @@ public class AttributeController {
                 .body(createdAttributeResponseDto);
     }
 
+    @CheckPermission(Permission.ATTRIBUTE_UPDATE)
     @PatchMapping("/attributes/{attributeId}")
     public ResponseEntity<AttributeResponseDto> updateAttributeById(@PathVariable Long attributeId, @RequestBody UpdateAttributeRequestDto updateAttributeRequestDto) {
         AttributeResponseDto updatedAttributeResponseDto = attributeService.updateAttributeById(attributeId, updateAttributeRequestDto);
@@ -56,6 +60,7 @@ public class AttributeController {
                 .body(updatedAttributeResponseDto);
     }
 
+    @CheckPermission(Permission.ATTRIBUTE_DELETE)
     @DeleteMapping("/attributes/{attributeId}")
     public ResponseEntity<MessageResponseDto> deleteAttributeById(@PathVariable Long attributeId) {
         attributeService.deleteAttributeById(attributeId);

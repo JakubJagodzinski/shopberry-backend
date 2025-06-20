@@ -1,9 +1,11 @@
 package com.example.shopberry.domain.cartproducts;
 
+import com.example.shopberry.auth.access.CheckPermission;
 import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.cartproducts.dto.AddProductToCartRequestDto;
 import com.example.shopberry.domain.cartproducts.dto.CartProductResponseDto;
 import com.example.shopberry.domain.cartproducts.dto.UpdateCartProductRequestDto;
+import com.example.shopberry.user.Permission;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +22,7 @@ public class CartProductController {
 
     private final CartProductService cartProductService;
 
+    @CheckPermission(Permission.CUSTOMER_CART_PRODUCT_READ)
     @GetMapping("/customers/{customerId}/cart/{productId}")
     public ResponseEntity<CartProductResponseDto> getCustomerCartProduct(@PathVariable UUID customerId, @PathVariable Long productId) {
         CartProductResponseDto cartProductResponseDto = cartProductService.getCustomerCartProduct(customerId, productId);
@@ -29,6 +32,7 @@ public class CartProductController {
                 .body(cartProductResponseDto);
     }
 
+    @CheckPermission(Permission.CUSTOMER_CART_PRODUCT_READ_ALL)
     @GetMapping("/customers/{customerId}/cart")
     public ResponseEntity<List<CartProductResponseDto>> getCustomerAllCartProducts(@PathVariable UUID customerId) {
         List<CartProductResponseDto> cartProductResponseDtoList = cartProductService.getCustomerAllCartProducts(customerId);
@@ -38,6 +42,7 @@ public class CartProductController {
                 .body(cartProductResponseDtoList);
     }
 
+    @CheckPermission(Permission.CART_PRODUCT_ADD)
     @PostMapping("/customers/{customerId}/cart")
     public ResponseEntity<CartProductResponseDto> addProductToCustomerCart(@PathVariable UUID customerId, @RequestBody AddProductToCartRequestDto addProductToCartRequestDto) {
         CartProductResponseDto createdCartProductResponseDto = cartProductService.addProductToCustomerCart(customerId, addProductToCartRequestDto);
@@ -48,6 +53,7 @@ public class CartProductController {
                 .body(createdCartProductResponseDto);
     }
 
+    @CheckPermission(Permission.CART_PRODUCT_UPDATE)
     @PatchMapping("/customers/{customerId}/cart/{productId}")
     public ResponseEntity<CartProductResponseDto> updateCustomerCartProduct(@PathVariable UUID customerId, @PathVariable Long productId, @RequestBody UpdateCartProductRequestDto updateCartProductRequestDto) {
         CartProductResponseDto updatedCartProductResponseDto = cartProductService.updateCustomerCartProduct(customerId, productId, updateCartProductRequestDto);
@@ -57,6 +63,7 @@ public class CartProductController {
                 .body(updatedCartProductResponseDto);
     }
 
+    @CheckPermission(Permission.CART_PRODUCT_REMOVE)
     @DeleteMapping("/customers/{customerId}/cart/{productId}")
     public ResponseEntity<MessageResponseDto> removeProductFromCustomerCart(@PathVariable UUID customerId, @PathVariable Long productId) {
         cartProductService.removeProductFromCustomerCart(customerId, productId);

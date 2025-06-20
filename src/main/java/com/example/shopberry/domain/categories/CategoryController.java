@@ -1,10 +1,12 @@
 package com.example.shopberry.domain.categories;
 
+import com.example.shopberry.auth.access.CheckPermission;
 import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.categories.dto.CategoryResponseDto;
 import com.example.shopberry.domain.categories.dto.CreateCategoryRequestDto;
 import com.example.shopberry.domain.categories.dto.SetParentCategoryRequestDto;
 import com.example.shopberry.domain.categories.dto.UpdateCategoryRequestDto;
+import com.example.shopberry.user.Permission;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,6 +40,7 @@ public class CategoryController {
                 .body(categoryResponseDto);
     }
 
+    @CheckPermission(Permission.CATEGORY_CREATE)
     @PostMapping("/categories")
     public ResponseEntity<CategoryResponseDto> createCategory(@RequestBody CreateCategoryRequestDto createCategoryRequestDto) {
         CategoryResponseDto createdCategory = categoryService.createCategory(createCategoryRequestDto);
@@ -48,6 +51,7 @@ public class CategoryController {
                 .body(createdCategory);
     }
 
+    @CheckPermission(Permission.CATEGORY_UPDATE)
     @PostMapping("/categories/{categoryId}")
     public ResponseEntity<CategoryResponseDto> setParentCategory(@PathVariable Long categoryId, @RequestBody SetParentCategoryRequestDto setParentCategoryRequestDto) {
         CategoryResponseDto updatedCategoryResponseDto = categoryService.setParentCategory(categoryId, setParentCategoryRequestDto);
@@ -57,6 +61,7 @@ public class CategoryController {
                 .body(updatedCategoryResponseDto);
     }
 
+    @CheckPermission(Permission.CATEGORY_UPDATE)
     @PatchMapping("/categories/{categoryId}")
     public ResponseEntity<CategoryResponseDto> updateCategoryById(@PathVariable Long categoryId, @RequestBody UpdateCategoryRequestDto updateCategoryRequestDto) {
         CategoryResponseDto updatedCategoryResponseDto = categoryService.updateCategoryById(categoryId, updateCategoryRequestDto);
@@ -66,6 +71,7 @@ public class CategoryController {
                 .body(updatedCategoryResponseDto);
     }
 
+    @CheckPermission(Permission.CATEGORY_DELETE)
     @DeleteMapping("/categories/{categoryId}")
     public ResponseEntity<MessageResponseDto> deleteCategoryById(@PathVariable Long categoryId) {
         categoryService.deleteCategoryById(categoryId);

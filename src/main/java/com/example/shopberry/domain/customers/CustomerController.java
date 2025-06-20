@@ -1,8 +1,10 @@
 package com.example.shopberry.domain.customers;
 
+import com.example.shopberry.auth.access.CheckPermission;
 import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.customers.dto.CustomerResponseDto;
 import com.example.shopberry.domain.customers.dto.UpdateCustomerRequestDto;
+import com.example.shopberry.user.Permission;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,7 @@ public class CustomerController {
 
     private final CustomerService customerService;
 
+    @CheckPermission(Permission.CUSTOMER_READ_ALL)
     @GetMapping("/customers")
     public ResponseEntity<List<CustomerResponseDto>> getAllCustomers() {
         List<CustomerResponseDto> customerResponseDtoList = customerService.getAllCustomers();
@@ -27,6 +30,7 @@ public class CustomerController {
                 .body(customerResponseDtoList);
     }
 
+    @CheckPermission(Permission.CUSTOMER_READ)
     @GetMapping("/customers/{customerId}")
     public ResponseEntity<CustomerResponseDto> getCustomerById(@PathVariable UUID customerId) {
         CustomerResponseDto customerResponseDto = customerService.getCustomerById(customerId);
@@ -36,6 +40,7 @@ public class CustomerController {
                 .body(customerResponseDto);
     }
 
+    @CheckPermission(Permission.CUSTOMER_UPDATE)
     @PatchMapping("/customers/{customerId}")
     public ResponseEntity<CustomerResponseDto> updateCustomerById(@PathVariable UUID customerId, @RequestBody UpdateCustomerRequestDto updateCustomerRequestDto) {
         CustomerResponseDto updatedCustomerResponseDto = customerService.updateCustomerById(customerId, updateCustomerRequestDto);
@@ -45,6 +50,7 @@ public class CustomerController {
                 .body(updatedCustomerResponseDto);
     }
 
+    @CheckPermission(Permission.CUSTOMER_DELETE)
     @DeleteMapping("/customer/{customerId}")
     public ResponseEntity<MessageResponseDto> deleteCustomerById(@PathVariable UUID customerId) {
         customerService.deleteCustomerById(customerId);

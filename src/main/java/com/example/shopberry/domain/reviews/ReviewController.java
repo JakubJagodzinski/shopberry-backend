@@ -1,9 +1,11 @@
 package com.example.shopberry.domain.reviews;
 
+import com.example.shopberry.auth.access.CheckPermission;
 import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.reviews.dto.CreateReviewRequestDto;
 import com.example.shopberry.domain.reviews.dto.ReviewResponseDto;
 import com.example.shopberry.domain.reviews.dto.UpdateReviewRequestDto;
+import com.example.shopberry.user.Permission;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,6 +49,7 @@ public class ReviewController {
                 .body(reviewResponseDto);
     }
 
+    @CheckPermission(Permission.REVIEW_CREATE)
     @PostMapping("/products/{productId}/reviews")
     public ResponseEntity<ReviewResponseDto> createReview(@PathVariable Long productId, @RequestBody CreateReviewRequestDto createReviewRequestDto) {
         ReviewResponseDto createdReviewResponseDto = reviewService.createReview(productId, createReviewRequestDto);
@@ -57,6 +60,7 @@ public class ReviewController {
                 .body(createdReviewResponseDto);
     }
 
+    @CheckPermission(Permission.REVIEW_UPDATE)
     @PatchMapping("/reviews/{reviewId}")
     public ResponseEntity<ReviewResponseDto> updateReviewById(@PathVariable Long reviewId, @RequestBody UpdateReviewRequestDto updateReviewRequestDto) {
         ReviewResponseDto updatedReviewResponseDto = reviewService.updateReviewById(reviewId, updateReviewRequestDto);
@@ -66,6 +70,7 @@ public class ReviewController {
                 .body(updatedReviewResponseDto);
     }
 
+    @CheckPermission(Permission.REVIEW_DELETE)
     @DeleteMapping("/reviews/{reviewId}")
     public ResponseEntity<MessageResponseDto> deleteReviewById(@PathVariable Long reviewId) {
         reviewService.deleteReviewById(reviewId);
@@ -75,6 +80,7 @@ public class ReviewController {
                 .body(new MessageResponseDto("Review with id " + reviewId + " deleted successfully"));
     }
 
+    @CheckPermission(Permission.CUSTOMER_REVIEW_DELETE_ALL)
     @DeleteMapping("/customers/{customerId}/reviews")
     public ResponseEntity<MessageResponseDto> deleteCustomerAllReviews(@PathVariable UUID customerId) {
         reviewService.deleteCustomerAllReviews(customerId);
@@ -84,6 +90,7 @@ public class ReviewController {
                 .body(new MessageResponseDto("All reviews from customer with id " + customerId + " deleted successfully"));
     }
 
+    @CheckPermission(Permission.PRODUCT_REVIEW_DELETE_ALL)
     @DeleteMapping("/products/{productId}/reviews")
     public ResponseEntity<MessageResponseDto> deleteProductAllReviews(@PathVariable Long productId) {
         reviewService.deleteProductAllReviews(productId);

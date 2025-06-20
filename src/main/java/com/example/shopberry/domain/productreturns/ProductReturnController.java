@@ -1,8 +1,10 @@
 package com.example.shopberry.domain.productreturns;
 
+import com.example.shopberry.auth.access.CheckPermission;
 import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.productreturns.dto.CreateProductReturnRequestDto;
 import com.example.shopberry.domain.productreturns.dto.ProductReturnResponseDto;
+import com.example.shopberry.user.Permission;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,6 +38,7 @@ public class ProductReturnController {
                 .body(productReturnResponseDtoList);
     }
 
+    @CheckPermission(Permission.PRODUCT_RETURN_CREATE)
     @PostMapping("/orders/{orderId}/product-returns")
     public ResponseEntity<ProductReturnResponseDto> createProductReturn(@PathVariable Long orderId, @RequestBody CreateProductReturnRequestDto createProductReturnRequestDto) {
         ProductReturnResponseDto createdProductReturnResponseDto = productReturnService.createProductReturn(orderId, createProductReturnRequestDto);
@@ -46,6 +49,7 @@ public class ProductReturnController {
                 .body(createdProductReturnResponseDto);
     }
 
+    @CheckPermission(Permission.PRODUCT_RETURN_DELETE)
     @DeleteMapping("/product-returns/{productReturnId}")
     public ResponseEntity<MessageResponseDto> deleteProductReturnById(@PathVariable Long productReturnId) {
         productReturnService.deleteProductReturnById(productReturnId);

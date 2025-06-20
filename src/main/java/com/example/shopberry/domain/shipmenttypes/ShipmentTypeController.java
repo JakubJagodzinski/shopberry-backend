@@ -1,9 +1,11 @@
 package com.example.shopberry.domain.shipmenttypes;
 
+import com.example.shopberry.auth.access.CheckPermission;
 import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.shipmenttypes.dto.CreateShipmentTypeRequestDto;
 import com.example.shopberry.domain.shipmenttypes.dto.ShipmentTypeResponseDto;
 import com.example.shopberry.domain.shipmenttypes.dto.UpdateShipmentTypeRequestDto;
+import com.example.shopberry.user.Permission;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,6 +39,7 @@ public class ShipmentTypeController {
                 .body(shipmentTypeResponseDto);
     }
 
+    @CheckPermission(Permission.SHIPMENT_TYPE_CREATE)
     @PostMapping("/shipment-types")
     public ResponseEntity<ShipmentTypeResponseDto> createShipmentType(@RequestBody CreateShipmentTypeRequestDto createShipmentTypeRequestDto) {
         ShipmentTypeResponseDto createdShipmentTypeResponseDto = shipmentTypeService.createShipmentType(createShipmentTypeRequestDto);
@@ -47,6 +50,7 @@ public class ShipmentTypeController {
                 .body(createdShipmentTypeResponseDto);
     }
 
+    @CheckPermission(Permission.SHIPMENT_TYPE_UPDATE)
     @PatchMapping("/shipment-types/{shipmentTypeId}")
     public ResponseEntity<ShipmentTypeResponseDto> updateShipmentTypeById(@PathVariable Long shipmentTypeId, @RequestBody UpdateShipmentTypeRequestDto updateShipmentTypeRequestDto) {
         ShipmentTypeResponseDto updatedShipmentTypeResponseDto = shipmentTypeService.updateShipmentTypeById(shipmentTypeId, updateShipmentTypeRequestDto);
@@ -56,6 +60,7 @@ public class ShipmentTypeController {
                 .body(updatedShipmentTypeResponseDto);
     }
 
+    @CheckPermission(Permission.SHIPMENT_TYPE_DELETE)
     @DeleteMapping("/shipment-types/{shipmentTypeId}")
     public ResponseEntity<MessageResponseDto> deleteShipmentTypeById(@PathVariable Long shipmentTypeId) {
         shipmentTypeService.deleteShipmentTypeById(shipmentTypeId);

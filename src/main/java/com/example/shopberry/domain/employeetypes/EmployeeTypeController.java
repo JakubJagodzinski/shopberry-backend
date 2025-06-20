@@ -1,9 +1,11 @@
 package com.example.shopberry.domain.employeetypes;
 
+import com.example.shopberry.auth.access.CheckPermission;
 import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.employeetypes.dto.CreateEmployeeTypeRequestDto;
 import com.example.shopberry.domain.employeetypes.dto.EmployeeTypeResponseDto;
 import com.example.shopberry.domain.employeetypes.dto.UpdateEmployeeTypeRequestDto;
+import com.example.shopberry.user.Permission;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +21,7 @@ public class EmployeeTypeController {
 
     private final EmployeeTypeService employeeTypeService;
 
+    @CheckPermission(Permission.EMPLOYEE_TYPE_READ_ALL)
     @GetMapping("/employee-types")
     public ResponseEntity<List<EmployeeTypeResponseDto>> getAllEmployeeTypes() {
         List<EmployeeTypeResponseDto> employeeTypeResponseDtoList = employeeTypeService.getAllEmployeeTypes();
@@ -28,6 +31,7 @@ public class EmployeeTypeController {
                 .body(employeeTypeResponseDtoList);
     }
 
+    @CheckPermission(Permission.EMPLOYEE_TYPE_READ)
     @GetMapping("/employee-types/{employeeTypeId}")
     public ResponseEntity<EmployeeTypeResponseDto> getEmployeeTypeById(@PathVariable Long employeeTypeId) {
         EmployeeTypeResponseDto employeeTypeResponseDto = employeeTypeService.getEmployeeTypeById(employeeTypeId);
@@ -37,6 +41,7 @@ public class EmployeeTypeController {
                 .body(employeeTypeResponseDto);
     }
 
+    @CheckPermission(Permission.EMPLOYEE_TYPE_CREATE)
     @PostMapping("/employee-types")
     public ResponseEntity<EmployeeTypeResponseDto> createEmployeeType(@RequestBody CreateEmployeeTypeRequestDto createEmployeeTypeRequestDto) {
         EmployeeTypeResponseDto createdEmployeeTypeResponseDto = employeeTypeService.createEmployeeType(createEmployeeTypeRequestDto);
@@ -47,6 +52,7 @@ public class EmployeeTypeController {
                 .body(createdEmployeeTypeResponseDto);
     }
 
+    @CheckPermission(Permission.EMPLOYEE_TYPE_UPDATE)
     @PatchMapping("/employee-types/{employeeTypeId}")
     public ResponseEntity<EmployeeTypeResponseDto> updateEmployeeTypeById(@PathVariable Long employeeTypeId, @RequestBody UpdateEmployeeTypeRequestDto updateEmployeeTypeRequestDto) {
         EmployeeTypeResponseDto updatedEmployeeTypeResponseDto = employeeTypeService.updateEmployeeTypeById(employeeTypeId, updateEmployeeTypeRequestDto);
@@ -56,6 +62,7 @@ public class EmployeeTypeController {
                 .body(updatedEmployeeTypeResponseDto);
     }
 
+    @CheckPermission(Permission.EMPLOYEE_TYPE_DELETE)
     @DeleteMapping("/employee-types/{employeeTypeId}")
     public ResponseEntity<MessageResponseDto> deleteEmployeeTypeById(@PathVariable Long employeeTypeId) {
         employeeTypeService.deleteEmployeeTypeById(employeeTypeId);

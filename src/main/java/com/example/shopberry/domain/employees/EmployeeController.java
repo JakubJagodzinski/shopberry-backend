@@ -1,8 +1,10 @@
 package com.example.shopberry.domain.employees;
 
+import com.example.shopberry.auth.access.CheckPermission;
 import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.employees.dto.EmployeeResponseDto;
 import com.example.shopberry.domain.employees.dto.UpdateEmployeeRequestDto;
+import com.example.shopberry.user.Permission;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,7 @@ public class EmployeeController {
 
     private final EmployeeService employeeService;
 
+    @CheckPermission(Permission.EMPLOYEE_READ_ALL)
     @GetMapping("/employees")
     public ResponseEntity<List<EmployeeResponseDto>> getAllEmployees() {
         List<EmployeeResponseDto> employeeResponseDtoList = employeeService.getAllEmployees();
@@ -27,6 +30,7 @@ public class EmployeeController {
                 .body(employeeResponseDtoList);
     }
 
+    @CheckPermission(Permission.EMPLOYEE_READ)
     @GetMapping("/employees/{employeeId}")
     public ResponseEntity<EmployeeResponseDto> getEmployeeById(@PathVariable UUID employeeId) {
         EmployeeResponseDto employeeResponseDto = employeeService.getEmployeeById(employeeId);
@@ -36,6 +40,7 @@ public class EmployeeController {
                 .body(employeeResponseDto);
     }
 
+    @CheckPermission(Permission.EMPLOYEE_UPDATE)
     @PatchMapping("/employees/{employeeId}")
     public ResponseEntity<EmployeeResponseDto> updateEmployeeById(@PathVariable UUID employeeId, @RequestBody UpdateEmployeeRequestDto updateEmployeeRequestDto) {
         EmployeeResponseDto updatedEmployeeResponseDto = employeeService.updateEmployeeById(employeeId, updateEmployeeRequestDto);
@@ -45,6 +50,7 @@ public class EmployeeController {
                 .body(updatedEmployeeResponseDto);
     }
 
+    @CheckPermission(Permission.EMPLOYEE_DELETE)
     @DeleteMapping("/employees/{employeeId}")
     public ResponseEntity<MessageResponseDto> deleteEmployeeById(@PathVariable UUID employeeId) {
         employeeService.deleteEmployeeById(employeeId);

@@ -1,9 +1,11 @@
 package com.example.shopberry.domain.orderproductstatuses;
 
+import com.example.shopberry.auth.access.CheckPermission;
 import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.orderproductstatuses.dto.CreateOrderProductStatusRequestDto;
 import com.example.shopberry.domain.orderproductstatuses.dto.OrderProductStatusResponseDto;
 import com.example.shopberry.domain.orderproductstatuses.dto.UpdateOrderProductStatusRequestDto;
+import com.example.shopberry.user.Permission;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +21,7 @@ public class OrderProductStatusController {
 
     private final OrderProductStatusService orderProductStatusService;
 
+    @CheckPermission(Permission.ORDER_PRODUCT_STATUS_READ_ALL)
     @GetMapping("/order-product-statuses")
     public ResponseEntity<List<OrderProductStatusResponseDto>> getAllOrderProductStatuses() {
         List<OrderProductStatusResponseDto> orderProductStatusResponseDtoList = orderProductStatusService.getAllOrderProductStatuses();
@@ -28,6 +31,7 @@ public class OrderProductStatusController {
                 .body(orderProductStatusResponseDtoList);
     }
 
+    @CheckPermission(Permission.ORDER_PRODUCT_STATUS_READ)
     @GetMapping("/order-product-statuses/{orderProductStatusId}")
     public ResponseEntity<OrderProductStatusResponseDto> getOrderProductStatusById(@PathVariable Long orderProductStatusId) {
         OrderProductStatusResponseDto orderProductStatusResponseDto = orderProductStatusService.getOrderProductStatusById(orderProductStatusId);
@@ -37,6 +41,7 @@ public class OrderProductStatusController {
                 .body(orderProductStatusResponseDto);
     }
 
+    @CheckPermission(Permission.ORDER_PRODUCT_STATUS_UPDATE)
     @PostMapping("/order-product-statuses")
     public ResponseEntity<OrderProductStatusResponseDto> createOrderProductStatus(@RequestBody CreateOrderProductStatusRequestDto createOrderProductStatusRequestDto) {
         OrderProductStatusResponseDto createdOrderProductStatusResponseDto = orderProductStatusService.createOrderProductStatus(createOrderProductStatusRequestDto);
@@ -47,6 +52,7 @@ public class OrderProductStatusController {
                 .body(createdOrderProductStatusResponseDto);
     }
 
+    @CheckPermission(Permission.ORDER_PRODUCT_STATUS_UPDATE)
     @PatchMapping("/order-product-statuses/{orderProductStatusId}")
     public ResponseEntity<OrderProductStatusResponseDto> updateOrderProductStatusById(@PathVariable Long orderProductStatusId, @RequestBody UpdateOrderProductStatusRequestDto updateOrderProductStatusRequestDto) {
         OrderProductStatusResponseDto updatedOrderProductStatusResponseDto = orderProductStatusService.updateOrderProductStatusById(orderProductStatusId, updateOrderProductStatusRequestDto);
@@ -56,6 +62,7 @@ public class OrderProductStatusController {
                 .body(updatedOrderProductStatusResponseDto);
     }
 
+    @CheckPermission(Permission.ORDER_PRODUCT_STATUS_DELETE)
     @DeleteMapping("/order-product-statuses/{orderProductStatusId}")
     public ResponseEntity<MessageResponseDto> deleteOrderProductStatusById(@PathVariable Long orderProductStatusId) {
         orderProductStatusService.deleteOrderProductStatusById(orderProductStatusId);

@@ -1,9 +1,11 @@
 package com.example.shopberry.domain.producers;
 
+import com.example.shopberry.auth.access.CheckPermission;
 import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.producers.dto.CreateProducerRequestDto;
 import com.example.shopberry.domain.producers.dto.ProducerResponseDto;
 import com.example.shopberry.domain.producers.dto.UpdateProducerRequestDto;
+import com.example.shopberry.user.Permission;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,6 +39,7 @@ public class ProducerController {
                 .body(producerResponseDto);
     }
 
+    @CheckPermission(Permission.PRODUCER_CREATE)
     @PostMapping("/producers")
     public ResponseEntity<ProducerResponseDto> createProducer(@RequestBody CreateProducerRequestDto createProducerRequestDto) {
         ProducerResponseDto createdProducerResponseDto = producerService.createProducer(createProducerRequestDto);
@@ -47,6 +50,7 @@ public class ProducerController {
                 .body(createdProducerResponseDto);
     }
 
+    @CheckPermission(Permission.PRODUCER_UPDATE)
     @PatchMapping("/producers/{producerId}")
     public ResponseEntity<ProducerResponseDto> updateProducerById(@PathVariable Long producerId, @RequestBody UpdateProducerRequestDto updateProducerRequestDto) {
         ProducerResponseDto updatedProducerResponseDto = producerService.updateProducerById(producerId, updateProducerRequestDto);
@@ -56,6 +60,7 @@ public class ProducerController {
                 .body(updatedProducerResponseDto);
     }
 
+    @CheckPermission(Permission.PRODUCER_DELETE)
     @DeleteMapping("/producers/{producerId}")
     public ResponseEntity<MessageResponseDto> deleteProducerById(@PathVariable Long producerId) {
         producerService.deleteProducerById(producerId);
