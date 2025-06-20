@@ -1,5 +1,6 @@
 package com.example.shopberry.domain.customers.dto;
 
+import com.example.shopberry.domain.customeraddresses.dto.CustomerAddressResponseDto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -31,5 +32,8 @@ public class CustomerResponseDto {
 
     @JsonProperty("is_company")
     private Boolean isCompany;
+
+    @JsonProperty("main_address")
+    private CustomerAddressResponseDto mainAddress;
 
 }

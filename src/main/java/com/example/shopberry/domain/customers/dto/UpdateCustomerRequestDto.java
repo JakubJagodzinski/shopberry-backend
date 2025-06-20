@@ -15,4 +15,7 @@ public class UpdateCustomerRequestDto {
     @JsonProperty("is_company")
     private Boolean isCompany;
 
+    @JsonProperty("main_address_id")
+    private Long mainAddressId;
+
 }

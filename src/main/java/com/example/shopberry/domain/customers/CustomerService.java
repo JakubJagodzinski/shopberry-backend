@@ -1,6 +1,8 @@
 package com.example.shopberry.domain.customers;
 
 import com.example.shopberry.common.constants.messages.CustomerMessages;
+import com.example.shopberry.domain.customeraddresses.CustomerAddress;
+import com.example.shopberry.domain.customeraddresses.CustomerAddressRepository;
 import com.example.shopberry.domain.customers.dto.CustomerDtoMapper;
 import com.example.shopberry.domain.customers.dto.CustomerResponseDto;
 import com.example.shopberry.domain.customers.dto.UpdateCustomerRequestDto;
@@ -17,6 +19,8 @@ import java.util.UUID;
 public class CustomerService {
 
     private final CustomerRepository customerRepository;
+    private final CustomerAddressRepository customerAddressRepository;
+
     private final CustomerDtoMapper customerDtoMapper;
 
     public List<CustomerResponseDto> getAllCustomers() {
@@ -44,6 +48,16 @@ public class CustomerService {
 
         if (updateCustomerRequestDto.getIsCompany() != null) {
             customer.setIsCompany(updateCustomerRequestDto.getIsCompany());
+        }
+
+        if (updateCustomerRequestDto.getMainAddressId() != null) {
+            CustomerAddress customerAddress = customerAddressRepository.findById(updateCustomerRequestDto.getMainAddressId()).orElse(null);
+
+            if (customerAddress == null) {
+                throw new EntityNotFoundException(CustomerMessages.CUSTOMER_ADDRESS_NOT_FOUND);
+            }
+
+            customer.setMainAddress(customerAddress);
         }
 
         return customerDtoMapper.toDto(customerRepository.save(customer));
