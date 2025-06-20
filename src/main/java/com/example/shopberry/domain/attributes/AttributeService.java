@@ -37,28 +37,22 @@ public class AttributeService {
     }
 
     @Transactional
-    public AttributeResponseDto createAttribute(CreateAttributeRequestDto createAttributeRequestDto) throws EntityExistsException, IllegalArgumentException {
-        Attribute attribute = new Attribute();
+    public AttributeResponseDto createAttribute(CreateAttributeRequestDto createAttributeRequestDto) throws EntityExistsException {
+        String attributeName = createAttributeRequestDto.getAttributeName().trim();
 
-        if (attributeRepository.existsByAttributeName(createAttributeRequestDto.getAttributeName())) {
+        if (attributeRepository.existsByAttributeName(attributeName)) {
             throw new EntityExistsException(AttributeMessages.ATTRIBUTE_WITH_THAT_NAME_ALREADY_EXISTS);
         }
 
-        if (createAttributeRequestDto.getAttributeName() == null) {
-            throw new IllegalArgumentException(AttributeMessages.ATTRIBUTE_NAME_CANNOT_BE_NULL);
-        }
+        Attribute attribute = new Attribute();
 
-        if (createAttributeRequestDto.getAttributeName().isEmpty()) {
-            throw new IllegalArgumentException(AttributeMessages.ATTRIBUTE_NAME_CANNOT_BE_EMPTY);
-        }
-
-        attribute.setAttributeName(createAttributeRequestDto.getAttributeName());
+        attribute.setAttributeName(attributeName);
 
         return attributeDtoMapper.toDto(attributeRepository.save(attribute));
     }
 
     @Transactional
-    public AttributeResponseDto updateAttributeById(Long attributeId, UpdateAttributeRequestDto updateAttributeRequestDto) throws EntityNotFoundException, EntityExistsException, IllegalArgumentException {
+    public AttributeResponseDto updateAttributeById(Long attributeId, UpdateAttributeRequestDto updateAttributeRequestDto) throws EntityNotFoundException, EntityExistsException {
         Attribute attribute = attributeRepository.findById(attributeId).orElse(null);
 
         if (attribute == null) {
@@ -66,17 +60,15 @@ public class AttributeService {
         }
 
         if (updateAttributeRequestDto.getAttributeName() != null) {
-            Attribute otherAttribute = attributeRepository.findByAttributeName(updateAttributeRequestDto.getAttributeName()).orElse(null);
+            String attributeName = updateAttributeRequestDto.getAttributeName().trim();
+
+            Attribute otherAttribute = attributeRepository.findByAttributeName(attributeName).orElse(null);
 
             if (otherAttribute != null && !otherAttribute.getAttributeId().equals(attribute.getAttributeId())) {
                 throw new EntityExistsException(AttributeMessages.ATTRIBUTE_WITH_THAT_NAME_ALREADY_EXISTS);
             }
 
-            if (updateAttributeRequestDto.getAttributeName().isEmpty()) {
-                throw new IllegalArgumentException(AttributeMessages.ATTRIBUTE_NAME_CANNOT_BE_EMPTY);
-            }
-
-            attribute.setAttributeName(updateAttributeRequestDto.getAttributeName());
+            attribute.setAttributeName(attributeName);
         }
 
         return attributeDtoMapper.toDto(attributeRepository.save(attribute));

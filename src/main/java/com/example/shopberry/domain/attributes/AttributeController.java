@@ -6,9 +6,11 @@ import com.example.shopberry.domain.attributes.dto.AttributeResponseDto;
 import com.example.shopberry.domain.attributes.dto.CreateAttributeRequestDto;
 import com.example.shopberry.domain.attributes.dto.UpdateAttributeRequestDto;
 import com.example.shopberry.user.Permission;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -17,6 +19,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1")
 @RequiredArgsConstructor
+@Validated
 public class AttributeController {
 
     private final AttributeService attributeService;
@@ -41,7 +44,7 @@ public class AttributeController {
 
     @CheckPermission(Permission.ATTRIBUTE_CREATE)
     @PostMapping("/attributes")
-    public ResponseEntity<AttributeResponseDto> createAttribute(@RequestBody CreateAttributeRequestDto createAttributeRequestDto) {
+    public ResponseEntity<AttributeResponseDto> createAttribute(@Valid @RequestBody CreateAttributeRequestDto createAttributeRequestDto) {
         AttributeResponseDto createdAttributeResponseDto = attributeService.createAttribute(createAttributeRequestDto);
 
         return ResponseEntity
@@ -52,7 +55,7 @@ public class AttributeController {
 
     @CheckPermission(Permission.ATTRIBUTE_UPDATE)
     @PatchMapping("/attributes/{attributeId}")
-    public ResponseEntity<AttributeResponseDto> updateAttributeById(@PathVariable Long attributeId, @RequestBody UpdateAttributeRequestDto updateAttributeRequestDto) {
+    public ResponseEntity<AttributeResponseDto> updateAttributeById(@PathVariable Long attributeId, @Valid @RequestBody UpdateAttributeRequestDto updateAttributeRequestDto) {
         AttributeResponseDto updatedAttributeResponseDto = attributeService.updateAttributeById(attributeId, updateAttributeRequestDto);
 
         return ResponseEntity
