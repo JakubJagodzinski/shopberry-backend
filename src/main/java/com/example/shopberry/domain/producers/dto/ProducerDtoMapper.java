@@ -17,8 +17,8 @@ public class ProducerDtoMapper {
         return dto;
     }
 
-    public List<ProducerResponseDto> toDtoList(List<Producer> producers) {
-        return producers.stream()
+    public List<ProducerResponseDto> toDtoList(List<Producer> producerList) {
+        return producerList.stream()
                 .map(this::toDto)
                 .toList();
     }

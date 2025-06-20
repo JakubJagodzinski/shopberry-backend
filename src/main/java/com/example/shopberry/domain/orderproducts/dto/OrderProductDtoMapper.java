@@ -1,27 +1,34 @@
 package com.example.shopberry.domain.orderproducts.dto;
 
 import com.example.shopberry.domain.orderproducts.OrderProduct;
+import com.example.shopberry.domain.orderproductstatuses.dto.OrderProductStatusDtoMapper;
+import com.example.shopberry.domain.products.dto.ProductDtoMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
+@RequiredArgsConstructor
 public class OrderProductDtoMapper {
+
+    private final OrderProductStatusDtoMapper orderProductStatusDtoMapper;
+    private final ProductDtoMapper productDtoMapper;
 
     public OrderProductResponseDto toDto(OrderProduct orderProduct) {
         OrderProductResponseDto orderProductResponseDto = new OrderProductResponseDto();
 
         orderProductResponseDto.setOrderId(orderProduct.getOrder().getOrderId());
-        orderProductResponseDto.setProductId(orderProduct.getProduct().getProductId());
+        orderProductResponseDto.setProduct(productDtoMapper.toDto(orderProduct.getProduct()));
         orderProductResponseDto.setProductQuantity(orderProduct.getProductQuantity());
         orderProductResponseDto.setProductPrice(orderProduct.getProductPrice());
-        orderProductResponseDto.setOrderProductStatusId(orderProduct.getOrderProductStatus().getOrderProductStatusId());
+        orderProductResponseDto.setOrderProductStatus(orderProductStatusDtoMapper.toDto(orderProduct.getOrderProductStatus()));
 
         return orderProductResponseDto;
     }
 
-    public List<OrderProductResponseDto> toDtoList(List<OrderProduct> orderProducts) {
-        return orderProducts.stream()
+    public List<OrderProductResponseDto> toDtoList(List<OrderProduct> orderProductList) {
+        return orderProductList.stream()
                 .map(this::toDto)
                 .toList();
     }

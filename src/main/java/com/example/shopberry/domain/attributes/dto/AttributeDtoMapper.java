@@ -17,8 +17,8 @@ public class AttributeDtoMapper {
         return AttributeResponseDto;
     }
 
-    public List<AttributeResponseDto> toDtoList(List<Attribute> attributes) {
-        return attributes.stream()
+    public List<AttributeResponseDto> toDtoList(List<Attribute> attributeList) {
+        return attributeList.stream()
                 .map(this::toDto)
                 .toList();
     }

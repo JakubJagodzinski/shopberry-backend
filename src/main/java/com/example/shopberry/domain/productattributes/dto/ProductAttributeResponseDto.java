@@ -1,6 +1,7 @@
 package com.example.shopberry.domain.productattributes.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.example.shopberry.domain.attributes.dto.AttributeResponseDto;
+import com.example.shopberry.domain.products.dto.ProductResponseDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,11 +13,9 @@ import lombok.Setter;
 @AllArgsConstructor
 public class ProductAttributeResponseDto {
 
-    @JsonProperty("product_id")
-    private Long productId;
+    private ProductResponseDto product;
 
-    @JsonProperty("attribute_id")
-    private Long attributeId;
+    private AttributeResponseDto attribute;
 
     private Double value;
 

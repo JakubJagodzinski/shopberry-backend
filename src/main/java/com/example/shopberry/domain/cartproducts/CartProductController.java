@@ -49,7 +49,7 @@ public class CartProductController {
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .location(URI.create("/api/v1/customers/" + customerId + "/cart/" + createdCartProductResponseDto.getProductId()))
+                .location(URI.create("/api/v1/customers/" + customerId + "/cart/" + createdCartProductResponseDto.getProduct().getProductId()))
                 .body(createdCartProductResponseDto);
     }
 

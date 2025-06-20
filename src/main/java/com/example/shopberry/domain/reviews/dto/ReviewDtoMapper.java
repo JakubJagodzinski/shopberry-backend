@@ -1,18 +1,23 @@
 package com.example.shopberry.domain.reviews.dto;
 
+import com.example.shopberry.domain.products.dto.ProductDtoMapper;
 import com.example.shopberry.domain.reviews.Review;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
+@RequiredArgsConstructor
 public class ReviewDtoMapper {
+
+    private final ProductDtoMapper productDtoMapper;
 
     public ReviewResponseDto toDto(Review review) {
         ReviewResponseDto reviewResponseDto = new ReviewResponseDto();
 
         reviewResponseDto.setReviewId(review.getReviewId());
-        reviewResponseDto.setProductId(review.getProduct().getProductId());
+        reviewResponseDto.setProduct(productDtoMapper.toDto(review.getProduct()));
         reviewResponseDto.setCustomerId(review.getCustomer().getUserId());
         reviewResponseDto.setRatingValue(review.getRatingValue());
         reviewResponseDto.setReviewText(review.getReviewText());
@@ -22,8 +27,8 @@ public class ReviewDtoMapper {
         return reviewResponseDto;
     }
 
-    public List<ReviewResponseDto> toDtoList(List<Review> reviews) {
-        return reviews.stream()
+    public List<ReviewResponseDto> toDtoList(List<Review> reviewList) {
+        return reviewList.stream()
                 .map(this::toDto)
                 .toList();
     }

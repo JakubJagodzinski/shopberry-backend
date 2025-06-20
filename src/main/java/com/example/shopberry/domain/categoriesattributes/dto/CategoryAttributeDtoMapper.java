@@ -1,25 +1,32 @@
 package com.example.shopberry.domain.categoriesattributes.dto;
 
 
+import com.example.shopberry.domain.attributes.dto.AttributeDtoMapper;
+import com.example.shopberry.domain.categories.dto.CategoryDtoMapper;
 import com.example.shopberry.domain.categoriesattributes.CategoryAttribute;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
+@RequiredArgsConstructor
 public class CategoryAttributeDtoMapper {
+
+    private final CategoryDtoMapper categoryDtoMapper;
+    private final AttributeDtoMapper attributeDtoMapper;
 
     public CategoryAttributeResponseDto toDto(CategoryAttribute categoryAttribute) {
         CategoryAttributeResponseDto categoryAttributeResponseDto = new CategoryAttributeResponseDto();
 
-        categoryAttributeResponseDto.setCategoryId(categoryAttribute.getCategory().getCategoryId());
-        categoryAttributeResponseDto.setAttributeId(categoryAttribute.getAttribute().getAttributeId());
+        categoryAttributeResponseDto.setCategory(categoryDtoMapper.toDto(categoryAttribute.getCategory()));
+        categoryAttributeResponseDto.setAttribute(attributeDtoMapper.toDto(categoryAttribute.getAttribute()));
 
         return categoryAttributeResponseDto;
     }
 
-    public List<CategoryAttributeResponseDto> toDtoList(List<CategoryAttribute> categoryAttributes) {
-        return categoryAttributes.stream()
+    public List<CategoryAttributeResponseDto> toDtoList(List<CategoryAttribute> categoryAttributeList) {
+        return categoryAttributeList.stream()
                 .map(this::toDto)
                 .toList();
     }

@@ -1,5 +1,7 @@
 package com.example.shopberry.domain.orderproducts.dto;
 
+import com.example.shopberry.domain.orderproductstatuses.dto.OrderProductStatusResponseDto;
+import com.example.shopberry.domain.products.dto.ProductResponseDto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,8 +17,7 @@ public class OrderProductResponseDto {
     @JsonProperty("order_id")
     private Long orderId;
 
-    @JsonProperty("product_id")
-    private Long productId;
+    private ProductResponseDto product;
 
     @JsonProperty("product_quantity")
     private Long productQuantity;
@@ -24,7 +25,7 @@ public class OrderProductResponseDto {
     @JsonProperty("product_price")
     private Double productPrice;
 
-    @JsonProperty("order_product_status_id")
-    private Long orderProductStatusId;
+    @JsonProperty("order_product_status")
+    private OrderProductStatusResponseDto orderProductStatus;
 
 }

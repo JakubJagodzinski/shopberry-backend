@@ -2,6 +2,7 @@ package com.example.shopberry.domain.categoriesattributes;
 
 import com.example.shopberry.auth.access.CheckPermission;
 import com.example.shopberry.common.MessageResponseDto;
+import com.example.shopberry.domain.attributes.dto.AttributeResponseDto;
 import com.example.shopberry.domain.categoriesattributes.dto.AssignAttributeToCategoryRequestDto;
 import com.example.shopberry.domain.categoriesattributes.dto.CategoryAttributeResponseDto;
 import com.example.shopberry.user.Permission;
@@ -21,8 +22,8 @@ public class CategoryAttributeController {
     private final CategoryAttributeService categoryAttributeService;
 
     @GetMapping("/categories/{categoryId}/attributes")
-    public ResponseEntity<List<CategoryAttributeResponseDto>> getCategoryAllAttributes(@PathVariable Long categoryId) {
-        List<CategoryAttributeResponseDto> categoryAttributeResponseDtoList = categoryAttributeService.getCategoryAllAttributes(categoryId);
+    public ResponseEntity<List<AttributeResponseDto>> getCategoryAllAttributes(@PathVariable Long categoryId) {
+        List<AttributeResponseDto> categoryAttributeResponseDtoList = categoryAttributeService.getCategoryAllAttributes(categoryId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
@@ -36,7 +37,7 @@ public class CategoryAttributeController {
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .location(URI.create("/api/v1/category-attributes/" + createdCategoryAttributeResponseDto.getCategoryId()))
+                .location(URI.create("/api/v1/category-attributes/" + createdCategoryAttributeResponseDto.getCategory()))
                 .body(createdCategoryAttributeResponseDto);
     }
 

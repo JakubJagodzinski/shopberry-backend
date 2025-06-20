@@ -4,6 +4,8 @@ import com.example.shopberry.common.constants.messages.AttributeMessages;
 import com.example.shopberry.common.constants.messages.CategoryMessages;
 import com.example.shopberry.domain.attributes.Attribute;
 import com.example.shopberry.domain.attributes.AttributeRepository;
+import com.example.shopberry.domain.attributes.dto.AttributeDtoMapper;
+import com.example.shopberry.domain.attributes.dto.AttributeResponseDto;
 import com.example.shopberry.domain.categories.Category;
 import com.example.shopberry.domain.categories.CategoryRepository;
 import com.example.shopberry.domain.categoriesattributes.dto.AssignAttributeToCategoryRequestDto;
@@ -25,14 +27,20 @@ public class CategoryAttributeService {
     private final AttributeRepository attributeRepository;
 
     private final CategoryAttributeDtoMapper categoryAttributeDtoMapper;
+    private final AttributeDtoMapper attributeDtoMapper;
 
     @Transactional
-    public List<CategoryAttributeResponseDto> getCategoryAllAttributes(Long categoryId) throws EntityNotFoundException {
+    public List<AttributeResponseDto> getCategoryAllAttributes(Long categoryId) throws EntityNotFoundException {
         if (!categoryRepository.existsById(categoryId)) {
             throw new EntityNotFoundException(CategoryMessages.CATEGORY_NOT_FOUND);
         }
 
-        return categoryAttributeDtoMapper.toDtoList(categoryAttributeRepository.findAllByCategory_CategoryId(categoryId));
+        List<CategoryAttribute> categoryAttributes = categoryAttributeRepository.findAllByCategory_CategoryId(categoryId);
+        List<Attribute> attributes = categoryAttributes.stream()
+                .map(CategoryAttribute::getAttribute)
+                .toList();
+
+        return attributeDtoMapper.toDtoList(attributes);
     }
 
     @Transactional

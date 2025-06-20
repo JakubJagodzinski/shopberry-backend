@@ -47,7 +47,7 @@ public class OrderProductController {
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .location(URI.create("/api/v1/orders/" + orderId + "/products/" + createdOrderProductResponseDto.getProductId()))
+                .location(URI.create("/api/v1/orders/" + orderId + "/products/" + createdOrderProductResponseDto.getProduct()))
                 .body(createdOrderProductResponseDto);
     }
 

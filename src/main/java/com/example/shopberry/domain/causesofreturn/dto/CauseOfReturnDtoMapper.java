@@ -17,8 +17,8 @@ public class CauseOfReturnDtoMapper {
         return causeOfReturnResponseDto;
     }
 
-    public List<CauseOfReturnResponseDto> toDtoList(List<CauseOfReturn> causesOfReturns) {
-        return causesOfReturns.stream()
+    public List<CauseOfReturnResponseDto> toDtoList(List<CauseOfReturn> causeOfReturnList) {
+        return causeOfReturnList.stream()
                 .map(this::toDto)
                 .toList();
     }

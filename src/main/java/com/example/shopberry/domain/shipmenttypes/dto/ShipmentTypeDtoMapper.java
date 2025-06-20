@@ -18,8 +18,8 @@ public class ShipmentTypeDtoMapper {
         return ShipmentTypeResponseDto;
     }
 
-    public List<ShipmentTypeResponseDto> toDtoList(List<ShipmentType> shipmentTypes) {
-        return shipmentTypes.stream()
+    public List<ShipmentTypeResponseDto> toDtoList(List<ShipmentType> shipmentTypeList) {
+        return shipmentTypeList.stream()
                 .map(this::toDto)
                 .toList();
     }

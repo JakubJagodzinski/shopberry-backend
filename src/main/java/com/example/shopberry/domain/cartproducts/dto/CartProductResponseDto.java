@@ -1,5 +1,6 @@
 package com.example.shopberry.domain.cartproducts.dto;
 
+import com.example.shopberry.domain.products.dto.ProductResponseDto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,8 +19,7 @@ public class CartProductResponseDto {
     @JsonProperty("customer_id")
     private UUID customerId;
 
-    @JsonProperty("product_id")
-    private Long productId;
+    private ProductResponseDto product;
 
     private Long quantity;
 

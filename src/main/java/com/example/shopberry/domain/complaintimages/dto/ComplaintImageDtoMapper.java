@@ -9,17 +9,18 @@ import java.util.List;
 @Component
 public class ComplaintImageDtoMapper {
 
-    public ComplaintImageResponseDto toDto(ComplaintImage ComplaintImage) {
+    public ComplaintImageResponseDto toDto(ComplaintImage complaintImage) {
         ComplaintImageResponseDto ComplaintImageResponseDto = new ComplaintImageResponseDto();
 
-        ComplaintImageResponseDto.setId(ComplaintImage.getId());
-        ComplaintImageResponseDto.setImage(ComplaintImage.getImage());
+        ComplaintImageResponseDto.setId(complaintImage.getId());
+        ComplaintImageResponseDto.setComplaintId(complaintImage.getComplaint().getComplaintId());
+        ComplaintImageResponseDto.setImage(complaintImage.getImage());
 
         return ComplaintImageResponseDto;
     }
 
-    public List<ComplaintImageResponseDto> toDtoList(List<ComplaintImage> ComplaintImages) {
-        return ComplaintImages.stream()
+    public List<ComplaintImageResponseDto> toDtoList(List<ComplaintImage> complaintImageList) {
+        return complaintImageList.stream()
                 .map(this::toDto)
                 .toList();
     }

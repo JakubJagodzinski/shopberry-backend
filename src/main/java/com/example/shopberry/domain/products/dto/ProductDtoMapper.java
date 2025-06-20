@@ -23,8 +23,8 @@ public class ProductDtoMapper {
         return dto;
     }
 
-    public List<ProductResponseDto> toDtoList(List<Product> products) {
-        return products.stream()
+    public List<ProductResponseDto> toDtoList(List<Product> productList) {
+        return productList.stream()
                 .map(this::toDto)
                 .toList();
     }

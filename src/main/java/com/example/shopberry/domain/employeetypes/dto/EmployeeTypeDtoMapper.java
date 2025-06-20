@@ -17,8 +17,8 @@ public class EmployeeTypeDtoMapper {
         return EmployeeTypeResponseDto;
     }
 
-    public List<EmployeeTypeResponseDto> toDtoList(List<EmployeeType> employeeTypes) {
-        return employeeTypes.stream()
+    public List<EmployeeTypeResponseDto> toDtoList(List<EmployeeType> employeeTypeList) {
+        return employeeTypeList.stream()
                 .map(this::toDto)
                 .toList();
     }

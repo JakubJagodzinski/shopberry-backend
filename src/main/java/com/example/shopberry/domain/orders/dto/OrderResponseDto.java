@@ -1,5 +1,8 @@
 package com.example.shopberry.domain.orders.dto;
 
+import com.example.shopberry.domain.orderstatuses.dto.OrderStatusResponseDto;
+import com.example.shopberry.domain.paymenttypes.dto.PaymentTypeResponseDto;
+import com.example.shopberry.domain.shipmenttypes.dto.ShipmentTypeResponseDto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,20 +27,20 @@ public class OrderResponseDto {
     @JsonProperty("sent_at")
     private LocalDateTime sentAt;
 
-    @JsonProperty("order_status_id")
-    private Long orderStatusId;
+    @JsonProperty("order_status")
+    private OrderStatusResponseDto orderStatus;
 
     @JsonProperty("customer_id")
     private UUID customerId;
 
-    @JsonProperty("shipment_type_id")
-    private Long shipmentTypeId;
+    @JsonProperty("shipment_type")
+    private ShipmentTypeResponseDto shipmentType;
 
     @JsonProperty("shipment_identifier")
     private String shipmentIdentifier;
 
-    @JsonProperty("payment_type_id")
-    private Long paymentTypeId;
+    @JsonProperty("payment_type")
+    private PaymentTypeResponseDto paymentType;
 
     @JsonProperty("is_payment_recorded")
     private Boolean isPaymentRecorded;

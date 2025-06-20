@@ -18,7 +18,7 @@ public class CategoryResponseDto {
     @JsonProperty("category_name")
     private String categoryName;
 
-    @JsonProperty("parent_category_id")
-    private Long parentCategoryId;
+    @JsonProperty("parent_category")
+    private CategoryResponseDto parentCategory;
 
 }

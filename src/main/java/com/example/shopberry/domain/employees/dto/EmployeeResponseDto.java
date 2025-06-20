@@ -1,5 +1,6 @@
 package com.example.shopberry.domain.employees.dto;
 
+import com.example.shopberry.domain.employeetypes.dto.EmployeeTypeResponseDto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,8 +19,8 @@ public class EmployeeResponseDto {
     @JsonProperty("employee_id")
     private UUID employeeId;
 
-    @JsonProperty("employee_type_id")
-    private Long employeeTypeId;
+    @JsonProperty("employee_type")
+    private EmployeeTypeResponseDto employeeType;
 
     @JsonProperty("first_name")
     private String firstName;

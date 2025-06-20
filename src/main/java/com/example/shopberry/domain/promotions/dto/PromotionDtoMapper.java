@@ -18,8 +18,8 @@ public class PromotionDtoMapper {
         return PromotionResponseDto;
     }
 
-    public List<PromotionResponseDto> toDtoList(List<Promotion> promotions) {
-        return promotions.stream()
+    public List<PromotionResponseDto> toDtoList(List<Promotion> promotionList) {
+        return promotionList.stream()
                 .map(this::toDto)
                 .toList();
     }

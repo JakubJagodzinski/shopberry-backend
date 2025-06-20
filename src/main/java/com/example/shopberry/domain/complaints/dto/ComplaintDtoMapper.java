@@ -1,35 +1,42 @@
 package com.example.shopberry.domain.complaints.dto;
 
 import com.example.shopberry.domain.complaints.Complaint;
+import com.example.shopberry.domain.orders.dto.OrderDtoMapper;
+import com.example.shopberry.domain.products.dto.ProductDtoMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
+@RequiredArgsConstructor
 public class ComplaintDtoMapper {
 
-    public ComplaintResponseDto toDto(Complaint Complaint) {
+    private final OrderDtoMapper orderDtoMapper;
+    private final ProductDtoMapper productDtoMapper;
+
+    public ComplaintResponseDto toDto(Complaint complaint) {
         ComplaintResponseDto ComplaintResponseDto = new ComplaintResponseDto();
 
-        ComplaintResponseDto.setComplaintId(Complaint.getComplaintId());
-        ComplaintResponseDto.setOrderId(Complaint.getOrder().getOrderId());
-        ComplaintResponseDto.setProductId(Complaint.getProduct().getProductId());
-        ComplaintResponseDto.setInfo(Complaint.getInfo());
-        ComplaintResponseDto.setFirstName(Complaint.getFirstName());
-        ComplaintResponseDto.setLastName(Complaint.getLastName());
-        ComplaintResponseDto.setNip(Complaint.getNip());
-        ComplaintResponseDto.setCity(Complaint.getCity());
-        ComplaintResponseDto.setPostalCode(Complaint.getPostalCode());
-        ComplaintResponseDto.setStreet(Complaint.getStreet());
-        ComplaintResponseDto.setHouseNumber(Complaint.getHouseNumber());
-        ComplaintResponseDto.setApartment(Complaint.getApartment());
-        ComplaintResponseDto.setPhoneNumber(Complaint.getPhoneNumber());
+        ComplaintResponseDto.setComplaintId(complaint.getComplaintId());
+        ComplaintResponseDto.setOrder(orderDtoMapper.toDto(complaint.getOrder()));
+        ComplaintResponseDto.setProduct(productDtoMapper.toDto(complaint.getProduct()));
+        ComplaintResponseDto.setInfo(complaint.getInfo());
+        ComplaintResponseDto.setFirstName(complaint.getFirstName());
+        ComplaintResponseDto.setLastName(complaint.getLastName());
+        ComplaintResponseDto.setNip(complaint.getNip());
+        ComplaintResponseDto.setCity(complaint.getCity());
+        ComplaintResponseDto.setPostalCode(complaint.getPostalCode());
+        ComplaintResponseDto.setStreet(complaint.getStreet());
+        ComplaintResponseDto.setHouseNumber(complaint.getHouseNumber());
+        ComplaintResponseDto.setApartment(complaint.getApartment());
+        ComplaintResponseDto.setPhoneNumber(complaint.getPhoneNumber());
 
         return ComplaintResponseDto;
     }
 
-    public List<ComplaintResponseDto> toDtoList(List<Complaint> Complaints) {
-        return Complaints.stream()
+    public List<ComplaintResponseDto> toDtoList(List<Complaint> complaintList) {
+        return complaintList.stream()
                 .map(this::toDto)
                 .toList();
     }

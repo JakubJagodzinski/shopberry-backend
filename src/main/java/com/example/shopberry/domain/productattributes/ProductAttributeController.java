@@ -45,7 +45,7 @@ public class ProductAttributeController {
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .location(URI.create("/api/v1/products/" + productId + "/attributes/" + createdProductAttributeResponseDto.getAttributeId()))
+                .location(URI.create("/api/v1/products/" + productId + "/attributes/" + createdProductAttributeResponseDto.getAttribute()))
                 .body(createdProductAttributeResponseDto);
     }
 

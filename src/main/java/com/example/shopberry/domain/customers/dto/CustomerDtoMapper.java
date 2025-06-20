@@ -18,8 +18,8 @@ public class CustomerDtoMapper {
         return customerResponseDto;
     }
 
-    public List<CustomerResponseDto> toDtoList(List<Customer> customers) {
-        return customers.stream()
+    public List<CustomerResponseDto> toDtoList(List<Customer> customerList) {
+        return customerList.stream()
                 .map(this::toDto)
                 .toList();
     }

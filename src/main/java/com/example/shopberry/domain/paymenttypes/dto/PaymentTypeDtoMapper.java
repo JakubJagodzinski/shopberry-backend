@@ -17,8 +17,8 @@ public class PaymentTypeDtoMapper {
         return dto;
     }
 
-    public List<PaymentTypeResponseDto> toDtoList(List<PaymentType> paymentTypes) {
-        return paymentTypes.stream()
+    public List<PaymentTypeResponseDto> toDtoList(List<PaymentType> paymentTypeList) {
+        return paymentTypeList.stream()
                 .map(this::toDto)
                 .toList();
     }

@@ -54,7 +54,7 @@ public class ProductPromotionController {
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .location(URI.create("/api/v1/products/" + productId + "/promotions/" + createdProductPromotionResponseDto.getPromotionId()))
+                .location(URI.create("/api/v1/products/" + productId + "/promotions/" + createdProductPromotionResponseDto.getPromotion()))
                 .body(createdProductPromotionResponseDto);
     }
 

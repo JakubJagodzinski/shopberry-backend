@@ -25,8 +25,8 @@ public class CustomerAddressDtoMapper {
         return customerAddressResponseDto;
     }
 
-    public List<CustomerAddressResponseDto> toDtoList(List<CustomerAddress> customerAddress) {
-        return customerAddress.stream()
+    public List<CustomerAddressResponseDto> toDtoList(List<CustomerAddress> customerAddressList) {
+        return customerAddressList.stream()
                 .map(this::toDto)
                 .toList();
     }

@@ -1,5 +1,8 @@
 package com.example.shopberry.domain.productreturns.dto;
 
+import com.example.shopberry.domain.causesofreturn.dto.CauseOfReturnResponseDto;
+import com.example.shopberry.domain.orders.dto.OrderResponseDto;
+import com.example.shopberry.domain.products.dto.ProductResponseDto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,13 +18,11 @@ public class ProductReturnResponseDto {
     @JsonProperty("product_return_id")
     private Long productReturnId;
 
-    @JsonProperty("order_id")
-    private Long orderId;
+    private OrderResponseDto order;
 
-    @JsonProperty("product_id")
-    private Long productId;
+    private ProductResponseDto product;
 
-    @JsonProperty("cause_of_return_id")
-    private Long causeOfReturnId;
+    @JsonProperty("cause_of_return")
+    private CauseOfReturnResponseDto causeOfReturn;
 
 }

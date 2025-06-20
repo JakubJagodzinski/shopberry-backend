@@ -1,32 +1,41 @@
 package com.example.shopberry.domain.orders.dto;
 
 import com.example.shopberry.domain.orders.Order;
+import com.example.shopberry.domain.orderstatuses.dto.OrderStatusDtoMapper;
+import com.example.shopberry.domain.paymenttypes.dto.PaymentTypeDtoMapper;
+import com.example.shopberry.domain.shipmenttypes.dto.ShipmentTypeDtoMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
+@RequiredArgsConstructor
 public class OrderDtoMapper {
 
-    public OrderResponseDto toDto(Order Order) {
+    private final ShipmentTypeDtoMapper shipmentTypeDtoMapper;
+    private final PaymentTypeDtoMapper paymentTypeDtoMapper;
+    private final OrderStatusDtoMapper orderStatusDtoMapper;
+
+    public OrderResponseDto toDto(Order order) {
         OrderResponseDto OrderResponseDto = new OrderResponseDto();
 
-        OrderResponseDto.setOrderId(Order.getOrderId());
-        OrderResponseDto.setCreatedAt(Order.getCreatedAt());
-        OrderResponseDto.setSentAt(Order.getSentAt());
-        OrderResponseDto.setOrderStatusId(Order.getOrderStatus().getOrderStatusId());
-        OrderResponseDto.setCustomerId(Order.getCustomer().getUserId());
-        OrderResponseDto.setShipmentTypeId(Order.getShipmentType().getShipmentTypeId());
-        OrderResponseDto.setShipmentIdentifier(Order.getShipmentIdentifier());
-        OrderResponseDto.setPaymentTypeId(Order.getPaymentType().getPaymentTypeId());
-        OrderResponseDto.setIsPaymentRecorded(Order.getIsPaymentRecorded());
-        OrderResponseDto.setIsInvoice(Order.getIsInvoice());
+        OrderResponseDto.setOrderId(order.getOrderId());
+        OrderResponseDto.setCreatedAt(order.getCreatedAt());
+        OrderResponseDto.setSentAt(order.getSentAt());
+        OrderResponseDto.setOrderStatus(orderStatusDtoMapper.toDto(order.getOrderStatus()));
+        OrderResponseDto.setCustomerId(order.getCustomer().getUserId());
+        OrderResponseDto.setShipmentType(shipmentTypeDtoMapper.toDto(order.getShipmentType()));
+        OrderResponseDto.setShipmentIdentifier(order.getShipmentIdentifier());
+        OrderResponseDto.setPaymentType(paymentTypeDtoMapper.toDto(order.getPaymentType()));
+        OrderResponseDto.setIsPaymentRecorded(order.getIsPaymentRecorded());
+        OrderResponseDto.setIsInvoice(order.getIsInvoice());
 
         return OrderResponseDto;
     }
 
-    public List<OrderResponseDto> toDtoList(List<Order> Orders) {
-        return Orders.stream()
+    public List<OrderResponseDto> toDtoList(List<Order> orderList) {
+        return orderList.stream()
                 .map(this::toDto)
                 .toList();
     }

@@ -17,8 +17,8 @@ public class OrderProductStatusDtoMapper {
         return orderProductStatusResponseDto;
     }
 
-    public List<OrderProductStatusResponseDto> toDtoList(List<OrderProductStatus> orderProductStatuses) {
-        return orderProductStatuses.stream()
+    public List<OrderProductStatusResponseDto> toDtoList(List<OrderProductStatus> orderProductStatusList) {
+        return orderProductStatusList.stream()
                 .map(this::toDto)
                 .toList();
     }

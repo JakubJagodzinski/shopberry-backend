@@ -14,16 +14,16 @@ public class CategoryDtoMapper {
         categoryResponseDto.setCategoryId(category.getCategoryId());
         categoryResponseDto.setCategoryName(category.getCategoryName());
         if (category.getParentCategory() != null) {
-            categoryResponseDto.setParentCategoryId(category.getParentCategory().getCategoryId());
+            categoryResponseDto.setParentCategory(toDto(category.getParentCategory()));
         } else {
-            categoryResponseDto.setParentCategoryId(null);
+            categoryResponseDto.setParentCategory(null);
         }
 
         return categoryResponseDto;
     }
 
-    public List<CategoryResponseDto> toDtoList(List<Category> categories) {
-        return categories.stream()
+    public List<CategoryResponseDto> toDtoList(List<Category> categoryList) {
+        return categoryList.stream()
                 .map(this::toDto)
                 .toList();
     }

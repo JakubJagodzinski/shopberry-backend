@@ -1,6 +1,7 @@
 package com.example.shopberry.domain.categoriesattributes.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.example.shopberry.domain.attributes.dto.AttributeResponseDto;
+import com.example.shopberry.domain.categories.dto.CategoryResponseDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,10 +13,8 @@ import lombok.Setter;
 @AllArgsConstructor
 public class CategoryAttributeResponseDto {
 
-    @JsonProperty("category_id")
-    private Long categoryId;
+    private CategoryResponseDto category;
 
-    @JsonProperty("attribute_id")
-    private Long attributeId;
+    private AttributeResponseDto attribute;
 
 }
