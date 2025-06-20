@@ -22,12 +22,24 @@ public class UserService {
     public void changePassword(ChangePasswordRequestDto changePasswordRequestDto, Principal connectedUser) throws IllegalArgumentException {
         User user = (User) ((UsernamePasswordAuthenticationToken) connectedUser).getPrincipal();
 
+        String currentPassword = changePasswordRequestDto.getCurrentPassword();
+        String newPassword = changePasswordRequestDto.getNewPassword();
+        String confirmationPassword = changePasswordRequestDto.getConfirmationPassword();
+
+        if (currentPassword == null || newPassword == null || confirmationPassword == null) {
+            throw new IllegalArgumentException(PasswordMessages.SOME_FIELDS_ARE_NULL);
+        }
+
         if (!passwordEncoder.matches(changePasswordRequestDto.getCurrentPassword(), user.getPassword())) {
             throw new IllegalArgumentException(PasswordMessages.WRONG_PASSWORD);
         }
 
         if (!changePasswordRequestDto.getNewPassword().equals(changePasswordRequestDto.getConfirmationPassword())) {
-            throw new IllegalArgumentException(PasswordMessages.PASSWORDS_ARE_NOT_THE_SAME);
+            throw new IllegalArgumentException(PasswordMessages.PASSWORDS_DONT_MATCH);
+        }
+
+        if (changePasswordRequestDto.getNewPassword().isBlank()) {
+            throw new IllegalArgumentException(PasswordMessages.PASSWORD_CANT_BE_BLANK);
         }
 
         user.setPassword(passwordEncoder.encode(changePasswordRequestDto.getNewPassword()));
