@@ -12,6 +12,12 @@ import lombok.Setter;
 @AllArgsConstructor
 public class UpdateCustomerRequestDto {
 
+    @JsonProperty("first_name")
+    private String firstName;
+
+    @JsonProperty("last_name")
+    private String lastName;
+
     @JsonProperty("is_company")
     private Boolean isCompany;
 

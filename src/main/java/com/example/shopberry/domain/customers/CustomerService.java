@@ -1,6 +1,7 @@
 package com.example.shopberry.domain.customers;
 
 import com.example.shopberry.common.constants.messages.CustomerMessages;
+import com.example.shopberry.common.constants.messages.UserMessages;
 import com.example.shopberry.domain.customeraddresses.CustomerAddress;
 import com.example.shopberry.domain.customeraddresses.CustomerAddressRepository;
 import com.example.shopberry.domain.customers.dto.CustomerDtoMapper;
@@ -39,11 +40,27 @@ public class CustomerService {
     }
 
     @Transactional
-    public CustomerResponseDto updateCustomerById(UUID customerId, UpdateCustomerRequestDto updateCustomerRequestDto) throws EntityNotFoundException {
+    public CustomerResponseDto updateCustomerById(UUID customerId, UpdateCustomerRequestDto updateCustomerRequestDto) throws EntityNotFoundException, IllegalArgumentException {
         Customer customer = customerRepository.findById(customerId).orElse(null);
 
         if (customer == null) {
             throw new EntityNotFoundException(CustomerMessages.CUSTOMER_NOT_FOUND);
+        }
+
+        if (updateCustomerRequestDto.getFirstName() != null) {
+            if (updateCustomerRequestDto.getFirstName().isBlank()) {
+                throw new IllegalArgumentException(UserMessages.FIRST_NAME_CANNOT_BE_EMPTY_MESSAGE);
+            }
+
+            customer.setFirstName(updateCustomerRequestDto.getFirstName());
+        }
+
+        if (updateCustomerRequestDto.getLastName() != null) {
+            if (updateCustomerRequestDto.getLastName().isBlank()) {
+                throw new IllegalArgumentException(UserMessages.LAST_NAME_CANNOT_BE_EMPTY_MESSAGE);
+            }
+
+            customer.setLastName(updateCustomerRequestDto.getLastName());
         }
 
         if (updateCustomerRequestDto.getIsCompany() != null) {
