@@ -1,5 +1,7 @@
 package com.example.shopberry.seeder;
 
+import com.example.shopberry.domain.attributes.Attribute;
+import com.example.shopberry.domain.attributes.AttributeRepository;
 import com.example.shopberry.domain.causesofreturn.CauseOfReturn;
 import com.example.shopberry.domain.causesofreturn.CauseOfReturnRepository;
 import com.example.shopberry.domain.orderproductstatuses.OrderProductStatus;
@@ -8,6 +10,10 @@ import com.example.shopberry.domain.orderstatuses.OrderStatus;
 import com.example.shopberry.domain.orderstatuses.OrderStatusRepository;
 import com.example.shopberry.domain.paymenttypes.PaymentType;
 import com.example.shopberry.domain.paymenttypes.PaymentTypeRepository;
+import com.example.shopberry.domain.producers.Producer;
+import com.example.shopberry.domain.producers.ProducerRepository;
+import com.example.shopberry.domain.promotions.Promotion;
+import com.example.shopberry.domain.promotions.PromotionRepository;
 import com.example.shopberry.domain.shipmenttypes.ShipmentType;
 import com.example.shopberry.domain.shipmenttypes.ShipmentTypeRepository;
 import com.example.shopberry.user.Role;
@@ -39,6 +45,8 @@ public class DatabaseSeeder implements ApplicationRunner {
     private final OrderStatusRepository orderStatusRepository;
     private final OrderProductStatusRepository orderProductStatusRepository;
     private final UserRepository userRepository;
+    private final AttributeRepository attributeRepository;
+    private final ProducerRepository producerRepository;
 
     private final PasswordEncoder passwordEncoder;
 
@@ -49,6 +57,10 @@ public class DatabaseSeeder implements ApplicationRunner {
     private static final String CAUSES_OF_RETURN_DATA_FILE_PATH = DATA_DIRECTORY + "/causes_of_return.csv";
     private static final String ORDER_STATUSES_DATA_FILE_PATH = DATA_DIRECTORY + "/order_statuses.csv";
     private static final String ORDER_PRODUCT_STATUSES_DATA_FILE_PATH = DATA_DIRECTORY + "/order_product_statuses.csv";
+    private static final String ATTRIBUTES_DATA_FILE_PATH = DATA_DIRECTORY + "/attributes.csv";
+    private static final String PRODUCERS_DATA_FILE_PATH = DATA_DIRECTORY + "/producers.csv";
+    private static final String PROMOTIONS_DATA_FILE_PATH = DATA_DIRECTORY + "/promotions.csv";
+    private final PromotionRepository promotionRepository;
 
     @Override
     public void run(ApplicationArguments args) throws IOException {
@@ -58,6 +70,9 @@ public class DatabaseSeeder implements ApplicationRunner {
         loadCausesOfReturnFromCsv();
         loadOrderStatusesFromCsv();
         loadOrderProductStatusesFromCsv();
+        loadAttributesFromCsv();
+        loadProducersFromCsv();
+        loadPromotionsFromCsv();
     }
 
     private void seedAdminAccount() {
@@ -153,6 +168,55 @@ public class DatabaseSeeder implements ApplicationRunner {
                 },
                 orderProductStatusRepository::saveAll,
                 1
+        );
+    }
+
+    private void loadAttributesFromCsv() throws IOException {
+        loadFromCsv(
+                ATTRIBUTES_DATA_FILE_PATH,
+                attributeRepository.count(),
+                parts -> {
+                    Attribute attribute = new Attribute();
+
+                    attribute.setAttributeName(parts[0].trim());
+
+                    return attribute;
+                },
+                attributeRepository::saveAll,
+                1
+        );
+    }
+
+    private void loadProducersFromCsv() throws IOException {
+        loadFromCsv(
+                PRODUCERS_DATA_FILE_PATH,
+                producerRepository.count(),
+                parts -> {
+                    Producer producer = new Producer();
+
+                    producer.setProducerName(parts[0].trim());
+
+                    return producer;
+                },
+                producerRepository::saveAll,
+                1
+        );
+    }
+
+    private void loadPromotionsFromCsv() throws IOException {
+        loadFromCsv(
+                PROMOTIONS_DATA_FILE_PATH,
+                promotionRepository.count(),
+                parts -> {
+                    Promotion promotion = new Promotion();
+
+                    promotion.setPromotionName(parts[0].trim());
+                    promotion.setDiscountPercentValue(Long.parseLong(parts[1].trim()));
+
+                    return promotion;
+                },
+                promotionRepository::saveAll,
+                2
         );
     }
 
