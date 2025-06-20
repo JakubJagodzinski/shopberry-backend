@@ -1,12 +1,9 @@
 package com.example.shopberry.domain.employees;
 
 import com.example.shopberry.common.constants.messages.EmployeeMessages;
-import com.example.shopberry.common.constants.messages.EmployeeTypeMessages;
 import com.example.shopberry.domain.employees.dto.EmployeeDtoMapper;
 import com.example.shopberry.domain.employees.dto.EmployeeResponseDto;
 import com.example.shopberry.domain.employees.dto.UpdateEmployeeRequestDto;
-import com.example.shopberry.domain.employeetypes.EmployeeType;
-import com.example.shopberry.domain.employeetypes.EmployeeTypeRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +17,6 @@ import java.util.UUID;
 public class EmployeeService {
 
     private final EmployeeRepository employeeRepository;
-    private final EmployeeTypeRepository employeeTypeRepository;
 
     private final EmployeeDtoMapper employeeDtoMapper;
 
@@ -45,16 +41,6 @@ public class EmployeeService {
 
         if (employee == null) {
             throw new EntityNotFoundException(EmployeeMessages.EMPLOYEE_NOT_FOUND);
-        }
-
-        if (updateEmployeeRequestDto.getEmployeeTypeId() != null) {
-            EmployeeType employeeType = employeeTypeRepository.findById(updateEmployeeRequestDto.getEmployeeTypeId()).orElse(null);
-
-            if (employeeType == null) {
-                throw new EntityNotFoundException(EmployeeTypeMessages.EMPLOYEE_TYPE_NOT_FOUND);
-            }
-
-            employee.setEmployeeType(employeeType);
         }
 
         return employeeDtoMapper.toDto(employeeRepository.save(employee));

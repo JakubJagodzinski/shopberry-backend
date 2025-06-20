@@ -12,9 +12,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class UpdateEmployeeRequestDto {
 
-    @JsonProperty("employee_type_id")
-    private Long employeeTypeId;
-
     @JsonProperty("first_name")
     private String firstName;
 

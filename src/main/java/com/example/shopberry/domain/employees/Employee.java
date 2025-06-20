@@ -1,11 +1,12 @@
 package com.example.shopberry.domain.employees;
 
-import com.example.shopberry.domain.employeetypes.EmployeeType;
 import com.example.shopberry.user.User;
 import jakarta.persistence.*;
-import lombok.*;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -15,9 +16,10 @@ import org.hibernate.annotations.OnDeleteAction;
 @PrimaryKeyJoinColumn(name = "employee_id", foreignKey = @ForeignKey(name = "fk_employees_user"))
 public class Employee extends User {
 
-    @ManyToOne
-    @JoinColumn(name = "employee_type_id", foreignKey = @ForeignKey(name = "fk_employees_employee_type"))
-    @OnDelete(action = OnDeleteAction.SET_NULL)
-    private EmployeeType employeeType;
+    @Column(name = "hired_at")
+    private LocalDate hiredAt;
+
+    @Column(name = "is_active")
+    private Boolean isActive;
 
 }
