@@ -25,8 +25,6 @@ public class EmployeeResponseDto {
     @JsonProperty("last_name")
     private String lastName;
 
-    private String email;
-
     @JsonProperty("created_at")
     private LocalDateTime createdAt;
 
