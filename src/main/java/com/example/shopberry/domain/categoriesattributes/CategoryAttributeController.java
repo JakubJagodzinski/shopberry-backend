@@ -6,9 +6,11 @@ import com.example.shopberry.domain.attributes.dto.AttributeResponseDto;
 import com.example.shopberry.domain.categoriesattributes.dto.AssignAttributeToCategoryRequestDto;
 import com.example.shopberry.domain.categoriesattributes.dto.CategoryAttributeResponseDto;
 import com.example.shopberry.user.Permission;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -17,6 +19,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1")
 @RequiredArgsConstructor
+@Validated
 public class CategoryAttributeController {
 
     private final CategoryAttributeService categoryAttributeService;
@@ -32,12 +35,12 @@ public class CategoryAttributeController {
 
     @CheckPermission(Permission.CATEGORY_ATTRIBUTE_ASSIGN)
     @PostMapping("/categories/{categoryId}/attributes")
-    public ResponseEntity<CategoryAttributeResponseDto> assignAttributeToCategory(@PathVariable Long categoryId, @RequestBody AssignAttributeToCategoryRequestDto assignAttributeToCategoryRequestDto) {
+    public ResponseEntity<CategoryAttributeResponseDto> assignAttributeToCategory(@PathVariable Long categoryId, @Valid @RequestBody AssignAttributeToCategoryRequestDto assignAttributeToCategoryRequestDto) {
         CategoryAttributeResponseDto createdCategoryAttributeResponseDto = categoryAttributeService.assignAttributeToCategory(categoryId, assignAttributeToCategoryRequestDto);
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .location(URI.create("/api/v1/category-attributes/" + createdCategoryAttributeResponseDto.getCategory()))
+                .location(URI.create("/api/v1/categories/" + categoryId + "/attributes/" + createdCategoryAttributeResponseDto.getAttribute().getAttributeId()))
                 .body(createdCategoryAttributeResponseDto);
     }
 

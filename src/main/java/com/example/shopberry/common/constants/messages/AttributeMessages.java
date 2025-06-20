@@ -11,5 +11,6 @@ public class AttributeMessages {
     public static final String ATTRIBUTE_ALREADY_ASSIGNED_TO_THIS_CATEGORY = "Attribute already assigned to this category";
     public static final String ATTRIBUTE_ALREADY_ASSIGNED_TO_THIS_PRODUCT = "Attribute already assigned to this product";
     public static final String ATTRIBUTE_NOT_ASSIGNED_TO_THIS_PRODUCT = "Attribute not assigned to this product";
+    public static final String ATTRIBUTE_ID_CANNOT_BE_NULL = "Attribute id cannot be null";
 
 }
