@@ -2,7 +2,9 @@ package com.example.shopberry.domain.complaintimages;
 
 import com.example.shopberry.domain.complaints.Complaint;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -15,7 +17,7 @@ public class ComplaintImage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long imageId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "complaint_id", nullable = false, foreignKey = @ForeignKey(name = "fk_complaint_images_complaint"))

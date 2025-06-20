@@ -21,8 +21,8 @@ public class CategoryService {
     }
 
     @Transactional
-    public CategoryResponseDto getCategoryById(Long id) throws EntityNotFoundException {
-        Category category = categoryRepository.findById(id).orElse(null);
+    public CategoryResponseDto getCategoryById(Long categoryId) throws EntityNotFoundException {
+        Category category = categoryRepository.findById(categoryId).orElse(null);
 
         if (category == null) {
             throw new EntityNotFoundException(CategoryMessages.CATEGORY_NOT_FOUND);
@@ -80,8 +80,8 @@ public class CategoryService {
     }
 
     @Transactional
-    public CategoryResponseDto updateCategoryById(Long id, UpdateCategoryRequestDto updateCategoryRequestDto) throws EntityNotFoundException, IllegalArgumentException {
-        Category category = categoryRepository.findById(id).orElse(null);
+    public CategoryResponseDto updateCategoryById(Long categoryId, UpdateCategoryRequestDto updateCategoryRequestDto) throws EntityNotFoundException, IllegalArgumentException {
+        Category category = categoryRepository.findById(categoryId).orElse(null);
 
         if (category == null) {
             throw new EntityNotFoundException(CategoryMessages.CATEGORY_NOT_FOUND);
@@ -90,7 +90,7 @@ public class CategoryService {
         if (updateCategoryRequestDto.getCategoryName() != null) {
             Category otherCategory = categoryRepository.findByCategoryName(updateCategoryRequestDto.getCategoryName()).orElse(null);
 
-            if (otherCategory != null && !otherCategory.getCategoryId().equals(id)) {
+            if (otherCategory != null && !otherCategory.getCategoryId().equals(categoryId)) {
                 throw new IllegalArgumentException(CategoryMessages.CATEGORY_WITH_THAT_NAME_ALREADY_EXISTS);
             }
 
@@ -101,18 +101,18 @@ public class CategoryService {
     }
 
     @Transactional
-    public void deleteCategoryById(Long id) throws EntityNotFoundException {
-        if (!categoryRepository.existsById(id)) {
+    public void deleteCategoryById(Long categoryId) throws EntityNotFoundException {
+        if (!categoryRepository.existsById(categoryId)) {
             throw new EntityNotFoundException(CategoryMessages.CATEGORY_NOT_FOUND);
         }
 
-        List<Category> childCategories = categoryRepository.findAllByParentCategory_CategoryId(id);
+        List<Category> childCategories = categoryRepository.findAllByParentCategory_CategoryId(categoryId);
 
         for (Category childCategory : childCategories) {
             childCategory.setParentCategory(null);
         }
 
-        categoryRepository.deleteById(id);
+        categoryRepository.deleteById(categoryId);
     }
 
 }

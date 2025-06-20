@@ -25,8 +25,8 @@ public class PaymentTypeService {
     }
 
     @Transactional
-    public PaymentTypeResponseDto getPaymentTypeById(Long id) throws IllegalArgumentException {
-        PaymentType paymentType = paymentTypeRepository.findById(id).orElse(null);
+    public PaymentTypeResponseDto getPaymentTypeById(Long paymentTypeId) throws IllegalArgumentException {
+        PaymentType paymentType = paymentTypeRepository.findById(paymentTypeId).orElse(null);
 
         if (paymentType == null) {
             throw new IllegalArgumentException(PaymentTypeMessages.PAYMENT_TYPE_NOT_FOUND);
@@ -57,8 +57,8 @@ public class PaymentTypeService {
     }
 
     @Transactional
-    public PaymentTypeResponseDto updatePaymentTypeById(Long id, UpdatePaymentTypeRequestDto updatePaymentTypeRequestDto) throws EntityNotFoundException, IllegalArgumentException {
-        PaymentType paymentType = paymentTypeRepository.findById(id).orElse(null);
+    public PaymentTypeResponseDto updatePaymentTypeById(Long paymentTypeId, UpdatePaymentTypeRequestDto updatePaymentTypeRequestDto) throws EntityNotFoundException, IllegalArgumentException {
+        PaymentType paymentType = paymentTypeRepository.findById(paymentTypeId).orElse(null);
 
         if (paymentType == null) {
             throw new EntityNotFoundException(PaymentTypeMessages.PAYMENT_TYPE_NOT_FOUND);
@@ -67,7 +67,7 @@ public class PaymentTypeService {
         if (updatePaymentTypeRequestDto.getPaymentName() != null) {
             PaymentType otherPaymentType = paymentTypeRepository.findByPaymentName(updatePaymentTypeRequestDto.getPaymentName()).orElse(null);
 
-            if (otherPaymentType != null && !otherPaymentType.getPaymentTypeId().equals(id)) {
+            if (otherPaymentType != null && !otherPaymentType.getPaymentTypeId().equals(paymentTypeId)) {
                 throw new IllegalArgumentException(PaymentTypeMessages.PAYMENT_TYPE_ALREADY_EXISTS);
             }
 
@@ -82,12 +82,12 @@ public class PaymentTypeService {
     }
 
     @Transactional
-    public void deletePaymentTypeById(Long id) throws EntityNotFoundException {
-        if (!paymentTypeRepository.existsById(id)) {
+    public void deletePaymentTypeById(Long paymentTypeId) throws EntityNotFoundException {
+        if (!paymentTypeRepository.existsById(paymentTypeId)) {
             throw new EntityNotFoundException(PaymentTypeMessages.PAYMENT_TYPE_NOT_FOUND);
         }
 
-        paymentTypeRepository.deleteById(id);
+        paymentTypeRepository.deleteById(paymentTypeId);
     }
 
 }

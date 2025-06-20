@@ -12,7 +12,8 @@ import lombok.Setter;
 @AllArgsConstructor
 public class ComplaintImageResponseDto {
 
-    private Long id;
+    @JsonProperty("image_id")
+    private Long imageId;
 
     @JsonProperty("complaint_id")
     private Long complaintId;

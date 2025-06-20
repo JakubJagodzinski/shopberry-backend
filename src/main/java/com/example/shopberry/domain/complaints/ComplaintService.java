@@ -36,8 +36,8 @@ public class ComplaintService {
     }
 
     @Transactional
-    public ComplaintResponseDto getComplaintById(Long id) throws EntityNotFoundException {
-        Complaint complaint = complaintRepository.findById(id).orElse(null);
+    public ComplaintResponseDto getComplaintById(Long complaintId) throws EntityNotFoundException {
+        Complaint complaint = complaintRepository.findById(complaintId).orElse(null);
 
         if (complaint == null) {
             throw new EntityNotFoundException(ComplaintMessages.COMPLAINT_NOT_FOUND);
@@ -83,8 +83,8 @@ public class ComplaintService {
     }
 
     @Transactional
-    public ComplaintResponseDto updateComplaintById(Long id, UpdateComplaintRequestDto updateComplaintRequestDto) throws EntityNotFoundException, IllegalArgumentException {
-        Complaint complaint = complaintRepository.findById(id).orElse(null);
+    public ComplaintResponseDto updateComplaintById(Long complaintId, UpdateComplaintRequestDto updateComplaintRequestDto) throws EntityNotFoundException, IllegalArgumentException {
+        Complaint complaint = complaintRepository.findById(complaintId).orElse(null);
 
         if (complaint == null) {
             throw new EntityNotFoundException(ComplaintMessages.COMPLAINT_NOT_FOUND);
@@ -134,12 +134,12 @@ public class ComplaintService {
     }
 
     @Transactional
-    public void deleteComplaintById(Long id) throws EntityNotFoundException {
-        if (!complaintRepository.existsById(id)) {
+    public void deleteComplaintById(Long complaintId) throws EntityNotFoundException {
+        if (!complaintRepository.existsById(complaintId)) {
             throw new EntityNotFoundException(ComplaintMessages.COMPLAINT_NOT_FOUND);
         }
 
-        complaintRepository.deleteById(id);
+        complaintRepository.deleteById(complaintId);
     }
 
 }

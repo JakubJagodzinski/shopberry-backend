@@ -26,8 +26,8 @@ public class ProducerService {
     }
 
     @Transactional
-    public ProducerResponseDto getProducerById(Long id) throws EntityNotFoundException {
-        Producer producer = producerRepository.findById(id).orElse(null);
+    public ProducerResponseDto getProducerById(Long producerId) throws EntityNotFoundException {
+        Producer producer = producerRepository.findById(producerId).orElse(null);
 
         if (producer == null) {
             throw new EntityNotFoundException(ProducerMessages.PRODUCER_NOT_FOUND);
@@ -51,8 +51,8 @@ public class ProducerService {
     }
 
     @Transactional
-    public ProducerResponseDto updateProducerById(Long id, UpdateProducerRequestDto updateProducerRequestDto) throws EntityNotFoundException {
-        Producer producer = producerRepository.findById(id).orElse(null);
+    public ProducerResponseDto updateProducerById(Long producerId, UpdateProducerRequestDto updateProducerRequestDto) throws EntityNotFoundException {
+        Producer producer = producerRepository.findById(producerId).orElse(null);
 
         if (producer == null) {
             throw new EntityNotFoundException(ProducerMessages.PRODUCER_NOT_FOUND);
@@ -72,12 +72,12 @@ public class ProducerService {
     }
 
     @Transactional
-    public void deleteProducerById(Long id) throws EntityNotFoundException {
-        if (!producerRepository.existsById(id)) {
+    public void deleteProducerById(Long producerId) throws EntityNotFoundException {
+        if (!producerRepository.existsById(producerId)) {
             throw new EntityNotFoundException(ProducerMessages.PRODUCER_NOT_FOUND);
         }
 
-        producerRepository.deleteById(id);
+        producerRepository.deleteById(producerId);
     }
 
 }

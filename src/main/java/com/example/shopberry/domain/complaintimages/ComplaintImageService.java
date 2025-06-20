@@ -27,8 +27,8 @@ public class ComplaintImageService {
     }
 
     @Transactional
-    public ComplaintImageResponseDto getComplaintImageById(Long id) throws EntityNotFoundException {
-        ComplaintImage complaintImage = complaintImageRepository.findById(id).orElse(null);
+    public ComplaintImageResponseDto getComplaintImageById(Long imageId) throws EntityNotFoundException {
+        ComplaintImage complaintImage = complaintImageRepository.findById(imageId).orElse(null);
 
         if (complaintImage == null) {
             throw new EntityNotFoundException(ComplaintMessages.COMPLAINT_IMAGE_NOT_FOUND);
@@ -58,12 +58,12 @@ public class ComplaintImageService {
     }
 
     @Transactional
-    public void deleteComplaintImageById(Long id) throws EntityNotFoundException {
-        if (!complaintImageRepository.existsById(id)) {
+    public void deleteComplaintImageById(Long imageId) throws EntityNotFoundException {
+        if (!complaintImageRepository.existsById(imageId)) {
             throw new EntityNotFoundException(ComplaintMessages.COMPLAINT_IMAGE_NOT_FOUND);
         }
 
-        complaintImageRepository.deleteById(id);
+        complaintImageRepository.deleteById(imageId);
     }
 
     @Transactional

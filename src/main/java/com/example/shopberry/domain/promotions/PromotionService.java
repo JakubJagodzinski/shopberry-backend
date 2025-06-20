@@ -25,8 +25,8 @@ public class PromotionService {
     }
 
     @Transactional
-    public PromotionResponseDto getPromotionById(Long id) throws EntityNotFoundException {
-        Promotion promotion = promotionRepository.findById(id).orElse(null);
+    public PromotionResponseDto getPromotionById(Long promotionId) throws EntityNotFoundException {
+        Promotion promotion = promotionRepository.findById(promotionId).orElse(null);
 
         if (promotion == null) {
             throw new EntityNotFoundException(PromotionMessages.PROMOTION_NOT_FOUND);
@@ -66,8 +66,8 @@ public class PromotionService {
     }
 
     @Transactional
-    public PromotionResponseDto updatePromotionById(Long id, UpdatePromotionRequestDto updatePromotionRequestDto) throws EntityNotFoundException, IllegalArgumentException {
-        Promotion promotion = promotionRepository.findById(id).orElse(null);
+    public PromotionResponseDto updatePromotionById(Long promotionId, UpdatePromotionRequestDto updatePromotionRequestDto) throws EntityNotFoundException, IllegalArgumentException {
+        Promotion promotion = promotionRepository.findById(promotionId).orElse(null);
 
         if (promotion == null) {
             throw new EntityNotFoundException(PromotionMessages.PROMOTION_NOT_FOUND);
@@ -76,7 +76,7 @@ public class PromotionService {
         if (updatePromotionRequestDto.getPromotionName() != null) {
             Promotion otherPromotion = promotionRepository.findByPromotionName(updatePromotionRequestDto.getPromotionName()).orElse(null);
 
-            if (otherPromotion != null && !otherPromotion.getPromotionId().equals(id)) {
+            if (otherPromotion != null && !otherPromotion.getPromotionId().equals(promotionId)) {
                 throw new IllegalArgumentException(PromotionMessages.PROMOTION_WITH_THAT_NAME_ALREADY_EXISTS);
             }
 
@@ -103,12 +103,12 @@ public class PromotionService {
     }
 
     @Transactional
-    public void deletePromotionById(Long id) throws EntityNotFoundException {
-        if (!promotionRepository.existsById(id)) {
+    public void deletePromotionById(Long promotionId) throws EntityNotFoundException {
+        if (!promotionRepository.existsById(promotionId)) {
             throw new EntityNotFoundException(PromotionMessages.PROMOTION_NOT_FOUND);
         }
 
-        promotionRepository.deleteById(id);
+        promotionRepository.deleteById(promotionId);
     }
 
 }

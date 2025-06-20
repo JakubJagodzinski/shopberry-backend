@@ -25,8 +25,8 @@ public class EmployeeTypeService {
     }
 
     @Transactional
-    public EmployeeTypeResponseDto getEmployeeTypeById(Long id) throws EntityNotFoundException {
-        EmployeeType employeeType = employeeTypeRepository.findById(id).orElse(null);
+    public EmployeeTypeResponseDto getEmployeeTypeById(Long employeeTypeId) throws EntityNotFoundException {
+        EmployeeType employeeType = employeeTypeRepository.findById(employeeTypeId).orElse(null);
 
         if (employeeType == null) {
             throw new EntityNotFoundException(EmployeeTypeMessages.EMPLOYEE_TYPE_NOT_FOUND);
@@ -57,8 +57,8 @@ public class EmployeeTypeService {
     }
 
     @Transactional
-    public EmployeeTypeResponseDto updateEmployeeTypeById(Long id, UpdateEmployeeTypeRequestDto updateEmployeeTypeRequestDto) throws EntityNotFoundException, IllegalArgumentException {
-        EmployeeType employeeType = employeeTypeRepository.findById(id).orElse(null);
+    public EmployeeTypeResponseDto updateEmployeeTypeById(Long employeeTypeId, UpdateEmployeeTypeRequestDto updateEmployeeTypeRequestDto) throws EntityNotFoundException, IllegalArgumentException {
+        EmployeeType employeeType = employeeTypeRepository.findById(employeeTypeId).orElse(null);
 
         if (employeeType == null) {
             throw new EntityNotFoundException(EmployeeTypeMessages.EMPLOYEE_TYPE_NOT_FOUND);
@@ -67,7 +67,7 @@ public class EmployeeTypeService {
         if (updateEmployeeTypeRequestDto.getEmployeeTypeName() != null) {
             EmployeeType otherEmployeeType = employeeTypeRepository.findByEmployeeTypeName(updateEmployeeTypeRequestDto.getEmployeeTypeName()).orElse(null);
 
-            if (otherEmployeeType != null && !otherEmployeeType.getEmployeeTypeId().equals(id)) {
+            if (otherEmployeeType != null && !otherEmployeeType.getEmployeeTypeId().equals(employeeTypeId)) {
                 throw new IllegalArgumentException(EmployeeTypeMessages.EMPLOYEE_TYPE_WITH_THAT_NAME_ALREADY_EXISTS);
             }
 
@@ -82,12 +82,12 @@ public class EmployeeTypeService {
     }
 
     @Transactional
-    public void deleteEmployeeTypeById(Long id) throws EntityNotFoundException {
-        if (!employeeTypeRepository.existsById(id)) {
+    public void deleteEmployeeTypeById(Long employeeTypeId) throws EntityNotFoundException {
+        if (!employeeTypeRepository.existsById(employeeTypeId)) {
             throw new EntityNotFoundException(EmployeeTypeMessages.EMPLOYEE_TYPE_NOT_FOUND);
         }
 
-        employeeTypeRepository.deleteById(id);
+        employeeTypeRepository.deleteById(employeeTypeId);
     }
 
 }

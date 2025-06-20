@@ -12,7 +12,7 @@ public class ComplaintImageDtoMapper {
     public ComplaintImageResponseDto toDto(ComplaintImage complaintImage) {
         ComplaintImageResponseDto ComplaintImageResponseDto = new ComplaintImageResponseDto();
 
-        ComplaintImageResponseDto.setId(complaintImage.getId());
+        ComplaintImageResponseDto.setImageId(complaintImage.getImageId());
         ComplaintImageResponseDto.setComplaintId(complaintImage.getComplaint().getComplaintId());
         ComplaintImageResponseDto.setImage(complaintImage.getImage());
 

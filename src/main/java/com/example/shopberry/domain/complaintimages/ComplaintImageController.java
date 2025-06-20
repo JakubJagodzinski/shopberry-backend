@@ -57,7 +57,7 @@ public class ComplaintImageController {
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .location(URI.create("/api/v1/complaints/" + complaintId + "/images/" + complaintImageResponseDto.getId()))
+                .location(URI.create("/api/v1/complaints/" + complaintId + "/images/" + complaintImageResponseDto.getImageId()))
                 .body(complaintImageResponseDto);
     }
 

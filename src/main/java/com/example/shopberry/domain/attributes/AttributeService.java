@@ -25,8 +25,8 @@ public class AttributeService {
     }
 
     @Transactional
-    public AttributeResponseDto getAttributeById(Long id) throws EntityNotFoundException {
-        Attribute attribute = attributeRepository.findById(id).orElse(null);
+    public AttributeResponseDto getAttributeById(Long attributeId) throws EntityNotFoundException {
+        Attribute attribute = attributeRepository.findById(attributeId).orElse(null);
 
         if (attribute == null) {
             throw new EntityNotFoundException(AttributeMessages.ATTRIBUTE_NOT_FOUND);
@@ -57,8 +57,8 @@ public class AttributeService {
     }
 
     @Transactional
-    public AttributeResponseDto updateAttributeById(Long id, UpdateAttributeRequestDto updateAttributeRequestDto) throws EntityNotFoundException, IllegalArgumentException {
-        Attribute attribute = attributeRepository.findById(id).orElse(null);
+    public AttributeResponseDto updateAttributeById(Long attributeId, UpdateAttributeRequestDto updateAttributeRequestDto) throws EntityNotFoundException, IllegalArgumentException {
+        Attribute attribute = attributeRepository.findById(attributeId).orElse(null);
 
         if (attribute == null) {
             throw new EntityNotFoundException(AttributeMessages.ATTRIBUTE_NOT_FOUND);
@@ -82,12 +82,12 @@ public class AttributeService {
     }
 
     @Transactional
-    public void deleteAttributeById(Long id) throws EntityNotFoundException {
-        if (!attributeRepository.existsById(id)) {
+    public void deleteAttributeById(Long attributeId) throws EntityNotFoundException {
+        if (!attributeRepository.existsById(attributeId)) {
             throw new EntityNotFoundException(AttributeMessages.ATTRIBUTE_NOT_FOUND);
         }
 
-        attributeRepository.deleteById(id);
+        attributeRepository.deleteById(attributeId);
     }
 
 }

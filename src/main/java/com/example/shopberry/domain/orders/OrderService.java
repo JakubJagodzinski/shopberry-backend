@@ -39,8 +39,8 @@ public class OrderService {
     }
 
     @Transactional
-    public OrderResponseDto getOrderById(Long id) throws EntityNotFoundException {
-        Order order = orderRepository.findById(id).orElse(null);
+    public OrderResponseDto getOrderById(Long orderId) throws EntityNotFoundException {
+        Order order = orderRepository.findById(orderId).orElse(null);
 
         if (order == null) {
             throw new EntityNotFoundException(OrderMessages.ORDER_NOT_FOUND);
@@ -93,11 +93,11 @@ public class OrderService {
     }
 
     @Transactional
-    public void deleteOrderById(Long id) throws EntityNotFoundException {
-        if (!orderRepository.existsById(id)) {
+    public void deleteOrderById(Long orderId) throws EntityNotFoundException {
+        if (!orderRepository.existsById(orderId)) {
             throw new EntityNotFoundException(OrderMessages.ORDER_NOT_FOUND);
         }
 
-        orderRepository.deleteById(id);
+        orderRepository.deleteById(orderId);
     }
 }

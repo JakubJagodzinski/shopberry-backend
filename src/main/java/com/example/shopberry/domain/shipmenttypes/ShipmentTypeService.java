@@ -25,8 +25,8 @@ public class ShipmentTypeService {
     }
 
     @Transactional
-    public ShipmentTypeResponseDto getShipmentTypeById(Long id) throws EntityNotFoundException {
-        ShipmentType shipmentType = shipmentTypeRepository.findById(id).orElse(null);
+    public ShipmentTypeResponseDto getShipmentTypeById(Long shipmentTypeId) throws EntityNotFoundException {
+        ShipmentType shipmentType = shipmentTypeRepository.findById(shipmentTypeId).orElse(null);
 
         if (shipmentType == null) {
             throw new EntityNotFoundException(ShipmentTypeMessages.SHIPMENT_TYPE_NOT_FOUND);
@@ -62,8 +62,8 @@ public class ShipmentTypeService {
     }
 
     @Transactional
-    public ShipmentTypeResponseDto updateShipmentTypeById(Long id, UpdateShipmentTypeRequestDto updateShipmentTypeRequestDto) throws EntityNotFoundException, IllegalArgumentException {
-        ShipmentType shipmentType = shipmentTypeRepository.findById(id).orElse(null);
+    public ShipmentTypeResponseDto updateShipmentTypeById(Long shipmentTypeId, UpdateShipmentTypeRequestDto updateShipmentTypeRequestDto) throws EntityNotFoundException, IllegalArgumentException {
+        ShipmentType shipmentType = shipmentTypeRepository.findById(shipmentTypeId).orElse(null);
 
         if (shipmentType == null) {
             throw new EntityNotFoundException(ShipmentTypeMessages.SHIPMENT_TYPE_NOT_FOUND);
@@ -72,7 +72,7 @@ public class ShipmentTypeService {
         if (updateShipmentTypeRequestDto.getShipmentName() != null) {
             ShipmentType otherShipmentType = shipmentTypeRepository.findByShipmentName(updateShipmentTypeRequestDto.getShipmentName()).orElse(null);
 
-            if (otherShipmentType != null && !otherShipmentType.getShipmentTypeId().equals(id)) {
+            if (otherShipmentType != null && !otherShipmentType.getShipmentTypeId().equals(shipmentTypeId)) {
                 throw new IllegalArgumentException(ShipmentTypeMessages.SHIPMENT_TYPE_ALREADY_EXISTS);
             }
 
@@ -95,12 +95,12 @@ public class ShipmentTypeService {
     }
 
     @Transactional
-    public void deleteShipmentTypeById(Long id) throws EntityNotFoundException {
-        if (!shipmentTypeRepository.existsById(id)) {
+    public void deleteShipmentTypeById(Long shipmentTypeId) throws EntityNotFoundException {
+        if (!shipmentTypeRepository.existsById(shipmentTypeId)) {
             throw new EntityNotFoundException(ShipmentTypeMessages.SHIPMENT_TYPE_NOT_FOUND);
         }
 
-        shipmentTypeRepository.deleteById(id);
+        shipmentTypeRepository.deleteById(shipmentTypeId);
     }
 
 }

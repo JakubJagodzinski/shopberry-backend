@@ -25,8 +25,8 @@ public class ProductService {
     }
 
     @Transactional
-    public ProductResponseDto getProductById(Long id) throws EntityNotFoundException {
-        Product product = productRepository.findById(id).orElse(null);
+    public ProductResponseDto getProductById(Long productId) throws EntityNotFoundException {
+        Product product = productRepository.findById(productId).orElse(null);
 
         if (product == null) {
             throw new EntityNotFoundException(ProductMessages.PRODUCT_NOT_FOUND);
@@ -60,8 +60,8 @@ public class ProductService {
     }
 
     @Transactional
-    public ProductResponseDto updateProductById(Long id, UpdateProductRequestDto updateProductRequestDto) throws EntityNotFoundException, IllegalArgumentException {
-        Product product = productRepository.findById(id).orElse(null);
+    public ProductResponseDto updateProductById(Long productId, UpdateProductRequestDto updateProductRequestDto) throws EntityNotFoundException, IllegalArgumentException {
+        Product product = productRepository.findById(productId).orElse(null);
 
         if (product == null) {
             throw new EntityNotFoundException(ProductMessages.PRODUCT_NOT_FOUND);
@@ -70,7 +70,7 @@ public class ProductService {
         if (updateProductRequestDto.getProductName() != null) {
             Product otherProduct = productRepository.findByProductName(updateProductRequestDto.getProductName()).orElse(null);
 
-            if (otherProduct != null && !otherProduct.getProductId().equals(id)) {
+            if (otherProduct != null && !otherProduct.getProductId().equals(productId)) {
                 throw new IllegalArgumentException(ProductMessages.PRODUCT_WITH_THAT_NAME_ALREADY_EXISTS);
             }
 
@@ -108,12 +108,12 @@ public class ProductService {
     }
 
     @Transactional
-    public void deleteProductById(Long id) throws EntityNotFoundException {
-        if (!productRepository.existsById(id)) {
+    public void deleteProductById(Long productId) throws EntityNotFoundException {
+        if (!productRepository.existsById(productId)) {
             throw new EntityNotFoundException(ProductMessages.PRODUCT_NOT_FOUND);
         }
 
-        productRepository.deleteById(id);
+        productRepository.deleteById(productId);
     }
 
 }

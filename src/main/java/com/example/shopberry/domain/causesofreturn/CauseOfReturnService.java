@@ -25,8 +25,8 @@ public class CauseOfReturnService {
     }
 
     @Transactional
-    public CauseOfReturnResponseDto getCauseOfReturnById(Long id) throws EntityNotFoundException {
-        CauseOfReturn causeOfReturn = causeOfReturnRepository.findById(id).orElse(null);
+    public CauseOfReturnResponseDto getCauseOfReturnById(Long causeOfReturnId) throws EntityNotFoundException {
+        CauseOfReturn causeOfReturn = causeOfReturnRepository.findById(causeOfReturnId).orElse(null);
 
         if (causeOfReturn == null) {
             throw new EntityNotFoundException(CauseOfReturnMessages.CAUSE_OF_RETURN_NOT_FOUND);
@@ -57,8 +57,8 @@ public class CauseOfReturnService {
     }
 
     @Transactional
-    public CauseOfReturnResponseDto updateCauseOfReturnById(Long id, UpdateCauseOfReturnRequestDto updateCauseOfReturnRequestDto) throws EntityNotFoundException, IllegalArgumentException {
-        CauseOfReturn causeOfReturn = causeOfReturnRepository.findById(id).orElse(null);
+    public CauseOfReturnResponseDto updateCauseOfReturnById(Long causeOfReturnId, UpdateCauseOfReturnRequestDto updateCauseOfReturnRequestDto) throws EntityNotFoundException, IllegalArgumentException {
+        CauseOfReturn causeOfReturn = causeOfReturnRepository.findById(causeOfReturnId).orElse(null);
 
         if (causeOfReturn == null) {
             throw new EntityNotFoundException(CauseOfReturnMessages.CAUSE_OF_RETURN_NOT_FOUND);
@@ -67,7 +67,7 @@ public class CauseOfReturnService {
         if (updateCauseOfReturnRequestDto.getCause() != null) {
             CauseOfReturn otherCauseOfReturn = causeOfReturnRepository.findByCause(updateCauseOfReturnRequestDto.getCause()).orElse(null);
 
-            if (otherCauseOfReturn != null && !otherCauseOfReturn.getCauseOfReturnId().equals(id)) {
+            if (otherCauseOfReturn != null && !otherCauseOfReturn.getCauseOfReturnId().equals(causeOfReturnId)) {
                 throw new IllegalArgumentException(CauseOfReturnMessages.CAUSE_OF_RETURN_WITH_THAT_NAME_ALREADY_EXISTS);
             }
 
@@ -82,12 +82,12 @@ public class CauseOfReturnService {
     }
 
     @Transactional
-    public void deleteCauseOfReturnById(Long id) throws EntityNotFoundException {
-        if (!causeOfReturnRepository.existsById(id)) {
+    public void deleteCauseOfReturnById(Long causeOfReturnId) throws EntityNotFoundException {
+        if (!causeOfReturnRepository.existsById(causeOfReturnId)) {
             throw new EntityNotFoundException(CauseOfReturnMessages.CAUSE_OF_RETURN_NOT_FOUND);
         }
 
-        causeOfReturnRepository.deleteById(id);
+        causeOfReturnRepository.deleteById(causeOfReturnId);
     }
 
 }

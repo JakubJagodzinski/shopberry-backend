@@ -25,8 +25,8 @@ public class OrderStatusService {
     }
 
     @Transactional
-    public OrderStatusResponseDto getOrderStatusById(Long id) throws EntityNotFoundException {
-        OrderStatus orderStatus = orderStatusRepository.findById(id).orElse(null);
+    public OrderStatusResponseDto getOrderStatusById(Long orderStatusId) throws EntityNotFoundException {
+        OrderStatus orderStatus = orderStatusRepository.findById(orderStatusId).orElse(null);
 
         if (orderStatus == null) {
             throw new EntityNotFoundException(OrderStatusMessages.ORDER_STATUS_NOT_FOUND);
@@ -57,8 +57,8 @@ public class OrderStatusService {
     }
 
     @Transactional
-    public OrderStatusResponseDto updateOrderStatusById(Long id, UpdateOrderStatusRequestDto updateOrderStatusRequestDto) throws EntityNotFoundException, IllegalArgumentException {
-        OrderStatus orderStatus = orderStatusRepository.findById(id).orElse(null);
+    public OrderStatusResponseDto updateOrderStatusById(Long orderStatusId, UpdateOrderStatusRequestDto updateOrderStatusRequestDto) throws EntityNotFoundException, IllegalArgumentException {
+        OrderStatus orderStatus = orderStatusRepository.findById(orderStatusId).orElse(null);
 
         if (orderStatus == null) {
             throw new EntityNotFoundException(OrderStatusMessages.ORDER_STATUS_NOT_FOUND);
@@ -67,7 +67,7 @@ public class OrderStatusService {
         if (updateOrderStatusRequestDto.getOrderStatusName() != null) {
             OrderStatus otherOrderStatus = orderStatusRepository.findByOrderStatusName(updateOrderStatusRequestDto.getOrderStatusName()).orElse(null);
 
-            if (otherOrderStatus != null && !otherOrderStatus.getOrderStatusId().equals(id)) {
+            if (otherOrderStatus != null && !otherOrderStatus.getOrderStatusId().equals(orderStatusId)) {
                 throw new IllegalArgumentException(OrderStatusMessages.ORDER_STATUS_ALREADY_EXISTS);
             }
 
@@ -82,12 +82,12 @@ public class OrderStatusService {
     }
 
     @Transactional
-    public void deleteOrderStatusById(Long id) throws EntityNotFoundException {
-        if (!orderStatusRepository.existsById(id)) {
+    public void deleteOrderStatusById(Long orderStatusId) throws EntityNotFoundException {
+        if (!orderStatusRepository.existsById(orderStatusId)) {
             throw new EntityNotFoundException(OrderStatusMessages.ORDER_STATUS_NOT_FOUND);
         }
 
-        orderStatusRepository.deleteById(id);
+        orderStatusRepository.deleteById(orderStatusId);
     }
 
 }
