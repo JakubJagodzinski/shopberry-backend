@@ -1,6 +1,7 @@
 package com.example.shopberry.domain.employees;
 
 import com.example.shopberry.common.constants.messages.EmployeeMessages;
+import com.example.shopberry.common.constants.messages.UserMessages;
 import com.example.shopberry.domain.employees.dto.EmployeeDtoMapper;
 import com.example.shopberry.domain.employees.dto.EmployeeResponseDto;
 import com.example.shopberry.domain.employees.dto.UpdateEmployeeRequestDto;
@@ -36,11 +37,27 @@ public class EmployeeService {
     }
 
     @Transactional
-    public EmployeeResponseDto updateEmployeeById(UUID employeeId, UpdateEmployeeRequestDto updateEmployeeRequestDto) throws EntityNotFoundException {
+    public EmployeeResponseDto updateEmployeeById(UUID employeeId, UpdateEmployeeRequestDto updateEmployeeRequestDto) throws EntityNotFoundException, IllegalArgumentException {
         Employee employee = employeeRepository.findById(employeeId).orElse(null);
 
         if (employee == null) {
             throw new EntityNotFoundException(EmployeeMessages.EMPLOYEE_NOT_FOUND);
+        }
+
+        if (updateEmployeeRequestDto.getFirstName() != null) {
+            if (updateEmployeeRequestDto.getFirstName().isBlank()) {
+                throw new IllegalArgumentException(UserMessages.FIRST_NAME_CANNOT_BE_EMPTY_MESSAGE);
+            }
+
+            employee.setFirstName(updateEmployeeRequestDto.getFirstName());
+        }
+
+        if (updateEmployeeRequestDto.getLastName() != null) {
+            if (updateEmployeeRequestDto.getLastName().isBlank()) {
+                throw new IllegalArgumentException(UserMessages.LAST_NAME_CANNOT_BE_EMPTY_MESSAGE);
+            }
+
+            employee.setLastName(updateEmployeeRequestDto.getLastName());
         }
 
         return employeeDtoMapper.toDto(employeeRepository.save(employee));
