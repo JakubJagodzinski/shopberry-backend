@@ -7,9 +7,11 @@ import com.example.shopberry.domain.categories.dto.CreateCategoryRequestDto;
 import com.example.shopberry.domain.categories.dto.SetParentCategoryRequestDto;
 import com.example.shopberry.domain.categories.dto.UpdateCategoryRequestDto;
 import com.example.shopberry.user.Permission;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -18,6 +20,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1")
 @RequiredArgsConstructor
+@Validated
 public class CategoryController {
 
     private final CategoryService categoryService;
@@ -42,7 +45,7 @@ public class CategoryController {
 
     @CheckPermission(Permission.CATEGORY_CREATE)
     @PostMapping("/categories")
-    public ResponseEntity<CategoryResponseDto> createCategory(@RequestBody CreateCategoryRequestDto createCategoryRequestDto) {
+    public ResponseEntity<CategoryResponseDto> createCategory(@Valid @RequestBody CreateCategoryRequestDto createCategoryRequestDto) {
         CategoryResponseDto createdCategory = categoryService.createCategory(createCategoryRequestDto);
 
         return ResponseEntity
@@ -53,7 +56,7 @@ public class CategoryController {
 
     @CheckPermission(Permission.CATEGORY_UPDATE)
     @PostMapping("/categories/{categoryId}")
-    public ResponseEntity<CategoryResponseDto> setParentCategory(@PathVariable Long categoryId, @RequestBody SetParentCategoryRequestDto setParentCategoryRequestDto) {
+    public ResponseEntity<CategoryResponseDto> setParentCategory(@PathVariable Long categoryId, @Valid @RequestBody SetParentCategoryRequestDto setParentCategoryRequestDto) {
         CategoryResponseDto updatedCategoryResponseDto = categoryService.setParentCategory(categoryId, setParentCategoryRequestDto);
 
         return ResponseEntity
@@ -63,7 +66,7 @@ public class CategoryController {
 
     @CheckPermission(Permission.CATEGORY_UPDATE)
     @PatchMapping("/categories/{categoryId}")
-    public ResponseEntity<CategoryResponseDto> updateCategoryById(@PathVariable Long categoryId, @RequestBody UpdateCategoryRequestDto updateCategoryRequestDto) {
+    public ResponseEntity<CategoryResponseDto> updateCategoryById(@PathVariable Long categoryId, @Valid @RequestBody UpdateCategoryRequestDto updateCategoryRequestDto) {
         CategoryResponseDto updatedCategoryResponseDto = categoryService.updateCategoryById(categoryId, updateCategoryRequestDto);
 
         return ResponseEntity

@@ -33,14 +33,16 @@ public class CategoryService {
     }
 
     @Transactional
-    public CategoryResponseDto createCategory(CreateCategoryRequestDto createCategoryRequestDto) throws EntityNotFoundException, IllegalArgumentException {
-        if (categoryRepository.existsByCategoryName(createCategoryRequestDto.getCategoryName())) {
-            throw new IllegalArgumentException(CategoryMessages.CATEGORY_WITH_THAT_NAME_ALREADY_EXISTS);
+    public CategoryResponseDto createCategory(CreateCategoryRequestDto createCategoryRequestDto) throws EntityNotFoundException, EntityExistsException {
+        String categoryName = createCategoryRequestDto.getCategoryName().trim();
+
+        if (categoryRepository.existsByCategoryName(categoryName)) {
+            throw new EntityExistsException(CategoryMessages.CATEGORY_WITH_THAT_NAME_ALREADY_EXISTS);
         }
 
         Category category = new Category();
 
-        category.setCategoryName(createCategoryRequestDto.getCategoryName());
+        category.setCategoryName(categoryName);
 
         Long parentCategoryId = createCategoryRequestDto.getParentCategoryId();
 
@@ -89,17 +91,15 @@ public class CategoryService {
         }
 
         if (updateCategoryRequestDto.getCategoryName() != null) {
-            if (updateCategoryRequestDto.getCategoryName().isBlank()) {
-                throw new IllegalArgumentException(CategoryMessages.CATEGORY_NAME_CANNOT_BE_EMPTY);
-            }
+            String categoryName = updateCategoryRequestDto.getCategoryName().trim();
 
-            Category otherCategory = categoryRepository.findByCategoryName(updateCategoryRequestDto.getCategoryName()).orElse(null);
+            Category otherCategory = categoryRepository.findByCategoryName(categoryName).orElse(null);
 
             if (otherCategory != null && !otherCategory.getCategoryId().equals(categoryId)) {
                 throw new EntityExistsException(CategoryMessages.CATEGORY_WITH_THAT_NAME_ALREADY_EXISTS);
             }
 
-            category.setCategoryName(updateCategoryRequestDto.getCategoryName());
+            category.setCategoryName(categoryName);
         }
 
         return categoryDtoMapper.toDto(categoryRepository.save(category));
