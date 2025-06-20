@@ -25,19 +25,21 @@ public enum Role {
 
                     COMPLAINT_IMAGE_ADD,
                     COMPLAINT_IMAGE_READ,
-                    COMPLAINT_IMAGE_READ_ALL,
                     COMPLAINT_IMAGE_DELETE,
+
+                    COMPLAINT_COMPLAINT_IMAGE_READ_ALL,
 
                     COMPLAINT_CREATE,
                     COMPLAINT_READ,
                     COMPLAINT_UPDATE,
                     COMPLAINT_DELETE,
 
-                    CUSTOMER_ADDRESS_CREATE,
-                    CUSTOMER_ADDRESS_READ,
+                    ADDRESS_CREATE,
+                    ADDRESS_READ,
+                    ADDRESS_UPDATE,
+                    ADDRESS_DELETE,
+
                     CUSTOMER_ADDRESS_READ_ALL,
-                    CUSTOMER_ADDRESS_UPDATE,
-                    CUSTOMER_ADDRESS_DELETE,
                     CUSTOMER_ADDRESS_DELETE_ALL,
 
                     CUSTOMER_READ,

@@ -22,10 +22,10 @@ public class CustomerAddressController {
 
     private final CustomerAddressService customerAddressService;
 
-    @CheckPermission(Permission.CUSTOMER_ADDRESS_READ_ALL)
+    @CheckPermission(Permission.ADDRESS_READ_ALL)
     @GetMapping("/customers/addresses")
-    public ResponseEntity<List<CustomerAddressResponseDto>> getAllCustomerAddresses() {
-        List<CustomerAddressResponseDto> customerAddressResponseDtoList = customerAddressService.getAllCustomerAddresses();
+    public ResponseEntity<List<CustomerAddressResponseDto>> getAllAddresses() {
+        List<CustomerAddressResponseDto> customerAddressResponseDtoList = customerAddressService.getAllAddresses();
 
         return ResponseEntity
                 .status(HttpStatus.OK)
@@ -42,10 +42,10 @@ public class CustomerAddressController {
                 .body(customerAddressResponseDtoList);
     }
 
-    @CheckPermission(Permission.CUSTOMER_ADDRESS_CREATE)
+    @CheckPermission(Permission.ADDRESS_CREATE)
     @PostMapping("/customers/{customerId}/addresses")
-    public ResponseEntity<CustomerAddressResponseDto> createCustomerAddress(@PathVariable UUID customerId, @RequestBody CreateCustomerAddressRequestDto createCustomerAddressRequestDto) {
-        CustomerAddressResponseDto createdCustomerAddressResponseDto = customerAddressService.createCustomerAddress(customerId, createCustomerAddressRequestDto);
+    public ResponseEntity<CustomerAddressResponseDto> createAddress(@PathVariable UUID customerId, @RequestBody CreateCustomerAddressRequestDto createCustomerAddressRequestDto) {
+        CustomerAddressResponseDto createdCustomerAddressResponseDto = customerAddressService.createAddress(customerId, createCustomerAddressRequestDto);
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
@@ -53,10 +53,10 @@ public class CustomerAddressController {
                 .body(createdCustomerAddressResponseDto);
     }
 
-    @CheckPermission(Permission.CUSTOMER_ADDRESS_UPDATE)
+    @CheckPermission(Permission.ADDRESS_UPDATE)
     @PatchMapping("/customers/addresses/{customerAddressId}")
-    public ResponseEntity<CustomerAddressResponseDto> updateCustomerAddressById(@PathVariable Long customerAddressId, @RequestBody UpdateCustomerAddressRequestDto updateCustomerAddressRequestDto) {
-        CustomerAddressResponseDto updatedCustomerAddressResponseDto = customerAddressService.updateCustomerAddressById(customerAddressId, updateCustomerAddressRequestDto);
+    public ResponseEntity<CustomerAddressResponseDto> updateAddressById(@PathVariable Long customerAddressId, @RequestBody UpdateCustomerAddressRequestDto updateCustomerAddressRequestDto) {
+        CustomerAddressResponseDto updatedCustomerAddressResponseDto = customerAddressService.updateAddressById(customerAddressId, updateCustomerAddressRequestDto);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
@@ -73,14 +73,14 @@ public class CustomerAddressController {
                 .body(new MessageResponseDto("All customer addresses with customer id " + customerId + " deleted"));
     }
 
-    @CheckPermission(Permission.CUSTOMER_ADDRESS_DELETE)
+    @CheckPermission(Permission.ADDRESS_DELETE)
     @DeleteMapping("/customers/addresses/{customerAddressId}")
-    public ResponseEntity<MessageResponseDto> deleteCustomerAddressById(@PathVariable Long customerAddressId) {
-        customerAddressService.deleteCustomerAddressById(customerAddressId);
+    public ResponseEntity<MessageResponseDto> deleteAddressById(@PathVariable Long customerAddressId) {
+        customerAddressService.deleteAddressById(customerAddressId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(new MessageResponseDto("Customer address with id " + customerAddressId + " deleted"));
+                .body(new MessageResponseDto("Address with id " + customerAddressId + " deleted"));
     }
 
 }

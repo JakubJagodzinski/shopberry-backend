@@ -30,7 +30,7 @@ public class ComplaintImageController {
                 .body(complaintImageResponseDtoList);
     }
 
-    @CheckPermission(Permission.COMPLAINT_IMAGE_READ)
+    @CheckPermission(Permission.COMPLAINT_COMPLAINT_IMAGE_READ_ALL)
     @GetMapping("/complaints/{complaintId}/images")
     public ResponseEntity<List<ComplaintImageResponseDto>> getComplaintAllImages(@PathVariable Long complaintId) {
         List<ComplaintImageResponseDto> complaintImageResponseDtoList = complaintImageService.getComplaintAllImages(complaintId);

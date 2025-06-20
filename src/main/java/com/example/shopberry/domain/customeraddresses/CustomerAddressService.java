@@ -25,7 +25,7 @@ public class CustomerAddressService {
 
     private final CustomerAddressDtoMapper customerAddressDtoMapper;
 
-    public List<CustomerAddressResponseDto> getAllCustomerAddresses() {
+    public List<CustomerAddressResponseDto> getAllAddresses() {
         return customerAddressDtoMapper.toDtoList(customerAddressRepository.findAll());
     }
 
@@ -39,7 +39,7 @@ public class CustomerAddressService {
     }
 
     @Transactional
-    public CustomerAddressResponseDto createCustomerAddress(UUID customerId, CreateCustomerAddressRequestDto createCustomerAddressRequestDto) throws EntityNotFoundException {
+    public CustomerAddressResponseDto createAddress(UUID customerId, CreateCustomerAddressRequestDto createCustomerAddressRequestDto) throws EntityNotFoundException {
         Customer customer = customerRepository.findById(customerId).orElse(null);
 
         if (customer == null) {
@@ -62,7 +62,7 @@ public class CustomerAddressService {
     }
 
     @Transactional
-    public CustomerAddressResponseDto updateCustomerAddressById(Long customerAddressId, UpdateCustomerAddressRequestDto updateCustomerAddressRequestDto) throws EntityNotFoundException, IllegalArgumentException {
+    public CustomerAddressResponseDto updateAddressById(Long customerAddressId, UpdateCustomerAddressRequestDto updateCustomerAddressRequestDto) throws EntityNotFoundException, IllegalArgumentException {
         CustomerAddress customerAddress = customerAddressRepository.findById(customerAddressId).orElse(null);
 
         if (customerAddress == null) {
@@ -122,7 +122,7 @@ public class CustomerAddressService {
     }
 
     @Transactional
-    public void deleteCustomerAddressById(Long customerAddressId) throws EntityNotFoundException {
+    public void deleteAddressById(Long customerAddressId) throws EntityNotFoundException {
         if (!customerAddressRepository.existsById(customerAddressId)) {
             throw new EntityNotFoundException(CustomerMessages.CUSTOMER_ADDRESS_NOT_FOUND);
         }
