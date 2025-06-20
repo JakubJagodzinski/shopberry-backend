@@ -65,7 +65,7 @@ public class AuthenticationService {
         userRepository.save(user);
     }
 
-    private Role parseRole(String role) {
+    private Role parseRole(String role) throws IllegalArgumentException {
         try {
             return Role.valueOf(role.toUpperCase());
         } catch (IllegalArgumentException e) {
@@ -73,7 +73,7 @@ public class AuthenticationService {
         }
     }
 
-    private User createUserInstance(Role role) {
+    private User createUserInstance(Role role) throws IllegalArgumentException{
         return switch (role) {
             case CUSTOMER -> new Customer();
             case EMPLOYEE -> new Employee();
@@ -135,7 +135,7 @@ public class AuthenticationService {
         tokenRepository.saveAll(validUserTokens);
     }
 
-    public RefreshTokenResponseDto refreshToken(RefreshTokenRequestDto requestDto) throws IllegalArgumentException, UsernameNotFoundException {
+    public RefreshTokenResponseDto refreshToken(RefreshTokenRequestDto requestDto) throws EntityNotFoundException, UsernameNotFoundException, IllegalArgumentException {
         String refreshToken = requestDto.getRefreshToken();
 
         if (refreshToken == null || refreshToken.isBlank()) {
@@ -157,7 +157,7 @@ public class AuthenticationService {
         Token token = tokenRepository.findByToken(refreshToken).orElse(null);
 
         if (token == null) {
-            throw new IllegalArgumentException(TokenMessages.TOKEN_NOT_FOUND);
+            throw new EntityNotFoundException(TokenMessages.TOKEN_NOT_FOUND);
         }
 
         if (token.getTokenType() != TokenType.REFRESH) {

@@ -11,6 +11,7 @@ import com.example.shopberry.domain.categories.CategoryRepository;
 import com.example.shopberry.domain.categoriesattributes.dto.AssignAttributeToCategoryRequestDto;
 import com.example.shopberry.domain.categoriesattributes.dto.CategoryAttributeDtoMapper;
 import com.example.shopberry.domain.categoriesattributes.dto.CategoryAttributeResponseDto;
+import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -44,7 +45,7 @@ public class CategoryAttributeService {
     }
 
     @Transactional
-    public CategoryAttributeResponseDto assignAttributeToCategory(Long categoryId, AssignAttributeToCategoryRequestDto assignAttributeToCategoryRequestDto) throws EntityNotFoundException, IllegalArgumentException {
+    public CategoryAttributeResponseDto assignAttributeToCategory(Long categoryId, AssignAttributeToCategoryRequestDto assignAttributeToCategoryRequestDto) throws EntityNotFoundException, EntityExistsException {
         Category category = categoryRepository.findById(categoryId).orElse(null);
 
         if (category == null) {
@@ -60,7 +61,7 @@ public class CategoryAttributeService {
         CategoryAttributeId categoryAttributeId = new CategoryAttributeId(categoryId, assignAttributeToCategoryRequestDto.getAttributeId());
 
         if (categoryAttributeRepository.existsById(categoryAttributeId)) {
-            throw new IllegalArgumentException(AttributeMessages.ATTRIBUTE_ALREADY_ASSIGNED_TO_THIS_CATEGORY);
+            throw new EntityExistsException(AttributeMessages.ATTRIBUTE_ALREADY_ASSIGNED_TO_THIS_CATEGORY);
         }
 
         CategoryAttribute categoryAttribute = new CategoryAttribute();

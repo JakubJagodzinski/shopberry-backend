@@ -9,6 +9,7 @@ import com.example.shopberry.domain.products.Product;
 import com.example.shopberry.domain.products.ProductRepository;
 import com.example.shopberry.domain.promotions.Promotion;
 import com.example.shopberry.domain.promotions.PromotionRepository;
+import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -49,7 +50,7 @@ public class ProductPromotionService {
     }
 
     @Transactional
-    public ProductPromotionResponseDto assignPromotionToProduct(Long productId, AssignPromotionToProductRequestDto assignPromotionToProductRequestDto) throws EntityNotFoundException, IllegalArgumentException {
+    public ProductPromotionResponseDto assignPromotionToProduct(Long productId, AssignPromotionToProductRequestDto assignPromotionToProductRequestDto) throws EntityNotFoundException, EntityExistsException {
         Product product = productRepository.findById(productId).orElse(null);
 
         if (product == null) {
@@ -65,7 +66,7 @@ public class ProductPromotionService {
         ProductPromotionId productPromotionId = new ProductPromotionId(productId, assignPromotionToProductRequestDto.getPromotionId());
 
         if (productPromotionRepository.existsById(productPromotionId)) {
-            throw new IllegalArgumentException(PromotionMessages.PROMOTION_ALREADY_ASSIGNED_TO_THIS_PRODUCT);
+            throw new EntityExistsException(PromotionMessages.PROMOTION_ALREADY_ASSIGNED_TO_THIS_PRODUCT);
         }
 
         ProductPromotion productPromotion = new ProductPromotion();

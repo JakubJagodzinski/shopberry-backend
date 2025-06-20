@@ -5,6 +5,7 @@ import com.example.shopberry.domain.employeetypes.dto.CreateEmployeeTypeRequestD
 import com.example.shopberry.domain.employeetypes.dto.EmployeeTypeDtoMapper;
 import com.example.shopberry.domain.employeetypes.dto.EmployeeTypeResponseDto;
 import com.example.shopberry.domain.employeetypes.dto.UpdateEmployeeTypeRequestDto;
+import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -36,9 +37,9 @@ public class EmployeeTypeService {
     }
 
     @Transactional
-    public EmployeeTypeResponseDto createEmployeeType(CreateEmployeeTypeRequestDto createEmployeeTypeRequestDto) throws IllegalArgumentException {
+    public EmployeeTypeResponseDto createEmployeeType(CreateEmployeeTypeRequestDto createEmployeeTypeRequestDto) throws EntityExistsException, IllegalArgumentException {
         if (employeeTypeRepository.existsByEmployeeTypeName(createEmployeeTypeRequestDto.getEmployeeTypeName())) {
-            throw new IllegalArgumentException(EmployeeTypeMessages.EMPLOYEE_TYPE_WITH_THAT_NAME_ALREADY_EXISTS);
+            throw new EntityExistsException(EmployeeTypeMessages.EMPLOYEE_TYPE_WITH_THAT_NAME_ALREADY_EXISTS);
         }
 
         if (createEmployeeTypeRequestDto.getEmployeeTypeName() == null) {
@@ -57,7 +58,7 @@ public class EmployeeTypeService {
     }
 
     @Transactional
-    public EmployeeTypeResponseDto updateEmployeeTypeById(Long employeeTypeId, UpdateEmployeeTypeRequestDto updateEmployeeTypeRequestDto) throws EntityNotFoundException, IllegalArgumentException {
+    public EmployeeTypeResponseDto updateEmployeeTypeById(Long employeeTypeId, UpdateEmployeeTypeRequestDto updateEmployeeTypeRequestDto) throws EntityExistsException, EntityNotFoundException, IllegalArgumentException {
         EmployeeType employeeType = employeeTypeRepository.findById(employeeTypeId).orElse(null);
 
         if (employeeType == null) {
@@ -68,7 +69,7 @@ public class EmployeeTypeService {
             EmployeeType otherEmployeeType = employeeTypeRepository.findByEmployeeTypeName(updateEmployeeTypeRequestDto.getEmployeeTypeName()).orElse(null);
 
             if (otherEmployeeType != null && !otherEmployeeType.getEmployeeTypeId().equals(employeeTypeId)) {
-                throw new IllegalArgumentException(EmployeeTypeMessages.EMPLOYEE_TYPE_WITH_THAT_NAME_ALREADY_EXISTS);
+                throw new EntityExistsException(EmployeeTypeMessages.EMPLOYEE_TYPE_WITH_THAT_NAME_ALREADY_EXISTS);
             }
 
             if (updateEmployeeTypeRequestDto.getEmployeeTypeName().isEmpty()) {

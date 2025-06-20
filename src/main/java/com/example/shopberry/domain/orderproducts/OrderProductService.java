@@ -12,6 +12,7 @@ import com.example.shopberry.domain.orders.Order;
 import com.example.shopberry.domain.orders.OrderRepository;
 import com.example.shopberry.domain.products.Product;
 import com.example.shopberry.domain.products.ProductRepository;
+import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -53,7 +54,7 @@ public class OrderProductService {
     }
 
     @Transactional
-    public OrderProductResponseDto addProductToOrder(Long orderId, AddProductToOrderRequestDto addProductToOrderRequestDto) throws EntityNotFoundException, IllegalArgumentException {
+    public OrderProductResponseDto addProductToOrder(Long orderId, AddProductToOrderRequestDto addProductToOrderRequestDto) throws EntityNotFoundException, EntityExistsException, IllegalArgumentException {
         Order order = orderRepository.findById(orderId).orElse(null);
 
         if (order == null) {
@@ -69,7 +70,7 @@ public class OrderProductService {
         OrderProductId orderProductId = new OrderProductId(order.getOrderId(), product.getProductId());
 
         if (orderProductRepository.existsById(orderProductId)) {
-            throw new IllegalArgumentException(ProductMessages.PRODUCT_ALREADY_ADDED_TO_THIS_ORDER);
+            throw new EntityExistsException(ProductMessages.PRODUCT_ALREADY_ADDED_TO_THIS_ORDER);
         }
 
         OrderProduct orderProduct = new OrderProduct();

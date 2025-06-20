@@ -5,6 +5,7 @@ import com.example.shopberry.domain.paymenttypes.dto.CreatePaymentTypeRequestDto
 import com.example.shopberry.domain.paymenttypes.dto.PaymentTypeDtoMapper;
 import com.example.shopberry.domain.paymenttypes.dto.PaymentTypeResponseDto;
 import com.example.shopberry.domain.paymenttypes.dto.UpdatePaymentTypeRequestDto;
+import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -25,20 +26,20 @@ public class PaymentTypeService {
     }
 
     @Transactional
-    public PaymentTypeResponseDto getPaymentTypeById(Long paymentTypeId) throws IllegalArgumentException {
+    public PaymentTypeResponseDto getPaymentTypeById(Long paymentTypeId) throws EntityNotFoundException {
         PaymentType paymentType = paymentTypeRepository.findById(paymentTypeId).orElse(null);
 
         if (paymentType == null) {
-            throw new IllegalArgumentException(PaymentTypeMessages.PAYMENT_TYPE_NOT_FOUND);
+            throw new EntityNotFoundException(PaymentTypeMessages.PAYMENT_TYPE_NOT_FOUND);
         }
 
         return paymentTypeDtoMapper.toDto(paymentType);
     }
 
     @Transactional
-    public PaymentTypeResponseDto createPaymentType(CreatePaymentTypeRequestDto createPaymentTypeRequestDto) throws IllegalArgumentException {
+    public PaymentTypeResponseDto createPaymentType(CreatePaymentTypeRequestDto createPaymentTypeRequestDto) throws EntityExistsException, IllegalArgumentException {
         if (paymentTypeRepository.existsByPaymentName(createPaymentTypeRequestDto.getPaymentName())) {
-            throw new IllegalArgumentException(PaymentTypeMessages.PAYMENT_TYPE_ALREADY_EXISTS);
+            throw new EntityExistsException(PaymentTypeMessages.PAYMENT_TYPE_ALREADY_EXISTS);
         }
 
         if (createPaymentTypeRequestDto.getPaymentName() == null) {
@@ -57,7 +58,7 @@ public class PaymentTypeService {
     }
 
     @Transactional
-    public PaymentTypeResponseDto updatePaymentTypeById(Long paymentTypeId, UpdatePaymentTypeRequestDto updatePaymentTypeRequestDto) throws EntityNotFoundException, IllegalArgumentException {
+    public PaymentTypeResponseDto updatePaymentTypeById(Long paymentTypeId, UpdatePaymentTypeRequestDto updatePaymentTypeRequestDto) throws EntityNotFoundException, EntityExistsException, IllegalArgumentException {
         PaymentType paymentType = paymentTypeRepository.findById(paymentTypeId).orElse(null);
 
         if (paymentType == null) {
@@ -68,7 +69,7 @@ public class PaymentTypeService {
             PaymentType otherPaymentType = paymentTypeRepository.findByPaymentName(updatePaymentTypeRequestDto.getPaymentName()).orElse(null);
 
             if (otherPaymentType != null && !otherPaymentType.getPaymentTypeId().equals(paymentTypeId)) {
-                throw new IllegalArgumentException(PaymentTypeMessages.PAYMENT_TYPE_ALREADY_EXISTS);
+                throw new EntityExistsException(PaymentTypeMessages.PAYMENT_TYPE_ALREADY_EXISTS);
             }
 
             if (updatePaymentTypeRequestDto.getPaymentName().isEmpty()) {

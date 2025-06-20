@@ -9,6 +9,7 @@ import com.example.shopberry.domain.favouriteproducts.dto.FavouriteProductDtoMap
 import com.example.shopberry.domain.favouriteproducts.dto.FavouriteProductResponseDto;
 import com.example.shopberry.domain.products.Product;
 import com.example.shopberry.domain.products.ProductRepository;
+import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -37,7 +38,7 @@ public class FavouriteProductService {
     }
 
     @Transactional
-    public FavouriteProductResponseDto addProductToCustomerFavourites(UUID customerId, AddProductToFavouritesRequestDto addProductToFavouritesRequestDto) throws EntityNotFoundException, IllegalArgumentException {
+    public FavouriteProductResponseDto addProductToCustomerFavourites(UUID customerId, AddProductToFavouritesRequestDto addProductToFavouritesRequestDto) throws EntityNotFoundException, EntityExistsException {
         Customer customer = customerRepository.findById(customerId).orElse(null);
 
         if (customer == null) {
@@ -53,7 +54,7 @@ public class FavouriteProductService {
         FavouriteProductId favouriteProductId = new FavouriteProductId(customerId, addProductToFavouritesRequestDto.getProductId());
 
         if (favouriteProductRepository.existsById(favouriteProductId)) {
-            throw new IllegalArgumentException(ProductMessages.PRODUCT_ALREADY_IN_FAVOURITES);
+            throw new EntityExistsException(ProductMessages.PRODUCT_ALREADY_IN_FAVOURITES);
         }
 
         FavouriteProduct favouriteProduct = new FavouriteProduct();

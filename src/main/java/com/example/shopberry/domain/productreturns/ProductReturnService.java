@@ -15,6 +15,7 @@ import com.example.shopberry.domain.productreturns.dto.ProductReturnDtoMapper;
 import com.example.shopberry.domain.productreturns.dto.ProductReturnResponseDto;
 import com.example.shopberry.domain.products.Product;
 import com.example.shopberry.domain.products.ProductRepository;
+import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -55,7 +56,7 @@ public class ProductReturnService {
     }
 
     @Transactional
-    public ProductReturnResponseDto createProductReturn(Long orderId, CreateProductReturnRequestDto createProductReturnRequestDto) throws EntityNotFoundException, IllegalArgumentException {
+    public ProductReturnResponseDto createProductReturn(Long orderId, CreateProductReturnRequestDto createProductReturnRequestDto) throws EntityNotFoundException, EntityExistsException, IllegalArgumentException {
         Order order = orderRepository.findById(orderId).orElse(null);
 
         if (order == null) {
@@ -81,7 +82,7 @@ public class ProductReturnService {
         }
 
         if (productReturnRepository.existsByOrder_OrderIdAndProduct_ProductId(orderId, product.getProductId())) {
-            throw new IllegalArgumentException(ProductReturnMessages.PRODUCT_RETURN_ALREADY_EXISTS);
+            throw new EntityExistsException(ProductReturnMessages.PRODUCT_RETURN_ALREADY_EXISTS);
         }
 
         ProductReturn productReturn = new ProductReturn();

@@ -5,6 +5,7 @@ import com.example.shopberry.domain.promotions.dto.CreatePromotionRequestDto;
 import com.example.shopberry.domain.promotions.dto.PromotionDtoMapper;
 import com.example.shopberry.domain.promotions.dto.PromotionResponseDto;
 import com.example.shopberry.domain.promotions.dto.UpdatePromotionRequestDto;
+import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -36,9 +37,9 @@ public class PromotionService {
     }
 
     @Transactional
-    public PromotionResponseDto createPromotion(CreatePromotionRequestDto createPromotionRequestDto) throws IllegalArgumentException {
+    public PromotionResponseDto createPromotion(CreatePromotionRequestDto createPromotionRequestDto) throws EntityExistsException, IllegalArgumentException {
         if (promotionRepository.existsByPromotionName(createPromotionRequestDto.getPromotionName())) {
-            throw new IllegalArgumentException(PromotionMessages.PROMOTION_WITH_THAT_NAME_ALREADY_EXISTS);
+            throw new EntityExistsException(PromotionMessages.PROMOTION_WITH_THAT_NAME_ALREADY_EXISTS);
         }
 
         if (createPromotionRequestDto.getPromotionName() == null) {
@@ -66,7 +67,7 @@ public class PromotionService {
     }
 
     @Transactional
-    public PromotionResponseDto updatePromotionById(Long promotionId, UpdatePromotionRequestDto updatePromotionRequestDto) throws EntityNotFoundException, IllegalArgumentException {
+    public PromotionResponseDto updatePromotionById(Long promotionId, UpdatePromotionRequestDto updatePromotionRequestDto) throws EntityNotFoundException, EntityExistsException, IllegalArgumentException {
         Promotion promotion = promotionRepository.findById(promotionId).orElse(null);
 
         if (promotion == null) {
@@ -77,7 +78,7 @@ public class PromotionService {
             Promotion otherPromotion = promotionRepository.findByPromotionName(updatePromotionRequestDto.getPromotionName()).orElse(null);
 
             if (otherPromotion != null && !otherPromotion.getPromotionId().equals(promotionId)) {
-                throw new IllegalArgumentException(PromotionMessages.PROMOTION_WITH_THAT_NAME_ALREADY_EXISTS);
+                throw new EntityExistsException(PromotionMessages.PROMOTION_WITH_THAT_NAME_ALREADY_EXISTS);
             }
 
             if (updatePromotionRequestDto.getPromotionName().isEmpty()) {

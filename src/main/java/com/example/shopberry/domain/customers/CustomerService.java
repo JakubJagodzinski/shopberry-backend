@@ -35,7 +35,7 @@ public class CustomerService {
     }
 
     @Transactional
-    public CustomerResponseDto updateCustomerById(UUID customerId, UpdateCustomerRequestDto updateCustomerRequestDto) throws EntityNotFoundException, IllegalArgumentException {
+    public CustomerResponseDto updateCustomerById(UUID customerId, UpdateCustomerRequestDto updateCustomerRequestDto) throws EntityNotFoundException {
         Customer customer = customerRepository.findById(customerId).orElse(null);
 
         if (customer == null) {

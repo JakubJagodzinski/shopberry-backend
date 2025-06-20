@@ -10,6 +10,7 @@ import com.example.shopberry.domain.customers.Customer;
 import com.example.shopberry.domain.customers.CustomerRepository;
 import com.example.shopberry.domain.products.Product;
 import com.example.shopberry.domain.products.ProductRepository;
+import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -51,7 +52,7 @@ public class CartProductService {
     }
 
     @Transactional
-    public CartProductResponseDto addProductToCustomerCart(UUID customerId, AddProductToCartRequestDto addProductToCartRequestDto) throws EntityNotFoundException {
+    public CartProductResponseDto addProductToCustomerCart(UUID customerId, AddProductToCartRequestDto addProductToCartRequestDto) throws EntityNotFoundException, EntityExistsException {
         Customer customer = customerRepository.findById(customerId).orElse(null);
 
         if (customer == null) {
@@ -67,7 +68,7 @@ public class CartProductService {
         CartProductId cartProductId = new CartProductId(customerId, addProductToCartRequestDto.getProductId());
 
         if (cartProductRepository.existsById(cartProductId)) {
-            throw new EntityNotFoundException(ProductMessages.PRODUCT_ALREADY_IN_CART);
+            throw new EntityExistsException(ProductMessages.PRODUCT_ALREADY_IN_CART);
         }
 
         CartProduct cartProduct = new CartProduct();
@@ -85,7 +86,7 @@ public class CartProductService {
     }
 
     @Transactional
-    public CartProductResponseDto updateCustomerCartProduct(UUID customerId, Long productId, UpdateCartProductRequestDto updateCartProductRequestDto) throws EntityNotFoundException {
+    public CartProductResponseDto updateCustomerCartProduct(UUID customerId, Long productId, UpdateCartProductRequestDto updateCartProductRequestDto) throws EntityNotFoundException, IllegalArgumentException {
         CartProductId cartProductId = new CartProductId(customerId, productId);
 
         CartProduct cartProduct = cartProductRepository.findById(cartProductId).orElse(null);

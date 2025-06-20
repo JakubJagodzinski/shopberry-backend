@@ -38,6 +38,17 @@ public class ComplaintImageService {
     }
 
     @Transactional
+    public List<ComplaintImageResponseDto> getComplaintAllImages(Long complaintId) throws EntityNotFoundException {
+        if (!complaintRepository.existsById(complaintId)) {
+            throw new EntityNotFoundException(ComplaintMessages.COMPLAINT_NOT_FOUND);
+        }
+
+        List<ComplaintImage> complaintImages = complaintImageRepository.findAllByComplaint_ComplaintId(complaintId);
+
+        return complaintImageDtoMapper.toDtoList(complaintImages);
+    }
+
+    @Transactional
     public ComplaintImageResponseDto addImageToComplaint(Long complaintId, AddImageToComplaintRequestDto addImageToComplaintRequestDto) throws EntityNotFoundException, IllegalArgumentException {
         Complaint complaint = complaintRepository.findById(complaintId).orElse(null);
 
@@ -64,17 +75,6 @@ public class ComplaintImageService {
         }
 
         complaintImageRepository.deleteById(imageId);
-    }
-
-    @Transactional
-    public List<ComplaintImageResponseDto> getComplaintAllImages(Long complaintId) throws EntityNotFoundException {
-        if (!complaintRepository.existsById(complaintId)) {
-            throw new EntityNotFoundException(ComplaintMessages.COMPLAINT_NOT_FOUND);
-        }
-
-        List<ComplaintImage> complaintImages = complaintImageRepository.findAllByComplaint_ComplaintId(complaintId);
-
-        return complaintImageDtoMapper.toDtoList(complaintImages);
     }
 
 }

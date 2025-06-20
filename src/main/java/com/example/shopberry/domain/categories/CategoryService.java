@@ -2,6 +2,7 @@ package com.example.shopberry.domain.categories;
 
 import com.example.shopberry.common.constants.messages.CategoryMessages;
 import com.example.shopberry.domain.categories.dto.*;
+import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -32,7 +33,7 @@ public class CategoryService {
     }
 
     @Transactional
-    public CategoryResponseDto createCategory(CreateCategoryRequestDto createCategoryRequestDto) throws IllegalArgumentException {
+    public CategoryResponseDto createCategory(CreateCategoryRequestDto createCategoryRequestDto) throws EntityNotFoundException, IllegalArgumentException {
         if (categoryRepository.existsByCategoryName(createCategoryRequestDto.getCategoryName())) {
             throw new IllegalArgumentException(CategoryMessages.CATEGORY_WITH_THAT_NAME_ALREADY_EXISTS);
         }
@@ -47,7 +48,7 @@ public class CategoryService {
             Category parentCategory = categoryRepository.findById(parentCategoryId).orElse(null);
 
             if (parentCategory == null) {
-                throw new IllegalArgumentException(CategoryMessages.PARENT_CATEGORY_NOT_FOUND);
+                throw new EntityNotFoundException(CategoryMessages.PARENT_CATEGORY_NOT_FOUND);
             }
 
             category.setParentCategory(parentCategory);
@@ -71,7 +72,7 @@ public class CategoryService {
         Category parentCategory = categoryRepository.findById(setParentCategoryRequestDto.getParentCategoryId()).orElse(null);
 
         if (parentCategory == null) {
-            throw new IllegalArgumentException(CategoryMessages.PARENT_CATEGORY_NOT_FOUND);
+            throw new EntityNotFoundException(CategoryMessages.PARENT_CATEGORY_NOT_FOUND);
         }
 
         childCategory.setParentCategory(parentCategory);
@@ -80,7 +81,7 @@ public class CategoryService {
     }
 
     @Transactional
-    public CategoryResponseDto updateCategoryById(Long categoryId, UpdateCategoryRequestDto updateCategoryRequestDto) throws EntityNotFoundException, IllegalArgumentException {
+    public CategoryResponseDto updateCategoryById(Long categoryId, UpdateCategoryRequestDto updateCategoryRequestDto) throws EntityNotFoundException, EntityExistsException, IllegalArgumentException {
         Category category = categoryRepository.findById(categoryId).orElse(null);
 
         if (category == null) {
@@ -88,10 +89,14 @@ public class CategoryService {
         }
 
         if (updateCategoryRequestDto.getCategoryName() != null) {
+            if (updateCategoryRequestDto.getCategoryName().isBlank()) {
+                throw new IllegalArgumentException(CategoryMessages.CATEGORY_NAME_CANNOT_BE_EMPTY);
+            }
+
             Category otherCategory = categoryRepository.findByCategoryName(updateCategoryRequestDto.getCategoryName()).orElse(null);
 
             if (otherCategory != null && !otherCategory.getCategoryId().equals(categoryId)) {
-                throw new IllegalArgumentException(CategoryMessages.CATEGORY_WITH_THAT_NAME_ALREADY_EXISTS);
+                throw new EntityExistsException(CategoryMessages.CATEGORY_WITH_THAT_NAME_ALREADY_EXISTS);
             }
 
             category.setCategoryName(updateCategoryRequestDto.getCategoryName());
@@ -111,6 +116,8 @@ public class CategoryService {
         for (Category childCategory : childCategories) {
             childCategory.setParentCategory(null);
         }
+
+        categoryRepository.saveAll(childCategories);
 
         categoryRepository.deleteById(categoryId);
     }

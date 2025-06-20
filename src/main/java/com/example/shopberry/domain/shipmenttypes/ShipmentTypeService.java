@@ -5,6 +5,7 @@ import com.example.shopberry.domain.shipmenttypes.dto.CreateShipmentTypeRequestD
 import com.example.shopberry.domain.shipmenttypes.dto.ShipmentTypeDtoMapper;
 import com.example.shopberry.domain.shipmenttypes.dto.ShipmentTypeResponseDto;
 import com.example.shopberry.domain.shipmenttypes.dto.UpdateShipmentTypeRequestDto;
+import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -36,9 +37,9 @@ public class ShipmentTypeService {
     }
 
     @Transactional
-    public ShipmentTypeResponseDto createShipmentType(CreateShipmentTypeRequestDto createShipmentTypeRequestDto) throws IllegalArgumentException {
+    public ShipmentTypeResponseDto createShipmentType(CreateShipmentTypeRequestDto createShipmentTypeRequestDto) throws EntityExistsException, IllegalArgumentException {
         if (shipmentTypeRepository.existsByShipmentName(createShipmentTypeRequestDto.getShipmentName())) {
-            throw new IllegalArgumentException(ShipmentTypeMessages.SHIPMENT_TYPE_ALREADY_EXISTS);
+            throw new EntityExistsException(ShipmentTypeMessages.SHIPMENT_TYPE_ALREADY_EXISTS);
         }
 
         if (createShipmentTypeRequestDto.getShipmentName() == null) {
@@ -62,7 +63,7 @@ public class ShipmentTypeService {
     }
 
     @Transactional
-    public ShipmentTypeResponseDto updateShipmentTypeById(Long shipmentTypeId, UpdateShipmentTypeRequestDto updateShipmentTypeRequestDto) throws EntityNotFoundException, IllegalArgumentException {
+    public ShipmentTypeResponseDto updateShipmentTypeById(Long shipmentTypeId, UpdateShipmentTypeRequestDto updateShipmentTypeRequestDto) throws EntityNotFoundException, EntityExistsException, IllegalArgumentException {
         ShipmentType shipmentType = shipmentTypeRepository.findById(shipmentTypeId).orElse(null);
 
         if (shipmentType == null) {
@@ -73,7 +74,7 @@ public class ShipmentTypeService {
             ShipmentType otherShipmentType = shipmentTypeRepository.findByShipmentName(updateShipmentTypeRequestDto.getShipmentName()).orElse(null);
 
             if (otherShipmentType != null && !otherShipmentType.getShipmentTypeId().equals(shipmentTypeId)) {
-                throw new IllegalArgumentException(ShipmentTypeMessages.SHIPMENT_TYPE_ALREADY_EXISTS);
+                throw new EntityExistsException(ShipmentTypeMessages.SHIPMENT_TYPE_ALREADY_EXISTS);
             }
 
             if (updateShipmentTypeRequestDto.getShipmentName().isEmpty()) {

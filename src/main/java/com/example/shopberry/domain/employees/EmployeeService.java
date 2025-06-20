@@ -40,7 +40,7 @@ public class EmployeeService {
     }
 
     @Transactional
-    public EmployeeResponseDto updateEmployeeById(UUID employeeId, UpdateEmployeeRequestDto updateEmployeeRequestDto) throws EntityNotFoundException, IllegalArgumentException {
+    public EmployeeResponseDto updateEmployeeById(UUID employeeId, UpdateEmployeeRequestDto updateEmployeeRequestDto) throws EntityNotFoundException {
         Employee employee = employeeRepository.findById(employeeId).orElse(null);
 
         if (employee == null) {

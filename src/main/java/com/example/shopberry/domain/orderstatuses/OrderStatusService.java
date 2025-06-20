@@ -5,6 +5,7 @@ import com.example.shopberry.domain.orderstatuses.dto.CreateOrderStatusRequestDt
 import com.example.shopberry.domain.orderstatuses.dto.OrderStatusDtoMapper;
 import com.example.shopberry.domain.orderstatuses.dto.OrderStatusResponseDto;
 import com.example.shopberry.domain.orderstatuses.dto.UpdateOrderStatusRequestDto;
+import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -36,9 +37,9 @@ public class OrderStatusService {
     }
 
     @Transactional
-    public OrderStatusResponseDto createOrderStatus(CreateOrderStatusRequestDto createOrderStatusRequestDto) throws EntityNotFoundException, IllegalArgumentException {
+    public OrderStatusResponseDto createOrderStatus(CreateOrderStatusRequestDto createOrderStatusRequestDto) throws EntityExistsException, IllegalArgumentException {
         if (orderStatusRepository.existsByOrderStatusName(createOrderStatusRequestDto.getOrderStatusName())) {
-            throw new EntityNotFoundException(OrderStatusMessages.ORDER_STATUS_ALREADY_EXISTS);
+            throw new EntityExistsException(OrderStatusMessages.ORDER_STATUS_ALREADY_EXISTS);
         }
 
         if (createOrderStatusRequestDto.getOrderStatusName() == null) {
@@ -57,7 +58,7 @@ public class OrderStatusService {
     }
 
     @Transactional
-    public OrderStatusResponseDto updateOrderStatusById(Long orderStatusId, UpdateOrderStatusRequestDto updateOrderStatusRequestDto) throws EntityNotFoundException, IllegalArgumentException {
+    public OrderStatusResponseDto updateOrderStatusById(Long orderStatusId, UpdateOrderStatusRequestDto updateOrderStatusRequestDto) throws EntityNotFoundException, EntityExistsException, IllegalArgumentException {
         OrderStatus orderStatus = orderStatusRepository.findById(orderStatusId).orElse(null);
 
         if (orderStatus == null) {
@@ -68,7 +69,7 @@ public class OrderStatusService {
             OrderStatus otherOrderStatus = orderStatusRepository.findByOrderStatusName(updateOrderStatusRequestDto.getOrderStatusName()).orElse(null);
 
             if (otherOrderStatus != null && !otherOrderStatus.getOrderStatusId().equals(orderStatusId)) {
-                throw new IllegalArgumentException(OrderStatusMessages.ORDER_STATUS_ALREADY_EXISTS);
+                throw new EntityExistsException(OrderStatusMessages.ORDER_STATUS_ALREADY_EXISTS);
             }
 
             if (updateOrderStatusRequestDto.getOrderStatusName().isEmpty()) {

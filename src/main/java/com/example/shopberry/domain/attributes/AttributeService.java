@@ -5,6 +5,7 @@ import com.example.shopberry.domain.attributes.dto.AttributeDtoMapper;
 import com.example.shopberry.domain.attributes.dto.AttributeResponseDto;
 import com.example.shopberry.domain.attributes.dto.CreateAttributeRequestDto;
 import com.example.shopberry.domain.attributes.dto.UpdateAttributeRequestDto;
+import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -36,11 +37,11 @@ public class AttributeService {
     }
 
     @Transactional
-    public AttributeResponseDto createAttribute(CreateAttributeRequestDto createAttributeRequestDto) throws IllegalArgumentException {
+    public AttributeResponseDto createAttribute(CreateAttributeRequestDto createAttributeRequestDto) throws EntityExistsException, IllegalArgumentException {
         Attribute attribute = new Attribute();
 
         if (attributeRepository.existsByAttributeName(createAttributeRequestDto.getAttributeName())) {
-            throw new IllegalArgumentException(AttributeMessages.ATTRIBUTE_WITH_THAT_NAME_ALREADY_EXISTS);
+            throw new EntityExistsException(AttributeMessages.ATTRIBUTE_WITH_THAT_NAME_ALREADY_EXISTS);
         }
 
         if (createAttributeRequestDto.getAttributeName() == null) {
@@ -57,7 +58,7 @@ public class AttributeService {
     }
 
     @Transactional
-    public AttributeResponseDto updateAttributeById(Long attributeId, UpdateAttributeRequestDto updateAttributeRequestDto) throws EntityNotFoundException, IllegalArgumentException {
+    public AttributeResponseDto updateAttributeById(Long attributeId, UpdateAttributeRequestDto updateAttributeRequestDto) throws EntityNotFoundException, EntityExistsException, IllegalArgumentException {
         Attribute attribute = attributeRepository.findById(attributeId).orElse(null);
 
         if (attribute == null) {
@@ -68,7 +69,7 @@ public class AttributeService {
             Attribute otherAttribute = attributeRepository.findByAttributeName(updateAttributeRequestDto.getAttributeName()).orElse(null);
 
             if (otherAttribute != null && !otherAttribute.getAttributeId().equals(attribute.getAttributeId())) {
-                throw new IllegalArgumentException(AttributeMessages.ATTRIBUTE_WITH_THAT_NAME_ALREADY_EXISTS);
+                throw new EntityExistsException(AttributeMessages.ATTRIBUTE_WITH_THAT_NAME_ALREADY_EXISTS);
             }
 
             if (updateAttributeRequestDto.getAttributeName().isEmpty()) {

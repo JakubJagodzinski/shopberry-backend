@@ -5,6 +5,7 @@ import com.example.shopberry.domain.causesofreturn.dto.CauseOfReturnDtoMapper;
 import com.example.shopberry.domain.causesofreturn.dto.CauseOfReturnResponseDto;
 import com.example.shopberry.domain.causesofreturn.dto.CreateCauseOfReturnRequestDto;
 import com.example.shopberry.domain.causesofreturn.dto.UpdateCauseOfReturnRequestDto;
+import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -36,11 +37,11 @@ public class CauseOfReturnService {
     }
 
     @Transactional
-    public CauseOfReturnResponseDto createCauseOfReturn(CreateCauseOfReturnRequestDto createCauseOfReturnRequestDto) throws IllegalArgumentException {
+    public CauseOfReturnResponseDto createCauseOfReturn(CreateCauseOfReturnRequestDto createCauseOfReturnRequestDto) throws EntityExistsException, IllegalArgumentException {
         CauseOfReturn causeOfReturn = new CauseOfReturn();
 
         if (causeOfReturnRepository.existsByCause(createCauseOfReturnRequestDto.getCause())) {
-            throw new IllegalArgumentException(CauseOfReturnMessages.CAUSE_OF_RETURN_WITH_THAT_NAME_ALREADY_EXISTS);
+            throw new EntityExistsException(CauseOfReturnMessages.CAUSE_OF_RETURN_WITH_THAT_NAME_ALREADY_EXISTS);
         }
 
         if (createCauseOfReturnRequestDto.getCause() == null) {
@@ -57,7 +58,7 @@ public class CauseOfReturnService {
     }
 
     @Transactional
-    public CauseOfReturnResponseDto updateCauseOfReturnById(Long causeOfReturnId, UpdateCauseOfReturnRequestDto updateCauseOfReturnRequestDto) throws EntityNotFoundException, IllegalArgumentException {
+    public CauseOfReturnResponseDto updateCauseOfReturnById(Long causeOfReturnId, UpdateCauseOfReturnRequestDto updateCauseOfReturnRequestDto) throws EntityNotFoundException, EntityExistsException, IllegalArgumentException {
         CauseOfReturn causeOfReturn = causeOfReturnRepository.findById(causeOfReturnId).orElse(null);
 
         if (causeOfReturn == null) {
@@ -68,7 +69,7 @@ public class CauseOfReturnService {
             CauseOfReturn otherCauseOfReturn = causeOfReturnRepository.findByCause(updateCauseOfReturnRequestDto.getCause()).orElse(null);
 
             if (otherCauseOfReturn != null && !otherCauseOfReturn.getCauseOfReturnId().equals(causeOfReturnId)) {
-                throw new IllegalArgumentException(CauseOfReturnMessages.CAUSE_OF_RETURN_WITH_THAT_NAME_ALREADY_EXISTS);
+                throw new EntityExistsException(CauseOfReturnMessages.CAUSE_OF_RETURN_WITH_THAT_NAME_ALREADY_EXISTS);
             }
 
             if (updateCauseOfReturnRequestDto.getCause().isEmpty()) {

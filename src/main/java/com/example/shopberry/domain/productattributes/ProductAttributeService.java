@@ -9,6 +9,7 @@ import com.example.shopberry.domain.productattributes.dto.ProductAttributeDtoMap
 import com.example.shopberry.domain.productattributes.dto.ProductAttributeResponseDto;
 import com.example.shopberry.domain.products.Product;
 import com.example.shopberry.domain.products.ProductRepository;
+import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -45,7 +46,7 @@ public class ProductAttributeService {
     }
 
     @Transactional
-    public ProductAttributeResponseDto assignAttributeToProduct(Long productId, AssignAttributeToProductRequestDto assignAttributeToProductRequestDto) throws EntityNotFoundException, IllegalArgumentException {
+    public ProductAttributeResponseDto assignAttributeToProduct(Long productId, AssignAttributeToProductRequestDto assignAttributeToProductRequestDto) throws EntityNotFoundException, EntityExistsException, IllegalArgumentException {
         Product product = productRepository.findById(productId).orElse(null);
 
         if (product == null) {
@@ -61,7 +62,7 @@ public class ProductAttributeService {
         ProductAttributeId productAttributeId = new ProductAttributeId(productId, attribute.getAttributeId());
 
         if (productAttributeRepository.existsById(productAttributeId)) {
-            throw new IllegalArgumentException(AttributeMessages.ATTRIBUTE_ALREADY_ASSIGNED_TO_THIS_PRODUCT);
+            throw new EntityExistsException(AttributeMessages.ATTRIBUTE_ALREADY_ASSIGNED_TO_THIS_PRODUCT);
         }
 
         ProductAttribute productAttribute = new ProductAttribute();

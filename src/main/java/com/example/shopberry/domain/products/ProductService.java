@@ -5,6 +5,7 @@ import com.example.shopberry.domain.products.dto.CreateProductRequestDto;
 import com.example.shopberry.domain.products.dto.ProductDtoMapper;
 import com.example.shopberry.domain.products.dto.ProductResponseDto;
 import com.example.shopberry.domain.products.dto.UpdateProductRequestDto;
+import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -36,9 +37,9 @@ public class ProductService {
     }
 
     @Transactional
-    public ProductResponseDto createProduct(CreateProductRequestDto createProductRequestDto) throws IllegalArgumentException {
+    public ProductResponseDto createProduct(CreateProductRequestDto createProductRequestDto) throws EntityExistsException, IllegalArgumentException {
         if (productRepository.existsByProductName(createProductRequestDto.getProductName())) {
-            throw new IllegalArgumentException(ProductMessages.PRODUCT_WITH_THAT_NAME_ALREADY_EXISTS);
+            throw new EntityExistsException(ProductMessages.PRODUCT_WITH_THAT_NAME_ALREADY_EXISTS);
         }
 
         if (createProductRequestDto.getProductName() == null) {
@@ -60,7 +61,7 @@ public class ProductService {
     }
 
     @Transactional
-    public ProductResponseDto updateProductById(Long productId, UpdateProductRequestDto updateProductRequestDto) throws EntityNotFoundException, IllegalArgumentException {
+    public ProductResponseDto updateProductById(Long productId, UpdateProductRequestDto updateProductRequestDto) throws EntityNotFoundException, EntityExistsException, IllegalArgumentException {
         Product product = productRepository.findById(productId).orElse(null);
 
         if (product == null) {
@@ -71,7 +72,7 @@ public class ProductService {
             Product otherProduct = productRepository.findByProductName(updateProductRequestDto.getProductName()).orElse(null);
 
             if (otherProduct != null && !otherProduct.getProductId().equals(productId)) {
-                throw new IllegalArgumentException(ProductMessages.PRODUCT_WITH_THAT_NAME_ALREADY_EXISTS);
+                throw new EntityExistsException(ProductMessages.PRODUCT_WITH_THAT_NAME_ALREADY_EXISTS);
             }
 
             product.setProductName(updateProductRequestDto.getProductName());

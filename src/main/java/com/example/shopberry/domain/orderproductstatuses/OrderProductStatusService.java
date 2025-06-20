@@ -5,6 +5,7 @@ import com.example.shopberry.domain.orderproductstatuses.dto.CreateOrderProductS
 import com.example.shopberry.domain.orderproductstatuses.dto.OrderProductStatusDtoMapper;
 import com.example.shopberry.domain.orderproductstatuses.dto.OrderProductStatusResponseDto;
 import com.example.shopberry.domain.orderproductstatuses.dto.UpdateOrderProductStatusRequestDto;
+import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -36,9 +37,9 @@ public class OrderProductStatusService {
     }
 
     @Transactional
-    public OrderProductStatusResponseDto createOrderProductStatus(CreateOrderProductStatusRequestDto createOrderProductStatusRequestDto) throws IllegalArgumentException {
+    public OrderProductStatusResponseDto createOrderProductStatus(CreateOrderProductStatusRequestDto createOrderProductStatusRequestDto) throws EntityExistsException, IllegalArgumentException {
         if (orderProductStatusRepository.existsByStatusName(createOrderProductStatusRequestDto.getStatusName())) {
-            throw new IllegalArgumentException(OrderProductStatusMessages.ORDER_PRODUCT_STATUS_ALREADY_EXISTS);
+            throw new EntityExistsException(OrderProductStatusMessages.ORDER_PRODUCT_STATUS_ALREADY_EXISTS);
         }
 
         if (createOrderProductStatusRequestDto.getStatusName() == null) {
@@ -57,7 +58,7 @@ public class OrderProductStatusService {
     }
 
     @Transactional
-    public OrderProductStatusResponseDto updateOrderProductStatusById(Long orderProductStatusId, UpdateOrderProductStatusRequestDto updateOrderProductStatusRequestDto) throws EntityNotFoundException, IllegalArgumentException {
+    public OrderProductStatusResponseDto updateOrderProductStatusById(Long orderProductStatusId, UpdateOrderProductStatusRequestDto updateOrderProductStatusRequestDto) throws EntityNotFoundException, EntityExistsException, IllegalArgumentException {
         OrderProductStatus orderProductStatus = orderProductStatusRepository.findById(orderProductStatusId).orElse(null);
 
         if (orderProductStatus == null) {
@@ -68,7 +69,7 @@ public class OrderProductStatusService {
             OrderProductStatus otherOrderProductStatus = orderProductStatusRepository.findByStatusName(updateOrderProductStatusRequestDto.getStatusName()).orElse(null);
 
             if (otherOrderProductStatus != null && !otherOrderProductStatus.getOrderProductStatusId().equals(orderProductStatusId)) {
-                throw new IllegalArgumentException(OrderProductStatusMessages.ORDER_PRODUCT_STATUS_ALREADY_EXISTS);
+                throw new EntityExistsException(OrderProductStatusMessages.ORDER_PRODUCT_STATUS_ALREADY_EXISTS);
             }
 
             if (updateOrderProductStatusRequestDto.getStatusName().isEmpty()) {
