@@ -20,12 +20,9 @@ public class RegisterRequestDto {
 
     private String password;
 
+    private String role;
+
     @JsonProperty("is_company")
     private Boolean isCompany = false;
-
-    @JsonProperty("employee_type_id")
-    private Long employeeTypeId;
-
-    private String role;
 
 }
