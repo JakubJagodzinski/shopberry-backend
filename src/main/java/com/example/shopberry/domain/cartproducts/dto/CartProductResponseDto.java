@@ -21,7 +21,8 @@ public class CartProductResponseDto {
 
     private ProductResponseDto product;
 
-    private Long quantity;
+    @JsonProperty("product_quantity")
+    private Long productQuantity;
 
     @JsonProperty("added_at")
     private LocalDateTime addedAt;

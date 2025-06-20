@@ -31,8 +31,8 @@ public class CartProduct {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Product product;
 
-    @Column(nullable = false)
-    private Long quantity;
+    @Column(name = "product_quantity", nullable = false)
+    private Long productQuantity;
 
     @Column(nullable = false)
     private LocalDateTime addedAt = LocalDateTime.now();

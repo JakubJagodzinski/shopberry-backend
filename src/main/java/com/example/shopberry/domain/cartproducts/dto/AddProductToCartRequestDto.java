@@ -15,6 +15,7 @@ public class AddProductToCartRequestDto {
     @JsonProperty("product_id")
     private Long productId;
 
-    private Long quantity;
+    @JsonProperty("product_quantity")
+    private Long productQuantity;
 
 }
