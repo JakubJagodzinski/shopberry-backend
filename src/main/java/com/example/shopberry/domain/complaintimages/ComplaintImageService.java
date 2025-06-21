@@ -49,15 +49,11 @@ public class ComplaintImageService {
     }
 
     @Transactional
-    public ComplaintImageResponseDto addImageToComplaint(Long complaintId, AddImageToComplaintRequestDto addImageToComplaintRequestDto) throws EntityNotFoundException, IllegalArgumentException {
+    public ComplaintImageResponseDto addImageToComplaint(Long complaintId, AddImageToComplaintRequestDto addImageToComplaintRequestDto) throws EntityNotFoundException {
         Complaint complaint = complaintRepository.findById(complaintId).orElse(null);
 
         if (complaint == null) {
             throw new EntityNotFoundException(ComplaintMessages.COMPLAINT_NOT_FOUND);
-        }
-
-        if (addImageToComplaintRequestDto.getImage() == null) {
-            throw new IllegalArgumentException(ComplaintMessages.COMPLAINT_IMAGE_CANNOT_BE_NULL);
         }
 
         ComplaintImage complaintImage = new ComplaintImage();
