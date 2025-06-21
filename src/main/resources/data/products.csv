@@ -1,186 +1,841 @@
 productName,productPrice,producerName,categoryName,discountPercentValue
-Zentronix Galaxy S20,2999.99,Zentronix,Android Phones,10
-Avalora PrimeBook X5,3599.00,Avalora,Ultrabooks,15
-Techspire SoundPro,499.50,Techspire,Bluetooth Speakers,5
-Novexis VisionCam,1899.90,Novexis,Mirrorless,20
-Quantix QTV 4K,2499.00,Quantix,4K TVs,25
-Frostbeam SmartFit,899.99,Frostbeam,Smartwatches,10
-Lumitech StudioMic,799.00,Lumitech,Headphones,0
-Corellix BladeOne,4999.99,Corellix,Gaming Laptops,30
-Vireon EcoTent 2,299.99,Vireon,Tents,5
-Neurovia Yoga Mat Pro,159.00,Neurovia,Yoga,0
-Dravix SleepBag Max,449.00,Dravix,Sleeping Bags,15
-Omnitek KitchenMaster,599.00,Omnitek,Appliances,10
-Skymara ChefPan Set,349.99,Skymara,Cookware,12
-Veltronic CozySofa,1399.00,Veltronic,Sofas,20
-Hexanova DreamBed,1999.00,Hexanova,Beds,5
-Blazestone StyleShirt,159.99,Blazestone,Shirts,10
-Kryonix WinterJeans,219.00,Kryonix,Jeans,0
-Ardentra PowerSuit,899.00,Ardentra,Suits,20
-Solvexa ElegantHeels,329.99,Solvexa,Heels,15
-Trexon EverydayDress,249.99,Trexon,Dresses,10
-Modulon MiniSkirt,149.90,Modulon,Skirts,5
-Elevara MakeupSet,199.90,Elevara,Makeup,25
-Yunexis SkinGlow Cream,89.99,Yunexis,Skincare,0
-Orbivox Alpha Bike,1099.00,Orbivox,Cycling,20
-Trionyx PuzzleMaster 500,59.99,Trionyx,Puzzles,0
-Zentronix MaxTab 11,1299.99,Zentronix,Tablets,10
-Avalora AirPods Lite,399.00,Avalora,Headphones,5
-Techspire Car Charger Pro,89.99,Techspire,Chargers,0
-Novexis TravelCam Mini,999.00,Novexis,Action Cameras,15
-Quantix HomeSpeaker X1,649.00,Quantix,Bluetooth Speakers,8
-Frostbeam ThermoWatch,599.99,Frostbeam,Smartwatches,12
-Lumitech StreamMic X,299.00,Lumitech,Microphones,5
-Corellix GamerPro Mouse,249.99,Corellix,Accessories,10
-Vireon Hiking Backpack 60L,499.99,Vireon,Backpacks,15
-Neurovia StretchBand Set,89.90,Neurovia,Fitness,0
-Dravix CampMat Comfort,249.00,Dravix,Camping Mats,10
-Omnitek AirFryer Max,799.00,Omnitek,Appliances,20
-Skymara Nonstick Pan 28cm,139.99,Skymara,Cookware,5
-Veltronic Relax Recliner,1799.00,Veltronic,Armchairs,25
-Hexanova SleepWell Mattress,2199.00,Hexanova,Beds,20
-Blazestone LinenShirt Classic,189.99,Blazestone,Shirts,10
-Kryonix SlimJeans Men,249.00,Kryonix,Jeans,5
-Ardentra BusinessSuit Elite,1199.00,Ardentra,Suits,18
-Solvexa ComfortFlats,189.99,Solvexa,Heels,10
-Trexon FormalDress Pro,369.99,Trexon,Dresses,15
-Modulon CasualMini Skirt,129.90,Modulon,Skirts,8
-Elevara BeautyBrush Set,89.90,Elevara,Makeup,20
-Yunexis FaceClean Gel,49.99,Yunexis,Skincare,0
-Orbivox Mountain Bike XTR,1899.00,Orbivox,Cycling,15
-Trionyx Logic Puzzle Set,89.99,Trionyx,Puzzles,0
-Avalora WorkBook 14,2899.00,Avalora,Laptops,10
-Zentronix EcoLamp Desk,149.00,Zentronix,Lighting,5
-Corellix GamingKeyboard X,349.00,Corellix,Accessories,15
-Dravix TentPro 4P,699.00,Dravix,Tents,20
-Skymara BakingSet Pro,299.00,Skymara,Cookware,12
-Veltronic ChillTV 50,2299.00,Veltronic,TV,15
-Hexanova RestEasy Pillow,149.90,Hexanova,Beds,5
-Trionyx PuzzleMaster 1000,89.99,Trionyx,Puzzles,10
-Orbivox TrailBlazer Helmet,259.99,Orbivox,Cycling,0
-Yunexis NightRepair Serum,149.90,Yunexis,Skincare,25
-Elevara NudePalette Set,239.90,Elevara,Makeup,10
-Modulon SummerSkirt Light,119.90,Modulon,Skirts,0
-Trexon PartyDress Flow,299.99,Trexon,Dresses,20
-Solvexa LeatherHeels Pro,379.99,Solvexa,Heels,15
-Ardentra OfficeSuit Lite,699.00,Ardentra,Suits,10
-Kryonix SlimFit Jeans,229.00,Kryonix,Jeans,5
-Blazestone FormalShirt,139.00,Blazestone,Shirts,0
-Hexanova SoftBed Frame,1599.00,Hexanova,Beds,20
-Veltronic LoungeChair,999.00,Veltronic,Sofas,10
-Skymara FryPan Set 3x,319.00,Skymara,Cookware,8
-Omnitek CoffeeMaster X,749.99,Omnitek,Appliances,18
-Dravix ColdSleep Bag,399.00,Dravix,Sleeping Bags,12
-Neurovia ProYoga Kit,249.00,Neurovia,Yoga,5
-Vireon DomeTent 3P,599.99,Vireon,Tents,10
-Corellix UltraGaming Mousepad,99.00,Corellix,Accessories,0
-Lumitech VocalMic Studio,699.00,Lumitech,Headphones,5
-Frostbeam PulseTracker 3,799.99,Frostbeam,Smartwatches,10
-Quantix HomeSound Bar,999.00,Quantix,Bluetooth Speakers,10
-Novexis ProLens Z7,2199.00,Novexis,Mirrorless,15
-Techspire BoomBox Mini,599.00,Techspire,Bluetooth Speakers,5
-Avalora SlimBook 14,3199.00,Avalora,Ultrabooks,12
-Zentronix FlexTablet 10,1149.99,Zentronix,Tablets,8
-Trionyx KidsPuzzle Pack,49.99,Trionyx,Puzzles,0
-Yunexis BrightDay Cream,79.99,Yunexis,Skincare,0
-Elevara LashBoost Kit,159.90,Elevara,Makeup,10
-Go Mouth,5982.46,Avalora,Jeans,0
-Where Four,1400.79,Corellix,Table Lamps,20
-Book Office,5494.55,Elevara,Wardrobes,10
-Travel History,3808.31,Trionyx,Desk Lamps,0
-Name Itself,1205.57,Quantix,LED TVs,15
-Explain Down,3624.63,Orbivox,Folders,0
-Job Tree,4476.92,Dravix,Tablets,10
-Forward Before,4839.06,Vireon,DSLR,10
-Various Child,2237.92,Yunexis,Microphones,10
-Might Example,5152.5,Elevara,Dresses,15
-Specific Recognize,2155.07,Techspire,Mirrorless,25
-Day Represent,5014.81,Dravix,Heels,15
-Task Cut,998.33,Techspire,Jeans,20
-Skin Project,3049.16,Zentronix,Suits,30
-Middle Can,3871.61,Trionyx,Shirts,20
-Set Forward,5299.3,Trionyx,Sleeping Bags,25
-Sort Deal,4680.21,Skymara,Skirts,0
-Sing Explain,3386.76,Orbivox,Desk Lamps,5
-Above Six,4627.7,Lumitech,Cookware,20
-How Attorney,1021.92,Zentronix,Dresses,0
-Though Offer,1951.84,Frostbeam,Dresses,0
-But Adult,2480.52,Elevara,Puzzles,0
-Station Relationship,3275.59,Blazestone,Appliances,30
-Whose Information,3697.23,Yunexis,Building Sets,20
-Institution Success,4625.25,Corellix,Wardrobes,20
-Participant Together,5855.05,Frostbeam,Biographies,10
-Property Author,1713.61,Techspire,DSLR,5
-Page Air,4372.25,Yunexis,Suits,5
-Themselves Force,1380.42,Techspire,Skirts,25
-Form Ten,656.74,Omnitek,Tablets,5
-Watch Take,2471.66,Corellix,Biographies,15
-Teach Have,4056.17,Zentronix,Makeup,25
-Agent See,443.52,Blazestone,Jeans,25
-Eight Family,3861.75,Elevara,Biographies,10
-Another Result,2656.76,Modulon,Suits,10
-Word Factor,1138.35,Modulon,Dolls,0
-Support Clear,170.13,Techspire,Headphones,20
-Parent Group,386.23,Blazestone,Headphones,10
-Else Good,1491.13,Skymara,Biographies,10
-Single Page,2392.17,Orbivox,Wardrobes,0
-Say Star,4918.85,Techspire,Table Lamps,0
-Test Almost,3816.42,Veltronic,Building Sets,15
-Term Spend,3834.03,Lumitech,Desk Lamps,10
-Significant Lawyer,2272.48,Dravix,Tablets,25
-Clearly Audience,5854.22,Modulon,LED TVs,20
-Major Difference,1293.35,Elevara,Jeans,25
-Eye Art,3035.67,Zentronix,Headphones,20
-Small Three,5806.6,Elevara,Puzzles,10
-Consumer System,3063.4,Veltronic,Fantasy,25
-Term Never,1165.24,Blazestone,Folders,20
-Admit Mr,2121.57,Frostbeam,Yoga,15
-Own Suddenly,5592.78,Vireon,Suits,0
-American Stay,5023.72,Zentronix,Dolls,0
-Choice Data,2066.28,Dravix,Chargers,15
-Per Clearly,488.95,Corellix,Tents,15
-Piece Another,2613.69,Dravix,Puzzles,15
-Carry Work,3665.23,Zentronix,Tablets,5
-Court Writer,5990.28,Orbivox,Folders,25
-After Share,4583.68,Skymara,Pens & Pencils,10
-Story Early,457.0,Veltronic,Folders,5
-Smile Suddenly,2778.66,Novexis,Shirts,0
-Friend Season,5374.51,Omnitek,Tents,0
-Radio Common,3538.82,Lumitech,Dolls,20
-Mother However,5145.15,Vireon,Building Sets,25
-Glass Method,2480.75,Trexon,Notebooks,30
-Community Tonight,450.03,Veltronic,iPhones,20
-Film Which,5639.79,Blazestone,Microphones,20
-Paper Son,768.42,Lumitech,Bluetooth Speakers,10
-Thought Tree,3510.69,Modulon,Puzzles,30
-Employee Late,1146.27,Frostbeam,Science Fiction,25
-Despite Note,3310.35,Frostbeam,Headphones,5
-To International,449.46,Skymara,Tablets,10
-Just Education,788.44,Yunexis,Action Cameras,30
-Must Grow,3234.79,Orbivox,Dolls,15
-House You,1586.78,Ardentra,Building Sets,5
-Color Sea,3498.02,Omnitek,Action Cameras,25
-Still Agreement,687.34,Vireon,Chargers,25
-His Some,574.82,Trexon,Shirts,25
-Eye Many,2759.37,Blazestone,Sofas,25
-Office Everyone,1518.71,Blazestone,Sofas,0
-Become Become,3448.94,Novexis,Desk Lamps,10
-Although Range,4194.61,Blazestone,Suits,0
-Almost Body,3761.97,Techspire,Puzzles,0
-Growth Central,3751.55,Novexis,Building Sets,5
-Third Medical,1078.78,Lumitech,Fantasy,15
-Training Kitchen,2376.1,Elevara,Biographies,0
-Action Why,1160.33,Blazestone,Biographies,0
-Fish Camera,3465.81,Skymara,Table Lamps,25
-Impact Organization,790.65,Zentronix,Wardrobes,15
-Huge Now,4593.16,Kryonix,Microphones,15
-However Anything,2203.16,Trionyx,Notebooks,10
-Why Course,2053.1,Veltronic,Dresses,0
-Bag Adult,2921.94,Trionyx,Dresses,25
-Office Cup,3455.07,Vireon,Tents,0
-Successful Task,4192.22,Trionyx,Chargers,20
-Option White,2186.65,Corellix,Dresses,30
-Exist Soon,1635.61,Lumitech,Gym Equipment,30
-Ready Cause,5578.7,Blazestone,Cookware,10
-Skin Hope,3469.92,Frostbeam,Tents,10
-Democratic Word,432.14,Hexanova,LED TVs,15
+Sony 4K TV 1,1615.66,Sony,4K TVs,10
+Samsung 4K TV 2,1176.32,Samsung,4K TVs,10
+Sony 4K TV 3,1278.79,Sony,4K TVs,0
+Samsung 4K TV 4,548.22,Samsung,4K TVs,10
+Samsung 4K TV 5,138.12,Samsung,4K TVs,0
+LG 4K TV 6,1997.89,LG,4K TVs,5
+Sony 4K TV 7,540.73,Sony,4K TVs,0
+Samsung 4K TV 8,751.08,Samsung,4K TVs,10
+Samsung 4K TV 9,1228.96,Samsung,4K TVs,25
+Sony 4K TV 10,223.99,Sony,4K TVs,10
+HP Accessories for Cases and Component 1,1092.24,HP,Accessories for Cases and Components,0
+Mattel Accessories for Cases and Component 2,744.64,Mattel,Accessories for Cases and Components,25
+Nestlé Accessories for Cases and Component 3,1151.24,Nestlé,Accessories for Cases and Components,0
+Nivea Accessories for Cases and Component 4,521.24,Nivea,Accessories for Cases and Components,10
+Heinz Accessories for Cases and Component 5,1961.17,Heinz,Accessories for Cases and Components,0
+Sony Accessories for Cases and Component 6,1151.79,Sony,Accessories for Cases and Components,0
+Levi's Accessories for Cases and Component 7,1394.98,Levi's,Accessories for Cases and Components,5
+Chicco Accessories for Cases and Component 8,1072.53,Chicco,Accessories for Cases and Components,0
+Ariel Accessories for Cases and Component 9,1925.37,Ariel,Accessories for Cases and Components,0
+Asus Accessories for Cases and Component 10,1442.26,Asus,Accessories for Cases and Components,20
+Canon All-in-One PC 1,1897.35,Canon,All-in-One PCs,0
+Levi's All-in-One PC 2,1894.55,Levi's,All-in-One PCs,0
+Colgate All-in-One PC 3,38.08,Colgate,All-in-One PCs,15
+Ariel All-in-One PC 4,1926.19,Ariel,All-in-One PCs,5
+HP All-in-One PC 5,1111.63,HP,All-in-One PCs,5
+Fisher-Price All-in-One PC 6,955.02,Fisher-Price,All-in-One PCs,10
+Lenovo All-in-One PC 7,1982.75,Lenovo,All-in-One PCs,15
+Apple All-in-One PC 8,1634.97,Apple,All-in-One PCs,25
+Finish All-in-One PC 9,734.44,Finish,All-in-One PCs,10
+Gillette All-in-One PC 10,1890.91,Gillette,All-in-One PCs,10
+LG Apple Watch 1,268.97,LG,Apple Watch,15
+Fisher-Price Apple Watch 2,176.67,Fisher-Price,Apple Watch,5
+Apple Apple Watch 3,638.44,Apple,Apple Watch,5
+Garnier Apple Watch 4,1758.95,Garnier,Apple Watch,5
+Gillette Apple Watch 5,462.01,Gillette,Apple Watch,20
+Lenovo Apple Watch 6,610.87,Lenovo,Apple Watch,0
+Levi's Apple Watch 7,1030.56,Levi's,Apple Watch,0
+Tefal Apple Watch 8,719.91,Tefal,Apple Watch,5
+LG Apple Watch 9,262.95,LG,Apple Watch,10
+Żywiec Zdrój Apple Watch 10,405.68,Żywiec Zdrój,Apple Watch,5
+Gerber Bicycle 1,1680.05,Gerber,Bicycles,0
+Asus Bicycle 2,777.6,Asus,Bicycles,20
+Samsung Bicycle 3,534.93,Samsung,Bicycles,0
+Mattel Bicycle 4,409.42,Mattel,Bicycles,5
+LG Bicycle 5,364.37,LG,Bicycles,10
+Purina Bicycle 6,728.28,Purina,Bicycles,10
+Fisher-Price Bicycle 7,1230.82,Fisher-Price,Bicycles,0
+Fisher-Price Bicycle 8,1814.12,Fisher-Price,Bicycles,5
+Whiskas Bicycle 9,1205.07,Whiskas,Bicycles,0
+Persil Bicycle 10,449.17,Persil,Bicycles,0
+Sony Blood Pressure Monitor 1,1369.05,Sony,Blood Pressure Monitors,10
+Bosch Blood Pressure Monitor 2,1830.73,Bosch,Blood Pressure Monitors,0
+Nestlé Blood Pressure Monitor 3,1749.18,Nestlé,Blood Pressure Monitors,10
+Chicco Blood Pressure Monitor 4,548.79,Chicco,Blood Pressure Monitors,0
+Samsung Blood Pressure Monitor 5,1041.35,Samsung,Blood Pressure Monitors,5
+Ariel Blood Pressure Monitor 6,1060.85,Ariel,Blood Pressure Monitors,20
+Dell Blood Pressure Monitor 7,786.61,Dell,Blood Pressure Monitors,5
+Pedigree Blood Pressure Monitor 8,306.57,Pedigree,Blood Pressure Monitors,15
+Sony Blood Pressure Monitor 9,1173.56,Sony,Blood Pressure Monitors,10
+Garnier Blood Pressure Monitor 10,164.7,Garnier,Blood Pressure Monitors,0
+HP Business Laptop 1,508.97,HP,Business Laptops,10
+Persil Business Laptop 2,1282.34,Persil,Business Laptops,10
+Finish Business Laptop 3,467.13,Finish,Business Laptops,10
+Persil Business Laptop 4,632.26,Persil,Business Laptops,15
+Apple Business Laptop 5,1618.17,Apple,Business Laptops,10
+Lenovo Business Laptop 6,964.51,Lenovo,Business Laptops,0
+Gerber Business Laptop 7,1004.51,Gerber,Business Laptops,25
+Samsung Business Laptop 8,701.96,Samsung,Business Laptops,0
+IKEA Business Laptop 9,569.67,IKEA,Business Laptops,20
+IKEA Business Laptop 10,796.13,IKEA,Business Laptops,5
+Pedigree CPU Cooling 1,1364.23,Pedigree,CPU Cooling,0
+Colgate CPU Cooling 2,189.38,Colgate,CPU Cooling,15
+Bosch CPU Cooling 3,1985.48,Bosch,CPU Cooling,15
+Levi's CPU Cooling 4,200.96,Levi's,CPU Cooling,5
+Finish CPU Cooling 5,313.46,Finish,CPU Cooling,5
+Nike CPU Cooling 6,1579.29,Nike,CPU Cooling,0
+Tefal CPU Cooling 7,1502.9,Tefal,CPU Cooling,0
+Finish CPU Cooling 8,193.71,Finish,CPU Cooling,10
+Bosch CPU Cooling 9,495.36,Bosch,CPU Cooling,0
+Pepsi CPU Cooling 10,717.21,Pepsi,CPU Cooling,0
+Canon Camera Bag 1,454.55,Canon,Camera Bags,0
+Canon Camera Bag 2,142.5,Canon,Camera Bags,5
+Sony Camera Bag 3,904.05,Sony,Camera Bags,10
+Canon Camera Bag 4,1782.03,Canon,Camera Bags,10
+Nikon Camera Bag 5,1513.68,Nikon,Camera Bags,0
+Nikon Camera Bag 6,1627.5,Nikon,Camera Bags,0
+Sony Camera Bag 7,28.21,Sony,Camera Bags,25
+Nikon Camera Bag 8,1387.34,Nikon,Camera Bags,0
+Sony Camera Bag 9,1739.89,Sony,Camera Bags,5
+Sony Camera Bag 10,1145.38,Sony,Camera Bags,5
+Gillette Ceiling Light 1,837.42,Gillette,Ceiling Lights,0
+Oral-B Ceiling Light 2,1502.62,Oral-B,Ceiling Lights,0
+Tymbark Ceiling Light 3,88.49,Tymbark,Ceiling Lights,0
+Nivea Ceiling Light 4,975.2,Nivea,Ceiling Lights,0
+Garnier Ceiling Light 5,1591.22,Garnier,Ceiling Lights,15
+Chicco Ceiling Light 6,868.25,Chicco,Ceiling Lights,20
+Tymbark Ceiling Light 7,637.85,Tymbark,Ceiling Lights,10
+Oral-B Ceiling Light 8,1662.82,Oral-B,Ceiling Lights,25
+Coca-Cola Ceiling Light 9,498.96,Coca-Cola,Ceiling Lights,5
+Tefal Ceiling Light 10,1566.21,Tefal,Ceiling Lights,15
+Zara Chargers & Cable 1,953.91,Zara,Chargers & Cables,0
+Pampers Chargers & Cable 2,906.66,Pampers,Chargers & Cables,5
+Nikon Chargers & Cable 3,37.71,Nikon,Chargers & Cables,5
+Bosch Chargers & Cable 4,670.2,Bosch,Chargers & Cables,0
+Finish Chargers & Cable 5,1575.04,Finish,Chargers & Cables,0
+Heinz Chargers & Cable 6,611.14,Heinz,Chargers & Cables,25
+IKEA Chargers & Cable 7,969.35,IKEA,Chargers & Cables,25
+Żywiec Zdrój Chargers & Cable 8,1249.59,Żywiec Zdrój,Chargers & Cables,0
+Maybelline Chargers & Cable 9,1941.75,Maybelline,Chargers & Cables,0
+Whiskas Chargers & Cable 10,1938.51,Whiskas,Chargers & Cables,5
+LG Cleaning Product 1,378.71,LG,Cleaning Products,0
+Łowicz Cleaning Product 2,1907.36,Łowicz,Cleaning Products,0
+Bosch Cleaning Product 3,600.46,Bosch,Cleaning Products,0
+Asus Cleaning Product 4,1824.72,Asus,Cleaning Products,0
+Adidas Cleaning Product 5,936.52,Adidas,Cleaning Products,0
+Żywiec Zdrój Cleaning Product 6,200.64,Żywiec Zdrój,Cleaning Products,0
+Purina Cleaning Product 7,1884.34,Purina,Cleaning Products,5
+Nikon Cleaning Product 8,1998.28,Nikon,Cleaning Products,0
+Lego Cleaning Product 9,1701.41,Lego,Cleaning Products,5
+Garnier Cleaning Product 10,942.05,Garnier,Cleaning Products,5
+Pampers Coffee Machine 1,284.71,Pampers,Coffee Machines,0
+Dove Coffee Machine 2,1732.93,Dove,Coffee Machines,15
+Gerber Coffee Machine 3,301.6,Gerber,Coffee Machines,15
+Huggies Coffee Machine 4,240.27,Huggies,Coffee Machines,5
+Philips Coffee Machine 5,1269.79,Philips,Coffee Machines,5
+Huggies Coffee Machine 6,442.34,Huggies,Coffee Machines,0
+Nivea Coffee Machine 7,636.99,Nivea,Coffee Machines,10
+Łowicz Coffee Machine 8,942.4,Łowicz,Coffee Machines,0
+Pepsi Coffee Machine 9,412.54,Pepsi,Coffee Machines,15
+Sony Coffee Machine 10,211.46,Sony,Coffee Machines,0
+Nikon Compact Camera 1,1700.75,Nikon,Compact Cameras,15
+Sony Compact Camera 2,903.25,Sony,Compact Cameras,0
+Nikon Compact Camera 3,1819.52,Nikon,Compact Cameras,25
+Canon Compact Camera 4,781.89,Canon,Compact Cameras,15
+Sony Compact Camera 5,557.07,Sony,Compact Cameras,5
+Canon Compact Camera 6,164.63,Canon,Compact Cameras,0
+Canon Compact Camera 7,1281.24,Canon,Compact Cameras,0
+Nikon Compact Camera 8,1516.11,Nikon,Compact Cameras,0
+Canon Compact Camera 9,1348.4,Canon,Compact Cameras,15
+Sony Compact Camera 10,325.2,Sony,Compact Cameras,5
+Sony Computer Cables and Adapter 1,228.19,Sony,Computer Cables and Adapters,0
+HP Computer Cables and Adapter 2,1983.75,HP,Computer Cables and Adapters,5
+Sony Computer Cables and Adapter 3,338.39,Sony,Computer Cables and Adapters,15
+Sony Computer Cables and Adapter 4,1108.99,Sony,Computer Cables and Adapters,25
+HP Computer Cables and Adapter 5,788.53,HP,Computer Cables and Adapters,0
+Dell Computer Cables and Adapter 6,960.96,Dell,Computer Cables and Adapters,0
+LG Computer Cables and Adapter 7,73.71,LG,Computer Cables and Adapters,5
+Sony Computer Cables and Adapter 8,1199.38,Sony,Computer Cables and Adapters,0
+Lenovo Computer Cables and Adapter 9,1006.39,Lenovo,Computer Cables and Adapters,0
+HP Computer Cables and Adapter 10,730.67,HP,Computer Cables and Adapters,0
+Lenovo Computer Case 1,1264.53,Lenovo,Computer Cases,5
+Lenovo Computer Case 2,1643.48,Lenovo,Computer Cases,15
+LG Computer Case 3,1362.03,LG,Computer Cases,5
+Dell Computer Case 4,263.24,Dell,Computer Cases,25
+Lenovo Computer Case 5,534.56,Lenovo,Computer Cases,0
+LG Computer Case 6,1889.9,LG,Computer Cases,5
+Lenovo Computer Case 7,1537.42,Lenovo,Computer Cases,10
+Lenovo Computer Case 8,1393.87,Lenovo,Computer Cases,5
+Asus Computer Case 9,817.05,Asus,Computer Cases,0
+HP Computer Case 10,641.54,HP,Computer Cases,10
+Sony Computer Fan 1,714.82,Sony,Computer Fans,0
+Samsung Computer Fan 2,1800.43,Samsung,Computer Fans,15
+Dell Computer Fan 3,174.07,Dell,Computer Fans,0
+Dell Computer Fan 4,977.9,Dell,Computer Fans,10
+Dell Computer Fan 5,1880.87,Dell,Computer Fans,5
+Sony Computer Fan 6,426.08,Sony,Computer Fans,0
+Sony Computer Fan 7,220.09,Sony,Computer Fans,25
+Samsung Computer Fan 8,625.74,Samsung,Computer Fans,0
+Sony Computer Fan 9,473.26,Sony,Computer Fans,5
+Samsung Computer Fan 10,1342.05,Samsung,Computer Fans,5
+Sony DSLR Camera 1,593.93,Sony,DSLR Cameras,0
+Sony DSLR Camera 2,1066.4,Sony,DSLR Cameras,0
+Sony DSLR Camera 3,1183.62,Sony,DSLR Cameras,15
+Nikon DSLR Camera 4,544.54,Nikon,DSLR Cameras,5
+Sony DSLR Camera 5,391.29,Sony,DSLR Cameras,0
+Sony DSLR Camera 6,1944.21,Sony,DSLR Cameras,5
+Sony DSLR Camera 7,1819.43,Sony,DSLR Cameras,10
+Nikon DSLR Camera 8,1535.71,Nikon,DSLR Cameras,0
+Canon DSLR Camera 9,166.89,Canon,DSLR Cameras,5
+Nikon DSLR Camera 10,1882.42,Nikon,DSLR Cameras,5
+Garnier Desk 1,1034.59,Garnier,Desks,0
+Tefal Desk 2,1567.49,Tefal,Desks,0
+Zara Desk 3,1163.27,Zara,Desks,0
+Gerber Desk 4,881.56,Gerber,Desks,0
+Tymbark Desk 5,1841.13,Tymbark,Desks,5
+Oral-B Desk 6,1052.55,Oral-B,Desks,10
+Purina Desk 7,625.55,Purina,Desks,20
+Nivea Desk 8,1195.47,Nivea,Desks,10
+Levi's Desk 9,1507.43,Levi's,Desks,20
+Winiary Desk 10,1305.34,Winiary,Desks,0
+Nestlé Dishwasher 1,823.97,Nestlé,Dishwashers,10
+Winiary Dishwasher 2,124.24,Winiary,Dishwashers,25
+Canon Dishwasher 3,1999.35,Canon,Dishwashers,0
+Oral-B Dishwasher 4,1635.22,Oral-B,Dishwashers,0
+Apple Dishwasher 5,1341.35,Apple,Dishwashers,5
+Purina Dishwasher 6,510.77,Purina,Dishwashers,0
+Żywiec Zdrój Dishwasher 7,412.8,Żywiec Zdrój,Dishwashers,10
+Whiskas Dishwasher 8,102.36,Whiskas,Dishwashers,5
+Chicco Dishwasher 9,1216.23,Chicco,Dishwashers,15
+HP Dishwasher 10,924.08,HP,Dishwashers,0
+Gillette Dryer 1,263.29,Gillette,Dryers,10
+Łowicz Dryer 2,1991.3,Łowicz,Dryers,15
+Fisher-Price Dryer 3,785.78,Fisher-Price,Dryers,15
+Nikon Dryer 4,1071.25,Nikon,Dryers,10
+H&M Dryer 5,1738.45,H&M,Dryers,0
+Finish Dryer 6,1248.51,Finish,Dryers,0
+Asus Dryer 7,515.82,Asus,Dryers,0
+Nestlé Dryer 8,717.61,Nestlé,Dryers,5
+Ariel Dryer 9,1602.5,Ariel,Dryers,15
+Puma Dryer 10,209.86,Puma,Dryers,5
+Levi's Dumbbell 1,507.22,Levi's,Dumbbells,0
+Nikon Dumbbell 2,1054.89,Nikon,Dumbbells,15
+Asus Dumbbell 3,19.6,Asus,Dumbbells,0
+Levi's Dumbbell 4,864.01,Levi's,Dumbbells,10
+Nivea Dumbbell 5,214.52,Nivea,Dumbbells,15
+Colgate Dumbbell 6,1765.92,Colgate,Dumbbells,10
+Lego Dumbbell 7,980.12,Lego,Dumbbells,0
+Tymbark Dumbbell 8,845.09,Tymbark,Dumbbells,10
+Puma Dumbbell 9,11.5,Puma,Dumbbells,5
+Winiary Dumbbell 10,155.11,Winiary,Dumbbells,0
+Nike Electric Shaver 1,753.61,Nike,Electric Shavers,5
+Whiskas Electric Shaver 2,298.84,Whiskas,Electric Shavers,15
+Philips Electric Shaver 3,419.63,Philips,Electric Shavers,0
+Lego Electric Shaver 4,366.66,Lego,Electric Shavers,0
+LG Electric Shaver 5,481.89,LG,Electric Shavers,5
+IKEA Electric Shaver 6,1667.08,IKEA,Electric Shavers,0
+Garnier Electric Shaver 7,307.67,Garnier,Electric Shavers,25
+HP Electric Shaver 8,757.01,HP,Electric Shavers,0
+Philips Electric Shaver 9,766.72,Philips,Electric Shavers,0
+Tefal Electric Shaver 10,37.49,Tefal,Electric Shavers,10
+IKEA Fitness Band 1,1549.09,IKEA,Fitness Bands,10
+Mattel Fitness Band 2,1710.7,Mattel,Fitness Bands,0
+LG Fitness Band 3,665.5,LG,Fitness Bands,10
+Nestlé Fitness Band 4,1201.19,Nestlé,Fitness Bands,0
+Bosch Fitness Band 5,1750.5,Bosch,Fitness Bands,0
+Asus Fitness Band 6,456.48,Asus,Fitness Bands,15
+Asus Fitness Band 7,1777.92,Asus,Fitness Bands,10
+Ariel Fitness Band 8,1289.99,Ariel,Fitness Bands,0
+Huggies Fitness Band 9,880.5,Huggies,Fitness Bands,10
+Heinz Fitness Band 10,1317.4,Heinz,Fitness Bands,0
+HP Fragrance 1,128.29,HP,Fragrances,0
+Purina Fragrance 2,1089.71,Purina,Fragrances,10
+Whiskas Fragrance 3,1589.02,Whiskas,Fragrances,10
+Hasbro Fragrance 4,1067.6,Hasbro,Fragrances,5
+Tymbark Fragrance 5,1050.7,Tymbark,Fragrances,5
+Tymbark Fragrance 6,510.43,Tymbark,Fragrances,10
+Vanish Fragrance 7,1183.34,Vanish,Fragrances,5
+Ariel Fragrance 8,352.16,Ariel,Fragrances,0
+Chicco Fragrance 9,1787.87,Chicco,Fragrances,5
+Purina Fragrance 10,542.95,Purina,Fragrances,5
+Chicco Gaming Laptop 1,1934.87,Chicco,Gaming Laptops,0
+H&M Gaming Laptop 2,1209.52,H&M,Gaming Laptops,5
+Sony Gaming Laptop 3,225.95,Sony,Gaming Laptops,0
+Sony Gaming Laptop 4,1421.74,Sony,Gaming Laptops,0
+Pedigree Gaming Laptop 5,1333.42,Pedigree,Gaming Laptops,15
+Oral-B Gaming Laptop 6,1754.5,Oral-B,Gaming Laptops,5
+Coca-Cola Gaming Laptop 7,1072.11,Coca-Cola,Gaming Laptops,0
+Sony Gaming Laptop 8,453.9,Sony,Gaming Laptops,0
+H&M Gaming Laptop 9,512.03,H&M,Gaming Laptops,15
+Pedigree Gaming Laptop 10,342.93,Pedigree,Gaming Laptops,0
+Apple Gaming Lighting 1,1786.38,Apple,Gaming Lighting,20
+Dell Gaming Lighting 2,1776.28,Dell,Gaming Lighting,10
+Colgate Gaming Lighting 3,821.74,Colgate,Gaming Lighting,0
+Żywiec Zdrój Gaming Lighting 4,1363.12,Żywiec Zdrój,Gaming Lighting,0
+Pepsi Gaming Lighting 5,455.77,Pepsi,Gaming Lighting,10
+Maybelline Gaming Lighting 6,1007.9,Maybelline,Gaming Lighting,0
+Nivea Gaming Lighting 7,39.46,Nivea,Gaming Lighting,0
+Gillette Gaming Lighting 8,724.48,Gillette,Gaming Lighting,10
+Whiskas Gaming Lighting 9,59.38,Whiskas,Gaming Lighting,5
+Gerber Gaming Lighting 10,1210.93,Gerber,Gaming Lighting,10
+Finish Gaming Monitor 1,1500.93,Finish,Gaming Monitors,5
+Vanish Gaming Monitor 2,1332.9,Vanish,Gaming Monitors,10
+Sony Gaming Monitor 3,1686.54,Sony,Gaming Monitors,0
+Tymbark Gaming Monitor 4,1438.9,Tymbark,Gaming Monitors,10
+Apple Gaming Monitor 5,1983.64,Apple,Gaming Monitors,5
+Persil Gaming Monitor 6,659.09,Persil,Gaming Monitors,0
+Chicco Gaming Monitor 7,1576.68,Chicco,Gaming Monitors,5
+Levi's Gaming Monitor 8,677.17,Levi's,Gaming Monitors,15
+Nestlé Gaming Monitor 9,917.57,Nestlé,Gaming Monitors,5
+Tefal Gaming Monitor 10,1782.94,Tefal,Gaming Monitors,5
+Gerber Graphics Card 1,1455.33,Gerber,Graphics Cards,0
+Ariel Graphics Card 2,1115.94,Ariel,Graphics Cards,15
+Nivea Graphics Card 3,207.73,Nivea,Graphics Cards,10
+Winiary Graphics Card 4,562.84,Winiary,Graphics Cards,5
+Nikon Graphics Card 5,519.28,Nikon,Graphics Cards,5
+Pedigree Graphics Card 6,107.11,Pedigree,Graphics Cards,5
+Whiskas Graphics Card 7,397.18,Whiskas,Graphics Cards,0
+H&M Graphics Card 8,1393.87,H&M,Graphics Cards,0
+Gerber Graphics Card 9,1414.99,Gerber,Graphics Cards,5
+Purina Graphics Card 10,420.58,Purina,Graphics Cards,10
+Winiary HDD 1,1906.0,Winiary,HDDs,0
+Puma HDD 2,426.84,Puma,HDDs,20
+HP HDD 3,557.18,HP,HDDs,0
+Persil HDD 4,740.66,Persil,HDDs,10
+Lego HDD 5,888.04,Lego,HDDs,0
+Lego HDD 6,126.73,Lego,HDDs,0
+Huggies HDD 7,1511.63,Huggies,HDDs,10
+Tefal HDD 8,1083.83,Tefal,HDDs,20
+Lego HDD 9,849.81,Lego,HDDs,10
+Winiary HDD 10,516.86,Winiary,HDDs,5
+Nivea Hair Dryer 1,1189.98,Nivea,Hair Dryers,5
+Nikon Hair Dryer 2,1462.49,Nikon,Hair Dryers,0
+Nikon Hair Dryer 3,232.61,Nikon,Hair Dryers,0
+HP Hair Dryer 4,202.05,HP,Hair Dryers,0
+Hasbro Hair Dryer 5,966.17,Hasbro,Hair Dryers,10
+Vanish Hair Dryer 6,400.23,Vanish,Hair Dryers,5
+Tefal Hair Dryer 7,1854.67,Tefal,Hair Dryers,10
+Pampers Hair Dryer 8,1576.43,Pampers,Hair Dryers,10
+Adidas Hair Dryer 9,1617.26,Adidas,Hair Dryers,5
+Winiary Hair Dryer 10,1995.18,Winiary,Hair Dryers,0
+Ariel Haircare 1,603.97,Ariel,Haircare,5
+Coca-Cola Haircare 2,487.43,Coca-Cola,Haircare,0
+IKEA Haircare 3,314.5,IKEA,Haircare,10
+Dell Haircare 4,1304.19,Dell,Haircare,0
+Bosch Haircare 5,1799.26,Bosch,Haircare,10
+Pedigree Haircare 6,1332.17,Pedigree,Haircare,0
+Tymbark Haircare 7,816.97,Tymbark,Haircare,5
+Winiary Haircare 8,765.83,Winiary,Haircare,0
+Tymbark Haircare 9,291.41,Tymbark,Haircare,10
+Whiskas Haircare 10,637.79,Whiskas,Haircare,0
+Żywiec Zdrój Headphones & Earbud 1,947.39,Żywiec Zdrój,Headphones & Earbuds,0
+Sony Headphones & Earbud 2,1457.16,Sony,Headphones & Earbuds,10
+Bosch Headphones & Earbud 3,1373.81,Bosch,Headphones & Earbuds,0
+Garnier Headphones & Earbud 4,1466.76,Garnier,Headphones & Earbuds,5
+Finish Headphones & Earbud 5,266.45,Finish,Headphones & Earbuds,0
+Mattel Headphones & Earbud 6,727.38,Mattel,Headphones & Earbuds,15
+Łowicz Headphones & Earbud 7,1241.52,Łowicz,Headphones & Earbuds,0
+Lenovo Headphones & Earbud 8,97.91,Lenovo,Headphones & Earbuds,5
+Ariel Headphones & Earbud 9,945.45,Ariel,Headphones & Earbuds,5
+Levi's Headphones & Earbud 10,136.94,Levi's,Headphones & Earbuds,0
+Gerber Helmet 1,1138.27,Gerber,Helmets,0
+Huggies Helmet 2,521.08,Huggies,Helmets,0
+Oral-B Helmet 3,421.74,Oral-B,Helmets,0
+Sony Helmet 4,85.74,Sony,Helmets,10
+Zara Helmet 5,1044.49,Zara,Helmets,25
+Levi's Helmet 6,1854.02,Levi's,Helmets,10
+Bosch Helmet 7,1781.68,Bosch,Helmets,20
+Asus Helmet 8,837.1,Asus,Helmets,0
+Puma Helmet 9,226.92,Puma,Helmets,5
+Levi's Helmet 10,158.24,Levi's,Helmets,5
+Lenovo Home Theater System 1,773.31,Lenovo,Home Theater Systems,0
+Nike Home Theater System 2,821.4,Nike,Home Theater Systems,0
+Oral-B Home Theater System 3,1646.63,Oral-B,Home Theater Systems,15
+Gillette Home Theater System 4,569.4,Gillette,Home Theater Systems,0
+Gillette Home Theater System 5,1149.64,Gillette,Home Theater Systems,0
+Tymbark Home Theater System 6,1631.4,Tymbark,Home Theater Systems,15
+Fisher-Price Home Theater System 7,166.37,Fisher-Price,Home Theater Systems,5
+Samsung Home Theater System 8,733.34,Samsung,Home Theater Systems,0
+Philips Home Theater System 9,373.42,Philips,Home Theater Systems,10
+HP Home Theater System 10,1669.46,HP,Home Theater Systems,0
+Heinz Keyboard 1,1555.78,Heinz,Keyboards,0
+Hasbro Keyboard 2,902.34,Hasbro,Keyboards,0
+Pampers Keyboard 3,1052.06,Pampers,Keyboards,0
+Zara Keyboard 4,1762.2,Zara,Keyboards,0
+Pepsi Keyboard 5,1014.45,Pepsi,Keyboards,0
+Gillette Keyboard 6,940.83,Gillette,Keyboards,5
+Pedigree Keyboard 7,899.65,Pedigree,Keyboards,5
+Sony Keyboard 8,1915.3,Sony,Keyboards,10
+Samsung Keyboard 9,271.05,Samsung,Keyboards,0
+Dove Keyboard 10,1095.56,Dove,Keyboards,5
+Zara Lamp 1,1209.34,Zara,Lamps,15
+Heinz Lamp 2,1232.48,Heinz,Lamps,0
+Apple Lamp 3,1869.52,Apple,Lamps,5
+Łowicz Lamp 4,1825.92,Łowicz,Lamps,0
+Mattel Lamp 5,902.14,Mattel,Lamps,5
+Purina Lamp 6,1098.07,Purina,Lamps,5
+Sony Lamp 7,1939.97,Sony,Lamps,15
+Maybelline Lamp 8,1724.49,Maybelline,Lamps,5
+Ariel Lamp 9,697.38,Ariel,Lamps,5
+Asus Lamp 10,14.97,Asus,Lamps,10
+Nikon Lense 1,1531.39,Nikon,Lenses,0
+Asus Lense 2,434.73,Asus,Lenses,0
+Maybelline Lense 3,1409.65,Maybelline,Lenses,0
+Levi's Lense 4,206.45,Levi's,Lenses,0
+Tymbark Lense 5,277.6,Tymbark,Lenses,0
+Żywiec Zdrój Lense 6,1491.02,Żywiec Zdrój,Lenses,10
+Bosch Lense 7,1948.61,Bosch,Lenses,10
+Nike Lense 8,1400.57,Nike,Lenses,0
+L'Oréal Lense 9,1688.64,L'Oréal,Lenses,10
+Mattel Lense 10,1494.85,Mattel,Lenses,15
+Tefal Makeup 1,1480.38,Tefal,Makeup,0
+Hasbro Makeup 2,461.7,Hasbro,Makeup,5
+Philips Makeup 3,917.82,Philips,Makeup,0
+Asus Makeup 4,1222.41,Asus,Makeup,10
+Samsung Makeup 5,1518.12,Samsung,Makeup,10
+Gillette Makeup 6,832.06,Gillette,Makeup,0
+Asus Makeup 7,1388.91,Asus,Makeup,0
+Oral-B Makeup 8,1208.98,Oral-B,Makeup,0
+Tymbark Makeup 9,1456.26,Tymbark,Makeup,25
+Asus Makeup 10,549.4,Asus,Makeup,5
+Hasbro Mice 1,1202.75,Hasbro,Mice,10
+Colgate Mice 2,1997.51,Colgate,Mice,10
+Pedigree Mice 3,950.26,Pedigree,Mice,5
+Levi's Mice 4,498.0,Levi's,Mice,15
+Asus Mice 5,954.7,Asus,Mice,15
+Finish Mice 6,183.98,Finish,Mice,0
+Colgate Mice 7,959.19,Colgate,Mice,10
+Colgate Mice 8,1145.82,Colgate,Mice,20
+Żywiec Zdrój Mice 9,1358.83,Żywiec Zdrój,Mice,0
+Łowicz Mice 10,599.38,Łowicz,Mice,10
+Garnier Microwave 1,1795.91,Garnier,Microwaves,0
+Dell Microwave 2,1281.9,Dell,Microwaves,5
+Vanish Microwave 3,150.23,Vanish,Microwaves,15
+Dell Microwave 4,1745.82,Dell,Microwaves,20
+Nikon Microwave 5,369.91,Nikon,Microwaves,0
+Gillette Microwave 6,597.67,Gillette,Microwaves,0
+Gillette Microwave 7,1595.5,Gillette,Microwaves,0
+Persil Microwave 8,706.82,Persil,Microwaves,10
+H&M Microwave 9,905.06,H&M,Microwaves,0
+Winiary Microwave 10,1937.56,Winiary,Microwaves,10
+Whiskas Mini PC 1,1337.53,Whiskas,Mini PCs,10
+Vanish Mini PC 2,1463.17,Vanish,Mini PCs,0
+Purina Mini PC 3,744.43,Purina,Mini PCs,5
+Nivea Mini PC 4,1546.1,Nivea,Mini PCs,10
+Puma Mini PC 5,419.92,Puma,Mini PCs,5
+Nestlé Mini PC 6,142.6,Nestlé,Mini PCs,10
+Dell Mini PC 7,1357.67,Dell,Mini PCs,0
+Garnier Mini PC 8,837.48,Garnier,Mini PCs,0
+Mattel Mini PC 9,1061.94,Mattel,Mini PCs,0
+Finish Mini PC 10,773.19,Finish,Mini PCs,5
+Canon Mirrorless Camera 1,1705.93,Canon,Mirrorless Cameras,0
+Sony Mirrorless Camera 2,189.79,Sony,Mirrorless Cameras,0
+Nikon Mirrorless Camera 3,588.44,Nikon,Mirrorless Cameras,0
+Sony Mirrorless Camera 4,1045.63,Sony,Mirrorless Cameras,10
+Canon Mirrorless Camera 5,1109.64,Canon,Mirrorless Cameras,10
+Sony Mirrorless Camera 6,397.23,Sony,Mirrorless Cameras,20
+Sony Mirrorless Camera 7,503.68,Sony,Mirrorless Cameras,0
+Sony Mirrorless Camera 8,1396.17,Sony,Mirrorless Cameras,0
+Sony Mirrorless Camera 9,780.5,Sony,Mirrorless Cameras,0
+Sony Mirrorless Camera 10,84.09,Sony,Mirrorless Cameras,15
+Sony Motherboard 1,723.09,Sony,Motherboards,0
+Fisher-Price Motherboard 2,1877.37,Fisher-Price,Motherboards,0
+Winiary Motherboard 3,1609.26,Winiary,Motherboards,5
+Nestlé Motherboard 4,1605.37,Nestlé,Motherboards,25
+Whiskas Motherboard 5,526.13,Whiskas,Motherboards,0
+Asus Motherboard 6,555.87,Asus,Motherboards,5
+Samsung Motherboard 7,789.73,Samsung,Motherboards,0
+Gillette Motherboard 8,1655.55,Gillette,Motherboards,5
+Lego Motherboard 9,1468.88,Lego,Motherboards,20
+Nike Motherboard 10,1739.39,Nike,Motherboards,15
+IKEA Multifunction Printer 1,762.63,IKEA,Multifunction Printers,5
+Canon Multifunction Printer 2,384.88,Canon,Multifunction Printers,5
+Tymbark Multifunction Printer 3,727.92,Tymbark,Multifunction Printers,15
+Pepsi Multifunction Printer 4,551.25,Pepsi,Multifunction Printers,0
+Tymbark Multifunction Printer 5,1545.48,Tymbark,Multifunction Printers,0
+Mattel Multifunction Printer 6,1135.07,Mattel,Multifunction Printers,0
+Apple Multifunction Printer 7,35.08,Apple,Multifunction Printers,5
+H&M Multifunction Printer 8,1318.28,H&M,Multifunction Printers,0
+Pedigree Multifunction Printer 9,325.52,Pedigree,Multifunction Printers,25
+Fisher-Price Multifunction Printer 10,1636.7,Fisher-Price,Multifunction Printers,10
+Tefal Notebook 1,1094.43,Tefal,Notebooks,5
+Vanish Notebook 2,1032.06,Vanish,Notebooks,0
+Apple Notebook 3,799.71,Apple,Notebooks,0
+Mattel Notebook 4,279.26,Mattel,Notebooks,0
+Zara Notebook 5,165.76,Zara,Notebooks,0
+Finish Notebook 6,1760.08,Finish,Notebooks,25
+Nivea Notebook 7,1728.01,Nivea,Notebooks,5
+Pampers Notebook 8,974.92,Pampers,Notebooks,0
+Whiskas Notebook 9,1470.02,Whiskas,Notebooks,0
+Pampers Notebook 10,425.98,Pampers,Notebooks,0
+HP Office Chair 1,407.54,HP,Office Chairs,0
+Lenovo Office Chair 2,664.11,Lenovo,Office Chairs,0
+HP Office Chair 3,988.58,HP,Office Chairs,10
+Lenovo Office Chair 4,1704.8,Lenovo,Office Chairs,0
+Dell Office Chair 5,466.68,Dell,Office Chairs,5
+Lenovo Office Chair 6,1910.61,Lenovo,Office Chairs,5
+Lenovo Office Chair 7,483.41,Lenovo,Office Chairs,15
+Lenovo Office Chair 8,1006.28,Lenovo,Office Chairs,15
+HP Office Chair 9,177.84,HP,Office Chairs,20
+Lenovo Office Chair 10,359.89,Lenovo,Office Chairs,0
+Dell Office Monitor 1,1987.49,Dell,Office Monitors,10
+Dell Office Monitor 2,1284.77,Dell,Office Monitors,0
+HP Office Monitor 3,810.09,HP,Office Monitors,0
+Dell Office Monitor 4,521.28,Dell,Office Monitors,0
+HP Office Monitor 5,1812.02,HP,Office Monitors,10
+Lenovo Office Monitor 6,763.63,Lenovo,Office Monitors,25
+Dell Office Monitor 7,1537.81,Dell,Office Monitors,5
+Dell Office Monitor 8,1542.49,Dell,Office Monitors,0
+HP Office Monitor 9,1080.54,HP,Office Monitors,0
+Lenovo Office Monitor 10,416.83,Lenovo,Office Monitors,0
+Nestlé Optical Drive 1,1386.0,Nestlé,Optical Drives,10
+Persil Optical Drive 2,803.77,Persil,Optical Drives,5
+Hasbro Optical Drive 3,568.93,Hasbro,Optical Drives,5
+LG Optical Drive 4,1040.64,LG,Optical Drives,25
+Colgate Optical Drive 5,546.05,Colgate,Optical Drives,5
+Purina Optical Drive 6,1618.19,Purina,Optical Drives,10
+Nikon Optical Drive 7,240.84,Nikon,Optical Drives,0
+Persil Optical Drive 8,356.39,Persil,Optical Drives,15
+H&M Optical Drive 9,1889.39,H&M,Optical Drives,10
+Zara Optical Drive 10,944.83,Zara,Optical Drives,5
+IKEA Outdoor Furniture 1,312.35,IKEA,Outdoor Furniture,10
+IKEA Outdoor Furniture 2,1584.92,IKEA,Outdoor Furniture,5
+IKEA Outdoor Furniture 3,1910.69,IKEA,Outdoor Furniture,10
+IKEA Outdoor Furniture 4,1419.77,IKEA,Outdoor Furniture,10
+IKEA Outdoor Furniture 5,1526.24,IKEA,Outdoor Furniture,0
+IKEA Outdoor Furniture 6,1635.83,IKEA,Outdoor Furniture,25
+IKEA Outdoor Furniture 7,431.79,IKEA,Outdoor Furniture,0
+IKEA Outdoor Furniture 8,595.27,IKEA,Outdoor Furniture,15
+IKEA Outdoor Furniture 9,1347.98,IKEA,Outdoor Furniture,0
+IKEA Outdoor Furniture 10,58.57,IKEA,Outdoor Furniture,0
+L'Oréal Ovens & Stove 1,994.2,L'Oréal,Ovens & Stoves,20
+L'Oréal Ovens & Stove 2,29.56,L'Oréal,Ovens & Stoves,5
+Asus Ovens & Stove 3,1437.21,Asus,Ovens & Stoves,5
+Nestlé Ovens & Stove 4,696.47,Nestlé,Ovens & Stoves,0
+Garnier Ovens & Stove 5,1262.63,Garnier,Ovens & Stoves,0
+HP Ovens & Stove 6,1639.85,HP,Ovens & Stoves,15
+Fisher-Price Ovens & Stove 7,1114.87,Fisher-Price,Ovens & Stoves,0
+Żywiec Zdrój Ovens & Stove 8,1486.43,Żywiec Zdrój,Ovens & Stoves,0
+Pepsi Ovens & Stove 9,1634.11,Pepsi,Ovens & Stoves,10
+Coca-Cola Ovens & Stove 10,1216.69,Coca-Cola,Ovens & Stoves,0
+IKEA Pens & Marker 1,1226.45,IKEA,Pens & Markers,0
+Tefal Pens & Marker 2,451.55,Tefal,Pens & Markers,0
+Purina Pens & Marker 3,929.27,Purina,Pens & Markers,0
+LG Pens & Marker 4,1152.57,LG,Pens & Markers,0
+Tymbark Pens & Marker 5,1325.68,Tymbark,Pens & Markers,0
+Asus Pens & Marker 6,548.24,Asus,Pens & Markers,15
+Winiary Pens & Marker 7,50.38,Winiary,Pens & Markers,5
+Vanish Pens & Marker 8,1057.17,Vanish,Pens & Markers,10
+Colgate Pens & Marker 9,1995.64,Colgate,Pens & Markers,0
+Ariel Pens & Marker 10,339.1,Ariel,Pens & Markers,20
+Garnier Phone Case 1,1903.65,Garnier,Phone Cases,10
+Dove Phone Case 2,1625.51,Dove,Phone Cases,5
+Nike Phone Case 3,636.02,Nike,Phone Cases,10
+Pepsi Phone Case 4,121.64,Pepsi,Phone Cases,0
+IKEA Phone Case 5,414.24,IKEA,Phone Cases,5
+Łowicz Phone Case 6,1201.43,Łowicz,Phone Cases,25
+Hasbro Phone Case 7,1170.63,Hasbro,Phone Cases,25
+Dell Phone Case 8,1263.67,Dell,Phone Cases,10
+Apple Phone Case 9,1560.27,Apple,Phone Cases,20
+Pedigree Phone Case 10,1754.58,Pedigree,Phone Cases,10
+H&M Power Bank 1,1142.34,H&M,Power Banks,0
+Hasbro Power Bank 2,405.39,Hasbro,Power Banks,15
+Persil Power Bank 3,1521.18,Persil,Power Banks,5
+Puma Power Bank 4,1043.43,Puma,Power Banks,10
+Sony Power Bank 5,1481.19,Sony,Power Banks,10
+H&M Power Bank 6,63.73,H&M,Power Banks,15
+Zara Power Bank 7,1071.07,Zara,Power Banks,10
+HP Power Bank 8,1493.4,HP,Power Banks,5
+Samsung Power Bank 9,1376.35,Samsung,Power Banks,0
+Heinz Power Bank 10,1756.06,Heinz,Power Banks,10
+Gillette Power Supplie 1,557.11,Gillette,Power Supplies,5
+Samsung Power Supplie 2,1820.57,Samsung,Power Supplies,5
+Tymbark Power Supplie 3,1480.11,Tymbark,Power Supplies,0
+Adidas Power Supplie 4,28.94,Adidas,Power Supplies,20
+Winiary Power Supplie 5,1196.19,Winiary,Power Supplies,25
+Winiary Power Supplie 6,767.31,Winiary,Power Supplies,10
+LG Power Supplie 7,701.21,LG,Power Supplies,5
+Gillette Power Supplie 8,469.15,Gillette,Power Supplies,5
+Heinz Power Supplie 9,97.32,Heinz,Power Supplies,10
+IKEA Power Supplie 10,1370.68,IKEA,Power Supplies,10
+Puma Processor 1,208.29,Puma,Processors,5
+Gerber Processor 2,1524.2,Gerber,Processors,10
+Maybelline Processor 3,150.16,Maybelline,Processors,0
+Pepsi Processor 4,1791.91,Pepsi,Processors,0
+Apple Processor 5,1811.8,Apple,Processors,0
+Nivea Processor 6,356.22,Nivea,Processors,0
+Coca-Cola Processor 7,130.82,Coca-Cola,Processors,5
+Winiary Processor 8,543.25,Winiary,Processors,0
+Pedigree Processor 9,830.75,Pedigree,Processors,10
+Heinz Processor 10,889.66,Heinz,Processors,0
+Colgate RAM Memory 1,946.57,Colgate,RAM Memory,0
+Purina RAM Memory 2,1453.48,Purina,RAM Memory,10
+Adidas RAM Memory 3,184.65,Adidas,RAM Memory,0
+Łowicz RAM Memory 4,1872.57,Łowicz,RAM Memory,15
+Winiary RAM Memory 5,1440.59,Winiary,RAM Memory,5
+Dove RAM Memory 6,1677.5,Dove,RAM Memory,0
+Pedigree RAM Memory 7,462.81,Pedigree,RAM Memory,25
+Huggies RAM Memory 8,895.08,Huggies,RAM Memory,0
+Maybelline RAM Memory 9,1293.29,Maybelline,RAM Memory,20
+Finish RAM Memory 10,973.34,Finish,RAM Memory,5
+Heinz Refrigerator 1,446.89,Heinz,Refrigerators,0
+Żywiec Zdrój Refrigerator 2,1100.44,Żywiec Zdrój,Refrigerators,0
+Coca-Cola Refrigerator 3,1361.03,Coca-Cola,Refrigerators,10
+Chicco Refrigerator 4,1503.48,Chicco,Refrigerators,5
+Oral-B Refrigerator 5,1067.99,Oral-B,Refrigerators,15
+Nivea Refrigerator 6,811.37,Nivea,Refrigerators,10
+L'Oréal Refrigerator 7,1191.69,L'Oréal,Refrigerators,0
+Tefal Refrigerator 8,1442.51,Tefal,Refrigerators,10
+Puma Refrigerator 9,1573.39,Puma,Refrigerators,5
+Coca-Cola Refrigerator 10,1466.57,Coca-Cola,Refrigerators,25
+Persil SSD 1,617.53,Persil,SSDs,0
+Heinz SSD 2,933.75,Heinz,SSDs,0
+Żywiec Zdrój SSD 3,1443.7,Żywiec Zdrój,SSDs,10
+Tymbark SSD 4,263.14,Tymbark,SSDs,25
+Sony SSD 5,559.42,Sony,SSDs,5
+Pepsi SSD 6,179.55,Pepsi,SSDs,25
+L'Oréal SSD 7,1972.01,L'Oréal,SSDs,0
+Żywiec Zdrój SSD 8,375.39,Żywiec Zdrój,SSDs,10
+Samsung SSD 9,1526.67,Samsung,SSDs,0
+Levi's SSD 10,1783.21,Levi's,SSDs,15
+Hasbro Samsung Phone 1,1698.95,Hasbro,Samsung Phones,10
+Ariel Samsung Phone 2,27.39,Ariel,Samsung Phones,5
+Whiskas Samsung Phone 3,110.8,Whiskas,Samsung Phones,15
+Bosch Samsung Phone 4,617.77,Bosch,Samsung Phones,0
+L'Oréal Samsung Phone 5,1274.83,L'Oréal,Samsung Phones,0
+Mattel Samsung Phone 6,1883.59,Mattel,Samsung Phones,0
+Oral-B Samsung Phone 7,442.67,Oral-B,Samsung Phones,5
+IKEA Samsung Phone 8,1681.45,IKEA,Samsung Phones,15
+Finish Samsung Phone 9,479.5,Finish,Samsung Phones,0
+Canon Samsung Phone 10,1628.46,Canon,Samsung Phones,25
+Łowicz Samsung Watch 1,1420.85,Łowicz,Samsung Watch,0
+Lenovo Samsung Watch 2,1354.8,Lenovo,Samsung Watch,10
+Levi's Samsung Watch 3,594.98,Levi's,Samsung Watch,5
+LG Samsung Watch 4,1368.15,LG,Samsung Watch,15
+Gillette Samsung Watch 5,889.75,Gillette,Samsung Watch,10
+Heinz Samsung Watch 6,69.86,Heinz,Samsung Watch,10
+Persil Samsung Watch 7,1867.37,Persil,Samsung Watch,0
+Nike Samsung Watch 8,1246.73,Nike,Samsung Watch,0
+HP Samsung Watch 9,163.76,HP,Samsung Watch,20
+Chicco Samsung Watch 10,1312.92,Chicco,Samsung Watch,15
+Dell Scanner 1,1616.52,Dell,Scanners,20
+Maybelline Scanner 2,1765.3,Maybelline,Scanners,15
+Fisher-Price Scanner 3,1124.76,Fisher-Price,Scanners,0
+Ariel Scanner 4,202.45,Ariel,Scanners,20
+H&M Scanner 5,1382.18,H&M,Scanners,10
+Nestlé Scanner 6,759.67,Nestlé,Scanners,5
+Nike Scanner 7,179.8,Nike,Scanners,0
+Pampers Scanner 8,613.92,Pampers,Scanners,0
+Vanish Scanner 9,1813.8,Vanish,Scanners,10
+Tymbark Scanner 10,1721.56,Tymbark,Scanners,0
+Purina Service and Network Tool 1,1549.89,Purina,Service and Network Tools,10
+Dove Service and Network Tool 2,1905.9,Dove,Service and Network Tools,15
+HP Service and Network Tool 3,135.92,HP,Service and Network Tools,5
+L'Oréal Service and Network Tool 4,805.54,L'Oréal,Service and Network Tools,0
+Oral-B Service and Network Tool 5,899.58,Oral-B,Service and Network Tools,0
+Tefal Service and Network Tool 6,1702.34,Tefal,Service and Network Tools,5
+Dell Service and Network Tool 7,1277.27,Dell,Service and Network Tools,15
+Winiary Service and Network Tool 8,910.56,Winiary,Service and Network Tools,0
+Mattel Service and Network Tool 9,1109.76,Mattel,Service and Network Tools,0
+Dell Service and Network Tool 10,640.87,Dell,Service and Network Tools,5
+L'Oréal Skincare 1,1541.5,L'Oréal,Skincare,0
+Pedigree Skincare 2,1720.85,Pedigree,Skincare,0
+Dove Skincare 3,870.6,Dove,Skincare,0
+Pedigree Skincare 4,1091.28,Pedigree,Skincare,0
+Nestlé Skincare 5,418.23,Nestlé,Skincare,15
+Dove Skincare 6,603.65,Dove,Skincare,5
+Colgate Skincare 7,1462.67,Colgate,Skincare,0
+Nivea Skincare 8,672.53,Nivea,Skincare,25
+Bosch Skincare 9,866.58,Bosch,Skincare,15
+LG Skincare 10,611.51,LG,Skincare,5
+Samsung Sleeping Bag 1,1378.39,Samsung,Sleeping Bags,5
+Pampers Sleeping Bag 2,1459.81,Pampers,Sleeping Bags,10
+LG Sleeping Bag 3,1255.32,LG,Sleeping Bags,10
+Apple Sleeping Bag 4,688.59,Apple,Sleeping Bags,25
+Apple Sleeping Bag 5,333.4,Apple,Sleeping Bags,0
+Chicco Sleeping Bag 6,1936.99,Chicco,Sleeping Bags,0
+Coca-Cola Sleeping Bag 7,1944.43,Coca-Cola,Sleeping Bags,10
+Vanish Sleeping Bag 8,328.92,Vanish,Sleeping Bags,0
+Canon Sleeping Bag 9,1276.92,Canon,Sleeping Bags,5
+Philips Sleeping Bag 10,354.19,Philips,Sleeping Bags,5
+LG Smart TV 1,805.29,LG,Smart TVs,0
+LG Smart TV 2,1916.99,LG,Smart TVs,0
+LG Smart TV 3,1092.48,LG,Smart TVs,5
+LG Smart TV 4,1956.43,LG,Smart TVs,5
+Samsung Smart TV 5,1963.53,Samsung,Smart TVs,25
+LG Smart TV 6,1068.21,LG,Smart TVs,10
+LG Smart TV 7,859.89,LG,Smart TVs,5
+Samsung Smart TV 8,346.59,Samsung,Smart TVs,0
+LG Smart TV 9,1384.7,LG,Smart TVs,25
+LG Smart TV 10,1621.26,LG,Smart TVs,5
+Whiskas Sofas & Couche 1,1140.27,Whiskas,Sofas & Couches,0
+Lenovo Sofas & Couche 2,858.79,Lenovo,Sofas & Couches,15
+Colgate Sofas & Couche 3,1720.22,Colgate,Sofas & Couches,10
+Finish Sofas & Couche 4,948.2,Finish,Sofas & Couches,5
+Tefal Sofas & Couche 5,900.57,Tefal,Sofas & Couches,0
+Tefal Sofas & Couche 6,1362.92,Tefal,Sofas & Couches,0
+Heinz Sofas & Couche 7,574.58,Heinz,Sofas & Couches,5
+Nivea Sofas & Couche 8,903.48,Nivea,Sofas & Couches,0
+Zara Sofas & Couche 9,760.6,Zara,Sofas & Couches,15
+Pedigree Sofas & Couche 10,229.21,Pedigree,Sofas & Couches,10
+Samsung Sound Card 1,1945.31,Samsung,Sound Cards,5
+Asus Sound Card 2,1098.44,Asus,Sound Cards,5
+Sony Sound Card 3,1293.0,Sony,Sound Cards,10
+Winiary Sound Card 4,246.8,Winiary,Sound Cards,10
+Adidas Sound Card 5,601.83,Adidas,Sound Cards,0
+L'Oréal Sound Card 6,351.64,L'Oréal,Sound Cards,10
+Persil Sound Card 7,1975.01,Persil,Sound Cards,0
+Gerber Sound Card 8,1721.99,Gerber,Sound Cards,10
+Lego Sound Card 9,1483.41,Lego,Sound Cards,0
+Nike Sound Card 10,752.51,Nike,Sound Cards,10
+Fisher-Price Soundbar 1,906.49,Fisher-Price,Soundbars,15
+Fisher-Price Soundbar 2,1337.62,Fisher-Price,Soundbars,5
+Gillette Soundbar 3,636.29,Gillette,Soundbars,10
+HP Soundbar 4,1220.08,HP,Soundbars,10
+Nestlé Soundbar 5,1263.62,Nestlé,Soundbars,15
+IKEA Soundbar 6,1910.55,IKEA,Soundbars,0
+Zara Soundbar 7,142.98,Zara,Soundbars,20
+Whiskas Soundbar 8,1777.05,Whiskas,Soundbars,0
+Łowicz Soundbar 9,173.42,Łowicz,Soundbars,5
+HP Soundbar 10,1238.73,HP,Soundbars,0
+Nivea Streaming Accessorie 1,1908.28,Nivea,Streaming Accessories,0
+Adidas Streaming Accessorie 2,778.43,Adidas,Streaming Accessories,0
+Gillette Streaming Accessorie 3,943.02,Gillette,Streaming Accessories,10
+Dell Streaming Accessorie 4,1361.42,Dell,Streaming Accessories,10
+Nestlé Streaming Accessorie 5,1084.94,Nestlé,Streaming Accessories,5
+Colgate Streaming Accessorie 6,1812.6,Colgate,Streaming Accessories,5
+Asus Streaming Accessorie 7,589.57,Asus,Streaming Accessories,0
+Asus Streaming Accessorie 8,1547.22,Asus,Streaming Accessories,10
+Colgate Streaming Accessorie 9,323.07,Colgate,Streaming Accessories,25
+Zara Streaming Accessorie 10,583.1,Zara,Streaming Accessories,15
+Canon Tables & Chair 1,737.38,Canon,Tables & Chairs,10
+Pedigree Tables & Chair 2,604.49,Pedigree,Tables & Chairs,10
+Colgate Tables & Chair 3,1660.15,Colgate,Tables & Chairs,10
+Adidas Tables & Chair 4,613.57,Adidas,Tables & Chairs,10
+Pampers Tables & Chair 5,217.12,Pampers,Tables & Chairs,10
+Dell Tables & Chair 6,494.55,Dell,Tables & Chairs,0
+Sony Tables & Chair 7,1374.55,Sony,Tables & Chairs,10
+IKEA Tables & Chair 8,289.75,IKEA,Tables & Chairs,20
+Coca-Cola Tables & Chair 9,1201.92,Coca-Cola,Tables & Chairs,10
+Puma Tables & Chair 10,1029.34,Puma,Tables & Chairs,5
+Whiskas Tent 1,1465.44,Whiskas,Tents,15
+Fisher-Price Tent 2,356.07,Fisher-Price,Tents,0
+Vanish Tent 3,1291.55,Vanish,Tents,10
+Nike Tent 4,1653.27,Nike,Tents,0
+Gillette Tent 5,429.57,Gillette,Tents,10
+Tymbark Tent 6,1558.87,Tymbark,Tents,5
+Vanish Tent 7,1398.5,Vanish,Tents,25
+Dove Tent 8,583.16,Dove,Tents,10
+Chicco Tent 9,1749.7,Chicco,Tents,0
+Huggies Tent 10,1303.66,Huggies,Tents,25
+Lenovo Thermal Pad 1,380.97,Lenovo,Thermal Pads,5
+LG Thermal Pad 2,756.36,LG,Thermal Pads,5
+Maybelline Thermal Pad 3,1995.19,Maybelline,Thermal Pads,15
+Asus Thermal Pad 4,1057.24,Asus,Thermal Pads,0
+Puma Thermal Pad 5,340.92,Puma,Thermal Pads,15
+IKEA Thermal Pad 6,860.84,IKEA,Thermal Pads,0
+IKEA Thermal Pad 7,1496.7,IKEA,Thermal Pads,0
+Pampers Thermal Pad 8,1152.07,Pampers,Thermal Pads,5
+Żywiec Zdrój Thermal Pad 9,1904.01,Żywiec Zdrój,Thermal Pads,0
+Whiskas Thermal Pad 10,1245.21,Whiskas,Thermal Pads,15
+Sony Thermal Paste 1,1574.43,Sony,Thermal Pastes,5
+Canon Thermal Paste 2,273.78,Canon,Thermal Pastes,0
+Fisher-Price Thermal Paste 3,246.42,Fisher-Price,Thermal Pastes,0
+Żywiec Zdrój Thermal Paste 4,977.35,Żywiec Zdrój,Thermal Pastes,5
+Coca-Cola Thermal Paste 5,1046.52,Coca-Cola,Thermal Pastes,10
+Purina Thermal Paste 6,949.77,Purina,Thermal Pastes,15
+Garnier Thermal Paste 7,1849.85,Garnier,Thermal Pastes,0
+Dell Thermal Paste 8,1170.3,Dell,Thermal Pastes,20
+Sony Thermal Paste 9,219.48,Sony,Thermal Pastes,0
+Levi's Thermal Paste 10,1993.68,Levi's,Thermal Pastes,15
+Bosch Thermometer 1,684.96,Bosch,Thermometers,0
+H&M Thermometer 2,817.72,H&M,Thermometers,25
+Finish Thermometer 3,873.12,Finish,Thermometers,15
+Nivea Thermometer 4,1056.21,Nivea,Thermometers,0
+Asus Thermometer 5,1077.68,Asus,Thermometers,0
+Asus Thermometer 6,1642.83,Asus,Thermometers,0
+Tymbark Thermometer 7,1739.13,Tymbark,Thermometers,10
+Fisher-Price Thermometer 8,631.75,Fisher-Price,Thermometers,0
+Hasbro Thermometer 9,1327.57,Hasbro,Thermometers,5
+Hasbro Thermometer 10,61.94,Hasbro,Thermometers,5
+Levi's Toasters & Sandwich Maker 1,1824.44,Levi's,Toasters & Sandwich Makers,10
+Oral-B Toasters & Sandwich Maker 2,1812.22,Oral-B,Toasters & Sandwich Makers,25
+Levi's Toasters & Sandwich Maker 3,1557.84,Levi's,Toasters & Sandwich Makers,0
+Fisher-Price Toasters & Sandwich Maker 4,1692.48,Fisher-Price,Toasters & Sandwich Makers,0
+Huggies Toasters & Sandwich Maker 5,167.12,Huggies,Toasters & Sandwich Makers,0
+Vanish Toasters & Sandwich Maker 6,1631.35,Vanish,Toasters & Sandwich Makers,0
+Huggies Toasters & Sandwich Maker 7,1524.78,Huggies,Toasters & Sandwich Makers,15
+Vanish Toasters & Sandwich Maker 8,1621.84,Vanish,Toasters & Sandwich Makers,5
+Gerber Toasters & Sandwich Maker 9,611.56,Gerber,Toasters & Sandwich Makers,0
+Whiskas Toasters & Sandwich Maker 10,1558.55,Whiskas,Toasters & Sandwich Makers,5
+Żywiec Zdrój Treadmill 1,670.79,Żywiec Zdrój,Treadmills,0
+Gerber Treadmill 2,1681.71,Gerber,Treadmills,0
+Canon Treadmill 3,1367.58,Canon,Treadmills,0
+Pepsi Treadmill 4,1194.93,Pepsi,Treadmills,0
+Colgate Treadmill 5,211.98,Colgate,Treadmills,0
+LG Treadmill 6,87.95,LG,Treadmills,0
+Bosch Treadmill 7,798.01,Bosch,Treadmills,25
+Tefal Treadmill 8,1483.75,Tefal,Treadmills,5
+Hasbro Treadmill 9,1465.38,Hasbro,Treadmills,5
+Nivea Treadmill 10,1818.78,Nivea,Treadmills,0
+Gillette Tripod 1,760.74,Gillette,Tripods,25
+Nikon Tripod 2,400.3,Nikon,Tripods,10
+Heinz Tripod 3,1485.36,Heinz,Tripods,0
+Pampers Tripod 4,1954.38,Pampers,Tripods,0
+Sony Tripod 5,825.59,Sony,Tripods,0
+Fisher-Price Tripod 6,1195.49,Fisher-Price,Tripods,0
+Nikon Tripod 7,1441.7,Nikon,Tripods,15
+Coca-Cola Tripod 8,524.24,Coca-Cola,Tripods,0
+Nikon Tripod 9,862.17,Nikon,Tripods,0
+LG Tripod 10,255.59,LG,Tripods,25
+Canon Ultrabook 1,166.37,Canon,Ultrabooks,5
+Łowicz Ultrabook 2,338.41,Łowicz,Ultrabooks,10
+Philips Ultrabook 3,552.87,Philips,Ultrabooks,0
+Zara Ultrabook 4,1066.98,Zara,Ultrabooks,0
+Nikon Ultrabook 5,1389.61,Nikon,Ultrabooks,0
+Canon Ultrabook 6,1469.23,Canon,Ultrabooks,0
+Lenovo Ultrabook 7,1531.53,Lenovo,Ultrabooks,15
+Chicco Ultrabook 8,72.02,Chicco,Ultrabooks,10
+Nestlé Ultrabook 9,702.8,Nestlé,Ultrabooks,0
+Samsung Ultrabook 10,1565.51,Samsung,Ultrabooks,10
+Levi's Washing Machine 1,1988.09,Levi's,Washing Machines,0
+Vanish Washing Machine 2,1633.27,Vanish,Washing Machines,25
+Sony Washing Machine 3,1744.34,Sony,Washing Machines,0
+Samsung Washing Machine 4,1848.38,Samsung,Washing Machines,5
+Łowicz Washing Machine 5,29.07,Łowicz,Washing Machines,0
+Winiary Washing Machine 6,446.94,Winiary,Washing Machines,0
+Pepsi Washing Machine 7,280.12,Pepsi,Washing Machines,15
+L'Oréal Washing Machine 8,311.86,L'Oréal,Washing Machines,5
+Purina Washing Machine 9,1360.03,Purina,Washing Machines,10
+HP Washing Machine 10,1896.24,HP,Washing Machines,5
+Garnier Water Cooling Kit 1,1547.59,Garnier,Water Cooling Kits,10
+Tymbark Water Cooling Kit 2,1918.95,Tymbark,Water Cooling Kits,0
+Żywiec Zdrój Water Cooling Kit 3,1216.19,Żywiec Zdrój,Water Cooling Kits,10
+Samsung Water Cooling Kit 4,262.51,Samsung,Water Cooling Kits,15
+Philips Water Cooling Kit 5,948.87,Philips,Water Cooling Kits,10
+Oral-B Water Cooling Kit 6,1880.75,Oral-B,Water Cooling Kits,0
+Maybelline Water Cooling Kit 7,145.87,Maybelline,Water Cooling Kits,0
+Asus Water Cooling Kit 8,110.77,Asus,Water Cooling Kits,0
+Heinz Water Cooling Kit 9,1502.22,Heinz,Water Cooling Kits,10
+Pampers Water Cooling Kit 10,1972.26,Pampers,Water Cooling Kits,0
+Dove Webcam 1,591.42,Dove,Webcams,0
+Samsung Webcam 2,333.73,Samsung,Webcams,5
+Zara Webcam 3,562.63,Zara,Webcams,10
+Huggies Webcam 4,488.37,Huggies,Webcams,5
+Finish Webcam 5,1497.14,Finish,Webcams,25
+Łowicz Webcam 6,37.13,Łowicz,Webcams,0
+Tymbark Webcam 7,206.4,Tymbark,Webcams,0
+Puma Webcam 8,1681.17,Puma,Webcams,10
+L'Oréal Webcam 9,1409.8,L'Oréal,Webcams,10
+Chicco Webcam 10,1631.16,Chicco,Webcams,5
+Bosch Xiaomi Phone 1,688.72,Bosch,Xiaomi Phones,15
+Gillette Xiaomi Phone 2,110.0,Gillette,Xiaomi Phones,0
+Levi's Xiaomi Phone 3,1147.94,Levi's,Xiaomi Phones,0
+Mattel Xiaomi Phone 4,56.97,Mattel,Xiaomi Phones,25
+Gillette Xiaomi Phone 5,1994.87,Gillette,Xiaomi Phones,5
+Pedigree Xiaomi Phone 6,1542.23,Pedigree,Xiaomi Phones,0
+Dove Xiaomi Phone 7,142.6,Dove,Xiaomi Phones,25
+Whiskas Xiaomi Phone 8,443.29,Whiskas,Xiaomi Phones,0
+Heinz Xiaomi Phone 9,1208.44,Heinz,Xiaomi Phones,10
+Lego Xiaomi Phone 10,1723.17,Lego,Xiaomi Phones,15
+L'Oréal iPhone 1,1447.72,L'Oréal,iPhones,20
+Fisher-Price iPhone 2,138.09,Fisher-Price,iPhones,25
+Apple iPhone 3,1880.14,Apple,iPhones,5
+Adidas iPhone 4,1851.62,Adidas,iPhones,10
+Samsung iPhone 5,1342.48,Samsung,iPhones,10
+Tefal iPhone 6,1624.42,Tefal,iPhones,5
+Sony iPhone 7,1347.5,Sony,iPhones,15
+Dove iPhone 8,1003.25,Dove,iPhones,0
+Chicco iPhone 9,503.61,Chicco,iPhones,0
+Dell iPhone 10,1596.58,Dell,iPhones,5

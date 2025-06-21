@@ -1,96 +1,139 @@
 categoryName,parentCategoryName
-Electronics,
-Smartphones,Electronics
-Android Phones,Smartphones
-iPhones,Smartphones
-Tablets,Electronics
-Charging Accessories,Electronics
-Chargers,Charging Accessories
-Headphones,Electronics
-Bluetooth Speakers,Electronics
-Microphones,Electronics
-TV,Electronics
-4K TVs,TV
-LED TVs,TV
-Cameras,Electronics
-Action Cameras,Cameras
-DSLR,Cameras
-Mirrorless,Cameras
-Audio,Electronics
+Computer Components,
+Computers,
+Smartphones,
+Smartwatches,
+TV & Audio,
+Photo & Cameras,
+Large Appliances,
+Small Appliances,
 Home & Garden,
-Furniture,Home & Garden
-Living Room,Furniture
-Sofas,Living Room
-Armchairs,Living Room
-Coffee Tables,Living Room
-Bedroom,Furniture
-Beds,Bedroom
-Wardrobes,Bedroom
-Lighting,Home & Garden
-Table Lamps,Lighting
-Desk Lamps,Lighting
-Kitchen,Home & Garden
-Appliances,Kitchen
-Cookware,Kitchen
-Garden,Home & Garden
-Garden Tools,Garden
-Seeds,Garden
-Plants,Garden
-Outdoor Play,Home & Garden
-Sports & Outdoors,
-Fitness,Sports & Outdoors
-Gym Equipment,Fitness
-Yoga,Fitness
-Cycling,Sports & Outdoors
-Helmets,Cycling
-Backpacks,Camping & Hiking
-Camping & Hiking,Sports & Outdoors
-Tents,Camping & Hiking
-Sleeping Bags,Camping & Hiking
-Clothing,
-Men,Clothing
-"Clothing (Men)",Men
-Shirts,"Clothing (Men)"
-Jeans,"Clothing (Men)"
-Suits,"Clothing (Men)"
-"Shoes (Men)",Men
-Women,Clothing
-"Clothing (Women)",Women
-Dresses,"Clothing (Women)"
-Skirts,"Clothing (Women)"
-Tops,"Clothing (Women)"
-"Heels","Shoes (Women)"
-Flats,"Shoes (Women)"
-Bags,Women
-Kids,Clothing
-Boys,Kids
-Girls,Kids
-Shirts,Boys
-Jeans,Boys
-Dresses,Girls
 Beauty & Health,
-Skincare,Beauty & Health
-Makeup,Beauty & Health
-Hair Care,Beauty & Health
-Vitamins & Supplements,Beauty & Health
-Toys & Games,
-Building Sets,Toys & Games
-Dolls,Toys & Games
-Puzzles,Toys & Games
-Outdoor Play,Toys & Games
-Books,
-Fiction,Books
-Science Fiction,Fiction
-Fantasy,Fiction
-Non-fiction,Books
-Biographies,Non-fiction
-Business,Non-fiction
-Children's Books,Books
-Education,Books
-Office Supplies,
-Writing,Office Supplies
-Pens & Pencils,Writing
-Notebooks,Writing
-Organization,Office Supplies
-Folders,Organization
-Desk Accessories,Organization
+Sports & Outdoors,
+Office & Business,
+
+Computer Parts,Computer Components
+SSDs,Computer Parts
+HDDs,Computer Parts
+Sound Cards,Computer Parts
+Graphics Cards,Computer Parts
+Optical Drives,Computer Parts
+Computer Cases,Computer Parts
+RAM Memory,Computer Parts
+Motherboards,Computer Parts
+Processors,Computer Parts
+Power Supplies,Computer Parts
+
+Computer Cooling,Computer Components
+CPU Cooling,Computer Cooling
+Water Cooling Kits,Computer Cooling
+Thermal Pastes,Computer Cooling
+Thermal Pads,Computer Cooling
+Computer Fans,Computer Cooling
+
+Cables & Accessories,Computer Components
+Accessories for Cases and Components,Cables & Accessories
+Streaming Accessories,Cables & Accessories
+Gaming Lighting,Cables & Accessories
+Computer Cables and Adapters,Cables & Accessories
+Service and Network Tools,Cables & Accessories
+Cleaning Products,Cables & Accessories
+
+Laptops,Computers
+Gaming Laptops,Laptops
+Business Laptops,Laptops
+Ultrabooks,Laptops
+Desktops,Computers
+Mini PCs,Desktops
+All-in-One PCs,Desktops
+Monitors,Computers
+Gaming Monitors,Monitors
+Office Monitors,Monitors
+Computer Accessories,Computers
+Keyboards,Computer Accessories
+Mice,Computer Accessories
+Webcams,Computer Accessories
+
+Smartphones by Brand,Smartphones
+iPhones,Smartphones by Brand
+Samsung Phones,Smartphones by Brand
+Xiaomi Phones,Smartphones by Brand
+Smartphone Accessories,Smartphones
+Phone Cases,Smartphone Accessories
+Chargers & Cables,Smartphone Accessories
+Power Banks,Smartphone Accessories
+
+Smartwatches by Brand,Smartwatches
+Apple Watch,Smartwatches by Brand
+Samsung Watch,Smartwatches by Brand
+Fitness Bands,Smartwatches
+
+TVs,TV & Audio
+Smart TVs,TVs
+4K TVs,TVs
+Audio Systems,TV & Audio
+Soundbars,Audio Systems
+Home Theater Systems,Audio Systems
+Headphones & Earbuds,TV & Audio
+
+Cameras,Photo & Cameras
+DSLR Cameras,Cameras
+Mirrorless Cameras,Cameras
+Compact Cameras,Cameras
+Camera Accessories,Photo & Cameras
+Tripods,Camera Accessories
+Camera Bags,Camera Accessories
+Lenses,Camera Accessories
+
+Refrigerators,Large Appliances
+Washing Machines,Large Appliances
+Dryers,Large Appliances
+Dishwashers,Large Appliances
+Ovens & Stoves,Large Appliances
+
+Kitchen Appliances,Small Appliances
+Microwaves,Kitchen Appliances
+Toasters & Sandwich Makers,Kitchen Appliances
+Coffee Machines,Kitchen Appliances
+Personal Care Appliances,Small Appliances
+Hair Dryers,Personal Care Appliances
+Electric Shavers,Personal Care Appliances
+
+Furniture,Home & Garden
+Sofas & Couches,Furniture
+Tables & Chairs,Furniture
+Lighting,Home & Garden
+Lamps,Lighting
+Ceiling Lights,Lighting
+Garden Tools,Home & Garden
+Outdoor Furniture,Garden Tools
+
+Personal Care,Beauty & Health
+Skincare,Personal Care
+Haircare,Personal Care
+Cosmetics,Beauty & Health
+Makeup,Cosmetics
+Fragrances,Cosmetics
+Health Devices,Beauty & Health
+Blood Pressure Monitors,Health Devices
+Thermometers,Health Devices
+
+Fitness Equipment,Sports & Outdoors
+Treadmills,Fitness Equipment
+Dumbbells,Fitness Equipment
+Cycling,Sports & Outdoors
+Bicycles,Cycling
+Helmets,Cycling
+Camping Gear,Sports & Outdoors
+Tents,Camping Gear
+Sleeping Bags,Camping Gear
+
+Office Furniture,Office & Business
+Office Chairs,Office Furniture
+Desks,Office Furniture
+Printers & Scanners,Office & Business
+Multifunction Printers,Printers & Scanners
+Scanners,Printers & Scanners
+Stationery,Office & Business
+Notebooks,Stationery
+Pens & Markers,Stationery
