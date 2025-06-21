@@ -20,16 +20,16 @@ public class AddProductToCartRequestDto {
             description = "Id of product to add to cart",
             example = "1"
     )
-    @NotNull(message = ProductMessages.PRODUCT_ID_CANNOT_BE_NULL)
+    @NotNull
     @JsonProperty("product_id")
     private Long productId;
 
     @Schema(
-            description = "Quantity of products to add",
+            description = "Quantity of products to add to cart",
             example = "1",
             minimum = "1"
     )
-    @NotNull(message = ProductMessages.PRODUCT_QUANTITY_CANNOT_BE_NULL)
+    @NotNull
     @Min(value = 1, message = ProductMessages.PRODUCT_QUANTITY_MUST_BE_GREATER_THAN_ZERO)
     @JsonProperty("product_quantity")
     private Long productQuantity;

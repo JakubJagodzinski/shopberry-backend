@@ -30,33 +30,33 @@ public class Complaint {
     private Product product;
 
     @Column(length = 500)
-    private String info = "";
+    private String info = null;
 
-    @Column(name = "first_name", length = 30)
+    @Column(name = "first_name", nullable = false, length = 30)
     private String firstName;
 
-    @Column(name = "last_name", length = 40)
+    @Column(name = "last_name", nullable = false, length = 40)
     private String lastName;
 
     @Column(length = 15)
-    private String nip;
+    private String nip = null;
 
-    @Column(length = 100)
+    @Column(length = 100, nullable = false)
     private String city;
 
-    @Column(name = "postal_code", length = 20)
+    @Column(name = "postal_code", nullable = false, length = 20)
     private String postalCode;
 
-    @Column(length = 100)
+    @Column(length = 100, nullable = false)
     private String street;
 
-    @Column(name = "house_number", length = 10)
+    @Column(name = "house_number", nullable = false, length = 10)
     private String houseNumber;
 
     @Column(length = 10)
-    private String apartment;
+    private String apartment = null;
 
-    @Column(name = "phone_number", length = 15)
+    @Column(name = "phone_number", nullable = false, length = 15)
     private String phoneNumber;
 
 }

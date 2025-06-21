@@ -1,7 +1,6 @@
 package com.example.shopberry.domain.customeraddresses;
 
 import com.example.shopberry.common.constants.messages.CustomerMessages;
-import com.example.shopberry.common.constants.messages.UserMessages;
 import com.example.shopberry.domain.customeraddresses.dto.CreateCustomerAddressRequestDto;
 import com.example.shopberry.domain.customeraddresses.dto.CustomerAddressDtoMapper;
 import com.example.shopberry.domain.customeraddresses.dto.CustomerAddressResponseDto;
@@ -49,20 +48,20 @@ public class CustomerAddressService {
         CustomerAddress customerAddress = new CustomerAddress();
 
         customerAddress.setCustomer(customer);
-        customerAddress.setFirstName(createCustomerAddressRequestDto.getFirstName());
-        customerAddress.setLastName(createCustomerAddressRequestDto.getLastName());
-        customerAddress.setCity(createCustomerAddressRequestDto.getCity());
-        customerAddress.setPostalCode(createCustomerAddressRequestDto.getPostalCode());
-        customerAddress.setStreet(createCustomerAddressRequestDto.getStreet());
-        customerAddress.setHouseNumber(createCustomerAddressRequestDto.getHouseNumber());
-        customerAddress.setApartment(createCustomerAddressRequestDto.getApartment());
-        customerAddress.setPhoneNumber(createCustomerAddressRequestDto.getPhoneNumber());
+        customerAddress.setFirstName(createCustomerAddressRequestDto.getFirstName().trim());
+        customerAddress.setLastName(createCustomerAddressRequestDto.getLastName().trim());
+        customerAddress.setCity(createCustomerAddressRequestDto.getCity().trim());
+        customerAddress.setPostalCode(createCustomerAddressRequestDto.getPostalCode().trim());
+        customerAddress.setStreet(createCustomerAddressRequestDto.getStreet().trim());
+        customerAddress.setHouseNumber(createCustomerAddressRequestDto.getHouseNumber().trim());
+        customerAddress.setApartment(createCustomerAddressRequestDto.getApartment().trim());
+        customerAddress.setPhoneNumber(createCustomerAddressRequestDto.getPhoneNumber().trim());
 
         return customerAddressDtoMapper.toDto(customerAddressRepository.save(customerAddress));
     }
 
     @Transactional
-    public CustomerAddressResponseDto updateAddressById(Long customerAddressId, UpdateCustomerAddressRequestDto updateCustomerAddressRequestDto) throws EntityNotFoundException, IllegalArgumentException {
+    public CustomerAddressResponseDto updateAddressById(Long customerAddressId, UpdateCustomerAddressRequestDto updateCustomerAddressRequestDto) throws EntityNotFoundException {
         CustomerAddress customerAddress = customerAddressRepository.findById(customerAddressId).orElse(null);
 
         if (customerAddress == null) {
@@ -70,43 +69,35 @@ public class CustomerAddressService {
         }
 
         if (updateCustomerAddressRequestDto.getFirstName() != null) {
-            if (updateCustomerAddressRequestDto.getFirstName().isEmpty()) {
-                throw new IllegalArgumentException(UserMessages.FIRST_NAME_CANNOT_BE_EMPTY_MESSAGE);
-            }
-
-            customerAddress.setFirstName(updateCustomerAddressRequestDto.getFirstName());
+            customerAddress.setFirstName(updateCustomerAddressRequestDto.getFirstName().trim());
         }
 
         if (updateCustomerAddressRequestDto.getLastName() != null) {
-            if (updateCustomerAddressRequestDto.getLastName().isEmpty()) {
-                throw new IllegalArgumentException(UserMessages.LAST_NAME_CANNOT_BE_EMPTY_MESSAGE);
-            }
-
-            customerAddress.setLastName(updateCustomerAddressRequestDto.getLastName());
+            customerAddress.setLastName(updateCustomerAddressRequestDto.getLastName().trim());
         }
 
         if (updateCustomerAddressRequestDto.getCity() != null) {
-            customerAddress.setCity(updateCustomerAddressRequestDto.getCity());
+            customerAddress.setCity(updateCustomerAddressRequestDto.getCity().trim());
         }
 
         if (updateCustomerAddressRequestDto.getPostalCode() != null) {
-            customerAddress.setPostalCode(updateCustomerAddressRequestDto.getPostalCode());
+            customerAddress.setPostalCode(updateCustomerAddressRequestDto.getPostalCode().trim());
         }
 
         if (updateCustomerAddressRequestDto.getStreet() != null) {
-            customerAddress.setStreet(updateCustomerAddressRequestDto.getStreet());
+            customerAddress.setStreet(updateCustomerAddressRequestDto.getStreet().trim());
         }
 
         if (updateCustomerAddressRequestDto.getHouseNumber() != null) {
-            customerAddress.setHouseNumber(updateCustomerAddressRequestDto.getHouseNumber());
+            customerAddress.setHouseNumber(updateCustomerAddressRequestDto.getHouseNumber().trim());
         }
 
         if (updateCustomerAddressRequestDto.getApartment() != null) {
-            customerAddress.setApartment(updateCustomerAddressRequestDto.getApartment());
+            customerAddress.setApartment(updateCustomerAddressRequestDto.getApartment().trim());
         }
 
         if (updateCustomerAddressRequestDto.getPhoneNumber() != null) {
-            customerAddress.setPhoneNumber(updateCustomerAddressRequestDto.getPhoneNumber());
+            customerAddress.setPhoneNumber(updateCustomerAddressRequestDto.getPhoneNumber().trim());
         }
 
         return customerAddressDtoMapper.toDto(customerAddressRepository.save(customerAddress));

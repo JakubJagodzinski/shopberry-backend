@@ -1,6 +1,5 @@
 package com.example.shopberry.domain.categories.dto;
 
-import com.example.shopberry.common.constants.messages.CategoryMessages;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
@@ -19,13 +18,14 @@ public class CreateCategoryRequestDto {
             description = "Unique name of the category",
             example = "Electronics"
     )
-    @NotBlank(message = CategoryMessages.CATEGORY_NAME_CANNOT_BE_BLANK)
+    @NotBlank
     @JsonProperty("category_name")
     private String categoryName;
 
     @Schema(
             description = "Id of another category to be set as a parent for this one",
             example = "1",
+            defaultValue = "null",
             nullable = true
     )
     @JsonProperty("parent_category_id")

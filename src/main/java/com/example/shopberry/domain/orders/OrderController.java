@@ -5,9 +5,11 @@ import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.orders.dto.CreateOrderRequestDto;
 import com.example.shopberry.domain.orders.dto.OrderResponseDto;
 import com.example.shopberry.user.Permission;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -17,6 +19,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/v1")
 @RequiredArgsConstructor
+@Validated
 public class OrderController {
 
     private final OrderService orderService;
@@ -53,7 +56,7 @@ public class OrderController {
 
     @CheckPermission(Permission.ORDER_CREATE)
     @PostMapping("/orders")
-    public ResponseEntity<OrderResponseDto> createOrder(@RequestBody CreateOrderRequestDto createOrderRequestDto) {
+    public ResponseEntity<OrderResponseDto> createOrder(@Valid @RequestBody CreateOrderRequestDto createOrderRequestDto) {
         OrderResponseDto createdOrderResponseDto = orderService.createOrder(createOrderRequestDto);
 
         return ResponseEntity

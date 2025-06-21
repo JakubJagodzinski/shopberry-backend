@@ -37,31 +37,35 @@ public class ProductService {
     }
 
     @Transactional
-    public ProductResponseDto createProduct(CreateProductRequestDto createProductRequestDto) throws EntityExistsException, IllegalArgumentException {
-        if (productRepository.existsByProductName(createProductRequestDto.getProductName())) {
+    public ProductResponseDto createProduct(CreateProductRequestDto createProductRequestDto) throws EntityExistsException {
+        String productName = createProductRequestDto.getProductName().trim();
+
+        if (productRepository.existsByProductName(productName)) {
             throw new EntityExistsException(ProductMessages.PRODUCT_WITH_THAT_NAME_ALREADY_EXISTS);
-        }
-
-        if (createProductRequestDto.getProductName() == null) {
-            throw new IllegalArgumentException(ProductMessages.PRODUCT_NAME_CANNOT_BE_NULL);
-        }
-
-        if (createProductRequestDto.getProductName().isEmpty()) {
-            throw new IllegalArgumentException(ProductMessages.PRODUCT_NAME_CANNOT_BE_EMPTY);
         }
 
         Product product = new Product();
 
-        product.setProductName(createProductRequestDto.getProductName());
+        product.setProductName(productName);
         product.setProductPrice(createProductRequestDto.getProductPrice());
-        product.setIsInStock(createProductRequestDto.getIsInStock());
-        product.setImage(createProductRequestDto.getImage());
+
+        if (createProductRequestDto.getDiscountPercentValue() != null) {
+            product.setDiscountPercentValue(createProductRequestDto.getDiscountPercentValue());
+        }
+
+        if (createProductRequestDto.getIsInStock() != null) {
+            product.setIsInStock(createProductRequestDto.getIsInStock());
+        }
+
+        if (createProductRequestDto.getImage() != null) {
+            product.setImage(createProductRequestDto.getImage());
+        }
 
         return productDtoMapper.toDto(productRepository.save(product));
     }
 
     @Transactional
-    public ProductResponseDto updateProductById(Long productId, UpdateProductRequestDto updateProductRequestDto) throws EntityNotFoundException, EntityExistsException, IllegalArgumentException {
+    public ProductResponseDto updateProductById(Long productId, UpdateProductRequestDto updateProductRequestDto) throws EntityNotFoundException, EntityExistsException {
         Product product = productRepository.findById(productId).orElse(null);
 
         if (product == null) {
@@ -69,31 +73,22 @@ public class ProductService {
         }
 
         if (updateProductRequestDto.getProductName() != null) {
-            Product otherProduct = productRepository.findByProductName(updateProductRequestDto.getProductName()).orElse(null);
+            String productName = updateProductRequestDto.getProductName().trim();
+
+            Product otherProduct = productRepository.findByProductName(productName).orElse(null);
 
             if (otherProduct != null && !otherProduct.getProductId().equals(productId)) {
                 throw new EntityExistsException(ProductMessages.PRODUCT_WITH_THAT_NAME_ALREADY_EXISTS);
             }
 
-            product.setProductName(updateProductRequestDto.getProductName());
+            product.setProductName(productName);
         }
 
         if (updateProductRequestDto.getProductPrice() != null) {
-            if (updateProductRequestDto.getProductPrice() < 0) {
-                throw new IllegalArgumentException(ProductMessages.PRODUCT_PRICE_CANNOT_BE_NEGATIVE);
-            }
-
             product.setProductPrice(updateProductRequestDto.getProductPrice());
         }
 
         if (updateProductRequestDto.getDiscountPercentValue() != null) {
-            if (updateProductRequestDto.getDiscountPercentValue() < 0) {
-                throw new IllegalArgumentException(ProductMessages.PRODUCT_DISCOUNT_PERCENT_VALUE_CANNOT_BE_NEGATIVE);
-            }
-            if (updateProductRequestDto.getDiscountPercentValue() > 100) {
-                throw new IllegalArgumentException(ProductMessages.PRODUCT_DISCOUNT_PERCENT_VALUE_CANNOT_BE_GREATER_THAN_100);
-            }
-
             product.setDiscountPercentValue(updateProductRequestDto.getDiscountPercentValue());
         }
 

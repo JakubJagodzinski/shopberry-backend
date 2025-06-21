@@ -5,9 +5,11 @@ import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.employees.dto.EmployeeResponseDto;
 import com.example.shopberry.domain.employees.dto.UpdateEmployeeRequestDto;
 import com.example.shopberry.user.Permission;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,6 +18,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/v1")
 @RequiredArgsConstructor
+@Validated
 public class EmployeeController {
 
     private final EmployeeService employeeService;
@@ -42,7 +45,7 @@ public class EmployeeController {
 
     @CheckPermission(Permission.EMPLOYEE_UPDATE)
     @PatchMapping("/employees/{employeeId}")
-    public ResponseEntity<EmployeeResponseDto> updateEmployeeById(@PathVariable UUID employeeId, @RequestBody UpdateEmployeeRequestDto updateEmployeeRequestDto) {
+    public ResponseEntity<EmployeeResponseDto> updateEmployeeById(@PathVariable UUID employeeId, @Valid @RequestBody UpdateEmployeeRequestDto updateEmployeeRequestDto) {
         EmployeeResponseDto updatedEmployeeResponseDto = employeeService.updateEmployeeById(employeeId, updateEmployeeRequestDto);
 
         return ResponseEntity

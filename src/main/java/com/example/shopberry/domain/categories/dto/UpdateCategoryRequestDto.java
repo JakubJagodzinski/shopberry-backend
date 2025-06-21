@@ -1,6 +1,5 @@
 package com.example.shopberry.domain.categories.dto;
 
-import com.example.shopberry.common.constants.messages.CategoryMessages;
 import com.example.shopberry.common.validation.NotEmptyIfPresent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -18,13 +17,10 @@ public class UpdateCategoryRequestDto {
     @Schema(
             description = "Unique name of the category",
             example = "Electronics",
-            nullable = true,
-            minLength = 1
+            minLength = 1,
+            nullable = true
     )
-    @NotEmptyIfPresent(
-            message = CategoryMessages.CATEGORY_NAME_CANNOT_BE_EMPTY,
-            notBlankMessage = CategoryMessages.CATEGORY_NAME_CANNOT_CONTAIN_ONLY_NAMESPACES
-    )
+    @NotEmptyIfPresent
     @JsonProperty("category_name")
     private String categoryName;
 

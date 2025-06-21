@@ -38,28 +38,22 @@ public class ProducerService {
     }
 
     @Transactional
-    public ProducerResponseDto createProducer(CreateProducerRequestDto createProducerRequestDto) throws EntityExistsException, IllegalArgumentException {
-        Producer producer = new Producer();
+    public ProducerResponseDto createProducer(CreateProducerRequestDto createProducerRequestDto) throws EntityExistsException {
+        String producerName = createProducerRequestDto.getProducerName().trim();
 
-        if (producerRepository.existsByProducerName(createProducerRequestDto.getProducerName())) {
+        if (producerRepository.existsByProducerName(producerName)) {
             throw new EntityExistsException(ProducerMessages.PRODUCER_WITH_THAT_NAME_ALREADY_EXISTS);
         }
 
-        if (createProducerRequestDto.getProducerName() == null) {
-            throw new IllegalArgumentException(ProducerMessages.PRODUCER_NAME_CANNOT_BE_NULL);
-        }
+        Producer producer = new Producer();
 
-        if (createProducerRequestDto.getProducerName().isEmpty()) {
-            throw new IllegalArgumentException(ProducerMessages.PRODUCER_NAME_CANNOT_BE_EMPTY);
-        }
-
-        producer.setProducerName(createProducerRequestDto.getProducerName());
+        producer.setProducerName(producerName);
 
         return producerDtoMapper.toDto(producerRepository.save(producer));
     }
 
     @Transactional
-    public ProducerResponseDto updateProducerById(Long producerId, UpdateProducerRequestDto updateProducerRequestDto) throws EntityNotFoundException, EntityExistsException, IllegalArgumentException {
+    public ProducerResponseDto updateProducerById(Long producerId, UpdateProducerRequestDto updateProducerRequestDto) throws EntityNotFoundException, EntityExistsException {
         Producer producer = producerRepository.findById(producerId).orElse(null);
 
         if (producer == null) {
@@ -67,17 +61,15 @@ public class ProducerService {
         }
 
         if (updateProducerRequestDto.getProducerName() != null) {
-            if (updateProducerRequestDto.getProducerName().isEmpty()) {
-                throw new IllegalArgumentException(ProducerMessages.PRODUCER_NAME_CANNOT_BE_EMPTY);
-            }
+            String producerName = updateProducerRequestDto.getProducerName().trim();
 
-            Producer otherProducer = producerRepository.findByProducerName(updateProducerRequestDto.getProducerName()).orElse(null);
+            Producer otherProducer = producerRepository.findByProducerName(producerName).orElse(null);
 
             if (otherProducer != null && !producer.getProducerId().equals(otherProducer.getProducerId())) {
                 throw new EntityExistsException(ProducerMessages.PRODUCER_WITH_THAT_NAME_ALREADY_EXISTS);
             }
 
-            producer.setProducerName(updateProducerRequestDto.getProducerName());
+            producer.setProducerName(producerName);
         }
 
         return producerDtoMapper.toDto(producerRepository.save(producer));

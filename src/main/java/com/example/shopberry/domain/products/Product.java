@@ -29,10 +29,10 @@ public class Product {
     private Double discountPercentValue = 0.0;
 
     @Column(name = "rating_value")
-    private Double ratingValue;
+    private Double ratingValue = 0.0;
 
     @Column(name = "ratings_count")
-    private Long ratingsCount;
+    private Long ratingsCount = 0L;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "producer_id", foreignKey = @ForeignKey(name = "fk_products_producer"))
@@ -45,9 +45,9 @@ public class Product {
     private Category category;
 
     @Column(name = "is_in_stock", nullable = false)
-    private Boolean isInStock;
+    private Boolean isInStock = true;
 
     @Lob
-    private byte[] image;
+    private byte[] image = null;
 
 }

@@ -29,13 +29,6 @@ public class ReviewService {
 
     private final ReviewDtoMapper reviewDtoMapper;
 
-    private final Integer MIN_RATING_VALUE = 1;
-    private final Integer MAX_RATING_VALUE = 5;
-    private final Integer MAX_REVIEW_TEXT_LENGTH = 1_000;
-
-    private final String RATING_VALUE_OUT_OF_BOUNDS_MESSAGE = "Rating value must be between " + MIN_RATING_VALUE + " and " + MAX_RATING_VALUE;
-    private final String REVIEW_TEXT_TOO_LONG_MESSAGE = "Review text cannot exceed " + MAX_REVIEW_TEXT_LENGTH + " characters";
-
     @Transactional
     public List<ReviewResponseDto> getProductAllReviews(Long productId) throws EntityNotFoundException {
         if (!productRepository.existsById(productId)) {
@@ -66,7 +59,7 @@ public class ReviewService {
     }
 
     @Transactional
-    public ReviewResponseDto createReview(Long productId, CreateReviewRequestDto createReviewRequestDto) throws EntityNotFoundException, IllegalArgumentException {
+    public ReviewResponseDto createReview(Long productId, CreateReviewRequestDto createReviewRequestDto) throws EntityNotFoundException {
         Product product = productRepository.findById(productId).orElse(null);
 
         if (product == null) {
@@ -79,27 +72,13 @@ public class ReviewService {
             throw new EntityNotFoundException(CustomerMessages.CUSTOMER_NOT_FOUND);
         }
 
-        if (createReviewRequestDto.getRatingValue() == null) {
-            throw new IllegalArgumentException(ReviewMessages.RATING_VALUE_CANNOT_BE_NULL);
-        }
-
-        if (createReviewRequestDto.getRatingValue() < MIN_RATING_VALUE || createReviewRequestDto.getRatingValue() > MAX_RATING_VALUE) {
-            throw new IllegalArgumentException(RATING_VALUE_OUT_OF_BOUNDS_MESSAGE);
-        }
-
-        if (createReviewRequestDto.getReviewText() != null && createReviewRequestDto.getReviewText().length() > MAX_REVIEW_TEXT_LENGTH) {
-            throw new IllegalArgumentException(REVIEW_TEXT_TOO_LONG_MESSAGE);
-        }
-
         Review review = new Review();
 
         review.setProduct(product);
         review.setCustomer(customer);
         review.setRatingValue(createReviewRequestDto.getRatingValue());
 
-        if (createReviewRequestDto.getReviewText() == null) {
-            createReviewRequestDto.setReviewText("");
-        } else {
+        if (createReviewRequestDto.getReviewText() != null) {
             review.setReviewText(createReviewRequestDto.getReviewText());
         }
 
@@ -107,7 +86,7 @@ public class ReviewService {
     }
 
     @Transactional
-    public ReviewResponseDto updateReviewById(Long reviewId, UpdateReviewRequestDto updateReviewRequestDto) throws EntityNotFoundException, IllegalArgumentException {
+    public ReviewResponseDto updateReviewById(Long reviewId, UpdateReviewRequestDto updateReviewRequestDto) throws EntityNotFoundException {
         Review review = reviewRepository.findById(reviewId).orElse(null);
 
         if (review == null) {
@@ -115,18 +94,10 @@ public class ReviewService {
         }
 
         if (updateReviewRequestDto.getRatingValue() != null) {
-            if (updateReviewRequestDto.getRatingValue() < MIN_RATING_VALUE || updateReviewRequestDto.getRatingValue() > MAX_RATING_VALUE) {
-                throw new IllegalArgumentException(RATING_VALUE_OUT_OF_BOUNDS_MESSAGE);
-            }
-
             review.setRatingValue(updateReviewRequestDto.getRatingValue());
         }
 
         if (updateReviewRequestDto.getReviewText() != null) {
-            if (updateReviewRequestDto.getReviewText().length() > MAX_REVIEW_TEXT_LENGTH) {
-                throw new IllegalArgumentException(REVIEW_TEXT_TOO_LONG_MESSAGE);
-            }
-
             review.setReviewText(updateReviewRequestDto.getReviewText());
         }
 

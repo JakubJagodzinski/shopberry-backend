@@ -37,22 +37,16 @@ public class OrderStatusService {
     }
 
     @Transactional
-    public OrderStatusResponseDto createOrderStatus(CreateOrderStatusRequestDto createOrderStatusRequestDto) throws EntityExistsException, IllegalArgumentException {
-        if (orderStatusRepository.existsByOrderStatusName(createOrderStatusRequestDto.getOrderStatusName())) {
+    public OrderStatusResponseDto createOrderStatus(CreateOrderStatusRequestDto createOrderStatusRequestDto) throws EntityExistsException {
+        String orderStatusName = createOrderStatusRequestDto.getOrderStatusName().trim();
+
+        if (orderStatusRepository.existsByOrderStatusName(orderStatusName)) {
             throw new EntityExistsException(OrderStatusMessages.ORDER_STATUS_ALREADY_EXISTS);
-        }
-
-        if (createOrderStatusRequestDto.getOrderStatusName() == null) {
-            throw new IllegalArgumentException(OrderStatusMessages.ORDER_STATUS_NAME_CANNOT_BE_NULL);
-        }
-
-        if (createOrderStatusRequestDto.getOrderStatusName().isEmpty()) {
-            throw new IllegalArgumentException(OrderStatusMessages.ORDER_STATUS_NAME_CANNOT_BE_EMPTY);
         }
 
         OrderStatus orderStatus = new OrderStatus();
 
-        orderStatus.setOrderStatusName(createOrderStatusRequestDto.getOrderStatusName());
+        orderStatus.setOrderStatusName(orderStatusName);
 
         return orderStatusDtoMapper.toDto(orderStatusRepository.save(orderStatus));
     }
@@ -66,17 +60,15 @@ public class OrderStatusService {
         }
 
         if (updateOrderStatusRequestDto.getOrderStatusName() != null) {
-            OrderStatus otherOrderStatus = orderStatusRepository.findByOrderStatusName(updateOrderStatusRequestDto.getOrderStatusName()).orElse(null);
+            String orderStatusName = updateOrderStatusRequestDto.getOrderStatusName().trim();
+
+            OrderStatus otherOrderStatus = orderStatusRepository.findByOrderStatusName(orderStatusName).orElse(null);
 
             if (otherOrderStatus != null && !otherOrderStatus.getOrderStatusId().equals(orderStatusId)) {
                 throw new EntityExistsException(OrderStatusMessages.ORDER_STATUS_ALREADY_EXISTS);
             }
 
-            if (updateOrderStatusRequestDto.getOrderStatusName().isEmpty()) {
-                throw new IllegalArgumentException(OrderStatusMessages.ORDER_STATUS_NAME_CANNOT_BE_EMPTY);
-            }
-
-            orderStatus.setOrderStatusName(updateOrderStatusRequestDto.getOrderStatusName());
+            orderStatus.setOrderStatusName(orderStatusName);
         }
 
         return orderStatusDtoMapper.toDto(orderStatusRepository.save(orderStatus));

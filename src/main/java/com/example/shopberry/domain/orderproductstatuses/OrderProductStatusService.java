@@ -37,28 +37,22 @@ public class OrderProductStatusService {
     }
 
     @Transactional
-    public OrderProductStatusResponseDto createOrderProductStatus(CreateOrderProductStatusRequestDto createOrderProductStatusRequestDto) throws EntityExistsException, IllegalArgumentException {
-        if (orderProductStatusRepository.existsByStatusName(createOrderProductStatusRequestDto.getStatusName())) {
+    public OrderProductStatusResponseDto createOrderProductStatus(CreateOrderProductStatusRequestDto createOrderProductStatusRequestDto) throws EntityExistsException {
+        String statusName = createOrderProductStatusRequestDto.getStatusName().trim();
+
+        if (orderProductStatusRepository.existsByStatusName(statusName)) {
             throw new EntityExistsException(OrderProductStatusMessages.ORDER_PRODUCT_STATUS_ALREADY_EXISTS);
-        }
-
-        if (createOrderProductStatusRequestDto.getStatusName() == null) {
-            throw new IllegalArgumentException(OrderProductStatusMessages.ORDER_PRODUCT_STATUS_NAME_CANNOT_BE_NULL);
-        }
-
-        if (createOrderProductStatusRequestDto.getStatusName().isEmpty()) {
-            throw new IllegalArgumentException(OrderProductStatusMessages.ORDER_PRODUCT_STATUS_NAME_CANNOT_BE_EMPTY);
         }
 
         OrderProductStatus orderProductStatus = new OrderProductStatus();
 
-        orderProductStatus.setStatusName(createOrderProductStatusRequestDto.getStatusName());
+        orderProductStatus.setStatusName(statusName);
 
         return orderProductStatusDtoMapper.toDto(orderProductStatusRepository.save(orderProductStatus));
     }
 
     @Transactional
-    public OrderProductStatusResponseDto updateOrderProductStatusById(Long orderProductStatusId, UpdateOrderProductStatusRequestDto updateOrderProductStatusRequestDto) throws EntityNotFoundException, EntityExistsException, IllegalArgumentException {
+    public OrderProductStatusResponseDto updateOrderProductStatusById(Long orderProductStatusId, UpdateOrderProductStatusRequestDto updateOrderProductStatusRequestDto) throws EntityNotFoundException, EntityExistsException {
         OrderProductStatus orderProductStatus = orderProductStatusRepository.findById(orderProductStatusId).orElse(null);
 
         if (orderProductStatus == null) {
@@ -66,17 +60,15 @@ public class OrderProductStatusService {
         }
 
         if (updateOrderProductStatusRequestDto.getStatusName() != null) {
-            OrderProductStatus otherOrderProductStatus = orderProductStatusRepository.findByStatusName(updateOrderProductStatusRequestDto.getStatusName()).orElse(null);
+            String statusName = updateOrderProductStatusRequestDto.getStatusName().trim();
+
+            OrderProductStatus otherOrderProductStatus = orderProductStatusRepository.findByStatusName(statusName).orElse(null);
 
             if (otherOrderProductStatus != null && !otherOrderProductStatus.getOrderProductStatusId().equals(orderProductStatusId)) {
                 throw new EntityExistsException(OrderProductStatusMessages.ORDER_PRODUCT_STATUS_ALREADY_EXISTS);
             }
 
-            if (updateOrderProductStatusRequestDto.getStatusName().isEmpty()) {
-                throw new IllegalArgumentException(OrderProductStatusMessages.ORDER_PRODUCT_STATUS_NAME_CANNOT_BE_EMPTY);
-            }
-
-            orderProductStatus.setStatusName(updateOrderProductStatusRequestDto.getStatusName());
+            orderProductStatus.setStatusName(statusName);
         }
 
         return orderProductStatusDtoMapper.toDto(orderProductStatusRepository.save(orderProductStatus));

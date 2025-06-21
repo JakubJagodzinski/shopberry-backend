@@ -6,9 +6,11 @@ import com.example.shopberry.domain.producers.dto.CreateProducerRequestDto;
 import com.example.shopberry.domain.producers.dto.ProducerResponseDto;
 import com.example.shopberry.domain.producers.dto.UpdateProducerRequestDto;
 import com.example.shopberry.user.Permission;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -17,6 +19,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1")
 @RequiredArgsConstructor
+@Validated
 public class ProducerController {
 
     private final ProducerService producerService;
@@ -41,7 +44,7 @@ public class ProducerController {
 
     @CheckPermission(Permission.PRODUCER_CREATE)
     @PostMapping("/producers")
-    public ResponseEntity<ProducerResponseDto> createProducer(@RequestBody CreateProducerRequestDto createProducerRequestDto) {
+    public ResponseEntity<ProducerResponseDto> createProducer(@Valid @RequestBody CreateProducerRequestDto createProducerRequestDto) {
         ProducerResponseDto createdProducerResponseDto = producerService.createProducer(createProducerRequestDto);
 
         return ResponseEntity
@@ -52,7 +55,7 @@ public class ProducerController {
 
     @CheckPermission(Permission.PRODUCER_UPDATE)
     @PatchMapping("/producers/{producerId}")
-    public ResponseEntity<ProducerResponseDto> updateProducerById(@PathVariable Long producerId, @RequestBody UpdateProducerRequestDto updateProducerRequestDto) {
+    public ResponseEntity<ProducerResponseDto> updateProducerById(@Valid @PathVariable Long producerId, @RequestBody UpdateProducerRequestDto updateProducerRequestDto) {
         ProducerResponseDto updatedProducerResponseDto = producerService.updateProducerById(producerId, updateProducerRequestDto);
 
         return ResponseEntity

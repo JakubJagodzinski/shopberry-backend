@@ -6,9 +6,11 @@ import com.example.shopberry.domain.orderstatuses.dto.CreateOrderStatusRequestDt
 import com.example.shopberry.domain.orderstatuses.dto.OrderStatusResponseDto;
 import com.example.shopberry.domain.orderstatuses.dto.UpdateOrderStatusRequestDto;
 import com.example.shopberry.user.Permission;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -17,6 +19,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1")
 @RequiredArgsConstructor
+@Validated
 public class OrderStatusController {
 
     private final OrderStatusService orderStatusService;
@@ -43,7 +46,7 @@ public class OrderStatusController {
 
     @CheckPermission(Permission.ORDER_STATUS_CREATE)
     @PostMapping("/order-statuses")
-    public ResponseEntity<OrderStatusResponseDto> createOrderStatus(@RequestBody CreateOrderStatusRequestDto createOrderStatusRequestDto) {
+    public ResponseEntity<OrderStatusResponseDto> createOrderStatus(@Valid @RequestBody CreateOrderStatusRequestDto createOrderStatusRequestDto) {
         OrderStatusResponseDto createdOrderStatusResponseDto = orderStatusService.createOrderStatus(createOrderStatusRequestDto);
 
         return ResponseEntity
@@ -54,7 +57,7 @@ public class OrderStatusController {
 
     @CheckPermission(Permission.ORDER_STATUS_UPDATE)
     @PatchMapping("/order-statuses/{orderStatusId}")
-    public ResponseEntity<OrderStatusResponseDto> updateOrderStatusById(@PathVariable Long orderStatusId, @RequestBody UpdateOrderStatusRequestDto updateOrderStatusRequestDto) {
+    public ResponseEntity<OrderStatusResponseDto> updateOrderStatusById(@PathVariable Long orderStatusId, @Valid @RequestBody UpdateOrderStatusRequestDto updateOrderStatusRequestDto) {
         OrderStatusResponseDto updatedOrderStatusResponseDto = orderStatusService.updateOrderStatusById(orderStatusId, updateOrderStatusRequestDto);
 
         return ResponseEntity

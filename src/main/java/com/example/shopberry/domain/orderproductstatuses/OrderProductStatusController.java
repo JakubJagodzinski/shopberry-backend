@@ -6,9 +6,11 @@ import com.example.shopberry.domain.orderproductstatuses.dto.CreateOrderProductS
 import com.example.shopberry.domain.orderproductstatuses.dto.OrderProductStatusResponseDto;
 import com.example.shopberry.domain.orderproductstatuses.dto.UpdateOrderProductStatusRequestDto;
 import com.example.shopberry.user.Permission;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -17,6 +19,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1")
 @RequiredArgsConstructor
+@Validated
 public class OrderProductStatusController {
 
     private final OrderProductStatusService orderProductStatusService;
@@ -43,7 +46,7 @@ public class OrderProductStatusController {
 
     @CheckPermission(Permission.ORDER_PRODUCT_STATUS_UPDATE)
     @PostMapping("/order-product-statuses")
-    public ResponseEntity<OrderProductStatusResponseDto> createOrderProductStatus(@RequestBody CreateOrderProductStatusRequestDto createOrderProductStatusRequestDto) {
+    public ResponseEntity<OrderProductStatusResponseDto> createOrderProductStatus(@Valid @RequestBody CreateOrderProductStatusRequestDto createOrderProductStatusRequestDto) {
         OrderProductStatusResponseDto createdOrderProductStatusResponseDto = orderProductStatusService.createOrderProductStatus(createOrderProductStatusRequestDto);
 
         return ResponseEntity
@@ -54,7 +57,7 @@ public class OrderProductStatusController {
 
     @CheckPermission(Permission.ORDER_PRODUCT_STATUS_UPDATE)
     @PatchMapping("/order-product-statuses/{orderProductStatusId}")
-    public ResponseEntity<OrderProductStatusResponseDto> updateOrderProductStatusById(@PathVariable Long orderProductStatusId, @RequestBody UpdateOrderProductStatusRequestDto updateOrderProductStatusRequestDto) {
+    public ResponseEntity<OrderProductStatusResponseDto> updateOrderProductStatusById(@PathVariable Long orderProductStatusId, @Valid @RequestBody UpdateOrderProductStatusRequestDto updateOrderProductStatusRequestDto) {
         OrderProductStatusResponseDto updatedOrderProductStatusResponseDto = orderProductStatusService.updateOrderProductStatusById(orderProductStatusId, updateOrderProductStatusRequestDto);
 
         return ResponseEntity

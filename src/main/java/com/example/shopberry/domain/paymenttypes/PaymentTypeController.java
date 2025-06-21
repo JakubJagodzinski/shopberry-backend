@@ -6,9 +6,11 @@ import com.example.shopberry.domain.paymenttypes.dto.CreatePaymentTypeRequestDto
 import com.example.shopberry.domain.paymenttypes.dto.PaymentTypeResponseDto;
 import com.example.shopberry.domain.paymenttypes.dto.UpdatePaymentTypeRequestDto;
 import com.example.shopberry.user.Permission;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -17,6 +19,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1")
 @RequiredArgsConstructor
+@Validated
 public class PaymentTypeController {
 
     private final PaymentTypeService paymentTypeService;
@@ -43,7 +46,7 @@ public class PaymentTypeController {
 
     @CheckPermission(Permission.PAYMENT_TYPE_CREATE)
     @PostMapping("/payment-types")
-    public ResponseEntity<PaymentTypeResponseDto> createPaymentType(@RequestBody CreatePaymentTypeRequestDto createPaymentTypeRequestDto) {
+    public ResponseEntity<PaymentTypeResponseDto> createPaymentType(@Valid @RequestBody CreatePaymentTypeRequestDto createPaymentTypeRequestDto) {
         PaymentTypeResponseDto createdPaymentTypeResponseDto = paymentTypeService.createPaymentType(createPaymentTypeRequestDto);
 
         return ResponseEntity
@@ -54,7 +57,7 @@ public class PaymentTypeController {
 
     @CheckPermission(Permission.PAYMENT_TYPE_UPDATE)
     @PatchMapping("/payment-types/{paymentTypeId}")
-    public ResponseEntity<PaymentTypeResponseDto> updatePaymentTypeById(@PathVariable Long paymentTypeId, @RequestBody UpdatePaymentTypeRequestDto updatePaymentTypeRequestDto) {
+    public ResponseEntity<PaymentTypeResponseDto> updatePaymentTypeById(@PathVariable Long paymentTypeId, @Valid @RequestBody UpdatePaymentTypeRequestDto updatePaymentTypeRequestDto) {
         PaymentTypeResponseDto updatedPaymentTypeResponseDto = paymentTypeService.updatePaymentTypeById(paymentTypeId, updatePaymentTypeRequestDto);
 
         return ResponseEntity

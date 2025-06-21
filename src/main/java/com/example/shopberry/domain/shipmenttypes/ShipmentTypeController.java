@@ -6,9 +6,11 @@ import com.example.shopberry.domain.shipmenttypes.dto.CreateShipmentTypeRequestD
 import com.example.shopberry.domain.shipmenttypes.dto.ShipmentTypeResponseDto;
 import com.example.shopberry.domain.shipmenttypes.dto.UpdateShipmentTypeRequestDto;
 import com.example.shopberry.user.Permission;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -17,6 +19,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1")
 @RequiredArgsConstructor
+@Validated
 public class ShipmentTypeController {
 
     private final ShipmentTypeService shipmentTypeService;
@@ -41,7 +44,7 @@ public class ShipmentTypeController {
 
     @CheckPermission(Permission.SHIPMENT_TYPE_CREATE)
     @PostMapping("/shipment-types")
-    public ResponseEntity<ShipmentTypeResponseDto> createShipmentType(@RequestBody CreateShipmentTypeRequestDto createShipmentTypeRequestDto) {
+    public ResponseEntity<ShipmentTypeResponseDto> createShipmentType(@Valid @RequestBody CreateShipmentTypeRequestDto createShipmentTypeRequestDto) {
         ShipmentTypeResponseDto createdShipmentTypeResponseDto = shipmentTypeService.createShipmentType(createShipmentTypeRequestDto);
 
         return ResponseEntity
@@ -52,7 +55,7 @@ public class ShipmentTypeController {
 
     @CheckPermission(Permission.SHIPMENT_TYPE_UPDATE)
     @PatchMapping("/shipment-types/{shipmentTypeId}")
-    public ResponseEntity<ShipmentTypeResponseDto> updateShipmentTypeById(@PathVariable Long shipmentTypeId, @RequestBody UpdateShipmentTypeRequestDto updateShipmentTypeRequestDto) {
+    public ResponseEntity<ShipmentTypeResponseDto> updateShipmentTypeById(@PathVariable Long shipmentTypeId, @Valid @RequestBody UpdateShipmentTypeRequestDto updateShipmentTypeRequestDto) {
         ShipmentTypeResponseDto updatedShipmentTypeResponseDto = shipmentTypeService.updateShipmentTypeById(shipmentTypeId, updateShipmentTypeRequestDto);
 
         return ResponseEntity

@@ -54,7 +54,7 @@ public class OrderProductService {
     }
 
     @Transactional
-    public OrderProductResponseDto addProductToOrder(Long orderId, AddProductToOrderRequestDto addProductToOrderRequestDto) throws EntityNotFoundException, EntityExistsException, IllegalArgumentException {
+    public OrderProductResponseDto addProductToOrder(Long orderId, AddProductToOrderRequestDto addProductToOrderRequestDto) throws EntityNotFoundException, EntityExistsException {
         Order order = orderRepository.findById(orderId).orElse(null);
 
         if (order == null) {
@@ -78,17 +78,7 @@ public class OrderProductService {
         orderProduct.setId(orderProductId);
         orderProduct.setOrder(order);
         orderProduct.setProduct(product);
-
-        if (addProductToOrderRequestDto.getProductQuantity() <= 0) {
-            throw new IllegalArgumentException(ProductMessages.PRODUCT_QUANTITY_MUST_BE_GREATER_THAN_ZERO);
-        }
-
         orderProduct.setProductQuantity(addProductToOrderRequestDto.getProductQuantity());
-
-        if (addProductToOrderRequestDto.getProductPrice() < 0) {
-            throw new IllegalArgumentException(ProductMessages.PRODUCT_PRICE_CANNOT_BE_NEGATIVE);
-        }
-
         orderProduct.setProductPrice(addProductToOrderRequestDto.getProductPrice());
 
         OrderProductStatus orderProductStatus = orderProductStatusRepository.findById(1L).orElse(null);

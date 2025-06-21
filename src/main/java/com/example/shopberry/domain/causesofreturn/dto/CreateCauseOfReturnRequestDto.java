@@ -1,6 +1,5 @@
 package com.example.shopberry.domain.causesofreturn.dto;
 
-import com.example.shopberry.common.constants.messages.CauseOfReturnMessages;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -18,7 +17,7 @@ public class CreateCauseOfReturnRequestDto {
             description = "Cause of return unique name",
             example = "Product broken"
     )
-    @NotBlank(message = CauseOfReturnMessages.CAUSE_CANNOT_BE_BLANK)
+    @NotBlank
     private String cause;
 
 }

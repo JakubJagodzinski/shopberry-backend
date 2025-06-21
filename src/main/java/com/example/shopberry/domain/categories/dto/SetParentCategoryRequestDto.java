@@ -1,6 +1,5 @@
 package com.example.shopberry.domain.categories.dto;
 
-import com.example.shopberry.common.constants.messages.CategoryMessages;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotNull;
@@ -17,7 +16,7 @@ public class SetParentCategoryRequestDto {
             description = "Id of another category to be set as a parent. Category cannot be parent to itself",
             example = "1"
     )
-    @NotNull(message = CategoryMessages.CATEGORY_ID_CANNOT_BE_NULL)
+    @NotNull
     @JsonProperty("parent_category_id")
     private Long parentCategoryId;
 

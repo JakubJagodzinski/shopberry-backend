@@ -37,37 +37,23 @@ public class PromotionService {
     }
 
     @Transactional
-    public PromotionResponseDto createPromotion(CreatePromotionRequestDto createPromotionRequestDto) throws EntityExistsException, IllegalArgumentException {
-        if (promotionRepository.existsByPromotionName(createPromotionRequestDto.getPromotionName())) {
+    public PromotionResponseDto createPromotion(CreatePromotionRequestDto createPromotionRequestDto) throws EntityExistsException {
+        String promotionName = createPromotionRequestDto.getPromotionName().trim();
+
+        if (promotionRepository.existsByPromotionName(promotionName)) {
             throw new EntityExistsException(PromotionMessages.PROMOTION_WITH_THAT_NAME_ALREADY_EXISTS);
-        }
-
-        if (createPromotionRequestDto.getPromotionName() == null) {
-            throw new IllegalArgumentException(PromotionMessages.PROMOTION_NAME_CANNOT_BE_NULL);
-        }
-
-        if (createPromotionRequestDto.getPromotionName().isEmpty()) {
-            throw new IllegalArgumentException(PromotionMessages.PROMOTION_NAME_CANNOT_BE_EMPTY);
-        }
-
-        if (createPromotionRequestDto.getDiscountPercentValue() < 0) {
-            throw new IllegalArgumentException(PromotionMessages.PROMOTION_DISCOUNT_PERCENT_VALUE_CANNOT_BE_NEGATIVE);
-        }
-
-        if (createPromotionRequestDto.getDiscountPercentValue() > 100) {
-            throw new IllegalArgumentException(PromotionMessages.PROMOTION_DISCOUNT_PERCENT_VALUE_CANNOT_BE_GREATER_THAN_100);
         }
 
         Promotion promotion = new Promotion();
 
-        promotion.setPromotionName(createPromotionRequestDto.getPromotionName());
+        promotion.setPromotionName(promotionName);
         promotion.setDiscountPercentValue(createPromotionRequestDto.getDiscountPercentValue());
 
         return promotionDtoMapper.toDto(promotionRepository.save(promotion));
     }
 
     @Transactional
-    public PromotionResponseDto updatePromotionById(Long promotionId, UpdatePromotionRequestDto updatePromotionRequestDto) throws EntityNotFoundException, EntityExistsException, IllegalArgumentException {
+    public PromotionResponseDto updatePromotionById(Long promotionId, UpdatePromotionRequestDto updatePromotionRequestDto) throws EntityNotFoundException, EntityExistsException {
         Promotion promotion = promotionRepository.findById(promotionId).orElse(null);
 
         if (promotion == null) {
@@ -75,28 +61,18 @@ public class PromotionService {
         }
 
         if (updatePromotionRequestDto.getPromotionName() != null) {
-            Promotion otherPromotion = promotionRepository.findByPromotionName(updatePromotionRequestDto.getPromotionName()).orElse(null);
+            String promotionName = updatePromotionRequestDto.getPromotionName().trim();
+
+            Promotion otherPromotion = promotionRepository.findByPromotionName(promotionName).orElse(null);
 
             if (otherPromotion != null && !otherPromotion.getPromotionId().equals(promotionId)) {
                 throw new EntityExistsException(PromotionMessages.PROMOTION_WITH_THAT_NAME_ALREADY_EXISTS);
             }
 
-            if (updatePromotionRequestDto.getPromotionName().isEmpty()) {
-                throw new IllegalArgumentException(PromotionMessages.PROMOTION_NAME_CANNOT_BE_EMPTY);
-            }
-
-            promotion.setPromotionName(updatePromotionRequestDto.getPromotionName());
+            promotion.setPromotionName(promotionName);
         }
 
         if (updatePromotionRequestDto.getDiscountPercentValue() != null) {
-            if (updatePromotionRequestDto.getDiscountPercentValue() < 0) {
-                throw new IllegalArgumentException(PromotionMessages.PROMOTION_DISCOUNT_PERCENT_VALUE_CANNOT_BE_NEGATIVE);
-            }
-
-            if (updatePromotionRequestDto.getDiscountPercentValue() > 100) {
-                throw new IllegalArgumentException(PromotionMessages.PROMOTION_DISCOUNT_PERCENT_VALUE_CANNOT_BE_GREATER_THAN_100);
-            }
-
             promotion.setDiscountPercentValue(updatePromotionRequestDto.getDiscountPercentValue());
         }
 

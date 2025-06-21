@@ -5,9 +5,11 @@ import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.productreturns.dto.CreateProductReturnRequestDto;
 import com.example.shopberry.domain.productreturns.dto.ProductReturnResponseDto;
 import com.example.shopberry.user.Permission;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -16,6 +18,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1")
 @RequiredArgsConstructor
+@Validated
 public class ProductReturnController {
 
     private final ProductReturnService productReturnService;
@@ -40,7 +43,7 @@ public class ProductReturnController {
 
     @CheckPermission(Permission.PRODUCT_RETURN_CREATE)
     @PostMapping("/orders/{orderId}/product-returns")
-    public ResponseEntity<ProductReturnResponseDto> createProductReturn(@PathVariable Long orderId, @RequestBody CreateProductReturnRequestDto createProductReturnRequestDto) {
+    public ResponseEntity<ProductReturnResponseDto> createProductReturn(@PathVariable Long orderId, @Valid @RequestBody CreateProductReturnRequestDto createProductReturnRequestDto) {
         ProductReturnResponseDto createdProductReturnResponseDto = productReturnService.createProductReturn(orderId, createProductReturnRequestDto);
 
         return ResponseEntity

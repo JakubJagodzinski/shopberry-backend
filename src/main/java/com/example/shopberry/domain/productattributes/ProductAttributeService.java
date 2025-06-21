@@ -46,7 +46,7 @@ public class ProductAttributeService {
     }
 
     @Transactional
-    public ProductAttributeResponseDto assignAttributeToProduct(Long productId, AssignAttributeToProductRequestDto assignAttributeToProductRequestDto) throws EntityNotFoundException, EntityExistsException, IllegalArgumentException {
+    public ProductAttributeResponseDto assignAttributeToProduct(Long productId, AssignAttributeToProductRequestDto assignAttributeToProductRequestDto) throws EntityNotFoundException, EntityExistsException {
         Product product = productRepository.findById(productId).orElse(null);
 
         if (product == null) {
@@ -70,11 +70,6 @@ public class ProductAttributeService {
         productAttribute.setId(productAttributeId);
         productAttribute.setProduct(product);
         productAttribute.setAttribute(attribute);
-
-        if (assignAttributeToProductRequestDto.getValue() == null) {
-            throw new IllegalArgumentException(AttributeMessages.ATTRIBUTE_VALUE_CANNOT_BE_NULL);
-        }
-
         productAttribute.setValue(assignAttributeToProductRequestDto.getValue());
 
         return productAttributeDtoMapper.toDto(productAttributeRepository.save(productAttribute));

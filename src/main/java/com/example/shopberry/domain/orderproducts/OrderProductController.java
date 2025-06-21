@@ -5,9 +5,11 @@ import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.orderproducts.dto.AddProductToOrderRequestDto;
 import com.example.shopberry.domain.orderproducts.dto.OrderProductResponseDto;
 import com.example.shopberry.user.Permission;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -16,6 +18,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1")
 @RequiredArgsConstructor
+@Validated
 public class OrderProductController {
 
     private final OrderProductService orderProductService;
@@ -42,7 +45,7 @@ public class OrderProductController {
 
     @CheckPermission(Permission.ORDER_PRODUCT_ADD)
     @PostMapping("/orders/{orderId}/products")
-    public ResponseEntity<OrderProductResponseDto> addProductToOrder(@PathVariable Long orderId, @RequestBody AddProductToOrderRequestDto addProductToOrderRequestDto) {
+    public ResponseEntity<OrderProductResponseDto> addProductToOrder(@PathVariable Long orderId, @Valid @RequestBody AddProductToOrderRequestDto addProductToOrderRequestDto) {
         OrderProductResponseDto createdOrderProductResponseDto = orderProductService.addProductToOrder(orderId, addProductToOrderRequestDto);
 
         return ResponseEntity

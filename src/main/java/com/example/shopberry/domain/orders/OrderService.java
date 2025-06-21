@@ -85,9 +85,19 @@ public class OrderService {
         order.setOrderStatus(orderStatusRepository.getReferenceById(1L)); // Default status
         order.setCustomer(customer);
         order.setShipmentType(shipmentType);
-        order.setShipmentIdentifier(createOrderRequestDto.getShipmentIdentifier());
         order.setPaymentType(paymentType);
-        order.setIsInvoice(createOrderRequestDto.getIsInvoice());
+
+        if (createOrderRequestDto.getShipmentIdentifier() != null) {
+            order.setShipmentIdentifier(createOrderRequestDto.getShipmentIdentifier().trim());
+        }
+
+        if (createOrderRequestDto.getIsPaymentRecorded() != null) {
+            order.setIsPaymentRecorded(createOrderRequestDto.getIsPaymentRecorded());
+        }
+
+        if (createOrderRequestDto.getIsInvoice() != null) {
+            order.setIsInvoice(createOrderRequestDto.getIsInvoice());
+        }
 
         return orderDtoMapper.toDto(orderRepository.save(order));
     }
@@ -100,4 +110,5 @@ public class OrderService {
 
         orderRepository.deleteById(orderId);
     }
+
 }

@@ -6,9 +6,11 @@ import com.example.shopberry.domain.reviews.dto.CreateReviewRequestDto;
 import com.example.shopberry.domain.reviews.dto.ReviewResponseDto;
 import com.example.shopberry.domain.reviews.dto.UpdateReviewRequestDto;
 import com.example.shopberry.user.Permission;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -18,6 +20,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/v1")
 @RequiredArgsConstructor
+@Validated
 public class ReviewController {
 
     private final ReviewService reviewService;
@@ -51,7 +54,7 @@ public class ReviewController {
 
     @CheckPermission(Permission.REVIEW_CREATE)
     @PostMapping("/products/{productId}/reviews")
-    public ResponseEntity<ReviewResponseDto> createReview(@PathVariable Long productId, @RequestBody CreateReviewRequestDto createReviewRequestDto) {
+    public ResponseEntity<ReviewResponseDto> createReview(@PathVariable Long productId, @Valid @RequestBody CreateReviewRequestDto createReviewRequestDto) {
         ReviewResponseDto createdReviewResponseDto = reviewService.createReview(productId, createReviewRequestDto);
 
         return ResponseEntity
@@ -62,7 +65,7 @@ public class ReviewController {
 
     @CheckPermission(Permission.REVIEW_UPDATE)
     @PatchMapping("/reviews/{reviewId}")
-    public ResponseEntity<ReviewResponseDto> updateReviewById(@PathVariable Long reviewId, @RequestBody UpdateReviewRequestDto updateReviewRequestDto) {
+    public ResponseEntity<ReviewResponseDto> updateReviewById(@PathVariable Long reviewId, @Valid @RequestBody UpdateReviewRequestDto updateReviewRequestDto) {
         ReviewResponseDto updatedReviewResponseDto = reviewService.updateReviewById(reviewId, updateReviewRequestDto);
 
         return ResponseEntity

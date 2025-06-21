@@ -1,6 +1,5 @@
 package com.example.shopberry.domain.causesofreturn.dto;
 
-import com.example.shopberry.common.constants.messages.CauseOfReturnMessages;
 import com.example.shopberry.common.validation.NotEmptyIfPresent;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
@@ -16,12 +15,10 @@ public class UpdateCauseOfReturnRequestDto {
 
     @Schema(
             description = "Cause of return unique name",
-            example = "Product broken"
+            example = "Product broken",
+            minLength = 1
     )
-    @NotEmptyIfPresent(
-            message = CauseOfReturnMessages.CAUSE_CANNOT_BE_EMPTY,
-            notBlankMessage = CauseOfReturnMessages.CAUSE_CANNOT_CONTAIN_ONLY_WHITESPACES
-    )
+    @NotEmptyIfPresent
     private String cause;
 
 }

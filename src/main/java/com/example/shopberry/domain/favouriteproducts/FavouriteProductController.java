@@ -5,9 +5,11 @@ import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.favouriteproducts.dto.AddProductToFavouritesRequestDto;
 import com.example.shopberry.domain.favouriteproducts.dto.FavouriteProductResponseDto;
 import com.example.shopberry.user.Permission;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -17,6 +19,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/v1")
 @RequiredArgsConstructor
+@Validated
 public class FavouriteProductController {
 
     private final FavouriteProductService favouriteProductService;
@@ -33,7 +36,7 @@ public class FavouriteProductController {
 
     @CheckPermission(Permission.CUSTOMER_FAVOURITE_PRODUCT_ADD)
     @PostMapping("/customers/{customerId}/favourites")
-    public ResponseEntity<FavouriteProductResponseDto> addProductToCustomerFavourites(@PathVariable UUID customerId, @RequestBody AddProductToFavouritesRequestDto addProductToFavouritesRequestDto) {
+    public ResponseEntity<FavouriteProductResponseDto> addProductToCustomerFavourites(@PathVariable UUID customerId, @Valid @RequestBody AddProductToFavouritesRequestDto addProductToFavouritesRequestDto) {
         FavouriteProductResponseDto createdFavouriteProductResponseDto = favouriteProductService.addProductToCustomerFavourites(customerId, addProductToFavouritesRequestDto);
 
         return ResponseEntity

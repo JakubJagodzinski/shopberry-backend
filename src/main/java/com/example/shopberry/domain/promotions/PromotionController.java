@@ -6,9 +6,11 @@ import com.example.shopberry.domain.promotions.dto.CreatePromotionRequestDto;
 import com.example.shopberry.domain.promotions.dto.PromotionResponseDto;
 import com.example.shopberry.domain.promotions.dto.UpdatePromotionRequestDto;
 import com.example.shopberry.user.Permission;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -17,6 +19,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1")
 @RequiredArgsConstructor
+@Validated
 public class PromotionController {
 
     private final PromotionService promotionService;
@@ -41,7 +44,7 @@ public class PromotionController {
 
     @CheckPermission(Permission.PROMOTION_CREATE)
     @PostMapping("/promotions")
-    public ResponseEntity<PromotionResponseDto> createPromotion(@RequestBody CreatePromotionRequestDto createPromotionRequestDto) {
+    public ResponseEntity<PromotionResponseDto> createPromotion(@Valid @RequestBody CreatePromotionRequestDto createPromotionRequestDto) {
         PromotionResponseDto createdPromotionResponseDto = promotionService.createPromotion(createPromotionRequestDto);
 
         return ResponseEntity
@@ -52,7 +55,7 @@ public class PromotionController {
 
     @CheckPermission(Permission.PROMOTION_UPDATE)
     @PatchMapping("/promotions/{promotionId}")
-    public ResponseEntity<PromotionResponseDto> updatePromotionById(@PathVariable Long promotionId, @RequestBody UpdatePromotionRequestDto updatePromotionRequestDto) {
+    public ResponseEntity<PromotionResponseDto> updatePromotionById(@PathVariable Long promotionId, @Valid @RequestBody UpdatePromotionRequestDto updatePromotionRequestDto) {
         PromotionResponseDto updatedPromotionResponseDto = promotionService.updatePromotionById(promotionId, updatePromotionRequestDto);
 
         return ResponseEntity

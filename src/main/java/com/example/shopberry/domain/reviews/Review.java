@@ -36,7 +36,7 @@ public class Review {
     @Column(name = "rating_value", nullable = false)
     private Double ratingValue;
 
-    @Column(name = "review_text", length = 1000)
+    @Column(name = "review_text", length = 1_000)
     private String reviewText = "";
 
     @Column(name = "reviewed_at", nullable = false)

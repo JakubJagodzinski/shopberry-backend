@@ -6,9 +6,11 @@ import com.example.shopberry.domain.customeraddresses.dto.CreateCustomerAddressR
 import com.example.shopberry.domain.customeraddresses.dto.CustomerAddressResponseDto;
 import com.example.shopberry.domain.customeraddresses.dto.UpdateCustomerAddressRequestDto;
 import com.example.shopberry.user.Permission;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -18,6 +20,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/v1")
 @RequiredArgsConstructor
+@Validated
 public class CustomerAddressController {
 
     private final CustomerAddressService customerAddressService;
@@ -44,7 +47,7 @@ public class CustomerAddressController {
 
     @CheckPermission(Permission.ADDRESS_CREATE)
     @PostMapping("/customers/{customerId}/addresses")
-    public ResponseEntity<CustomerAddressResponseDto> createAddress(@PathVariable UUID customerId, @RequestBody CreateCustomerAddressRequestDto createCustomerAddressRequestDto) {
+    public ResponseEntity<CustomerAddressResponseDto> createAddress(@PathVariable UUID customerId, @Valid @RequestBody CreateCustomerAddressRequestDto createCustomerAddressRequestDto) {
         CustomerAddressResponseDto createdCustomerAddressResponseDto = customerAddressService.createAddress(customerId, createCustomerAddressRequestDto);
 
         return ResponseEntity
@@ -55,7 +58,7 @@ public class CustomerAddressController {
 
     @CheckPermission(Permission.ADDRESS_UPDATE)
     @PatchMapping("/customers/addresses/{customerAddressId}")
-    public ResponseEntity<CustomerAddressResponseDto> updateAddressById(@PathVariable Long customerAddressId, @RequestBody UpdateCustomerAddressRequestDto updateCustomerAddressRequestDto) {
+    public ResponseEntity<CustomerAddressResponseDto> updateAddressById(@PathVariable Long customerAddressId, @Valid @RequestBody UpdateCustomerAddressRequestDto updateCustomerAddressRequestDto) {
         CustomerAddressResponseDto updatedCustomerAddressResponseDto = customerAddressService.updateAddressById(customerAddressId, updateCustomerAddressRequestDto);
 
         return ResponseEntity

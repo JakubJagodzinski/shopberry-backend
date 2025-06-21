@@ -42,7 +42,7 @@ public class CustomerAddress {
     private String houseNumber;
 
     @Column(length = 10)
-    private String apartment;
+    private String apartment = null;
 
     @Column(name = "phone_number", nullable = false, length = 15)
     private String phoneNumber;
