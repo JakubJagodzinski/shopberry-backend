@@ -7,6 +7,7 @@ import com.example.shopberry.domain.attributes.AttributeRepository;
 import com.example.shopberry.domain.productattributes.dto.AssignAttributeToProductRequestDto;
 import com.example.shopberry.domain.productattributes.dto.ProductAttributeDtoMapper;
 import com.example.shopberry.domain.productattributes.dto.ProductAttributeResponseDto;
+import com.example.shopberry.domain.productattributes.dto.UpdateProductAttributeRequestDto;
 import com.example.shopberry.domain.products.Product;
 import com.example.shopberry.domain.products.ProductRepository;
 import jakarta.persistence.EntityExistsException;
@@ -71,6 +72,33 @@ public class ProductAttributeService {
         productAttribute.setProduct(product);
         productAttribute.setAttribute(attribute);
         productAttribute.setValue(assignAttributeToProductRequestDto.getValue());
+
+        return productAttributeDtoMapper.toDto(productAttributeRepository.save(productAttribute));
+    }
+
+    @Transactional
+    public ProductAttributeResponseDto updateProductAttributeById(Long productId, Long attributeId, UpdateProductAttributeRequestDto updateProductAttributeRequestDto) throws EntityNotFoundException {
+        Product product = productRepository.findById(productId).orElse(null);
+
+        if (product == null) {
+            throw new EntityNotFoundException(ProductMessages.PRODUCT_NOT_FOUND);
+        }
+
+        Attribute attribute = attributeRepository.findById(attributeId).orElse(null);
+
+        if (attribute == null) {
+            throw new EntityNotFoundException(AttributeMessages.ATTRIBUTE_NOT_FOUND);
+        }
+
+        ProductAttributeId productAttributeId = new ProductAttributeId(productId, attributeId);
+
+        ProductAttribute productAttribute = productAttributeRepository.findById(productAttributeId).orElse(null);
+
+        if (productAttribute == null) {
+            throw new EntityNotFoundException(AttributeMessages.ATTRIBUTE_NOT_ASSIGNED_TO_THIS_PRODUCT);
+        }
+
+        productAttribute.setValue(updateProductAttributeRequestDto.getValue());
 
         return productAttributeDtoMapper.toDto(productAttributeRepository.save(productAttribute));
     }

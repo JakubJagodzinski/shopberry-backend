@@ -106,6 +106,7 @@ public enum Permission {
     PRODUCER_DELETE("producer:delete"),
 
     PRODUCT_ATTRIBUTE_ASSIGN("product:attribute:assign"),
+    PRODUCT_ATTRIBUTE_UPDATE("product:attribute:update"),
     PRODUCT_ATTRIBUTE_UNASSIGN("product:attribute:unassign"),
 
     PRODUCT_PROMOTION_ASSIGN("product:promotion:assign"),

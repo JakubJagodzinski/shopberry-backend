@@ -4,6 +4,7 @@ import com.example.shopberry.auth.access.CheckPermission;
 import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.productattributes.dto.AssignAttributeToProductRequestDto;
 import com.example.shopberry.domain.productattributes.dto.ProductAttributeResponseDto;
+import com.example.shopberry.domain.productattributes.dto.UpdateProductAttributeRequestDto;
 import com.example.shopberry.user.Permission;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -50,6 +51,16 @@ public class ProductAttributeController {
                 .status(HttpStatus.CREATED)
                 .location(URI.create("/api/v1/products/" + productId + "/attributes/" + createdProductAttributeResponseDto.getAttribute().getAttributeId()))
                 .body(createdProductAttributeResponseDto);
+    }
+
+    @CheckPermission(Permission.PRODUCT_ATTRIBUTE_UPDATE)
+    @PatchMapping("/products/{productId}/attributes/{attributeId}")
+    public ResponseEntity<ProductAttributeResponseDto> updateProductAttributeById(@PathVariable Long productId, @PathVariable Long attributeId, @Valid @RequestBody UpdateProductAttributeRequestDto updateProductAttributeRequestDto) {
+        ProductAttributeResponseDto updatedProductAttributeResponseDto = productAttributeService.updateProductAttributeById(productId, attributeId, updateProductAttributeRequestDto);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(updatedProductAttributeResponseDto);
     }
 
     @CheckPermission(Permission.PRODUCT_ATTRIBUTE_UNASSIGN)
