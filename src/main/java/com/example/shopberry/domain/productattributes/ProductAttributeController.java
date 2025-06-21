@@ -4,6 +4,7 @@ import com.example.shopberry.auth.access.CheckPermission;
 import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.productattributes.dto.AssignAttributeToProductRequestDto;
 import com.example.shopberry.domain.productattributes.dto.ProductAttributeResponseDto;
+import com.example.shopberry.domain.productattributes.dto.ProductWithAttributesResponseDto;
 import com.example.shopberry.domain.productattributes.dto.UpdateProductAttributeRequestDto;
 import com.example.shopberry.user.Permission;
 import jakarta.validation.Valid;
@@ -25,8 +26,8 @@ public class ProductAttributeController {
     private final ProductAttributeService productAttributeService;
 
     @GetMapping("/products/{productId}/attributes")
-    public ResponseEntity<List<ProductAttributeResponseDto>> getProductAllAttributes(@PathVariable Long productId) {
-        List<ProductAttributeResponseDto> productAttributeResponseDtoList = productAttributeService.getProductAllAttributes(productId);
+    public ResponseEntity<ProductWithAttributesResponseDto> getProductAllAttributes(@PathVariable Long productId) {
+        ProductWithAttributesResponseDto productAttributeResponseDtoList = productAttributeService.getProductAllAttributes(productId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)

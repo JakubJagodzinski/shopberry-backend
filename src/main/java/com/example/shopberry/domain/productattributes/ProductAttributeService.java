@@ -4,18 +4,18 @@ import com.example.shopberry.common.constants.messages.AttributeMessages;
 import com.example.shopberry.common.constants.messages.ProductMessages;
 import com.example.shopberry.domain.attributes.Attribute;
 import com.example.shopberry.domain.attributes.AttributeRepository;
-import com.example.shopberry.domain.productattributes.dto.AssignAttributeToProductRequestDto;
-import com.example.shopberry.domain.productattributes.dto.ProductAttributeDtoMapper;
-import com.example.shopberry.domain.productattributes.dto.ProductAttributeResponseDto;
-import com.example.shopberry.domain.productattributes.dto.UpdateProductAttributeRequestDto;
+import com.example.shopberry.domain.attributes.dto.AttributeDtoMapper;
+import com.example.shopberry.domain.productattributes.dto.*;
 import com.example.shopberry.domain.products.Product;
 import com.example.shopberry.domain.products.ProductRepository;
+import com.example.shopberry.domain.products.dto.ProductDtoMapper;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -27,14 +27,37 @@ public class ProductAttributeService {
     private final AttributeRepository attributeRepository;
 
     private final ProductAttributeDtoMapper productAttributeDtoMapper;
+    private final ProductDtoMapper productDtoMapper;
+    private final AttributeDtoMapper attributeDtoMapper;
 
     @Transactional
-    public List<ProductAttributeResponseDto> getProductAllAttributes(Long productId) throws EntityNotFoundException {
-        if (!productRepository.existsById(productId)) {
+    public ProductWithAttributesResponseDto getProductAllAttributes(Long productId) throws EntityNotFoundException {
+        Product product = productRepository.findById(productId).orElse(null);
+
+        if (product == null) {
             throw new EntityNotFoundException(ProductMessages.PRODUCT_NOT_FOUND);
         }
 
-        return productAttributeDtoMapper.toDtoList(productAttributeRepository.findAllByProduct_ProductId(productId));
+        ProductWithAttributesResponseDto productWithAttributesResponseDto = new ProductWithAttributesResponseDto();
+
+        productWithAttributesResponseDto.setProduct(productDtoMapper.toDto(product));
+
+        List<ProductAttribute> productAttributeDtoList = productAttributeRepository.findAllByProduct_ProductId(productId);
+
+        List<AttributeValueDto> attributeValueDtoList = new ArrayList<>();
+
+        for (ProductAttribute productAttribute : productAttributeDtoList) {
+            AttributeValueDto attributeValueDto = new AttributeValueDto();
+
+            attributeValueDto.setAttribute(attributeDtoMapper.toDto(productAttribute.getAttribute()));
+            attributeValueDto.setValue(productAttribute.getValue());
+
+            attributeValueDtoList.add(attributeValueDto);
+        }
+
+        productWithAttributesResponseDto.setAttributes(attributeValueDtoList);
+
+        return productWithAttributesResponseDto;
     }
 
     @Transactional
