@@ -23,7 +23,7 @@ public class ProductPromotionController {
 
     private final ProductPromotionService productPromotionService;
 
-    @GetMapping("/product-promotions")
+    @GetMapping("/products/promotions")
     public ResponseEntity<List<ProductPromotionResponseDto>> getAllProductPromotions() {
         List<ProductPromotionResponseDto> productPromotionResponseDtoList = productPromotionService.getAllProductPromotions();
 
