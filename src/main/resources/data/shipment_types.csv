@@ -1,14 +1,14 @@
-"shipmentName","shipmentCost"
-"Economy Shipping","3.99"
-"Standard Shipping","5.99"
-"Priority Shipping","9.99"
-"Courier Economy","12.99"
-"Express Courier","15.99"
-"Same Day Delivery","19.99"
-"Next Day Delivery","24.99"
-"Cash on Delivery","10.99"
-"Signature Required","11.99"
-"Insured Shipping","13.99"
-"Weekend Delivery","16.99"
-"Holiday Delivery","18.99"
-"Remote Area Delivery","22.99"
+shipmentName,shipmentCost
+Economy Shipping,3.99
+Standard Shipping,5.99
+Priority Shipping,9.99
+Courier Economy,12.99
+Express Courier,15.99
+Same Day Delivery,19.99
+Next Day Delivery,24.99
+Cash on Delivery,10.99
+Signature Required,11.99
+Insured Shipping,13.99
+Weekend Delivery,16.99
+Holiday Delivery,18.99
+Remote Area Delivery,22.99
