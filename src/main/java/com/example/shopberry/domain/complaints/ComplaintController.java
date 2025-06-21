@@ -6,9 +6,11 @@ import com.example.shopberry.domain.complaints.dto.ComplaintResponseDto;
 import com.example.shopberry.domain.complaints.dto.CreateComplaintRequestDto;
 import com.example.shopberry.domain.complaints.dto.UpdateComplaintRequestDto;
 import com.example.shopberry.user.Permission;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -17,6 +19,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1")
 @RequiredArgsConstructor
+@Validated
 public class ComplaintController {
 
     private final ComplaintService complaintService;
@@ -43,7 +46,7 @@ public class ComplaintController {
 
     @CheckPermission(Permission.COMPLAINT_CREATE)
     @PostMapping("/complaints")
-    public ResponseEntity<ComplaintResponseDto> createComplaint(@RequestBody CreateComplaintRequestDto createComplaintRequestDto) {
+    public ResponseEntity<ComplaintResponseDto> createComplaint(@Valid @RequestBody CreateComplaintRequestDto createComplaintRequestDto) {
         ComplaintResponseDto createdComplaintResponseDto = complaintService.createComplaint(createComplaintRequestDto);
 
         return ResponseEntity
@@ -54,7 +57,7 @@ public class ComplaintController {
 
     @CheckPermission(Permission.COMPLAINT_UPDATE)
     @PatchMapping("/complaints/{complaintId}")
-    public ResponseEntity<ComplaintResponseDto> updateComplaintById(@PathVariable Long complaintId, @RequestBody UpdateComplaintRequestDto updateComplaintRequestDto) {
+    public ResponseEntity<ComplaintResponseDto> updateComplaintById(@PathVariable Long complaintId, @Valid @RequestBody UpdateComplaintRequestDto updateComplaintRequestDto) {
         ComplaintResponseDto updatedComplaintResponseDto = complaintService.updateComplaintById(complaintId, updateComplaintRequestDto);
 
         return ResponseEntity
