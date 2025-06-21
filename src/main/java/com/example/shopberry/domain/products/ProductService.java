@@ -21,6 +21,7 @@ public class ProductService {
 
     private final ProductDtoMapper productDtoMapper;
 
+    @Transactional
     public List<ProductResponseDto> getAllProducts() {
         return productDtoMapper.toDtoList(productRepository.findAll());
     }

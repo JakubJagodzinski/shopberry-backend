@@ -1,5 +1,7 @@
 package com.example.shopberry.domain.products.dto;
 
+import com.example.shopberry.domain.categories.dto.CategoryResponseDto;
+import com.example.shopberry.domain.producers.dto.ProducerResponseDto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,6 +31,10 @@ public class ProductResponseDto {
 
     @JsonProperty("ratings_count")
     private Long ratingsCount;
+
+    private ProducerResponseDto producer;
+
+    private CategoryResponseDto category;
 
     @JsonProperty("is_in_stock")
     private Boolean isInStock;
