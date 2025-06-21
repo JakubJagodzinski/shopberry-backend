@@ -20,6 +20,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.nio.file.AccessDeniedException;
 import java.util.List;
 
 @Service
@@ -73,7 +74,7 @@ public class AuthenticationService {
         }
     }
 
-    private User createUserInstance(Role role) throws IllegalArgumentException{
+    private User createUserInstance(Role role) throws IllegalArgumentException {
         return switch (role) {
             case CUSTOMER -> new Customer();
             case EMPLOYEE -> new Employee();
@@ -89,13 +90,17 @@ public class AuthenticationService {
         user.setRole(Role.valueOf(dto.getRole().toUpperCase()));
     }
 
-    public AuthenticationResponseDto authenticate(AuthenticationRequestDto request) throws EntityNotFoundException {
+    public AuthenticationResponseDto authenticate(AuthenticationRequestDto request) throws EntityNotFoundException, AccessDeniedException {
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                 request.getEmail(),
                 request.getPassword()
         );
 
-        authenticationManager.authenticate(authenticationToken);
+        try {
+            authenticationManager.authenticate(authenticationToken);
+        } catch (Exception e) {
+            throw new AccessDeniedException(UserMessages.WRONG_USERNAME_OR_PASSWORD);
+        }
 
         User user = userRepository.findByEmail(request.getEmail()).orElse(null);
 
