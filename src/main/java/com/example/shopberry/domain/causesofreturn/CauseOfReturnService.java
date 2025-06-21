@@ -37,28 +37,22 @@ public class CauseOfReturnService {
     }
 
     @Transactional
-    public CauseOfReturnResponseDto createCauseOfReturn(CreateCauseOfReturnRequestDto createCauseOfReturnRequestDto) throws EntityExistsException, IllegalArgumentException {
-        CauseOfReturn causeOfReturn = new CauseOfReturn();
+    public CauseOfReturnResponseDto createCauseOfReturn(CreateCauseOfReturnRequestDto createCauseOfReturnRequestDto) throws EntityExistsException {
+        String cause = createCauseOfReturnRequestDto.getCause().trim();
 
-        if (causeOfReturnRepository.existsByCause(createCauseOfReturnRequestDto.getCause())) {
+        if (causeOfReturnRepository.existsByCause(cause)) {
             throw new EntityExistsException(CauseOfReturnMessages.CAUSE_OF_RETURN_WITH_THAT_NAME_ALREADY_EXISTS);
         }
 
-        if (createCauseOfReturnRequestDto.getCause() == null) {
-            throw new IllegalArgumentException(CauseOfReturnMessages.CAUSE_CANNOT_BE_NULL);
-        }
+        CauseOfReturn causeOfReturn = new CauseOfReturn();
 
-        if (createCauseOfReturnRequestDto.getCause().isEmpty()) {
-            throw new IllegalArgumentException(CauseOfReturnMessages.CAUSE_CANNOT_BE_EMPTY);
-        }
-
-        causeOfReturn.setCause(createCauseOfReturnRequestDto.getCause());
+        causeOfReturn.setCause(cause);
 
         return causeOfReturnDtoMapper.toDto(causeOfReturnRepository.save(causeOfReturn));
     }
 
     @Transactional
-    public CauseOfReturnResponseDto updateCauseOfReturnById(Long causeOfReturnId, UpdateCauseOfReturnRequestDto updateCauseOfReturnRequestDto) throws EntityNotFoundException, EntityExistsException, IllegalArgumentException {
+    public CauseOfReturnResponseDto updateCauseOfReturnById(Long causeOfReturnId, UpdateCauseOfReturnRequestDto updateCauseOfReturnRequestDto) throws EntityNotFoundException, EntityExistsException {
         CauseOfReturn causeOfReturn = causeOfReturnRepository.findById(causeOfReturnId).orElse(null);
 
         if (causeOfReturn == null) {
@@ -66,17 +60,15 @@ public class CauseOfReturnService {
         }
 
         if (updateCauseOfReturnRequestDto.getCause() != null) {
-            CauseOfReturn otherCauseOfReturn = causeOfReturnRepository.findByCause(updateCauseOfReturnRequestDto.getCause()).orElse(null);
+            String cause = updateCauseOfReturnRequestDto.getCause().trim();
+
+            CauseOfReturn otherCauseOfReturn = causeOfReturnRepository.findByCause(cause).orElse(null);
 
             if (otherCauseOfReturn != null && !otherCauseOfReturn.getCauseOfReturnId().equals(causeOfReturnId)) {
                 throw new EntityExistsException(CauseOfReturnMessages.CAUSE_OF_RETURN_WITH_THAT_NAME_ALREADY_EXISTS);
             }
 
-            if (updateCauseOfReturnRequestDto.getCause().isEmpty()) {
-                throw new IllegalArgumentException(CauseOfReturnMessages.CAUSE_CANNOT_BE_EMPTY);
-            }
-
-            causeOfReturn.setCause(updateCauseOfReturnRequestDto.getCause());
+            causeOfReturn.setCause(cause);
         }
 
         return causeOfReturnDtoMapper.toDto(causeOfReturnRepository.save(causeOfReturn));

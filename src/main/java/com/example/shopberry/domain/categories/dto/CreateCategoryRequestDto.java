@@ -16,7 +16,7 @@ import lombok.Setter;
 public class CreateCategoryRequestDto {
 
     @Schema(
-            description = "Name of the category",
+            description = "Unique name of the category",
             example = "Electronics"
     )
     @NotBlank(message = CategoryMessages.CATEGORY_NAME_CANNOT_BE_BLANK)

@@ -4,7 +4,8 @@ public class CauseOfReturnMessages {
 
     public static final String CAUSE_OF_RETURN_NOT_FOUND = "Cause of return not found";
     public static final String CAUSE_OF_RETURN_WITH_THAT_NAME_ALREADY_EXISTS = "Cause of return with that name already exists";
-    public static final String CAUSE_CANNOT_BE_NULL = "Cause cannot be null";
     public static final String CAUSE_CANNOT_BE_EMPTY = "Cause cannot be empty";
+    public static final String CAUSE_CANNOT_BE_BLANK = "Cause cannot be blank";
+    public static final String CAUSE_CANNOT_CONTAIN_ONLY_WHITESPACES = "Cause cannot contain only whitespaces";
 
 }

@@ -16,7 +16,7 @@ import lombok.Setter;
 public class CreateAttributeRequestDto {
 
     @Schema(
-            description = "Name of the attribute",
+            description = "Unique name of the attribute",
             example = "Color"
     )
     @NotBlank(message = AttributeMessages.ATTRIBUTE_NAME_CANNOT_BE_BLANK)

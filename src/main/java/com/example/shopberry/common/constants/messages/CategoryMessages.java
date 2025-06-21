@@ -10,5 +10,6 @@ public class CategoryMessages {
     public static final String ATTRIBUTE_NOT_ASSIGNED_TO_THIS_CATEGORY = "Attribute not assigned to this category";
     public static final String CATEGORY_NAME_CANNOT_BE_BLANK = "Category name cannot be blank";
     public static final String CATEGORY_ID_CANNOT_BE_NULL = "Category id cannot be null";
+    public static final String CATEGORY_NAME_CANNOT_CONTAIN_ONLY_NAMESPACES = "Category name cannot contain only whitespaces";
 
 }

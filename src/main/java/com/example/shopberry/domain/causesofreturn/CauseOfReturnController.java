@@ -6,9 +6,11 @@ import com.example.shopberry.domain.causesofreturn.dto.CauseOfReturnResponseDto;
 import com.example.shopberry.domain.causesofreturn.dto.CreateCauseOfReturnRequestDto;
 import com.example.shopberry.domain.causesofreturn.dto.UpdateCauseOfReturnRequestDto;
 import com.example.shopberry.user.Permission;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -17,6 +19,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1")
 @RequiredArgsConstructor
+@Validated
 public class CauseOfReturnController {
 
     private final CauseOfReturnService causeOfReturnService;
@@ -41,7 +44,7 @@ public class CauseOfReturnController {
 
     @CheckPermission(Permission.CAUSE_OF_RETURN_CREATE)
     @PostMapping("/causes-of-return")
-    public ResponseEntity<CauseOfReturnResponseDto> createCauseOfReturn(@RequestBody CreateCauseOfReturnRequestDto createCauseOfReturnRequestDto) {
+    public ResponseEntity<CauseOfReturnResponseDto> createCauseOfReturn(@Valid @RequestBody CreateCauseOfReturnRequestDto createCauseOfReturnRequestDto) {
         CauseOfReturnResponseDto createdCauseOfReturnResponseDto = causeOfReturnService.createCauseOfReturn(createCauseOfReturnRequestDto);
 
         return ResponseEntity
@@ -52,7 +55,7 @@ public class CauseOfReturnController {
 
     @CheckPermission(Permission.CAUSE_OF_RETURN_UPDATE)
     @PatchMapping("/causes-of-return/{causeOfReturnId}")
-    public ResponseEntity<CauseOfReturnResponseDto> updateCauseOfReturnById(@PathVariable Long causeOfReturnId, @RequestBody UpdateCauseOfReturnRequestDto updateCauseOfReturnRequestDto) {
+    public ResponseEntity<CauseOfReturnResponseDto> updateCauseOfReturnById(@PathVariable Long causeOfReturnId, @Valid @RequestBody UpdateCauseOfReturnRequestDto updateCauseOfReturnRequestDto) {
         CauseOfReturnResponseDto updatedCauseOfReturnResponseDto = causeOfReturnService.updateCauseOfReturnById(causeOfReturnId, updateCauseOfReturnRequestDto);
 
         return ResponseEntity
