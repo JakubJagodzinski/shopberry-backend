@@ -8,7 +8,10 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -19,6 +22,34 @@ public class CategoryService {
 
     public List<CategoryResponseDto> getAllCategories() {
         return categoryDtoMapper.toDtoList(categoryRepository.findAll());
+    }
+
+    @Transactional
+    public List<CategoryTreeResponseDto> getCategoriesTree() {
+        List<Category> allCategories = categoryRepository.findAll();
+
+        Map<Long, CategoryTreeResponseDto> dtoMap = new HashMap<>();
+        for (Category category : allCategories) {
+            CategoryTreeResponseDto dto = new CategoryTreeResponseDto();
+            dto.setCategoryId(category.getCategoryId());
+            dto.setCategoryName(category.getCategoryName());
+            dtoMap.put(category.getCategoryId(), dto);
+        }
+
+        List<CategoryTreeResponseDto> roots = new ArrayList<>();
+        for (Category category : allCategories) {
+            CategoryTreeResponseDto dto = dtoMap.get(category.getCategoryId());
+            if (category.getParentCategory() == null) {
+                roots.add(dto);
+            } else {
+                CategoryTreeResponseDto parentDto = dtoMap.get(category.getParentCategory().getCategoryId());
+                if (parentDto != null) {
+                    parentDto.getChildren().add(dto);
+                }
+            }
+        }
+
+        return roots;
     }
 
     @Transactional
@@ -121,5 +152,4 @@ public class CategoryService {
 
         categoryRepository.deleteById(categoryId);
     }
-
 }

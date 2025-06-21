@@ -2,10 +2,7 @@ package com.example.shopberry.domain.categories;
 
 import com.example.shopberry.auth.access.CheckPermission;
 import com.example.shopberry.common.MessageResponseDto;
-import com.example.shopberry.domain.categories.dto.CategoryResponseDto;
-import com.example.shopberry.domain.categories.dto.CreateCategoryRequestDto;
-import com.example.shopberry.domain.categories.dto.SetParentCategoryRequestDto;
-import com.example.shopberry.domain.categories.dto.UpdateCategoryRequestDto;
+import com.example.shopberry.domain.categories.dto.*;
 import com.example.shopberry.user.Permission;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -32,6 +29,15 @@ public class CategoryController {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(categoryResponseDtoList);
+    }
+
+    @GetMapping("/categories/tree")
+    public ResponseEntity<List<CategoryTreeResponseDto>> getCategoriesTree() {
+        List<CategoryTreeResponseDto> categoryTreeResponseDtoList = categoryService.getCategoriesTree();
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(categoryTreeResponseDtoList);
     }
 
     @GetMapping("/categories/{categoryId}")
