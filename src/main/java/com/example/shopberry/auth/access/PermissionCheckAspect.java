@@ -15,7 +15,7 @@ public class PermissionCheckAspect {
     private final SecurityUtils securityUtils;
 
     @Before("@annotation(checkPermission)")
-    public void checkPermission(CheckPermission checkPermission) {
+    public void checkPermission(CheckPermission checkPermission) throws AccessDeniedException {
         Permission permission = checkPermission.value();
 
         if (!securityUtils.hasPermission(permission.getPermission())) {

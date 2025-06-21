@@ -5,12 +5,12 @@ import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import java.nio.file.AccessDeniedException;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
@@ -55,7 +55,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ApiError> handleAccessDeniedException(AccessDeniedException e) {
         ApiError response = ApiError.builder()
                 .status(HttpStatus.FORBIDDEN.value())
-                .message("No required permissions to perform this operation: " + e.getMessage())
+                .message("Access denied: " + e.getMessage())
                 .timestamp(LocalDateTime.now())
                 .build();
 
