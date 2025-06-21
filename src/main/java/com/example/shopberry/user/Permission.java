@@ -96,8 +96,6 @@ public enum Permission {
     ORDER_STATUS_DELETE("order_status:delete"),
 
     PAYMENT_TYPE_CREATE("payment_type:create"),
-    PAYMENT_TYPE_READ("payment_type:read"),
-    PAYMENT_TYPE_READ_ALL("payment_type:read:all"),
     PAYMENT_TYPE_UPDATE("payment_type:update"),
     PAYMENT_TYPE_DELETE("payment_type:delete"),
 

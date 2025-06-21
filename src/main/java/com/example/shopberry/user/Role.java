@@ -65,9 +65,6 @@ public enum Role {
                     ORDER_STATUS_READ,
                     ORDER_STATUS_READ_ALL,
 
-                    PAYMENT_TYPE_READ,
-                    PAYMENT_TYPE_READ_ALL,
-
                     PRODUCT_RETURN_CREATE,
 
                     REVIEW_CREATE,
@@ -109,9 +106,6 @@ public enum Role {
 
                     ORDER_STATUS_READ,
                     ORDER_STATUS_READ_ALL,
-
-                    PAYMENT_TYPE_READ,
-                    PAYMENT_TYPE_READ_ALL,
 
                     PRODUCT_ATTRIBUTE_ASSIGN,
                     PRODUCT_ATTRIBUTE_UNASSIGN,

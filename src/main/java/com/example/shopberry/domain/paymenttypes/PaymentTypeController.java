@@ -24,7 +24,6 @@ public class PaymentTypeController {
 
     private final PaymentTypeService paymentTypeService;
 
-    @CheckPermission(Permission.PAYMENT_TYPE_READ_ALL)
     @GetMapping("/payment-types")
     public ResponseEntity<List<PaymentTypeResponseDto>> getAllPaymentTypes() {
         List<PaymentTypeResponseDto> paymentTypeResponseDtoList = paymentTypeService.getAllPaymentTypes();
@@ -34,7 +33,6 @@ public class PaymentTypeController {
                 .body(paymentTypeResponseDtoList);
     }
 
-    @CheckPermission(Permission.PAYMENT_TYPE_READ)
     @GetMapping("/payment-types/{paymentTypeId}")
     public ResponseEntity<PaymentTypeResponseDto> getPaymentTypeById(@PathVariable Long paymentTypeId) {
         PaymentTypeResponseDto paymentTypeResponseDto = paymentTypeService.getPaymentTypeById(paymentTypeId);
