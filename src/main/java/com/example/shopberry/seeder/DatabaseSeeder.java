@@ -27,7 +27,6 @@ public class DatabaseSeeder implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
         adminSeeder.seed();
         attributeSeeder.seed();
-        categorySeeder.seed();
         orderStatusSeeder.seed();
         orderProductStatusSeeder.seed();
         paymentTypeSeeder.seed();
@@ -35,6 +34,8 @@ public class DatabaseSeeder implements ApplicationRunner {
         promotionSeeder.seed();
         causeOfReturnSeeder.seed();
         producerSeeder.seed();
+
+        categorySeeder.seed();
         productSeeder.seed();
     }
 

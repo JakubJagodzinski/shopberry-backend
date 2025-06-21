@@ -6,6 +6,8 @@ import com.example.shopberry.seeder.DataSeeder;
 import com.example.shopberry.utils.CsvUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.util.*;
@@ -19,6 +21,7 @@ public class CategorySeeder implements DataSeeder {
     private static final String CATEGORY_DATA_FILE_PATH = DATA_DIRECTORY + "/categories.csv";
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void seed() throws IOException {
         if (categoryRepository.count() > 0) return;
 
@@ -29,7 +32,6 @@ public class CategorySeeder implements DataSeeder {
                     String categoryName = parts[0].trim().replaceAll("^\"|\"$", "");
                     String parentNameRaw = parts.length > 1 ? parts[1].trim() : "";
                     String parentName = parentNameRaw.equals("\"\"") || parentNameRaw.isEmpty() ? null : parentNameRaw.replaceAll("^\"|\"$", "");
-
                     return new String[]{categoryName, parentName};
                 }
         );
@@ -39,31 +41,30 @@ public class CategorySeeder implements DataSeeder {
             categoryToParent.put(row[0], row[1]);
         }
 
-        Set<String> created = new HashSet<>();
+        // 1. Insert all categories without parents
+        Map<String, Category> categoryMap = new HashMap<>();
+        for (String categoryName : categoryToParent.keySet()) {
+            Category category = new Category();
+            category.setCategoryName(categoryName);
+            categoryMap.put(categoryName, category);
+        }
+        categoryRepository.saveAll(categoryMap.values());
 
-        while (created.size() < categoryToParent.size()) {
-            for (Map.Entry<String, String> entry : categoryToParent.entrySet()) {
-                String categoryName = entry.getKey();
-                String parentName = entry.getValue();
+        // 2. Set parent relations and update
+        for (Map.Entry<String, String> entry : categoryToParent.entrySet()) {
+            String categoryName = entry.getKey();
+            String parentName = entry.getValue();
 
-                if (created.contains(categoryName)) continue;
-
-                if (parentName == null || created.contains(parentName)) {
-                    Category category = new Category();
-                    category.setCategoryName(categoryName);
-
-                    if (parentName != null) {
-                        Category parent = categoryRepository.findByCategoryName(parentName).orElse(null);
-                        if (parent != null && !parent.equals(category)) {
-                            category.setParentCategory(parent);
-                        }
-                    }
-
-                    categoryRepository.save(category);
-                    created.add(categoryName);
+            if (parentName != null) {
+                Category category = categoryMap.get(categoryName);
+                Category parent = categoryMap.get(parentName);
+                if (parent != null) {
+                    category.setParentCategory(parent);
                 }
             }
         }
+        categoryRepository.saveAll(categoryMap.values());
     }
+
 
 }

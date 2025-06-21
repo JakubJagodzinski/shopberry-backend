@@ -7,6 +7,8 @@ import com.example.shopberry.utils.CsvUtils;
 import com.example.shopberry.utils.LongParser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.util.List;
@@ -20,6 +22,7 @@ public class PromotionSeeder implements DataSeeder {
     private static final String PROMOTIONS_DATA_FILE_PATH = DATA_DIRECTORY + "/promotions.csv";
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void seed() throws IOException {
         if (promotionRepository.count() == 0) {
             List<Promotion> promotions = CsvUtils.loadFromCsv(

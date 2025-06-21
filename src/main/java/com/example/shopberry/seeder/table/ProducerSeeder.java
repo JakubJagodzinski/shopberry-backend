@@ -6,6 +6,8 @@ import com.example.shopberry.utils.CsvUtils;
 import com.example.shopberry.seeder.DataSeeder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.util.List;
@@ -19,6 +21,7 @@ public class ProducerSeeder implements DataSeeder {
     private static final String PRODUCERS_DATA_FILE_PATH = DATA_DIRECTORY + "/producers.csv";
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void seed() throws IOException {
         if (producerRepository.count() == 0) {
             List<Producer> producers = CsvUtils.loadFromCsv(
