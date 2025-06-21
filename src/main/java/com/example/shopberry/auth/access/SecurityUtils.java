@@ -27,6 +27,10 @@ public class SecurityUtils {
         return hasRole(Role.ADMIN.name());
     }
 
+    public boolean isEmployee() {
+        return hasRole(Role.EMPLOYEE.name());
+    }
+
     public boolean hasRole(String role) {
         return getAuthentication().getAuthorities().stream()
                 .anyMatch(a -> a.getAuthority().equals("ROLE_" + role));

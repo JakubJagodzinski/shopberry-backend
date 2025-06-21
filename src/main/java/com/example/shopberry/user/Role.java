@@ -50,9 +50,7 @@ public enum Role {
                     CUSTOMER_FAVOURITE_PRODUCT_READ_ALL,
                     CUSTOMER_FAVOURITE_PRODUCT_REMOVE,
 
-                    ORDER_PRODUCT_ADD,
                     ORDER_PRODUCT_READ,
-                    ORDER_PRODUCT_REMOVE,
 
                     ORDER_PRODUCT_STATUS_READ,
                     ORDER_PRODUCT_STATUS_READ_ALL,
@@ -77,29 +75,16 @@ public enum Role {
 
     EMPLOYEE(
             Set.of(
-                    ATTRIBUTE_CREATE,
-                    ATTRIBUTE_UPDATE,
-                    ATTRIBUTE_DELETE,
-
-                    CATEGORY_CREATE,
-                    CATEGORY_UPDATE,
-                    CATEGORY_DELETE,
-
-                    CATEGORY_ATTRIBUTE_ASSIGN,
-                    CATEGORY_ATTRIBUTE_UNASSIGN,
+                    ORDER_READ,
+                    ORDER_READ_ALL,
 
                     COMPLAINT_READ,
                     COMPLAINT_READ_ALL,
 
                     CUSTOMER_READ,
-                    CUSTOMER_READ_ALL,
 
                     EMPLOYEE_READ,
                     EMPLOYEE_UPDATE,
-                    EMPLOYEE_DELETE,
-
-                    EMPLOYEE_TYPE_READ,
-                    EMPLOYEE_TYPE_READ_ALL,
 
                     ORDER_PRODUCT_STATUS_READ,
                     ORDER_PRODUCT_STATUS_READ_ALL,
@@ -107,17 +92,9 @@ public enum Role {
                     ORDER_STATUS_READ,
                     ORDER_STATUS_READ_ALL,
 
-                    PRODUCT_ATTRIBUTE_ASSIGN,
-                    PRODUCT_ATTRIBUTE_UPDATE,
-                    PRODUCT_ATTRIBUTE_UNASSIGN,
-
                     PRODUCT_PROMOTION_ASSIGN,
                     PRODUCT_PROMOTION_UNASSIGN,
                     PRODUCT_PROMOTION_UNASSIGN_ALL,
-
-                    PRODUCT_CREATE,
-                    PRODUCT_UPDATE,
-                    PRODUCT_DELETE,
 
                     PROMOTION_CREATE,
                     PROMOTION_UPDATE,

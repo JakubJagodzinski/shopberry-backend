@@ -1,5 +1,6 @@
 package com.example.shopberry.domain.orders;
 
+import com.example.shopberry.auth.access.manager.OrderAccessManager;
 import com.example.shopberry.common.constants.messages.CustomerMessages;
 import com.example.shopberry.common.constants.messages.OrderMessages;
 import com.example.shopberry.common.constants.messages.PaymentTypeMessages;
@@ -34,6 +35,8 @@ public class OrderService {
 
     private final OrderDtoMapper orderDtoMapper;
 
+    private final OrderAccessManager orderAccessManager;
+
     public List<OrderResponseDto> getAllOrders() {
         return orderDtoMapper.toDtoList(orderRepository.findAll());
     }
@@ -46,6 +49,8 @@ public class OrderService {
             throw new EntityNotFoundException(OrderMessages.ORDER_NOT_FOUND);
         }
 
+        orderAccessManager.checkCanReadOrder(order);
+
         return orderDtoMapper.toDto(order);
     }
 
@@ -57,6 +62,8 @@ public class OrderService {
             throw new EntityNotFoundException(CustomerMessages.CUSTOMER_NOT_FOUND);
         }
 
+        orderAccessManager.checkCanReadCustomerAllOrders(customer);
+
         return orderDtoMapper.toDtoList(orderRepository.findAllByCustomer_UserId(customerId));
     }
 
@@ -67,6 +74,8 @@ public class OrderService {
         if (customer == null) {
             throw new EntityNotFoundException(CustomerMessages.CUSTOMER_NOT_FOUND);
         }
+
+        orderAccessManager.checkCanCreateOrder(customer);
 
         ShipmentType shipmentType = shipmentTypeRepository.findById(createOrderRequestDto.getShipmentTypeId()).orElse(null);
 

@@ -61,12 +61,6 @@ public enum Permission {
     EMPLOYEE_UPDATE("employee:update"),
     EMPLOYEE_DELETE("employee:delete"),
 
-    EMPLOYEE_TYPE_CREATE("employee_type:create"),
-    EMPLOYEE_TYPE_READ("employee_type:read"),
-    EMPLOYEE_TYPE_READ_ALL("employee_type:read:all"),
-    EMPLOYEE_TYPE_UPDATE("employee_type:update"),
-    EMPLOYEE_TYPE_DELETE("employee_type:delete"),
-
     CUSTOMER_FAVOURITE_PRODUCT_ADD("customer_favourite_product:add"),
     CUSTOMER_FAVOURITE_PRODUCT_READ_ALL("customer_favourite_product:read:all"),
     CUSTOMER_FAVOURITE_PRODUCT_REMOVE("customer_favourite_product:remove"),
@@ -100,7 +94,6 @@ public enum Permission {
     PAYMENT_TYPE_DELETE("payment_type:delete"),
 
     PRODUCER_CREATE("producer:create"),
-    PRODUCER_READ("producer:read"),
     PRODUCER_READ_ALL("producer:read:all"),
     PRODUCER_UPDATE("producer:update"),
     PRODUCER_DELETE("producer:delete"),
