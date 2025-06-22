@@ -26,11 +26,11 @@ public class AttributeSeeder implements DataSeeder {
         if (attributeRepository.count() == 0) {
             List<Attribute> attributes = CsvUtils.loadFromCsv(
                     ATTRIBUTES_DATA_FILE_PATH,
-                    1,
+                    2,
                     parts -> {
                         Attribute attribute = new Attribute();
 
-                        attribute.setAttributeName(parts[0].trim());
+                        attribute.setAttributeName(parts[1].trim());
 
                         return attribute;
                     }

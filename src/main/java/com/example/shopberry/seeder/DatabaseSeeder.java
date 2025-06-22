@@ -21,6 +21,7 @@ public class DatabaseSeeder implements ApplicationRunner {
     private final CauseOfReturnSeeder causeOfReturnSeeder;
     private final ProducerSeeder producerSeeder;
     private final ProductSeeder productSeeder;
+    private final ProductAttributeSeeder productAttributeSeeder;
 
 
     @Override
@@ -37,6 +38,8 @@ public class DatabaseSeeder implements ApplicationRunner {
 
         categorySeeder.seed();
         productSeeder.seed();
+
+        productAttributeSeeder.seed();
     }
 
 }

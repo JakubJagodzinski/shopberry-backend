@@ -1,31 +1,32 @@
-attributeName
-Color
-Material
-Size
-Weight
-Dimensions
-Height
-Width
-Depth
-Length
-Shape
-Texture
-Finish
-Capacity
-Volume
-Form Factor
-Display Size
-Screen Type
-Resolution
-Frame Material
-Leg Type
-Handle Type
-Number of Pieces
-Mounting Type
-Folding
-Wheels
-Number of Drawers
-Surface Area
-Cable Length
-Connector Type
-Power Output
+attributeId,attributeName
+1,attributeName
+2,Color
+3,Material
+4,Size
+5,Weight
+6,Dimensions
+7,Height
+8,Width
+9,Depth
+10,Length
+11,Shape
+12,Texture
+13,Finish
+14,Capacity
+15,Volume
+16,Form Factor
+17,Display Size
+18,Screen Type
+19,Resolution
+20,Frame Material
+21,Leg Type
+22,Handle Type
+23,Number of Pieces
+24,Mounting Type
+25,Folding
+26,Wheels
+27,Number of Drawers
+28,Surface Area
+29,Cable Length
+30,Connector Type
+31,Power Output

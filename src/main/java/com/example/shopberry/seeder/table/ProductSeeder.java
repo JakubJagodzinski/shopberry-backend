@@ -34,21 +34,21 @@ public class ProductSeeder implements DataSeeder {
         if (productRepository.count() == 0) {
             List<Product> products = CsvUtils.loadFromCsv(
                     PRODUCT_CSV_PATH,
-                    5,
+                    6,
                     parts -> {
-                        String productName = parts[0].trim();
-                        double productPrice = Double.parseDouble(parts[1].trim());
-                        String producerName = parts[2].trim();
-                        String categoryName = parts[3].trim();
-                        String discountStr = parts[4].trim();
+                        String productName = parts[1].trim();
+                        double productPrice = Double.parseDouble(parts[2].trim());
+                        String producerName = parts[3].trim();
+                        String categoryName = parts[4].trim();
+                        String discountStr = parts[5].trim();
 
                         Category category = categoryRepository.findByCategoryName(categoryName).orElse(null);
                         if (category == null) {
-                            return null; // skip this product - category is missing
+                            return null;
                         }
 
                         if (categoryRepository.existsByParentCategory_CategoryId(category.getCategoryId())) {
-                            return null; // skip this product - category is the parent category
+                            return null;
                         }
 
                         Producer producer = producerRepository.findByProducerName(producerName).orElse(null);
@@ -69,4 +69,5 @@ public class ProductSeeder implements DataSeeder {
             productRepository.saveAll(products);
         }
     }
+
 }
