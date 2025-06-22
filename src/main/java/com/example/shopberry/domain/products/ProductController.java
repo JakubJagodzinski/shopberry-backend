@@ -42,6 +42,15 @@ public class ProductController {
                 .body(productResponseDto);
     }
 
+    @GetMapping("/categories/{categoryId}/products")
+    public ResponseEntity<List<ProductResponseDto>> getCategoryAllProducts(@PathVariable Long categoryId) {
+        List<ProductResponseDto> productResponseDtoList = productService.getCategoryAllProducts(categoryId);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(productResponseDtoList);
+    }
+
     @CheckPermission(Permission.PRODUCT_CREATE)
     @PostMapping("/products")
     public ResponseEntity<ProductResponseDto> createProduct(@Valid @RequestBody CreateProductRequestDto createProductRequestDto) {

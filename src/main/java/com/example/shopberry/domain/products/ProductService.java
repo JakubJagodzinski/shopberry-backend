@@ -1,6 +1,8 @@
 package com.example.shopberry.domain.products;
 
+import com.example.shopberry.common.constants.messages.CategoryMessages;
 import com.example.shopberry.common.constants.messages.ProductMessages;
+import com.example.shopberry.domain.categories.CategoryRepository;
 import com.example.shopberry.domain.products.dto.CreateProductRequestDto;
 import com.example.shopberry.domain.products.dto.ProductDtoMapper;
 import com.example.shopberry.domain.products.dto.ProductResponseDto;
@@ -20,6 +22,7 @@ public class ProductService {
     private final ProductRepository productRepository;
 
     private final ProductDtoMapper productDtoMapper;
+    private final CategoryRepository categoryRepository;
 
     @Transactional
     public List<ProductResponseDto> getAllProducts() {
@@ -35,6 +38,15 @@ public class ProductService {
         }
 
         return productDtoMapper.toDto(product);
+    }
+
+    @Transactional
+    public List<ProductResponseDto> getCategoryAllProducts(Long categoryId) throws EntityNotFoundException {
+        if (!categoryRepository.existsById(categoryId)) {
+            throw new EntityNotFoundException(CategoryMessages.CATEGORY_NOT_FOUND);
+        }
+
+        return productDtoMapper.toDtoList(productRepository.findAllByCategory_CategoryId(categoryId));
     }
 
     @Transactional
