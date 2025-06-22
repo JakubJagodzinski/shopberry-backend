@@ -9,6 +9,10 @@ import java.util.List;
 public class CustomerAddressDtoMapper {
 
     public CustomerAddressResponseDto toDto(CustomerAddress customerAddress) {
+        if (customerAddress == null) {
+            return null;
+        }
+
         CustomerAddressResponseDto customerAddressResponseDto = new CustomerAddressResponseDto();
 
         customerAddressResponseDto.setAddressId(customerAddress.getAddressId());
