@@ -1,5 +1,7 @@
 package com.example.shopberry.domain.cartproducts;
 
+import com.example.shopberry.auth.access.manager.CartProductAccessManager;
+import com.example.shopberry.common.constants.messages.CartProductMessages;
 import com.example.shopberry.common.constants.messages.CustomerMessages;
 import com.example.shopberry.common.constants.messages.ProductMessages;
 import com.example.shopberry.domain.cartproducts.dto.AddProductToCartRequestDto;
@@ -29,6 +31,8 @@ public class CartProductService {
 
     private final CartProductDtoMapper cartProductDtoMapper;
 
+    private final CartProductAccessManager cartProductAccessManager;
+
     @Transactional
     public CartProductResponseDto getCustomerCartProduct(UUID customerId, Long productId) throws EntityNotFoundException {
         CartProductId cartProductId = new CartProductId(customerId, productId);
@@ -36,17 +40,23 @@ public class CartProductService {
         CartProduct cartProduct = cartProductRepository.findById(cartProductId).orElse(null);
 
         if (cartProduct == null) {
-            throw new EntityNotFoundException(ProductMessages.PRODUCT_NOT_IN_CART);
+            throw new EntityNotFoundException(CartProductMessages.PRODUCT_NOT_IN_CART);
         }
+
+        cartProductAccessManager.checkCanReadCartProduct(cartProduct);
 
         return cartProductDtoMapper.toDto(cartProduct);
     }
 
     @Transactional
     public List<CartProductResponseDto> getCustomerAllCartProducts(UUID customerId) throws EntityNotFoundException {
-        if (!customerRepository.existsById(customerId)) {
+        Customer customer = customerRepository.findById(customerId).orElse(null);
+
+        if (customer == null) {
             throw new EntityNotFoundException(CustomerMessages.CUSTOMER_NOT_FOUND);
         }
+
+        cartProductAccessManager.checkCanReadCustomerAllCartProduct(customer);
 
         return cartProductDtoMapper.toDtoList(cartProductRepository.findAllByCustomer_UserId(customerId));
     }
@@ -59,6 +69,8 @@ public class CartProductService {
             throw new EntityNotFoundException(CustomerMessages.CUSTOMER_NOT_FOUND);
         }
 
+        cartProductAccessManager.checkCanAddProductToCart(customer);
+
         Product product = productRepository.findById(addProductToCartRequestDto.getProductId()).orElse(null);
 
         if (product == null) {
@@ -68,7 +80,7 @@ public class CartProductService {
         CartProductId cartProductId = new CartProductId(customerId, addProductToCartRequestDto.getProductId());
 
         if (cartProductRepository.existsById(cartProductId)) {
-            throw new EntityExistsException(ProductMessages.PRODUCT_ALREADY_IN_CART);
+            throw new EntityExistsException(CartProductMessages.PRODUCT_ALREADY_IN_CART);
         }
 
         CartProduct cartProduct = new CartProduct();
@@ -88,8 +100,10 @@ public class CartProductService {
         CartProduct cartProduct = cartProductRepository.findById(cartProductId).orElse(null);
 
         if (cartProduct == null) {
-            throw new EntityNotFoundException(ProductMessages.PRODUCT_NOT_IN_CART);
+            throw new EntityNotFoundException(CartProductMessages.PRODUCT_NOT_IN_CART);
         }
+
+        cartProductAccessManager.checkCanUpdateCartProduct(cartProduct);
 
         if (updateCartProductRequestDto.getProductQuantity() != null) {
             cartProduct.setProductQuantity(updateCartProductRequestDto.getProductQuantity());
@@ -102,9 +116,13 @@ public class CartProductService {
     public void removeProductFromCustomerCart(UUID customerId, Long productId) throws EntityNotFoundException {
         CartProductId cartProductId = new CartProductId(customerId, productId);
 
-        if (!cartProductRepository.existsById(cartProductId)) {
-            throw new EntityNotFoundException(ProductMessages.PRODUCT_NOT_IN_CART);
+        CartProduct cartProduct = cartProductRepository.findById(cartProductId).orElse(null);
+
+        if (cartProduct == null) {
+            throw new EntityNotFoundException(CartProductMessages.PRODUCT_NOT_IN_CART);
         }
+
+        cartProductAccessManager.checkCanRemoveProductFromCart(cartProduct);
 
         cartProductRepository.deleteById(cartProductId);
     }
