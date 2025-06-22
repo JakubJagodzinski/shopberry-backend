@@ -44,11 +44,14 @@ public class ProductSeeder implements DataSeeder {
 
                         Category category = categoryRepository.findByCategoryName(categoryName).orElse(null);
                         if (category == null) {
-                            return null; // skip this product
+                            return null; // skip this product - category is missing
                         }
 
-                        Producer producer = producerName.isEmpty() ? null :
-                                producerRepository.findByProducerName(producerName).orElse(null);
+                        if (categoryRepository.existsByParentCategory_CategoryId(category.getCategoryId())) {
+                            return null; // skip this product - category is the parent category
+                        }
+
+                        Producer producer = producerRepository.findByProducerName(producerName).orElse(null);
 
                         Product product = new Product();
                         product.setProductName(productName);
