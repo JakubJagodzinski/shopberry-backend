@@ -21,6 +21,8 @@ public class CustomerDtoMapper {
         CustomerResponseDto customerResponseDto = new CustomerResponseDto();
 
         customerResponseDto.setCustomerId(customer.getUserId());
+        customerResponseDto.setFirstName(customer.getFirstName());
+        customerResponseDto.setLastName(customer.getLastName());
         customerResponseDto.setCreatedAt(customer.getCreatedAt());
         customerResponseDto.setIsCompany(customer.getIsCompany());
         customerResponseDto.setMainAddress(customerAddressDtoMapper.toDto(customer.getMainAddress()));
