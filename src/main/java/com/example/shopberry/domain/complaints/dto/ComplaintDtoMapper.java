@@ -16,6 +16,10 @@ public class ComplaintDtoMapper {
     private final ProductDtoMapper productDtoMapper;
 
     public ComplaintResponseDto toDto(Complaint complaint) {
+        if (complaint == null) {
+            return null;
+        }
+
         ComplaintResponseDto ComplaintResponseDto = new ComplaintResponseDto();
 
         ComplaintResponseDto.setComplaintId(complaint.getComplaintId());

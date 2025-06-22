@@ -14,11 +14,19 @@ public class ReviewDtoMapper {
     private final ProductDtoMapper productDtoMapper;
 
     public ReviewResponseDto toDto(Review review) {
+        if (review == null) {
+            return null;
+        }
+
         ReviewResponseDto reviewResponseDto = new ReviewResponseDto();
 
         reviewResponseDto.setReviewId(review.getReviewId());
         reviewResponseDto.setProduct(productDtoMapper.toDto(review.getProduct()));
-        reviewResponseDto.setCustomerId(review.getCustomer().getUserId());
+        if (review.getCustomer() != null) {
+            reviewResponseDto.setCustomerId(review.getCustomer().getUserId());
+        } else {
+            reviewResponseDto.setCustomerId(null);
+        }
         reviewResponseDto.setRatingValue(review.getRatingValue());
         reviewResponseDto.setReviewText(review.getReviewText());
         reviewResponseDto.setReviewedAt(review.getReviewedAt());

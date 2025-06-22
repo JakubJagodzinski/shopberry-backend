@@ -9,6 +9,10 @@ import java.util.List;
 public class ProducerDtoMapper {
 
     public ProducerResponseDto toDto(Producer producer) {
+        if (producer == null) {
+            return null;
+        }
+
         ProducerResponseDto dto = new ProducerResponseDto();
 
         dto.setProducerId(producer.getProducerId());

@@ -14,6 +14,10 @@ public class CustomerDtoMapper {
     private final CustomerAddressDtoMapper customerAddressDtoMapper;
 
     public CustomerResponseDto toDto(Customer customer) {
+        if (customer == null) {
+            return null;
+        }
+
         CustomerResponseDto customerResponseDto = new CustomerResponseDto();
 
         customerResponseDto.setCustomerId(customer.getUserId());

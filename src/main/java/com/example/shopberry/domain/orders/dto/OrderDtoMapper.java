@@ -18,6 +18,10 @@ public class OrderDtoMapper {
     private final OrderStatusDtoMapper orderStatusDtoMapper;
 
     public OrderResponseDto toDto(Order order) {
+        if (order == null) {
+            return null;
+        }
+
         OrderResponseDto OrderResponseDto = new OrderResponseDto();
 
         OrderResponseDto.setOrderId(order.getOrderId());

@@ -9,6 +9,10 @@ import java.util.List;
 public class ShipmentTypeDtoMapper {
 
     public ShipmentTypeResponseDto toDto(ShipmentType shipmentType) {
+        if (shipmentType == null) {
+            return null;
+        }
+
         ShipmentTypeResponseDto ShipmentTypeResponseDto = new ShipmentTypeResponseDto();
 
         ShipmentTypeResponseDto.setShipmentTypeId(shipmentType.getShipmentTypeId());

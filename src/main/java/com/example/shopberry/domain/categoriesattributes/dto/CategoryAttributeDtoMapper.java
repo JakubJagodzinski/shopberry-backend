@@ -17,6 +17,10 @@ public class CategoryAttributeDtoMapper {
     private final AttributeDtoMapper attributeDtoMapper;
 
     public CategoryAttributeResponseDto toDto(CategoryAttribute categoryAttribute) {
+        if (categoryAttribute == null) {
+            return null;
+        }
+
         CategoryAttributeResponseDto categoryAttributeResponseDto = new CategoryAttributeResponseDto();
 
         categoryAttributeResponseDto.setCategory(categoryDtoMapper.toDto(categoryAttribute.getCategory()));

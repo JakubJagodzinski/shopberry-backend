@@ -16,6 +16,10 @@ public class ProductPromotionDtoMapper {
     private final PromotionDtoMapper promotionDtoMapper;
 
     public ProductPromotionResponseDto toDto(ProductPromotion productPromotion) {
+        if (productPromotion == null) {
+            return null;
+        }
+
         ProductPromotionResponseDto dto = new ProductPromotionResponseDto();
 
         dto.setProduct(productDtoMapper.toDto(productPromotion.getProduct()));

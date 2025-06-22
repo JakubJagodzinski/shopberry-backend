@@ -9,6 +9,10 @@ import java.util.List;
 public class OrderStatusDtoMapper {
 
     public OrderStatusResponseDto toDto(OrderStatus orderStatus) {
+        if (orderStatus == null) {
+            return null;
+        }
+
         OrderStatusResponseDto OrderStatusResponseDto = new OrderStatusResponseDto();
 
         OrderStatusResponseDto.setOrderStatusId(orderStatus.getOrderStatusId());

@@ -14,6 +14,10 @@ public class ProductDtoMapper {
     private final ProducerDtoMapper producerDtoMapper;
 
     public ProductResponseDto toDto(Product product) {
+        if (product == null) {
+            return null;
+        }
+
         ProductResponseDto dto = new ProductResponseDto();
 
         dto.setProductId(product.getProductId());
@@ -22,10 +26,12 @@ public class ProductDtoMapper {
         dto.setDiscountPercentValue(product.getDiscountPercentValue());
         dto.setRatingValue(product.getRatingValue());
         dto.setRatingsCount(product.getRatingsCount());
-        if (product.getProducer() != null) {
-            dto.setProducer(producerDtoMapper.toDto(product.getProducer()));
+        dto.setProducer(producerDtoMapper.toDto(product.getProducer()));
+        if (product.getCategory() != null) {
+            dto.setCategoryId(product.getCategory().getCategoryId());
+        } else {
+            dto.setCategoryId(null);
         }
-        dto.setCategoryId(product.getCategory().getCategoryId());
         dto.setIsInStock(product.getIsInStock());
         dto.setImage(product.getImage());
 

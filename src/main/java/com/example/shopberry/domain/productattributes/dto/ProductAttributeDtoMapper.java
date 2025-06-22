@@ -16,6 +16,10 @@ public class ProductAttributeDtoMapper {
     private final AttributeDtoMapper attributeDtoMapper;
 
     public ProductAttributeResponseDto toDto(ProductAttribute productAttribute) {
+        if (productAttribute == null) {
+            return null;
+        }
+
         ProductAttributeResponseDto dto = new ProductAttributeResponseDto();
 
         dto.setProduct(productDtoMapper.toDto(productAttribute.getProduct()));

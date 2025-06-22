@@ -9,6 +9,10 @@ import java.util.List;
 public class EmployeeDtoMapper {
 
     public EmployeeResponseDto toDto(Employee employee) {
+        if (employee == null) {
+            return null;
+        }
+
         EmployeeResponseDto employeeResponseDto = new EmployeeResponseDto();
 
         employeeResponseDto.setEmployeeId(employee.getUserId());

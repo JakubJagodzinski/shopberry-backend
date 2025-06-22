@@ -9,6 +9,10 @@ import java.util.List;
 public class PromotionDtoMapper {
 
     public PromotionResponseDto toDto(Promotion promotion) {
+        if (promotion == null) {
+            return null;
+        }
+
         PromotionResponseDto PromotionResponseDto = new PromotionResponseDto();
 
         PromotionResponseDto.setPromotionId(promotion.getPromotionId());

@@ -9,6 +9,10 @@ import java.util.List;
 public class CauseOfReturnDtoMapper {
 
     public CauseOfReturnResponseDto toDto(CauseOfReturn causeOfReturn) {
+        if (causeOfReturn == null) {
+            return null;
+        }
+
         CauseOfReturnResponseDto causeOfReturnResponseDto = new CauseOfReturnResponseDto();
 
         causeOfReturnResponseDto.setCauseOfReturnId(causeOfReturn.getCauseOfReturnId());

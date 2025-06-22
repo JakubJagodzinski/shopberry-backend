@@ -10,13 +10,21 @@ import java.util.List;
 public class ComplaintImageDtoMapper {
 
     public ComplaintImageResponseDto toDto(ComplaintImage complaintImage) {
-        ComplaintImageResponseDto ComplaintImageResponseDto = new ComplaintImageResponseDto();
+        if (complaintImage == null) {
+            return null;
+        }
 
-        ComplaintImageResponseDto.setImageId(complaintImage.getImageId());
-        ComplaintImageResponseDto.setComplaintId(complaintImage.getComplaint().getComplaintId());
-        ComplaintImageResponseDto.setImage(complaintImage.getImage());
+        ComplaintImageResponseDto complaintImageResponseDto = new ComplaintImageResponseDto();
 
-        return ComplaintImageResponseDto;
+        complaintImageResponseDto.setImageId(complaintImage.getImageId());
+        if (complaintImage.getComplaint() != null) {
+            complaintImageResponseDto.setComplaintId(complaintImage.getComplaint().getComplaintId());
+        } else {
+            complaintImageResponseDto.setComplaintId(null);
+        }
+        complaintImageResponseDto.setImage(complaintImage.getImage());
+
+        return complaintImageResponseDto;
     }
 
     public List<ComplaintImageResponseDto> toDtoList(List<ComplaintImage> complaintImageList) {

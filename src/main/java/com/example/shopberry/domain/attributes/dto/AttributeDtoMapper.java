@@ -9,6 +9,10 @@ import java.util.List;
 public class AttributeDtoMapper {
 
     public AttributeResponseDto toDto(Attribute attribute) {
+        if (attribute == null) {
+            return null;
+        }
+
         AttributeResponseDto AttributeResponseDto = new AttributeResponseDto();
 
         AttributeResponseDto.setAttributeId(attribute.getAttributeId());

@@ -14,6 +14,10 @@ public class FavouriteProductDtoMapper {
     private final ProductDtoMapper productDtoMapper;
 
     public FavouriteProductResponseDto toDto(FavouriteProduct favouriteProduct) {
+        if (favouriteProduct == null) {
+            return null;
+        }
+
         FavouriteProductResponseDto favouriteProductResponseDto = new FavouriteProductResponseDto();
 
         favouriteProductResponseDto.setCustomerId(favouriteProduct.getCustomer().getUserId());

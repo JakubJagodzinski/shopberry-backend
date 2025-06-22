@@ -18,6 +18,10 @@ public class ProductReturnDtoMapper {
     private final CauseOfReturnDtoMapper causeOfReturnDtoMapper;
 
     public ProductReturnResponseDto toDto(ProductReturn productReturn) {
+        if (productReturn == null) {
+            return null;
+        }
+
         ProductReturnResponseDto dto = new ProductReturnResponseDto();
 
         dto.setProductReturnId(productReturn.getProductReturnId());

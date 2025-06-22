@@ -9,6 +9,10 @@ import java.util.List;
 public class PaymentTypeDtoMapper {
 
     public PaymentTypeResponseDto toDto(PaymentType paymentType) {
+        if (paymentType == null) {
+            return null;
+        }
+
         PaymentTypeResponseDto dto = new PaymentTypeResponseDto();
 
         dto.setPaymentTypeId(paymentType.getPaymentTypeId());

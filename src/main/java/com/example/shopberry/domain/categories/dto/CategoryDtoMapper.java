@@ -9,15 +9,15 @@ import java.util.List;
 public class CategoryDtoMapper {
 
     public CategoryResponseDto toDto(Category category) {
+        if (category == null) {
+            return null;
+        }
+
         CategoryResponseDto categoryResponseDto = new CategoryResponseDto();
 
         categoryResponseDto.setCategoryId(category.getCategoryId());
         categoryResponseDto.setCategoryName(category.getCategoryName());
-        if (category.getParentCategory() != null) {
-            categoryResponseDto.setParentCategory(toDto(category.getParentCategory()));
-        } else {
-            categoryResponseDto.setParentCategory(null);
-        }
+        categoryResponseDto.setParentCategory(toDto(category.getParentCategory()));
 
         return categoryResponseDto;
     }

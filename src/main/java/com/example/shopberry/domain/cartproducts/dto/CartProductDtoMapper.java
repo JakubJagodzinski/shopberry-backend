@@ -14,9 +14,17 @@ public class CartProductDtoMapper {
     private final ProductDtoMapper productDtoMapper;
 
     public CartProductResponseDto toDto(CartProduct cartProduct) {
+        if (cartProduct == null) {
+            return null;
+        }
+
         CartProductResponseDto cartProductResponseDto = new CartProductResponseDto();
 
-        cartProductResponseDto.setCustomerId(cartProduct.getCustomer().getUserId());
+        if (cartProduct.getCustomer() != null) {
+            cartProductResponseDto.setCustomerId(cartProduct.getCustomer().getUserId());
+        } else {
+            cartProductResponseDto.setCustomerId(null);
+        }
         cartProductResponseDto.setProduct(productDtoMapper.toDto(cartProduct.getProduct()));
         cartProductResponseDto.setProductQuantity(cartProduct.getProductQuantity());
         cartProductResponseDto.setAddedAt(cartProduct.getAddedAt());
