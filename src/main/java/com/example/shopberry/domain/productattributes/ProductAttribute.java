@@ -3,7 +3,9 @@ package com.example.shopberry.domain.productattributes;
 import com.example.shopberry.domain.attributes.Attribute;
 import com.example.shopberry.domain.products.Product;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -30,6 +32,6 @@ public class ProductAttribute {
     private Attribute attribute;
 
     @Column(nullable = false)
-    private Double value;
+    private String value;
 
 }

@@ -24,9 +24,9 @@ public class AssignAttributeToProductRequestDto {
 
     @Schema(
             description = "Value of the assigned attribute",
-            example = "42.5"
+            examples = {"42.5", "3", "black", "true", "(5, 7)"}
     )
     @NotNull
-    private Double value;
+    private String value;
 
 }

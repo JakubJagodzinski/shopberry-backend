@@ -17,6 +17,6 @@ public class ProductAttributeResponseDto {
 
     private AttributeResponseDto attribute;
 
-    private Double value;
+    private String value;
 
 }

@@ -14,6 +14,6 @@ public class AttributeValueDto {
 
     private AttributeResponseDto attribute;
 
-    private Double value;
+    private String value;
 
 }
