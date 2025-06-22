@@ -19,4 +19,6 @@ public class ProductAttributeResponseDto {
 
     private String value;
 
+    private Double weight;
+
 }

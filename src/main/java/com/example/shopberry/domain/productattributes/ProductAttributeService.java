@@ -42,7 +42,7 @@ public class ProductAttributeService {
 
         productWithAttributesResponseDto.setProduct(productDtoMapper.toDto(product));
 
-        List<ProductAttribute> productAttributeDtoList = productAttributeRepository.findAllByProduct_ProductId(productId);
+        List<ProductAttribute> productAttributeDtoList = productAttributeRepository.findAllByProduct_ProductIdOrderByWeightDesc(productId);
 
         List<AttributeValueDto> attributeValueDtoList = new ArrayList<>();
 
@@ -51,6 +51,7 @@ public class ProductAttributeService {
 
             attributeValueDto.setAttribute(attributeDtoMapper.toDto(productAttribute.getAttribute()));
             attributeValueDto.setValue(productAttribute.getValue());
+            attributeValueDto.setWeight(productAttribute.getWeight());
 
             attributeValueDtoList.add(attributeValueDto);
         }
@@ -95,6 +96,7 @@ public class ProductAttributeService {
         productAttribute.setProduct(product);
         productAttribute.setAttribute(attribute);
         productAttribute.setValue(assignAttributeToProductRequestDto.getValue());
+        productAttribute.setWeight(assignAttributeToProductRequestDto.getWeight());
 
         return productAttributeDtoMapper.toDto(productAttributeRepository.save(productAttribute));
     }
@@ -122,6 +124,7 @@ public class ProductAttributeService {
         }
 
         productAttribute.setValue(updateProductAttributeRequestDto.getValue());
+        productAttribute.setWeight(updateProductAttributeRequestDto.getWeight());
 
         return productAttributeDtoMapper.toDto(productAttributeRepository.save(productAttribute));
     }

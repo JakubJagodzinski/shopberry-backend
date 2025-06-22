@@ -19,4 +19,13 @@ public class UpdateProductAttributeRequestDto {
     )
     private String value;
 
+    @Schema(
+            description = "Weight defining how the attribute is important for this product",
+            example = "0.7",
+            minimum = "0",
+            maximum = "1",
+            nullable = true
+    )
+    private Double weight;
+
 }

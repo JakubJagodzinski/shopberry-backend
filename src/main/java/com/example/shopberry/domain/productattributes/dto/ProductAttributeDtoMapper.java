@@ -25,6 +25,7 @@ public class ProductAttributeDtoMapper {
         dto.setProduct(productDtoMapper.toDto(productAttribute.getProduct()));
         dto.setAttribute(attributeDtoMapper.toDto(productAttribute.getAttribute()));
         dto.setValue(productAttribute.getValue());
+        dto.setWeight(productAttribute.getWeight());
 
         return dto;
     }

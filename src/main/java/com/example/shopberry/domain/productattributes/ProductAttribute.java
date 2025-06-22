@@ -34,4 +34,7 @@ public class ProductAttribute {
     @Column(nullable = false)
     private String value;
 
+    @Column(nullable = false)
+    private Double weight;
+
 }

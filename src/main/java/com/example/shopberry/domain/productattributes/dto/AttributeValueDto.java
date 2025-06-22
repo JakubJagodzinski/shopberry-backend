@@ -16,4 +16,6 @@ public class AttributeValueDto {
 
     private String value;
 
+    private Double weight;
+
 }
