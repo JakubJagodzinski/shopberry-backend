@@ -20,9 +20,9 @@ import java.util.List;
 public class ProductService {
 
     private final ProductRepository productRepository;
+    private final CategoryRepository categoryRepository;
 
     private final ProductDtoMapper productDtoMapper;
-    private final CategoryRepository categoryRepository;
 
     @Transactional
     public List<ProductResponseDto> getAllProducts() {
