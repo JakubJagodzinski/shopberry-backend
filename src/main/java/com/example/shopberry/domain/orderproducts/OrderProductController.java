@@ -1,18 +1,17 @@
 package com.example.shopberry.domain.orderproducts;
 
 import com.example.shopberry.auth.access.CheckPermission;
-import com.example.shopberry.common.MessageResponseDto;
-import com.example.shopberry.domain.orderproducts.dto.AddProductToOrderRequestDto;
 import com.example.shopberry.domain.orderproducts.dto.OrderProductResponseDto;
 import com.example.shopberry.user.Permission;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -41,27 +40,6 @@ public class OrderProductController {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(orderProductResponseDtoList);
-    }
-
-    @CheckPermission(Permission.ORDER_PRODUCT_ADD)
-    @PostMapping("/orders/{orderId}/products")
-    public ResponseEntity<OrderProductResponseDto> addProductToOrder(@PathVariable Long orderId, @Valid @RequestBody AddProductToOrderRequestDto addProductToOrderRequestDto) {
-        OrderProductResponseDto createdOrderProductResponseDto = orderProductService.addProductToOrder(orderId, addProductToOrderRequestDto);
-
-        return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .location(URI.create("/api/v1/orders/" + orderId + "/products/" + createdOrderProductResponseDto.getProduct()))
-                .body(createdOrderProductResponseDto);
-    }
-
-    @CheckPermission(Permission.ORDER_PRODUCT_REMOVE)
-    @DeleteMapping("/orders/{orderId}/products/{productId}")
-    public ResponseEntity<MessageResponseDto> removeProductFromOrder(@PathVariable Long orderId, @PathVariable Long productId) {
-        orderProductService.removeProductFromOrder(orderId, productId);
-
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(new MessageResponseDto("Product with id " + productId + " removed from order with id " + orderId));
     }
 
 }

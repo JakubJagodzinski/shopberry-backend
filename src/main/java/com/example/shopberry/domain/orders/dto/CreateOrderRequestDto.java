@@ -1,6 +1,7 @@
 package com.example.shopberry.domain.orders.dto;
 
 import com.example.shopberry.common.validation.NotEmptyIfPresent;
+import com.example.shopberry.domain.orderproducts.dto.AddProductToOrderRequestDto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotNull;
@@ -9,6 +10,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -69,5 +71,11 @@ public class CreateOrderRequestDto {
     )
     @JsonProperty("is_invoice")
     private Boolean isInvoice;
+
+    @Schema(
+            description = "List of products in order"
+    )
+    @NotNull
+    private List<AddProductToOrderRequestDto> products;
 
 }

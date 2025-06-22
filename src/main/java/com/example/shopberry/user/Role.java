@@ -51,6 +51,7 @@ public enum Role {
                     CUSTOMER_FAVOURITE_PRODUCT_REMOVE,
 
                     ORDER_PRODUCT_READ,
+                    ORDER_PRODUCT_READ_ALL,
 
                     ORDER_PRODUCT_STATUS_READ,
                     ORDER_PRODUCT_STATUS_READ_ALL,

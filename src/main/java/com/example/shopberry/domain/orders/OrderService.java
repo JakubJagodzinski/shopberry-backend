@@ -7,12 +7,19 @@ import com.example.shopberry.common.constants.messages.PaymentTypeMessages;
 import com.example.shopberry.common.constants.messages.ShipmentTypeMessages;
 import com.example.shopberry.domain.customers.Customer;
 import com.example.shopberry.domain.customers.CustomerRepository;
+import com.example.shopberry.domain.orderproducts.OrderProduct;
+import com.example.shopberry.domain.orderproducts.OrderProductId;
+import com.example.shopberry.domain.orderproducts.OrderProductRepository;
+import com.example.shopberry.domain.orderproducts.dto.AddProductToOrderRequestDto;
+import com.example.shopberry.domain.orderproductstatuses.OrderProductStatusRepository;
 import com.example.shopberry.domain.orders.dto.CreateOrderRequestDto;
 import com.example.shopberry.domain.orders.dto.OrderDtoMapper;
 import com.example.shopberry.domain.orders.dto.OrderResponseDto;
 import com.example.shopberry.domain.orderstatuses.OrderStatusRepository;
 import com.example.shopberry.domain.paymenttypes.PaymentType;
 import com.example.shopberry.domain.paymenttypes.PaymentTypeRepository;
+import com.example.shopberry.domain.products.Product;
+import com.example.shopberry.domain.products.ProductRepository;
 import com.example.shopberry.domain.shipmenttypes.ShipmentType;
 import com.example.shopberry.domain.shipmenttypes.ShipmentTypeRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -20,6 +27,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -32,10 +40,13 @@ public class OrderService {
     private final ShipmentTypeRepository shipmentTypeRepository;
     private final PaymentTypeRepository paymentTypeRepository;
     private final OrderStatusRepository orderStatusRepository;
+    private final ProductRepository productRepository;
 
     private final OrderDtoMapper orderDtoMapper;
 
     private final OrderAccessManager orderAccessManager;
+    private final OrderProductRepository orderProductRepository;
+    private final OrderProductStatusRepository orderProductStatusRepository;
 
     public List<OrderResponseDto> getAllOrders() {
         return orderDtoMapper.toDtoList(orderRepository.findAll());
@@ -91,7 +102,7 @@ public class OrderService {
 
         Order order = new Order();
 
-        order.setOrderStatus(orderStatusRepository.getReferenceById(1L)); // Default status
+        order.setOrderStatus(orderStatusRepository.getReferenceById(1L)); // pending
         order.setCustomer(customer);
         order.setShipmentType(shipmentType);
         order.setPaymentType(paymentType);
@@ -108,7 +119,34 @@ public class OrderService {
             order.setIsInvoice(createOrderRequestDto.getIsInvoice());
         }
 
-        return orderDtoMapper.toDto(orderRepository.save(order));
+        Order savedOrder = orderRepository.save(order);
+
+        List<OrderProduct> orderProductList = new ArrayList<>();
+
+        for (AddProductToOrderRequestDto addProductToOrderRequestDto : createOrderRequestDto.getProducts()) {
+            OrderProduct orderProduct = new OrderProduct();
+
+            Product product = productRepository.findById(addProductToOrderRequestDto.getProductId()).orElse(null);
+
+            if (product == null) {
+                continue;
+            }
+
+            OrderProductId orderProductId = new OrderProductId(savedOrder.getOrderId(), product.getProductId());
+
+            orderProduct.setId(orderProductId);
+            orderProduct.setOrder(savedOrder);
+            orderProduct.setProduct(product);
+            orderProduct.setProductPrice(addProductToOrderRequestDto.getProductPrice());
+            orderProduct.setProductQuantity(addProductToOrderRequestDto.getProductQuantity());
+            orderProduct.setOrderProductStatus(orderProductStatusRepository.getReferenceById(1L)); // pending
+
+            orderProductList.add(orderProduct);
+        }
+
+        orderProductRepository.saveAll(orderProductList);
+
+        return orderDtoMapper.toDto(savedOrder);
     }
 
     @Transactional

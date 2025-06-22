@@ -65,10 +65,8 @@ public enum Permission {
     CUSTOMER_FAVOURITE_PRODUCT_READ_ALL("customer_favourite_product:read:all"),
     CUSTOMER_FAVOURITE_PRODUCT_REMOVE("customer_favourite_product:remove"),
 
-    ORDER_PRODUCT_ADD("order:product:add"),
     ORDER_PRODUCT_READ("order:product:read"),
     ORDER_PRODUCT_READ_ALL("order:product:read:all"),
-    ORDER_PRODUCT_REMOVE("order:product:remove"),
 
     ORDER_PRODUCT_STATUS_CREATE("order_product_status:create"),
     ORDER_PRODUCT_STATUS_READ("order_product_status:read"),
