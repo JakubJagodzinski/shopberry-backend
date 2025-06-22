@@ -51,6 +51,20 @@ public class UpdateProductRequestDto {
     private Double discountPercentValue;
 
     @Schema(
+            description = "Id of product new producer",
+            example = "1",
+            nullable = true
+    )
+    private Long producerId;
+
+    @Schema(
+            description = "Id of product new category. Category cannot be parent to any category",
+            example = "1",
+            nullable = true
+    )
+    private Long categoryId;
+
+    @Schema(
             description = "Indicates if product is available",
             example = "false",
             nullable = true

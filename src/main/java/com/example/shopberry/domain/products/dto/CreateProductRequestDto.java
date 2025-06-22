@@ -51,6 +51,20 @@ public class CreateProductRequestDto {
     private Double discountPercentValue;
 
     @Schema(
+            description = "Id of product producer",
+            example = "1"
+    )
+    @NotNull
+    private Long producerId;
+
+    @Schema(
+            description = "Id of product category. Category cannot be parent to any category",
+            example = "1"
+    )
+    @NotNull
+    private Long categoryId;
+
+    @Schema(
             description = "Indicates if product is available",
             example = "false",
             defaultValue = "true",

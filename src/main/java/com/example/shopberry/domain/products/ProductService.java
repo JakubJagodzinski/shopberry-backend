@@ -1,8 +1,12 @@
 package com.example.shopberry.domain.products;
 
 import com.example.shopberry.common.constants.messages.CategoryMessages;
+import com.example.shopberry.common.constants.messages.ProducerMessages;
 import com.example.shopberry.common.constants.messages.ProductMessages;
+import com.example.shopberry.domain.categories.Category;
 import com.example.shopberry.domain.categories.CategoryRepository;
+import com.example.shopberry.domain.producers.Producer;
+import com.example.shopberry.domain.producers.ProducerRepository;
 import com.example.shopberry.domain.products.dto.CreateProductRequestDto;
 import com.example.shopberry.domain.products.dto.ProductDtoMapper;
 import com.example.shopberry.domain.products.dto.ProductResponseDto;
@@ -13,6 +17,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -21,6 +26,7 @@ public class ProductService {
 
     private final ProductRepository productRepository;
     private final CategoryRepository categoryRepository;
+    private final ProducerRepository producerRepository;
 
     private final ProductDtoMapper productDtoMapper;
 
@@ -46,11 +52,24 @@ public class ProductService {
             throw new EntityNotFoundException(CategoryMessages.CATEGORY_NOT_FOUND);
         }
 
-        return productDtoMapper.toDtoList(productRepository.findAllByCategory_CategoryId(categoryId));
+        List<Product> productList;
+
+        if (categoryRepository.existsByParentCategory_CategoryId(categoryId)) {
+            productList = new ArrayList<>();
+            List<Category> childCategories = categoryRepository.findAllByParentCategory_CategoryId(categoryId);
+
+            for (Category childCategory : childCategories) {
+                productList.addAll(productRepository.findAllByCategory_CategoryId(childCategory.getCategoryId()));
+            }
+        } else {
+            productList = productRepository.findAllByCategory_CategoryId(categoryId);
+        }
+
+        return productDtoMapper.toDtoList(productList);
     }
 
     @Transactional
-    public ProductResponseDto createProduct(CreateProductRequestDto createProductRequestDto) throws EntityExistsException {
+    public ProductResponseDto createProduct(CreateProductRequestDto createProductRequestDto) throws EntityNotFoundException, EntityExistsException, IllegalArgumentException {
         String productName = createProductRequestDto.getProductName().trim();
 
         if (productRepository.existsByProductName(productName)) {
@@ -66,6 +85,26 @@ public class ProductService {
             product.setDiscountPercentValue(createProductRequestDto.getDiscountPercentValue());
         }
 
+        Producer producer = producerRepository.findById(createProductRequestDto.getProducerId()).orElse(null);
+
+        if (producer == null) {
+            throw new EntityNotFoundException(ProducerMessages.PRODUCER_NOT_FOUND);
+        }
+
+        product.setProducer(producer);
+
+        Category category = categoryRepository.findById(createProductRequestDto.getCategoryId()).orElse(null);
+
+        if (category == null) {
+            throw new EntityNotFoundException(CategoryMessages.CATEGORY_NOT_FOUND);
+        }
+
+        if (categoryRepository.existsByParentCategory_CategoryId(category.getCategoryId())) {
+            throw new IllegalArgumentException(CategoryMessages.CATEGORY_IS_PARENT_CATEGORY);
+        }
+
+        product.setCategory(category);
+
         if (createProductRequestDto.getIsInStock() != null) {
             product.setIsInStock(createProductRequestDto.getIsInStock());
         }
@@ -78,7 +117,7 @@ public class ProductService {
     }
 
     @Transactional
-    public ProductResponseDto updateProductById(Long productId, UpdateProductRequestDto updateProductRequestDto) throws EntityNotFoundException, EntityExistsException {
+    public ProductResponseDto updateProductById(Long productId, UpdateProductRequestDto updateProductRequestDto) throws EntityNotFoundException, EntityExistsException, IllegalArgumentException {
         Product product = productRepository.findById(productId).orElse(null);
 
         if (product == null) {
@@ -103,6 +142,30 @@ public class ProductService {
 
         if (updateProductRequestDto.getDiscountPercentValue() != null) {
             product.setDiscountPercentValue(updateProductRequestDto.getDiscountPercentValue());
+        }
+
+        if (updateProductRequestDto.getProducerId() != null) {
+            Producer producer = producerRepository.findById(updateProductRequestDto.getProducerId()).orElse(null);
+
+            if (producer == null) {
+                throw new EntityNotFoundException(ProducerMessages.PRODUCER_NOT_FOUND);
+            }
+
+            product.setProducer(producer);
+        }
+
+        if (updateProductRequestDto.getCategoryId() != null) {
+            Category category = categoryRepository.findById(updateProductRequestDto.getCategoryId()).orElse(null);
+
+            if (category == null) {
+                throw new EntityNotFoundException(CategoryMessages.CATEGORY_NOT_FOUND);
+            }
+
+            if (categoryRepository.existsByParentCategory_CategoryId(category.getCategoryId())) {
+                throw new IllegalArgumentException(CategoryMessages.CATEGORY_IS_PARENT_CATEGORY);
+            }
+
+            product.setCategory(category);
         }
 
         if (updateProductRequestDto.getIsInStock() != null) {
