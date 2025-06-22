@@ -3,7 +3,6 @@ package com.example.shopberry.common.constants.messages;
 public class ProductMessages {
 
     public static final String PRODUCT_NOT_FOUND = "Product not found";
-    public static final String PRODUCT_WITH_THAT_NAME_ALREADY_EXISTS = "Product with that name already exists";
     public static final String PRODUCT_NOT_IN_FAVOURITES = "Product not in favourites";
     public static final String PRODUCT_ALREADY_IN_FAVOURITES = "Product already in favourites";
     public static final String PRODUCT_DOES_NOT_BELONG_TO_THAT_ORDER = "Product does not belong to that order";

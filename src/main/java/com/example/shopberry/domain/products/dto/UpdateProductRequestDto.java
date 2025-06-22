@@ -19,7 +19,7 @@ import lombok.Setter;
 public class UpdateProductRequestDto {
 
     @Schema(
-            description = "Unique name of the product",
+            description = "Name of the product",
             example = "TV QLed 4k FullHD",
             minLength = 1,
             nullable = true

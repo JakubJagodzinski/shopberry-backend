@@ -3,7 +3,9 @@ package com.example.shopberry.domain.products;
 import com.example.shopberry.domain.categories.Category;
 import com.example.shopberry.domain.producers.Producer;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -19,7 +21,7 @@ public class Product {
     @Column(name = "product_id")
     private Long productId;
 
-    @Column(name = "product_name", nullable = false, unique = true, length = 100)
+    @Column(name = "product_name", nullable = false, length = 100)
     private String productName;
 
     @Column(name = "product_price", nullable = false)
