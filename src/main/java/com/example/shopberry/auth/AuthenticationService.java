@@ -53,7 +53,7 @@ public class AuthenticationService {
 
     public void register(RegisterRequestDto registerRequestDto) throws IllegalArgumentException {
         if (userRepository.existsByEmail(registerRequestDto.getEmail())) {
-            throw new IllegalArgumentException(UserMessages.USER_ALREADY_EXISTS);
+            throw new IllegalArgumentException(UserMessages.EMAIL_IS_ALREADY_TAKEN);
         }
 
         Role userRole = parseRole(registerRequestDto.getRole());

@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class AuthenticationController {
 
-    private final AuthenticationService service;
+    private final AuthenticationService authenticationService;
 
     @PostMapping("/register")
     public ResponseEntity<MessageResponseDto> register(@RequestBody RegisterRequestDto registerRequestDto) {
-        service.register(registerRequestDto);
+        authenticationService.register(registerRequestDto);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
@@ -29,7 +29,7 @@ public class AuthenticationController {
 
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponseDto> authenticate(@RequestBody AuthenticationRequestDto authenticationRequestDto) {
-        AuthenticationResponseDto authenticationResponseDto = service.authenticate(authenticationRequestDto);
+        AuthenticationResponseDto authenticationResponseDto = authenticationService.authenticate(authenticationRequestDto);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
@@ -38,7 +38,7 @@ public class AuthenticationController {
 
     @PostMapping("/refresh-token")
     public ResponseEntity<RefreshTokenResponseDto> refreshToken(@RequestBody RefreshTokenRequestDto refreshTokenRequestDto) {
-        RefreshTokenResponseDto refreshTokenResponseDto = service.refreshToken(refreshTokenRequestDto);
+        RefreshTokenResponseDto refreshTokenResponseDto = authenticationService.refreshToken(refreshTokenRequestDto);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
