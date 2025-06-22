@@ -41,7 +41,7 @@ public class FavouriteProductController {
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .location(URI.create("/api/v1/customers/" + customerId + "/favourites/" + createdFavouriteProductResponseDto.getProduct()))
+                .location(URI.create("/api/v1/customers/" + customerId + "/favourites/" + createdFavouriteProductResponseDto.getProduct().getProductId()))
                 .body(createdFavouriteProductResponseDto);
     }
 
