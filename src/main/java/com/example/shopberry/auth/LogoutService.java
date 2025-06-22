@@ -1,7 +1,7 @@
 package com.example.shopberry.auth;
 
-import com.example.shopberry.auth.jwt.Token;
-import com.example.shopberry.auth.jwt.TokenRepository;
+import com.example.shopberry.auth.token.Token;
+import com.example.shopberry.auth.token.TokenRepository;
 import com.example.shopberry.common.constants.SecurityConstants;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

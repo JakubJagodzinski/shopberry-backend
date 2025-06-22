@@ -7,5 +7,6 @@ public class TokenMessages {
     public static final String REFRESH_TOKEN_IS_MISSING = "Refresh token is missing";
     public static final String PROVIDED_TOKEN_IS_NOT_A_REFRESH_TOKEN = "Provided token is not a refresh token";
     public static final String INVALID_OR_EXPIRED_REFRESH_TOKEN = "Invalid or expired refresh token";
+    public static final String PROVIDED_TOKEN_IS_INVALID_OR_EXPIRED = "Provided token is invalid or expired";
 
 }

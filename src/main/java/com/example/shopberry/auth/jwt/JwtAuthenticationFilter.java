@@ -1,5 +1,6 @@
 package com.example.shopberry.auth.jwt;
 
+import com.example.shopberry.auth.token.TokenService;
 import com.example.shopberry.common.constants.SecurityConstants;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -7,13 +8,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -26,66 +25,49 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private final JwtService jwtService;
     private final UserDetailsService userDetailsService;
-
-    private final TokenRepository tokenRepository;
+    private final TokenService tokenService;
 
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain) throws ServletException, IOException {
-        String path = request.getServletPath();
-        String method = request.getMethod();
+        final String authorizationHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
 
-        if ((path.startsWith("/api/v1/products") && method.equals("GET")) ||
-                (path.startsWith("/api/v1/categories") && method.equals("GET")) ||
-                (path.startsWith("/api/v1/shipment-types") && method.equals("GET")) ||
-                (path.startsWith("/api/v1/payment-types") && method.equals("GET")) ||
-                (path.startsWith("/api/v1/reviews") && method.equals("GET")) ||
-                (path.startsWith("/api/v1/producers") && method.equals("GET")) ||
-                (path.startsWith("/api/v1/attributes") && method.equals("GET")) ||
-                (path.startsWith("/api/v1/promotions") && method.equals("GET")) ||
-                path.startsWith("/api/v1/auth")) {
+        if (authorizationHeader == null || !authorizationHeader.startsWith(SecurityConstants.HEADER_START)) {
             filterChain.doFilter(request, response);
             return;
         }
 
-        final String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
+        final String jwt = authorizationHeader.substring(SecurityConstants.HEADER_START.length());
 
-        if (authHeader == null || !authHeader.startsWith(SecurityConstants.HEADER_START)) {
+        String username;
+        try {
+            username = jwtService.extractUsername(jwt);
+        } catch (Exception e) {
+            logger.warn("Invalid JWT token: " + e.getMessage());
             filterChain.doFilter(request, response);
             return;
         }
 
-        final String jwt = authHeader.substring(SecurityConstants.HEADER_START.length());
+        if (username == null || SecurityContextHolder.getContext().getAuthentication() != null) {
+            filterChain.doFilter(request, response);
+            return;
+        }
 
-        final String username = jwtService.extractUsername(jwt);
+        try {
+            UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
 
-        if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            try {
-                UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
+            if (jwtService.isTokenValid(jwt, userDetails) && tokenService.isTokenValidInDatabase(jwt)) {
+                UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
+                        userDetails,
+                        null,
+                        userDetails.getAuthorities()
+                );
 
-                boolean isTokenValid = tokenRepository.findByToken(jwt).map(
-                        t -> !t.getIsExpired() && !t.getIsRevoked() && t.getTokenType() == TokenType.ACCESS
-                ).orElse(false);
+                authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
-                if (jwtService.isTokenValid(jwt, userDetails) && isTokenValid) {
-                    UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
-                            userDetails,
-                            null,
-                            userDetails.getAuthorities()
-                    );
-
-                    authToken.setDetails(
-                            new WebAuthenticationDetailsSource().buildDetails(request)
-                    );
-
-                    SecurityContextHolder.getContext().setAuthentication(authToken);
-                }
-            } catch (UsernameNotFoundException ex) {
-                logger.warn("JWT authentication failed: " + ex.getMessage());
-                response.setStatus(HttpStatus.UNAUTHORIZED.value());
-                response.setContentType("application/json");
-                response.getWriter().write("{\"message\": \"" + ex.getMessage() + "\"}");
-                return;
+                SecurityContextHolder.getContext().setAuthentication(authenticationToken);
             }
+        } catch (Exception e) {
+            logger.warn("JWT authentication failed", e);
         }
 
         filterChain.doFilter(request, response);

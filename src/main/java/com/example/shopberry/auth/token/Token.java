@@ -1,4 +1,4 @@
-package com.example.shopberry.auth.jwt;
+package com.example.shopberry.auth.token;
 
 import  com.example.shopberry.user.User;
 import jakarta.persistence.*;
