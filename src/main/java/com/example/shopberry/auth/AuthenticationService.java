@@ -12,12 +12,10 @@ import com.example.shopberry.domain.employees.Employee;
 import com.example.shopberry.user.Role;
 import com.example.shopberry.user.User;
 import com.example.shopberry.user.UserRepository;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -90,7 +88,7 @@ public class AuthenticationService {
         user.setRole(Role.valueOf(dto.getRole().toUpperCase()));
     }
 
-    public AuthenticationResponseDto authenticate(AuthenticationRequestDto request) throws EntityNotFoundException, AccessDeniedException {
+    public AuthenticationResponseDto authenticate(AuthenticationRequestDto request) throws AccessDeniedException {
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                 request.getEmail(),
                 request.getPassword()
@@ -105,7 +103,7 @@ public class AuthenticationService {
         User user = userRepository.findByEmail(request.getEmail()).orElse(null);
 
         if (user == null) {
-            throw new EntityNotFoundException(UserMessages.USER_NOT_FOUND);
+            throw new AccessDeniedException(UserMessages.WRONG_USERNAME_OR_PASSWORD);
         }
 
         revokeAllUserTokens(user);
@@ -140,37 +138,37 @@ public class AuthenticationService {
         tokenRepository.saveAll(validUserTokens);
     }
 
-    public RefreshTokenResponseDto refreshToken(RefreshTokenRequestDto requestDto) throws EntityNotFoundException, UsernameNotFoundException, IllegalArgumentException {
+    public RefreshTokenResponseDto refreshToken(RefreshTokenRequestDto requestDto) throws IllegalArgumentException {
         String refreshToken = requestDto.getRefreshToken();
 
         if (refreshToken == null || refreshToken.isBlank()) {
-            throw new IllegalArgumentException(TokenMessages.REFRESH_TOKEN_IS_MISSING);
+            throw new IllegalArgumentException(TokenMessages.PROVIDED_REFRESH_TOKEN_IS_INVALID_OR_EXPIRED);
         }
 
         String userEmail = jwtService.extractUsername(refreshToken);
 
         if (userEmail == null) {
-            throw new IllegalArgumentException(TokenMessages.TOKEN_SUBJECT_IS_INVALID_OR_MISSING);
+            throw new IllegalArgumentException(TokenMessages.PROVIDED_REFRESH_TOKEN_IS_INVALID_OR_EXPIRED);
         }
 
         User user = userRepository.findByEmail(userEmail).orElse(null);
 
         if (user == null) {
-            throw new UsernameNotFoundException(UserMessages.USER_NOT_FOUND);
+            throw new IllegalArgumentException(TokenMessages.PROVIDED_REFRESH_TOKEN_IS_INVALID_OR_EXPIRED);
         }
 
         Token token = tokenRepository.findByToken(refreshToken).orElse(null);
 
         if (token == null) {
-            throw new EntityNotFoundException(TokenMessages.TOKEN_NOT_FOUND);
+            throw new IllegalArgumentException(TokenMessages.PROVIDED_REFRESH_TOKEN_IS_INVALID_OR_EXPIRED);
         }
 
         if (token.getTokenType() != TokenType.REFRESH) {
-            throw new IllegalArgumentException(TokenMessages.PROVIDED_TOKEN_IS_NOT_A_REFRESH_TOKEN);
+            throw new IllegalArgumentException(TokenMessages.PROVIDED_REFRESH_TOKEN_IS_INVALID_OR_EXPIRED);
         }
 
         if (!jwtService.isTokenValid(refreshToken, user) || token.getIsExpired() || token.getIsRevoked()) {
-            throw new IllegalArgumentException(TokenMessages.INVALID_OR_EXPIRED_REFRESH_TOKEN);
+            throw new IllegalArgumentException(TokenMessages.PROVIDED_REFRESH_TOKEN_IS_INVALID_OR_EXPIRED);
         }
 
         revokeAllUserTokens(user);
