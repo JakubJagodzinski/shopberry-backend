@@ -1,6 +1,5 @@
 package com.example.shopberry.domain.products.dto;
 
-import com.example.shopberry.domain.categories.dto.CategoryDtoMapper;
 import com.example.shopberry.domain.producers.dto.ProducerDtoMapper;
 import com.example.shopberry.domain.products.Product;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +12,6 @@ import java.util.List;
 public class ProductDtoMapper {
 
     private final ProducerDtoMapper producerDtoMapper;
-    private final CategoryDtoMapper categoryDtoMapper;
 
     public ProductResponseDto toDto(Product product) {
         ProductResponseDto dto = new ProductResponseDto();
@@ -27,9 +25,7 @@ public class ProductDtoMapper {
         if (product.getProducer() != null) {
             dto.setProducer(producerDtoMapper.toDto(product.getProducer()));
         }
-        if (product.getCategory() != null) {
-            dto.setCategory(categoryDtoMapper.toDto(product.getCategory()));
-        }
+        dto.setCategoryId(product.getCategory().getCategoryId());
         dto.setIsInStock(product.getIsInStock());
         dto.setImage(product.getImage());
 
