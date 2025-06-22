@@ -2,6 +2,7 @@ package com.example.shopberry.domain.products;
 
 import com.example.shopberry.auth.access.CheckPermission;
 import com.example.shopberry.common.MessageResponseDto;
+import com.example.shopberry.domain.productattributes.dto.ProductWithAttributesResponseDto;
 import com.example.shopberry.domain.products.dto.CreateProductRequestDto;
 import com.example.shopberry.domain.products.dto.ProductResponseDto;
 import com.example.shopberry.domain.products.dto.UpdateProductRequestDto;
@@ -43,8 +44,8 @@ public class ProductController {
     }
 
     @GetMapping("/categories/{categoryId}/products")
-    public ResponseEntity<List<ProductResponseDto>> getCategoryAllProducts(@PathVariable Long categoryId) {
-        List<ProductResponseDto> productResponseDtoList = productService.getCategoryAllProducts(categoryId);
+    public ResponseEntity<List<ProductWithAttributesResponseDto>> getCategoryAllProducts(@PathVariable Long categoryId) {
+        List<ProductWithAttributesResponseDto> productResponseDtoList = productService.getCategoryAllProducts(categoryId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)

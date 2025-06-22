@@ -3,10 +3,15 @@ package com.example.shopberry.domain.products;
 import com.example.shopberry.common.constants.messages.CategoryMessages;
 import com.example.shopberry.common.constants.messages.ProducerMessages;
 import com.example.shopberry.common.constants.messages.ProductMessages;
+import com.example.shopberry.domain.attributes.dto.AttributeDtoMapper;
 import com.example.shopberry.domain.categories.Category;
 import com.example.shopberry.domain.categories.CategoryRepository;
 import com.example.shopberry.domain.producers.Producer;
 import com.example.shopberry.domain.producers.ProducerRepository;
+import com.example.shopberry.domain.productattributes.ProductAttribute;
+import com.example.shopberry.domain.productattributes.ProductAttributeRepository;
+import com.example.shopberry.domain.productattributes.dto.AttributeValueDto;
+import com.example.shopberry.domain.productattributes.dto.ProductWithAttributesResponseDto;
 import com.example.shopberry.domain.products.dto.CreateProductRequestDto;
 import com.example.shopberry.domain.products.dto.ProductDtoMapper;
 import com.example.shopberry.domain.products.dto.ProductResponseDto;
@@ -26,8 +31,10 @@ public class ProductService {
     private final ProductRepository productRepository;
     private final CategoryRepository categoryRepository;
     private final ProducerRepository producerRepository;
+    private final ProductAttributeRepository productAttributeRepository;
 
     private final ProductDtoMapper productDtoMapper;
+    private final AttributeDtoMapper attributeDtoMapper;
 
     @Transactional
     public List<ProductResponseDto> getAllProducts() {
@@ -46,7 +53,7 @@ public class ProductService {
     }
 
     @Transactional
-    public List<ProductResponseDto> getCategoryAllProducts(Long categoryId) throws EntityNotFoundException {
+    public List<ProductWithAttributesResponseDto> getCategoryAllProducts(Long categoryId) throws EntityNotFoundException {
         if (!categoryRepository.existsById(categoryId)) {
             throw new EntityNotFoundException(CategoryMessages.CATEGORY_NOT_FOUND);
         }
@@ -64,7 +71,33 @@ public class ProductService {
             productList = productRepository.findAllByCategory_CategoryId(categoryId);
         }
 
-        return productDtoMapper.toDtoList(productList);
+        List<ProductWithAttributesResponseDto> productWithAttributesResponseDtoList = new ArrayList<>();
+
+        for (Product product : productList) {
+            ProductWithAttributesResponseDto productWithAttributesResponseDto = new ProductWithAttributesResponseDto();
+
+            productWithAttributesResponseDto.setProduct(productDtoMapper.toDto(product));
+
+            List<ProductAttribute> productAttributeDtoList = productAttributeRepository.findAllByProduct_ProductIdOrderByWeightDesc(product.getProductId());
+
+            List<AttributeValueDto> attributeValueDtoList = new ArrayList<>();
+
+            for (ProductAttribute productAttribute : productAttributeDtoList) {
+                AttributeValueDto attributeValueDto = new AttributeValueDto();
+
+                attributeValueDto.setAttribute(attributeDtoMapper.toDto(productAttribute.getAttribute()));
+                attributeValueDto.setValue(productAttribute.getValue());
+                attributeValueDto.setWeight(productAttribute.getWeight());
+
+                attributeValueDtoList.add(attributeValueDto);
+            }
+
+            productWithAttributesResponseDto.setAttributes(attributeValueDtoList);
+
+            productWithAttributesResponseDtoList.add(productWithAttributesResponseDto);
+        }
+
+        return productWithAttributesResponseDtoList;
     }
 
     @Transactional
