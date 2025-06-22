@@ -26,8 +26,8 @@ public class ProductController {
     private final ProductService productService;
 
     @GetMapping("/products")
-    public ResponseEntity<List<ProductResponseDto>> getAllProducts() {
-        List<ProductResponseDto> productResponseDtoList = productService.getAllProducts();
+    public ResponseEntity<List<ProductWithAttributesResponseDto>> getAllProductsWithParams(@RequestParam(required = false) Long categoryId, @RequestParam(required = false) String productName) {
+        List<ProductWithAttributesResponseDto> productResponseDtoList = productService.getAllProductsWithParams(categoryId, productName);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
@@ -41,15 +41,6 @@ public class ProductController {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(productResponseDto);
-    }
-
-    @GetMapping("/categories/{categoryId}/products")
-    public ResponseEntity<List<ProductWithAttributesResponseDto>> getCategoryAllProducts(@PathVariable Long categoryId) {
-        List<ProductWithAttributesResponseDto> productResponseDtoList = productService.getCategoryAllProducts(categoryId);
-
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(productResponseDtoList);
     }
 
     @CheckPermission(Permission.PRODUCT_CREATE)

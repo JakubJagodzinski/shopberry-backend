@@ -37,30 +37,16 @@ public class ProductService {
     private final AttributeDtoMapper attributeDtoMapper;
 
     @Transactional
-    public List<ProductResponseDto> getAllProducts() {
-        return productDtoMapper.toDtoList(productRepository.findAll());
-    }
-
-    @Transactional
-    public ProductResponseDto getProductById(Long productId) throws EntityNotFoundException {
-        Product product = productRepository.findById(productId).orElse(null);
-
-        if (product == null) {
-            throw new EntityNotFoundException(ProductMessages.PRODUCT_NOT_FOUND);
-        }
-
-        return productDtoMapper.toDto(product);
-    }
-
-    @Transactional
-    public List<ProductWithAttributesResponseDto> getCategoryAllProducts(Long categoryId) throws EntityNotFoundException {
-        if (!categoryRepository.existsById(categoryId)) {
+    public List<ProductWithAttributesResponseDto> getAllProductsWithParams(Long categoryId, String productName) throws EntityNotFoundException {
+        if (categoryId != null && !categoryRepository.existsById(categoryId)) {
             throw new EntityNotFoundException(CategoryMessages.CATEGORY_NOT_FOUND);
         }
 
         List<Product> productList;
 
-        if (categoryRepository.existsByParentCategory_CategoryId(categoryId)) {
+        if (categoryId == null) {
+            productList = productRepository.findAll();
+        } else if (categoryRepository.existsByParentCategory_CategoryId(categoryId)) {
             productList = new ArrayList<>();
             List<Category> childCategories = categoryRepository.findAllByParentCategory_CategoryId(categoryId);
 
@@ -69,6 +55,18 @@ public class ProductService {
             }
         } else {
             productList = productRepository.findAllByCategory_CategoryId(categoryId);
+        }
+
+        if (productName != null) {
+            List<Product> filteredProductList = new ArrayList<>();
+
+            for (Product product : productList) {
+                if (product.getProductName().toLowerCase().contains(productName.toLowerCase())) {
+                    filteredProductList.add(product);
+                }
+            }
+
+            productList = filteredProductList;
         }
 
         List<ProductWithAttributesResponseDto> productWithAttributesResponseDtoList = new ArrayList<>();
@@ -98,6 +96,17 @@ public class ProductService {
         }
 
         return productWithAttributesResponseDtoList;
+    }
+
+    @Transactional
+    public ProductResponseDto getProductById(Long productId) throws EntityNotFoundException {
+        Product product = productRepository.findById(productId).orElse(null);
+
+        if (product == null) {
+            throw new EntityNotFoundException(ProductMessages.PRODUCT_NOT_FOUND);
+        }
+
+        return productDtoMapper.toDto(product);
     }
 
     @Transactional
