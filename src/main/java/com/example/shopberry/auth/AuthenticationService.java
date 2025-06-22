@@ -2,9 +2,9 @@ package com.example.shopberry.auth;
 
 import com.example.shopberry.auth.dto.*;
 import com.example.shopberry.auth.jwt.JwtService;
-import com.example.shopberry.auth.jwt.Token;
-import com.example.shopberry.auth.jwt.TokenRepository;
-import com.example.shopberry.auth.jwt.TokenType;
+import com.example.shopberry.auth.token.Token;
+import com.example.shopberry.auth.token.TokenRepository;
+import com.example.shopberry.auth.token.TokenType;
 import com.example.shopberry.common.constants.messages.TokenMessages;
 import com.example.shopberry.common.constants.messages.UserMessages;
 import com.example.shopberry.domain.customers.Customer;

@@ -1,4 +1,4 @@
-package com.example.shopberry.auth.jwt;
+package com.example.shopberry.auth.token;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
