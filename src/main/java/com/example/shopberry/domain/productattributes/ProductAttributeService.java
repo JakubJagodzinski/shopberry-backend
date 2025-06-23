@@ -67,7 +67,7 @@ public class ProductAttributeService {
     }
 
     @Transactional
-    public List<ProductAttributeResponseDto> getAllProductsWithAttribute(Long attributeId) throws EntityNotFoundException {
+    public List<ProductAttributeResponseDto> getAllProductAttributeList(Long attributeId) throws EntityNotFoundException {
         if (!attributeRepository.existsById(attributeId)) {
             throw new EntityNotFoundException(AttributeMessages.ATTRIBUTE_NOT_FOUND);
         }
