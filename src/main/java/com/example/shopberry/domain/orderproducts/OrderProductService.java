@@ -7,6 +7,8 @@ import com.example.shopberry.domain.orderproducts.dto.OrderProductDtoMapper;
 import com.example.shopberry.domain.orderproducts.dto.response.OrderProductResponseDto;
 import com.example.shopberry.domain.orders.Order;
 import com.example.shopberry.domain.orders.OrderRepository;
+import com.example.shopberry.domain.products.Product;
+import com.example.shopberry.domain.products.ProductRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +26,7 @@ public class OrderProductService {
     private final OrderProductDtoMapper orderProductDtoMapper;
 
     private final OrderProductAccessManager orderProductAccessManager;
+    private final ProductRepository productRepository;
 
     @Transactional
     public List<OrderProductResponseDto> getOrderAllProducts(Long orderId) throws EntityNotFoundException {
@@ -40,6 +43,18 @@ public class OrderProductService {
 
     @Transactional
     public OrderProductResponseDto getOrderProductById(Long orderId, Long productId) throws EntityNotFoundException {
+        Order order = orderRepository.findById(orderId).orElse(null);
+
+        if (order == null) {
+            throw new EntityNotFoundException(OrderMessages.ORDER_NOT_FOUND);
+        }
+
+        Product product = productRepository.findById(productId).orElse(null);
+
+        if (product == null) {
+            throw new EntityNotFoundException(ProductMessages.PRODUCT_NOT_FOUND);
+        }
+
         OrderProductId orderProductId = new OrderProductId(orderId, productId);
 
         OrderProduct orderProduct = orderProductRepository.findById(orderProductId).orElse(null);
