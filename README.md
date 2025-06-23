@@ -5,10 +5,8 @@ Administrators manage products, categories, users, and reviews, while also confi
 The store owner has full access to financial statistics, sales data, and overall business performance. <br>
 The platform ensures a seamless shopping experience with efficient management tools for all roles.
 
-<br>
-<br>
-<br>
-
+### Make sure to visit my friend's Shopberry frontend repo!
+[Shopberry (Frontend)](https://github.com/BartlomiejJaruga/shopberry-frontend)
 
 ## Table of Contents
 1. [Application Functionalities](#application-functionalities)
