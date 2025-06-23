@@ -5,6 +5,8 @@ import com.example.shopberry.common.constants.messages.ComplaintMessages;
 import com.example.shopberry.common.constants.messages.CustomerMessages;
 import com.example.shopberry.common.constants.messages.OrderMessages;
 import com.example.shopberry.common.constants.messages.ProductMessages;
+import com.example.shopberry.domain.complaintimages.ComplaintImage;
+import com.example.shopberry.domain.complaintimages.ComplaintImageRepository;
 import com.example.shopberry.domain.complaints.dto.ComplaintDtoMapper;
 import com.example.shopberry.domain.complaints.dto.request.CreateComplaintRequestDto;
 import com.example.shopberry.domain.complaints.dto.request.UpdateComplaintRequestDto;
@@ -17,11 +19,13 @@ import com.example.shopberry.domain.orders.Order;
 import com.example.shopberry.domain.orders.OrderRepository;
 import com.example.shopberry.domain.products.Product;
 import com.example.shopberry.domain.products.ProductRepository;
+import com.example.shopberry.utils.ImageBase64Utils;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -33,11 +37,12 @@ public class ComplaintService {
     private final OrderRepository orderRepository;
     private final ProductRepository productRepository;
     private final OrderProductRepository orderProductRepository;
+    private final ComplaintImageRepository complaintImageRepository;
+    private final CustomerRepository customerRepository;
 
     private final ComplaintDtoMapper complaintDtoMapper;
 
     private final ComplaintAccessManager complaintAccessManager;
-    private final CustomerRepository customerRepository;
 
     public List<ComplaintResponseDto> getAllComplaints() {
         return complaintDtoMapper.toDtoList(complaintRepository.findAll());
@@ -104,7 +109,26 @@ public class ComplaintService {
         complaint.setApartment(createComplaintRequestDto.getApartment());
         complaint.setPhoneNumber(createComplaintRequestDto.getPhoneNumber());
 
-        return complaintDtoMapper.toDto(complaintRepository.save(complaint));
+        Complaint savedComplaint = complaintRepository.save(complaint);
+
+        if (createComplaintRequestDto.getImages() != null) {
+            List<String> images = createComplaintRequestDto.getImages();
+
+            List<ComplaintImage> complaintImageList = new ArrayList<>();
+
+            for (String image : images) {
+                ComplaintImage complaintImage = new ComplaintImage();
+
+                complaintImage.setComplaint(savedComplaint);
+                complaintImage.setImage(ImageBase64Utils.decode(image));
+
+                complaintImageList.add(complaintImage);
+            }
+
+            complaintImageRepository.saveAll(complaintImageList);
+        }
+
+        return complaintDtoMapper.toDto(savedComplaint);
     }
 
     @Transactional

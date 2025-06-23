@@ -10,6 +10,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -116,5 +118,16 @@ public class CreateComplaintRequestDto {
     @NotBlank
     @JsonProperty("phone_number")
     private String phoneNumber;
+
+    @Schema(
+            description = "List of base64 representation of images (optional)",
+            example = "[" +
+                    "\"iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=\"" +
+                    ", \"iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=\"" +
+                    ", \"iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=\"" +
+                    "]",
+            nullable = true
+    )
+    private List<String> images;
 
 }
