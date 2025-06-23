@@ -1,6 +1,5 @@
 package com.example.shopberry.domain.reviews.dto;
 
-import com.example.shopberry.domain.products.dto.ProductDtoMapper;
 import com.example.shopberry.domain.reviews.Review;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -11,8 +10,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ReviewDtoMapper {
 
-    private final ProductDtoMapper productDtoMapper;
-
     public ReviewResponseDto toDto(Review review) {
         if (review == null) {
             return null;
@@ -21,7 +18,11 @@ public class ReviewDtoMapper {
         ReviewResponseDto reviewResponseDto = new ReviewResponseDto();
 
         reviewResponseDto.setReviewId(review.getReviewId());
-        reviewResponseDto.setProduct(productDtoMapper.toDto(review.getProduct()));
+        if (review.getProduct() != null) {
+            reviewResponseDto.setProductId(review.getProduct().getProductId());
+        } else {
+            reviewResponseDto.setProductId(null);
+        }
         if (review.getCustomer() != null) {
             reviewResponseDto.setCustomerId(review.getCustomer().getUserId());
         } else {

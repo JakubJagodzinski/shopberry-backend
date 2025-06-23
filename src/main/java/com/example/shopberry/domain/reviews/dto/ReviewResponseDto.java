@@ -1,6 +1,5 @@
 package com.example.shopberry.domain.reviews.dto;
 
-import com.example.shopberry.domain.products.dto.ProductResponseDto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,7 +18,8 @@ public class ReviewResponseDto {
     @JsonProperty("review_id")
     private Long reviewId;
 
-    private ProductResponseDto product;
+    @JsonProperty("product_id")
+    private Long productId;
 
     @JsonProperty("customer_id")
     private UUID customerId;

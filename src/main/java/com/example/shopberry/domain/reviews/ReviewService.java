@@ -16,7 +16,9 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Service
@@ -59,6 +61,23 @@ public class ReviewService {
     }
 
     @Transactional
+    public void updateProductRating(Product product) {
+        List<Review> productAllReviews = reviewRepository.findAllByProduct_ProductId(product.getProductId());
+
+        Double ratingSum = 0.0;
+        Long ratingsCount = Math.max(1, (long) productAllReviews.size());
+
+        for (Review productReview : productAllReviews) {
+            ratingSum += productReview.getRatingValue();
+        }
+
+        product.setRatingsCount(ratingsCount);
+        product.setRatingValue(ratingSum / ratingsCount);
+
+        productRepository.save(product);
+    }
+
+    @Transactional
     public ReviewResponseDto createReview(Long productId, CreateReviewRequestDto createReviewRequestDto) throws EntityNotFoundException {
         Product product = productRepository.findById(productId).orElse(null);
 
@@ -82,7 +101,11 @@ public class ReviewService {
             review.setReviewText(createReviewRequestDto.getReviewText());
         }
 
-        return reviewDtoMapper.toDto(reviewRepository.save(review));
+        Review savedReview = reviewRepository.save(review);
+
+        updateProductRating(product);
+
+        return reviewDtoMapper.toDto(savedReview);
     }
 
     @Transactional
@@ -101,16 +124,26 @@ public class ReviewService {
             review.setReviewText(updateReviewRequestDto.getReviewText());
         }
 
-        return reviewDtoMapper.toDto(reviewRepository.save(review));
+        Review savedReview = reviewRepository.save(review);
+
+        updateProductRating(savedReview.getProduct());
+
+        return reviewDtoMapper.toDto(savedReview);
     }
 
     @Transactional
     public void deleteReviewById(Long reviewId) throws EntityNotFoundException {
-        if (!reviewRepository.existsById(reviewId)) {
+        Review review = reviewRepository.findById(reviewId).orElse(null);
+
+        if (review == null) {
             throw new EntityNotFoundException(ReviewMessages.REVIEW_NOT_FOUND);
         }
 
+        Product productFromReview = review.getProduct();
+
         reviewRepository.deleteById(reviewId);
+
+        updateProductRating(productFromReview);
     }
 
     @Transactional
@@ -119,16 +152,31 @@ public class ReviewService {
             throw new EntityNotFoundException(CustomerMessages.CUSTOMER_NOT_FOUND);
         }
 
+        List<Review> reviews = reviewRepository.findAllByCustomer_UserId(customerId);
+        Set<Product> products = new HashSet<>();
+
+        for (Review review : reviews) {
+            products.add(review.getProduct());
+        }
+
         reviewRepository.deleteAllByCustomer_UserId(customerId);
+
+        for (Product product : products) {
+            updateProductRating(product);
+        }
     }
 
     @Transactional
     public void deleteProductAllReviews(Long productId) throws EntityNotFoundException {
-        if (!productRepository.existsById(productId)) {
+        Product product = productRepository.findById(productId).orElse(null);
+
+        if (product == null) {
             throw new EntityNotFoundException(ProductMessages.PRODUCT_NOT_FOUND);
         }
 
         reviewRepository.deleteAllByProduct_ProductId(productId);
+
+        updateProductRating(product);
     }
 
 }
