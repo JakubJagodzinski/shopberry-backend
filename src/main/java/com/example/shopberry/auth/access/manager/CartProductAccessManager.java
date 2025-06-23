@@ -25,20 +25,17 @@ public class CartProductAccessManager {
     public void checkCanReadCustomerAllCartProduct(Customer customer) throws AccessDeniedException {
         UUID currentCustomerId = securityUtils.getCurrentUserId();
 
-        boolean isAdminRequest = securityUtils.isAdmin();
         boolean isCustomerSelfRequest = currentCustomerId.equals(customer.getUserId());
 
-        if (!isAdminRequest && !isCustomerSelfRequest) {
+        if (!isCustomerSelfRequest) {
             throw new AccessDeniedException(CartProductMessages.YOU_HAVE_NO_ACCESS_TO_THIS_CUSTOMER_CART);
         }
-
     }
 
     public void checkCanReadCartProduct(CartProduct cartProduct) throws AccessDeniedException {
-        boolean isAdminRequest = securityUtils.isAdmin();
         boolean isCustomerCartProductOwnerRequest = isCustomerCartProductOwner(cartProduct);
 
-        if (!isAdminRequest && !isCustomerCartProductOwnerRequest) {
+        if (!isCustomerCartProductOwnerRequest) {
             throw new AccessDeniedException(CartProductMessages.YOU_HAVE_NO_ACCESS_TO_THIS_CUSTOMER_CART);
         }
     }
@@ -46,28 +43,25 @@ public class CartProductAccessManager {
     public void checkCanAddProductToCart(Customer customer) throws AccessDeniedException {
         UUID currentCustomerId = securityUtils.getCurrentUserId();
 
-        boolean isAdminRequest = securityUtils.isAdmin();
         boolean isCustomerSelfRequest = currentCustomerId.equals(customer.getUserId());
 
-        if (!isAdminRequest && !isCustomerSelfRequest) {
+        if (!isCustomerSelfRequest) {
             throw new AccessDeniedException(CartProductMessages.YOU_HAVE_NO_ACCESS_TO_THIS_CUSTOMER_CART);
         }
     }
 
     public void checkCanUpdateCartProduct(CartProduct cartProduct) throws AccessDeniedException {
-        boolean isAdminRequest = securityUtils.isAdmin();
         boolean isCustomerCartProductOwnerRequest = isCustomerCartProductOwner(cartProduct);
 
-        if (!isAdminRequest && !isCustomerCartProductOwnerRequest) {
+        if (!isCustomerCartProductOwnerRequest) {
             throw new AccessDeniedException(CartProductMessages.YOU_HAVE_NO_ACCESS_TO_THIS_CUSTOMER_CART);
         }
     }
 
     public void checkCanRemoveProductFromCart(CartProduct cartProduct) throws AccessDeniedException {
-        boolean isAdminRequest = securityUtils.isAdmin();
         boolean isCustomerCartProductOwnerRequest = isCustomerCartProductOwner(cartProduct);
 
-        if (!isAdminRequest && !isCustomerCartProductOwnerRequest) {
+        if (!isCustomerCartProductOwnerRequest) {
             throw new AccessDeniedException(CartProductMessages.YOU_HAVE_NO_ACCESS_TO_THIS_CUSTOMER_CART);
         }
     }
