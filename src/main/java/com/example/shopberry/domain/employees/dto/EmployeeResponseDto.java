@@ -1,6 +1,7 @@
 package com.example.shopberry.domain.employees.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,6 +15,7 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonPropertyOrder({"employee_id", "first_name", "last_name", "created_at", "hired_at", "is_active"})
 public class EmployeeResponseDto {
 
     @JsonProperty("employee_id")

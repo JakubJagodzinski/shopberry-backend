@@ -1,6 +1,7 @@
 package com.example.shopberry.domain.reviews.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,6 +14,7 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonPropertyOrder({"review_id", "product_id", "customer_id", "rating_value", "review_text", "reviewed_at", "is_approved"})
 public class ReviewResponseDto {
 
     @JsonProperty("review_id")

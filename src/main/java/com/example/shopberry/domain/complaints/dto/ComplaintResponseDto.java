@@ -3,6 +3,7 @@ package com.example.shopberry.domain.complaints.dto;
 import com.example.shopberry.domain.orders.dto.OrderResponseDto;
 import com.example.shopberry.domain.products.dto.ProductResponseDto;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,6 +13,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonPropertyOrder({"complaint_id", "order", "product", "info", "first_name", "last_name", "nip", "city", "postal_code", "street", "house_number", "apartment", "phone_number"})
 public class ComplaintResponseDto {
 
     @JsonProperty("complaint_id")

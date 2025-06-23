@@ -4,6 +4,7 @@ import com.example.shopberry.domain.orderstatuses.dto.OrderStatusResponseDto;
 import com.example.shopberry.domain.paymenttypes.dto.PaymentTypeResponseDto;
 import com.example.shopberry.domain.shipmenttypes.dto.ShipmentTypeResponseDto;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,6 +17,7 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonPropertyOrder({"order_id", "created_at", "sent_at", "order_status", "customer_id", "shipment_type", "shipment_identifier", "payment_type", "is_payment_recorded", "is_invoice"})
 public class OrderResponseDto {
 
     @JsonProperty("order_id")

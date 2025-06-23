@@ -1,6 +1,7 @@
 package com.example.shopberry.domain.productattributes.dto;
 
 import com.example.shopberry.domain.products.dto.ProductResponseDto;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,6 +13,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonPropertyOrder({"product", "attributes"})
 public class ProductWithAttributesResponseDto {
 
     private ProductResponseDto product;

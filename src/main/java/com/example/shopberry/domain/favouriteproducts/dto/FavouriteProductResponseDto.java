@@ -2,6 +2,7 @@ package com.example.shopberry.domain.favouriteproducts.dto;
 
 import com.example.shopberry.domain.products.dto.ProductResponseDto;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,6 +15,7 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonPropertyOrder({"customer_id", "product", "added_at"})
 public class FavouriteProductResponseDto {
 
     @JsonProperty("customer_id")

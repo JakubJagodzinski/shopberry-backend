@@ -1,6 +1,7 @@
 package com.example.shopberry.domain.paymenttypes.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,6 +11,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonPropertyOrder({"payment_type_id", "payment_name"})
 public class PaymentTypeResponseDto {
 
     @JsonProperty("payment_type_id")

@@ -2,6 +2,7 @@ package com.example.shopberry.auth.dto;
 
 import com.example.shopberry.user.Role;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.*;
 
 import java.util.UUID;
@@ -11,6 +12,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 @AllArgsConstructor
+@JsonPropertyOrder({"user_id", "first_name", "last_name", "role", "access_token", "refresh_token"})
 public class AuthenticationResponseDto {
 
     @JsonProperty("user_id")
