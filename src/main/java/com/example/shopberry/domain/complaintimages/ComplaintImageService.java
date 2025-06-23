@@ -1,8 +1,9 @@
 package com.example.shopberry.domain.complaintimages;
 
+import com.example.shopberry.auth.access.manager.ComplaintImageAccessManager;
 import com.example.shopberry.common.constants.messages.ComplaintMessages;
-import com.example.shopberry.domain.complaintimages.dto.request.AddImageToComplaintRequestDto;
 import com.example.shopberry.domain.complaintimages.dto.ComplaintImageDtoMapper;
+import com.example.shopberry.domain.complaintimages.dto.request.AddImageToComplaintRequestDto;
 import com.example.shopberry.domain.complaintimages.dto.response.ComplaintImageResponseDto;
 import com.example.shopberry.domain.complaints.Complaint;
 import com.example.shopberry.domain.complaints.ComplaintRepository;
@@ -22,6 +23,8 @@ public class ComplaintImageService {
 
     private final ComplaintImageDtoMapper complaintImageDtoMapper;
 
+    private final ComplaintImageAccessManager complaintImageAccessManager;
+
     public List<ComplaintImageResponseDto> getAllComplaintImages() {
         return complaintImageDtoMapper.toDtoList(complaintImageRepository.findAll());
     }
@@ -34,14 +37,20 @@ public class ComplaintImageService {
             throw new EntityNotFoundException(ComplaintMessages.COMPLAINT_IMAGE_NOT_FOUND);
         }
 
+        complaintImageAccessManager.checkCanReadComplaintImage(complaintImage);
+
         return complaintImageDtoMapper.toDto(complaintImage);
     }
 
     @Transactional
     public List<ComplaintImageResponseDto> getComplaintAllImages(Long complaintId) throws EntityNotFoundException {
-        if (!complaintRepository.existsById(complaintId)) {
+        Complaint complaint = complaintRepository.findById(complaintId).orElse(null);
+
+        if (complaint == null) {
             throw new EntityNotFoundException(ComplaintMessages.COMPLAINT_NOT_FOUND);
         }
+
+        complaintImageAccessManager.checkCanReadComplaintAllImages(complaint);
 
         List<ComplaintImage> complaintImages = complaintImageRepository.findAllByComplaint_ComplaintId(complaintId);
 
@@ -56,6 +65,8 @@ public class ComplaintImageService {
             throw new EntityNotFoundException(ComplaintMessages.COMPLAINT_NOT_FOUND);
         }
 
+        complaintImageAccessManager.checkCanAddImageToComplaint(complaint);
+
         ComplaintImage complaintImage = new ComplaintImage();
 
         complaintImage.setComplaint(complaint);
@@ -66,9 +77,13 @@ public class ComplaintImageService {
 
     @Transactional
     public void deleteComplaintImageById(Long imageId) throws EntityNotFoundException {
-        if (!complaintImageRepository.existsById(imageId)) {
+        ComplaintImage complaintImage = complaintImageRepository.findById(imageId).orElse(null);
+
+        if (complaintImage == null) {
             throw new EntityNotFoundException(ComplaintMessages.COMPLAINT_IMAGE_NOT_FOUND);
         }
+
+        complaintImageAccessManager.checkCanDeleteComplaintImage(complaintImage);
 
         complaintImageRepository.deleteById(imageId);
     }
