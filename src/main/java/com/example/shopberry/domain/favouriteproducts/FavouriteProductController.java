@@ -30,34 +30,32 @@ public class FavouriteProductController {
     private final FavouriteProductService favouriteProductService;
 
     @Operation(summary = "Get customer all favourite products")
-    @ApiResponses(
-            value = {
-                    @ApiResponse(
-                            responseCode = "200",
-                            description = "Customer favourite products list",
-                            content = @Content(
-                                    mediaType = "application/json",
-                                    schema = @Schema(implementation = FavouriteProductResponseDto.class)
-                            )
-                    ),
-                    @ApiResponse(
-                            responseCode = "403",
-                            description = "Access denied",
-                            content = @Content(
-                                    mediaType = "application/json",
-                                    schema = @Schema(implementation = ApiError.class)
-                            )
-                    ),
-                    @ApiResponse(
-                            responseCode = "404",
-                            description = "Customer not found",
-                            content = @Content(
-                                    mediaType = "application/json",
-                                    schema = @Schema(implementation = ApiError.class)
-                            )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Customer favourite products list",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = FavouriteProductResponseDto.class)
                     )
-            }
-    )
+            ),
+            @ApiResponse(
+                    responseCode = "403",
+                    description = "Access denied",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = ApiError.class)
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Customer not found",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = ApiError.class)
+                    )
+            )
+    })
     @CheckPermission(Permission.CUSTOMER_FAVOURITE_PRODUCT_READ_ALL)
     @GetMapping("/customers/{customerId}/favourites")
     public ResponseEntity<List<FavouriteProductResponseDto>> getCustomerAllFavourites(@PathVariable UUID customerId) {
@@ -69,34 +67,32 @@ public class FavouriteProductController {
     }
 
     @Operation(summary = "Add product to customer favourites")
-    @ApiResponses(
-            value = {
-                    @ApiResponse(
-                            responseCode = "201",
-                            description = "Product added to customer favourites",
-                            content = @Content(
-                                    mediaType = "application/json",
-                                    schema = @Schema(implementation = FavouriteProductResponseDto.class)
-                            )
-                    ),
-                    @ApiResponse(
-                            responseCode = "403",
-                            description = "Access denied",
-                            content = @Content(
-                                    mediaType = "application/json",
-                                    schema = @Schema(implementation = ApiError.class)
-                            )
-                    ),
-                    @ApiResponse(
-                            responseCode = "404",
-                            description = "Customer not found",
-                            content = @Content(
-                                    mediaType = "application/json",
-                                    schema = @Schema(implementation = ApiError.class)
-                            )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "201",
+                    description = "Product added to customer favourites",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = FavouriteProductResponseDto.class)
                     )
-            }
-    )
+            ),
+            @ApiResponse(
+                    responseCode = "403",
+                    description = "Access denied",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = ApiError.class)
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Customer not found",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = ApiError.class)
+                    )
+            )
+    })
     @CheckPermission(Permission.CUSTOMER_FAVOURITE_PRODUCT_ADD)
     @PostMapping("/customers/{customerId}/favourites")
     public ResponseEntity<FavouriteProductResponseDto> addProductToCustomerFavourites(@PathVariable UUID customerId, @Valid @RequestBody AddProductToFavouritesRequestDto addProductToFavouritesRequestDto) {
@@ -109,30 +105,28 @@ public class FavouriteProductController {
     }
 
     @Operation(summary = "Remove product from customer favourites")
-    @ApiResponses(
-            value = {
-                    @ApiResponse(
-                            responseCode = "204",
-                            description = "Product removed from customer favourites"
-                    ),
-                    @ApiResponse(
-                            responseCode = "403",
-                            description = "Access denied",
-                            content = @Content(
-                                    mediaType = "application/json",
-                                    schema = @Schema(implementation = ApiError.class)
-                            )
-                    ),
-                    @ApiResponse(
-                            responseCode = "404",
-                            description = "Customer not found",
-                            content = @Content(
-                                    mediaType = "application/json",
-                                    schema = @Schema(implementation = ApiError.class)
-                            )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "204",
+                    description = "Product removed from customer favourites"
+            ),
+            @ApiResponse(
+                    responseCode = "403",
+                    description = "Access denied",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = ApiError.class)
                     )
-            }
-    )
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Customer not found",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = ApiError.class)
+                    )
+            )
+    })
     @CheckPermission(Permission.CUSTOMER_FAVOURITE_PRODUCT_REMOVE)
     @DeleteMapping("/customers/{customerId}/favourites/{productId}")
     public ResponseEntity<Void> removeProductFromCustomerFavourites(@PathVariable UUID customerId, @PathVariable Long productId) {
