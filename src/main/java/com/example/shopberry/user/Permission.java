@@ -42,6 +42,8 @@ public enum Permission {
     COMPLAINT_UPDATE("complaint:update"),
     COMPLAINT_DELETE("complaint:delete"),
 
+    CUSTOMER_COMPLAINT_READ_ALL("customer:complaint:read:all"),
+
     ADDRESS_CREATE("address:create"),
     ADDRESS_READ("address:read"),
     ADDRESS_READ_ALL("address:read:all"),

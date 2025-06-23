@@ -1,12 +1,16 @@
 package com.example.shopberry.domain.complaints;
 
+import com.example.shopberry.auth.access.manager.ComplaintAccessManager;
 import com.example.shopberry.common.constants.messages.ComplaintMessages;
+import com.example.shopberry.common.constants.messages.CustomerMessages;
 import com.example.shopberry.common.constants.messages.OrderMessages;
 import com.example.shopberry.common.constants.messages.ProductMessages;
 import com.example.shopberry.domain.complaints.dto.ComplaintDtoMapper;
-import com.example.shopberry.domain.complaints.dto.response.ComplaintResponseDto;
 import com.example.shopberry.domain.complaints.dto.request.CreateComplaintRequestDto;
 import com.example.shopberry.domain.complaints.dto.request.UpdateComplaintRequestDto;
+import com.example.shopberry.domain.complaints.dto.response.ComplaintResponseDto;
+import com.example.shopberry.domain.customers.Customer;
+import com.example.shopberry.domain.customers.CustomerRepository;
 import com.example.shopberry.domain.orderproducts.OrderProductId;
 import com.example.shopberry.domain.orderproducts.OrderProductRepository;
 import com.example.shopberry.domain.orders.Order;
@@ -19,6 +23,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -31,8 +36,24 @@ public class ComplaintService {
 
     private final ComplaintDtoMapper complaintDtoMapper;
 
+    private final ComplaintAccessManager complaintAccessManager;
+    private final CustomerRepository customerRepository;
+
     public List<ComplaintResponseDto> getAllComplaints() {
         return complaintDtoMapper.toDtoList(complaintRepository.findAll());
+    }
+
+    @Transactional
+    public List<ComplaintResponseDto> getCustomerAllComplaints(UUID customerId) throws EntityNotFoundException {
+        Customer customer = customerRepository.findById(customerId).orElse(null);
+
+        if (customer == null) {
+            throw new EntityNotFoundException(CustomerMessages.CUSTOMER_NOT_FOUND);
+        }
+
+        complaintAccessManager.checkCanReadCustomerAllComplaints(customer);
+
+        return complaintDtoMapper.toDtoList(complaintRepository.findAllByOrder_Customer_UserId(customerId));
     }
 
     @Transactional
@@ -42,6 +63,8 @@ public class ComplaintService {
         if (complaint == null) {
             throw new EntityNotFoundException(ComplaintMessages.COMPLAINT_NOT_FOUND);
         }
+
+        complaintAccessManager.checkCanReadComplaint(complaint);
 
         return complaintDtoMapper.toDto(complaint);
     }
@@ -53,6 +76,8 @@ public class ComplaintService {
         if (order == null) {
             throw new EntityNotFoundException(OrderMessages.ORDER_NOT_FOUND);
         }
+
+        complaintAccessManager.checkCanCreateComplaint(order.getCustomer());
 
         Product product = productRepository.findById(createComplaintRequestDto.getProductId()).orElse(null);
 
@@ -89,6 +114,8 @@ public class ComplaintService {
         if (complaint == null) {
             throw new EntityNotFoundException(ComplaintMessages.COMPLAINT_NOT_FOUND);
         }
+
+        complaintAccessManager.checkCanUpdateComplaint(complaint);
 
         if (updateComplaintRequestDto.getInfo() != null) {
             complaint.setInfo(updateComplaintRequestDto.getInfo());
@@ -135,9 +162,13 @@ public class ComplaintService {
 
     @Transactional
     public void deleteComplaintById(Long complaintId) throws EntityNotFoundException {
-        if (!complaintRepository.existsById(complaintId)) {
+        Complaint complaint = complaintRepository.findById(complaintId).orElse(null);
+
+        if (complaint == null) {
             throw new EntityNotFoundException(ComplaintMessages.COMPLAINT_NOT_FOUND);
         }
+
+        complaintAccessManager.checkCanDeleteComplaint(complaint);
 
         complaintRepository.deleteById(complaintId);
     }

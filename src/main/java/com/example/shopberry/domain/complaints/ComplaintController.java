@@ -2,9 +2,9 @@ package com.example.shopberry.domain.complaints;
 
 import com.example.shopberry.auth.access.CheckPermission;
 import com.example.shopberry.common.MessageResponseDto;
-import com.example.shopberry.domain.complaints.dto.response.ComplaintResponseDto;
 import com.example.shopberry.domain.complaints.dto.request.CreateComplaintRequestDto;
 import com.example.shopberry.domain.complaints.dto.request.UpdateComplaintRequestDto;
+import com.example.shopberry.domain.complaints.dto.response.ComplaintResponseDto;
 import com.example.shopberry.user.Permission;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -28,6 +29,16 @@ public class ComplaintController {
     @GetMapping("/complaints")
     public ResponseEntity<List<ComplaintResponseDto>> getAllComplaints() {
         List<ComplaintResponseDto> complaintResponseDtoList = complaintService.getAllComplaints();
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(complaintResponseDtoList);
+    }
+
+    @CheckPermission(Permission.CUSTOMER_COMPLAINT_READ_ALL)
+    @GetMapping("/customers/{customerId}/complaints")
+    public ResponseEntity<List<ComplaintResponseDto>> getCustomerAllComplaints(@PathVariable UUID customerId) {
+        List<ComplaintResponseDto> complaintResponseDtoList = complaintService.getCustomerAllComplaints(customerId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)

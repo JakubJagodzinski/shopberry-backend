@@ -34,6 +34,8 @@ public enum Role {
                     COMPLAINT_UPDATE,
                     COMPLAINT_DELETE,
 
+                    CUSTOMER_COMPLAINT_READ_ALL,
+
                     ADDRESS_CREATE,
                     ADDRESS_READ,
                     ADDRESS_UPDATE,
@@ -84,6 +86,8 @@ public enum Role {
 
                     COMPLAINT_READ,
                     COMPLAINT_READ_ALL,
+
+                    CUSTOMER_COMPLAINT_READ_ALL,
 
                     CUSTOMER_READ,
 
