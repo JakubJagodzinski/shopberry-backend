@@ -1,32 +1,101 @@
 attributeId,attributeName
-1,attributeName
-2,Color
-3,Material
-4,Size
-5,Weight
-6,Dimensions
-7,Height
-8,Width
-9,Depth
-10,Length
-11,Shape
-12,Texture
-13,Finish
-14,Capacity
-15,Volume
-16,Form Factor
-17,Display Size
-18,Screen Type
-19,Resolution
-20,Frame Material
-21,Leg Type
-22,Handle Type
-23,Number of Pieces
-24,Mounting Type
-25,Folding
-26,Wheels
-27,Number of Drawers
-28,Surface Area
-29,Cable Length
-30,Connector Type
-31,Power Output
+1,Color
+2,Material
+3,Size
+4,Weight
+5,Dimensions
+6,Height
+7,Width
+8,Depth
+9,Length
+10,Shape
+11,Texture
+12,Finish
+13,Capacity
+14,Volume
+15,Form Factor
+16,Display Size
+17,Screen Type
+18,Resolution
+19,Frame Material
+20,Leg Type
+21,Handle Type
+22,Number of Pieces
+23,Mounting Type
+24,Folding
+25,Wheels
+26,Number of Drawers
+27,Surface Area
+28,Cable Length
+29,Connector Type
+30,Power Output
+31,Battery Life
+32,Charging Time
+33,Energy Efficiency Class
+34,Lighting Type
+35,Water Resistance
+36,IP Rating
+37,Operating System
+38,Processor Type
+39,RAM Size
+40,Storage Capacity
+41,Camera Resolution
+42,Refresh Rate
+43,Wireless Technology
+44,Bluetooth Version
+45,Wi-Fi Standard
+46,Noise Level
+47,Material Type
+48,Suitable For
+49,Age Group
+50,Gender
+51,Fit Type
+52,Sleeve Length
+53,Waist Size
+54,Inseam Length
+55,Pattern
+56,Season
+57,Care Instructions
+58,Warranty Period
+59,Country of Origin
+60,Included Components
+61,Usage Location
+62,Installation Required
+63,Assembly Time
+64,Max Load Capacity
+65,Lock Type
+66,Alarm Function
+67,Speed Settings
+68,Heating Method
+69,Temperature Range
+70,Fuel Type
+71,Blade Material
+72,Grip Type
+73,Tool Type
+74,Bit Size
+75,Voltage
+76,Amperage
+77,Lumens
+78,Color Temperature
+79,Fragrance Type
+80,Scent Strength
+81,Expiration Date
+82,Packaging Type
+83,Reusability
+84,Biodegradable
+85,Recyclable
+86,Weight Limit
+87,Number of Settings
+88,Magnet Type
+89,Plating
+90,Chain Length
+91,Stone Type
+92,Lens Type
+93,Frame Shape
+94,UV Protection
+95,Cushion Type
+96,Mattress Firmness
+97,Spring Type
+98,Brush Type
+99,Bristle Hardness
+100,Paint Finish

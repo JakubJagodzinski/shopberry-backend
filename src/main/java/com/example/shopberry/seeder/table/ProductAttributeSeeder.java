@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 
 @Component
 @RequiredArgsConstructor
@@ -63,6 +64,8 @@ public class ProductAttributeSeeder implements DataSeeder {
                         return productAttribute;
                     }
             );
+
+            productAttributeList.removeIf(Objects::isNull);
 
             productAttributeRepository.saveAll(productAttributeList);
         }
