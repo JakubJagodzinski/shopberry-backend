@@ -1,5 +1,6 @@
 package com.example.shopberry.domain.customers;
 
+import com.example.shopberry.auth.access.manager.CustomerAccessManager;
 import com.example.shopberry.common.constants.messages.CustomerMessages;
 import com.example.shopberry.domain.customeraddresses.CustomerAddress;
 import com.example.shopberry.domain.customeraddresses.CustomerAddressRepository;
@@ -23,6 +24,8 @@ public class CustomerService {
 
     private final CustomerDtoMapper customerDtoMapper;
 
+    private final CustomerAccessManager customerAccessManager;
+
     public List<CustomerResponseDto> getAllCustomers() {
         return customerDtoMapper.toDtoList(customerRepository.findAll());
     }
@@ -45,6 +48,8 @@ public class CustomerService {
         if (customer == null) {
             throw new EntityNotFoundException(CustomerMessages.CUSTOMER_NOT_FOUND);
         }
+
+        customerAccessManager.checkCanUpdateCustomer(customer);
 
         if (updateCustomerRequestDto.getFirstName() != null) {
             customer.setFirstName(updateCustomerRequestDto.getFirstName());
@@ -73,9 +78,13 @@ public class CustomerService {
 
     @Transactional
     public void deleteCustomerById(UUID customerId) throws EntityNotFoundException {
-        if (!customerRepository.existsById(customerId)) {
+        Customer customer = customerRepository.findById(customerId).orElse(null);
+
+        if (customer == null) {
             throw new EntityNotFoundException(CustomerMessages.CUSTOMER_NOT_FOUND);
         }
+
+        customerAccessManager.checkCanDeleteCustomer(customer);
 
         customerRepository.deleteById(customerId);
     }
