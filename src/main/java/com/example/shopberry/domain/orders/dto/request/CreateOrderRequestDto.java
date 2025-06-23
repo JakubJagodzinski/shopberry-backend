@@ -55,15 +55,6 @@ public class CreateOrderRequestDto {
     private Long paymentTypeId;
 
     @Schema(
-            description = "Whether the payment has already been recorded",
-            example = "true",
-            defaultValue = "false",
-            nullable = true
-    )
-    @JsonProperty("is_payment_recorded")
-    private Boolean isPaymentRecorded;
-
-    @Schema(
             description = "Whether an invoice is requested for this order",
             example = "true",
             defaultValue = "false",

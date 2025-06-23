@@ -12,8 +12,8 @@ import com.example.shopberry.domain.orderproducts.OrderProductId;
 import com.example.shopberry.domain.orderproducts.OrderProductRepository;
 import com.example.shopberry.domain.orderproducts.dto.request.AddProductToOrderRequestDto;
 import com.example.shopberry.domain.orderproductstatuses.OrderProductStatusRepository;
-import com.example.shopberry.domain.orders.dto.request.CreateOrderRequestDto;
 import com.example.shopberry.domain.orders.dto.OrderDtoMapper;
+import com.example.shopberry.domain.orders.dto.request.CreateOrderRequestDto;
 import com.example.shopberry.domain.orders.dto.response.OrderResponseDto;
 import com.example.shopberry.domain.orderstatuses.OrderStatusRepository;
 import com.example.shopberry.domain.paymenttypes.PaymentType;
@@ -109,10 +109,6 @@ public class OrderService {
 
         if (createOrderRequestDto.getShipmentIdentifier() != null) {
             order.setShipmentIdentifier(createOrderRequestDto.getShipmentIdentifier().trim());
-        }
-
-        if (createOrderRequestDto.getIsPaymentRecorded() != null) {
-            order.setIsPaymentRecorded(createOrderRequestDto.getIsPaymentRecorded());
         }
 
         if (createOrderRequestDto.getIsInvoice() != null) {
