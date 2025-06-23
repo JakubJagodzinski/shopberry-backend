@@ -2,9 +2,9 @@ package com.example.shopberry.domain.orderstatuses;
 
 import com.example.shopberry.auth.access.CheckPermission;
 import com.example.shopberry.common.MessageResponseDto;
-import com.example.shopberry.domain.orderstatuses.dto.CreateOrderStatusRequestDto;
-import com.example.shopberry.domain.orderstatuses.dto.OrderStatusResponseDto;
-import com.example.shopberry.domain.orderstatuses.dto.UpdateOrderStatusRequestDto;
+import com.example.shopberry.domain.orderstatuses.dto.request.CreateOrderStatusRequestDto;
+import com.example.shopberry.domain.orderstatuses.dto.response.OrderStatusResponseDto;
+import com.example.shopberry.domain.orderstatuses.dto.request.UpdateOrderStatusRequestDto;
 import com.example.shopberry.user.Permission;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

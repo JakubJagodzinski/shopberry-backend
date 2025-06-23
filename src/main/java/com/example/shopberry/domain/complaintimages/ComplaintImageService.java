@@ -1,9 +1,9 @@
 package com.example.shopberry.domain.complaintimages;
 
 import com.example.shopberry.common.constants.messages.ComplaintMessages;
-import com.example.shopberry.domain.complaintimages.dto.AddImageToComplaintRequestDto;
+import com.example.shopberry.domain.complaintimages.dto.request.AddImageToComplaintRequestDto;
 import com.example.shopberry.domain.complaintimages.dto.ComplaintImageDtoMapper;
-import com.example.shopberry.domain.complaintimages.dto.ComplaintImageResponseDto;
+import com.example.shopberry.domain.complaintimages.dto.response.ComplaintImageResponseDto;
 import com.example.shopberry.domain.complaints.Complaint;
 import com.example.shopberry.domain.complaints.ComplaintRepository;
 import jakarta.persistence.EntityNotFoundException;

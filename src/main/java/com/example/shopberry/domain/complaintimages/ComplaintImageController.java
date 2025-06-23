@@ -2,8 +2,8 @@ package com.example.shopberry.domain.complaintimages;
 
 import com.example.shopberry.auth.access.CheckPermission;
 import com.example.shopberry.common.MessageResponseDto;
-import com.example.shopberry.domain.complaintimages.dto.AddImageToComplaintRequestDto;
-import com.example.shopberry.domain.complaintimages.dto.ComplaintImageResponseDto;
+import com.example.shopberry.domain.complaintimages.dto.request.AddImageToComplaintRequestDto;
+import com.example.shopberry.domain.complaintimages.dto.response.ComplaintImageResponseDto;
 import com.example.shopberry.user.Permission;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

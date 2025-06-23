@@ -2,9 +2,9 @@ package com.example.shopberry.domain.cartproducts;
 
 import com.example.shopberry.auth.access.CheckPermission;
 import com.example.shopberry.common.MessageResponseDto;
-import com.example.shopberry.domain.cartproducts.dto.AddProductToCartRequestDto;
-import com.example.shopberry.domain.cartproducts.dto.CartProductResponseDto;
-import com.example.shopberry.domain.cartproducts.dto.UpdateCartProductRequestDto;
+import com.example.shopberry.domain.cartproducts.dto.request.AddProductToCartRequestDto;
+import com.example.shopberry.domain.cartproducts.dto.response.CartProductResponseDto;
+import com.example.shopberry.domain.cartproducts.dto.request.UpdateCartProductRequestDto;
 import com.example.shopberry.user.Permission;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

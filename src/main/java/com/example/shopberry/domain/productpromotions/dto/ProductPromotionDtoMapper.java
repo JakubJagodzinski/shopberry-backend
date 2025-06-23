@@ -1,6 +1,7 @@
 package com.example.shopberry.domain.productpromotions.dto;
 
 import com.example.shopberry.domain.productpromotions.ProductPromotion;
+import com.example.shopberry.domain.productpromotions.dto.response.ProductPromotionResponseDto;
 import com.example.shopberry.domain.products.dto.ProductDtoMapper;
 import com.example.shopberry.domain.promotions.dto.PromotionDtoMapper;
 import lombok.RequiredArgsConstructor;

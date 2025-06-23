@@ -1,6 +1,7 @@
 package com.example.shopberry.domain.paymenttypes.dto;
 
 import com.example.shopberry.domain.paymenttypes.PaymentType;
+import com.example.shopberry.domain.paymenttypes.dto.response.PaymentTypeResponseDto;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

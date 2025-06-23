@@ -2,6 +2,7 @@ package com.example.shopberry.domain.customers.dto;
 
 import com.example.shopberry.domain.customeraddresses.dto.CustomerAddressDtoMapper;
 import com.example.shopberry.domain.customers.Customer;
+import com.example.shopberry.domain.customers.dto.response.CustomerResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

@@ -1,6 +1,7 @@
 package com.example.shopberry.domain.cartproducts.dto;
 
 import com.example.shopberry.domain.cartproducts.CartProduct;
+import com.example.shopberry.domain.cartproducts.dto.response.CartProductResponseDto;
 import com.example.shopberry.domain.products.dto.ProductDtoMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

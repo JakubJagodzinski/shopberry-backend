@@ -11,12 +11,12 @@ import com.example.shopberry.domain.producers.Producer;
 import com.example.shopberry.domain.producers.ProducerRepository;
 import com.example.shopberry.domain.productattributes.ProductAttribute;
 import com.example.shopberry.domain.productattributes.ProductAttributeRepository;
-import com.example.shopberry.domain.productattributes.dto.AttributeValueDto;
-import com.example.shopberry.domain.productattributes.dto.ProductWithAttributesResponseDto;
-import com.example.shopberry.domain.products.dto.CreateProductRequestDto;
+import com.example.shopberry.domain.productattributes.dto.response.AttributeValueResponseDto;
+import com.example.shopberry.domain.productattributes.dto.response.ProductWithAttributesResponseDto;
+import com.example.shopberry.domain.products.dto.request.CreateProductRequestDto;
 import com.example.shopberry.domain.products.dto.ProductDtoMapper;
-import com.example.shopberry.domain.products.dto.ProductResponseDto;
-import com.example.shopberry.domain.products.dto.UpdateProductRequestDto;
+import com.example.shopberry.domain.products.dto.response.ProductResponseDto;
+import com.example.shopberry.domain.products.dto.request.UpdateProductRequestDto;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -80,19 +80,19 @@ public class ProductService {
 
             List<ProductAttribute> productAttributeDtoList = productAttributeRepository.findAllByProduct_ProductIdOrderByWeightDesc(product.getProductId());
 
-            List<AttributeValueDto> attributeValueDtoList = new ArrayList<>();
+            List<AttributeValueResponseDto> attributeValueResponseDtoList = new ArrayList<>();
 
             for (ProductAttribute productAttribute : productAttributeDtoList) {
-                AttributeValueDto attributeValueDto = new AttributeValueDto();
+                AttributeValueResponseDto attributeValueResponseDto = new AttributeValueResponseDto();
 
-                attributeValueDto.setAttribute(attributeDtoMapper.toDto(productAttribute.getAttribute()));
-                attributeValueDto.setValue(productAttribute.getValue());
-                attributeValueDto.setWeight(productAttribute.getWeight());
+                attributeValueResponseDto.setAttribute(attributeDtoMapper.toDto(productAttribute.getAttribute()));
+                attributeValueResponseDto.setValue(productAttribute.getValue());
+                attributeValueResponseDto.setWeight(productAttribute.getWeight());
 
-                attributeValueDtoList.add(attributeValueDto);
+                attributeValueResponseDtoList.add(attributeValueResponseDto);
             }
 
-            productWithAttributesResponseDto.setAttributes(attributeValueDtoList);
+            productWithAttributesResponseDto.setAttributes(attributeValueResponseDtoList);
 
             productWithAttributesResponseDtoList.add(productWithAttributesResponseDto);
         }

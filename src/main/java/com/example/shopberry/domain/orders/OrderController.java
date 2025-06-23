@@ -2,8 +2,8 @@ package com.example.shopberry.domain.orders;
 
 import com.example.shopberry.auth.access.CheckPermission;
 import com.example.shopberry.common.MessageResponseDto;
-import com.example.shopberry.domain.orders.dto.CreateOrderRequestDto;
-import com.example.shopberry.domain.orders.dto.OrderResponseDto;
+import com.example.shopberry.domain.orders.dto.request.CreateOrderRequestDto;
+import com.example.shopberry.domain.orders.dto.response.OrderResponseDto;
 import com.example.shopberry.user.Permission;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

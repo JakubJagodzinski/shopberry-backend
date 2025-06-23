@@ -1,6 +1,7 @@
 package com.example.shopberry.domain.customeraddresses.dto;
 
 import com.example.shopberry.domain.customeraddresses.CustomerAddress;
+import com.example.shopberry.domain.customeraddresses.dto.response.CustomerAddressResponseDto;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

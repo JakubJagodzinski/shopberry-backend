@@ -2,10 +2,10 @@ package com.example.shopberry.domain.customeraddresses;
 
 import com.example.shopberry.auth.access.manager.CustomerAddressAccessManager;
 import com.example.shopberry.common.constants.messages.CustomerMessages;
-import com.example.shopberry.domain.customeraddresses.dto.CreateCustomerAddressRequestDto;
+import com.example.shopberry.domain.customeraddresses.dto.request.CreateCustomerAddressRequestDto;
 import com.example.shopberry.domain.customeraddresses.dto.CustomerAddressDtoMapper;
-import com.example.shopberry.domain.customeraddresses.dto.CustomerAddressResponseDto;
-import com.example.shopberry.domain.customeraddresses.dto.UpdateCustomerAddressRequestDto;
+import com.example.shopberry.domain.customeraddresses.dto.response.CustomerAddressResponseDto;
+import com.example.shopberry.domain.customeraddresses.dto.request.UpdateCustomerAddressRequestDto;
 import com.example.shopberry.domain.customers.Customer;
 import com.example.shopberry.domain.customers.CustomerRepository;
 import jakarta.persistence.EntityNotFoundException;

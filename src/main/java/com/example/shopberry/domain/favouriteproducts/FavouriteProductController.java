@@ -2,8 +2,8 @@ package com.example.shopberry.domain.favouriteproducts;
 
 import com.example.shopberry.auth.access.CheckPermission;
 import com.example.shopberry.common.MessageResponseDto;
-import com.example.shopberry.domain.favouriteproducts.dto.AddProductToFavouritesRequestDto;
-import com.example.shopberry.domain.favouriteproducts.dto.FavouriteProductResponseDto;
+import com.example.shopberry.domain.favouriteproducts.dto.request.AddProductToFavouritesRequestDto;
+import com.example.shopberry.domain.favouriteproducts.dto.response.FavouriteProductResponseDto;
 import com.example.shopberry.user.Permission;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

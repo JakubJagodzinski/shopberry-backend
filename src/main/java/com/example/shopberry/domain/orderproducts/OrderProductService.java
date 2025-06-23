@@ -4,7 +4,7 @@ import com.example.shopberry.auth.access.manager.OrderProductAccessManager;
 import com.example.shopberry.common.constants.messages.OrderMessages;
 import com.example.shopberry.common.constants.messages.ProductMessages;
 import com.example.shopberry.domain.orderproducts.dto.OrderProductDtoMapper;
-import com.example.shopberry.domain.orderproducts.dto.OrderProductResponseDto;
+import com.example.shopberry.domain.orderproducts.dto.response.OrderProductResponseDto;
 import com.example.shopberry.domain.orders.Order;
 import com.example.shopberry.domain.orders.OrderRepository;
 import jakarta.persistence.EntityNotFoundException;

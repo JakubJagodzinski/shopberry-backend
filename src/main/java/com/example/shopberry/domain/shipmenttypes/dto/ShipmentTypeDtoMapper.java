@@ -1,6 +1,7 @@
 package com.example.shopberry.domain.shipmenttypes.dto;
 
 import com.example.shopberry.domain.shipmenttypes.ShipmentType;
+import com.example.shopberry.domain.shipmenttypes.dto.response.ShipmentTypeResponseDto;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

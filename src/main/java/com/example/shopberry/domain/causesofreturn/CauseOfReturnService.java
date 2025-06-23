@@ -2,9 +2,9 @@ package com.example.shopberry.domain.causesofreturn;
 
 import com.example.shopberry.common.constants.messages.CauseOfReturnMessages;
 import com.example.shopberry.domain.causesofreturn.dto.CauseOfReturnDtoMapper;
-import com.example.shopberry.domain.causesofreturn.dto.CauseOfReturnResponseDto;
-import com.example.shopberry.domain.causesofreturn.dto.CreateCauseOfReturnRequestDto;
-import com.example.shopberry.domain.causesofreturn.dto.UpdateCauseOfReturnRequestDto;
+import com.example.shopberry.domain.causesofreturn.dto.response.CauseOfReturnResponseDto;
+import com.example.shopberry.domain.causesofreturn.dto.request.CreateCauseOfReturnRequestDto;
+import com.example.shopberry.domain.causesofreturn.dto.request.UpdateCauseOfReturnRequestDto;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;

@@ -2,9 +2,9 @@ package com.example.shopberry.domain.attributes;
 
 import com.example.shopberry.common.constants.messages.AttributeMessages;
 import com.example.shopberry.domain.attributes.dto.AttributeDtoMapper;
-import com.example.shopberry.domain.attributes.dto.AttributeResponseDto;
-import com.example.shopberry.domain.attributes.dto.CreateAttributeRequestDto;
-import com.example.shopberry.domain.attributes.dto.UpdateAttributeRequestDto;
+import com.example.shopberry.domain.attributes.dto.response.AttributeResponseDto;
+import com.example.shopberry.domain.attributes.dto.request.CreateAttributeRequestDto;
+import com.example.shopberry.domain.attributes.dto.request.UpdateAttributeRequestDto;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;

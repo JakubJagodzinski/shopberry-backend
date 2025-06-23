@@ -1,6 +1,7 @@
 package com.example.shopberry.domain.causesofreturn.dto;
 
 import com.example.shopberry.domain.causesofreturn.CauseOfReturn;
+import com.example.shopberry.domain.causesofreturn.dto.response.CauseOfReturnResponseDto;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

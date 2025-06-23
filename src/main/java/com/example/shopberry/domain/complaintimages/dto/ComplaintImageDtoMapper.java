@@ -2,6 +2,7 @@ package com.example.shopberry.domain.complaintimages.dto;
 
 
 import com.example.shopberry.domain.complaintimages.ComplaintImage;
+import com.example.shopberry.domain.complaintimages.dto.response.ComplaintImageResponseDto;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

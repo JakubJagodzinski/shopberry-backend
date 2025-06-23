@@ -2,6 +2,11 @@ package com.example.shopberry.domain.categories;
 
 import com.example.shopberry.common.constants.messages.CategoryMessages;
 import com.example.shopberry.domain.categories.dto.*;
+import com.example.shopberry.domain.categories.dto.request.CreateCategoryRequestDto;
+import com.example.shopberry.domain.categories.dto.request.SetParentCategoryRequestDto;
+import com.example.shopberry.domain.categories.dto.request.UpdateCategoryRequestDto;
+import com.example.shopberry.domain.categories.dto.response.CategoryResponseDto;
+import com.example.shopberry.domain.categories.dto.response.CategoryTreeResponseDto;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;

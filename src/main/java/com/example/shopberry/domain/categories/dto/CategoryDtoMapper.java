@@ -1,6 +1,7 @@
 package com.example.shopberry.domain.categories.dto;
 
 import com.example.shopberry.domain.categories.Category;
+import com.example.shopberry.domain.categories.dto.response.CategoryResponseDto;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

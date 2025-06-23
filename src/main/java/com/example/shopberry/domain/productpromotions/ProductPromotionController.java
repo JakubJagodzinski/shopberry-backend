@@ -2,8 +2,8 @@ package com.example.shopberry.domain.productpromotions;
 
 import com.example.shopberry.auth.access.CheckPermission;
 import com.example.shopberry.common.MessageResponseDto;
-import com.example.shopberry.domain.productpromotions.dto.AssignPromotionToProductRequestDto;
-import com.example.shopberry.domain.productpromotions.dto.ProductPromotionResponseDto;
+import com.example.shopberry.domain.productpromotions.dto.request.AssignPromotionToProductRequestDto;
+import com.example.shopberry.domain.productpromotions.dto.response.ProductPromotionResponseDto;
 import com.example.shopberry.user.Permission;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

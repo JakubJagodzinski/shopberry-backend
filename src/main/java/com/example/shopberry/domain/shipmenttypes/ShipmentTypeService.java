@@ -1,10 +1,10 @@
 package com.example.shopberry.domain.shipmenttypes;
 
 import com.example.shopberry.common.constants.messages.ShipmentTypeMessages;
-import com.example.shopberry.domain.shipmenttypes.dto.CreateShipmentTypeRequestDto;
+import com.example.shopberry.domain.shipmenttypes.dto.request.CreateShipmentTypeRequestDto;
 import com.example.shopberry.domain.shipmenttypes.dto.ShipmentTypeDtoMapper;
-import com.example.shopberry.domain.shipmenttypes.dto.ShipmentTypeResponseDto;
-import com.example.shopberry.domain.shipmenttypes.dto.UpdateShipmentTypeRequestDto;
+import com.example.shopberry.domain.shipmenttypes.dto.response.ShipmentTypeResponseDto;
+import com.example.shopberry.domain.shipmenttypes.dto.request.UpdateShipmentTypeRequestDto;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;

@@ -4,6 +4,7 @@ package com.example.shopberry.domain.categoriesattributes.dto;
 import com.example.shopberry.domain.attributes.dto.AttributeDtoMapper;
 import com.example.shopberry.domain.categories.dto.CategoryDtoMapper;
 import com.example.shopberry.domain.categoriesattributes.CategoryAttribute;
+import com.example.shopberry.domain.categoriesattributes.dto.response.CategoryAttributeResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

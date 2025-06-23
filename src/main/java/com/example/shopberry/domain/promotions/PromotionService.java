@@ -1,10 +1,10 @@
 package com.example.shopberry.domain.promotions;
 
 import com.example.shopberry.common.constants.messages.PromotionMessages;
-import com.example.shopberry.domain.promotions.dto.CreatePromotionRequestDto;
+import com.example.shopberry.domain.promotions.dto.request.CreatePromotionRequestDto;
 import com.example.shopberry.domain.promotions.dto.PromotionDtoMapper;
-import com.example.shopberry.domain.promotions.dto.PromotionResponseDto;
-import com.example.shopberry.domain.promotions.dto.UpdatePromotionRequestDto;
+import com.example.shopberry.domain.promotions.dto.response.PromotionResponseDto;
+import com.example.shopberry.domain.promotions.dto.request.UpdatePromotionRequestDto;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;

@@ -2,9 +2,9 @@ package com.example.shopberry.domain.productpromotions;
 
 import com.example.shopberry.common.constants.messages.ProductMessages;
 import com.example.shopberry.common.constants.messages.PromotionMessages;
-import com.example.shopberry.domain.productpromotions.dto.AssignPromotionToProductRequestDto;
+import com.example.shopberry.domain.productpromotions.dto.request.AssignPromotionToProductRequestDto;
 import com.example.shopberry.domain.productpromotions.dto.ProductPromotionDtoMapper;
-import com.example.shopberry.domain.productpromotions.dto.ProductPromotionResponseDto;
+import com.example.shopberry.domain.productpromotions.dto.response.ProductPromotionResponseDto;
 import com.example.shopberry.domain.products.Product;
 import com.example.shopberry.domain.products.ProductRepository;
 import com.example.shopberry.domain.promotions.Promotion;

@@ -2,6 +2,7 @@ package com.example.shopberry.domain.productattributes.dto;
 
 import com.example.shopberry.domain.attributes.dto.AttributeDtoMapper;
 import com.example.shopberry.domain.productattributes.ProductAttribute;
+import com.example.shopberry.domain.productattributes.dto.response.ProductAttributeResponseDto;
 import com.example.shopberry.domain.products.dto.ProductDtoMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

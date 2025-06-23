@@ -1,6 +1,7 @@
 package com.example.shopberry.domain.attributes.dto;
 
 import com.example.shopberry.domain.attributes.Attribute;
+import com.example.shopberry.domain.attributes.dto.response.AttributeResponseDto;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

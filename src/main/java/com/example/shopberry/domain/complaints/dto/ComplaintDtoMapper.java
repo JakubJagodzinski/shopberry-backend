@@ -1,6 +1,7 @@
 package com.example.shopberry.domain.complaints.dto;
 
 import com.example.shopberry.domain.complaints.Complaint;
+import com.example.shopberry.domain.complaints.dto.response.ComplaintResponseDto;
 import com.example.shopberry.domain.orders.dto.OrderDtoMapper;
 import com.example.shopberry.domain.products.dto.ProductDtoMapper;
 import lombok.RequiredArgsConstructor;

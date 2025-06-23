@@ -1,10 +1,10 @@
 package com.example.shopberry.domain.orderproductstatuses;
 
 import com.example.shopberry.common.constants.messages.OrderProductStatusMessages;
-import com.example.shopberry.domain.orderproductstatuses.dto.CreateOrderProductStatusRequestDto;
+import com.example.shopberry.domain.orderproductstatuses.dto.request.CreateOrderProductStatusRequestDto;
 import com.example.shopberry.domain.orderproductstatuses.dto.OrderProductStatusDtoMapper;
-import com.example.shopberry.domain.orderproductstatuses.dto.OrderProductStatusResponseDto;
-import com.example.shopberry.domain.orderproductstatuses.dto.UpdateOrderProductStatusRequestDto;
+import com.example.shopberry.domain.orderproductstatuses.dto.response.OrderProductStatusResponseDto;
+import com.example.shopberry.domain.orderproductstatuses.dto.request.UpdateOrderProductStatusRequestDto;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;

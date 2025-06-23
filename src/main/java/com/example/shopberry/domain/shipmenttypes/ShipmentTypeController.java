@@ -2,9 +2,9 @@ package com.example.shopberry.domain.shipmenttypes;
 
 import com.example.shopberry.auth.access.CheckPermission;
 import com.example.shopberry.common.MessageResponseDto;
-import com.example.shopberry.domain.shipmenttypes.dto.CreateShipmentTypeRequestDto;
-import com.example.shopberry.domain.shipmenttypes.dto.ShipmentTypeResponseDto;
-import com.example.shopberry.domain.shipmenttypes.dto.UpdateShipmentTypeRequestDto;
+import com.example.shopberry.domain.shipmenttypes.dto.request.CreateShipmentTypeRequestDto;
+import com.example.shopberry.domain.shipmenttypes.dto.response.ShipmentTypeResponseDto;
+import com.example.shopberry.domain.shipmenttypes.dto.request.UpdateShipmentTypeRequestDto;
 import com.example.shopberry.user.Permission;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

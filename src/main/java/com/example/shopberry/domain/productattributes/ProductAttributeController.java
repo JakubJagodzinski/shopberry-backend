@@ -2,10 +2,10 @@ package com.example.shopberry.domain.productattributes;
 
 import com.example.shopberry.auth.access.CheckPermission;
 import com.example.shopberry.common.MessageResponseDto;
-import com.example.shopberry.domain.productattributes.dto.AssignAttributeToProductRequestDto;
-import com.example.shopberry.domain.productattributes.dto.ProductAttributeResponseDto;
-import com.example.shopberry.domain.productattributes.dto.ProductWithAttributesResponseDto;
-import com.example.shopberry.domain.productattributes.dto.UpdateProductAttributeRequestDto;
+import com.example.shopberry.domain.productattributes.dto.request.AssignAttributeToProductRequestDto;
+import com.example.shopberry.domain.productattributes.dto.response.ProductAttributeResponseDto;
+import com.example.shopberry.domain.productattributes.dto.response.ProductWithAttributesResponseDto;
+import com.example.shopberry.domain.productattributes.dto.request.UpdateProductAttributeRequestDto;
 import com.example.shopberry.user.Permission;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

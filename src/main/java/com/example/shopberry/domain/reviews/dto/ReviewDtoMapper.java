@@ -1,6 +1,7 @@
 package com.example.shopberry.domain.reviews.dto;
 
 import com.example.shopberry.domain.reviews.Review;
+import com.example.shopberry.domain.reviews.dto.response.ReviewResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

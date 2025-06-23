@@ -2,9 +2,9 @@ package com.example.shopberry.domain.reviews;
 
 import com.example.shopberry.auth.access.CheckPermission;
 import com.example.shopberry.common.MessageResponseDto;
-import com.example.shopberry.domain.reviews.dto.CreateReviewRequestDto;
-import com.example.shopberry.domain.reviews.dto.ReviewResponseDto;
-import com.example.shopberry.domain.reviews.dto.UpdateReviewRequestDto;
+import com.example.shopberry.domain.reviews.dto.request.CreateReviewRequestDto;
+import com.example.shopberry.domain.reviews.dto.response.ReviewResponseDto;
+import com.example.shopberry.domain.reviews.dto.request.UpdateReviewRequestDto;
 import com.example.shopberry.user.Permission;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

@@ -6,6 +6,11 @@ import com.example.shopberry.domain.attributes.Attribute;
 import com.example.shopberry.domain.attributes.AttributeRepository;
 import com.example.shopberry.domain.attributes.dto.AttributeDtoMapper;
 import com.example.shopberry.domain.productattributes.dto.*;
+import com.example.shopberry.domain.productattributes.dto.request.AssignAttributeToProductRequestDto;
+import com.example.shopberry.domain.productattributes.dto.request.UpdateProductAttributeRequestDto;
+import com.example.shopberry.domain.productattributes.dto.response.AttributeValueResponseDto;
+import com.example.shopberry.domain.productattributes.dto.response.ProductAttributeResponseDto;
+import com.example.shopberry.domain.productattributes.dto.response.ProductWithAttributesResponseDto;
 import com.example.shopberry.domain.products.Product;
 import com.example.shopberry.domain.products.ProductRepository;
 import com.example.shopberry.domain.products.dto.ProductDtoMapper;
@@ -44,19 +49,19 @@ public class ProductAttributeService {
 
         List<ProductAttribute> productAttributeDtoList = productAttributeRepository.findAllByProduct_ProductIdOrderByWeightDesc(productId);
 
-        List<AttributeValueDto> attributeValueDtoList = new ArrayList<>();
+        List<AttributeValueResponseDto> attributeValueResponseDtoList = new ArrayList<>();
 
         for (ProductAttribute productAttribute : productAttributeDtoList) {
-            AttributeValueDto attributeValueDto = new AttributeValueDto();
+            AttributeValueResponseDto attributeValueResponseDto = new AttributeValueResponseDto();
 
-            attributeValueDto.setAttribute(attributeDtoMapper.toDto(productAttribute.getAttribute()));
-            attributeValueDto.setValue(productAttribute.getValue());
-            attributeValueDto.setWeight(productAttribute.getWeight());
+            attributeValueResponseDto.setAttribute(attributeDtoMapper.toDto(productAttribute.getAttribute()));
+            attributeValueResponseDto.setValue(productAttribute.getValue());
+            attributeValueResponseDto.setWeight(productAttribute.getWeight());
 
-            attributeValueDtoList.add(attributeValueDto);
+            attributeValueResponseDtoList.add(attributeValueResponseDto);
         }
 
-        productWithAttributesResponseDto.setAttributes(attributeValueDtoList);
+        productWithAttributesResponseDto.setAttributes(attributeValueResponseDtoList);
 
         return productWithAttributesResponseDto;
     }

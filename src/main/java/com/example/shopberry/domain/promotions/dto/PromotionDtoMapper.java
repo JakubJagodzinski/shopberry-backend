@@ -1,6 +1,7 @@
 package com.example.shopberry.domain.promotions.dto;
 
 import com.example.shopberry.domain.promotions.Promotion;
+import com.example.shopberry.domain.promotions.dto.response.PromotionResponseDto;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

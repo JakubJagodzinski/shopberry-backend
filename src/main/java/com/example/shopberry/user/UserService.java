@@ -1,7 +1,7 @@
 package com.example.shopberry.user;
 
 import com.example.shopberry.common.constants.messages.PasswordMessages;
-import com.example.shopberry.user.dto.ChangePasswordRequestDto;
+import com.example.shopberry.user.dto.request.ChangePasswordRequestDto;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

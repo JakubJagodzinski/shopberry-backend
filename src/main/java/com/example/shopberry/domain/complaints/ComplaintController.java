@@ -2,9 +2,9 @@ package com.example.shopberry.domain.complaints;
 
 import com.example.shopberry.auth.access.CheckPermission;
 import com.example.shopberry.common.MessageResponseDto;
-import com.example.shopberry.domain.complaints.dto.ComplaintResponseDto;
-import com.example.shopberry.domain.complaints.dto.CreateComplaintRequestDto;
-import com.example.shopberry.domain.complaints.dto.UpdateComplaintRequestDto;
+import com.example.shopberry.domain.complaints.dto.response.ComplaintResponseDto;
+import com.example.shopberry.domain.complaints.dto.request.CreateComplaintRequestDto;
+import com.example.shopberry.domain.complaints.dto.request.UpdateComplaintRequestDto;
 import com.example.shopberry.user.Permission;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

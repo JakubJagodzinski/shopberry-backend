@@ -2,9 +2,9 @@ package com.example.shopberry.domain.causesofreturn;
 
 import com.example.shopberry.auth.access.CheckPermission;
 import com.example.shopberry.common.MessageResponseDto;
-import com.example.shopberry.domain.causesofreturn.dto.CauseOfReturnResponseDto;
-import com.example.shopberry.domain.causesofreturn.dto.CreateCauseOfReturnRequestDto;
-import com.example.shopberry.domain.causesofreturn.dto.UpdateCauseOfReturnRequestDto;
+import com.example.shopberry.domain.causesofreturn.dto.response.CauseOfReturnResponseDto;
+import com.example.shopberry.domain.causesofreturn.dto.request.CreateCauseOfReturnRequestDto;
+import com.example.shopberry.domain.causesofreturn.dto.request.UpdateCauseOfReturnRequestDto;
 import com.example.shopberry.user.Permission;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

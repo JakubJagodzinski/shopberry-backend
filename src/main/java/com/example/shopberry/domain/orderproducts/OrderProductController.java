@@ -1,7 +1,7 @@
 package com.example.shopberry.domain.orderproducts;
 
 import com.example.shopberry.auth.access.CheckPermission;
-import com.example.shopberry.domain.orderproducts.dto.OrderProductResponseDto;
+import com.example.shopberry.domain.orderproducts.dto.response.OrderProductResponseDto;
 import com.example.shopberry.user.Permission;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

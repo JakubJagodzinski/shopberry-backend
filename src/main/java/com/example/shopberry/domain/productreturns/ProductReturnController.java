@@ -2,8 +2,8 @@ package com.example.shopberry.domain.productreturns;
 
 import com.example.shopberry.auth.access.CheckPermission;
 import com.example.shopberry.common.MessageResponseDto;
-import com.example.shopberry.domain.productreturns.dto.CreateProductReturnRequestDto;
-import com.example.shopberry.domain.productreturns.dto.ProductReturnResponseDto;
+import com.example.shopberry.domain.productreturns.dto.request.CreateProductReturnRequestDto;
+import com.example.shopberry.domain.productreturns.dto.response.ProductReturnResponseDto;
 import com.example.shopberry.user.Permission;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

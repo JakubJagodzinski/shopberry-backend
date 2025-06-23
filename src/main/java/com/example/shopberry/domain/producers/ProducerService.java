@@ -1,10 +1,10 @@
 package com.example.shopberry.domain.producers;
 
 import com.example.shopberry.common.constants.messages.ProducerMessages;
-import com.example.shopberry.domain.producers.dto.CreateProducerRequestDto;
+import com.example.shopberry.domain.producers.dto.request.CreateProducerRequestDto;
 import com.example.shopberry.domain.producers.dto.ProducerDtoMapper;
-import com.example.shopberry.domain.producers.dto.ProducerResponseDto;
-import com.example.shopberry.domain.producers.dto.UpdateProducerRequestDto;
+import com.example.shopberry.domain.producers.dto.response.ProducerResponseDto;
+import com.example.shopberry.domain.producers.dto.request.UpdateProducerRequestDto;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;

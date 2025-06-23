@@ -1,6 +1,10 @@
 package com.example.shopberry.auth;
 
-import com.example.shopberry.auth.dto.*;
+import com.example.shopberry.auth.dto.request.AuthenticationRequestDto;
+import com.example.shopberry.auth.dto.request.RefreshTokenRequestDto;
+import com.example.shopberry.auth.dto.request.RegisterRequestDto;
+import com.example.shopberry.auth.dto.response.AuthenticationResponseDto;
+import com.example.shopberry.auth.dto.response.RefreshTokenResponseDto;
 import com.example.shopberry.auth.jwt.JwtService;
 import com.example.shopberry.auth.token.Token;
 import com.example.shopberry.auth.token.TokenRepository;

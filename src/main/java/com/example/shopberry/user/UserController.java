@@ -2,7 +2,7 @@ package com.example.shopberry.user;
 
 import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.common.constants.messages.PasswordMessages;
-import com.example.shopberry.user.dto.ChangePasswordRequestDto;
+import com.example.shopberry.user.dto.request.ChangePasswordRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

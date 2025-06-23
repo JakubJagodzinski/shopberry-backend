@@ -2,7 +2,11 @@ package com.example.shopberry.domain.categories;
 
 import com.example.shopberry.auth.access.CheckPermission;
 import com.example.shopberry.common.MessageResponseDto;
-import com.example.shopberry.domain.categories.dto.*;
+import com.example.shopberry.domain.categories.dto.request.CreateCategoryRequestDto;
+import com.example.shopberry.domain.categories.dto.request.SetParentCategoryRequestDto;
+import com.example.shopberry.domain.categories.dto.request.UpdateCategoryRequestDto;
+import com.example.shopberry.domain.categories.dto.response.CategoryResponseDto;
+import com.example.shopberry.domain.categories.dto.response.CategoryTreeResponseDto;
 import com.example.shopberry.user.Permission;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

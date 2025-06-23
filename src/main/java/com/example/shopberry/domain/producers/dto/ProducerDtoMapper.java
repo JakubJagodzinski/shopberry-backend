@@ -1,6 +1,7 @@
 package com.example.shopberry.domain.producers.dto;
 
 import com.example.shopberry.domain.producers.Producer;
+import com.example.shopberry.domain.producers.dto.response.ProducerResponseDto;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

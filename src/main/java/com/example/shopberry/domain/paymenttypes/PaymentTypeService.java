@@ -1,10 +1,10 @@
 package com.example.shopberry.domain.paymenttypes;
 
 import com.example.shopberry.common.constants.messages.PaymentTypeMessages;
-import com.example.shopberry.domain.paymenttypes.dto.CreatePaymentTypeRequestDto;
+import com.example.shopberry.domain.paymenttypes.dto.request.CreatePaymentTypeRequestDto;
 import com.example.shopberry.domain.paymenttypes.dto.PaymentTypeDtoMapper;
-import com.example.shopberry.domain.paymenttypes.dto.PaymentTypeResponseDto;
-import com.example.shopberry.domain.paymenttypes.dto.UpdatePaymentTypeRequestDto;
+import com.example.shopberry.domain.paymenttypes.dto.response.PaymentTypeResponseDto;
+import com.example.shopberry.domain.paymenttypes.dto.request.UpdatePaymentTypeRequestDto;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;

@@ -2,9 +2,9 @@ package com.example.shopberry.domain.customeraddresses;
 
 import com.example.shopberry.auth.access.CheckPermission;
 import com.example.shopberry.common.MessageResponseDto;
-import com.example.shopberry.domain.customeraddresses.dto.CreateCustomerAddressRequestDto;
-import com.example.shopberry.domain.customeraddresses.dto.CustomerAddressResponseDto;
-import com.example.shopberry.domain.customeraddresses.dto.UpdateCustomerAddressRequestDto;
+import com.example.shopberry.domain.customeraddresses.dto.request.CreateCustomerAddressRequestDto;
+import com.example.shopberry.domain.customeraddresses.dto.response.CustomerAddressResponseDto;
+import com.example.shopberry.domain.customeraddresses.dto.request.UpdateCustomerAddressRequestDto;
 import com.example.shopberry.user.Permission;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
