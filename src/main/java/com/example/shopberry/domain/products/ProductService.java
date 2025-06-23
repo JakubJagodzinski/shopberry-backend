@@ -5,6 +5,7 @@ import com.example.shopberry.common.constants.messages.ProducerMessages;
 import com.example.shopberry.common.constants.messages.ProductMessages;
 import com.example.shopberry.domain.attributes.dto.AttributeDtoMapper;
 import com.example.shopberry.domain.categories.Category;
+import com.example.shopberry.domain.categories.CategoryDescendantsCollector;
 import com.example.shopberry.domain.categories.CategoryRepository;
 import com.example.shopberry.domain.producers.Producer;
 import com.example.shopberry.domain.producers.ProducerRepository;
@@ -48,9 +49,10 @@ public class ProductService {
             productList = productRepository.findAll();
         } else if (categoryRepository.existsByParentCategory_CategoryId(categoryId)) {
             productList = new ArrayList<>();
-            List<Category> childCategories = categoryRepository.findAllByParentCategory_CategoryId(categoryId);
 
-            for (Category childCategory : childCategories) {
+            List<Category> childrenCategories = CategoryDescendantsCollector.collectDescendants(categoryRepository.findAll(), categoryId);
+
+            for (Category childCategory : childrenCategories) {
                 productList.addAll(productRepository.findAllByCategory_CategoryId(childCategory.getCategoryId()));
             }
         } else {
