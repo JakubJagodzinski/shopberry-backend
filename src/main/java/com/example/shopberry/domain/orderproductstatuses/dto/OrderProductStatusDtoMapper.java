@@ -17,6 +17,7 @@ public class OrderProductStatusDtoMapper {
 
         orderProductStatusResponseDto.setOrderProductStatusId(orderProductStatus.getOrderProductStatusId());
         orderProductStatusResponseDto.setStatusName(orderProductStatus.getStatusName());
+        orderProductStatusResponseDto.setDescription(orderProductStatus.getDescription());
 
         return orderProductStatusResponseDto;
     }

@@ -1,12 +1,12 @@
-statusName
-Pending
-Processing
-Packed
-Shipped
-Delivered
-Cancelled
-Returned
-Backordered
-Out of Stock
-Refunded
-On Hold
+statusName,description
+Pending,We're getting your order ready to be processed.
+Processing,We're working on your order right now.
+Packed,Your order is packed and almost on its way.
+Shipped,Your order is on the road to you.
+Delivered,Your order has arrived!
+Cancelled,This order was cancelled.
+Returned,The order was sent back to us.
+Backordered,We're waiting to restock this item.
+Out of Stock,This item is currently unavailable.
+Refunded,You’ve been refunded for this order.
+On Hold,Your order is on hold for now.

@@ -47,6 +47,7 @@ public class OrderProductStatusService {
         OrderProductStatus orderProductStatus = new OrderProductStatus();
 
         orderProductStatus.setStatusName(statusName);
+        orderProductStatus.setDescription(createOrderProductStatusRequestDto.getDescription().trim());
 
         return orderProductStatusDtoMapper.toDto(orderProductStatusRepository.save(orderProductStatus));
     }
@@ -69,6 +70,10 @@ public class OrderProductStatusService {
             }
 
             orderProductStatus.setStatusName(statusName);
+        }
+
+        if (updateOrderProductStatusRequestDto.getDescription() != null) {
+            orderProductStatus.setDescription(updateOrderProductStatusRequestDto.getDescription().trim());
         }
 
         return orderProductStatusDtoMapper.toDto(orderProductStatusRepository.save(orderProductStatus));

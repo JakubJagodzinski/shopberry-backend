@@ -22,4 +22,13 @@ public class CreateOrderProductStatusRequestDto {
     @JsonProperty("status_name")
     private String statusName;
 
+    @Schema(
+            description = "Detailed description of status",
+            example = "Waiting for futher actions...",
+            minLength = 1,
+            maxLength = 500
+    )
+    @NotBlank
+    private String description;
+
 }
