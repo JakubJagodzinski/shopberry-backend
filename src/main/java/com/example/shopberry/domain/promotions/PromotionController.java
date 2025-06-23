@@ -1,10 +1,9 @@
 package com.example.shopberry.domain.promotions;
 
 import com.example.shopberry.auth.access.CheckPermission;
-import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.promotions.dto.request.CreatePromotionRequestDto;
-import com.example.shopberry.domain.promotions.dto.response.PromotionResponseDto;
 import com.example.shopberry.domain.promotions.dto.request.UpdatePromotionRequestDto;
+import com.example.shopberry.domain.promotions.dto.response.PromotionResponseDto;
 import com.example.shopberry.user.Permission;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -65,12 +64,12 @@ public class PromotionController {
 
     @CheckPermission(Permission.PROMOTION_DELETE)
     @DeleteMapping("/promotions/{promotionId}")
-    public ResponseEntity<MessageResponseDto> deletePromotionById(@PathVariable Long promotionId) {
+    public ResponseEntity<Void> deletePromotionById(@PathVariable Long promotionId) {
         promotionService.deletePromotionById(promotionId);
 
         return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(new MessageResponseDto("Promotion with id " + promotionId + " deleted successfully"));
+                .status(HttpStatus.NO_CONTENT)
+                .build();
     }
 
 }

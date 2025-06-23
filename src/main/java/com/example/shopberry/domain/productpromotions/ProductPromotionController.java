@@ -1,7 +1,6 @@
 package com.example.shopberry.domain.productpromotions;
 
 import com.example.shopberry.auth.access.CheckPermission;
-import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.productpromotions.dto.request.AssignPromotionToProductRequestDto;
 import com.example.shopberry.domain.productpromotions.dto.response.ProductPromotionResponseDto;
 import com.example.shopberry.user.Permission;
@@ -63,22 +62,22 @@ public class ProductPromotionController {
 
     @CheckPermission(Permission.PRODUCT_PROMOTION_UNASSIGN)
     @DeleteMapping("/products/{productId}/promotions")
-    public ResponseEntity<MessageResponseDto> unassignAllPromotionsFromProduct(@PathVariable Long productId) {
+    public ResponseEntity<Void> unassignAllPromotionsFromProduct(@PathVariable Long productId) {
         productPromotionService.unassignAllPromotionsFromProduct(productId);
 
         return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(new MessageResponseDto("All promotions unassigned from product with id " + productId + " successfully"));
+                .status(HttpStatus.NO_CONTENT)
+                .build();
     }
 
     @CheckPermission(Permission.PRODUCT_PROMOTION_UNASSIGN_ALL)
     @DeleteMapping("/products/promotions/{promotionId}")
-    public ResponseEntity<MessageResponseDto> unassignPromotionFromAllProducts(@PathVariable Long promotionId) {
+    public ResponseEntity<Void> unassignPromotionFromAllProducts(@PathVariable Long promotionId) {
         productPromotionService.deleteProductPromotionsByPromotionId(promotionId);
 
         return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(new MessageResponseDto("Promotion with id " + promotionId + " unassigned from all products successfully"));
+                .status(HttpStatus.NO_CONTENT)
+                .build();
     }
 
 }

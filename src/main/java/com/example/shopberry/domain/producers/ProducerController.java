@@ -1,10 +1,9 @@
 package com.example.shopberry.domain.producers;
 
 import com.example.shopberry.auth.access.CheckPermission;
-import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.producers.dto.request.CreateProducerRequestDto;
-import com.example.shopberry.domain.producers.dto.response.ProducerResponseDto;
 import com.example.shopberry.domain.producers.dto.request.UpdateProducerRequestDto;
+import com.example.shopberry.domain.producers.dto.response.ProducerResponseDto;
 import com.example.shopberry.user.Permission;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -65,12 +64,12 @@ public class ProducerController {
 
     @CheckPermission(Permission.PRODUCER_DELETE)
     @DeleteMapping("/producers/{producerId}")
-    public ResponseEntity<MessageResponseDto> deleteProducerById(@PathVariable Long producerId) {
+    public ResponseEntity<Void> deleteProducerById(@PathVariable Long producerId) {
         producerService.deleteProducerById(producerId);
 
         return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(new MessageResponseDto("Producer with id " + producerId + " deleted successfully"));
+                .status(HttpStatus.NO_CONTENT)
+                .build();
     }
 
 }

@@ -1,9 +1,8 @@
 package com.example.shopberry.domain.customers;
 
 import com.example.shopberry.auth.access.CheckPermission;
-import com.example.shopberry.common.MessageResponseDto;
-import com.example.shopberry.domain.customers.dto.response.CustomerResponseDto;
 import com.example.shopberry.domain.customers.dto.request.UpdateCustomerRequestDto;
+import com.example.shopberry.domain.customers.dto.response.CustomerResponseDto;
 import com.example.shopberry.user.Permission;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -55,12 +54,12 @@ public class CustomerController {
 
     @CheckPermission(Permission.CUSTOMER_DELETE)
     @DeleteMapping("/customer/{customerId}")
-    public ResponseEntity<MessageResponseDto> deleteCustomerById(@PathVariable UUID customerId) {
+    public ResponseEntity<Void> deleteCustomerById(@PathVariable UUID customerId) {
         customerService.deleteCustomerById(customerId);
 
         return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(new MessageResponseDto("Customer with id " + customerId + " deleted successfully"));
+                .status(HttpStatus.NO_CONTENT)
+                .build();
     }
 
 }

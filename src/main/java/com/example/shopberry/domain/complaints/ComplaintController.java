@@ -1,7 +1,6 @@
 package com.example.shopberry.domain.complaints;
 
 import com.example.shopberry.auth.access.CheckPermission;
-import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.complaints.dto.request.CreateComplaintRequestDto;
 import com.example.shopberry.domain.complaints.dto.request.UpdateComplaintRequestDto;
 import com.example.shopberry.domain.complaints.dto.response.ComplaintResponseDto;
@@ -78,12 +77,12 @@ public class ComplaintController {
 
     @CheckPermission(Permission.COMPLAINT_DELETE)
     @DeleteMapping("/complaints/{complaintId}")
-    public ResponseEntity<MessageResponseDto> deleteComplaintById(@PathVariable Long complaintId) {
+    public ResponseEntity<Void> deleteComplaintById(@PathVariable Long complaintId) {
         complaintService.deleteComplaintById(complaintId);
 
         return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(new MessageResponseDto("Complaint with id " + complaintId + " deleted successfully"));
+                .status(HttpStatus.NO_CONTENT)
+                .build();
     }
 
 }

@@ -1,7 +1,6 @@
 package com.example.shopberry.domain.productreturns;
 
 import com.example.shopberry.auth.access.CheckPermission;
-import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.productreturns.dto.request.CreateProductReturnRequestDto;
 import com.example.shopberry.domain.productreturns.dto.response.ProductReturnResponseDto;
 import com.example.shopberry.user.Permission;
@@ -56,12 +55,12 @@ public class ProductReturnController {
 
     @CheckPermission(Permission.PRODUCT_RETURN_DELETE)
     @DeleteMapping("/product-returns/{productReturnId}")
-    public ResponseEntity<MessageResponseDto> deleteProductReturnById(@PathVariable Long productReturnId) {
+    public ResponseEntity<Void> deleteProductReturnById(@PathVariable Long productReturnId) {
         productReturnService.deleteProductReturnById(productReturnId);
 
         return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(new MessageResponseDto("Product return with id " + productReturnId + " deleted successfully"));
+                .status(HttpStatus.NO_CONTENT)
+                .build();
     }
 
 }

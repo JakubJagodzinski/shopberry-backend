@@ -1,10 +1,9 @@
 package com.example.shopberry.domain.reviews;
 
 import com.example.shopberry.auth.access.CheckPermission;
-import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.reviews.dto.request.CreateReviewRequestDto;
-import com.example.shopberry.domain.reviews.dto.response.ReviewResponseDto;
 import com.example.shopberry.domain.reviews.dto.request.UpdateReviewRequestDto;
+import com.example.shopberry.domain.reviews.dto.response.ReviewResponseDto;
 import com.example.shopberry.user.Permission;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -75,32 +74,32 @@ public class ReviewController {
 
     @CheckPermission(Permission.REVIEW_DELETE)
     @DeleteMapping("/reviews/{reviewId}")
-    public ResponseEntity<MessageResponseDto> deleteReviewById(@PathVariable Long reviewId) {
+    public ResponseEntity<Void> deleteReviewById(@PathVariable Long reviewId) {
         reviewService.deleteReviewById(reviewId);
 
         return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(new MessageResponseDto("Review with id " + reviewId + " deleted successfully"));
+                .status(HttpStatus.NO_CONTENT)
+                .build();
     }
 
     @CheckPermission(Permission.CUSTOMER_REVIEW_DELETE_ALL)
     @DeleteMapping("/customers/{customerId}/reviews")
-    public ResponseEntity<MessageResponseDto> deleteCustomerAllReviews(@PathVariable UUID customerId) {
+    public ResponseEntity<Void> deleteCustomerAllReviews(@PathVariable UUID customerId) {
         reviewService.deleteCustomerAllReviews(customerId);
 
         return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(new MessageResponseDto("All reviews from customer with id " + customerId + " deleted successfully"));
+                .status(HttpStatus.NO_CONTENT)
+                .build();
     }
 
     @CheckPermission(Permission.PRODUCT_REVIEW_DELETE_ALL)
     @DeleteMapping("/products/{productId}/reviews")
-    public ResponseEntity<MessageResponseDto> deleteProductAllReviews(@PathVariable Long productId) {
+    public ResponseEntity<Void> deleteProductAllReviews(@PathVariable Long productId) {
         reviewService.deleteProductAllReviews(productId);
 
         return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(new MessageResponseDto("All reviews for product with id " + productId + " deleted successfully"));
+                .status(HttpStatus.NO_CONTENT)
+                .build();
     }
 
 }

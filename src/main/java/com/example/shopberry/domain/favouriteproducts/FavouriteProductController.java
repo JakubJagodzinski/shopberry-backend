@@ -1,7 +1,6 @@
 package com.example.shopberry.domain.favouriteproducts;
 
 import com.example.shopberry.auth.access.CheckPermission;
-import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.favouriteproducts.dto.request.AddProductToFavouritesRequestDto;
 import com.example.shopberry.domain.favouriteproducts.dto.response.FavouriteProductResponseDto;
 import com.example.shopberry.user.Permission;
@@ -47,12 +46,12 @@ public class FavouriteProductController {
 
     @CheckPermission(Permission.CUSTOMER_FAVOURITE_PRODUCT_REMOVE)
     @DeleteMapping("/customers/{customerId}/favourites/{productId}")
-    public ResponseEntity<MessageResponseDto> removeProductFromCustomerFavourites(@PathVariable UUID customerId, @PathVariable Long productId) {
+    public ResponseEntity<Void> removeProductFromCustomerFavourites(@PathVariable UUID customerId, @PathVariable Long productId) {
         favouriteProductService.removeProductFromCustomerFavourites(customerId, productId);
 
         return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(new MessageResponseDto("Product with id " + productId + " removed from customer with id " + customerId + " favourites successfully"));
+                .status(HttpStatus.NO_CONTENT)
+                .build();
     }
 
 }

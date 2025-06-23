@@ -1,11 +1,10 @@
 package com.example.shopberry.domain.productattributes;
 
 import com.example.shopberry.auth.access.CheckPermission;
-import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.productattributes.dto.request.AssignAttributeToProductRequestDto;
+import com.example.shopberry.domain.productattributes.dto.request.UpdateProductAttributeRequestDto;
 import com.example.shopberry.domain.productattributes.dto.response.ProductAttributeResponseDto;
 import com.example.shopberry.domain.productattributes.dto.response.ProductWithAttributesResponseDto;
-import com.example.shopberry.domain.productattributes.dto.request.UpdateProductAttributeRequestDto;
 import com.example.shopberry.user.Permission;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -66,12 +65,12 @@ public class ProductAttributeController {
 
     @CheckPermission(Permission.PRODUCT_ATTRIBUTE_UNASSIGN)
     @DeleteMapping("/products/{productId}/attributes/{attributeId}")
-    public ResponseEntity<MessageResponseDto> unassignAttributeFromProduct(@PathVariable Long productId, @PathVariable Long attributeId) {
+    public ResponseEntity<Void> unassignAttributeFromProduct(@PathVariable Long productId, @PathVariable Long attributeId) {
         productAttributeService.unassignAttributeFromProduct(productId, attributeId);
 
         return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(new MessageResponseDto("Attribute with id " + attributeId + " unassigned from product with id " + productId + " successfully"));
+                .status(HttpStatus.NO_CONTENT)
+                .build();
     }
 
 }

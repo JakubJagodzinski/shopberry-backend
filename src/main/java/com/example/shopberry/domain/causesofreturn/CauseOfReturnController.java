@@ -1,10 +1,9 @@
 package com.example.shopberry.domain.causesofreturn;
 
 import com.example.shopberry.auth.access.CheckPermission;
-import com.example.shopberry.common.MessageResponseDto;
-import com.example.shopberry.domain.causesofreturn.dto.response.CauseOfReturnResponseDto;
 import com.example.shopberry.domain.causesofreturn.dto.request.CreateCauseOfReturnRequestDto;
 import com.example.shopberry.domain.causesofreturn.dto.request.UpdateCauseOfReturnRequestDto;
+import com.example.shopberry.domain.causesofreturn.dto.response.CauseOfReturnResponseDto;
 import com.example.shopberry.user.Permission;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -65,12 +64,12 @@ public class CauseOfReturnController {
 
     @CheckPermission(Permission.CAUSE_OF_RETURN_DELETE)
     @DeleteMapping("/causes-of-return/{causeOfReturnId}")
-    public ResponseEntity<MessageResponseDto> deleteCauseOfReturnById(@PathVariable Long causeOfReturnId) {
+    public ResponseEntity<Void> deleteCauseOfReturnById(@PathVariable Long causeOfReturnId) {
         causeOfReturnService.deleteCauseOfReturnById(causeOfReturnId);
 
         return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(new MessageResponseDto("Cause of return with id " + causeOfReturnId + " deleted successfully"));
+                .status(HttpStatus.NO_CONTENT)
+                .build();
     }
 
 }

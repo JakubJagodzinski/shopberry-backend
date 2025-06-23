@@ -1,7 +1,6 @@
 package com.example.shopberry.domain.orders;
 
 import com.example.shopberry.auth.access.CheckPermission;
-import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.orders.dto.request.CreateOrderRequestDto;
 import com.example.shopberry.domain.orders.dto.request.UpdateOrderRequestDto;
 import com.example.shopberry.domain.orders.dto.response.OrderResponseDto;
@@ -78,12 +77,12 @@ public class OrderController {
 
     @CheckPermission(Permission.ORDER_DELETE)
     @DeleteMapping("/orders/{orderId}")
-    public ResponseEntity<MessageResponseDto> deleteOrderById(@PathVariable Long orderId) {
+    public ResponseEntity<Void> deleteOrderById(@PathVariable Long orderId) {
         orderService.deleteOrderById(orderId);
 
         return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(new MessageResponseDto("Order with id " + orderId + " deleted successfully"));
+                .status(HttpStatus.NO_CONTENT)
+                .build();
     }
 
 }

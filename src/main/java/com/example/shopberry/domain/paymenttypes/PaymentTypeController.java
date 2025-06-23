@@ -1,10 +1,9 @@
 package com.example.shopberry.domain.paymenttypes;
 
 import com.example.shopberry.auth.access.CheckPermission;
-import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.paymenttypes.dto.request.CreatePaymentTypeRequestDto;
-import com.example.shopberry.domain.paymenttypes.dto.response.PaymentTypeResponseDto;
 import com.example.shopberry.domain.paymenttypes.dto.request.UpdatePaymentTypeRequestDto;
+import com.example.shopberry.domain.paymenttypes.dto.response.PaymentTypeResponseDto;
 import com.example.shopberry.user.Permission;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -65,12 +64,12 @@ public class PaymentTypeController {
 
     @CheckPermission(Permission.PAYMENT_TYPE_DELETE)
     @DeleteMapping("/payment-types/{paymentTypeId}")
-    public ResponseEntity<MessageResponseDto> deletePaymentTypeById(@PathVariable Long paymentTypeId) {
+    public ResponseEntity<Void> deletePaymentTypeById(@PathVariable Long paymentTypeId) {
         paymentTypeService.deletePaymentTypeById(paymentTypeId);
 
         return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(new MessageResponseDto("Payment type with id: " + paymentTypeId + " deleted successfully"));
+                .status(HttpStatus.NO_CONTENT)
+                .build();
     }
 
 }

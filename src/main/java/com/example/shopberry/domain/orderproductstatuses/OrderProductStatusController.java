@@ -1,10 +1,9 @@
 package com.example.shopberry.domain.orderproductstatuses;
 
 import com.example.shopberry.auth.access.CheckPermission;
-import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.orderproductstatuses.dto.request.CreateOrderProductStatusRequestDto;
-import com.example.shopberry.domain.orderproductstatuses.dto.response.OrderProductStatusResponseDto;
 import com.example.shopberry.domain.orderproductstatuses.dto.request.UpdateOrderProductStatusRequestDto;
+import com.example.shopberry.domain.orderproductstatuses.dto.response.OrderProductStatusResponseDto;
 import com.example.shopberry.user.Permission;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -67,12 +66,12 @@ public class OrderProductStatusController {
 
     @CheckPermission(Permission.ORDER_PRODUCT_STATUS_DELETE)
     @DeleteMapping("/order-product-statuses/{orderProductStatusId}")
-    public ResponseEntity<MessageResponseDto> deleteOrderProductStatusById(@PathVariable Long orderProductStatusId) {
+    public ResponseEntity<Void> deleteOrderProductStatusById(@PathVariable Long orderProductStatusId) {
         orderProductStatusService.deleteOrderProductStatusById(orderProductStatusId);
 
         return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(new MessageResponseDto("Order product status with id " + orderProductStatusId + " deleted successfully"));
+                .status(HttpStatus.NO_CONTENT)
+                .build();
     }
 
 }

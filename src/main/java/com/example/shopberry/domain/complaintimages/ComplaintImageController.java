@@ -1,7 +1,6 @@
 package com.example.shopberry.domain.complaintimages;
 
 import com.example.shopberry.auth.access.CheckPermission;
-import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.complaintimages.dto.request.AddImageToComplaintRequestDto;
 import com.example.shopberry.domain.complaintimages.dto.response.ComplaintImageResponseDto;
 import com.example.shopberry.user.Permission;
@@ -66,12 +65,12 @@ public class ComplaintImageController {
 
     @CheckPermission(Permission.COMPLAINT_IMAGE_DELETE)
     @DeleteMapping("/complaints/images/{complaintImageId}")
-    public ResponseEntity<MessageResponseDto> deleteComplaintImageById(@PathVariable Long complaintImageId) {
+    public ResponseEntity<Void> deleteComplaintImageById(@PathVariable Long complaintImageId) {
         complaintImageService.deleteComplaintImageById(complaintImageId);
 
         return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(new MessageResponseDto("Complaint image with id " + complaintImageId + " deleted successfully"));
+                .status(HttpStatus.NO_CONTENT)
+                .build();
     }
 
 }

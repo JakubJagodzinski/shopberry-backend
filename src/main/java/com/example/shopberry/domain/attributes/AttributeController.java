@@ -1,10 +1,9 @@
 package com.example.shopberry.domain.attributes;
 
 import com.example.shopberry.auth.access.CheckPermission;
-import com.example.shopberry.common.MessageResponseDto;
-import com.example.shopberry.domain.attributes.dto.response.AttributeResponseDto;
 import com.example.shopberry.domain.attributes.dto.request.CreateAttributeRequestDto;
 import com.example.shopberry.domain.attributes.dto.request.UpdateAttributeRequestDto;
+import com.example.shopberry.domain.attributes.dto.response.AttributeResponseDto;
 import com.example.shopberry.user.Permission;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -65,12 +64,12 @@ public class AttributeController {
 
     @CheckPermission(Permission.ATTRIBUTE_DELETE)
     @DeleteMapping("/attributes/{attributeId}")
-    public ResponseEntity<MessageResponseDto> deleteAttributeById(@PathVariable Long attributeId) {
+    public ResponseEntity<Void> deleteAttributeById(@PathVariable Long attributeId) {
         attributeService.deleteAttributeById(attributeId);
 
         return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(new MessageResponseDto("Attribute with id " + attributeId + " deleted successfully"));
+                .status(HttpStatus.NO_CONTENT)
+                .build();
     }
 
 }

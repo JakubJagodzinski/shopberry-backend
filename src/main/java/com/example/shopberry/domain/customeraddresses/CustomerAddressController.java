@@ -1,10 +1,9 @@
 package com.example.shopberry.domain.customeraddresses;
 
 import com.example.shopberry.auth.access.CheckPermission;
-import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.customeraddresses.dto.request.CreateCustomerAddressRequestDto;
-import com.example.shopberry.domain.customeraddresses.dto.response.CustomerAddressResponseDto;
 import com.example.shopberry.domain.customeraddresses.dto.request.UpdateCustomerAddressRequestDto;
+import com.example.shopberry.domain.customeraddresses.dto.response.CustomerAddressResponseDto;
 import com.example.shopberry.user.Permission;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -68,22 +67,22 @@ public class CustomerAddressController {
 
     @CheckPermission(Permission.CUSTOMER_ADDRESS_DELETE_ALL)
     @DeleteMapping("/customers/{customerId}/addresses")
-    public ResponseEntity<MessageResponseDto> deleteCustomerAllAddresses(@PathVariable UUID customerId) {
+    public ResponseEntity<Void> deleteCustomerAllAddresses(@PathVariable UUID customerId) {
         customerAddressService.deleteCustomerAllAddresses(customerId);
 
         return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(new MessageResponseDto("All customer addresses with customer id " + customerId + " deleted"));
+                .status(HttpStatus.NO_CONTENT)
+                .build();
     }
 
     @CheckPermission(Permission.ADDRESS_DELETE)
     @DeleteMapping("/customers/addresses/{customerAddressId}")
-    public ResponseEntity<MessageResponseDto> deleteAddressById(@PathVariable Long customerAddressId) {
+    public ResponseEntity<Void> deleteAddressById(@PathVariable Long customerAddressId) {
         customerAddressService.deleteAddressById(customerAddressId);
 
         return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(new MessageResponseDto("Address with id " + customerAddressId + " deleted"));
+                .status(HttpStatus.NO_CONTENT)
+                .build();
     }
 
 }

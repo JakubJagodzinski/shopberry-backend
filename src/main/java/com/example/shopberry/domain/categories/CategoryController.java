@@ -1,7 +1,6 @@
 package com.example.shopberry.domain.categories;
 
 import com.example.shopberry.auth.access.CheckPermission;
-import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.categories.dto.request.CreateCategoryRequestDto;
 import com.example.shopberry.domain.categories.dto.request.SetParentCategoryRequestDto;
 import com.example.shopberry.domain.categories.dto.request.UpdateCategoryRequestDto;
@@ -86,12 +85,12 @@ public class CategoryController {
 
     @CheckPermission(Permission.CATEGORY_DELETE)
     @DeleteMapping("/categories/{categoryId}")
-    public ResponseEntity<MessageResponseDto> deleteCategoryById(@PathVariable Long categoryId) {
+    public ResponseEntity<Void> deleteCategoryById(@PathVariable Long categoryId) {
         categoryService.deleteCategoryById(categoryId);
 
         return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(new MessageResponseDto("Category with id " + categoryId + " deleted successfully"));
+                .status(HttpStatus.NO_CONTENT)
+                .build();
     }
 
 }

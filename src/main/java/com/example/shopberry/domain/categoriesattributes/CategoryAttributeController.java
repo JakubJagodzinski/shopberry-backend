@@ -1,7 +1,6 @@
 package com.example.shopberry.domain.categoriesattributes;
 
 import com.example.shopberry.auth.access.CheckPermission;
-import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.attributes.dto.response.AttributeResponseDto;
 import com.example.shopberry.domain.categoriesattributes.dto.request.AssignAttributeToCategoryRequestDto;
 import com.example.shopberry.domain.categoriesattributes.dto.response.CategoryAttributeResponseDto;
@@ -46,12 +45,12 @@ public class CategoryAttributeController {
 
     @CheckPermission(Permission.CATEGORY_ATTRIBUTE_UNASSIGN)
     @DeleteMapping("/categories/{categoryId}/attributes/{attributeId}")
-    public ResponseEntity<MessageResponseDto> unassignAttributeFromCategory(@PathVariable Long categoryId, @PathVariable Long attributeId) {
+    public ResponseEntity<Void> unassignAttributeFromCategory(@PathVariable Long categoryId, @PathVariable Long attributeId) {
         categoryAttributeService.unassignAttributeFromCategory(categoryId, attributeId);
 
         return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(new MessageResponseDto("Attribute with id " + attributeId + " removed from category with id " + categoryId));
+                .status(HttpStatus.NO_CONTENT)
+                .build();
     }
 
 }

@@ -1,10 +1,9 @@
 package com.example.shopberry.domain.shipmenttypes;
 
 import com.example.shopberry.auth.access.CheckPermission;
-import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.shipmenttypes.dto.request.CreateShipmentTypeRequestDto;
-import com.example.shopberry.domain.shipmenttypes.dto.response.ShipmentTypeResponseDto;
 import com.example.shopberry.domain.shipmenttypes.dto.request.UpdateShipmentTypeRequestDto;
+import com.example.shopberry.domain.shipmenttypes.dto.response.ShipmentTypeResponseDto;
 import com.example.shopberry.user.Permission;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -65,12 +64,12 @@ public class ShipmentTypeController {
 
     @CheckPermission(Permission.SHIPMENT_TYPE_DELETE)
     @DeleteMapping("/shipment-types/{shipmentTypeId}")
-    public ResponseEntity<MessageResponseDto> deleteShipmentTypeById(@PathVariable Long shipmentTypeId) {
+    public ResponseEntity<Void> deleteShipmentTypeById(@PathVariable Long shipmentTypeId) {
         shipmentTypeService.deleteShipmentTypeById(shipmentTypeId);
 
         return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(new MessageResponseDto("Shipment type with id " + shipmentTypeId + " deleted successfully"));
+                .status(HttpStatus.NO_CONTENT)
+                .build();
     }
 
 }
