@@ -79,6 +79,7 @@ public enum Permission {
     ORDER_CREATE("order:create"),
     ORDER_READ("order:read"),
     ORDER_READ_ALL("order:read:all"),
+    ORDER_UPDATE("order:update"),
     ORDER_DELETE("order:delete"),
 
     CUSTOMER_ORDER_READ_ALL("customer:order:read:all"),

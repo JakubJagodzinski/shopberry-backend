@@ -83,6 +83,7 @@ public enum Role {
             Set.of(
                     ORDER_READ,
                     ORDER_READ_ALL,
+                    ORDER_UPDATE,
 
                     COMPLAINT_READ,
                     COMPLAINT_READ_ALL,

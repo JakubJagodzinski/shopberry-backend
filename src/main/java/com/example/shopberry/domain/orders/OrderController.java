@@ -3,6 +3,7 @@ package com.example.shopberry.domain.orders;
 import com.example.shopberry.auth.access.CheckPermission;
 import com.example.shopberry.common.MessageResponseDto;
 import com.example.shopberry.domain.orders.dto.request.CreateOrderRequestDto;
+import com.example.shopberry.domain.orders.dto.request.UpdateOrderRequestDto;
 import com.example.shopberry.domain.orders.dto.response.OrderResponseDto;
 import com.example.shopberry.user.Permission;
 import jakarta.validation.Valid;
@@ -63,6 +64,16 @@ public class OrderController {
                 .status(HttpStatus.CREATED)
                 .location(URI.create("/api/v1/orders/" + createdOrderResponseDto.getOrderId()))
                 .body(createdOrderResponseDto);
+    }
+
+    @CheckPermission(Permission.ORDER_UPDATE)
+    @PatchMapping("/orders/{orderId}")
+    public ResponseEntity<OrderResponseDto> updateOrderById(@PathVariable Long orderId, @Valid @RequestBody UpdateOrderRequestDto updateOrderRequestDto) {
+        OrderResponseDto updatedOrderResponseDto = orderService.updateOrderById(orderId, updateOrderRequestDto);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(updatedOrderResponseDto);
     }
 
     @CheckPermission(Permission.ORDER_DELETE)

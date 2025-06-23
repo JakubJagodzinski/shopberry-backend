@@ -1,10 +1,7 @@
 package com.example.shopberry.domain.orders;
 
 import com.example.shopberry.auth.access.manager.OrderAccessManager;
-import com.example.shopberry.common.constants.messages.CustomerMessages;
-import com.example.shopberry.common.constants.messages.OrderMessages;
-import com.example.shopberry.common.constants.messages.PaymentTypeMessages;
-import com.example.shopberry.common.constants.messages.ShipmentTypeMessages;
+import com.example.shopberry.common.constants.messages.*;
 import com.example.shopberry.domain.customers.Customer;
 import com.example.shopberry.domain.customers.CustomerRepository;
 import com.example.shopberry.domain.orderproducts.OrderProduct;
@@ -14,7 +11,9 @@ import com.example.shopberry.domain.orderproducts.dto.request.AddProductToOrderR
 import com.example.shopberry.domain.orderproductstatuses.OrderProductStatusRepository;
 import com.example.shopberry.domain.orders.dto.OrderDtoMapper;
 import com.example.shopberry.domain.orders.dto.request.CreateOrderRequestDto;
+import com.example.shopberry.domain.orders.dto.request.UpdateOrderRequestDto;
 import com.example.shopberry.domain.orders.dto.response.OrderResponseDto;
+import com.example.shopberry.domain.orderstatuses.OrderStatus;
 import com.example.shopberry.domain.orderstatuses.OrderStatusRepository;
 import com.example.shopberry.domain.paymenttypes.PaymentType;
 import com.example.shopberry.domain.paymenttypes.PaymentTypeRepository;
@@ -24,6 +23,7 @@ import com.example.shopberry.domain.shipmenttypes.ShipmentType;
 import com.example.shopberry.domain.shipmenttypes.ShipmentTypeRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -143,6 +143,27 @@ public class OrderService {
         orderProductRepository.saveAll(orderProductList);
 
         return orderDtoMapper.toDto(savedOrder);
+    }
+
+    @Transactional
+    public OrderResponseDto updateOrderById(Long orderId, @Valid UpdateOrderRequestDto updateOrderRequestDto) throws EntityNotFoundException {
+        Order order = orderRepository.findById(orderId).orElse(null);
+
+        if (order == null) {
+            throw new EntityNotFoundException(OrderMessages.ORDER_NOT_FOUND);
+        }
+
+        if (updateOrderRequestDto.getOrderStatusId() != null) {
+            OrderStatus orderStatus = orderStatusRepository.findById(updateOrderRequestDto.getOrderStatusId()).orElse(null);
+
+            if (orderStatus == null) {
+                throw new EntityNotFoundException(OrderStatusMessages.ORDER_STATUS_NOT_FOUND);
+            }
+
+            order.setOrderStatus(orderStatus);
+        }
+
+        return orderDtoMapper.toDto(orderRepository.save(order));
     }
 
     @Transactional
