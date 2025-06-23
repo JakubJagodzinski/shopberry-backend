@@ -87,6 +87,8 @@ public enum Permission {
     ORDER_STATUS_UPDATE("order_status:update"),
     ORDER_STATUS_DELETE("order_status:delete"),
 
+    ORDER_PRODUCT_RETURN_READ_ALL("order:product_return:read:all"),
+
     PAYMENT_TYPE_CREATE("payment_type:create"),
     PAYMENT_TYPE_UPDATE("payment_type:update"),
     PAYMENT_TYPE_DELETE("payment_type:delete"),
@@ -105,6 +107,7 @@ public enum Permission {
     PRODUCT_PROMOTION_UNASSIGN_ALL("product:promotion:unassign:all"),
 
     PRODUCT_RETURN_CREATE("product_return:create"),
+    PRODUCT_RETURN_READ("product_return:read"),
     PRODUCT_RETURN_DELETE("product_return:delete"),
 
     PRODUCT_CREATE("product:create"),

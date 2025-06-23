@@ -1,5 +1,6 @@
 package com.example.shopberry.domain.productreturns;
 
+import com.example.shopberry.auth.access.manager.ProductReturnAccessManager;
 import com.example.shopberry.common.constants.messages.CauseOfReturnMessages;
 import com.example.shopberry.common.constants.messages.OrderMessages;
 import com.example.shopberry.common.constants.messages.ProductMessages;
@@ -35,6 +36,8 @@ public class ProductReturnService {
 
     private final ProductReturnDtoMapper productReturnDtoMapper;
 
+    private final ProductReturnAccessManager productReturnAccessManager;
+
     @Transactional
     public ProductReturnResponseDto getProductReturnById(Long productReturnId) throws EntityNotFoundException {
         ProductReturn productReturn = productReturnRepository.findById(productReturnId).orElse(null);
@@ -43,14 +46,20 @@ public class ProductReturnService {
             throw new EntityNotFoundException(ProductReturnMessages.PRODUCT_RETURN_NOT_FOUND);
         }
 
+        productReturnAccessManager.checkCanReadProductReturn(productReturn);
+
         return productReturnDtoMapper.toDto(productReturn);
     }
 
     @Transactional
     public List<ProductReturnResponseDto> getOrderAllProductReturns(Long orderId) throws EntityNotFoundException {
-        if (!orderRepository.existsById(orderId)) {
+        Order order = orderRepository.findById(orderId).orElse(null);
+
+        if (order == null) {
             throw new EntityNotFoundException(OrderMessages.ORDER_NOT_FOUND);
         }
+
+        productReturnAccessManager.checkCanReadOrderAllProductReturns(order);
 
         return productReturnDtoMapper.toDtoList(productReturnRepository.findAllByOrder_OrderId(orderId));
     }
@@ -62,6 +71,8 @@ public class ProductReturnService {
         if (order == null) {
             throw new EntityNotFoundException(OrderMessages.ORDER_NOT_FOUND);
         }
+
+        productReturnAccessManager.checkCanCreateProductReturn(order.getCustomer());
 
         Product product = productRepository.findById(createProductReturnRequestDto.getProductId()).orElse(null);
 
@@ -96,9 +107,13 @@ public class ProductReturnService {
 
     @Transactional
     public void deleteProductReturnById(Long productReturnId) throws EntityNotFoundException {
-        if (!productReturnRepository.existsById(productReturnId)) {
+        ProductReturn productReturn = productReturnRepository.findById(productReturnId).orElse(null);
+
+        if (productReturn == null) {
             throw new EntityNotFoundException(ProductReturnMessages.PRODUCT_RETURN_NOT_FOUND);
         }
+
+        productReturnAccessManager.checkCanDeleteProductReturn(productReturn);
 
         productReturnRepository.deleteById(productReturnId);
     }

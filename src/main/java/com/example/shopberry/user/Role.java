@@ -56,6 +56,8 @@ public enum Role {
                     ORDER_PRODUCT_STATUS_READ,
                     ORDER_PRODUCT_STATUS_READ_ALL,
 
+                    ORDER_PRODUCT_RETURN_READ_ALL,
+
                     ORDER_CREATE,
                     ORDER_READ,
 
@@ -65,6 +67,7 @@ public enum Role {
                     ORDER_STATUS_READ_ALL,
 
                     PRODUCT_RETURN_CREATE,
+                    PRODUCT_RETURN_READ,
 
                     REVIEW_CREATE,
                     REVIEW_UPDATE,
@@ -96,6 +99,10 @@ public enum Role {
                     PRODUCT_PROMOTION_ASSIGN,
                     PRODUCT_PROMOTION_UNASSIGN,
                     PRODUCT_PROMOTION_UNASSIGN_ALL,
+
+                    PRODUCT_RETURN_READ,
+
+                    ORDER_PRODUCT_RETURN_READ_ALL,
 
                     PROMOTION_CREATE,
                     PROMOTION_UPDATE,
