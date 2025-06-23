@@ -1,7 +1,9 @@
 package com.example.shopberry.domain.orderstatuses;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @Setter
@@ -17,5 +19,8 @@ public class OrderStatus {
 
     @Column(name = "order_status_name", nullable = false, unique = true, length = 100)
     private String orderStatusName;
+
+    @Column(nullable = false, length = 500)
+    private String description;
 
 }

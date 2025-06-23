@@ -1,23 +1,23 @@
-orderStatusName
-Pending
-Confirmed
-Processing
-Packed
-Shipped
-In Transit
-Out for Delivery
-Delivered
-Partially Delivered
-Pickup Ready
-Awaiting Payment
-Payment Received
-Payment Failed
-Cancelled by Customer
-Cancelled by Seller
-Returned
-Return Requested
-Return Approved
-Refunded
-Failed Delivery
-On Hold
-Awaiting Fulfillment
+orderStatusName,description
+Pending,Order has been received but not yet confirmed.
+Confirmed,Order has been confirmed and is being prepared.
+Processing,Order is currently being processed.
+Packed,Items have been packed and are ready to ship.
+Shipped,Order has been shipped from the warehouse.
+In Transit,Order is on the way to the delivery location.
+Out for Delivery,Order is with the courier and out for delivery.
+Delivered,Order has been successfully delivered to the customer.
+Partially Delivered,"Some items have been delivered, others are still pending."
+Pickup Ready,Order is ready for in-store or point pickup.
+Awaiting Payment,Order has been placed but payment has not been received yet.
+Payment Received,Payment has been successfully received.
+Payment Failed,There was an issue processing the payment.
+Cancelled by Customer,The customer has cancelled the order.
+Cancelled by Seller,The seller has cancelled the order.
+Returned,The order was returned by the customer.
+Return Requested,A return has been requested for this order.
+Return Approved,The return request has been approved.
+Refunded,The payment for the order has been refunded.
+Failed Delivery,The delivery attempt was unsuccessful.
+On Hold,The order is temporarily on hold.
+Awaiting Fulfillment,Order is awaiting stock or preparation before it can be processed.

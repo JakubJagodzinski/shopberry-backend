@@ -2,8 +2,8 @@ package com.example.shopberry.seeder.table;
 
 import com.example.shopberry.domain.orderstatuses.OrderStatus;
 import com.example.shopberry.domain.orderstatuses.OrderStatusRepository;
-import com.example.shopberry.utils.CsvUtils;
 import com.example.shopberry.seeder.DataSeeder;
+import com.example.shopberry.utils.CsvUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
@@ -26,11 +26,12 @@ public class OrderStatusSeeder implements DataSeeder {
         if (orderStatusRepository.count() == 0) {
             List<OrderStatus> statuses = CsvUtils.loadFromCsv(
                     ORDER_STATUSES_DATA_FILE_PATH,
-                    1,
+                    2,
                     parts -> {
                         OrderStatus status = new OrderStatus();
 
                         status.setOrderStatusName(parts[0].trim());
+                        status.setDescription(parts[1].trim());
 
                         return status;
                     }

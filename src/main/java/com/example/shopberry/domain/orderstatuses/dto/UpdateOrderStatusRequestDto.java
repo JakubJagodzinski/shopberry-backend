@@ -24,4 +24,14 @@ public class UpdateOrderStatusRequestDto {
     @JsonProperty("order_status_name")
     private String orderStatusName;
 
+    @Schema(
+            description = "Detailed description of order status",
+            example = "The order is temporarily on hold",
+            minLength = 1,
+            maxLength = 500,
+            nullable = true
+    )
+    @NotEmptyIfPresent
+    private String description;
+
 }

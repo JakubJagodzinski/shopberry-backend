@@ -13,12 +13,13 @@ public class OrderStatusDtoMapper {
             return null;
         }
 
-        OrderStatusResponseDto OrderStatusResponseDto = new OrderStatusResponseDto();
+        OrderStatusResponseDto orderStatusResponseDto = new OrderStatusResponseDto();
 
-        OrderStatusResponseDto.setOrderStatusId(orderStatus.getOrderStatusId());
-        OrderStatusResponseDto.setOrderStatusName(orderStatus.getOrderStatusName());
+        orderStatusResponseDto.setOrderStatusId(orderStatus.getOrderStatusId());
+        orderStatusResponseDto.setOrderStatusName(orderStatus.getOrderStatusName());
+        orderStatusResponseDto.setDescription(orderStatus.getDescription());
 
-        return OrderStatusResponseDto;
+        return orderStatusResponseDto;
     }
 
     public List<OrderStatusResponseDto> toDtoList(List<OrderStatus> orderStatusList) {

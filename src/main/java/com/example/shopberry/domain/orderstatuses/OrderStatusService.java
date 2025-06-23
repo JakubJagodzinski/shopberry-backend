@@ -47,6 +47,7 @@ public class OrderStatusService {
         OrderStatus orderStatus = new OrderStatus();
 
         orderStatus.setOrderStatusName(orderStatusName);
+        orderStatus.setDescription(createOrderStatusRequestDto.getDescription().trim());
 
         return orderStatusDtoMapper.toDto(orderStatusRepository.save(orderStatus));
     }
@@ -69,6 +70,10 @@ public class OrderStatusService {
             }
 
             orderStatus.setOrderStatusName(orderStatusName);
+        }
+
+        if (updateOrderStatusRequestDto.getDescription() != null) {
+            orderStatus.setDescription(updateOrderStatusRequestDto.getDescription().trim());
         }
 
         return orderStatusDtoMapper.toDto(orderStatusRepository.save(orderStatus));
