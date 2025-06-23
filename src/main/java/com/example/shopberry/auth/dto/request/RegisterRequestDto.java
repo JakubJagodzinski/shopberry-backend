@@ -46,10 +46,8 @@ public class RegisterRequestDto {
 
     @Schema(
             description = "User's role in the system",
-            examples = {
-                    "CUSTOMER",
-                    "EMPLOYEE"
-            }
+            example = "EMPLOYEE",
+            defaultValue = "CUSTOMER"
     )
     @NotBlank
     private String role;

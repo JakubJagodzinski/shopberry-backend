@@ -14,7 +14,7 @@ public class UpdateProductAttributeRequestDto {
 
     @Schema(
             description = "New value of the assigned attribute",
-            examples = {"42.5", "3", "black", "true", "(5, 7)"},
+            example = "Attribute value 5",
             nullable = true
     )
     private String value;
