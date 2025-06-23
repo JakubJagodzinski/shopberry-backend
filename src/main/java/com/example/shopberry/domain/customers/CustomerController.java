@@ -1,7 +1,6 @@
 package com.example.shopberry.domain.customers;
 
 import com.example.shopberry.auth.access.CheckPermission;
-import com.example.shopberry.domain.causesofreturn.dto.response.CauseOfReturnResponseDto;
 import com.example.shopberry.domain.customers.dto.request.UpdateCustomerRequestDto;
 import com.example.shopberry.domain.customers.dto.response.CustomerResponseDto;
 import com.example.shopberry.exception.ApiError;
@@ -36,7 +35,7 @@ public class CustomerController {
                     description = "List of customers",
                     content = @Content(
                             mediaType = "application/json",
-                            schema = @Schema(implementation = CauseOfReturnResponseDto.class)
+                            schema = @Schema(implementation = CustomerResponseDto.class)
                     )
             )
     })
@@ -57,7 +56,7 @@ public class CustomerController {
                     description = "Customer found",
                     content = @Content(
                             mediaType = "application/json",
-                            schema = @Schema(implementation = CauseOfReturnResponseDto.class)
+                            schema = @Schema(implementation = CustomerResponseDto.class)
                     )
             ),
             @ApiResponse(
@@ -94,7 +93,7 @@ public class CustomerController {
                     description = "Customer updated",
                     content = @Content(
                             mediaType = "application/json",
-                            schema = @Schema(implementation = CauseOfReturnResponseDto.class)
+                            schema = @Schema(implementation = CustomerResponseDto.class)
                     )
             ),
             @ApiResponse(
