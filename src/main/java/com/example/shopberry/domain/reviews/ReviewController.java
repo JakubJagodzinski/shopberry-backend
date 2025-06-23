@@ -26,8 +26,8 @@ public class ReviewController {
     private final ReviewService reviewService;
 
     @GetMapping("/products/{productId}/reviews")
-    public ResponseEntity<List<ReviewResponseDto>> getProductAllReviews(@PathVariable Long productId) {
-        List<ReviewResponseDto> reviewResponseDtoList = reviewService.getProductAllReviews(productId);
+    public ResponseEntity<List<ReviewResponseDto>> getProductAllReviews(@PathVariable Long productId, @RequestParam(required = false) Boolean approvedOnly) {
+        List<ReviewResponseDto> reviewResponseDtoList = reviewService.getProductAllReviews(productId, approvedOnly);
 
         return ResponseEntity
                 .status(HttpStatus.OK)

@@ -1,5 +1,6 @@
 package com.example.shopberry.domain.reviews;
 
+import com.example.shopberry.auth.access.manager.ReviewAccessManager;
 import com.example.shopberry.common.constants.messages.CustomerMessages;
 import com.example.shopberry.common.constants.messages.ProductMessages;
 import com.example.shopberry.common.constants.messages.ReviewMessages;
@@ -31,13 +32,21 @@ public class ReviewService {
 
     private final ReviewDtoMapper reviewDtoMapper;
 
+    private final ReviewAccessManager reviewAccessManager;
+
     @Transactional
-    public List<ReviewResponseDto> getProductAllReviews(Long productId) throws EntityNotFoundException {
+    public List<ReviewResponseDto> getProductAllReviews(Long productId, Boolean approvedOnly) throws EntityNotFoundException {
         if (!productRepository.existsById(productId)) {
             throw new EntityNotFoundException(ProductMessages.PRODUCT_NOT_FOUND);
         }
 
-        return reviewDtoMapper.toDtoList(reviewRepository.findAllByProduct_ProductId(productId));
+        if (approvedOnly == null) {
+            return reviewDtoMapper.toDtoList(reviewRepository.findAllByProduct_ProductId(productId));
+        } else if (approvedOnly) {
+            return reviewDtoMapper.toDtoList(reviewRepository.findAllByProduct_ProductIdAndIsApprovedTrue(productId));
+        } else {
+            return reviewDtoMapper.toDtoList(reviewRepository.findAllByProduct_ProductIdAndIsApprovedFalse(productId));
+        }
     }
 
     @Transactional
@@ -61,8 +70,8 @@ public class ReviewService {
     }
 
     @Transactional
-    public void updateProductRating(Product product) {
-        List<Review> productAllReviews = reviewRepository.findAllByProduct_ProductId(product.getProductId());
+    protected void updateProductRating(Product product) {
+        List<Review> productAllReviews = reviewRepository.findAllByProduct_ProductIdAndIsApprovedTrue(product.getProductId());
 
         Double ratingSum = 0.0;
         Long ratingsCount = Math.max(1, (long) productAllReviews.size());
@@ -79,16 +88,18 @@ public class ReviewService {
 
     @Transactional
     public ReviewResponseDto createReview(Long productId, CreateReviewRequestDto createReviewRequestDto) throws EntityNotFoundException {
-        Product product = productRepository.findById(productId).orElse(null);
-
-        if (product == null) {
-            throw new EntityNotFoundException(ProductMessages.PRODUCT_NOT_FOUND);
-        }
-
         Customer customer = customerRepository.findById(createReviewRequestDto.getCustomerId()).orElse(null);
 
         if (customer == null) {
             throw new EntityNotFoundException(CustomerMessages.CUSTOMER_NOT_FOUND);
+        }
+
+        reviewAccessManager.checkCanCreateReview(customer);
+
+        Product product = productRepository.findById(productId).orElse(null);
+
+        if (product == null) {
+            throw new EntityNotFoundException(ProductMessages.PRODUCT_NOT_FOUND);
         }
 
         Review review = new Review();
@@ -96,6 +107,7 @@ public class ReviewService {
         review.setProduct(product);
         review.setCustomer(customer);
         review.setRatingValue(createReviewRequestDto.getRatingValue());
+        review.setIsApproved(true);
 
         if (createReviewRequestDto.getReviewText() != null) {
             review.setReviewText(createReviewRequestDto.getReviewText());
@@ -115,6 +127,8 @@ public class ReviewService {
         if (review == null) {
             throw new EntityNotFoundException(ReviewMessages.REVIEW_NOT_FOUND);
         }
+
+        reviewAccessManager.checkCanUpdateReview(review);
 
         if (updateReviewRequestDto.getRatingValue() != null) {
             review.setRatingValue(updateReviewRequestDto.getRatingValue());
@@ -139,6 +153,8 @@ public class ReviewService {
             throw new EntityNotFoundException(ReviewMessages.REVIEW_NOT_FOUND);
         }
 
+        reviewAccessManager.checkCanDeleteReview(review);
+
         Product productFromReview = review.getProduct();
 
         reviewRepository.deleteById(reviewId);
@@ -148,9 +164,13 @@ public class ReviewService {
 
     @Transactional
     public void deleteCustomerAllReviews(UUID customerId) throws EntityNotFoundException {
-        if (!customerRepository.existsById(customerId)) {
+        Customer customer = customerRepository.findById(customerId).orElse(null);
+
+        if (customer == null) {
             throw new EntityNotFoundException(CustomerMessages.CUSTOMER_NOT_FOUND);
         }
+
+        reviewAccessManager.checkCanDeleteCustomerAllReviews(customer);
 
         List<Review> reviews = reviewRepository.findAllByCustomer_UserId(customerId);
         Set<Product> products = new HashSet<>();
