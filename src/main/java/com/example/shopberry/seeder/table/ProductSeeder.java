@@ -9,6 +9,7 @@ import com.example.shopberry.domain.products.ProductRepository;
 import com.example.shopberry.seeder.DataSeeder;
 import com.example.shopberry.utils.CsvUtils;
 import com.example.shopberry.utils.DoubleParser;
+import com.example.shopberry.utils.ImageBase64Utils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
@@ -34,13 +35,14 @@ public class ProductSeeder implements DataSeeder {
         if (productRepository.count() == 0) {
             List<Product> products = CsvUtils.loadFromCsv(
                     PRODUCT_CSV_PATH,
-                    6,
+                    7,
                     parts -> {
                         String productName = parts[1].trim();
                         double productPrice = Double.parseDouble(parts[2].trim());
                         String producerName = parts[3].trim();
                         String categoryName = parts[4].trim();
                         String discountStr = parts[5].trim();
+                        String imagePath = parts[6].trim();
 
                         Category category = categoryRepository.findByCategoryName(categoryName).orElse(null);
                         if (category == null) {
@@ -54,11 +56,15 @@ public class ProductSeeder implements DataSeeder {
                         Producer producer = producerRepository.findByProducerName(producerName).orElse(null);
 
                         Product product = new Product();
+
                         product.setProductName(productName);
                         product.setProductPrice(productPrice);
                         product.setProducer(producer);
                         product.setCategory(category);
                         product.setDiscountPercentValue(DoubleParser.parse(discountStr));
+                        if (!imagePath.isEmpty()) {
+                            product.setImage(ImageBase64Utils.readImageAsBytes(imagePath));
+                        }
 
                         return product;
                     }

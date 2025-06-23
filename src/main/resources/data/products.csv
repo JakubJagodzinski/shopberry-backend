@@ -1,841 +1,841 @@
-productId,productName,productPrice,producerName,categoryName,discountPercentValue
-1,Sony 4K TV 1,1615.66,Sony,4K TVs,10
-2,Samsung 4K TV 2,1176.32,Samsung,4K TVs,10
-3,Sony 4K TV 3,1278.79,Sony,4K TVs,0
-4,Samsung 4K TV 4,548.22,Samsung,4K TVs,10
-5,Samsung 4K TV 5,138.12,Samsung,4K TVs,0
-6,LG 4K TV 6,1997.89,LG,4K TVs,5
-7,Sony 4K TV 7,540.73,Sony,4K TVs,0
-8,Samsung 4K TV 8,751.08,Samsung,4K TVs,10
-9,Samsung 4K TV 9,1228.96,Samsung,4K TVs,25
-10,Sony 4K TV 10,223.99,Sony,4K TVs,10
-11,HP Accessories for Cases and Component 1,1092.24,HP,Accessories for Cases and Components,0
-12,Mattel Accessories for Cases and Component 2,744.64,Mattel,Accessories for Cases and Components,25
-13,Nestlé Accessories for Cases and Component 3,1151.24,Nestlé,Accessories for Cases and Components,0
-14,Nivea Accessories for Cases and Component 4,521.24,Nivea,Accessories for Cases and Components,10
-15,Heinz Accessories for Cases and Component 5,1961.17,Heinz,Accessories for Cases and Components,0
-16,Sony Accessories for Cases and Component 6,1151.79,Sony,Accessories for Cases and Components,0
-17,Levi's Accessories for Cases and Component 7,1394.98,Levi's,Accessories for Cases and Components,5
-18,Chicco Accessories for Cases and Component 8,1072.53,Chicco,Accessories for Cases and Components,0
-19,Ariel Accessories for Cases and Component 9,1925.37,Ariel,Accessories for Cases and Components,0
-20,Asus Accessories for Cases and Component 10,1442.26,Asus,Accessories for Cases and Components,20
-21,Canon All-in-One PC 1,1897.35,Canon,All-in-One PCs,0
-22,Levi's All-in-One PC 2,1894.55,Levi's,All-in-One PCs,0
-23,Colgate All-in-One PC 3,38.08,Colgate,All-in-One PCs,15
-24,Ariel All-in-One PC 4,1926.19,Ariel,All-in-One PCs,5
-25,HP All-in-One PC 5,1111.63,HP,All-in-One PCs,5
-26,Fisher-Price All-in-One PC 6,955.02,Fisher-Price,All-in-One PCs,10
-27,Lenovo All-in-One PC 7,1982.75,Lenovo,All-in-One PCs,15
-28,Apple All-in-One PC 8,1634.97,Apple,All-in-One PCs,25
-29,Finish All-in-One PC 9,734.44,Finish,All-in-One PCs,10
-30,Gillette All-in-One PC 10,1890.91,Gillette,All-in-One PCs,10
-31,LG Apple Watch 1,268.97,LG,Apple Watch,15
-32,Fisher-Price Apple Watch 2,176.67,Fisher-Price,Apple Watch,5
-33,Apple Apple Watch 3,638.44,Apple,Apple Watch,5
-34,Garnier Apple Watch 4,1758.95,Garnier,Apple Watch,5
-35,Gillette Apple Watch 5,462.01,Gillette,Apple Watch,20
-36,Lenovo Apple Watch 6,610.87,Lenovo,Apple Watch,0
-37,Levi's Apple Watch 7,1030.56,Levi's,Apple Watch,0
-38,Tefal Apple Watch 8,719.91,Tefal,Apple Watch,5
-39,LG Apple Watch 9,262.95,LG,Apple Watch,10
-40,Żywiec Zdrój Apple Watch 10,405.68,Żywiec Zdrój,Apple Watch,5
-41,Gerber Bicycle 1,1680.05,Gerber,Bicycles,0
-42,Asus Bicycle 2,777.6,Asus,Bicycles,20
-43,Samsung Bicycle 3,534.93,Samsung,Bicycles,0
-44,Mattel Bicycle 4,409.42,Mattel,Bicycles,5
-45,LG Bicycle 5,364.37,LG,Bicycles,10
-46,Purina Bicycle 6,728.28,Purina,Bicycles,10
-47,Fisher-Price Bicycle 7,1230.82,Fisher-Price,Bicycles,0
-48,Fisher-Price Bicycle 8,1814.12,Fisher-Price,Bicycles,5
-49,Whiskas Bicycle 9,1205.07,Whiskas,Bicycles,0
-50,Persil Bicycle 10,449.17,Persil,Bicycles,0
-51,Sony Blood Pressure Monitor 1,1369.05,Sony,Blood Pressure Monitors,10
-52,Bosch Blood Pressure Monitor 2,1830.73,Bosch,Blood Pressure Monitors,0
-53,Nestlé Blood Pressure Monitor 3,1749.18,Nestlé,Blood Pressure Monitors,10
-54,Chicco Blood Pressure Monitor 4,548.79,Chicco,Blood Pressure Monitors,0
-55,Samsung Blood Pressure Monitor 5,1041.35,Samsung,Blood Pressure Monitors,5
-56,Ariel Blood Pressure Monitor 6,1060.85,Ariel,Blood Pressure Monitors,20
-57,Dell Blood Pressure Monitor 7,786.61,Dell,Blood Pressure Monitors,5
-58,Pedigree Blood Pressure Monitor 8,306.57,Pedigree,Blood Pressure Monitors,15
-59,Sony Blood Pressure Monitor 9,1173.56,Sony,Blood Pressure Monitors,10
-60,Garnier Blood Pressure Monitor 10,164.7,Garnier,Blood Pressure Monitors,0
-61,HP Business Laptop 1,508.97,HP,Business Laptops,10
-62,Persil Business Laptop 2,1282.34,Persil,Business Laptops,10
-63,Finish Business Laptop 3,467.13,Finish,Business Laptops,10
-64,Persil Business Laptop 4,632.26,Persil,Business Laptops,15
-65,Apple Business Laptop 5,1618.17,Apple,Business Laptops,10
-66,Lenovo Business Laptop 6,964.51,Lenovo,Business Laptops,0
-67,Gerber Business Laptop 7,1004.51,Gerber,Business Laptops,25
-68,Samsung Business Laptop 8,701.96,Samsung,Business Laptops,0
-69,IKEA Business Laptop 9,569.67,IKEA,Business Laptops,20
-70,IKEA Business Laptop 10,796.13,IKEA,Business Laptops,5
-71,Pedigree CPU Cooling 1,1364.23,Pedigree,CPU Cooling,0
-72,Colgate CPU Cooling 2,189.38,Colgate,CPU Cooling,15
-73,Bosch CPU Cooling 3,1985.48,Bosch,CPU Cooling,15
-74,Levi's CPU Cooling 4,200.96,Levi's,CPU Cooling,5
-75,Finish CPU Cooling 5,313.46,Finish,CPU Cooling,5
-76,Nike CPU Cooling 6,1579.29,Nike,CPU Cooling,0
-77,Tefal CPU Cooling 7,1502.9,Tefal,CPU Cooling,0
-78,Finish CPU Cooling 8,193.71,Finish,CPU Cooling,10
-79,Bosch CPU Cooling 9,495.36,Bosch,CPU Cooling,0
-80,Pepsi CPU Cooling 10,717.21,Pepsi,CPU Cooling,0
-81,Canon Camera Bag 1,454.55,Canon,Camera Bags,0
-82,Canon Camera Bag 2,142.5,Canon,Camera Bags,5
-83,Sony Camera Bag 3,904.05,Sony,Camera Bags,10
-84,Canon Camera Bag 4,1782.03,Canon,Camera Bags,10
-85,Nikon Camera Bag 5,1513.68,Nikon,Camera Bags,0
-86,Nikon Camera Bag 6,1627.5,Nikon,Camera Bags,0
-87,Sony Camera Bag 7,28.21,Sony,Camera Bags,25
-88,Nikon Camera Bag 8,1387.34,Nikon,Camera Bags,0
-89,Sony Camera Bag 9,1739.89,Sony,Camera Bags,5
-90,Sony Camera Bag 10,1145.38,Sony,Camera Bags,5
-91,Gillette Ceiling Light 1,837.42,Gillette,Ceiling Lights,0
-92,Oral-B Ceiling Light 2,1502.62,Oral-B,Ceiling Lights,0
-93,Tymbark Ceiling Light 3,88.49,Tymbark,Ceiling Lights,0
-94,Nivea Ceiling Light 4,975.2,Nivea,Ceiling Lights,0
-95,Garnier Ceiling Light 5,1591.22,Garnier,Ceiling Lights,15
-96,Chicco Ceiling Light 6,868.25,Chicco,Ceiling Lights,20
-97,Tymbark Ceiling Light 7,637.85,Tymbark,Ceiling Lights,10
-98,Oral-B Ceiling Light 8,1662.82,Oral-B,Ceiling Lights,25
-99,Coca-Cola Ceiling Light 9,498.96,Coca-Cola,Ceiling Lights,5
-100,Tefal Ceiling Light 10,1566.21,Tefal,Ceiling Lights,15
-101,Zara Chargers & Cable 1,953.91,Zara,Chargers & Cables,0
-102,Pampers Chargers & Cable 2,906.66,Pampers,Chargers & Cables,5
-103,Nikon Chargers & Cable 3,37.71,Nikon,Chargers & Cables,5
-104,Bosch Chargers & Cable 4,670.2,Bosch,Chargers & Cables,0
-105,Finish Chargers & Cable 5,1575.04,Finish,Chargers & Cables,0
-106,Heinz Chargers & Cable 6,611.14,Heinz,Chargers & Cables,25
-107,IKEA Chargers & Cable 7,969.35,IKEA,Chargers & Cables,25
-108,Żywiec Zdrój Chargers & Cable 8,1249.59,Żywiec Zdrój,Chargers & Cables,0
-109,Maybelline Chargers & Cable 9,1941.75,Maybelline,Chargers & Cables,0
-110,Whiskas Chargers & Cable 10,1938.51,Whiskas,Chargers & Cables,5
-111,LG Cleaning Product 1,378.71,LG,Cleaning Products,0
-112,Łowicz Cleaning Product 2,1907.36,Łowicz,Cleaning Products,0
-113,Bosch Cleaning Product 3,600.46,Bosch,Cleaning Products,0
-114,Asus Cleaning Product 4,1824.72,Asus,Cleaning Products,0
-115,Adidas Cleaning Product 5,936.52,Adidas,Cleaning Products,0
-116,Żywiec Zdrój Cleaning Product 6,200.64,Żywiec Zdrój,Cleaning Products,0
-117,Purina Cleaning Product 7,1884.34,Purina,Cleaning Products,5
-118,Nikon Cleaning Product 8,1998.28,Nikon,Cleaning Products,0
-119,Lego Cleaning Product 9,1701.41,Lego,Cleaning Products,5
-120,Garnier Cleaning Product 10,942.05,Garnier,Cleaning Products,5
-121,Pampers Coffee Machine 1,284.71,Pampers,Coffee Machines,0
-122,Dove Coffee Machine 2,1732.93,Dove,Coffee Machines,15
-123,Gerber Coffee Machine 3,301.6,Gerber,Coffee Machines,15
-124,Huggies Coffee Machine 4,240.27,Huggies,Coffee Machines,5
-125,Philips Coffee Machine 5,1269.79,Philips,Coffee Machines,5
-126,Huggies Coffee Machine 6,442.34,Huggies,Coffee Machines,0
-127,Nivea Coffee Machine 7,636.99,Nivea,Coffee Machines,10
-128,Łowicz Coffee Machine 8,942.4,Łowicz,Coffee Machines,0
-129,Pepsi Coffee Machine 9,412.54,Pepsi,Coffee Machines,15
-130,Sony Coffee Machine 10,211.46,Sony,Coffee Machines,0
-131,Nikon Compact Camera 1,1700.75,Nikon,Compact Cameras,15
-132,Sony Compact Camera 2,903.25,Sony,Compact Cameras,0
-133,Nikon Compact Camera 3,1819.52,Nikon,Compact Cameras,25
-134,Canon Compact Camera 4,781.89,Canon,Compact Cameras,15
-135,Sony Compact Camera 5,557.07,Sony,Compact Cameras,5
-136,Canon Compact Camera 6,164.63,Canon,Compact Cameras,0
-137,Canon Compact Camera 7,1281.24,Canon,Compact Cameras,0
-138,Nikon Compact Camera 8,1516.11,Nikon,Compact Cameras,0
-139,Canon Compact Camera 9,1348.4,Canon,Compact Cameras,15
-140,Sony Compact Camera 10,325.2,Sony,Compact Cameras,5
-141,Sony Computer Cables and Adapter 1,228.19,Sony,Computer Cables and Adapters,0
-142,HP Computer Cables and Adapter 2,1983.75,HP,Computer Cables and Adapters,5
-143,Sony Computer Cables and Adapter 3,338.39,Sony,Computer Cables and Adapters,15
-144,Sony Computer Cables and Adapter 4,1108.99,Sony,Computer Cables and Adapters,25
-145,HP Computer Cables and Adapter 5,788.53,HP,Computer Cables and Adapters,0
-146,Dell Computer Cables and Adapter 6,960.96,Dell,Computer Cables and Adapters,0
-147,LG Computer Cables and Adapter 7,73.71,LG,Computer Cables and Adapters,5
-148,Sony Computer Cables and Adapter 8,1199.38,Sony,Computer Cables and Adapters,0
-149,Lenovo Computer Cables and Adapter 9,1006.39,Lenovo,Computer Cables and Adapters,0
-150,HP Computer Cables and Adapter 10,730.67,HP,Computer Cables and Adapters,0
-151,Lenovo Computer Case 1,1264.53,Lenovo,Computer Cases,5
-152,Lenovo Computer Case 2,1643.48,Lenovo,Computer Cases,15
-153,LG Computer Case 3,1362.03,LG,Computer Cases,5
-154,Dell Computer Case 4,263.24,Dell,Computer Cases,25
-155,Lenovo Computer Case 5,534.56,Lenovo,Computer Cases,0
-156,LG Computer Case 6,1889.9,LG,Computer Cases,5
-157,Lenovo Computer Case 7,1537.42,Lenovo,Computer Cases,10
-158,Lenovo Computer Case 8,1393.87,Lenovo,Computer Cases,5
-159,Asus Computer Case 9,817.05,Asus,Computer Cases,0
-160,HP Computer Case 10,641.54,HP,Computer Cases,10
-161,Sony Computer Fan 1,714.82,Sony,Computer Fans,0
-162,Samsung Computer Fan 2,1800.43,Samsung,Computer Fans,15
-163,Dell Computer Fan 3,174.07,Dell,Computer Fans,0
-164,Dell Computer Fan 4,977.9,Dell,Computer Fans,10
-165,Dell Computer Fan 5,1880.87,Dell,Computer Fans,5
-166,Sony Computer Fan 6,426.08,Sony,Computer Fans,0
-167,Sony Computer Fan 7,220.09,Sony,Computer Fans,25
-168,Samsung Computer Fan 8,625.74,Samsung,Computer Fans,0
-169,Sony Computer Fan 9,473.26,Sony,Computer Fans,5
-170,Samsung Computer Fan 10,1342.05,Samsung,Computer Fans,5
-171,Sony DSLR Camera 1,593.93,Sony,DSLR Cameras,0
-172,Sony DSLR Camera 2,1066.4,Sony,DSLR Cameras,0
-173,Sony DSLR Camera 3,1183.62,Sony,DSLR Cameras,15
-174,Nikon DSLR Camera 4,544.54,Nikon,DSLR Cameras,5
-175,Sony DSLR Camera 5,391.29,Sony,DSLR Cameras,0
-176,Sony DSLR Camera 6,1944.21,Sony,DSLR Cameras,5
-177,Sony DSLR Camera 7,1819.43,Sony,DSLR Cameras,10
-178,Nikon DSLR Camera 8,1535.71,Nikon,DSLR Cameras,0
-179,Canon DSLR Camera 9,166.89,Canon,DSLR Cameras,5
-180,Nikon DSLR Camera 10,1882.42,Nikon,DSLR Cameras,5
-181,Garnier Desk 1,1034.59,Garnier,Desks,0
-182,Tefal Desk 2,1567.49,Tefal,Desks,0
-183,Zara Desk 3,1163.27,Zara,Desks,0
-184,Gerber Desk 4,881.56,Gerber,Desks,0
-185,Tymbark Desk 5,1841.13,Tymbark,Desks,5
-186,Oral-B Desk 6,1052.55,Oral-B,Desks,10
-187,Purina Desk 7,625.55,Purina,Desks,20
-188,Nivea Desk 8,1195.47,Nivea,Desks,10
-189,Levi's Desk 9,1507.43,Levi's,Desks,20
-190,Winiary Desk 10,1305.34,Winiary,Desks,0
-191,Nestlé Dishwasher 1,823.97,Nestlé,Dishwashers,10
-192,Winiary Dishwasher 2,124.24,Winiary,Dishwashers,25
-193,Canon Dishwasher 3,1999.35,Canon,Dishwashers,0
-194,Oral-B Dishwasher 4,1635.22,Oral-B,Dishwashers,0
-195,Apple Dishwasher 5,1341.35,Apple,Dishwashers,5
-196,Purina Dishwasher 6,510.77,Purina,Dishwashers,0
-197,Żywiec Zdrój Dishwasher 7,412.8,Żywiec Zdrój,Dishwashers,10
-198,Whiskas Dishwasher 8,102.36,Whiskas,Dishwashers,5
-199,Chicco Dishwasher 9,1216.23,Chicco,Dishwashers,15
-200,HP Dishwasher 10,924.08,HP,Dishwashers,0
-201,Gillette Dryer 1,263.29,Gillette,Dryers,10
-202,Łowicz Dryer 2,1991.3,Łowicz,Dryers,15
-203,Fisher-Price Dryer 3,785.78,Fisher-Price,Dryers,15
-204,Nikon Dryer 4,1071.25,Nikon,Dryers,10
-205,H&M Dryer 5,1738.45,H&M,Dryers,0
-206,Finish Dryer 6,1248.51,Finish,Dryers,0
-207,Asus Dryer 7,515.82,Asus,Dryers,0
-208,Nestlé Dryer 8,717.61,Nestlé,Dryers,5
-209,Ariel Dryer 9,1602.5,Ariel,Dryers,15
-210,Puma Dryer 10,209.86,Puma,Dryers,5
-211,Levi's Dumbbell 1,507.22,Levi's,Dumbbells,0
-212,Nikon Dumbbell 2,1054.89,Nikon,Dumbbells,15
-213,Asus Dumbbell 3,19.6,Asus,Dumbbells,0
-214,Levi's Dumbbell 4,864.01,Levi's,Dumbbells,10
-215,Nivea Dumbbell 5,214.52,Nivea,Dumbbells,15
-216,Colgate Dumbbell 6,1765.92,Colgate,Dumbbells,10
-217,Lego Dumbbell 7,980.12,Lego,Dumbbells,0
-218,Tymbark Dumbbell 8,845.09,Tymbark,Dumbbells,10
-219,Puma Dumbbell 9,11.5,Puma,Dumbbells,5
-220,Winiary Dumbbell 10,155.11,Winiary,Dumbbells,0
-221,Nike Electric Shaver 1,753.61,Nike,Electric Shavers,5
-222,Whiskas Electric Shaver 2,298.84,Whiskas,Electric Shavers,15
-223,Philips Electric Shaver 3,419.63,Philips,Electric Shavers,0
-224,Lego Electric Shaver 4,366.66,Lego,Electric Shavers,0
-225,LG Electric Shaver 5,481.89,LG,Electric Shavers,5
-226,IKEA Electric Shaver 6,1667.08,IKEA,Electric Shavers,0
-227,Garnier Electric Shaver 7,307.67,Garnier,Electric Shavers,25
-228,HP Electric Shaver 8,757.01,HP,Electric Shavers,0
-229,Philips Electric Shaver 9,766.72,Philips,Electric Shavers,0
-230,Tefal Electric Shaver 10,37.49,Tefal,Electric Shavers,10
-231,IKEA Fitness Band 1,1549.09,IKEA,Fitness Bands,10
-232,Mattel Fitness Band 2,1710.7,Mattel,Fitness Bands,0
-233,LG Fitness Band 3,665.5,LG,Fitness Bands,10
-234,Nestlé Fitness Band 4,1201.19,Nestlé,Fitness Bands,0
-235,Bosch Fitness Band 5,1750.5,Bosch,Fitness Bands,0
-236,Asus Fitness Band 6,456.48,Asus,Fitness Bands,15
-237,Asus Fitness Band 7,1777.92,Asus,Fitness Bands,10
-238,Ariel Fitness Band 8,1289.99,Ariel,Fitness Bands,0
-239,Huggies Fitness Band 9,880.5,Huggies,Fitness Bands,10
-240,Heinz Fitness Band 10,1317.4,Heinz,Fitness Bands,0
-241,HP Fragrance 1,128.29,HP,Fragrances,0
-242,Purina Fragrance 2,1089.71,Purina,Fragrances,10
-243,Whiskas Fragrance 3,1589.02,Whiskas,Fragrances,10
-244,Hasbro Fragrance 4,1067.6,Hasbro,Fragrances,5
-245,Tymbark Fragrance 5,1050.7,Tymbark,Fragrances,5
-246,Tymbark Fragrance 6,510.43,Tymbark,Fragrances,10
-247,Vanish Fragrance 7,1183.34,Vanish,Fragrances,5
-248,Ariel Fragrance 8,352.16,Ariel,Fragrances,0
-249,Chicco Fragrance 9,1787.87,Chicco,Fragrances,5
-250,Purina Fragrance 10,542.95,Purina,Fragrances,5
-251,Chicco Gaming Laptop 1,1934.87,Chicco,Gaming Laptops,0
-252,H&M Gaming Laptop 2,1209.52,H&M,Gaming Laptops,5
-253,Sony Gaming Laptop 3,225.95,Sony,Gaming Laptops,0
-254,Sony Gaming Laptop 4,1421.74,Sony,Gaming Laptops,0
-255,Pedigree Gaming Laptop 5,1333.42,Pedigree,Gaming Laptops,15
-256,Oral-B Gaming Laptop 6,1754.5,Oral-B,Gaming Laptops,5
-257,Coca-Cola Gaming Laptop 7,1072.11,Coca-Cola,Gaming Laptops,0
-258,Sony Gaming Laptop 8,453.9,Sony,Gaming Laptops,0
-259,H&M Gaming Laptop 9,512.03,H&M,Gaming Laptops,15
-260,Pedigree Gaming Laptop 10,342.93,Pedigree,Gaming Laptops,0
-261,Apple Gaming Lighting 1,1786.38,Apple,Gaming Lighting,20
-262,Dell Gaming Lighting 2,1776.28,Dell,Gaming Lighting,10
-263,Colgate Gaming Lighting 3,821.74,Colgate,Gaming Lighting,0
-264,Żywiec Zdrój Gaming Lighting 4,1363.12,Żywiec Zdrój,Gaming Lighting,0
-265,Pepsi Gaming Lighting 5,455.77,Pepsi,Gaming Lighting,10
-266,Maybelline Gaming Lighting 6,1007.9,Maybelline,Gaming Lighting,0
-267,Nivea Gaming Lighting 7,39.46,Nivea,Gaming Lighting,0
-268,Gillette Gaming Lighting 8,724.48,Gillette,Gaming Lighting,10
-269,Whiskas Gaming Lighting 9,59.38,Whiskas,Gaming Lighting,5
-270,Gerber Gaming Lighting 10,1210.93,Gerber,Gaming Lighting,10
-271,Finish Gaming Monitor 1,1500.93,Finish,Gaming Monitors,5
-272,Vanish Gaming Monitor 2,1332.9,Vanish,Gaming Monitors,10
-273,Sony Gaming Monitor 3,1686.54,Sony,Gaming Monitors,0
-274,Tymbark Gaming Monitor 4,1438.9,Tymbark,Gaming Monitors,10
-275,Apple Gaming Monitor 5,1983.64,Apple,Gaming Monitors,5
-276,Persil Gaming Monitor 6,659.09,Persil,Gaming Monitors,0
-277,Chicco Gaming Monitor 7,1576.68,Chicco,Gaming Monitors,5
-278,Levi's Gaming Monitor 8,677.17,Levi's,Gaming Monitors,15
-279,Nestlé Gaming Monitor 9,917.57,Nestlé,Gaming Monitors,5
-280,Tefal Gaming Monitor 10,1782.94,Tefal,Gaming Monitors,5
-281,Gerber Graphics Card 1,1455.33,Gerber,Graphics Cards,0
-282,Ariel Graphics Card 2,1115.94,Ariel,Graphics Cards,15
-283,Nivea Graphics Card 3,207.73,Nivea,Graphics Cards,10
-284,Winiary Graphics Card 4,562.84,Winiary,Graphics Cards,5
-285,Nikon Graphics Card 5,519.28,Nikon,Graphics Cards,5
-286,Pedigree Graphics Card 6,107.11,Pedigree,Graphics Cards,5
-287,Whiskas Graphics Card 7,397.18,Whiskas,Graphics Cards,0
-288,H&M Graphics Card 8,1393.87,H&M,Graphics Cards,0
-289,Gerber Graphics Card 9,1414.99,Gerber,Graphics Cards,5
-290,Purina Graphics Card 10,420.58,Purina,Graphics Cards,10
-291,Winiary HDD 1,1906.0,Winiary,HDDs,0
-292,Puma HDD 2,426.84,Puma,HDDs,20
-293,HP HDD 3,557.18,HP,HDDs,0
-294,Persil HDD 4,740.66,Persil,HDDs,10
-295,Lego HDD 5,888.04,Lego,HDDs,0
-296,Lego HDD 6,126.73,Lego,HDDs,0
-297,Huggies HDD 7,1511.63,Huggies,HDDs,10
-298,Tefal HDD 8,1083.83,Tefal,HDDs,20
-299,Lego HDD 9,849.81,Lego,HDDs,10
-300,Winiary HDD 10,516.86,Winiary,HDDs,5
-301,Nivea Hair Dryer 1,1189.98,Nivea,Hair Dryers,5
-302,Nikon Hair Dryer 2,1462.49,Nikon,Hair Dryers,0
-303,Nikon Hair Dryer 3,232.61,Nikon,Hair Dryers,0
-304,HP Hair Dryer 4,202.05,HP,Hair Dryers,0
-305,Hasbro Hair Dryer 5,966.17,Hasbro,Hair Dryers,10
-306,Vanish Hair Dryer 6,400.23,Vanish,Hair Dryers,5
-307,Tefal Hair Dryer 7,1854.67,Tefal,Hair Dryers,10
-308,Pampers Hair Dryer 8,1576.43,Pampers,Hair Dryers,10
-309,Adidas Hair Dryer 9,1617.26,Adidas,Hair Dryers,5
-310,Winiary Hair Dryer 10,1995.18,Winiary,Hair Dryers,0
-311,Ariel Haircare 1,603.97,Ariel,Haircare,5
-312,Coca-Cola Haircare 2,487.43,Coca-Cola,Haircare,0
-313,IKEA Haircare 3,314.5,IKEA,Haircare,10
-314,Dell Haircare 4,1304.19,Dell,Haircare,0
-315,Bosch Haircare 5,1799.26,Bosch,Haircare,10
-316,Pedigree Haircare 6,1332.17,Pedigree,Haircare,0
-317,Tymbark Haircare 7,816.97,Tymbark,Haircare,5
-318,Winiary Haircare 8,765.83,Winiary,Haircare,0
-319,Tymbark Haircare 9,291.41,Tymbark,Haircare,10
-320,Whiskas Haircare 10,637.79,Whiskas,Haircare,0
-321,Żywiec Zdrój Headphones & Earbud 1,947.39,Żywiec Zdrój,Headphones & Earbuds,0
-322,Sony Headphones & Earbud 2,1457.16,Sony,Headphones & Earbuds,10
-323,Bosch Headphones & Earbud 3,1373.81,Bosch,Headphones & Earbuds,0
-324,Garnier Headphones & Earbud 4,1466.76,Garnier,Headphones & Earbuds,5
-325,Finish Headphones & Earbud 5,266.45,Finish,Headphones & Earbuds,0
-326,Mattel Headphones & Earbud 6,727.38,Mattel,Headphones & Earbuds,15
-327,Łowicz Headphones & Earbud 7,1241.52,Łowicz,Headphones & Earbuds,0
-328,Lenovo Headphones & Earbud 8,97.91,Lenovo,Headphones & Earbuds,5
-329,Ariel Headphones & Earbud 9,945.45,Ariel,Headphones & Earbuds,5
-330,Levi's Headphones & Earbud 10,136.94,Levi's,Headphones & Earbuds,0
-331,Gerber Helmet 1,1138.27,Gerber,Helmets,0
-332,Huggies Helmet 2,521.08,Huggies,Helmets,0
-333,Oral-B Helmet 3,421.74,Oral-B,Helmets,0
-334,Sony Helmet 4,85.74,Sony,Helmets,10
-335,Zara Helmet 5,1044.49,Zara,Helmets,25
-336,Levi's Helmet 6,1854.02,Levi's,Helmets,10
-337,Bosch Helmet 7,1781.68,Bosch,Helmets,20
-338,Asus Helmet 8,837.1,Asus,Helmets,0
-339,Puma Helmet 9,226.92,Puma,Helmets,5
-340,Levi's Helmet 10,158.24,Levi's,Helmets,5
-341,Lenovo Home Theater System 1,773.31,Lenovo,Home Theater Systems,0
-342,Nike Home Theater System 2,821.4,Nike,Home Theater Systems,0
-343,Oral-B Home Theater System 3,1646.63,Oral-B,Home Theater Systems,15
-344,Gillette Home Theater System 4,569.4,Gillette,Home Theater Systems,0
-345,Gillette Home Theater System 5,1149.64,Gillette,Home Theater Systems,0
-346,Tymbark Home Theater System 6,1631.4,Tymbark,Home Theater Systems,15
-347,Fisher-Price Home Theater System 7,166.37,Fisher-Price,Home Theater Systems,5
-348,Samsung Home Theater System 8,733.34,Samsung,Home Theater Systems,0
-349,Philips Home Theater System 9,373.42,Philips,Home Theater Systems,10
-350,HP Home Theater System 10,1669.46,HP,Home Theater Systems,0
-351,Heinz Keyboard 1,1555.78,Heinz,Keyboards,0
-352,Hasbro Keyboard 2,902.34,Hasbro,Keyboards,0
-353,Pampers Keyboard 3,1052.06,Pampers,Keyboards,0
-354,Zara Keyboard 4,1762.2,Zara,Keyboards,0
-355,Pepsi Keyboard 5,1014.45,Pepsi,Keyboards,0
-356,Gillette Keyboard 6,940.83,Gillette,Keyboards,5
-357,Pedigree Keyboard 7,899.65,Pedigree,Keyboards,5
-358,Sony Keyboard 8,1915.3,Sony,Keyboards,10
-359,Samsung Keyboard 9,271.05,Samsung,Keyboards,0
-360,Dove Keyboard 10,1095.56,Dove,Keyboards,5
-361,Zara Lamp 1,1209.34,Zara,Lamps,15
-362,Heinz Lamp 2,1232.48,Heinz,Lamps,0
-363,Apple Lamp 3,1869.52,Apple,Lamps,5
-364,Łowicz Lamp 4,1825.92,Łowicz,Lamps,0
-365,Mattel Lamp 5,902.14,Mattel,Lamps,5
-366,Purina Lamp 6,1098.07,Purina,Lamps,5
-367,Sony Lamp 7,1939.97,Sony,Lamps,15
-368,Maybelline Lamp 8,1724.49,Maybelline,Lamps,5
-369,Ariel Lamp 9,697.38,Ariel,Lamps,5
-370,Asus Lamp 10,14.97,Asus,Lamps,10
-371,Nikon Lense 1,1531.39,Nikon,Lenses,0
-372,Asus Lense 2,434.73,Asus,Lenses,0
-373,Maybelline Lense 3,1409.65,Maybelline,Lenses,0
-374,Levi's Lense 4,206.45,Levi's,Lenses,0
-375,Tymbark Lense 5,277.6,Tymbark,Lenses,0
-376,Żywiec Zdrój Lense 6,1491.02,Żywiec Zdrój,Lenses,10
-377,Bosch Lense 7,1948.61,Bosch,Lenses,10
-378,Nike Lense 8,1400.57,Nike,Lenses,0
-379,L'Oréal Lense 9,1688.64,L'Oréal,Lenses,10
-380,Mattel Lense 10,1494.85,Mattel,Lenses,15
-381,Tefal Makeup 1,1480.38,Tefal,Makeup,0
-382,Hasbro Makeup 2,461.7,Hasbro,Makeup,5
-383,Philips Makeup 3,917.82,Philips,Makeup,0
-384,Asus Makeup 4,1222.41,Asus,Makeup,10
-385,Samsung Makeup 5,1518.12,Samsung,Makeup,10
-386,Gillette Makeup 6,832.06,Gillette,Makeup,0
-387,Asus Makeup 7,1388.91,Asus,Makeup,0
-388,Oral-B Makeup 8,1208.98,Oral-B,Makeup,0
-389,Tymbark Makeup 9,1456.26,Tymbark,Makeup,25
-390,Asus Makeup 10,549.4,Asus,Makeup,5
-391,Hasbro Mice 1,1202.75,Hasbro,Mice,10
-392,Colgate Mice 2,1997.51,Colgate,Mice,10
-393,Pedigree Mice 3,950.26,Pedigree,Mice,5
-394,Levi's Mice 4,498.0,Levi's,Mice,15
-395,Asus Mice 5,954.7,Asus,Mice,15
-396,Finish Mice 6,183.98,Finish,Mice,0
-397,Colgate Mice 7,959.19,Colgate,Mice,10
-398,Colgate Mice 8,1145.82,Colgate,Mice,20
-399,Żywiec Zdrój Mice 9,1358.83,Żywiec Zdrój,Mice,0
-400,Łowicz Mice 10,599.38,Łowicz,Mice,10
-401,Garnier Microwave 1,1795.91,Garnier,Microwaves,0
-402,Dell Microwave 2,1281.9,Dell,Microwaves,5
-403,Vanish Microwave 3,150.23,Vanish,Microwaves,15
-404,Dell Microwave 4,1745.82,Dell,Microwaves,20
-405,Nikon Microwave 5,369.91,Nikon,Microwaves,0
-406,Gillette Microwave 6,597.67,Gillette,Microwaves,0
-407,Gillette Microwave 7,1595.5,Gillette,Microwaves,0
-408,Persil Microwave 8,706.82,Persil,Microwaves,10
-409,H&M Microwave 9,905.06,H&M,Microwaves,0
-410,Winiary Microwave 10,1937.56,Winiary,Microwaves,10
-411,Whiskas Mini PC 1,1337.53,Whiskas,Mini PCs,10
-412,Vanish Mini PC 2,1463.17,Vanish,Mini PCs,0
-413,Purina Mini PC 3,744.43,Purina,Mini PCs,5
-414,Nivea Mini PC 4,1546.1,Nivea,Mini PCs,10
-415,Puma Mini PC 5,419.92,Puma,Mini PCs,5
-416,Nestlé Mini PC 6,142.6,Nestlé,Mini PCs,10
-417,Dell Mini PC 7,1357.67,Dell,Mini PCs,0
-418,Garnier Mini PC 8,837.48,Garnier,Mini PCs,0
-419,Mattel Mini PC 9,1061.94,Mattel,Mini PCs,0
-420,Finish Mini PC 10,773.19,Finish,Mini PCs,5
-421,Canon Mirrorless Camera 1,1705.93,Canon,Mirrorless Cameras,0
-422,Sony Mirrorless Camera 2,189.79,Sony,Mirrorless Cameras,0
-423,Nikon Mirrorless Camera 3,588.44,Nikon,Mirrorless Cameras,0
-424,Sony Mirrorless Camera 4,1045.63,Sony,Mirrorless Cameras,10
-425,Canon Mirrorless Camera 5,1109.64,Canon,Mirrorless Cameras,10
-426,Sony Mirrorless Camera 6,397.23,Sony,Mirrorless Cameras,20
-427,Sony Mirrorless Camera 7,503.68,Sony,Mirrorless Cameras,0
-428,Sony Mirrorless Camera 8,1396.17,Sony,Mirrorless Cameras,0
-429,Sony Mirrorless Camera 9,780.5,Sony,Mirrorless Cameras,0
-430,Sony Mirrorless Camera 10,84.09,Sony,Mirrorless Cameras,15
-431,Sony Motherboard 1,723.09,Sony,Motherboards,0
-432,Fisher-Price Motherboard 2,1877.37,Fisher-Price,Motherboards,0
-433,Winiary Motherboard 3,1609.26,Winiary,Motherboards,5
-434,Nestlé Motherboard 4,1605.37,Nestlé,Motherboards,25
-435,Whiskas Motherboard 5,526.13,Whiskas,Motherboards,0
-436,Asus Motherboard 6,555.87,Asus,Motherboards,5
-437,Samsung Motherboard 7,789.73,Samsung,Motherboards,0
-438,Gillette Motherboard 8,1655.55,Gillette,Motherboards,5
-439,Lego Motherboard 9,1468.88,Lego,Motherboards,20
-440,Nike Motherboard 10,1739.39,Nike,Motherboards,15
-441,IKEA Multifunction Printer 1,762.63,IKEA,Multifunction Printers,5
-442,Canon Multifunction Printer 2,384.88,Canon,Multifunction Printers,5
-443,Tymbark Multifunction Printer 3,727.92,Tymbark,Multifunction Printers,15
-444,Pepsi Multifunction Printer 4,551.25,Pepsi,Multifunction Printers,0
-445,Tymbark Multifunction Printer 5,1545.48,Tymbark,Multifunction Printers,0
-446,Mattel Multifunction Printer 6,1135.07,Mattel,Multifunction Printers,0
-447,Apple Multifunction Printer 7,35.08,Apple,Multifunction Printers,5
-448,H&M Multifunction Printer 8,1318.28,H&M,Multifunction Printers,0
-449,Pedigree Multifunction Printer 9,325.52,Pedigree,Multifunction Printers,25
-450,Fisher-Price Multifunction Printer 10,1636.7,Fisher-Price,Multifunction Printers,10
-451,Tefal Notebook 1,1094.43,Tefal,Notebooks,5
-452,Vanish Notebook 2,1032.06,Vanish,Notebooks,0
-453,Apple Notebook 3,799.71,Apple,Notebooks,0
-454,Mattel Notebook 4,279.26,Mattel,Notebooks,0
-455,Zara Notebook 5,165.76,Zara,Notebooks,0
-456,Finish Notebook 6,1760.08,Finish,Notebooks,25
-457,Nivea Notebook 7,1728.01,Nivea,Notebooks,5
-458,Pampers Notebook 8,974.92,Pampers,Notebooks,0
-459,Whiskas Notebook 9,1470.02,Whiskas,Notebooks,0
-460,Pampers Notebook 10,425.98,Pampers,Notebooks,0
-461,HP Office Chair 1,407.54,HP,Office Chairs,0
-462,Lenovo Office Chair 2,664.11,Lenovo,Office Chairs,0
-463,HP Office Chair 3,988.58,HP,Office Chairs,10
-464,Lenovo Office Chair 4,1704.8,Lenovo,Office Chairs,0
-465,Dell Office Chair 5,466.68,Dell,Office Chairs,5
-466,Lenovo Office Chair 6,1910.61,Lenovo,Office Chairs,5
-467,Lenovo Office Chair 7,483.41,Lenovo,Office Chairs,15
-468,Lenovo Office Chair 8,1006.28,Lenovo,Office Chairs,15
-469,HP Office Chair 9,177.84,HP,Office Chairs,20
-470,Lenovo Office Chair 10,359.89,Lenovo,Office Chairs,0
-471,Dell Office Monitor 1,1987.49,Dell,Office Monitors,10
-472,Dell Office Monitor 2,1284.77,Dell,Office Monitors,0
-473,HP Office Monitor 3,810.09,HP,Office Monitors,0
-474,Dell Office Monitor 4,521.28,Dell,Office Monitors,0
-475,HP Office Monitor 5,1812.02,HP,Office Monitors,10
-476,Lenovo Office Monitor 6,763.63,Lenovo,Office Monitors,25
-477,Dell Office Monitor 7,1537.81,Dell,Office Monitors,5
-478,Dell Office Monitor 8,1542.49,Dell,Office Monitors,0
-479,HP Office Monitor 9,1080.54,HP,Office Monitors,0
-480,Lenovo Office Monitor 10,416.83,Lenovo,Office Monitors,0
-481,Nestlé Optical Drive 1,1386.0,Nestlé,Optical Drives,10
-482,Persil Optical Drive 2,803.77,Persil,Optical Drives,5
-483,Hasbro Optical Drive 3,568.93,Hasbro,Optical Drives,5
-484,LG Optical Drive 4,1040.64,LG,Optical Drives,25
-485,Colgate Optical Drive 5,546.05,Colgate,Optical Drives,5
-486,Purina Optical Drive 6,1618.19,Purina,Optical Drives,10
-487,Nikon Optical Drive 7,240.84,Nikon,Optical Drives,0
-488,Persil Optical Drive 8,356.39,Persil,Optical Drives,15
-489,H&M Optical Drive 9,1889.39,H&M,Optical Drives,10
-490,Zara Optical Drive 10,944.83,Zara,Optical Drives,5
-491,IKEA Outdoor Furniture 1,312.35,IKEA,Outdoor Furniture,10
-492,IKEA Outdoor Furniture 2,1584.92,IKEA,Outdoor Furniture,5
-493,IKEA Outdoor Furniture 3,1910.69,IKEA,Outdoor Furniture,10
-494,IKEA Outdoor Furniture 4,1419.77,IKEA,Outdoor Furniture,10
-495,IKEA Outdoor Furniture 5,1526.24,IKEA,Outdoor Furniture,0
-496,IKEA Outdoor Furniture 6,1635.83,IKEA,Outdoor Furniture,25
-497,IKEA Outdoor Furniture 7,431.79,IKEA,Outdoor Furniture,0
-498,IKEA Outdoor Furniture 8,595.27,IKEA,Outdoor Furniture,15
-499,IKEA Outdoor Furniture 9,1347.98,IKEA,Outdoor Furniture,0
-500,IKEA Outdoor Furniture 10,58.57,IKEA,Outdoor Furniture,0
-501,L'Oréal Ovens & Stove 1,994.2,L'Oréal,Ovens & Stoves,20
-502,L'Oréal Ovens & Stove 2,29.56,L'Oréal,Ovens & Stoves,5
-503,Asus Ovens & Stove 3,1437.21,Asus,Ovens & Stoves,5
-504,Nestlé Ovens & Stove 4,696.47,Nestlé,Ovens & Stoves,0
-505,Garnier Ovens & Stove 5,1262.63,Garnier,Ovens & Stoves,0
-506,HP Ovens & Stove 6,1639.85,HP,Ovens & Stoves,15
-507,Fisher-Price Ovens & Stove 7,1114.87,Fisher-Price,Ovens & Stoves,0
-508,Żywiec Zdrój Ovens & Stove 8,1486.43,Żywiec Zdrój,Ovens & Stoves,0
-509,Pepsi Ovens & Stove 9,1634.11,Pepsi,Ovens & Stoves,10
-510,Coca-Cola Ovens & Stove 10,1216.69,Coca-Cola,Ovens & Stoves,0
-511,IKEA Pens & Marker 1,1226.45,IKEA,Pens & Markers,0
-512,Tefal Pens & Marker 2,451.55,Tefal,Pens & Markers,0
-513,Purina Pens & Marker 3,929.27,Purina,Pens & Markers,0
-514,LG Pens & Marker 4,1152.57,LG,Pens & Markers,0
-515,Tymbark Pens & Marker 5,1325.68,Tymbark,Pens & Markers,0
-516,Asus Pens & Marker 6,548.24,Asus,Pens & Markers,15
-517,Winiary Pens & Marker 7,50.38,Winiary,Pens & Markers,5
-518,Vanish Pens & Marker 8,1057.17,Vanish,Pens & Markers,10
-519,Colgate Pens & Marker 9,1995.64,Colgate,Pens & Markers,0
-520,Ariel Pens & Marker 10,339.1,Ariel,Pens & Markers,20
-521,Garnier Phone Case 1,1903.65,Garnier,Phone Cases,10
-522,Dove Phone Case 2,1625.51,Dove,Phone Cases,5
-523,Nike Phone Case 3,636.02,Nike,Phone Cases,10
-524,Pepsi Phone Case 4,121.64,Pepsi,Phone Cases,0
-525,IKEA Phone Case 5,414.24,IKEA,Phone Cases,5
-526,Łowicz Phone Case 6,1201.43,Łowicz,Phone Cases,25
-527,Hasbro Phone Case 7,1170.63,Hasbro,Phone Cases,25
-528,Dell Phone Case 8,1263.67,Dell,Phone Cases,10
-529,Apple Phone Case 9,1560.27,Apple,Phone Cases,20
-530,Pedigree Phone Case 10,1754.58,Pedigree,Phone Cases,10
-531,H&M Power Bank 1,1142.34,H&M,Power Banks,0
-532,Hasbro Power Bank 2,405.39,Hasbro,Power Banks,15
-533,Persil Power Bank 3,1521.18,Persil,Power Banks,5
-534,Puma Power Bank 4,1043.43,Puma,Power Banks,10
-535,Sony Power Bank 5,1481.19,Sony,Power Banks,10
-536,H&M Power Bank 6,63.73,H&M,Power Banks,15
-537,Zara Power Bank 7,1071.07,Zara,Power Banks,10
-538,HP Power Bank 8,1493.4,HP,Power Banks,5
-539,Samsung Power Bank 9,1376.35,Samsung,Power Banks,0
-540,Heinz Power Bank 10,1756.06,Heinz,Power Banks,10
-541,Gillette Power Supplie 1,557.11,Gillette,Power Supplies,5
-542,Samsung Power Supplie 2,1820.57,Samsung,Power Supplies,5
-543,Tymbark Power Supplie 3,1480.11,Tymbark,Power Supplies,0
-544,Adidas Power Supplie 4,28.94,Adidas,Power Supplies,20
-545,Winiary Power Supplie 5,1196.19,Winiary,Power Supplies,25
-546,Winiary Power Supplie 6,767.31,Winiary,Power Supplies,10
-547,LG Power Supplie 7,701.21,LG,Power Supplies,5
-548,Gillette Power Supplie 8,469.15,Gillette,Power Supplies,5
-549,Heinz Power Supplie 9,97.32,Heinz,Power Supplies,10
-550,IKEA Power Supplie 10,1370.68,IKEA,Power Supplies,10
-551,Puma Processor 1,208.29,Puma,Processors,5
-552,Gerber Processor 2,1524.2,Gerber,Processors,10
-553,Maybelline Processor 3,150.16,Maybelline,Processors,0
-554,Pepsi Processor 4,1791.91,Pepsi,Processors,0
-555,Apple Processor 5,1811.8,Apple,Processors,0
-556,Nivea Processor 6,356.22,Nivea,Processors,0
-557,Coca-Cola Processor 7,130.82,Coca-Cola,Processors,5
-558,Winiary Processor 8,543.25,Winiary,Processors,0
-559,Pedigree Processor 9,830.75,Pedigree,Processors,10
-560,Heinz Processor 10,889.66,Heinz,Processors,0
-561,Colgate RAM Memory 1,946.57,Colgate,RAM Memory,0
-562,Purina RAM Memory 2,1453.48,Purina,RAM Memory,10
-563,Adidas RAM Memory 3,184.65,Adidas,RAM Memory,0
-564,Łowicz RAM Memory 4,1872.57,Łowicz,RAM Memory,15
-565,Winiary RAM Memory 5,1440.59,Winiary,RAM Memory,5
-566,Dove RAM Memory 6,1677.5,Dove,RAM Memory,0
-567,Pedigree RAM Memory 7,462.81,Pedigree,RAM Memory,25
-568,Huggies RAM Memory 8,895.08,Huggies,RAM Memory,0
-569,Maybelline RAM Memory 9,1293.29,Maybelline,RAM Memory,20
-570,Finish RAM Memory 10,973.34,Finish,RAM Memory,5
-571,Heinz Refrigerator 1,446.89,Heinz,Refrigerators,0
-572,Żywiec Zdrój Refrigerator 2,1100.44,Żywiec Zdrój,Refrigerators,0
-573,Coca-Cola Refrigerator 3,1361.03,Coca-Cola,Refrigerators,10
-574,Chicco Refrigerator 4,1503.48,Chicco,Refrigerators,5
-575,Oral-B Refrigerator 5,1067.99,Oral-B,Refrigerators,15
-576,Nivea Refrigerator 6,811.37,Nivea,Refrigerators,10
-577,L'Oréal Refrigerator 7,1191.69,L'Oréal,Refrigerators,0
-578,Tefal Refrigerator 8,1442.51,Tefal,Refrigerators,10
-579,Puma Refrigerator 9,1573.39,Puma,Refrigerators,5
-580,Coca-Cola Refrigerator 10,1466.57,Coca-Cola,Refrigerators,25
-581,Persil SSD 1,617.53,Persil,SSDs,0
-582,Heinz SSD 2,933.75,Heinz,SSDs,0
-583,Żywiec Zdrój SSD 3,1443.7,Żywiec Zdrój,SSDs,10
-584,Tymbark SSD 4,263.14,Tymbark,SSDs,25
-585,Sony SSD 5,559.42,Sony,SSDs,5
-586,Pepsi SSD 6,179.55,Pepsi,SSDs,25
-587,L'Oréal SSD 7,1972.01,L'Oréal,SSDs,0
-588,Żywiec Zdrój SSD 8,375.39,Żywiec Zdrój,SSDs,10
-589,Samsung SSD 9,1526.67,Samsung,SSDs,0
-590,Levi's SSD 10,1783.21,Levi's,SSDs,15
-591,Hasbro Samsung Phone 1,1698.95,Hasbro,Samsung Phones,10
-592,Ariel Samsung Phone 2,27.39,Ariel,Samsung Phones,5
-593,Whiskas Samsung Phone 3,110.8,Whiskas,Samsung Phones,15
-594,Bosch Samsung Phone 4,617.77,Bosch,Samsung Phones,0
-595,L'Oréal Samsung Phone 5,1274.83,L'Oréal,Samsung Phones,0
-596,Mattel Samsung Phone 6,1883.59,Mattel,Samsung Phones,0
-597,Oral-B Samsung Phone 7,442.67,Oral-B,Samsung Phones,5
-598,IKEA Samsung Phone 8,1681.45,IKEA,Samsung Phones,15
-599,Finish Samsung Phone 9,479.5,Finish,Samsung Phones,0
-600,Canon Samsung Phone 10,1628.46,Canon,Samsung Phones,25
-601,Łowicz Samsung Watch 1,1420.85,Łowicz,Samsung Watch,0
-602,Lenovo Samsung Watch 2,1354.8,Lenovo,Samsung Watch,10
-603,Levi's Samsung Watch 3,594.98,Levi's,Samsung Watch,5
-604,LG Samsung Watch 4,1368.15,LG,Samsung Watch,15
-605,Gillette Samsung Watch 5,889.75,Gillette,Samsung Watch,10
-606,Heinz Samsung Watch 6,69.86,Heinz,Samsung Watch,10
-607,Persil Samsung Watch 7,1867.37,Persil,Samsung Watch,0
-608,Nike Samsung Watch 8,1246.73,Nike,Samsung Watch,0
-609,HP Samsung Watch 9,163.76,HP,Samsung Watch,20
-610,Chicco Samsung Watch 10,1312.92,Chicco,Samsung Watch,15
-611,Dell Scanner 1,1616.52,Dell,Scanners,20
-612,Maybelline Scanner 2,1765.3,Maybelline,Scanners,15
-613,Fisher-Price Scanner 3,1124.76,Fisher-Price,Scanners,0
-614,Ariel Scanner 4,202.45,Ariel,Scanners,20
-615,H&M Scanner 5,1382.18,H&M,Scanners,10
-616,Nestlé Scanner 6,759.67,Nestlé,Scanners,5
-617,Nike Scanner 7,179.8,Nike,Scanners,0
-618,Pampers Scanner 8,613.92,Pampers,Scanners,0
-619,Vanish Scanner 9,1813.8,Vanish,Scanners,10
-620,Tymbark Scanner 10,1721.56,Tymbark,Scanners,0
-621,Purina Service and Network Tool 1,1549.89,Purina,Service and Network Tools,10
-622,Dove Service and Network Tool 2,1905.9,Dove,Service and Network Tools,15
-623,HP Service and Network Tool 3,135.92,HP,Service and Network Tools,5
-624,L'Oréal Service and Network Tool 4,805.54,L'Oréal,Service and Network Tools,0
-625,Oral-B Service and Network Tool 5,899.58,Oral-B,Service and Network Tools,0
-626,Tefal Service and Network Tool 6,1702.34,Tefal,Service and Network Tools,5
-627,Dell Service and Network Tool 7,1277.27,Dell,Service and Network Tools,15
-628,Winiary Service and Network Tool 8,910.56,Winiary,Service and Network Tools,0
-629,Mattel Service and Network Tool 9,1109.76,Mattel,Service and Network Tools,0
-630,Dell Service and Network Tool 10,640.87,Dell,Service and Network Tools,5
-631,L'Oréal Skincare 1,1541.5,L'Oréal,Skincare,0
-632,Pedigree Skincare 2,1720.85,Pedigree,Skincare,0
-633,Dove Skincare 3,870.6,Dove,Skincare,0
-634,Pedigree Skincare 4,1091.28,Pedigree,Skincare,0
-635,Nestlé Skincare 5,418.23,Nestlé,Skincare,15
-636,Dove Skincare 6,603.65,Dove,Skincare,5
-637,Colgate Skincare 7,1462.67,Colgate,Skincare,0
-638,Nivea Skincare 8,672.53,Nivea,Skincare,25
-639,Bosch Skincare 9,866.58,Bosch,Skincare,15
-640,LG Skincare 10,611.51,LG,Skincare,5
-641,Samsung Sleeping Bag 1,1378.39,Samsung,Sleeping Bags,5
-642,Pampers Sleeping Bag 2,1459.81,Pampers,Sleeping Bags,10
-643,LG Sleeping Bag 3,1255.32,LG,Sleeping Bags,10
-644,Apple Sleeping Bag 4,688.59,Apple,Sleeping Bags,25
-645,Apple Sleeping Bag 5,333.4,Apple,Sleeping Bags,0
-646,Chicco Sleeping Bag 6,1936.99,Chicco,Sleeping Bags,0
-647,Coca-Cola Sleeping Bag 7,1944.43,Coca-Cola,Sleeping Bags,10
-648,Vanish Sleeping Bag 8,328.92,Vanish,Sleeping Bags,0
-649,Canon Sleeping Bag 9,1276.92,Canon,Sleeping Bags,5
-650,Philips Sleeping Bag 10,354.19,Philips,Sleeping Bags,5
-651,LG Smart TV 1,805.29,LG,Smart TVs,0
-652,LG Smart TV 2,1916.99,LG,Smart TVs,0
-653,LG Smart TV 3,1092.48,LG,Smart TVs,5
-654,LG Smart TV 4,1956.43,LG,Smart TVs,5
-655,Samsung Smart TV 5,1963.53,Samsung,Smart TVs,25
-656,LG Smart TV 6,1068.21,LG,Smart TVs,10
-657,LG Smart TV 7,859.89,LG,Smart TVs,5
-658,Samsung Smart TV 8,346.59,Samsung,Smart TVs,0
-659,LG Smart TV 9,1384.7,LG,Smart TVs,25
-660,LG Smart TV 10,1621.26,LG,Smart TVs,5
-661,Whiskas Sofas & Couche 1,1140.27,Whiskas,Sofas & Couches,0
-662,Lenovo Sofas & Couche 2,858.79,Lenovo,Sofas & Couches,15
-663,Colgate Sofas & Couche 3,1720.22,Colgate,Sofas & Couches,10
-664,Finish Sofas & Couche 4,948.2,Finish,Sofas & Couches,5
-665,Tefal Sofas & Couche 5,900.57,Tefal,Sofas & Couches,0
-666,Tefal Sofas & Couche 6,1362.92,Tefal,Sofas & Couches,0
-667,Heinz Sofas & Couche 7,574.58,Heinz,Sofas & Couches,5
-668,Nivea Sofas & Couche 8,903.48,Nivea,Sofas & Couches,0
-669,Zara Sofas & Couche 9,760.6,Zara,Sofas & Couches,15
-670,Pedigree Sofas & Couche 10,229.21,Pedigree,Sofas & Couches,10
-671,Samsung Sound Card 1,1945.31,Samsung,Sound Cards,5
-672,Asus Sound Card 2,1098.44,Asus,Sound Cards,5
-673,Sony Sound Card 3,1293.0,Sony,Sound Cards,10
-674,Winiary Sound Card 4,246.8,Winiary,Sound Cards,10
-675,Adidas Sound Card 5,601.83,Adidas,Sound Cards,0
-676,L'Oréal Sound Card 6,351.64,L'Oréal,Sound Cards,10
-677,Persil Sound Card 7,1975.01,Persil,Sound Cards,0
-678,Gerber Sound Card 8,1721.99,Gerber,Sound Cards,10
-679,Lego Sound Card 9,1483.41,Lego,Sound Cards,0
-680,Nike Sound Card 10,752.51,Nike,Sound Cards,10
-681,Fisher-Price Soundbar 1,906.49,Fisher-Price,Soundbars,15
-682,Fisher-Price Soundbar 2,1337.62,Fisher-Price,Soundbars,5
-683,Gillette Soundbar 3,636.29,Gillette,Soundbars,10
-684,HP Soundbar 4,1220.08,HP,Soundbars,10
-685,Nestlé Soundbar 5,1263.62,Nestlé,Soundbars,15
-686,IKEA Soundbar 6,1910.55,IKEA,Soundbars,0
-687,Zara Soundbar 7,142.98,Zara,Soundbars,20
-688,Whiskas Soundbar 8,1777.05,Whiskas,Soundbars,0
-689,Łowicz Soundbar 9,173.42,Łowicz,Soundbars,5
-690,HP Soundbar 10,1238.73,HP,Soundbars,0
-691,Nivea Streaming Accessorie 1,1908.28,Nivea,Streaming Accessories,0
-692,Adidas Streaming Accessorie 2,778.43,Adidas,Streaming Accessories,0
-693,Gillette Streaming Accessorie 3,943.02,Gillette,Streaming Accessories,10
-694,Dell Streaming Accessorie 4,1361.42,Dell,Streaming Accessories,10
-695,Nestlé Streaming Accessorie 5,1084.94,Nestlé,Streaming Accessories,5
-696,Colgate Streaming Accessorie 6,1812.6,Colgate,Streaming Accessories,5
-697,Asus Streaming Accessorie 7,589.57,Asus,Streaming Accessories,0
-698,Asus Streaming Accessorie 8,1547.22,Asus,Streaming Accessories,10
-699,Colgate Streaming Accessorie 9,323.07,Colgate,Streaming Accessories,25
-700,Zara Streaming Accessorie 10,583.1,Zara,Streaming Accessories,15
-701,Canon Tables & Chair 1,737.38,Canon,Tables & Chairs,10
-702,Pedigree Tables & Chair 2,604.49,Pedigree,Tables & Chairs,10
-703,Colgate Tables & Chair 3,1660.15,Colgate,Tables & Chairs,10
-704,Adidas Tables & Chair 4,613.57,Adidas,Tables & Chairs,10
-705,Pampers Tables & Chair 5,217.12,Pampers,Tables & Chairs,10
-706,Dell Tables & Chair 6,494.55,Dell,Tables & Chairs,0
-707,Sony Tables & Chair 7,1374.55,Sony,Tables & Chairs,10
-708,IKEA Tables & Chair 8,289.75,IKEA,Tables & Chairs,20
-709,Coca-Cola Tables & Chair 9,1201.92,Coca-Cola,Tables & Chairs,10
-710,Puma Tables & Chair 10,1029.34,Puma,Tables & Chairs,5
-711,Whiskas Tent 1,1465.44,Whiskas,Tents,15
-712,Fisher-Price Tent 2,356.07,Fisher-Price,Tents,0
-713,Vanish Tent 3,1291.55,Vanish,Tents,10
-714,Nike Tent 4,1653.27,Nike,Tents,0
-715,Gillette Tent 5,429.57,Gillette,Tents,10
-716,Tymbark Tent 6,1558.87,Tymbark,Tents,5
-717,Vanish Tent 7,1398.5,Vanish,Tents,25
-718,Dove Tent 8,583.16,Dove,Tents,10
-719,Chicco Tent 9,1749.7,Chicco,Tents,0
-720,Huggies Tent 10,1303.66,Huggies,Tents,25
-721,Lenovo Thermal Pad 1,380.97,Lenovo,Thermal Pads,5
-722,LG Thermal Pad 2,756.36,LG,Thermal Pads,5
-723,Maybelline Thermal Pad 3,1995.19,Maybelline,Thermal Pads,15
-724,Asus Thermal Pad 4,1057.24,Asus,Thermal Pads,0
-725,Puma Thermal Pad 5,340.92,Puma,Thermal Pads,15
-726,IKEA Thermal Pad 6,860.84,IKEA,Thermal Pads,0
-727,IKEA Thermal Pad 7,1496.7,IKEA,Thermal Pads,0
-728,Pampers Thermal Pad 8,1152.07,Pampers,Thermal Pads,5
-729,Żywiec Zdrój Thermal Pad 9,1904.01,Żywiec Zdrój,Thermal Pads,0
-730,Whiskas Thermal Pad 10,1245.21,Whiskas,Thermal Pads,15
-731,Sony Thermal Paste 1,1574.43,Sony,Thermal Pastes,5
-732,Canon Thermal Paste 2,273.78,Canon,Thermal Pastes,0
-733,Fisher-Price Thermal Paste 3,246.42,Fisher-Price,Thermal Pastes,0
-734,Żywiec Zdrój Thermal Paste 4,977.35,Żywiec Zdrój,Thermal Pastes,5
-735,Coca-Cola Thermal Paste 5,1046.52,Coca-Cola,Thermal Pastes,10
-736,Purina Thermal Paste 6,949.77,Purina,Thermal Pastes,15
-737,Garnier Thermal Paste 7,1849.85,Garnier,Thermal Pastes,0
-738,Dell Thermal Paste 8,1170.3,Dell,Thermal Pastes,20
-739,Sony Thermal Paste 9,219.48,Sony,Thermal Pastes,0
-740,Levi's Thermal Paste 10,1993.68,Levi's,Thermal Pastes,15
-741,Bosch Thermometer 1,684.96,Bosch,Thermometers,0
-742,H&M Thermometer 2,817.72,H&M,Thermometers,25
-743,Finish Thermometer 3,873.12,Finish,Thermometers,15
-744,Nivea Thermometer 4,1056.21,Nivea,Thermometers,0
-745,Asus Thermometer 5,1077.68,Asus,Thermometers,0
-746,Asus Thermometer 6,1642.83,Asus,Thermometers,0
-747,Tymbark Thermometer 7,1739.13,Tymbark,Thermometers,10
-748,Fisher-Price Thermometer 8,631.75,Fisher-Price,Thermometers,0
-749,Hasbro Thermometer 9,1327.57,Hasbro,Thermometers,5
-750,Hasbro Thermometer 10,61.94,Hasbro,Thermometers,5
-751,Levi's Toasters & Sandwich Maker 1,1824.44,Levi's,Toasters & Sandwich Makers,10
-752,Oral-B Toasters & Sandwich Maker 2,1812.22,Oral-B,Toasters & Sandwich Makers,25
-753,Levi's Toasters & Sandwich Maker 3,1557.84,Levi's,Toasters & Sandwich Makers,0
-754,Fisher-Price Toasters & Sandwich Maker 4,1692.48,Fisher-Price,Toasters & Sandwich Makers,0
-755,Huggies Toasters & Sandwich Maker 5,167.12,Huggies,Toasters & Sandwich Makers,0
-756,Vanish Toasters & Sandwich Maker 6,1631.35,Vanish,Toasters & Sandwich Makers,0
-757,Huggies Toasters & Sandwich Maker 7,1524.78,Huggies,Toasters & Sandwich Makers,15
-758,Vanish Toasters & Sandwich Maker 8,1621.84,Vanish,Toasters & Sandwich Makers,5
-759,Gerber Toasters & Sandwich Maker 9,611.56,Gerber,Toasters & Sandwich Makers,0
-760,Whiskas Toasters & Sandwich Maker 10,1558.55,Whiskas,Toasters & Sandwich Makers,5
-761,Żywiec Zdrój Treadmill 1,670.79,Żywiec Zdrój,Treadmills,0
-762,Gerber Treadmill 2,1681.71,Gerber,Treadmills,0
-763,Canon Treadmill 3,1367.58,Canon,Treadmills,0
-764,Pepsi Treadmill 4,1194.93,Pepsi,Treadmills,0
-765,Colgate Treadmill 5,211.98,Colgate,Treadmills,0
-766,LG Treadmill 6,87.95,LG,Treadmills,0
-767,Bosch Treadmill 7,798.01,Bosch,Treadmills,25
-768,Tefal Treadmill 8,1483.75,Tefal,Treadmills,5
-769,Hasbro Treadmill 9,1465.38,Hasbro,Treadmills,5
-770,Nivea Treadmill 10,1818.78,Nivea,Treadmills,0
-771,Gillette Tripod 1,760.74,Gillette,Tripods,25
-772,Nikon Tripod 2,400.3,Nikon,Tripods,10
-773,Heinz Tripod 3,1485.36,Heinz,Tripods,0
-774,Pampers Tripod 4,1954.38,Pampers,Tripods,0
-775,Sony Tripod 5,825.59,Sony,Tripods,0
-776,Fisher-Price Tripod 6,1195.49,Fisher-Price,Tripods,0
-777,Nikon Tripod 7,1441.7,Nikon,Tripods,15
-778,Coca-Cola Tripod 8,524.24,Coca-Cola,Tripods,0
-779,Nikon Tripod 9,862.17,Nikon,Tripods,0
-780,LG Tripod 10,255.59,LG,Tripods,25
-781,Canon Ultrabook 1,166.37,Canon,Ultrabooks,5
-782,Łowicz Ultrabook 2,338.41,Łowicz,Ultrabooks,10
-783,Philips Ultrabook 3,552.87,Philips,Ultrabooks,0
-784,Zara Ultrabook 4,1066.98,Zara,Ultrabooks,0
-785,Nikon Ultrabook 5,1389.61,Nikon,Ultrabooks,0
-786,Canon Ultrabook 6,1469.23,Canon,Ultrabooks,0
-787,Lenovo Ultrabook 7,1531.53,Lenovo,Ultrabooks,15
-788,Chicco Ultrabook 8,72.02,Chicco,Ultrabooks,10
-789,Nestlé Ultrabook 9,702.8,Nestlé,Ultrabooks,0
-790,Samsung Ultrabook 10,1565.51,Samsung,Ultrabooks,10
-791,Levi's Washing Machine 1,1988.09,Levi's,Washing Machines,0
-792,Vanish Washing Machine 2,1633.27,Vanish,Washing Machines,25
-793,Sony Washing Machine 3,1744.34,Sony,Washing Machines,0
-794,Samsung Washing Machine 4,1848.38,Samsung,Washing Machines,5
-795,Łowicz Washing Machine 5,29.07,Łowicz,Washing Machines,0
-796,Winiary Washing Machine 6,446.94,Winiary,Washing Machines,0
-797,Pepsi Washing Machine 7,280.12,Pepsi,Washing Machines,15
-798,L'Oréal Washing Machine 8,311.86,L'Oréal,Washing Machines,5
-799,Purina Washing Machine 9,1360.03,Purina,Washing Machines,10
-800,HP Washing Machine 10,1896.24,HP,Washing Machines,5
-801,Garnier Water Cooling Kit 1,1547.59,Garnier,Water Cooling Kits,10
-802,Tymbark Water Cooling Kit 2,1918.95,Tymbark,Water Cooling Kits,0
-803,Żywiec Zdrój Water Cooling Kit 3,1216.19,Żywiec Zdrój,Water Cooling Kits,10
-804,Samsung Water Cooling Kit 4,262.51,Samsung,Water Cooling Kits,15
-805,Philips Water Cooling Kit 5,948.87,Philips,Water Cooling Kits,10
-806,Oral-B Water Cooling Kit 6,1880.75,Oral-B,Water Cooling Kits,0
-807,Maybelline Water Cooling Kit 7,145.87,Maybelline,Water Cooling Kits,0
-808,Asus Water Cooling Kit 8,110.77,Asus,Water Cooling Kits,0
-809,Heinz Water Cooling Kit 9,1502.22,Heinz,Water Cooling Kits,10
-810,Pampers Water Cooling Kit 10,1972.26,Pampers,Water Cooling Kits,0
-811,Dove Webcam 1,591.42,Dove,Webcams,0
-812,Samsung Webcam 2,333.73,Samsung,Webcams,5
-813,Zara Webcam 3,562.63,Zara,Webcams,10
-814,Huggies Webcam 4,488.37,Huggies,Webcams,5
-815,Finish Webcam 5,1497.14,Finish,Webcams,25
-816,Łowicz Webcam 6,37.13,Łowicz,Webcams,0
-817,Tymbark Webcam 7,206.4,Tymbark,Webcams,0
-818,Puma Webcam 8,1681.17,Puma,Webcams,10
-819,L'Oréal Webcam 9,1409.8,L'Oréal,Webcams,10
-820,Chicco Webcam 10,1631.16,Chicco,Webcams,5
-821,Bosch Xiaomi Phone 1,688.72,Bosch,Xiaomi Phones,15
-822,Gillette Xiaomi Phone 2,110.0,Gillette,Xiaomi Phones,0
-823,Levi's Xiaomi Phone 3,1147.94,Levi's,Xiaomi Phones,0
-824,Mattel Xiaomi Phone 4,56.97,Mattel,Xiaomi Phones,25
-825,Gillette Xiaomi Phone 5,1994.87,Gillette,Xiaomi Phones,5
-826,Pedigree Xiaomi Phone 6,1542.23,Pedigree,Xiaomi Phones,0
-827,Dove Xiaomi Phone 7,142.6,Dove,Xiaomi Phones,25
-828,Whiskas Xiaomi Phone 8,443.29,Whiskas,Xiaomi Phones,0
-829,Heinz Xiaomi Phone 9,1208.44,Heinz,Xiaomi Phones,10
-830,Lego Xiaomi Phone 10,1723.17,Lego,Xiaomi Phones,15
-831,L'Oréal iPhone 1,1447.72,L'Oréal,iPhones,20
-832,Fisher-Price iPhone 2,138.09,Fisher-Price,iPhones,25
-833,Apple iPhone 3,1880.14,Apple,iPhones,5
-834,Adidas iPhone 4,1851.62,Adidas,iPhones,10
-835,Samsung iPhone 5,1342.48,Samsung,iPhones,10
-836,Tefal iPhone 6,1624.42,Tefal,iPhones,5
-837,Sony iPhone 7,1347.5,Sony,iPhones,15
-838,Dove iPhone 8,1003.25,Dove,iPhones,0
-839,Chicco iPhone 9,503.61,Chicco,iPhones,0
-840,Dell iPhone 10,1596.58,Dell,iPhones,5
+productId,productName,productPrice,producerName,categoryName,discountPercentValue,imagePath
+1,Sony 4K TV 1,1615.66,Sony,4K TVs,10,src/main/resources/data/images/1.png
+2,Samsung 4K TV 2,1176.32,Samsung,4K TVs,10,src/main/resources/data/images/1.png
+3,Sony 4K TV 3,1278.79,Sony,4K TVs,0,src/main/resources/data/images/1.png
+4,Samsung 4K TV 4,548.22,Samsung,4K TVs,10,src/main/resources/data/images/1.png
+5,Samsung 4K TV 5,138.12,Samsung,4K TVs,0,src/main/resources/data/images/1.png
+6,LG 4K TV 6,1997.89,LG,4K TVs,5,src/main/resources/data/images/1.png
+7,Sony 4K TV 7,540.73,Sony,4K TVs,0,src/main/resources/data/images/1.png
+8,Samsung 4K TV 8,751.08,Samsung,4K TVs,10,src/main/resources/data/images/1.png
+9,Samsung 4K TV 9,1228.96,Samsung,4K TVs,25,src/main/resources/data/images/1.png
+10,Sony 4K TV 10,223.99,Sony,4K TVs,10,src/main/resources/data/images/1.png
+11,HP Accessories for Cases and Component 1,1092.24,HP,Accessories for Cases and Components,0,src/main/resources/data/images/1.png
+12,Mattel Accessories for Cases and Component 2,744.64,Mattel,Accessories for Cases and Components,25,src/main/resources/data/images/1.png
+13,Nestlé Accessories for Cases and Component 3,1151.24,Nestlé,Accessories for Cases and Components,0,src/main/resources/data/images/1.png
+14,Nivea Accessories for Cases and Component 4,521.24,Nivea,Accessories for Cases and Components,10,src/main/resources/data/images/1.png
+15,Heinz Accessories for Cases and Component 5,1961.17,Heinz,Accessories for Cases and Components,0,src/main/resources/data/images/1.png
+16,Sony Accessories for Cases and Component 6,1151.79,Sony,Accessories for Cases and Components,0,src/main/resources/data/images/1.png
+17,Levi's Accessories for Cases and Component 7,1394.98,Levi's,Accessories for Cases and Components,5,src/main/resources/data/images/1.png
+18,Chicco Accessories for Cases and Component 8,1072.53,Chicco,Accessories for Cases and Components,0,src/main/resources/data/images/1.png
+19,Ariel Accessories for Cases and Component 9,1925.37,Ariel,Accessories for Cases and Components,0,src/main/resources/data/images/1.png
+20,Asus Accessories for Cases and Component 10,1442.26,Asus,Accessories for Cases and Components,20,src/main/resources/data/images/1.png
+21,Canon All-in-One PC 1,1897.35,Canon,All-in-One PCs,0,src/main/resources/data/images/1.png
+22,Levi's All-in-One PC 2,1894.55,Levi's,All-in-One PCs,0,src/main/resources/data/images/1.png
+23,Colgate All-in-One PC 3,38.08,Colgate,All-in-One PCs,15,src/main/resources/data/images/1.png
+24,Ariel All-in-One PC 4,1926.19,Ariel,All-in-One PCs,5,src/main/resources/data/images/1.png
+25,HP All-in-One PC 5,1111.63,HP,All-in-One PCs,5,src/main/resources/data/images/1.png
+26,Fisher-Price All-in-One PC 6,955.02,Fisher-Price,All-in-One PCs,10,src/main/resources/data/images/1.png
+27,Lenovo All-in-One PC 7,1982.75,Lenovo,All-in-One PCs,15,src/main/resources/data/images/1.png
+28,Apple All-in-One PC 8,1634.97,Apple,All-in-One PCs,25,src/main/resources/data/images/1.png
+29,Finish All-in-One PC 9,734.44,Finish,All-in-One PCs,10,src/main/resources/data/images/1.png
+30,Gillette All-in-One PC 10,1890.91,Gillette,All-in-One PCs,10,src/main/resources/data/images/1.png
+31,LG Apple Watch 1,268.97,LG,Apple Watch,15,src/main/resources/data/images/1.png
+32,Fisher-Price Apple Watch 2,176.67,Fisher-Price,Apple Watch,5,src/main/resources/data/images/1.png
+33,Apple Apple Watch 3,638.44,Apple,Apple Watch,5,src/main/resources/data/images/1.png
+34,Garnier Apple Watch 4,1758.95,Garnier,Apple Watch,5,src/main/resources/data/images/1.png
+35,Gillette Apple Watch 5,462.01,Gillette,Apple Watch,20,src/main/resources/data/images/1.png
+36,Lenovo Apple Watch 6,610.87,Lenovo,Apple Watch,0,src/main/resources/data/images/1.png
+37,Levi's Apple Watch 7,1030.56,Levi's,Apple Watch,0,src/main/resources/data/images/1.png
+38,Tefal Apple Watch 8,719.91,Tefal,Apple Watch,5,src/main/resources/data/images/1.png
+39,LG Apple Watch 9,262.95,LG,Apple Watch,10,src/main/resources/data/images/1.png
+40,Żywiec Zdrój Apple Watch 10,405.68,Żywiec Zdrój,Apple Watch,5,src/main/resources/data/images/1.png
+41,Gerber Bicycle 1,1680.05,Gerber,Bicycles,0,src/main/resources/data/images/1.png
+42,Asus Bicycle 2,777.6,Asus,Bicycles,20,src/main/resources/data/images/1.png
+43,Samsung Bicycle 3,534.93,Samsung,Bicycles,0,src/main/resources/data/images/1.png
+44,Mattel Bicycle 4,409.42,Mattel,Bicycles,5,src/main/resources/data/images/1.png
+45,LG Bicycle 5,364.37,LG,Bicycles,10,src/main/resources/data/images/1.png
+46,Purina Bicycle 6,728.28,Purina,Bicycles,10,src/main/resources/data/images/1.png
+47,Fisher-Price Bicycle 7,1230.82,Fisher-Price,Bicycles,0,src/main/resources/data/images/1.png
+48,Fisher-Price Bicycle 8,1814.12,Fisher-Price,Bicycles,5,src/main/resources/data/images/1.png
+49,Whiskas Bicycle 9,1205.07,Whiskas,Bicycles,0,src/main/resources/data/images/1.png
+50,Persil Bicycle 10,449.17,Persil,Bicycles,0,src/main/resources/data/images/1.png
+51,Sony Blood Pressure Monitor 1,1369.05,Sony,Blood Pressure Monitors,10,src/main/resources/data/images/1.png
+52,Bosch Blood Pressure Monitor 2,1830.73,Bosch,Blood Pressure Monitors,0,src/main/resources/data/images/1.png
+53,Nestlé Blood Pressure Monitor 3,1749.18,Nestlé,Blood Pressure Monitors,10,src/main/resources/data/images/1.png
+54,Chicco Blood Pressure Monitor 4,548.79,Chicco,Blood Pressure Monitors,0,src/main/resources/data/images/1.png
+55,Samsung Blood Pressure Monitor 5,1041.35,Samsung,Blood Pressure Monitors,5,src/main/resources/data/images/1.png
+56,Ariel Blood Pressure Monitor 6,1060.85,Ariel,Blood Pressure Monitors,20,src/main/resources/data/images/1.png
+57,Dell Blood Pressure Monitor 7,786.61,Dell,Blood Pressure Monitors,5,src/main/resources/data/images/1.png
+58,Pedigree Blood Pressure Monitor 8,306.57,Pedigree,Blood Pressure Monitors,15,src/main/resources/data/images/1.png
+59,Sony Blood Pressure Monitor 9,1173.56,Sony,Blood Pressure Monitors,10,src/main/resources/data/images/1.png
+60,Garnier Blood Pressure Monitor 10,164.7,Garnier,Blood Pressure Monitors,0,src/main/resources/data/images/1.png
+61,HP Business Laptop 1,508.97,HP,Business Laptops,10,src/main/resources/data/images/1.png
+62,Persil Business Laptop 2,1282.34,Persil,Business Laptops,10,src/main/resources/data/images/1.png
+63,Finish Business Laptop 3,467.13,Finish,Business Laptops,10,src/main/resources/data/images/1.png
+64,Persil Business Laptop 4,632.26,Persil,Business Laptops,15,src/main/resources/data/images/1.png
+65,Apple Business Laptop 5,1618.17,Apple,Business Laptops,10,src/main/resources/data/images/1.png
+66,Lenovo Business Laptop 6,964.51,Lenovo,Business Laptops,0,src/main/resources/data/images/1.png
+67,Gerber Business Laptop 7,1004.51,Gerber,Business Laptops,25,src/main/resources/data/images/1.png
+68,Samsung Business Laptop 8,701.96,Samsung,Business Laptops,0,src/main/resources/data/images/1.png
+69,IKEA Business Laptop 9,569.67,IKEA,Business Laptops,20,src/main/resources/data/images/1.png
+70,IKEA Business Laptop 10,796.13,IKEA,Business Laptops,5,src/main/resources/data/images/1.png
+71,Pedigree CPU Cooling 1,1364.23,Pedigree,CPU Cooling,0,src/main/resources/data/images/1.png
+72,Colgate CPU Cooling 2,189.38,Colgate,CPU Cooling,15,src/main/resources/data/images/1.png
+73,Bosch CPU Cooling 3,1985.48,Bosch,CPU Cooling,15,src/main/resources/data/images/1.png
+74,Levi's CPU Cooling 4,200.96,Levi's,CPU Cooling,5,src/main/resources/data/images/1.png
+75,Finish CPU Cooling 5,313.46,Finish,CPU Cooling,5,src/main/resources/data/images/1.png
+76,Nike CPU Cooling 6,1579.29,Nike,CPU Cooling,0,src/main/resources/data/images/1.png
+77,Tefal CPU Cooling 7,1502.9,Tefal,CPU Cooling,0,src/main/resources/data/images/1.png
+78,Finish CPU Cooling 8,193.71,Finish,CPU Cooling,10,src/main/resources/data/images/1.png
+79,Bosch CPU Cooling 9,495.36,Bosch,CPU Cooling,0,src/main/resources/data/images/1.png
+80,Pepsi CPU Cooling 10,717.21,Pepsi,CPU Cooling,0,src/main/resources/data/images/1.png
+81,Canon Camera Bag 1,454.55,Canon,Camera Bags,0,src/main/resources/data/images/1.png
+82,Canon Camera Bag 2,142.5,Canon,Camera Bags,5,src/main/resources/data/images/1.png
+83,Sony Camera Bag 3,904.05,Sony,Camera Bags,10,src/main/resources/data/images/1.png
+84,Canon Camera Bag 4,1782.03,Canon,Camera Bags,10,src/main/resources/data/images/1.png
+85,Nikon Camera Bag 5,1513.68,Nikon,Camera Bags,0,src/main/resources/data/images/1.png
+86,Nikon Camera Bag 6,1627.5,Nikon,Camera Bags,0,src/main/resources/data/images/1.png
+87,Sony Camera Bag 7,28.21,Sony,Camera Bags,25,src/main/resources/data/images/1.png
+88,Nikon Camera Bag 8,1387.34,Nikon,Camera Bags,0,src/main/resources/data/images/1.png
+89,Sony Camera Bag 9,1739.89,Sony,Camera Bags,5,src/main/resources/data/images/1.png
+90,Sony Camera Bag 10,1145.38,Sony,Camera Bags,5,src/main/resources/data/images/1.png
+91,Gillette Ceiling Light 1,837.42,Gillette,Ceiling Lights,0,src/main/resources/data/images/1.png
+92,Oral-B Ceiling Light 2,1502.62,Oral-B,Ceiling Lights,0,src/main/resources/data/images/1.png
+93,Tymbark Ceiling Light 3,88.49,Tymbark,Ceiling Lights,0,src/main/resources/data/images/1.png
+94,Nivea Ceiling Light 4,975.2,Nivea,Ceiling Lights,0,src/main/resources/data/images/1.png
+95,Garnier Ceiling Light 5,1591.22,Garnier,Ceiling Lights,15,src/main/resources/data/images/1.png
+96,Chicco Ceiling Light 6,868.25,Chicco,Ceiling Lights,20,src/main/resources/data/images/1.png
+97,Tymbark Ceiling Light 7,637.85,Tymbark,Ceiling Lights,10,src/main/resources/data/images/1.png
+98,Oral-B Ceiling Light 8,1662.82,Oral-B,Ceiling Lights,25,src/main/resources/data/images/1.png
+99,Coca-Cola Ceiling Light 9,498.96,Coca-Cola,Ceiling Lights,5,src/main/resources/data/images/1.png
+100,Tefal Ceiling Light 10,1566.21,Tefal,Ceiling Lights,15,src/main/resources/data/images/1.png
+101,Zara Chargers & Cable 1,953.91,Zara,Chargers & Cables,0,src/main/resources/data/images/1.png
+102,Pampers Chargers & Cable 2,906.66,Pampers,Chargers & Cables,5,src/main/resources/data/images/1.png
+103,Nikon Chargers & Cable 3,37.71,Nikon,Chargers & Cables,5,src/main/resources/data/images/1.png
+104,Bosch Chargers & Cable 4,670.2,Bosch,Chargers & Cables,0,src/main/resources/data/images/1.png
+105,Finish Chargers & Cable 5,1575.04,Finish,Chargers & Cables,0,src/main/resources/data/images/1.png
+106,Heinz Chargers & Cable 6,611.14,Heinz,Chargers & Cables,25,src/main/resources/data/images/1.png
+107,IKEA Chargers & Cable 7,969.35,IKEA,Chargers & Cables,25,src/main/resources/data/images/1.png
+108,Żywiec Zdrój Chargers & Cable 8,1249.59,Żywiec Zdrój,Chargers & Cables,0,src/main/resources/data/images/1.png
+109,Maybelline Chargers & Cable 9,1941.75,Maybelline,Chargers & Cables,0,src/main/resources/data/images/1.png
+110,Whiskas Chargers & Cable 10,1938.51,Whiskas,Chargers & Cables,5,src/main/resources/data/images/1.png
+111,LG Cleaning Product 1,378.71,LG,Cleaning Products,0,src/main/resources/data/images/1.png
+112,Łowicz Cleaning Product 2,1907.36,Łowicz,Cleaning Products,0,src/main/resources/data/images/1.png
+113,Bosch Cleaning Product 3,600.46,Bosch,Cleaning Products,0,src/main/resources/data/images/1.png
+114,Asus Cleaning Product 4,1824.72,Asus,Cleaning Products,0,src/main/resources/data/images/1.png
+115,Adidas Cleaning Product 5,936.52,Adidas,Cleaning Products,0,src/main/resources/data/images/1.png
+116,Żywiec Zdrój Cleaning Product 6,200.64,Żywiec Zdrój,Cleaning Products,0,src/main/resources/data/images/1.png
+117,Purina Cleaning Product 7,1884.34,Purina,Cleaning Products,5,src/main/resources/data/images/1.png
+118,Nikon Cleaning Product 8,1998.28,Nikon,Cleaning Products,0,src/main/resources/data/images/1.png
+119,Lego Cleaning Product 9,1701.41,Lego,Cleaning Products,5,src/main/resources/data/images/1.png
+120,Garnier Cleaning Product 10,942.05,Garnier,Cleaning Products,5,src/main/resources/data/images/1.png
+121,Pampers Coffee Machine 1,284.71,Pampers,Coffee Machines,0,src/main/resources/data/images/1.png
+122,Dove Coffee Machine 2,1732.93,Dove,Coffee Machines,15,src/main/resources/data/images/1.png
+123,Gerber Coffee Machine 3,301.6,Gerber,Coffee Machines,15,src/main/resources/data/images/1.png
+124,Huggies Coffee Machine 4,240.27,Huggies,Coffee Machines,5,src/main/resources/data/images/1.png
+125,Philips Coffee Machine 5,1269.79,Philips,Coffee Machines,5,src/main/resources/data/images/1.png
+126,Huggies Coffee Machine 6,442.34,Huggies,Coffee Machines,0,src/main/resources/data/images/1.png
+127,Nivea Coffee Machine 7,636.99,Nivea,Coffee Machines,10,src/main/resources/data/images/1.png
+128,Łowicz Coffee Machine 8,942.4,Łowicz,Coffee Machines,0,src/main/resources/data/images/1.png
+129,Pepsi Coffee Machine 9,412.54,Pepsi,Coffee Machines,15,src/main/resources/data/images/1.png
+130,Sony Coffee Machine 10,211.46,Sony,Coffee Machines,0,src/main/resources/data/images/1.png
+131,Nikon Compact Camera 1,1700.75,Nikon,Compact Cameras,15,src/main/resources/data/images/1.png
+132,Sony Compact Camera 2,903.25,Sony,Compact Cameras,0,src/main/resources/data/images/1.png
+133,Nikon Compact Camera 3,1819.52,Nikon,Compact Cameras,25,src/main/resources/data/images/1.png
+134,Canon Compact Camera 4,781.89,Canon,Compact Cameras,15,src/main/resources/data/images/1.png
+135,Sony Compact Camera 5,557.07,Sony,Compact Cameras,5,src/main/resources/data/images/1.png
+136,Canon Compact Camera 6,164.63,Canon,Compact Cameras,0,src/main/resources/data/images/1.png
+137,Canon Compact Camera 7,1281.24,Canon,Compact Cameras,0,src/main/resources/data/images/1.png
+138,Nikon Compact Camera 8,1516.11,Nikon,Compact Cameras,0,src/main/resources/data/images/1.png
+139,Canon Compact Camera 9,1348.4,Canon,Compact Cameras,15,src/main/resources/data/images/1.png
+140,Sony Compact Camera 10,325.2,Sony,Compact Cameras,5,src/main/resources/data/images/1.png
+141,Sony Computer Cables and Adapter 1,228.19,Sony,Computer Cables and Adapters,0,src/main/resources/data/images/1.png
+142,HP Computer Cables and Adapter 2,1983.75,HP,Computer Cables and Adapters,5,src/main/resources/data/images/1.png
+143,Sony Computer Cables and Adapter 3,338.39,Sony,Computer Cables and Adapters,15,src/main/resources/data/images/1.png
+144,Sony Computer Cables and Adapter 4,1108.99,Sony,Computer Cables and Adapters,25,src/main/resources/data/images/1.png
+145,HP Computer Cables and Adapter 5,788.53,HP,Computer Cables and Adapters,0,src/main/resources/data/images/1.png
+146,Dell Computer Cables and Adapter 6,960.96,Dell,Computer Cables and Adapters,0,src/main/resources/data/images/1.png
+147,LG Computer Cables and Adapter 7,73.71,LG,Computer Cables and Adapters,5,src/main/resources/data/images/1.png
+148,Sony Computer Cables and Adapter 8,1199.38,Sony,Computer Cables and Adapters,0,src/main/resources/data/images/1.png
+149,Lenovo Computer Cables and Adapter 9,1006.39,Lenovo,Computer Cables and Adapters,0,src/main/resources/data/images/1.png
+150,HP Computer Cables and Adapter 10,730.67,HP,Computer Cables and Adapters,0,src/main/resources/data/images/1.png
+151,Lenovo Computer Case 1,1264.53,Lenovo,Computer Cases,5,src/main/resources/data/images/1.png
+152,Lenovo Computer Case 2,1643.48,Lenovo,Computer Cases,15,src/main/resources/data/images/1.png
+153,LG Computer Case 3,1362.03,LG,Computer Cases,5,src/main/resources/data/images/1.png
+154,Dell Computer Case 4,263.24,Dell,Computer Cases,25,src/main/resources/data/images/1.png
+155,Lenovo Computer Case 5,534.56,Lenovo,Computer Cases,0,src/main/resources/data/images/1.png
+156,LG Computer Case 6,1889.9,LG,Computer Cases,5,src/main/resources/data/images/1.png
+157,Lenovo Computer Case 7,1537.42,Lenovo,Computer Cases,10,src/main/resources/data/images/1.png
+158,Lenovo Computer Case 8,1393.87,Lenovo,Computer Cases,5,src/main/resources/data/images/1.png
+159,Asus Computer Case 9,817.05,Asus,Computer Cases,0,src/main/resources/data/images/1.png
+160,HP Computer Case 10,641.54,HP,Computer Cases,10,src/main/resources/data/images/1.png
+161,Sony Computer Fan 1,714.82,Sony,Computer Fans,0,src/main/resources/data/images/1.png
+162,Samsung Computer Fan 2,1800.43,Samsung,Computer Fans,15,src/main/resources/data/images/1.png
+163,Dell Computer Fan 3,174.07,Dell,Computer Fans,0,src/main/resources/data/images/1.png
+164,Dell Computer Fan 4,977.9,Dell,Computer Fans,10,src/main/resources/data/images/1.png
+165,Dell Computer Fan 5,1880.87,Dell,Computer Fans,5,src/main/resources/data/images/1.png
+166,Sony Computer Fan 6,426.08,Sony,Computer Fans,0,src/main/resources/data/images/1.png
+167,Sony Computer Fan 7,220.09,Sony,Computer Fans,25,src/main/resources/data/images/1.png
+168,Samsung Computer Fan 8,625.74,Samsung,Computer Fans,0,src/main/resources/data/images/1.png
+169,Sony Computer Fan 9,473.26,Sony,Computer Fans,5,src/main/resources/data/images/1.png
+170,Samsung Computer Fan 10,1342.05,Samsung,Computer Fans,5,src/main/resources/data/images/1.png
+171,Sony DSLR Camera 1,593.93,Sony,DSLR Cameras,0,src/main/resources/data/images/1.png
+172,Sony DSLR Camera 2,1066.4,Sony,DSLR Cameras,0,src/main/resources/data/images/1.png
+173,Sony DSLR Camera 3,1183.62,Sony,DSLR Cameras,15,src/main/resources/data/images/1.png
+174,Nikon DSLR Camera 4,544.54,Nikon,DSLR Cameras,5,src/main/resources/data/images/1.png
+175,Sony DSLR Camera 5,391.29,Sony,DSLR Cameras,0,src/main/resources/data/images/1.png
+176,Sony DSLR Camera 6,1944.21,Sony,DSLR Cameras,5,src/main/resources/data/images/1.png
+177,Sony DSLR Camera 7,1819.43,Sony,DSLR Cameras,10,src/main/resources/data/images/1.png
+178,Nikon DSLR Camera 8,1535.71,Nikon,DSLR Cameras,0,src/main/resources/data/images/1.png
+179,Canon DSLR Camera 9,166.89,Canon,DSLR Cameras,5,src/main/resources/data/images/1.png
+180,Nikon DSLR Camera 10,1882.42,Nikon,DSLR Cameras,5,src/main/resources/data/images/1.png
+181,Garnier Desk 1,1034.59,Garnier,Desks,0,src/main/resources/data/images/1.png
+182,Tefal Desk 2,1567.49,Tefal,Desks,0,src/main/resources/data/images/1.png
+183,Zara Desk 3,1163.27,Zara,Desks,0,src/main/resources/data/images/1.png
+184,Gerber Desk 4,881.56,Gerber,Desks,0,src/main/resources/data/images/1.png
+185,Tymbark Desk 5,1841.13,Tymbark,Desks,5,src/main/resources/data/images/1.png
+186,Oral-B Desk 6,1052.55,Oral-B,Desks,10,src/main/resources/data/images/1.png
+187,Purina Desk 7,625.55,Purina,Desks,20,src/main/resources/data/images/1.png
+188,Nivea Desk 8,1195.47,Nivea,Desks,10,src/main/resources/data/images/1.png
+189,Levi's Desk 9,1507.43,Levi's,Desks,20,src/main/resources/data/images/1.png
+190,Winiary Desk 10,1305.34,Winiary,Desks,0,src/main/resources/data/images/1.png
+191,Nestlé Dishwasher 1,823.97,Nestlé,Dishwashers,10,src/main/resources/data/images/1.png
+192,Winiary Dishwasher 2,124.24,Winiary,Dishwashers,25,src/main/resources/data/images/1.png
+193,Canon Dishwasher 3,1999.35,Canon,Dishwashers,0,src/main/resources/data/images/1.png
+194,Oral-B Dishwasher 4,1635.22,Oral-B,Dishwashers,0,src/main/resources/data/images/1.png
+195,Apple Dishwasher 5,1341.35,Apple,Dishwashers,5,src/main/resources/data/images/1.png
+196,Purina Dishwasher 6,510.77,Purina,Dishwashers,0,src/main/resources/data/images/1.png
+197,Żywiec Zdrój Dishwasher 7,412.8,Żywiec Zdrój,Dishwashers,10,src/main/resources/data/images/1.png
+198,Whiskas Dishwasher 8,102.36,Whiskas,Dishwashers,5,src/main/resources/data/images/1.png
+199,Chicco Dishwasher 9,1216.23,Chicco,Dishwashers,15,src/main/resources/data/images/1.png
+200,HP Dishwasher 10,924.08,HP,Dishwashers,0,src/main/resources/data/images/1.png
+201,Gillette Dryer 1,263.29,Gillette,Dryers,10,src/main/resources/data/images/1.png
+202,Łowicz Dryer 2,1991.3,Łowicz,Dryers,15,src/main/resources/data/images/1.png
+203,Fisher-Price Dryer 3,785.78,Fisher-Price,Dryers,15,src/main/resources/data/images/1.png
+204,Nikon Dryer 4,1071.25,Nikon,Dryers,10,src/main/resources/data/images/1.png
+205,H&M Dryer 5,1738.45,H&M,Dryers,0,src/main/resources/data/images/1.png
+206,Finish Dryer 6,1248.51,Finish,Dryers,0,src/main/resources/data/images/1.png
+207,Asus Dryer 7,515.82,Asus,Dryers,0,src/main/resources/data/images/1.png
+208,Nestlé Dryer 8,717.61,Nestlé,Dryers,5,src/main/resources/data/images/1.png
+209,Ariel Dryer 9,1602.5,Ariel,Dryers,15,src/main/resources/data/images/1.png
+210,Puma Dryer 10,209.86,Puma,Dryers,5,src/main/resources/data/images/1.png
+211,Levi's Dumbbell 1,507.22,Levi's,Dumbbells,0,src/main/resources/data/images/1.png
+212,Nikon Dumbbell 2,1054.89,Nikon,Dumbbells,15,src/main/resources/data/images/1.png
+213,Asus Dumbbell 3,19.6,Asus,Dumbbells,0,src/main/resources/data/images/1.png
+214,Levi's Dumbbell 4,864.01,Levi's,Dumbbells,10,src/main/resources/data/images/1.png
+215,Nivea Dumbbell 5,214.52,Nivea,Dumbbells,15,src/main/resources/data/images/1.png
+216,Colgate Dumbbell 6,1765.92,Colgate,Dumbbells,10,src/main/resources/data/images/1.png
+217,Lego Dumbbell 7,980.12,Lego,Dumbbells,0,src/main/resources/data/images/1.png
+218,Tymbark Dumbbell 8,845.09,Tymbark,Dumbbells,10,src/main/resources/data/images/1.png
+219,Puma Dumbbell 9,11.5,Puma,Dumbbells,5,src/main/resources/data/images/1.png
+220,Winiary Dumbbell 10,155.11,Winiary,Dumbbells,0,src/main/resources/data/images/1.png
+221,Nike Electric Shaver 1,753.61,Nike,Electric Shavers,5,src/main/resources/data/images/1.png
+222,Whiskas Electric Shaver 2,298.84,Whiskas,Electric Shavers,15,src/main/resources/data/images/1.png
+223,Philips Electric Shaver 3,419.63,Philips,Electric Shavers,0,src/main/resources/data/images/1.png
+224,Lego Electric Shaver 4,366.66,Lego,Electric Shavers,0,src/main/resources/data/images/1.png
+225,LG Electric Shaver 5,481.89,LG,Electric Shavers,5,src/main/resources/data/images/1.png
+226,IKEA Electric Shaver 6,1667.08,IKEA,Electric Shavers,0,src/main/resources/data/images/1.png
+227,Garnier Electric Shaver 7,307.67,Garnier,Electric Shavers,25,src/main/resources/data/images/1.png
+228,HP Electric Shaver 8,757.01,HP,Electric Shavers,0,src/main/resources/data/images/1.png
+229,Philips Electric Shaver 9,766.72,Philips,Electric Shavers,0,src/main/resources/data/images/1.png
+230,Tefal Electric Shaver 10,37.49,Tefal,Electric Shavers,10,src/main/resources/data/images/1.png
+231,IKEA Fitness Band 1,1549.09,IKEA,Fitness Bands,10,src/main/resources/data/images/1.png
+232,Mattel Fitness Band 2,1710.7,Mattel,Fitness Bands,0,src/main/resources/data/images/1.png
+233,LG Fitness Band 3,665.5,LG,Fitness Bands,10,src/main/resources/data/images/1.png
+234,Nestlé Fitness Band 4,1201.19,Nestlé,Fitness Bands,0,src/main/resources/data/images/1.png
+235,Bosch Fitness Band 5,1750.5,Bosch,Fitness Bands,0,src/main/resources/data/images/1.png
+236,Asus Fitness Band 6,456.48,Asus,Fitness Bands,15,src/main/resources/data/images/1.png
+237,Asus Fitness Band 7,1777.92,Asus,Fitness Bands,10,src/main/resources/data/images/1.png
+238,Ariel Fitness Band 8,1289.99,Ariel,Fitness Bands,0,src/main/resources/data/images/1.png
+239,Huggies Fitness Band 9,880.5,Huggies,Fitness Bands,10,src/main/resources/data/images/1.png
+240,Heinz Fitness Band 10,1317.4,Heinz,Fitness Bands,0,src/main/resources/data/images/1.png
+241,HP Fragrance 1,128.29,HP,Fragrances,0,src/main/resources/data/images/1.png
+242,Purina Fragrance 2,1089.71,Purina,Fragrances,10,src/main/resources/data/images/1.png
+243,Whiskas Fragrance 3,1589.02,Whiskas,Fragrances,10,src/main/resources/data/images/1.png
+244,Hasbro Fragrance 4,1067.6,Hasbro,Fragrances,5,src/main/resources/data/images/1.png
+245,Tymbark Fragrance 5,1050.7,Tymbark,Fragrances,5,src/main/resources/data/images/1.png
+246,Tymbark Fragrance 6,510.43,Tymbark,Fragrances,10,src/main/resources/data/images/1.png
+247,Vanish Fragrance 7,1183.34,Vanish,Fragrances,5,src/main/resources/data/images/1.png
+248,Ariel Fragrance 8,352.16,Ariel,Fragrances,0,src/main/resources/data/images/1.png
+249,Chicco Fragrance 9,1787.87,Chicco,Fragrances,5,src/main/resources/data/images/1.png
+250,Purina Fragrance 10,542.95,Purina,Fragrances,5,src/main/resources/data/images/1.png
+251,Chicco Gaming Laptop 1,1934.87,Chicco,Gaming Laptops,0,src/main/resources/data/images/1.png
+252,H&M Gaming Laptop 2,1209.52,H&M,Gaming Laptops,5,src/main/resources/data/images/1.png
+253,Sony Gaming Laptop 3,225.95,Sony,Gaming Laptops,0,src/main/resources/data/images/1.png
+254,Sony Gaming Laptop 4,1421.74,Sony,Gaming Laptops,0,src/main/resources/data/images/1.png
+255,Pedigree Gaming Laptop 5,1333.42,Pedigree,Gaming Laptops,15,src/main/resources/data/images/1.png
+256,Oral-B Gaming Laptop 6,1754.5,Oral-B,Gaming Laptops,5,src/main/resources/data/images/1.png
+257,Coca-Cola Gaming Laptop 7,1072.11,Coca-Cola,Gaming Laptops,0,src/main/resources/data/images/1.png
+258,Sony Gaming Laptop 8,453.9,Sony,Gaming Laptops,0,src/main/resources/data/images/1.png
+259,H&M Gaming Laptop 9,512.03,H&M,Gaming Laptops,15,src/main/resources/data/images/1.png
+260,Pedigree Gaming Laptop 10,342.93,Pedigree,Gaming Laptops,0,src/main/resources/data/images/1.png
+261,Apple Gaming Lighting 1,1786.38,Apple,Gaming Lighting,20,src/main/resources/data/images/1.png
+262,Dell Gaming Lighting 2,1776.28,Dell,Gaming Lighting,10,src/main/resources/data/images/1.png
+263,Colgate Gaming Lighting 3,821.74,Colgate,Gaming Lighting,0,src/main/resources/data/images/1.png
+264,Żywiec Zdrój Gaming Lighting 4,1363.12,Żywiec Zdrój,Gaming Lighting,0,src/main/resources/data/images/1.png
+265,Pepsi Gaming Lighting 5,455.77,Pepsi,Gaming Lighting,10,src/main/resources/data/images/1.png
+266,Maybelline Gaming Lighting 6,1007.9,Maybelline,Gaming Lighting,0,src/main/resources/data/images/1.png
+267,Nivea Gaming Lighting 7,39.46,Nivea,Gaming Lighting,0,src/main/resources/data/images/1.png
+268,Gillette Gaming Lighting 8,724.48,Gillette,Gaming Lighting,10,src/main/resources/data/images/1.png
+269,Whiskas Gaming Lighting 9,59.38,Whiskas,Gaming Lighting,5,src/main/resources/data/images/1.png
+270,Gerber Gaming Lighting 10,1210.93,Gerber,Gaming Lighting,10,src/main/resources/data/images/1.png
+271,Finish Gaming Monitor 1,1500.93,Finish,Gaming Monitors,5,src/main/resources/data/images/1.png
+272,Vanish Gaming Monitor 2,1332.9,Vanish,Gaming Monitors,10,src/main/resources/data/images/1.png
+273,Sony Gaming Monitor 3,1686.54,Sony,Gaming Monitors,0,src/main/resources/data/images/1.png
+274,Tymbark Gaming Monitor 4,1438.9,Tymbark,Gaming Monitors,10,src/main/resources/data/images/1.png
+275,Apple Gaming Monitor 5,1983.64,Apple,Gaming Monitors,5,src/main/resources/data/images/1.png
+276,Persil Gaming Monitor 6,659.09,Persil,Gaming Monitors,0,src/main/resources/data/images/1.png
+277,Chicco Gaming Monitor 7,1576.68,Chicco,Gaming Monitors,5,src/main/resources/data/images/1.png
+278,Levi's Gaming Monitor 8,677.17,Levi's,Gaming Monitors,15,src/main/resources/data/images/1.png
+279,Nestlé Gaming Monitor 9,917.57,Nestlé,Gaming Monitors,5,src/main/resources/data/images/1.png
+280,Tefal Gaming Monitor 10,1782.94,Tefal,Gaming Monitors,5,src/main/resources/data/images/1.png
+281,Gerber Graphics Card 1,1455.33,Gerber,Graphics Cards,0,src/main/resources/data/images/1.png
+282,Ariel Graphics Card 2,1115.94,Ariel,Graphics Cards,15,src/main/resources/data/images/1.png
+283,Nivea Graphics Card 3,207.73,Nivea,Graphics Cards,10,src/main/resources/data/images/1.png
+284,Winiary Graphics Card 4,562.84,Winiary,Graphics Cards,5,src/main/resources/data/images/1.png
+285,Nikon Graphics Card 5,519.28,Nikon,Graphics Cards,5,src/main/resources/data/images/1.png
+286,Pedigree Graphics Card 6,107.11,Pedigree,Graphics Cards,5,src/main/resources/data/images/1.png
+287,Whiskas Graphics Card 7,397.18,Whiskas,Graphics Cards,0,src/main/resources/data/images/1.png
+288,H&M Graphics Card 8,1393.87,H&M,Graphics Cards,0,src/main/resources/data/images/1.png
+289,Gerber Graphics Card 9,1414.99,Gerber,Graphics Cards,5,src/main/resources/data/images/1.png
+290,Purina Graphics Card 10,420.58,Purina,Graphics Cards,10,src/main/resources/data/images/1.png
+291,Winiary HDD 1,1906.0,Winiary,HDDs,0,src/main/resources/data/images/1.png
+292,Puma HDD 2,426.84,Puma,HDDs,20,src/main/resources/data/images/1.png
+293,HP HDD 3,557.18,HP,HDDs,0,src/main/resources/data/images/1.png
+294,Persil HDD 4,740.66,Persil,HDDs,10,src/main/resources/data/images/1.png
+295,Lego HDD 5,888.04,Lego,HDDs,0,src/main/resources/data/images/1.png
+296,Lego HDD 6,126.73,Lego,HDDs,0,src/main/resources/data/images/1.png
+297,Huggies HDD 7,1511.63,Huggies,HDDs,10,src/main/resources/data/images/1.png
+298,Tefal HDD 8,1083.83,Tefal,HDDs,20,src/main/resources/data/images/1.png
+299,Lego HDD 9,849.81,Lego,HDDs,10,src/main/resources/data/images/1.png
+300,Winiary HDD 10,516.86,Winiary,HDDs,5,src/main/resources/data/images/1.png
+301,Nivea Hair Dryer 1,1189.98,Nivea,Hair Dryers,5,src/main/resources/data/images/1.png
+302,Nikon Hair Dryer 2,1462.49,Nikon,Hair Dryers,0,src/main/resources/data/images/1.png
+303,Nikon Hair Dryer 3,232.61,Nikon,Hair Dryers,0,src/main/resources/data/images/1.png
+304,HP Hair Dryer 4,202.05,HP,Hair Dryers,0,src/main/resources/data/images/1.png
+305,Hasbro Hair Dryer 5,966.17,Hasbro,Hair Dryers,10,src/main/resources/data/images/1.png
+306,Vanish Hair Dryer 6,400.23,Vanish,Hair Dryers,5,src/main/resources/data/images/1.png
+307,Tefal Hair Dryer 7,1854.67,Tefal,Hair Dryers,10,src/main/resources/data/images/1.png
+308,Pampers Hair Dryer 8,1576.43,Pampers,Hair Dryers,10,src/main/resources/data/images/1.png
+309,Adidas Hair Dryer 9,1617.26,Adidas,Hair Dryers,5,src/main/resources/data/images/1.png
+310,Winiary Hair Dryer 10,1995.18,Winiary,Hair Dryers,0,src/main/resources/data/images/1.png
+311,Ariel Haircare 1,603.97,Ariel,Haircare,5,src/main/resources/data/images/1.png
+312,Coca-Cola Haircare 2,487.43,Coca-Cola,Haircare,0,src/main/resources/data/images/1.png
+313,IKEA Haircare 3,314.5,IKEA,Haircare,10,src/main/resources/data/images/1.png
+314,Dell Haircare 4,1304.19,Dell,Haircare,0,src/main/resources/data/images/1.png
+315,Bosch Haircare 5,1799.26,Bosch,Haircare,10,src/main/resources/data/images/1.png
+316,Pedigree Haircare 6,1332.17,Pedigree,Haircare,0,src/main/resources/data/images/1.png
+317,Tymbark Haircare 7,816.97,Tymbark,Haircare,5,src/main/resources/data/images/1.png
+318,Winiary Haircare 8,765.83,Winiary,Haircare,0,src/main/resources/data/images/1.png
+319,Tymbark Haircare 9,291.41,Tymbark,Haircare,10,src/main/resources/data/images/1.png
+320,Whiskas Haircare 10,637.79,Whiskas,Haircare,0,src/main/resources/data/images/1.png
+321,Żywiec Zdrój Headphones & Earbud 1,947.39,Żywiec Zdrój,Headphones & Earbuds,0,src/main/resources/data/images/1.png
+322,Sony Headphones & Earbud 2,1457.16,Sony,Headphones & Earbuds,10,src/main/resources/data/images/1.png
+323,Bosch Headphones & Earbud 3,1373.81,Bosch,Headphones & Earbuds,0,src/main/resources/data/images/1.png
+324,Garnier Headphones & Earbud 4,1466.76,Garnier,Headphones & Earbuds,5,src/main/resources/data/images/1.png
+325,Finish Headphones & Earbud 5,266.45,Finish,Headphones & Earbuds,0,src/main/resources/data/images/1.png
+326,Mattel Headphones & Earbud 6,727.38,Mattel,Headphones & Earbuds,15,src/main/resources/data/images/1.png
+327,Łowicz Headphones & Earbud 7,1241.52,Łowicz,Headphones & Earbuds,0,src/main/resources/data/images/1.png
+328,Lenovo Headphones & Earbud 8,97.91,Lenovo,Headphones & Earbuds,5,src/main/resources/data/images/1.png
+329,Ariel Headphones & Earbud 9,945.45,Ariel,Headphones & Earbuds,5,src/main/resources/data/images/1.png
+330,Levi's Headphones & Earbud 10,136.94,Levi's,Headphones & Earbuds,0,src/main/resources/data/images/1.png
+331,Gerber Helmet 1,1138.27,Gerber,Helmets,0,src/main/resources/data/images/1.png
+332,Huggies Helmet 2,521.08,Huggies,Helmets,0,src/main/resources/data/images/1.png
+333,Oral-B Helmet 3,421.74,Oral-B,Helmets,0,src/main/resources/data/images/1.png
+334,Sony Helmet 4,85.74,Sony,Helmets,10,src/main/resources/data/images/1.png
+335,Zara Helmet 5,1044.49,Zara,Helmets,25,src/main/resources/data/images/1.png
+336,Levi's Helmet 6,1854.02,Levi's,Helmets,10,src/main/resources/data/images/1.png
+337,Bosch Helmet 7,1781.68,Bosch,Helmets,20,src/main/resources/data/images/1.png
+338,Asus Helmet 8,837.1,Asus,Helmets,0,src/main/resources/data/images/1.png
+339,Puma Helmet 9,226.92,Puma,Helmets,5,src/main/resources/data/images/1.png
+340,Levi's Helmet 10,158.24,Levi's,Helmets,5,src/main/resources/data/images/1.png
+341,Lenovo Home Theater System 1,773.31,Lenovo,Home Theater Systems,0,src/main/resources/data/images/1.png
+342,Nike Home Theater System 2,821.4,Nike,Home Theater Systems,0,src/main/resources/data/images/1.png
+343,Oral-B Home Theater System 3,1646.63,Oral-B,Home Theater Systems,15,src/main/resources/data/images/1.png
+344,Gillette Home Theater System 4,569.4,Gillette,Home Theater Systems,0,src/main/resources/data/images/1.png
+345,Gillette Home Theater System 5,1149.64,Gillette,Home Theater Systems,0,src/main/resources/data/images/1.png
+346,Tymbark Home Theater System 6,1631.4,Tymbark,Home Theater Systems,15,src/main/resources/data/images/1.png
+347,Fisher-Price Home Theater System 7,166.37,Fisher-Price,Home Theater Systems,5,src/main/resources/data/images/1.png
+348,Samsung Home Theater System 8,733.34,Samsung,Home Theater Systems,0,src/main/resources/data/images/1.png
+349,Philips Home Theater System 9,373.42,Philips,Home Theater Systems,10,src/main/resources/data/images/1.png
+350,HP Home Theater System 10,1669.46,HP,Home Theater Systems,0,src/main/resources/data/images/1.png
+351,Heinz Keyboard 1,1555.78,Heinz,Keyboards,0,src/main/resources/data/images/1.png
+352,Hasbro Keyboard 2,902.34,Hasbro,Keyboards,0,src/main/resources/data/images/1.png
+353,Pampers Keyboard 3,1052.06,Pampers,Keyboards,0,src/main/resources/data/images/1.png
+354,Zara Keyboard 4,1762.2,Zara,Keyboards,0,src/main/resources/data/images/1.png
+355,Pepsi Keyboard 5,1014.45,Pepsi,Keyboards,0,src/main/resources/data/images/1.png
+356,Gillette Keyboard 6,940.83,Gillette,Keyboards,5,src/main/resources/data/images/1.png
+357,Pedigree Keyboard 7,899.65,Pedigree,Keyboards,5,src/main/resources/data/images/1.png
+358,Sony Keyboard 8,1915.3,Sony,Keyboards,10,src/main/resources/data/images/1.png
+359,Samsung Keyboard 9,271.05,Samsung,Keyboards,0,src/main/resources/data/images/1.png
+360,Dove Keyboard 10,1095.56,Dove,Keyboards,5,src/main/resources/data/images/1.png
+361,Zara Lamp 1,1209.34,Zara,Lamps,15,src/main/resources/data/images/1.png
+362,Heinz Lamp 2,1232.48,Heinz,Lamps,0,src/main/resources/data/images/1.png
+363,Apple Lamp 3,1869.52,Apple,Lamps,5,src/main/resources/data/images/1.png
+364,Łowicz Lamp 4,1825.92,Łowicz,Lamps,0,src/main/resources/data/images/1.png
+365,Mattel Lamp 5,902.14,Mattel,Lamps,5,src/main/resources/data/images/1.png
+366,Purina Lamp 6,1098.07,Purina,Lamps,5,src/main/resources/data/images/1.png
+367,Sony Lamp 7,1939.97,Sony,Lamps,15,src/main/resources/data/images/1.png
+368,Maybelline Lamp 8,1724.49,Maybelline,Lamps,5,src/main/resources/data/images/1.png
+369,Ariel Lamp 9,697.38,Ariel,Lamps,5,src/main/resources/data/images/1.png
+370,Asus Lamp 10,14.97,Asus,Lamps,10,src/main/resources/data/images/1.png
+371,Nikon Lense 1,1531.39,Nikon,Lenses,0,src/main/resources/data/images/1.png
+372,Asus Lense 2,434.73,Asus,Lenses,0,src/main/resources/data/images/1.png
+373,Maybelline Lense 3,1409.65,Maybelline,Lenses,0,src/main/resources/data/images/1.png
+374,Levi's Lense 4,206.45,Levi's,Lenses,0,src/main/resources/data/images/1.png
+375,Tymbark Lense 5,277.6,Tymbark,Lenses,0,src/main/resources/data/images/1.png
+376,Żywiec Zdrój Lense 6,1491.02,Żywiec Zdrój,Lenses,10,src/main/resources/data/images/1.png
+377,Bosch Lense 7,1948.61,Bosch,Lenses,10,src/main/resources/data/images/1.png
+378,Nike Lense 8,1400.57,Nike,Lenses,0,src/main/resources/data/images/1.png
+379,L'Oréal Lense 9,1688.64,L'Oréal,Lenses,10,src/main/resources/data/images/1.png
+380,Mattel Lense 10,1494.85,Mattel,Lenses,15,src/main/resources/data/images/1.png
+381,Tefal Makeup 1,1480.38,Tefal,Makeup,0,src/main/resources/data/images/1.png
+382,Hasbro Makeup 2,461.7,Hasbro,Makeup,5,src/main/resources/data/images/1.png
+383,Philips Makeup 3,917.82,Philips,Makeup,0,src/main/resources/data/images/1.png
+384,Asus Makeup 4,1222.41,Asus,Makeup,10,src/main/resources/data/images/1.png
+385,Samsung Makeup 5,1518.12,Samsung,Makeup,10,src/main/resources/data/images/1.png
+386,Gillette Makeup 6,832.06,Gillette,Makeup,0,src/main/resources/data/images/1.png
+387,Asus Makeup 7,1388.91,Asus,Makeup,0,src/main/resources/data/images/1.png
+388,Oral-B Makeup 8,1208.98,Oral-B,Makeup,0,src/main/resources/data/images/1.png
+389,Tymbark Makeup 9,1456.26,Tymbark,Makeup,25,src/main/resources/data/images/1.png
+390,Asus Makeup 10,549.4,Asus,Makeup,5,src/main/resources/data/images/1.png
+391,Hasbro Mice 1,1202.75,Hasbro,Mice,10,src/main/resources/data/images/1.png
+392,Colgate Mice 2,1997.51,Colgate,Mice,10,src/main/resources/data/images/1.png
+393,Pedigree Mice 3,950.26,Pedigree,Mice,5,src/main/resources/data/images/1.png
+394,Levi's Mice 4,498.0,Levi's,Mice,15,src/main/resources/data/images/1.png
+395,Asus Mice 5,954.7,Asus,Mice,15,src/main/resources/data/images/1.png
+396,Finish Mice 6,183.98,Finish,Mice,0,src/main/resources/data/images/1.png
+397,Colgate Mice 7,959.19,Colgate,Mice,10,src/main/resources/data/images/1.png
+398,Colgate Mice 8,1145.82,Colgate,Mice,20,src/main/resources/data/images/1.png
+399,Żywiec Zdrój Mice 9,1358.83,Żywiec Zdrój,Mice,0,src/main/resources/data/images/1.png
+400,Łowicz Mice 10,599.38,Łowicz,Mice,10,src/main/resources/data/images/1.png
+401,Garnier Microwave 1,1795.91,Garnier,Microwaves,0,src/main/resources/data/images/1.png
+402,Dell Microwave 2,1281.9,Dell,Microwaves,5,src/main/resources/data/images/1.png
+403,Vanish Microwave 3,150.23,Vanish,Microwaves,15,src/main/resources/data/images/1.png
+404,Dell Microwave 4,1745.82,Dell,Microwaves,20,src/main/resources/data/images/1.png
+405,Nikon Microwave 5,369.91,Nikon,Microwaves,0,src/main/resources/data/images/1.png
+406,Gillette Microwave 6,597.67,Gillette,Microwaves,0,src/main/resources/data/images/1.png
+407,Gillette Microwave 7,1595.5,Gillette,Microwaves,0,src/main/resources/data/images/1.png
+408,Persil Microwave 8,706.82,Persil,Microwaves,10,src/main/resources/data/images/1.png
+409,H&M Microwave 9,905.06,H&M,Microwaves,0,src/main/resources/data/images/1.png
+410,Winiary Microwave 10,1937.56,Winiary,Microwaves,10,src/main/resources/data/images/1.png
+411,Whiskas Mini PC 1,1337.53,Whiskas,Mini PCs,10,src/main/resources/data/images/1.png
+412,Vanish Mini PC 2,1463.17,Vanish,Mini PCs,0,src/main/resources/data/images/1.png
+413,Purina Mini PC 3,744.43,Purina,Mini PCs,5,src/main/resources/data/images/1.png
+414,Nivea Mini PC 4,1546.1,Nivea,Mini PCs,10,src/main/resources/data/images/1.png
+415,Puma Mini PC 5,419.92,Puma,Mini PCs,5,src/main/resources/data/images/1.png
+416,Nestlé Mini PC 6,142.6,Nestlé,Mini PCs,10,src/main/resources/data/images/1.png
+417,Dell Mini PC 7,1357.67,Dell,Mini PCs,0,src/main/resources/data/images/1.png
+418,Garnier Mini PC 8,837.48,Garnier,Mini PCs,0,src/main/resources/data/images/1.png
+419,Mattel Mini PC 9,1061.94,Mattel,Mini PCs,0,src/main/resources/data/images/1.png
+420,Finish Mini PC 10,773.19,Finish,Mini PCs,5,src/main/resources/data/images/1.png
+421,Canon Mirrorless Camera 1,1705.93,Canon,Mirrorless Cameras,0,src/main/resources/data/images/1.png
+422,Sony Mirrorless Camera 2,189.79,Sony,Mirrorless Cameras,0,src/main/resources/data/images/1.png
+423,Nikon Mirrorless Camera 3,588.44,Nikon,Mirrorless Cameras,0,src/main/resources/data/images/1.png
+424,Sony Mirrorless Camera 4,1045.63,Sony,Mirrorless Cameras,10,src/main/resources/data/images/1.png
+425,Canon Mirrorless Camera 5,1109.64,Canon,Mirrorless Cameras,10,src/main/resources/data/images/1.png
+426,Sony Mirrorless Camera 6,397.23,Sony,Mirrorless Cameras,20,src/main/resources/data/images/1.png
+427,Sony Mirrorless Camera 7,503.68,Sony,Mirrorless Cameras,0,src/main/resources/data/images/1.png
+428,Sony Mirrorless Camera 8,1396.17,Sony,Mirrorless Cameras,0,src/main/resources/data/images/1.png
+429,Sony Mirrorless Camera 9,780.5,Sony,Mirrorless Cameras,0,src/main/resources/data/images/1.png
+430,Sony Mirrorless Camera 10,84.09,Sony,Mirrorless Cameras,15,src/main/resources/data/images/1.png
+431,Sony Motherboard 1,723.09,Sony,Motherboards,0,src/main/resources/data/images/1.png
+432,Fisher-Price Motherboard 2,1877.37,Fisher-Price,Motherboards,0,src/main/resources/data/images/1.png
+433,Winiary Motherboard 3,1609.26,Winiary,Motherboards,5,src/main/resources/data/images/1.png
+434,Nestlé Motherboard 4,1605.37,Nestlé,Motherboards,25,src/main/resources/data/images/1.png
+435,Whiskas Motherboard 5,526.13,Whiskas,Motherboards,0,src/main/resources/data/images/1.png
+436,Asus Motherboard 6,555.87,Asus,Motherboards,5,src/main/resources/data/images/1.png
+437,Samsung Motherboard 7,789.73,Samsung,Motherboards,0,src/main/resources/data/images/1.png
+438,Gillette Motherboard 8,1655.55,Gillette,Motherboards,5,src/main/resources/data/images/1.png
+439,Lego Motherboard 9,1468.88,Lego,Motherboards,20,src/main/resources/data/images/1.png
+440,Nike Motherboard 10,1739.39,Nike,Motherboards,15,src/main/resources/data/images/1.png
+441,IKEA Multifunction Printer 1,762.63,IKEA,Multifunction Printers,5,src/main/resources/data/images/1.png
+442,Canon Multifunction Printer 2,384.88,Canon,Multifunction Printers,5,src/main/resources/data/images/1.png
+443,Tymbark Multifunction Printer 3,727.92,Tymbark,Multifunction Printers,15,src/main/resources/data/images/1.png
+444,Pepsi Multifunction Printer 4,551.25,Pepsi,Multifunction Printers,0,src/main/resources/data/images/1.png
+445,Tymbark Multifunction Printer 5,1545.48,Tymbark,Multifunction Printers,0,src/main/resources/data/images/1.png
+446,Mattel Multifunction Printer 6,1135.07,Mattel,Multifunction Printers,0,src/main/resources/data/images/1.png
+447,Apple Multifunction Printer 7,35.08,Apple,Multifunction Printers,5,src/main/resources/data/images/1.png
+448,H&M Multifunction Printer 8,1318.28,H&M,Multifunction Printers,0,src/main/resources/data/images/1.png
+449,Pedigree Multifunction Printer 9,325.52,Pedigree,Multifunction Printers,25,src/main/resources/data/images/1.png
+450,Fisher-Price Multifunction Printer 10,1636.7,Fisher-Price,Multifunction Printers,10,src/main/resources/data/images/1.png
+451,Tefal Notebook 1,1094.43,Tefal,Notebooks,5,src/main/resources/data/images/1.png
+452,Vanish Notebook 2,1032.06,Vanish,Notebooks,0,src/main/resources/data/images/1.png
+453,Apple Notebook 3,799.71,Apple,Notebooks,0,src/main/resources/data/images/1.png
+454,Mattel Notebook 4,279.26,Mattel,Notebooks,0,src/main/resources/data/images/1.png
+455,Zara Notebook 5,165.76,Zara,Notebooks,0,src/main/resources/data/images/1.png
+456,Finish Notebook 6,1760.08,Finish,Notebooks,25,src/main/resources/data/images/1.png
+457,Nivea Notebook 7,1728.01,Nivea,Notebooks,5,src/main/resources/data/images/1.png
+458,Pampers Notebook 8,974.92,Pampers,Notebooks,0,src/main/resources/data/images/1.png
+459,Whiskas Notebook 9,1470.02,Whiskas,Notebooks,0,src/main/resources/data/images/1.png
+460,Pampers Notebook 10,425.98,Pampers,Notebooks,0,src/main/resources/data/images/1.png
+461,HP Office Chair 1,407.54,HP,Office Chairs,0,src/main/resources/data/images/1.png
+462,Lenovo Office Chair 2,664.11,Lenovo,Office Chairs,0,src/main/resources/data/images/1.png
+463,HP Office Chair 3,988.58,HP,Office Chairs,10,src/main/resources/data/images/1.png
+464,Lenovo Office Chair 4,1704.8,Lenovo,Office Chairs,0,src/main/resources/data/images/1.png
+465,Dell Office Chair 5,466.68,Dell,Office Chairs,5,src/main/resources/data/images/1.png
+466,Lenovo Office Chair 6,1910.61,Lenovo,Office Chairs,5,src/main/resources/data/images/1.png
+467,Lenovo Office Chair 7,483.41,Lenovo,Office Chairs,15,src/main/resources/data/images/1.png
+468,Lenovo Office Chair 8,1006.28,Lenovo,Office Chairs,15,src/main/resources/data/images/1.png
+469,HP Office Chair 9,177.84,HP,Office Chairs,20,src/main/resources/data/images/1.png
+470,Lenovo Office Chair 10,359.89,Lenovo,Office Chairs,0,src/main/resources/data/images/1.png
+471,Dell Office Monitor 1,1987.49,Dell,Office Monitors,10,src/main/resources/data/images/1.png
+472,Dell Office Monitor 2,1284.77,Dell,Office Monitors,0,src/main/resources/data/images/1.png
+473,HP Office Monitor 3,810.09,HP,Office Monitors,0,src/main/resources/data/images/1.png
+474,Dell Office Monitor 4,521.28,Dell,Office Monitors,0,src/main/resources/data/images/1.png
+475,HP Office Monitor 5,1812.02,HP,Office Monitors,10,src/main/resources/data/images/1.png
+476,Lenovo Office Monitor 6,763.63,Lenovo,Office Monitors,25,src/main/resources/data/images/1.png
+477,Dell Office Monitor 7,1537.81,Dell,Office Monitors,5,src/main/resources/data/images/1.png
+478,Dell Office Monitor 8,1542.49,Dell,Office Monitors,0,src/main/resources/data/images/1.png
+479,HP Office Monitor 9,1080.54,HP,Office Monitors,0,src/main/resources/data/images/1.png
+480,Lenovo Office Monitor 10,416.83,Lenovo,Office Monitors,0,src/main/resources/data/images/1.png
+481,Nestlé Optical Drive 1,1386.0,Nestlé,Optical Drives,10,src/main/resources/data/images/1.png
+482,Persil Optical Drive 2,803.77,Persil,Optical Drives,5,src/main/resources/data/images/1.png
+483,Hasbro Optical Drive 3,568.93,Hasbro,Optical Drives,5,src/main/resources/data/images/1.png
+484,LG Optical Drive 4,1040.64,LG,Optical Drives,25,src/main/resources/data/images/1.png
+485,Colgate Optical Drive 5,546.05,Colgate,Optical Drives,5,src/main/resources/data/images/1.png
+486,Purina Optical Drive 6,1618.19,Purina,Optical Drives,10,src/main/resources/data/images/1.png
+487,Nikon Optical Drive 7,240.84,Nikon,Optical Drives,0,src/main/resources/data/images/1.png
+488,Persil Optical Drive 8,356.39,Persil,Optical Drives,15,src/main/resources/data/images/1.png
+489,H&M Optical Drive 9,1889.39,H&M,Optical Drives,10,src/main/resources/data/images/1.png
+490,Zara Optical Drive 10,944.83,Zara,Optical Drives,5,src/main/resources/data/images/1.png
+491,IKEA Outdoor Furniture 1,312.35,IKEA,Outdoor Furniture,10,src/main/resources/data/images/1.png
+492,IKEA Outdoor Furniture 2,1584.92,IKEA,Outdoor Furniture,5,src/main/resources/data/images/1.png
+493,IKEA Outdoor Furniture 3,1910.69,IKEA,Outdoor Furniture,10,src/main/resources/data/images/1.png
+494,IKEA Outdoor Furniture 4,1419.77,IKEA,Outdoor Furniture,10,src/main/resources/data/images/1.png
+495,IKEA Outdoor Furniture 5,1526.24,IKEA,Outdoor Furniture,0,src/main/resources/data/images/1.png
+496,IKEA Outdoor Furniture 6,1635.83,IKEA,Outdoor Furniture,25,src/main/resources/data/images/1.png
+497,IKEA Outdoor Furniture 7,431.79,IKEA,Outdoor Furniture,0,src/main/resources/data/images/1.png
+498,IKEA Outdoor Furniture 8,595.27,IKEA,Outdoor Furniture,15,src/main/resources/data/images/1.png
+499,IKEA Outdoor Furniture 9,1347.98,IKEA,Outdoor Furniture,0,src/main/resources/data/images/1.png
+500,IKEA Outdoor Furniture 10,58.57,IKEA,Outdoor Furniture,0,src/main/resources/data/images/1.png
+501,L'Oréal Ovens & Stove 1,994.2,L'Oréal,Ovens & Stoves,20,src/main/resources/data/images/1.png
+502,L'Oréal Ovens & Stove 2,29.56,L'Oréal,Ovens & Stoves,5,src/main/resources/data/images/1.png
+503,Asus Ovens & Stove 3,1437.21,Asus,Ovens & Stoves,5,src/main/resources/data/images/1.png
+504,Nestlé Ovens & Stove 4,696.47,Nestlé,Ovens & Stoves,0,src/main/resources/data/images/1.png
+505,Garnier Ovens & Stove 5,1262.63,Garnier,Ovens & Stoves,0,src/main/resources/data/images/1.png
+506,HP Ovens & Stove 6,1639.85,HP,Ovens & Stoves,15,src/main/resources/data/images/1.png
+507,Fisher-Price Ovens & Stove 7,1114.87,Fisher-Price,Ovens & Stoves,0,src/main/resources/data/images/1.png
+508,Żywiec Zdrój Ovens & Stove 8,1486.43,Żywiec Zdrój,Ovens & Stoves,0,src/main/resources/data/images/1.png
+509,Pepsi Ovens & Stove 9,1634.11,Pepsi,Ovens & Stoves,10,src/main/resources/data/images/1.png
+510,Coca-Cola Ovens & Stove 10,1216.69,Coca-Cola,Ovens & Stoves,0,src/main/resources/data/images/1.png
+511,IKEA Pens & Marker 1,1226.45,IKEA,Pens & Markers,0,src/main/resources/data/images/1.png
+512,Tefal Pens & Marker 2,451.55,Tefal,Pens & Markers,0,src/main/resources/data/images/1.png
+513,Purina Pens & Marker 3,929.27,Purina,Pens & Markers,0,src/main/resources/data/images/1.png
+514,LG Pens & Marker 4,1152.57,LG,Pens & Markers,0,src/main/resources/data/images/1.png
+515,Tymbark Pens & Marker 5,1325.68,Tymbark,Pens & Markers,0,src/main/resources/data/images/1.png
+516,Asus Pens & Marker 6,548.24,Asus,Pens & Markers,15,src/main/resources/data/images/1.png
+517,Winiary Pens & Marker 7,50.38,Winiary,Pens & Markers,5,src/main/resources/data/images/1.png
+518,Vanish Pens & Marker 8,1057.17,Vanish,Pens & Markers,10,src/main/resources/data/images/1.png
+519,Colgate Pens & Marker 9,1995.64,Colgate,Pens & Markers,0,src/main/resources/data/images/1.png
+520,Ariel Pens & Marker 10,339.1,Ariel,Pens & Markers,20,src/main/resources/data/images/1.png
+521,Garnier Phone Case 1,1903.65,Garnier,Phone Cases,10,src/main/resources/data/images/1.png
+522,Dove Phone Case 2,1625.51,Dove,Phone Cases,5,src/main/resources/data/images/1.png
+523,Nike Phone Case 3,636.02,Nike,Phone Cases,10,src/main/resources/data/images/1.png
+524,Pepsi Phone Case 4,121.64,Pepsi,Phone Cases,0,src/main/resources/data/images/1.png
+525,IKEA Phone Case 5,414.24,IKEA,Phone Cases,5,src/main/resources/data/images/1.png
+526,Łowicz Phone Case 6,1201.43,Łowicz,Phone Cases,25,src/main/resources/data/images/1.png
+527,Hasbro Phone Case 7,1170.63,Hasbro,Phone Cases,25,src/main/resources/data/images/1.png
+528,Dell Phone Case 8,1263.67,Dell,Phone Cases,10,src/main/resources/data/images/1.png
+529,Apple Phone Case 9,1560.27,Apple,Phone Cases,20,src/main/resources/data/images/1.png
+530,Pedigree Phone Case 10,1754.58,Pedigree,Phone Cases,10,src/main/resources/data/images/1.png
+531,H&M Power Bank 1,1142.34,H&M,Power Banks,0,src/main/resources/data/images/1.png
+532,Hasbro Power Bank 2,405.39,Hasbro,Power Banks,15,src/main/resources/data/images/1.png
+533,Persil Power Bank 3,1521.18,Persil,Power Banks,5,src/main/resources/data/images/1.png
+534,Puma Power Bank 4,1043.43,Puma,Power Banks,10,src/main/resources/data/images/1.png
+535,Sony Power Bank 5,1481.19,Sony,Power Banks,10,src/main/resources/data/images/1.png
+536,H&M Power Bank 6,63.73,H&M,Power Banks,15,src/main/resources/data/images/1.png
+537,Zara Power Bank 7,1071.07,Zara,Power Banks,10,src/main/resources/data/images/1.png
+538,HP Power Bank 8,1493.4,HP,Power Banks,5,src/main/resources/data/images/1.png
+539,Samsung Power Bank 9,1376.35,Samsung,Power Banks,0,src/main/resources/data/images/1.png
+540,Heinz Power Bank 10,1756.06,Heinz,Power Banks,10,src/main/resources/data/images/1.png
+541,Gillette Power Supplie 1,557.11,Gillette,Power Supplies,5,src/main/resources/data/images/1.png
+542,Samsung Power Supplie 2,1820.57,Samsung,Power Supplies,5,src/main/resources/data/images/1.png
+543,Tymbark Power Supplie 3,1480.11,Tymbark,Power Supplies,0,src/main/resources/data/images/1.png
+544,Adidas Power Supplie 4,28.94,Adidas,Power Supplies,20,src/main/resources/data/images/1.png
+545,Winiary Power Supplie 5,1196.19,Winiary,Power Supplies,25,src/main/resources/data/images/1.png
+546,Winiary Power Supplie 6,767.31,Winiary,Power Supplies,10,src/main/resources/data/images/1.png
+547,LG Power Supplie 7,701.21,LG,Power Supplies,5,src/main/resources/data/images/1.png
+548,Gillette Power Supplie 8,469.15,Gillette,Power Supplies,5,src/main/resources/data/images/1.png
+549,Heinz Power Supplie 9,97.32,Heinz,Power Supplies,10,src/main/resources/data/images/1.png
+550,IKEA Power Supplie 10,1370.68,IKEA,Power Supplies,10,src/main/resources/data/images/1.png
+551,Puma Processor 1,208.29,Puma,Processors,5,src/main/resources/data/images/1.png
+552,Gerber Processor 2,1524.2,Gerber,Processors,10,src/main/resources/data/images/1.png
+553,Maybelline Processor 3,150.16,Maybelline,Processors,0,src/main/resources/data/images/1.png
+554,Pepsi Processor 4,1791.91,Pepsi,Processors,0,src/main/resources/data/images/1.png
+555,Apple Processor 5,1811.8,Apple,Processors,0,src/main/resources/data/images/1.png
+556,Nivea Processor 6,356.22,Nivea,Processors,0,src/main/resources/data/images/1.png
+557,Coca-Cola Processor 7,130.82,Coca-Cola,Processors,5,src/main/resources/data/images/1.png
+558,Winiary Processor 8,543.25,Winiary,Processors,0,src/main/resources/data/images/1.png
+559,Pedigree Processor 9,830.75,Pedigree,Processors,10,src/main/resources/data/images/1.png
+560,Heinz Processor 10,889.66,Heinz,Processors,0,src/main/resources/data/images/1.png
+561,Colgate RAM Memory 1,946.57,Colgate,RAM Memory,0,src/main/resources/data/images/1.png
+562,Purina RAM Memory 2,1453.48,Purina,RAM Memory,10,src/main/resources/data/images/1.png
+563,Adidas RAM Memory 3,184.65,Adidas,RAM Memory,0,src/main/resources/data/images/1.png
+564,Łowicz RAM Memory 4,1872.57,Łowicz,RAM Memory,15,src/main/resources/data/images/1.png
+565,Winiary RAM Memory 5,1440.59,Winiary,RAM Memory,5,src/main/resources/data/images/1.png
+566,Dove RAM Memory 6,1677.5,Dove,RAM Memory,0,src/main/resources/data/images/1.png
+567,Pedigree RAM Memory 7,462.81,Pedigree,RAM Memory,25,src/main/resources/data/images/1.png
+568,Huggies RAM Memory 8,895.08,Huggies,RAM Memory,0,src/main/resources/data/images/1.png
+569,Maybelline RAM Memory 9,1293.29,Maybelline,RAM Memory,20,src/main/resources/data/images/1.png
+570,Finish RAM Memory 10,973.34,Finish,RAM Memory,5,src/main/resources/data/images/1.png
+571,Heinz Refrigerator 1,446.89,Heinz,Refrigerators,0,src/main/resources/data/images/1.png
+572,Żywiec Zdrój Refrigerator 2,1100.44,Żywiec Zdrój,Refrigerators,0,src/main/resources/data/images/1.png
+573,Coca-Cola Refrigerator 3,1361.03,Coca-Cola,Refrigerators,10,src/main/resources/data/images/1.png
+574,Chicco Refrigerator 4,1503.48,Chicco,Refrigerators,5,src/main/resources/data/images/1.png
+575,Oral-B Refrigerator 5,1067.99,Oral-B,Refrigerators,15,src/main/resources/data/images/1.png
+576,Nivea Refrigerator 6,811.37,Nivea,Refrigerators,10,src/main/resources/data/images/1.png
+577,L'Oréal Refrigerator 7,1191.69,L'Oréal,Refrigerators,0,src/main/resources/data/images/1.png
+578,Tefal Refrigerator 8,1442.51,Tefal,Refrigerators,10,src/main/resources/data/images/1.png
+579,Puma Refrigerator 9,1573.39,Puma,Refrigerators,5,src/main/resources/data/images/1.png
+580,Coca-Cola Refrigerator 10,1466.57,Coca-Cola,Refrigerators,25,src/main/resources/data/images/1.png
+581,Persil SSD 1,617.53,Persil,SSDs,0,src/main/resources/data/images/1.png
+582,Heinz SSD 2,933.75,Heinz,SSDs,0,src/main/resources/data/images/1.png
+583,Żywiec Zdrój SSD 3,1443.7,Żywiec Zdrój,SSDs,10,src/main/resources/data/images/1.png
+584,Tymbark SSD 4,263.14,Tymbark,SSDs,25,src/main/resources/data/images/1.png
+585,Sony SSD 5,559.42,Sony,SSDs,5,src/main/resources/data/images/1.png
+586,Pepsi SSD 6,179.55,Pepsi,SSDs,25,src/main/resources/data/images/1.png
+587,L'Oréal SSD 7,1972.01,L'Oréal,SSDs,0,src/main/resources/data/images/1.png
+588,Żywiec Zdrój SSD 8,375.39,Żywiec Zdrój,SSDs,10,src/main/resources/data/images/1.png
+589,Samsung SSD 9,1526.67,Samsung,SSDs,0,src/main/resources/data/images/1.png
+590,Levi's SSD 10,1783.21,Levi's,SSDs,15,src/main/resources/data/images/1.png
+591,Hasbro Samsung Phone 1,1698.95,Hasbro,Samsung Phones,10,src/main/resources/data/images/1.png
+592,Ariel Samsung Phone 2,27.39,Ariel,Samsung Phones,5,src/main/resources/data/images/1.png
+593,Whiskas Samsung Phone 3,110.8,Whiskas,Samsung Phones,15,src/main/resources/data/images/1.png
+594,Bosch Samsung Phone 4,617.77,Bosch,Samsung Phones,0,src/main/resources/data/images/1.png
+595,L'Oréal Samsung Phone 5,1274.83,L'Oréal,Samsung Phones,0,src/main/resources/data/images/1.png
+596,Mattel Samsung Phone 6,1883.59,Mattel,Samsung Phones,0,src/main/resources/data/images/1.png
+597,Oral-B Samsung Phone 7,442.67,Oral-B,Samsung Phones,5,src/main/resources/data/images/1.png
+598,IKEA Samsung Phone 8,1681.45,IKEA,Samsung Phones,15,src/main/resources/data/images/1.png
+599,Finish Samsung Phone 9,479.5,Finish,Samsung Phones,0,src/main/resources/data/images/1.png
+600,Canon Samsung Phone 10,1628.46,Canon,Samsung Phones,25,src/main/resources/data/images/1.png
+601,Łowicz Samsung Watch 1,1420.85,Łowicz,Samsung Watch,0,src/main/resources/data/images/1.png
+602,Lenovo Samsung Watch 2,1354.8,Lenovo,Samsung Watch,10,src/main/resources/data/images/1.png
+603,Levi's Samsung Watch 3,594.98,Levi's,Samsung Watch,5,src/main/resources/data/images/1.png
+604,LG Samsung Watch 4,1368.15,LG,Samsung Watch,15,src/main/resources/data/images/1.png
+605,Gillette Samsung Watch 5,889.75,Gillette,Samsung Watch,10,src/main/resources/data/images/1.png
+606,Heinz Samsung Watch 6,69.86,Heinz,Samsung Watch,10,src/main/resources/data/images/1.png
+607,Persil Samsung Watch 7,1867.37,Persil,Samsung Watch,0,src/main/resources/data/images/1.png
+608,Nike Samsung Watch 8,1246.73,Nike,Samsung Watch,0,src/main/resources/data/images/1.png
+609,HP Samsung Watch 9,163.76,HP,Samsung Watch,20,src/main/resources/data/images/1.png
+610,Chicco Samsung Watch 10,1312.92,Chicco,Samsung Watch,15,src/main/resources/data/images/1.png
+611,Dell Scanner 1,1616.52,Dell,Scanners,20,src/main/resources/data/images/1.png
+612,Maybelline Scanner 2,1765.3,Maybelline,Scanners,15,src/main/resources/data/images/1.png
+613,Fisher-Price Scanner 3,1124.76,Fisher-Price,Scanners,0,src/main/resources/data/images/1.png
+614,Ariel Scanner 4,202.45,Ariel,Scanners,20,src/main/resources/data/images/1.png
+615,H&M Scanner 5,1382.18,H&M,Scanners,10,src/main/resources/data/images/1.png
+616,Nestlé Scanner 6,759.67,Nestlé,Scanners,5,src/main/resources/data/images/1.png
+617,Nike Scanner 7,179.8,Nike,Scanners,0,src/main/resources/data/images/1.png
+618,Pampers Scanner 8,613.92,Pampers,Scanners,0,src/main/resources/data/images/1.png
+619,Vanish Scanner 9,1813.8,Vanish,Scanners,10,src/main/resources/data/images/1.png
+620,Tymbark Scanner 10,1721.56,Tymbark,Scanners,0,src/main/resources/data/images/1.png
+621,Purina Service and Network Tool 1,1549.89,Purina,Service and Network Tools,10,src/main/resources/data/images/1.png
+622,Dove Service and Network Tool 2,1905.9,Dove,Service and Network Tools,15,src/main/resources/data/images/1.png
+623,HP Service and Network Tool 3,135.92,HP,Service and Network Tools,5,src/main/resources/data/images/1.png
+624,L'Oréal Service and Network Tool 4,805.54,L'Oréal,Service and Network Tools,0,src/main/resources/data/images/1.png
+625,Oral-B Service and Network Tool 5,899.58,Oral-B,Service and Network Tools,0,src/main/resources/data/images/1.png
+626,Tefal Service and Network Tool 6,1702.34,Tefal,Service and Network Tools,5,src/main/resources/data/images/1.png
+627,Dell Service and Network Tool 7,1277.27,Dell,Service and Network Tools,15,src/main/resources/data/images/1.png
+628,Winiary Service and Network Tool 8,910.56,Winiary,Service and Network Tools,0,src/main/resources/data/images/1.png
+629,Mattel Service and Network Tool 9,1109.76,Mattel,Service and Network Tools,0,src/main/resources/data/images/1.png
+630,Dell Service and Network Tool 10,640.87,Dell,Service and Network Tools,5,src/main/resources/data/images/1.png
+631,L'Oréal Skincare 1,1541.5,L'Oréal,Skincare,0,src/main/resources/data/images/1.png
+632,Pedigree Skincare 2,1720.85,Pedigree,Skincare,0,src/main/resources/data/images/1.png
+633,Dove Skincare 3,870.6,Dove,Skincare,0,src/main/resources/data/images/1.png
+634,Pedigree Skincare 4,1091.28,Pedigree,Skincare,0,src/main/resources/data/images/1.png
+635,Nestlé Skincare 5,418.23,Nestlé,Skincare,15,src/main/resources/data/images/1.png
+636,Dove Skincare 6,603.65,Dove,Skincare,5,src/main/resources/data/images/1.png
+637,Colgate Skincare 7,1462.67,Colgate,Skincare,0,src/main/resources/data/images/1.png
+638,Nivea Skincare 8,672.53,Nivea,Skincare,25,src/main/resources/data/images/1.png
+639,Bosch Skincare 9,866.58,Bosch,Skincare,15,src/main/resources/data/images/1.png
+640,LG Skincare 10,611.51,LG,Skincare,5,src/main/resources/data/images/1.png
+641,Samsung Sleeping Bag 1,1378.39,Samsung,Sleeping Bags,5,src/main/resources/data/images/1.png
+642,Pampers Sleeping Bag 2,1459.81,Pampers,Sleeping Bags,10,src/main/resources/data/images/1.png
+643,LG Sleeping Bag 3,1255.32,LG,Sleeping Bags,10,src/main/resources/data/images/1.png
+644,Apple Sleeping Bag 4,688.59,Apple,Sleeping Bags,25,src/main/resources/data/images/1.png
+645,Apple Sleeping Bag 5,333.4,Apple,Sleeping Bags,0,src/main/resources/data/images/1.png
+646,Chicco Sleeping Bag 6,1936.99,Chicco,Sleeping Bags,0,src/main/resources/data/images/1.png
+647,Coca-Cola Sleeping Bag 7,1944.43,Coca-Cola,Sleeping Bags,10,src/main/resources/data/images/1.png
+648,Vanish Sleeping Bag 8,328.92,Vanish,Sleeping Bags,0,src/main/resources/data/images/1.png
+649,Canon Sleeping Bag 9,1276.92,Canon,Sleeping Bags,5,src/main/resources/data/images/1.png
+650,Philips Sleeping Bag 10,354.19,Philips,Sleeping Bags,5,src/main/resources/data/images/1.png
+651,LG Smart TV 1,805.29,LG,Smart TVs,0,src/main/resources/data/images/1.png
+652,LG Smart TV 2,1916.99,LG,Smart TVs,0,src/main/resources/data/images/1.png
+653,LG Smart TV 3,1092.48,LG,Smart TVs,5,src/main/resources/data/images/1.png
+654,LG Smart TV 4,1956.43,LG,Smart TVs,5,src/main/resources/data/images/1.png
+655,Samsung Smart TV 5,1963.53,Samsung,Smart TVs,25,src/main/resources/data/images/1.png
+656,LG Smart TV 6,1068.21,LG,Smart TVs,10,src/main/resources/data/images/1.png
+657,LG Smart TV 7,859.89,LG,Smart TVs,5,src/main/resources/data/images/1.png
+658,Samsung Smart TV 8,346.59,Samsung,Smart TVs,0,src/main/resources/data/images/1.png
+659,LG Smart TV 9,1384.7,LG,Smart TVs,25,src/main/resources/data/images/1.png
+660,LG Smart TV 10,1621.26,LG,Smart TVs,5,src/main/resources/data/images/1.png
+661,Whiskas Sofas & Couche 1,1140.27,Whiskas,Sofas & Couches,0,src/main/resources/data/images/1.png
+662,Lenovo Sofas & Couche 2,858.79,Lenovo,Sofas & Couches,15,src/main/resources/data/images/1.png
+663,Colgate Sofas & Couche 3,1720.22,Colgate,Sofas & Couches,10,src/main/resources/data/images/1.png
+664,Finish Sofas & Couche 4,948.2,Finish,Sofas & Couches,5,src/main/resources/data/images/1.png
+665,Tefal Sofas & Couche 5,900.57,Tefal,Sofas & Couches,0,src/main/resources/data/images/1.png
+666,Tefal Sofas & Couche 6,1362.92,Tefal,Sofas & Couches,0,src/main/resources/data/images/1.png
+667,Heinz Sofas & Couche 7,574.58,Heinz,Sofas & Couches,5,src/main/resources/data/images/1.png
+668,Nivea Sofas & Couche 8,903.48,Nivea,Sofas & Couches,0,src/main/resources/data/images/1.png
+669,Zara Sofas & Couche 9,760.6,Zara,Sofas & Couches,15,src/main/resources/data/images/1.png
+670,Pedigree Sofas & Couche 10,229.21,Pedigree,Sofas & Couches,10,src/main/resources/data/images/1.png
+671,Samsung Sound Card 1,1945.31,Samsung,Sound Cards,5,src/main/resources/data/images/1.png
+672,Asus Sound Card 2,1098.44,Asus,Sound Cards,5,src/main/resources/data/images/1.png
+673,Sony Sound Card 3,1293.0,Sony,Sound Cards,10,src/main/resources/data/images/1.png
+674,Winiary Sound Card 4,246.8,Winiary,Sound Cards,10,src/main/resources/data/images/1.png
+675,Adidas Sound Card 5,601.83,Adidas,Sound Cards,0,src/main/resources/data/images/1.png
+676,L'Oréal Sound Card 6,351.64,L'Oréal,Sound Cards,10,src/main/resources/data/images/1.png
+677,Persil Sound Card 7,1975.01,Persil,Sound Cards,0,src/main/resources/data/images/1.png
+678,Gerber Sound Card 8,1721.99,Gerber,Sound Cards,10,src/main/resources/data/images/1.png
+679,Lego Sound Card 9,1483.41,Lego,Sound Cards,0,src/main/resources/data/images/1.png
+680,Nike Sound Card 10,752.51,Nike,Sound Cards,10,src/main/resources/data/images/1.png
+681,Fisher-Price Soundbar 1,906.49,Fisher-Price,Soundbars,15,src/main/resources/data/images/1.png
+682,Fisher-Price Soundbar 2,1337.62,Fisher-Price,Soundbars,5,src/main/resources/data/images/1.png
+683,Gillette Soundbar 3,636.29,Gillette,Soundbars,10,src/main/resources/data/images/1.png
+684,HP Soundbar 4,1220.08,HP,Soundbars,10,src/main/resources/data/images/1.png
+685,Nestlé Soundbar 5,1263.62,Nestlé,Soundbars,15,src/main/resources/data/images/1.png
+686,IKEA Soundbar 6,1910.55,IKEA,Soundbars,0,src/main/resources/data/images/1.png
+687,Zara Soundbar 7,142.98,Zara,Soundbars,20,src/main/resources/data/images/1.png
+688,Whiskas Soundbar 8,1777.05,Whiskas,Soundbars,0,src/main/resources/data/images/1.png
+689,Łowicz Soundbar 9,173.42,Łowicz,Soundbars,5,src/main/resources/data/images/1.png
+690,HP Soundbar 10,1238.73,HP,Soundbars,0,src/main/resources/data/images/1.png
+691,Nivea Streaming Accessorie 1,1908.28,Nivea,Streaming Accessories,0,src/main/resources/data/images/1.png
+692,Adidas Streaming Accessorie 2,778.43,Adidas,Streaming Accessories,0,src/main/resources/data/images/1.png
+693,Gillette Streaming Accessorie 3,943.02,Gillette,Streaming Accessories,10,src/main/resources/data/images/1.png
+694,Dell Streaming Accessorie 4,1361.42,Dell,Streaming Accessories,10,src/main/resources/data/images/1.png
+695,Nestlé Streaming Accessorie 5,1084.94,Nestlé,Streaming Accessories,5,src/main/resources/data/images/1.png
+696,Colgate Streaming Accessorie 6,1812.6,Colgate,Streaming Accessories,5,src/main/resources/data/images/1.png
+697,Asus Streaming Accessorie 7,589.57,Asus,Streaming Accessories,0,src/main/resources/data/images/1.png
+698,Asus Streaming Accessorie 8,1547.22,Asus,Streaming Accessories,10,src/main/resources/data/images/1.png
+699,Colgate Streaming Accessorie 9,323.07,Colgate,Streaming Accessories,25,src/main/resources/data/images/1.png
+700,Zara Streaming Accessorie 10,583.1,Zara,Streaming Accessories,15,src/main/resources/data/images/1.png
+701,Canon Tables & Chair 1,737.38,Canon,Tables & Chairs,10,src/main/resources/data/images/1.png
+702,Pedigree Tables & Chair 2,604.49,Pedigree,Tables & Chairs,10,src/main/resources/data/images/1.png
+703,Colgate Tables & Chair 3,1660.15,Colgate,Tables & Chairs,10,src/main/resources/data/images/1.png
+704,Adidas Tables & Chair 4,613.57,Adidas,Tables & Chairs,10,src/main/resources/data/images/1.png
+705,Pampers Tables & Chair 5,217.12,Pampers,Tables & Chairs,10,src/main/resources/data/images/1.png
+706,Dell Tables & Chair 6,494.55,Dell,Tables & Chairs,0,src/main/resources/data/images/1.png
+707,Sony Tables & Chair 7,1374.55,Sony,Tables & Chairs,10,src/main/resources/data/images/1.png
+708,IKEA Tables & Chair 8,289.75,IKEA,Tables & Chairs,20,src/main/resources/data/images/1.png
+709,Coca-Cola Tables & Chair 9,1201.92,Coca-Cola,Tables & Chairs,10,src/main/resources/data/images/1.png
+710,Puma Tables & Chair 10,1029.34,Puma,Tables & Chairs,5,src/main/resources/data/images/1.png
+711,Whiskas Tent 1,1465.44,Whiskas,Tents,15,src/main/resources/data/images/1.png
+712,Fisher-Price Tent 2,356.07,Fisher-Price,Tents,0,src/main/resources/data/images/1.png
+713,Vanish Tent 3,1291.55,Vanish,Tents,10,src/main/resources/data/images/1.png
+714,Nike Tent 4,1653.27,Nike,Tents,0,src/main/resources/data/images/1.png
+715,Gillette Tent 5,429.57,Gillette,Tents,10,src/main/resources/data/images/1.png
+716,Tymbark Tent 6,1558.87,Tymbark,Tents,5,src/main/resources/data/images/1.png
+717,Vanish Tent 7,1398.5,Vanish,Tents,25,src/main/resources/data/images/1.png
+718,Dove Tent 8,583.16,Dove,Tents,10,src/main/resources/data/images/1.png
+719,Chicco Tent 9,1749.7,Chicco,Tents,0,src/main/resources/data/images/1.png
+720,Huggies Tent 10,1303.66,Huggies,Tents,25,src/main/resources/data/images/1.png
+721,Lenovo Thermal Pad 1,380.97,Lenovo,Thermal Pads,5,src/main/resources/data/images/1.png
+722,LG Thermal Pad 2,756.36,LG,Thermal Pads,5,src/main/resources/data/images/1.png
+723,Maybelline Thermal Pad 3,1995.19,Maybelline,Thermal Pads,15,src/main/resources/data/images/1.png
+724,Asus Thermal Pad 4,1057.24,Asus,Thermal Pads,0,src/main/resources/data/images/1.png
+725,Puma Thermal Pad 5,340.92,Puma,Thermal Pads,15,src/main/resources/data/images/1.png
+726,IKEA Thermal Pad 6,860.84,IKEA,Thermal Pads,0,src/main/resources/data/images/1.png
+727,IKEA Thermal Pad 7,1496.7,IKEA,Thermal Pads,0,src/main/resources/data/images/1.png
+728,Pampers Thermal Pad 8,1152.07,Pampers,Thermal Pads,5,src/main/resources/data/images/1.png
+729,Żywiec Zdrój Thermal Pad 9,1904.01,Żywiec Zdrój,Thermal Pads,0,src/main/resources/data/images/1.png
+730,Whiskas Thermal Pad 10,1245.21,Whiskas,Thermal Pads,15,src/main/resources/data/images/1.png
+731,Sony Thermal Paste 1,1574.43,Sony,Thermal Pastes,5,src/main/resources/data/images/1.png
+732,Canon Thermal Paste 2,273.78,Canon,Thermal Pastes,0,src/main/resources/data/images/1.png
+733,Fisher-Price Thermal Paste 3,246.42,Fisher-Price,Thermal Pastes,0,src/main/resources/data/images/1.png
+734,Żywiec Zdrój Thermal Paste 4,977.35,Żywiec Zdrój,Thermal Pastes,5,src/main/resources/data/images/1.png
+735,Coca-Cola Thermal Paste 5,1046.52,Coca-Cola,Thermal Pastes,10,src/main/resources/data/images/1.png
+736,Purina Thermal Paste 6,949.77,Purina,Thermal Pastes,15,src/main/resources/data/images/1.png
+737,Garnier Thermal Paste 7,1849.85,Garnier,Thermal Pastes,0,src/main/resources/data/images/1.png
+738,Dell Thermal Paste 8,1170.3,Dell,Thermal Pastes,20,src/main/resources/data/images/1.png
+739,Sony Thermal Paste 9,219.48,Sony,Thermal Pastes,0,src/main/resources/data/images/1.png
+740,Levi's Thermal Paste 10,1993.68,Levi's,Thermal Pastes,15,src/main/resources/data/images/1.png
+741,Bosch Thermometer 1,684.96,Bosch,Thermometers,0,src/main/resources/data/images/1.png
+742,H&M Thermometer 2,817.72,H&M,Thermometers,25,src/main/resources/data/images/1.png
+743,Finish Thermometer 3,873.12,Finish,Thermometers,15,src/main/resources/data/images/1.png
+744,Nivea Thermometer 4,1056.21,Nivea,Thermometers,0,src/main/resources/data/images/1.png
+745,Asus Thermometer 5,1077.68,Asus,Thermometers,0,src/main/resources/data/images/1.png
+746,Asus Thermometer 6,1642.83,Asus,Thermometers,0,src/main/resources/data/images/1.png
+747,Tymbark Thermometer 7,1739.13,Tymbark,Thermometers,10,src/main/resources/data/images/1.png
+748,Fisher-Price Thermometer 8,631.75,Fisher-Price,Thermometers,0,src/main/resources/data/images/1.png
+749,Hasbro Thermometer 9,1327.57,Hasbro,Thermometers,5,src/main/resources/data/images/1.png
+750,Hasbro Thermometer 10,61.94,Hasbro,Thermometers,5,src/main/resources/data/images/1.png
+751,Levi's Toasters & Sandwich Maker 1,1824.44,Levi's,Toasters & Sandwich Makers,10,src/main/resources/data/images/1.png
+752,Oral-B Toasters & Sandwich Maker 2,1812.22,Oral-B,Toasters & Sandwich Makers,25,src/main/resources/data/images/1.png
+753,Levi's Toasters & Sandwich Maker 3,1557.84,Levi's,Toasters & Sandwich Makers,0,src/main/resources/data/images/1.png
+754,Fisher-Price Toasters & Sandwich Maker 4,1692.48,Fisher-Price,Toasters & Sandwich Makers,0,src/main/resources/data/images/1.png
+755,Huggies Toasters & Sandwich Maker 5,167.12,Huggies,Toasters & Sandwich Makers,0,src/main/resources/data/images/1.png
+756,Vanish Toasters & Sandwich Maker 6,1631.35,Vanish,Toasters & Sandwich Makers,0,src/main/resources/data/images/1.png
+757,Huggies Toasters & Sandwich Maker 7,1524.78,Huggies,Toasters & Sandwich Makers,15,src/main/resources/data/images/1.png
+758,Vanish Toasters & Sandwich Maker 8,1621.84,Vanish,Toasters & Sandwich Makers,5,src/main/resources/data/images/1.png
+759,Gerber Toasters & Sandwich Maker 9,611.56,Gerber,Toasters & Sandwich Makers,0,src/main/resources/data/images/1.png
+760,Whiskas Toasters & Sandwich Maker 10,1558.55,Whiskas,Toasters & Sandwich Makers,5,src/main/resources/data/images/1.png
+761,Żywiec Zdrój Treadmill 1,670.79,Żywiec Zdrój,Treadmills,0,src/main/resources/data/images/1.png
+762,Gerber Treadmill 2,1681.71,Gerber,Treadmills,0,src/main/resources/data/images/1.png
+763,Canon Treadmill 3,1367.58,Canon,Treadmills,0,src/main/resources/data/images/1.png
+764,Pepsi Treadmill 4,1194.93,Pepsi,Treadmills,0,src/main/resources/data/images/1.png
+765,Colgate Treadmill 5,211.98,Colgate,Treadmills,0,src/main/resources/data/images/1.png
+766,LG Treadmill 6,87.95,LG,Treadmills,0,src/main/resources/data/images/1.png
+767,Bosch Treadmill 7,798.01,Bosch,Treadmills,25,src/main/resources/data/images/1.png
+768,Tefal Treadmill 8,1483.75,Tefal,Treadmills,5,src/main/resources/data/images/1.png
+769,Hasbro Treadmill 9,1465.38,Hasbro,Treadmills,5,src/main/resources/data/images/1.png
+770,Nivea Treadmill 10,1818.78,Nivea,Treadmills,0,src/main/resources/data/images/1.png
+771,Gillette Tripod 1,760.74,Gillette,Tripods,25,src/main/resources/data/images/1.png
+772,Nikon Tripod 2,400.3,Nikon,Tripods,10,src/main/resources/data/images/1.png
+773,Heinz Tripod 3,1485.36,Heinz,Tripods,0,src/main/resources/data/images/1.png
+774,Pampers Tripod 4,1954.38,Pampers,Tripods,0,src/main/resources/data/images/1.png
+775,Sony Tripod 5,825.59,Sony,Tripods,0,src/main/resources/data/images/1.png
+776,Fisher-Price Tripod 6,1195.49,Fisher-Price,Tripods,0,src/main/resources/data/images/1.png
+777,Nikon Tripod 7,1441.7,Nikon,Tripods,15,src/main/resources/data/images/1.png
+778,Coca-Cola Tripod 8,524.24,Coca-Cola,Tripods,0,src/main/resources/data/images/1.png
+779,Nikon Tripod 9,862.17,Nikon,Tripods,0,src/main/resources/data/images/1.png
+780,LG Tripod 10,255.59,LG,Tripods,25,src/main/resources/data/images/1.png
+781,Canon Ultrabook 1,166.37,Canon,Ultrabooks,5,src/main/resources/data/images/1.png
+782,Łowicz Ultrabook 2,338.41,Łowicz,Ultrabooks,10,src/main/resources/data/images/1.png
+783,Philips Ultrabook 3,552.87,Philips,Ultrabooks,0,src/main/resources/data/images/1.png
+784,Zara Ultrabook 4,1066.98,Zara,Ultrabooks,0,src/main/resources/data/images/1.png
+785,Nikon Ultrabook 5,1389.61,Nikon,Ultrabooks,0,src/main/resources/data/images/1.png
+786,Canon Ultrabook 6,1469.23,Canon,Ultrabooks,0,src/main/resources/data/images/1.png
+787,Lenovo Ultrabook 7,1531.53,Lenovo,Ultrabooks,15,src/main/resources/data/images/1.png
+788,Chicco Ultrabook 8,72.02,Chicco,Ultrabooks,10,src/main/resources/data/images/1.png
+789,Nestlé Ultrabook 9,702.8,Nestlé,Ultrabooks,0,src/main/resources/data/images/1.png
+790,Samsung Ultrabook 10,1565.51,Samsung,Ultrabooks,10,src/main/resources/data/images/1.png
+791,Levi's Washing Machine 1,1988.09,Levi's,Washing Machines,0,src/main/resources/data/images/1.png
+792,Vanish Washing Machine 2,1633.27,Vanish,Washing Machines,25,src/main/resources/data/images/1.png
+793,Sony Washing Machine 3,1744.34,Sony,Washing Machines,0,src/main/resources/data/images/1.png
+794,Samsung Washing Machine 4,1848.38,Samsung,Washing Machines,5,src/main/resources/data/images/1.png
+795,Łowicz Washing Machine 5,29.07,Łowicz,Washing Machines,0,src/main/resources/data/images/1.png
+796,Winiary Washing Machine 6,446.94,Winiary,Washing Machines,0,src/main/resources/data/images/1.png
+797,Pepsi Washing Machine 7,280.12,Pepsi,Washing Machines,15,src/main/resources/data/images/1.png
+798,L'Oréal Washing Machine 8,311.86,L'Oréal,Washing Machines,5,src/main/resources/data/images/1.png
+799,Purina Washing Machine 9,1360.03,Purina,Washing Machines,10,src/main/resources/data/images/1.png
+800,HP Washing Machine 10,1896.24,HP,Washing Machines,5,src/main/resources/data/images/1.png
+801,Garnier Water Cooling Kit 1,1547.59,Garnier,Water Cooling Kits,10,src/main/resources/data/images/1.png
+802,Tymbark Water Cooling Kit 2,1918.95,Tymbark,Water Cooling Kits,0,src/main/resources/data/images/1.png
+803,Żywiec Zdrój Water Cooling Kit 3,1216.19,Żywiec Zdrój,Water Cooling Kits,10,src/main/resources/data/images/1.png
+804,Samsung Water Cooling Kit 4,262.51,Samsung,Water Cooling Kits,15,src/main/resources/data/images/1.png
+805,Philips Water Cooling Kit 5,948.87,Philips,Water Cooling Kits,10,src/main/resources/data/images/1.png
+806,Oral-B Water Cooling Kit 6,1880.75,Oral-B,Water Cooling Kits,0,src/main/resources/data/images/1.png
+807,Maybelline Water Cooling Kit 7,145.87,Maybelline,Water Cooling Kits,0,src/main/resources/data/images/1.png
+808,Asus Water Cooling Kit 8,110.77,Asus,Water Cooling Kits,0,src/main/resources/data/images/1.png
+809,Heinz Water Cooling Kit 9,1502.22,Heinz,Water Cooling Kits,10,src/main/resources/data/images/1.png
+810,Pampers Water Cooling Kit 10,1972.26,Pampers,Water Cooling Kits,0,src/main/resources/data/images/1.png
+811,Dove Webcam 1,591.42,Dove,Webcams,0,src/main/resources/data/images/1.png
+812,Samsung Webcam 2,333.73,Samsung,Webcams,5,src/main/resources/data/images/1.png
+813,Zara Webcam 3,562.63,Zara,Webcams,10,src/main/resources/data/images/1.png
+814,Huggies Webcam 4,488.37,Huggies,Webcams,5,src/main/resources/data/images/1.png
+815,Finish Webcam 5,1497.14,Finish,Webcams,25,src/main/resources/data/images/1.png
+816,Łowicz Webcam 6,37.13,Łowicz,Webcams,0,src/main/resources/data/images/1.png
+817,Tymbark Webcam 7,206.4,Tymbark,Webcams,0,src/main/resources/data/images/1.png
+818,Puma Webcam 8,1681.17,Puma,Webcams,10,src/main/resources/data/images/1.png
+819,L'Oréal Webcam 9,1409.8,L'Oréal,Webcams,10,src/main/resources/data/images/1.png
+820,Chicco Webcam 10,1631.16,Chicco,Webcams,5,src/main/resources/data/images/1.png
+821,Bosch Xiaomi Phone 1,688.72,Bosch,Xiaomi Phones,15,src/main/resources/data/images/1.png
+822,Gillette Xiaomi Phone 2,110.0,Gillette,Xiaomi Phones,0,src/main/resources/data/images/1.png
+823,Levi's Xiaomi Phone 3,1147.94,Levi's,Xiaomi Phones,0,src/main/resources/data/images/1.png
+824,Mattel Xiaomi Phone 4,56.97,Mattel,Xiaomi Phones,25,src/main/resources/data/images/1.png
+825,Gillette Xiaomi Phone 5,1994.87,Gillette,Xiaomi Phones,5,src/main/resources/data/images/1.png
+826,Pedigree Xiaomi Phone 6,1542.23,Pedigree,Xiaomi Phones,0,src/main/resources/data/images/1.png
+827,Dove Xiaomi Phone 7,142.6,Dove,Xiaomi Phones,25,src/main/resources/data/images/1.png
+828,Whiskas Xiaomi Phone 8,443.29,Whiskas,Xiaomi Phones,0,src/main/resources/data/images/1.png
+829,Heinz Xiaomi Phone 9,1208.44,Heinz,Xiaomi Phones,10,src/main/resources/data/images/1.png
+830,Lego Xiaomi Phone 10,1723.17,Lego,Xiaomi Phones,15,src/main/resources/data/images/1.png
+831,L'Oréal iPhone 1,1447.72,L'Oréal,iPhones,20,src/main/resources/data/images/1.png
+832,Fisher-Price iPhone 2,138.09,Fisher-Price,iPhones,25,src/main/resources/data/images/1.png
+833,Apple iPhone 3,1880.14,Apple,iPhones,5,src/main/resources/data/images/1.png
+834,Adidas iPhone 4,1851.62,Adidas,iPhones,10,src/main/resources/data/images/1.png
+835,Samsung iPhone 5,1342.48,Samsung,iPhones,10,src/main/resources/data/images/1.png
+836,Tefal iPhone 6,1624.42,Tefal,iPhones,5,src/main/resources/data/images/1.png
+837,Sony iPhone 7,1347.5,Sony,iPhones,15,src/main/resources/data/images/1.png
+838,Dove iPhone 8,1003.25,Dove,iPhones,0,src/main/resources/data/images/1.png
+839,Chicco iPhone 9,503.61,Chicco,iPhones,0,src/main/resources/data/images/1.png
+840,Dell iPhone 10,1596.58,Dell,iPhones,5,src/main/resources/data/images/1.png

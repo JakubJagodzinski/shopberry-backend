@@ -39,6 +39,6 @@ public class ProductResponseDto {
     @JsonProperty("is_in_stock")
     private Boolean isInStock;
 
-    private byte[] image;
+    private String image;
 
 }

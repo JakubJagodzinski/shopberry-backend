@@ -2,6 +2,7 @@ package com.example.shopberry.domain.products.dto;
 
 import com.example.shopberry.domain.producers.dto.ProducerDtoMapper;
 import com.example.shopberry.domain.products.Product;
+import com.example.shopberry.utils.ImageBase64Utils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -33,7 +34,10 @@ public class ProductDtoMapper {
             dto.setCategoryId(null);
         }
         dto.setIsInStock(product.getIsInStock());
-        dto.setImage(product.getImage());
+        if (product.getImage() != null) {
+            String base64 = ImageBase64Utils.encode(product.getImage());
+            dto.setImage(base64);
+        }
 
         return dto;
     }
