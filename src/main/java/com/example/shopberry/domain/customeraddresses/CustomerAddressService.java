@@ -1,5 +1,6 @@
 package com.example.shopberry.domain.customeraddresses;
 
+import com.example.shopberry.auth.access.manager.CustomerAddressAccessManager;
 import com.example.shopberry.common.constants.messages.CustomerMessages;
 import com.example.shopberry.domain.customeraddresses.dto.CreateCustomerAddressRequestDto;
 import com.example.shopberry.domain.customeraddresses.dto.CustomerAddressDtoMapper;
@@ -24,15 +25,21 @@ public class CustomerAddressService {
 
     private final CustomerAddressDtoMapper customerAddressDtoMapper;
 
+    private final CustomerAddressAccessManager customerAddressAccessManager;
+
     public List<CustomerAddressResponseDto> getAllAddresses() {
         return customerAddressDtoMapper.toDtoList(customerAddressRepository.findAll());
     }
 
     @Transactional
     public List<CustomerAddressResponseDto> getCustomerAllAddresses(UUID customerId) throws EntityNotFoundException {
-        if (!customerRepository.existsById(customerId)) {
+        Customer customer = customerRepository.findById(customerId).orElse(null);
+
+        if (customer == null) {
             throw new EntityNotFoundException(CustomerMessages.CUSTOMER_NOT_FOUND);
         }
+
+        customerAddressAccessManager.checkCanReadCustomerAllAddresses(customer);
 
         return customerAddressDtoMapper.toDtoList(customerAddressRepository.findAllByCustomer_UserId(customerId));
     }
@@ -44,6 +51,8 @@ public class CustomerAddressService {
         if (customer == null) {
             throw new EntityNotFoundException(CustomerMessages.CUSTOMER_NOT_FOUND);
         }
+
+        customerAddressAccessManager.checkCanCreateCustomerAddress(customer);
 
         CustomerAddress customerAddress = new CustomerAddress();
 
@@ -67,6 +76,8 @@ public class CustomerAddressService {
         if (customerAddress == null) {
             throw new EntityNotFoundException(CustomerMessages.CUSTOMER_ADDRESS_NOT_FOUND);
         }
+
+        customerAddressAccessManager.checkCanUpdateCustomerAddress(customerAddress);
 
         if (updateCustomerAddressRequestDto.getFirstName() != null) {
             customerAddress.setFirstName(updateCustomerAddressRequestDto.getFirstName().trim());
@@ -105,18 +116,26 @@ public class CustomerAddressService {
 
     @Transactional
     public void deleteCustomerAllAddresses(UUID customerId) throws EntityNotFoundException {
-        if (!customerRepository.existsById(customerId)) {
+        Customer customer = customerRepository.findById(customerId).orElse(null);
+
+        if (customer == null) {
             throw new EntityNotFoundException(CustomerMessages.CUSTOMER_NOT_FOUND);
         }
+
+        customerAddressAccessManager.checkCanDeleteCustomerAllAddresses(customer);
 
         customerAddressRepository.deleteAllByCustomer_UserId(customerId);
     }
 
     @Transactional
     public void deleteAddressById(Long customerAddressId) throws EntityNotFoundException {
-        if (!customerAddressRepository.existsById(customerAddressId)) {
+        CustomerAddress customerAddress = customerAddressRepository.findById(customerAddressId).orElse(null);
+
+        if (customerAddress == null) {
             throw new EntityNotFoundException(CustomerMessages.CUSTOMER_ADDRESS_NOT_FOUND);
         }
+
+        customerAddressAccessManager.checkCanDeleteCustomerAddress(customerAddress);
 
         customerAddressRepository.deleteById(customerAddressId);
     }
