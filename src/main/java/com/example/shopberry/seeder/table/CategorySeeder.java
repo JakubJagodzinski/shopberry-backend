@@ -60,6 +60,7 @@ public class CategorySeeder implements DataSeeder {
                 Category parent = categoryMap.get(parentName);
                 if (parent != null) {
                     category.setParentCategory(parent);
+                    parent.setLeaf(false);
                 }
             }
         }

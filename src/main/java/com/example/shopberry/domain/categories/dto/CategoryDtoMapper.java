@@ -19,6 +19,7 @@ public class CategoryDtoMapper {
         categoryResponseDto.setCategoryId(category.getCategoryId());
         categoryResponseDto.setCategoryName(category.getCategoryName());
         categoryResponseDto.setParentCategory(toDto(category.getParentCategory()));
+        categoryResponseDto.setIsLeaf(category.isLeaf());
 
         return categoryResponseDto;
     }

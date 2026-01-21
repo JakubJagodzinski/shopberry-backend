@@ -11,7 +11,12 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonPropertyOrder({"category_id", "category_name", "parent_category"})
+@JsonPropertyOrder({
+        "category_id",
+        "category_name",
+        "parent_category",
+        "is_leaf"
+})
 public class CategoryResponseDto {
 
     @JsonProperty("category_id")
@@ -22,5 +27,8 @@ public class CategoryResponseDto {
 
     @JsonProperty("parent_category")
     private CategoryResponseDto parentCategory;
+
+    @JsonProperty("is_leaf")
+    private Boolean isLeaf;
 
 }

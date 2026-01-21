@@ -90,6 +90,8 @@ public class CategoryService {
             }
 
             category.setParentCategory(parentCategory);
+            parentCategory.setLeaf(true);
+            categoryRepository.save(parentCategory);
         }
 
         return categoryDtoMapper.toDto(categoryRepository.save(category));
@@ -150,6 +152,11 @@ public class CategoryService {
         List<Category> childCategories = categoryRepository.findAllByParentCategory_CategoryId(categoryId);
 
         for (Category childCategory : childCategories) {
+            Category parentCategory = childCategory.getParentCategory();
+            if (!categoryRepository.existsByParentCategory_CategoryId(parentCategory.getCategoryId())) {
+                parentCategory.setLeaf(true);
+                categoryRepository.save(parentCategory);
+            }
             childCategory.setParentCategory(null);
         }
 

@@ -1,7 +1,9 @@
 package com.example.shopberry.domain.categories;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @Setter
@@ -21,5 +23,13 @@ public class Category {
     @ManyToOne
     @JoinColumn(name = "parent_category_id", foreignKey = @ForeignKey(name = "fk_categories_parent_category"))
     private Category parentCategory = null;
+
+    @Column(name = "leaf", nullable = false)
+    private boolean isLeaf;
+
+    @PrePersist
+    protected void onCreate() {
+        isLeaf = true;
+    }
 
 }
